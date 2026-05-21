@@ -1,6 +1,6 @@
 # Amanoba Mantine-Only Refactor
 
-Status: Planned
+Status: In Progress
 Version: 1.0.0
 Last updated: 2026-05-21
 Project: `/Users/moldovancsaba/Projects/amanoba`
@@ -158,39 +158,45 @@ Exceptions must be documented locally and kept narrow:
 
 ### Phase 0: Freeze And Readiness
 
+Status: Complete as of 2026-05-21.
+
 Tasks:
 
-- update local docs to reference this plan
-- add a legacy-import freeze rule
-- define Mantine direct-vs-wrapper policy
-- define Phase 1 files and acceptance criteria
-- stop adding new Tailwind/Radix product UI primitives
+- [x] update local docs to reference this plan
+- [x] add a legacy-import freeze rule
+- [x] define Mantine direct-vs-wrapper policy
+- [x] define Phase 1 files and acceptance criteria
+- [x] stop adding new Tailwind/Radix product UI primitives
 
 Exit criteria:
 
-- Amanoba docs point to this plan
-- new UI work has a clear Mantine-only rule
-- Phase 1 root-runtime scope is approved
+- [x] Amanoba docs point to this plan
+- [x] new UI work has a clear Mantine-only rule
+- [x] Phase 1 root-runtime scope is approved
 
 ### Phase 1: Root Mantine Runtime
 
+Status: Complete as of 2026-05-21.
+
 Tasks:
 
-- install required Mantine packages
-- create one Amanoba Mantine theme
-- add root provider composition
-- register Mantine notifications and modals
-- keep existing UI visually stable while root runtime lands
-- add initial guardrail against new legacy primitive imports
+- [x] install required Mantine packages
+- [x] create one Amanoba Mantine theme
+- [x] add root provider composition
+- [x] register Mantine notifications and modals
+- [x] keep existing UI visually stable while root runtime lands
+- [x] add initial guardrail against new legacy primitive imports
 
 Exit criteria:
 
-- all product UI renders under `MantineProvider`
-- one theme module is the only approved new token authority
-- notifications and modals are available centrally
-- docs and validation commands reflect the root runtime
+- [x] all product UI renders under `MantineProvider`
+- [x] one theme module is the only approved new token authority
+- [x] notifications and modals are available centrally
+- [x] docs and validation commands reflect the root runtime
 
 ### Phase 2: Core Primitives
+
+Status: In progress. Active course-surface voting, discussion, study-group, cookie consent, catalog, and course detail primitives have moved to Mantine; remaining shared forms, auth controls, admin/editor forms, and legacy `app/components/ui/*` primitives still need conversion or retirement.
 
 Migrate first:
 
@@ -209,6 +215,8 @@ Exit criteria:
 - legacy shared primitives are deprecated or redirected
 
 ### Phase 3: Auth, Course, And Learner-Critical Flows
+
+Status: In progress. Public course browse/detail/enrolment and anonymous lesson/quiz recovery states are partially migrated. Lesson page, lesson quiz runtime, final exam, saved lessons, practice hub, auth return flows, and dashboard still need full Mantine-only conversion.
 
 Primary surfaces:
 
@@ -293,10 +301,34 @@ During migration, run the relevant subset:
 - `npm run type-check`
 - `npm run build`
 - `npm run docs:check`
+- `npm run ui:check:mantine`
 - `npm run ui:check:foundation`
 - `npm run ui:check:layout`
 
-After guardrails are updated, add a dedicated Mantine-only check that rejects new product UI imports from legacy primitive systems.
+The dedicated Mantine-only check is active as `npm run ui:check:mantine`; it rejects new product UI imports from frozen legacy primitive systems.
+
+## Current Amanoba Progress Snapshot
+
+As of 2026-05-21:
+
+- Root Mantine runtime is active through `app/components/providers/MantineRuntimeProvider.tsx`.
+- Amanoba Mantine theme is active in `app/lib/ui/mantine-theme.ts`.
+- Mantine notifications and modals are centrally available.
+- `npm run ui:check:mantine`, `npm run ui:check:foundation`, and `npm run ui:check:layout` are active local guardrails.
+- Course catalog and public course detail page wrappers are Mantine-based.
+- Active course voting, discussion, and study-group components use Mantine primitives and Tabler icons.
+- Cookie consent uses compact Mantine controls.
+- Lesson and quiz protected-route recovery states use Mantine primitives.
+- Stale duplicate app-level course community components were removed from Amanoba.
+
+Remaining high-priority gaps:
+
+- lesson runtime body/navigation still contains legacy Tailwind page markup
+- lesson quiz runtime still contains legacy Tailwind page markup
+- final exam flow still contains legacy Tailwind page markup
+- auth/sign-in, dashboard, saved lessons, and practice hub still need full Mantine-only conversion
+- admin/editor course forms are only partially migrated
+- `app/components/ui/*`, Tailwind config, local CSS token files, Radix, Sonner, and Vaul remain deletion-phase work after product surfaces stop depending on them
 
 ## First Implementation PR Shape
 

@@ -2,6 +2,12 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 1.3.2 - 2026-05-21
+
+- Updated the Amanoba migration plan from planned to in-progress.
+- Recorded completed Amanoba Phase 0/1 runtime work, active Mantine guardrails, and the current course-surface migration snapshot.
+- Added remaining Amanoba high-priority gaps for lesson runtime, quiz runtime, final exam, auth, dashboard, saved lessons, practice hub, admin/editor forms, and deletion-phase legacy dependencies.
+
 ## 1.3.1 - 2026-05-21
 
 - Updated the SSO migration plan to mark admin-shell migration and legacy theme-stack removal as completed.

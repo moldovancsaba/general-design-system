@@ -2,6 +2,10 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 1.2.3 - 2026-05-21
+
+- Promoted implementation-readiness checks into the required reading order.
+
 ## 1.2.2 - 2026-05-21
 
 - Added root provider/theme implementation notes to the required project-adoption contract.

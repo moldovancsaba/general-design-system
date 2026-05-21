@@ -52,6 +52,8 @@ If a project-local UI document conflicts with this directory, this directory win
    Adoption, review, exceptions, migration order, versioning, and definition of done.
 8. [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md)
    Required per-project adapter contract and documentation template.
+9. [IMPLEMENTATION_READINESS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/IMPLEMENTATION_READINESS.md)
+   Pre-implementation decision checklist to prevent drift, bridge layers, and ambiguous Mantine migrations.
 
 ## Supporting Operational Files
 

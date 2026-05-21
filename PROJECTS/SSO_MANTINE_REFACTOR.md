@@ -34,6 +34,23 @@ Refactor SSO to a pure Mantine system with no long-lived bridge between the curr
 - docs surfaces moved to Mantine layout and typography where practical
 - old token/theme infrastructure deleted
 
+## Required Local Adapter
+
+SSO must maintain a local adapter note in:
+
+- `/Users/moldovancsaba/Projects/sso/docs/DESIGN_SYSTEM.md`
+
+That adapter must describe:
+
+- local status: `migrating`
+- current foundation
+- target foundation
+- theme/provider path
+- wrapper or direct primitive policy
+- validation commands
+- known exceptions
+- migration backlog
+
 ## Phases
 
 ### Phase 0: Freeze
@@ -54,6 +71,15 @@ Tasks:
 - add `MantineProvider`
 - register notifications and modals
 - move root layout concerns onto Mantine-friendly structure
+- define the single theme file path
+- define direct primitive versus thin-wrapper policy
+
+Exit criteria:
+
+- `_app` is Mantine-rooted
+- one theme file exists and is the only approved token authority for new UI
+- notifications and modals are centralized
+- the legacy freeze is documented locally
 
 ### Phase 2: Auth Surfaces
 
@@ -69,6 +95,11 @@ Tasks:
 - migrate forms, alerts, cards, and loading states
 - keep provider-brand buttons compliant inside Mantine layout
 
+Exit criteria:
+
+- login and admin-entry flows no longer depend on legacy auth-page styling
+- redirect, re-auth, and provider-login behavior remains correct
+
 ### Phase 3: Admin Shell And CRUD
 
 Files:
@@ -81,6 +112,11 @@ Files:
 Tasks:
 
 - migrate layout, tables, filters, forms, modals, and destructive flows
+
+Exit criteria:
+
+- the main admin shell and CRUD flows use Mantine primitives only
+- legacy admin page CSS no longer drives layout decisions
 
 ### Phase 4: Style Editor Decision
 
@@ -97,15 +133,46 @@ Decision:
 
 The old style editor cannot remain unchanged in a pure Mantine target.
 
+Required decision before Phase 4 implementation:
+
+- rewrite to Mantine-native theme management
+- or remove/disable until Mantine-native theme management is designed
+
 ### Phase 5: Docs Surfaces
 
 - migrate `/Users/moldovancsaba/Projects/sso/pages/docs/*`
+
+Exit criteria:
+
+- docs layout and state callouts are Mantine-driven
+- any remaining editorial CSS is narrow and intentional
 
 ### Phase 6: Deletion
 
 - delete legacy theme provider
 - delete obsolete CSS modules
 - delete obsolete local design-system docs
+
+Exit criteria:
+
+- `/Users/moldovancsaba/Projects/sso/components/ThemeProvider.js` is gone
+- obsolete token ownership in `styles/globals.css` is gone
+- no product UI path depends on legacy design infrastructure
+
+## Initial Implementation Sequence
+
+1. Root Mantine platform
+2. login and admin-entry surfaces
+3. admin shell and CRUD screens
+4. style editor rewrite/removal decision
+5. docs surfaces
+6. deletion pass
+
+## Validation Commands
+
+- `npm run lint`
+- `npm run check:docs`
+- targeted tests for auth and admin flows affected by UI work
 
 ## Enforcement Needed
 

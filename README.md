@@ -54,6 +54,8 @@ If a project-local UI document conflicts with this directory, this directory win
 
 - [MIGRATION_PLAYBOOK.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/MIGRATION_PLAYBOOK.md)
   Standard phase model for true-refactor Mantine migrations.
+- [IMPLEMENTATION_READINESS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/IMPLEMENTATION_READINESS.md)
+  Mandatory decisions and readiness checklist before the first implementation PR.
 - [CONTRIBUTING.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/CONTRIBUTING.md)
   Shared-repository working rules and suggested commit scopes.
 - [CHANGELOG.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/CHANGELOG.md)

@@ -9,6 +9,8 @@ All notable policy changes to the General Design System are recorded here.
 - Tightened component, foundation, UX, governance, and project-adoption contracts for cross-project enforcement.
 - Clarified that product repositories may document only adapters, exceptions, migration state, and validation commands.
 - Added repository hygiene rules for shared Git usage across consuming projects.
+- Added implementation-readiness requirements so projects document root provider, theme ownership, primitive policy, legacy boundaries, responsive strategy, and drift controls before the first Mantine PR.
+- Expanded the SSO project plan with local-adapter requirements, phase exit criteria, validation commands, and initial implementation sequence.
 
 ## 1.0.0 - 2026-05-21
 

@@ -125,6 +125,10 @@ Implemented in:
 
 ### Phase 3: Admin Shell And CRUD
 
+Status:
+
+- completed
+
 Files:
 
 - `/Users/moldovancsaba/Projects/sso/pages/admin/dashboard.js`
@@ -141,7 +145,23 @@ Exit criteria:
 - the main admin shell and CRUD flows use Mantine primitives only
 - legacy admin page CSS no longer drives layout decisions
 
+Implemented in:
+
+- `/Users/moldovancsaba/Projects/sso/components/AdminShell.js`
+- `/Users/moldovancsaba/Projects/sso/components/AccountShell.js`
+- `/Users/moldovancsaba/Projects/sso/pages/admin/dashboard.js`
+- `/Users/moldovancsaba/Projects/sso/pages/admin/users.js`
+- `/Users/moldovancsaba/Projects/sso/pages/admin/oauth-clients.js`
+- `/Users/moldovancsaba/Projects/sso/pages/admin/activity.js`
+- `/Users/moldovancsaba/Projects/sso/pages/admin/forgot-password.js`
+- `/Users/moldovancsaba/Projects/sso/pages/account.js`
+- `/Users/moldovancsaba/Projects/sso/pages/index.js`
+
 ### Phase 4: Style Editor Decision
+
+Status:
+
+- completed
 
 Files:
 
@@ -151,15 +171,15 @@ Files:
 
 Decision:
 
-- rewrite around a Mantine-native theme model
-- or remove/disable until such a model exists
+- removed
 
-The old style editor cannot remain unchanged in a pure Mantine target.
+Implemented in:
 
-Required decision before Phase 4 implementation:
-
-- rewrite to Mantine-native theme management
-- or remove/disable until Mantine-native theme management is designed
+- removed `/Users/moldovancsaba/Projects/sso/pages/admin/style-editor.js`
+- removed `/Users/moldovancsaba/Projects/sso/components/ThemeProvider.js`
+- removed `/Users/moldovancsaba/Projects/sso/lib/styleThemes.mjs`
+- removed `/Users/moldovancsaba/Projects/sso/pages/api/admin/themes/*`
+- removed `/Users/moldovancsaba/Projects/sso/pages/api/themes/active.js`
 
 ### Phase 5: Docs Surfaces
 
@@ -184,10 +204,8 @@ Exit criteria:
 
 ## Initial Implementation Sequence
 
-1. admin shell and CRUD screens
-2. style editor rewrite/removal decision
-3. docs surfaces
-4. deletion pass
+1. docs surfaces
+2. deletion pass
 
 ## Validation Commands
 

@@ -2,6 +2,11 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 1.3.1 - 2026-05-21
+
+- Updated the SSO migration plan to mark admin-shell migration and legacy theme-stack removal as completed.
+- Clarified the SSO path toward the remaining docs/editorial migration and final deletion pass.
+
 ## 1.3.0 - 2026-05-21
 
 - Added a primitive policy matrix for direct-versus-wrapper decisions.

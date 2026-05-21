@@ -11,7 +11,7 @@ Provide a rigid, followable, cross-project design system for product application
 ## Core Principles
 
 1. One source of truth: design decisions live here, not inside individual product repos.
-2. One UI platform: Mantine is the default and preferred product UI foundation.
+2. One UI platform: Mantine is the required product UI foundation.
 3. One token source per product: the project theme is the only active token authority.
 4. One pattern per concept: do not allow page-by-page reinvention of the same interaction.
 5. Behavior is part of design: loading, empty, error, success, disabled, permission, and validation states are required.
@@ -39,7 +39,7 @@ It does not replace:
 - charting engines
 - print or PDF rendering engines
 
-## Approved UI Foundation
+## Required UI Foundation
 
 Required baseline for product UI:
 
@@ -54,16 +54,19 @@ Approved optional Mantine packages by need:
 
 - `@mantine/dates`
 - `@mantine/charts`
+- `@mantine/dropzone`
 - `@mantine/spotlight`
 - `@mantine/tiptap`
 
-Non-Mantine packages are allowed only as:
+Non-Mantine packages are allowed only as non-primitive supporting integrations such as:
 
 - charting integrations
 - rich text / editor integrations
 - provider-required branded controls
 - printed/exported document tooling
 - narrow exception surfaces documented locally
+
+They may not define the product’s primitive UI system, token system, layout system, or interaction model.
 
 ## Theme Contract
 
@@ -83,7 +86,16 @@ The theme owns:
 - component defaults
 - disabled, loading, error, warning, and success visual defaults
 
-Projects may expose semantic aliases only when those aliases resolve back to the active theme.
+Minimum practical theme outputs should cover:
+
+- `primaryColor`
+- `defaultRadius`
+- heading defaults
+- breakpoint set
+- semantic surface/background intent
+- component defaults for the most repeated primitives
+
+Projects may expose semantic aliases only when those aliases resolve back to the active Mantine theme.
 
 ## Token Policy
 
@@ -101,6 +113,7 @@ Prohibited:
 - local color systems that compete with the theme
 - component-local token systems hidden in CSS modules
 - inline design decisions repeated across pages
+- any second design-token authority beside the Mantine theme
 
 ## Visual Language
 
@@ -232,7 +245,7 @@ Each product may define a local adapter for:
 - documented exceptions
 - migration backlog
 
-The adapter may not redefine behavior contracts or UX rules established here.
+The adapter may not redefine behavior contracts or UX rules established here, and it may not introduce an alternate UI primitive system.
 
 ## Approved Exceptions
 
@@ -247,4 +260,4 @@ Examples:
 - printed/exported documents
 - email-client constrained rendering
 
-Even exceptions must preserve accessibility, copy quality, and the closest practical theme alignment.
+Even exceptions must preserve accessibility, copy quality, and the closest practical Mantine-theme alignment.

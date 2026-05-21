@@ -8,7 +8,7 @@ This document defines how Mantine should be used as the strict product UI platfo
 
 ## Objective
 
-Make Mantine the only foundational UI system for product applications, while allowing thin project adapters and domain-specific composition.
+Make Mantine the only foundational UI system for product applications, while allowing only thin project adapters and domain-specific composition built on top of Mantine.
 
 ## What Mantine Owns
 
@@ -63,13 +63,13 @@ Mantine is not expected to replace:
 - rich visualization logic
 - external provider-branded controls required by policy
 
-Those layers must still obey this system’s behavior, spacing, labeling, accessibility, and token rules.
+Those layers must still obey this system’s behavior, spacing, labeling, accessibility, and token rules. They are not alternate UI systems.
 
 ## Strict Usage Rules
 
-### 1. Mantine first
+### 1. Mantine only for product primitives
 
-If Mantine can solve a problem cleanly, use Mantine. Do not build a parallel primitive.
+If the surface is product UI, use Mantine. Do not build a parallel primitive. Do not treat custom HTML/CSS as a peer option.
 
 ### 2. Thin wrappers only
 
@@ -86,6 +86,7 @@ Wrappers may not:
 - hide Mantine behavior unpredictably
 - create a second component framework
 - fork interaction meaning by page or product area
+- introduce non-Mantine primitives behind wrapper names
 
 ### 3. Styling API before custom CSS
 
@@ -97,7 +98,7 @@ Prefer, in order:
 4. narrow shared utility CSS
 5. documented exception CSS
 
-Do not jump straight to large custom CSS islands for ordinary product UI.
+Do not jump straight to large custom CSS islands for ordinary product UI. Custom CSS is support code, not a substitute component system.
 
 ### 4. Theme-driven values only
 
@@ -125,6 +126,7 @@ These should be:
 - shallow
 - documented
 - replaceable without changing UX meaning
+- clearly recognizable as Mantine implementation contracts
 
 ## Styling Boundaries
 
@@ -143,6 +145,7 @@ Prohibited custom CSS patterns:
 - page-by-page primitive recreation
 - deeply nested bespoke form styling
 - layout architecture duplicated outside Mantine
+- wrapper CSS that effectively replaces Mantine component behavior
 
 ## Project Compliance Test
 
@@ -162,6 +165,7 @@ A project is Mantine-platform compliant when:
 - hard-coding colors and spacing in feature code
 - mixing one-off CSS layout hacks with Mantine shell patterns
 - leaving mobile behavior as “whatever happens when desktop shrinks”
+- allowing raw non-Mantine product primitives to enter new code
 
 ## Required Review Questions
 

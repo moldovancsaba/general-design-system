@@ -2,6 +2,13 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 1.2.0 - 2026-05-21
+
+- Tightened the SSOT from “Mantine preferred/first” language to an explicit Mantine-only product primitive policy.
+- Clarified that no new product UI may bypass Mantine with ad hoc primitives or alternate component frameworks.
+- Updated migration, governance, adoption, and KIDEX adapter language to reflect the stricter policy.
+- Added `MANTINE_RUNTIME.md` to define provider, theme, notifications, modals, wrapper, CSS, form, overlay, and data-display runtime requirements.
+
 ## 1.1.0 - 2026-05-21
 
 - Expanded the SSOT into a stricter multi-project policy repository.

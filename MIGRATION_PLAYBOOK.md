@@ -6,7 +6,7 @@ Last updated: 2026-05-21
 
 ## Goal
 
-Migrate legacy applications to a pure Mantine system by true refactor, not by bridges, connectors, mirrored token layers, or indefinite dual-system operation.
+Migrate legacy applications to a pure Mantine system by true refactor, not by bridges, connectors, mirrored token layers, fallback primitive systems, or indefinite dual-system operation.
 
 ## Pure Mantine Definition
 
@@ -15,6 +15,7 @@ A project counts as pure Mantine only when:
 - one `MantineProvider` governs the app
 - one Mantine theme is the only active token source
 - product UI is built from Mantine primitives or thin approved wrappers
+- no new product surface introduces non-Mantine primitives
 - old token systems are deleted, not mirrored
 - legacy page-level product UI CSS is deleted except for approved narrow exceptions
 - notifications, modals, forms, layout primitives, and feedback states are standardized through Mantine
@@ -26,6 +27,7 @@ A project counts as pure Mantine only when:
 - preserving old semantic variables as a parallel source of truth
 - adding a large custom wrapper framework that behaves like a second UI library
 - allowing new screens to choose freely between old CSS and Mantine
+- allowing raw non-Mantine product primitives into migrated surfaces
 
 ## Standard Phases
 

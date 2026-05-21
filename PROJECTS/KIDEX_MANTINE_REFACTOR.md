@@ -7,7 +7,7 @@ Project: `/Users/Shared/Projects/kidex`
 
 ## Objective
 
-Refactor KIDEX into a strict Mantine-first product UI that follows the shared SSOT without maintaining a competing local design authority.
+Refactor KIDEX into a strict Mantine-only product UI that follows the shared SSOT without maintaining a competing local design authority.
 
 The immediate high-value target is the conductor mobile workflow:
 
@@ -58,12 +58,12 @@ KIDEX already uses Mantine heavily, but it is not yet strict or complete:
 
 ## Target End State
 
-- one Mantine-first shell model across authenticated KIDEX routes
+- one Mantine-only shell model across authenticated KIDEX routes
 - mobile-first navigation for conductor-critical destinations
 - shared page header and action placement behavior
 - explicit small-screen rules for dashboard, children, records, and survey surfaces
 - app-local design doc reduced to adapter only
-- remaining exceptions documented and narrow
+- remaining non-primitive exceptions documented and narrow
 
 ## Proposed Sequence
 
@@ -155,5 +155,5 @@ Goals:
 - mobile conductor workflow exposes primary destinations without drawer dependence alone
 - dashboard small-screen priority is operational first, analytics second
 - child registry mobile surface has one obvious primary action per card
-- new UI surfaces are Mantine or thin Mantine wrappers
-- remaining non-Mantine exceptions are documented, narrow, and justified
+- new UI surfaces are Mantine primitives or thin Mantine wrappers only
+- any remaining non-primitive exception is documented, narrow, and justified

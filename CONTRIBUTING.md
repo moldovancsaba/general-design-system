@@ -22,6 +22,7 @@ This repository is shared design-system infrastructure.
 3. Do not add project-local hacks to shared contracts.
 4. If a rule is not ready for cross-project use, keep it in the project until it is.
 5. Prefer durable, reviewable language over brainstorming notes.
+6. Do not weaken the Mantine-only platform rule without an explicit major-version policy change.
 
 ## Recommended Commit Scopes
 

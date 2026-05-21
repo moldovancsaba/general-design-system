@@ -21,6 +21,7 @@ Each project must document:
 - local status: `compliant`, `migrating`, or `legacy`
 - current UI foundation
 - target UI foundation
+- Mantine-only primitive policy status
 - theme/provider file paths
 - wrapper component paths or direct primitive policy
 - notifications/modals setup path
@@ -42,6 +43,7 @@ Local status: `<compliant | migrating | legacy>`
 
 - Current UI foundation:
 - Target UI foundation:
+- Mantine-only primitive policy:
 - Theme/provider:
 - Wrapper components or primitive policy:
 - Notifications/modals setup:

@@ -12,6 +12,7 @@ Existing projects must:
 
 - point local docs to this directory as the design/UI/UX SSOT
 - stop adding new parallel UI patterns
+- stop adding any new non-Mantine product primitives
 - document the local adapter and migration debt
 - migrate high-traffic and high-change screens first
 - remove legacy styling systems once replaced
@@ -36,6 +37,7 @@ The adapter may not redefine:
 - canonical navigation patterns
 - responsive behavior rules
 - shared UX meaning
+- the Mantine-only platform rule
 
 ## Review Rule
 
@@ -91,6 +93,7 @@ Every adopting project must have:
 - local docs that name this directory as design/UI/UX SSOT
 - one shared theme/provider path
 - approved wrapper policy or direct primitive policy
+- explicit Mantine-only product primitive policy
 - notifications and modals setup path
 - responsive strategy for major surfaces
 - accessibility baseline note
@@ -129,6 +132,7 @@ A project can claim SSOT compliance when:
 
 - this directory is documented as the design/UI/UX SSOT
 - Mantine is the primary enforced UI foundation
+- Mantine is the only approved product primitive system
 - tokens come from the shared project theme
 - repeated primitives are Mantine or thin approved wrappers
 - local docs are adapters, not competing design authorities

@@ -27,11 +27,12 @@ If a project-local UI document conflicts with this directory, this directory win
 
 ## Target Operating Model
 
-- Mantine is the approved UI foundation for product applications.
-- Each project owns exactly one theme and provider setup.
-- Project wrappers are allowed, but they must stay thin and compositional.
+- Mantine is the only approved foundational UI system for product applications.
+- Each project owns exactly one Mantine theme and one Mantine provider setup.
+- Project wrappers are allowed only as thin Mantine wrappers.
 - Repeated product behavior is standardized here first, then implemented locally.
 - Cross-project drift is treated as migration debt, not as a new standard.
+- No parallel primitive library, token system, or styling framework is allowed for product UI.
 
 ## Reading Order
 
@@ -39,15 +40,17 @@ If a project-local UI document conflicts with this directory, this directory win
    Principles, token rules, theme contract, accessibility baseline, and implementation boundaries.
 2. [MANTINE_PLATFORM.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/MANTINE_PLATFORM.md)
    Strict Mantine-first platform rules, wrapper policy, styling boundaries, and approved exceptions.
-3. [COMPONENT_CONTRACTS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COMPONENT_CONTRACTS.md)
+3. [MANTINE_RUNTIME.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/MANTINE_RUNTIME.md)
+   Root provider contract, theme/runtime ownership, wrapper boundaries, and Mantine-only implementation rules.
+4. [COMPONENT_CONTRACTS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COMPONENT_CONTRACTS.md)
    Required behavior for buttons, inputs, cards, lists, tables, modals, drawers, alerts, and navigation.
-4. [NAVIGATION_RESPONSIVE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/NAVIGATION_RESPONSIVE.md)
+5. [NAVIGATION_RESPONSIVE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/NAVIGATION_RESPONSIVE.md)
    Canonical shell, navigation, mobile, dashboard, and small-screen rules.
-5. [UX_PATTERNS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/UX_PATTERNS.md)
+6. [UX_PATTERNS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/UX_PATTERNS.md)
    Form flows, admin flows, dashboards, assessment/survey flows, destructive behavior, and state messaging.
-6. [GOVERNANCE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/GOVERNANCE.md)
+7. [GOVERNANCE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/GOVERNANCE.md)
    Adoption, review, exceptions, migration order, versioning, and definition of done.
-7. [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md)
+8. [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md)
    Required per-project adapter contract and documentation template.
 
 ## Supporting Operational Files
@@ -79,6 +82,7 @@ Required repository behavior:
 - One interaction concept gets one canonical pattern.
 - One product gets one active theme and token source.
 - New product UI must use Mantine primitives or thin approved wrappers around them.
+- No new product UI may bypass Mantine with raw custom primitives, ad hoc HTML/CSS controls, or alternate component frameworks.
 - Raw colors and repeated hard-coded spacing in feature code are prohibited.
 - Loading, empty, error, success, disabled, and permission states are part of every component contract.
 - Mobile and responsive behavior must be designed intentionally, not inherited accidentally from desktop.

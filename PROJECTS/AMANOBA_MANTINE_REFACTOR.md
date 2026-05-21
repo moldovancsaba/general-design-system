@@ -196,7 +196,7 @@ Exit criteria:
 
 ### Phase 2: Core Primitives
 
-Status: In progress. Active course-surface voting, discussion, study-group, cookie consent, catalog, course detail primitives, sign-in, anonymous login, dashboard, referral card, saved lessons, Practice Hub, lesson quiz runtime, final exam, public certificate verification, new-course admin form, quiz manager modal, editor lesson page, and Markdown lesson editor have moved to Mantine. The legacy local Button/Card/rich-text/cn adapters are retired.
+Status: In progress. Active course-surface voting, discussion, study-group, cookie consent, catalog, course detail primitives, sign-in, anonymous login, dashboard, referral card, saved lessons, Practice Hub, lesson quiz runtime, final exam, public certificate verification, new-course admin form, full admin course editor, quiz manager modal, editor lesson page, and Markdown lesson editor have moved to Mantine. The legacy local Button/Card/rich-text/cn adapters are retired.
 
 Migrate first:
 
@@ -236,7 +236,7 @@ Exit criteria:
 
 ### Phase 4: Admin And Editor Surfaces
 
-Status: In progress. New-course admin form, quiz manager modal, editor lesson page, and Markdown lesson editor have Mantine-governed UI. The full admin course editor remains the largest high-priority legacy surface and should be converted as a dedicated slice because it contains course metadata, imports/exports, lesson list, lesson modal, editor assignment, premium settings, and quiz configuration in one large page.
+Status: In progress. New-course admin form, full admin course editor, quiz manager modal, editor lesson page, and Markdown lesson editor have Mantine-governed UI. The largest remaining admin gaps are now admin list/settings/reporting surfaces rather than the course authoring flow itself.
 
 Primary surfaces:
 
@@ -326,14 +326,14 @@ As of 2026-05-21:
 - Lesson quiz runtime and final exam runtime use Mantine forms, cards, buttons, progress, alerts, and result states.
 - Saved lessons, Practice Hub, dashboard/referral card, sign-in, and anonymous login use Mantine learner UI primitives.
 - Public certificate verification pages use Mantine cards, status badges, notifications, and actions.
-- New-course admin form, quiz manager modal, editor lesson page, and Markdown lesson editor use Mantine form and modal primitives.
+- New-course admin form, full admin course editor, quiz manager modal, editor lesson page, and Markdown lesson editor use Mantine form and modal primitives.
 - Legacy local `Button`, `Card`, rich text editor, and `cn` adapters are deleted; `class-variance-authority`, `clsx`, and `tailwind-merge` are no longer direct Amanoba dependencies.
 - Stale duplicate app-level course community components were removed from Amanoba.
 
 Remaining high-priority gaps:
 
-- full admin course editor page still contains legacy Tailwind/lucide/native form markup and should be handled as a dedicated large slice
 - secondary learner/profile/certificate display, rewards, challenges, leaderboards, onboarding, and game chrome still need Mantine-only conversion or documented exception handling
+- admin list/settings/reporting surfaces still need Mantine-only conversion or documented exception handling
 - Tailwind config, local CSS token files, Radix, Sonner, and Vaul remain deletion-phase work after product surfaces stop depending on them
 
 ## First Implementation PR Shape

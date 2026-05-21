@@ -60,6 +60,10 @@ That adapter must describe:
 
 ### Phase 1: Root Mantine Platform
 
+Status:
+
+- completed
+
 Files:
 
 - `/Users/moldovancsaba/Projects/sso/pages/_app.js`
@@ -80,6 +84,13 @@ Exit criteria:
 - one theme file exists and is the only approved token authority for new UI
 - notifications and modals are centralized
 - the legacy freeze is documented locally
+
+Implemented in:
+
+- `/Users/moldovancsaba/Projects/sso/pages/_app.js`
+- `/Users/moldovancsaba/Projects/sso/pages/_document.js`
+- `/Users/moldovancsaba/Projects/sso/lib/ui/mantineTheme.js`
+- `/Users/moldovancsaba/Projects/sso/components/AppFooter.js`
 
 ### Phase 2: Auth Surfaces
 
@@ -161,12 +172,11 @@ Exit criteria:
 
 ## Initial Implementation Sequence
 
-1. Root Mantine platform
-2. login and admin-entry surfaces
-3. admin shell and CRUD screens
-4. style editor rewrite/removal decision
-5. docs surfaces
-6. deletion pass
+1. login and admin-entry surfaces
+2. admin shell and CRUD screens
+3. style editor rewrite/removal decision
+4. docs surfaces
+5. deletion pass
 
 ## Validation Commands
 

@@ -1,63 +1,92 @@
 # General Design System
 
 Status: Active SSOT
-Version: 1.0.0
+Version: 1.1.0
 Last updated: 2026-05-21
 
-This directory is the cross-project single source of truth for design, UI, and UX. Product repositories must reference this folder when documenting visual language, component behavior, interaction patterns, accessibility, and design-system governance.
+`/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` is the cross-project single source of truth for design, UI, and UX.
 
-This directory must be maintained as its own git repository because multiple projects may read from it and write to it.
+Product repositories may document:
 
-## Authority
+- local theme/provider paths
+- wrapper component paths
+- migration state
+- validation commands
+- narrow approved exceptions
 
-If a project-local UI document conflicts with this directory, this directory wins. Project-local files may document implementation details, migration state, or approved exceptions, but they must not redefine design decisions, component contracts, or UX rules.
+Product repositories may not redefine:
 
-## Target Platform
+- component behavior
+- interaction patterns
+- token policy
+- responsive strategy
+- accessibility baseline
+- UX meaning of canonical controls
 
-The target implementation platform is Mantine:
+If a project-local UI document conflicts with this directory, this directory wins.
 
-- Mantine provides the default product UI foundation.
-- A project theme is the only approved token source.
-- Project wrappers may enforce defaults, but they must stay thin.
-- Parallel design systems, ad hoc CSS palettes, and page-specific component behavior are migration debt.
+## Target Operating Model
 
-Projects that have not migrated yet must explicitly describe their current adapter and migration state, then move toward this contract.
+- Mantine is the approved UI foundation for product applications.
+- Each project owns exactly one theme and provider setup.
+- Project wrappers are allowed, but they must stay thin and compositional.
+- Repeated product behavior is standardized here first, then implemented locally.
+- Cross-project drift is treated as migration debt, not as a new standard.
 
 ## Reading Order
 
 1. [FOUNDATION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/FOUNDATION.md)
-   Principles, theme contract, tokens, accessibility, responsive rules, and implementation boundaries.
-2. [COMPONENT_CONTRACTS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COMPONENT_CONTRACTS.md)
-   Required behavior for buttons, inputs, cards, modals, tables, navigation, feedback, and state surfaces.
-3. [UX_PATTERNS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/UX_PATTERNS.md)
-   Form flows, learner flows, dashboards, admin tools, destructive actions, empty states, and content tone.
-4. [GOVERNANCE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/GOVERNANCE.md)
-   Adoption, exceptions, review rules, migration order, versioning, and definition of done.
-5. [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md)
-   Required per-project documentation contract and adoption checklist.
-6. [MIGRATION_PLAYBOOK.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/MIGRATION_PLAYBOOK.md)
-   True-refactor migration plan for moving legacy applications to pure Mantine.
-7. [CONTRIBUTING.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/CONTRIBUTING.md)
-   Shared repository change rules and commit guidance.
-8. [PROJECTS/SSO_MANTINE_REFACTOR.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECTS/SSO_MANTINE_REFACTOR.md)
-   Concrete rollout plan for `/Users/moldovancsaba/Projects/sso`.
+   Principles, token rules, theme contract, accessibility baseline, and implementation boundaries.
+2. [MANTINE_PLATFORM.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/MANTINE_PLATFORM.md)
+   Strict Mantine-first platform rules, wrapper policy, styling boundaries, and approved exceptions.
+3. [COMPONENT_CONTRACTS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COMPONENT_CONTRACTS.md)
+   Required behavior for buttons, inputs, cards, lists, tables, modals, drawers, alerts, and navigation.
+4. [NAVIGATION_RESPONSIVE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/NAVIGATION_RESPONSIVE.md)
+   Canonical shell, navigation, mobile, dashboard, and small-screen rules.
+5. [UX_PATTERNS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/UX_PATTERNS.md)
+   Form flows, admin flows, dashboards, assessment/survey flows, destructive behavior, and state messaging.
+6. [GOVERNANCE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/GOVERNANCE.md)
+   Adoption, review, exceptions, migration order, versioning, and definition of done.
+7. [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md)
+   Required per-project adapter contract and documentation template.
+
+## Supporting Operational Files
+
+- [MIGRATION_PLAYBOOK.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/MIGRATION_PLAYBOOK.md)
+  Standard phase model for true-refactor Mantine migrations.
+- [CONTRIBUTING.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/CONTRIBUTING.md)
+  Shared-repository working rules and suggested commit scopes.
+- [CHANGELOG.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/CHANGELOG.md)
+  Versioned policy history for this SSOT.
+- [PROJECTS/](</Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECTS>)
+  Product-specific migration and adoption plans that consume this SSOT.
+
+## Repository Rules
+
+This directory is intended to be managed as its own git repository.
+
+Required repository behavior:
+
+- every normative change is committed here, not only in consuming product repos
+- projects should reference the SSOT path and aligned version/date in local docs
+- breaking behavior changes should be treated as major contract changes
+- additive patterns should be documented here before they spread to multiple products
 
 ## Non-Negotiable Rules
 
 - One interaction concept gets one canonical pattern.
-- New product UI must use the approved project adapter for this system.
-- Raw colors, repeated hard-coded spacing, and local shadow/radius systems are prohibited in feature code.
-- Loading, empty, success, error, disabled, and permission states are part of every component contract.
-- Accessibility is a design requirement, not a post-build cleanup task.
-- Internationalization and responsive behavior must be designed with the component, not patched later.
+- One product gets one active theme and token source.
+- New product UI must use Mantine primitives or thin approved wrappers around them.
+- Raw colors and repeated hard-coded spacing in feature code are prohibited.
+- Loading, empty, error, success, disabled, and permission states are part of every component contract.
+- Mobile and responsive behavior must be designed intentionally, not inherited accidentally from desktop.
+- Accessibility is part of design acceptance, not a cleanup pass.
+- Internationalization resilience is mandatory for shared patterns.
 
-## Project Documentation Requirement
+## Required Local Project Statement
 
-Every adopting project must include a local design-system note that states:
+Every adopting project must contain language equivalent to:
 
-- this directory is the design/UI/UX SSOT
-- the project's current implementation adapter
-- known exceptions and migration debt
-- the validation commands used to enforce drift rules
+`/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` is the single source of truth for design, UI, and UX. Project-local design documents are implementation adapters only.
 
-Use [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md) as the required template.
+Use [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md) as the required project-local template.

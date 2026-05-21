@@ -2,6 +2,14 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 1.1.0 - 2026-05-21
+
+- Expanded the SSOT into a stricter multi-project policy repository.
+- Added Mantine platform policy and navigation/responsive rules to the required reading order.
+- Tightened component, foundation, UX, governance, and project-adoption contracts for cross-project enforcement.
+- Clarified that product repositories may document only adapters, exceptions, migration state, and validation commands.
+- Added repository hygiene rules for shared Git usage across consuming projects.
+
 ## 1.0.0 - 2026-05-21
 
 - Established `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` as the cross-project design, UI, and UX SSOT.

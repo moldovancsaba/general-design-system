@@ -1,10 +1,10 @@
 # Project Adoption Contract
 
 Status: Normative
-Version: 1.0.0
+Version: 1.1.0
 Last updated: 2026-05-21
 
-Every project that uses this design system must include a local document or section with the following contract.
+Every project that uses this design system must include a local adapter document or section with the following contract.
 
 ## Required Statement
 
@@ -12,39 +12,43 @@ Use this exact meaning in project docs:
 
 `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` is the single source of truth for design, UI, and UX. Project-local files describe only implementation adapter details, migration state, validation commands, and approved exceptions.
 
-## Required Fields
+## Required Local Fields
 
 Each project must document:
 
 - SSOT path: `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM`
 - adopted SSOT version or date
+- local status: `compliant`, `migrating`, or `legacy`
 - current UI foundation
 - target UI foundation
 - theme/provider file paths
-- wrapper component paths
+- wrapper component paths or direct primitive policy
+- notifications/modals setup path
 - validation commands
 - known exceptions
 - migration backlog
 - owner or review path for design-system changes
 
-## Adapter Template
+## Required Adapter Template
 
 ```md
 # Design System Adapter
 
 Design/UI/UX SSOT: `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM`
 Aligned SSOT version/date: `<version or date>`
-Status: `<compliant | migrating | legacy>`
+Local status: `<compliant | migrating | legacy>`
 
 ## Local Adapter
 
+- Current UI foundation:
+- Target UI foundation:
 - Theme/provider:
-- Wrapper components:
+- Wrapper components or primitive policy:
 - Notifications/modals setup:
 - Styling bridge or legacy layer:
 - UI validation commands:
 
-## Current Exceptions
+## Known Exceptions
 
 | Scope | Reason | User impact | Removal condition |
 |-------|--------|-------------|-------------------|
@@ -52,20 +56,20 @@ Status: `<compliant | migrating | legacy>`
 
 ## Migration Backlog
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 ```
 
 ## Documentation Placement
 
-Recommended project-local locations:
+Recommended local placements:
 
 - primary developer guide
 - architecture overview
 - coding standards
 - design-system status document
-- handover or current operational snapshot
+- handover or operational snapshot
 
 ## Compliance Rule
 

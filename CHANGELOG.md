@@ -2,6 +2,10 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 1.2.2 - 2026-05-21
+
+- Added root provider/theme implementation notes to the required project-adoption contract.
+
 ## 1.2.1 - 2026-05-21
 
 - Added component contracts for date/time inputs, file uploads, loaders/skeletons, tooltips, breadcrumbs, and pagination.

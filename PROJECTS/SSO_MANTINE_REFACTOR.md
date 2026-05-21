@@ -1,6 +1,6 @@
 # SSO Mantine Refactor
 
-Status: Planned
+Status: In progress
 Version: 1.0.0
 Last updated: 2026-05-21
 Project: `/Users/moldovancsaba/Projects/sso`
@@ -94,6 +94,10 @@ Implemented in:
 
 ### Phase 2: Auth Surfaces
 
+Status:
+
+- completed
+
 Files:
 
 - `/Users/moldovancsaba/Projects/sso/pages/login.js`
@@ -110,6 +114,14 @@ Exit criteria:
 
 - login and admin-entry flows no longer depend on legacy auth-page styling
 - redirect, re-auth, and provider-login behavior remains correct
+
+Implemented in:
+
+- `/Users/moldovancsaba/Projects/sso/components/AuthSurface.js`
+- `/Users/moldovancsaba/Projects/sso/pages/login.js`
+- `/Users/moldovancsaba/Projects/sso/pages/admin/index.js`
+- `/Users/moldovancsaba/Projects/sso/pages/admin/callback.js`
+- `/Users/moldovancsaba/Projects/sso/pages/oauth/consent.js`
 
 ### Phase 3: Admin Shell And CRUD
 
@@ -172,11 +184,10 @@ Exit criteria:
 
 ## Initial Implementation Sequence
 
-1. login and admin-entry surfaces
-2. admin shell and CRUD screens
-3. style editor rewrite/removal decision
-4. docs surfaces
-5. deletion pass
+1. admin shell and CRUD screens
+2. style editor rewrite/removal decision
+3. docs surfaces
+4. deletion pass
 
 ## Validation Commands
 

@@ -1,0 +1,44 @@
+"use client";
+
+import { AppShell, Burger, Group, NavLink } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+
+type NavItem = {
+  label: string;
+  href: string;
+  active?: boolean;
+};
+
+export function AppShellTemplate({
+  children,
+  navItems
+}: {
+  children: React.ReactNode;
+  navItems: NavItem[];
+}) {
+  const [opened, { toggle, close }] = useDisclosure(false);
+
+  return (
+    <AppShell
+      header={{ height: 60 }}
+      navbar={{ width: 280, breakpoint: "md", collapsed: { mobile: !opened } }}
+      padding="md"
+    >
+      <AppShell.Header>
+        <Group h="100%" px="md" justify="space-between">
+          <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="md" />
+          <div>App title</div>
+          <div />
+        </Group>
+      </AppShell.Header>
+
+      <AppShell.Navbar p="md">
+        {navItems.map((item) => (
+          <NavLink key={item.href} label={item.label} active={item.active} onClick={close} />
+        ))}
+      </AppShell.Navbar>
+
+      <AppShell.Main>{children}</AppShell.Main>
+    </AppShell>
+  );
+}

@@ -1,7 +1,7 @@
 # Project Adoption Contract
 
 Status: Normative
-Version: 1.1.0
+Version: 1.3.0
 Last updated: 2026-05-21
 
 Every project that uses this design system must include a local adapter document or section with the following contract.

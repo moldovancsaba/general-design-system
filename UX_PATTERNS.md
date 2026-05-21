@@ -1,7 +1,7 @@
 # UX Patterns
 
 Status: Normative
-Version: 1.1.0
+Version: 1.3.0
 Last updated: 2026-05-21
 
 This document defines canonical workflow behavior patterns that products should reuse instead of reinventing per page.

@@ -1,7 +1,7 @@
 # Mantine Platform Policy
 
 Status: Normative
-Version: 1.1.0
+Version: 1.3.0
 Last updated: 2026-05-21
 
 This document defines how Mantine should be used as the strict product UI platform across projects.

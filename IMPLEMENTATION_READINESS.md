@@ -1,7 +1,7 @@
 # Implementation Readiness
 
 Status: Normative
-Version: 1.0.0
+Version: 1.3.0
 Last updated: 2026-05-21
 
 Use this document before starting a new product UI implementation or a Mantine migration.
@@ -55,6 +55,11 @@ Every project must document:
 - docs/editorial surface strategy
 - old theme-editor rewrite or removal decision if applicable
 
+8. Reference implementation choices
+
+- which shared templates or starter recipes will be adopted directly
+- which templates are intentionally not used and why
+
 ## Required Local Outputs
 
 Before implementation begins, the project must have:
@@ -63,6 +68,7 @@ Before implementation begins, the project must have:
 - a project migration plan under `PROJECTS/`
 - phase 1 acceptance criteria
 - a list of prohibited new patterns during migration
+- a chosen template/recipe starting point from `TEMPLATES/`
 
 ## First PR Shape
 

@@ -1,0 +1,26 @@
+"use client";
+
+import { MantineProvider } from "@mantine/core";
+import { ModalsProvider } from "@mantine/modals";
+import { Notifications } from "@mantine/notifications";
+import { useMemo } from "react";
+import { getAppTheme } from "./theme";
+
+export function AppProviders({
+  children,
+  mode
+}: {
+  children: React.ReactNode;
+  mode: "light" | "dark";
+}) {
+  const theme = useMemo(() => getAppTheme(mode), [mode]);
+
+  return (
+    <MantineProvider theme={theme} forceColorScheme={mode}>
+      <ModalsProvider>
+        <Notifications position="top-right" />
+        {children}
+      </ModalsProvider>
+    </MantineProvider>
+  );
+}

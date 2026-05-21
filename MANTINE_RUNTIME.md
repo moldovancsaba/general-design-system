@@ -1,7 +1,7 @@
 # Mantine Runtime and Theme Contract
 
 Status: Normative
-Version: 1.0.0
+Version: 1.3.0
 Last updated: 2026-05-21
 
 This document defines the implementation contract required for a product to count as Mantine-only in practice, not just in intent.
@@ -59,6 +59,10 @@ Rules:
 - Do not create page-level or feature-level duplicate providers that redefine theme behavior.
 - If a project supports color scheme switching, that switching still resolves back to one Mantine theme authority.
 
+Reference implementation:
+
+- [TEMPLATES/providers.tsx.template](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/TEMPLATES/providers.tsx.template)
+
 ## Required Theme Contract
 
 Each project must export one theme file or theme module that acts as the only product token authority.
@@ -81,6 +85,10 @@ Recommended theme file responsibilities:
 - export the raw theme object
 - export any very thin semantic helpers derived from the theme
 - export no unrelated business logic
+
+Reference implementation:
+
+- [TEMPLATES/theme.ts.template](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/TEMPLATES/theme.ts.template)
 
 ## Theme Defaults Strategy
 
@@ -115,6 +123,11 @@ Bad wrapper responsibilities:
 - fork Mantine behavior per feature
 - become a large second primitive system
 - hide too many underlying Mantine props without reason
+
+Reference implementations:
+
+- [TEMPLATES/AppButton.tsx.template](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/TEMPLATES/AppButton.tsx.template)
+- [TEMPLATES/AppPageHeader.tsx.template](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/TEMPLATES/AppPageHeader.tsx.template)
 
 ## Styling API Order
 
@@ -195,6 +208,10 @@ Recommended project structure:
 - no active growth in a legacy primitive directory once migration begins
 
 The exact folder names may vary by project. The responsibility boundaries may not.
+
+Starter shell reference:
+
+- [TEMPLATES/AppShell.tsx.template](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/TEMPLATES/AppShell.tsx.template)
 
 ## Required Validation Questions
 

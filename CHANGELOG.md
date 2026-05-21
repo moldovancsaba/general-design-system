@@ -2,6 +2,14 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 1.3.0 - 2026-05-21
+
+- Added a primitive policy matrix for direct-versus-wrapper decisions.
+- Added implementation tables for variants, sizes, breakpoints, shell switches, and responsive behavior.
+- Added enforcement guidance for lint rules, import boundaries, and drift checks.
+- Added reusable starter templates for providers, theme, shell, page header, and button wrappers.
+- Updated runtime, readiness, and README guidance to point directly to the new implementation assets.
+
 ## 1.2.3 - 2026-05-21
 
 - Promoted implementation-readiness checks into the required reading order.

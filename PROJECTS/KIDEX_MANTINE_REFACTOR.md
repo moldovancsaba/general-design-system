@@ -1,13 +1,17 @@
 # KIDEX Mantine Refactor
 
 Status: Planned
-Version: 1.0.0
+Version: 1.1.0
 Last updated: 2026-05-21
 Project: `/Users/Shared/Projects/kidex`
 
 ## Objective
 
 Refactor KIDEX into a strict Mantine-only product UI that follows the shared SSOT without maintaining a competing local design authority.
+
+Active GitHub execution issue:
+
+- `#50` `KIDEX Platform P1: Mantine-only mobile shell and responsive conductor workflow refactor`
 
 The immediate high-value target is the conductor mobile workflow:
 
@@ -85,6 +89,7 @@ Goals:
 - replace floating-burger-first mobile navigation with a mobile-first primary navigation model
 - expose stable top-level destinations for conductors
 - move secondary controls into lower-priority navigation surfaces
+- complete missing Mantine runtime wiring at the root where shell behavior depends on it
 
 ### Phase 2: Dashboard Responsive Refactor
 

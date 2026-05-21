@@ -1,7 +1,7 @@
 # Migration Playbook
 
 Status: Normative
-Version: 1.0.0
+Version: 1.3.0
 Last updated: 2026-05-21
 
 ## Goal

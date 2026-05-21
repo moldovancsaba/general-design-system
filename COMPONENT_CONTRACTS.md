@@ -80,6 +80,18 @@ Rules:
 - Preserve the query when users inspect results and return.
 - Distinguish “nothing exists” from “nothing matches”.
 
+## Date and Time Inputs
+
+Base: Mantine date/time primitives when needed
+
+Rules:
+
+- Use structured date/time inputs when precision matters more than freeform speed.
+- Show the expected timezone context when it affects interpretation.
+- Range selection must make start/end meaning obvious.
+- Validation must catch impossible or reversed ranges near the fields.
+- Do not force calendar-heavy interactions for values that are better entered as simple text or select controls.
+
 ## Selects, Multi-Selects, and Comboboxes
 
 Base: Mantine `Select`, `MultiSelect`, `Combobox`
@@ -102,6 +114,18 @@ Rules:
 - Show length guidance when limits matter.
 - Autosize only when it improves workflow.
 - Avoid oversized textareas in cramped modal layouts unless the modal is explicitly for focused editing.
+
+## File Uploads
+
+Base: Mantine input patterns or approved upload integrations
+
+Rules:
+
+- Allowed file types and limits must be visible before failure when they matter.
+- Show upload progress or explicit pending state for non-trivial uploads.
+- Failed uploads must explain whether retry is possible.
+- Preview and replace/remove actions should be obvious when the asset is user-relevant.
+- Do not hide destructive replacement behavior inside vague labels.
 
 ## Checkboxes, Radios, and Switches
 
@@ -140,6 +164,18 @@ Rules:
 - Warning alerts should identify the actual risk.
 - Do not use alerts as permanent page decoration.
 
+## Loaders and Skeletons
+
+Base: Mantine `Loader` and `Skeleton`
+
+Rules:
+
+- Use skeletons when layout shape is known and content is pending.
+- Use loaders when the operation itself needs emphasis more than content shape.
+- Loading placeholders should resemble the final structure closely enough to preserve orientation.
+- Long operations need text status or progress context, not only motion.
+- Loading surfaces must not masquerade as empty state.
+
 ## Notifications
 
 Base: Mantine notifications system
@@ -150,6 +186,17 @@ Rules:
 - Do not rely on notifications as the only place a critical error appears.
 - Success notifications should confirm completion briefly.
 - Long or multi-step recovery instructions belong in-page, not only in toast text.
+
+## Tooltips
+
+Base: Mantine `Tooltip`
+
+Rules:
+
+- Use tooltips for clarification, not as the only label for an action.
+- Tooltips must not contain essential instructions required to complete the baseline workflow.
+- Keyboard and touch behavior must be considered; hover-only meaning is not sufficient.
+- Dense toolbars should not become tooltip-dependent mystery meat navigation.
 
 ## Badges and Status Chips
 
@@ -162,6 +209,17 @@ Rules:
 - Repeated status sets must use consistent labels and ordering.
 - Badge clusters on mobile should be aggressively prioritized.
 
+## Breadcrumbs
+
+Base: Mantine breadcrumbs pattern or thin local adapter
+
+Rules:
+
+- Use breadcrumbs only when hierarchy materially helps orientation.
+- Labels should reflect user concepts, not route segments.
+- Breadcrumbs do not replace the page title.
+- Deep breadcrumb chains should be collapsed or simplified on small screens when necessary.
+
 ## Cards and Panels
 
 Base: Mantine `Card` or `Paper`
@@ -173,6 +231,17 @@ Rules:
 - Cards must not become decorative page fragments by default.
 - Avoid deep card nesting.
 - Clickable cards must expose the same destination through keyboard and accessible naming.
+
+## Pagination
+
+Base: Mantine `Pagination`
+
+Rules:
+
+- Use pagination when result size or performance makes it necessary.
+- Current page, total context, and result count should be clear when users need orientation.
+- Pagination controls must work at small widths without becoming dense tap targets.
+- Preserve filters and sort when users paginate unless the workflow explicitly resets them.
 
 ## Empty States
 

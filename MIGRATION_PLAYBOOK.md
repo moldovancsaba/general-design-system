@@ -123,5 +123,26 @@ Exit criteria:
 
 - a project adoption note based on `PROJECT_ADOPTION.md`
 - a project-specific migration plan under `PROJECTS/`
+- a root provider/theme implementation note or pointer
 - a deletion checklist
 - a validation checklist
+
+## Validation Checklist Expectations
+
+Each project should define validation that at minimum checks:
+
+- lint/build/test health
+- no new foundational imports from the legacy primitive layer
+- responsive viability for major surfaces
+- overlay and notification standardization
+- theme/token ownership is still singular
+
+## Deletion Checklist Expectations
+
+Before claiming Mantine-only completion, each project should explicitly verify deletion or retirement of:
+
+- legacy primitive directories
+- legacy theme/token files
+- old overlay/toast infrastructure
+- obsolete CSS modules or utility systems that existed only for the old primitives
+- local docs that still describe the old system as authoritative

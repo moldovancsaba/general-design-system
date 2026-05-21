@@ -2,6 +2,11 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 1.2.1 - 2026-05-21
+
+- Added component contracts for date/time inputs, file uploads, loaders/skeletons, tooltips, breadcrumbs, and pagination.
+- Expanded migration deliverables with provider/theme implementation notes plus validation and deletion checklist expectations.
+
 ## 1.2.0 - 2026-05-21
 
 - Tightened the SSOT from “Mantine preferred/first” language to an explicit Mantine-only product primitive policy.

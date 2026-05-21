@@ -216,7 +216,7 @@ Exit criteria:
 
 ### Phase 3: Auth, Course, And Learner-Critical Flows
 
-Status: In progress. Public course browse/detail/enrolment and anonymous lesson/quiz recovery states are partially migrated. Lesson page, lesson quiz runtime, final exam, saved lessons, practice hub, auth return flows, and dashboard still need full Mantine-only conversion.
+Status: In progress. Public course browse/detail/enrolment, enrolled lesson runtime, and anonymous lesson/quiz recovery states are partially migrated. Lesson quiz runtime, final exam, saved lessons, practice hub, auth return flows, and dashboard still need full Mantine-only conversion.
 
 Primary surfaces:
 
@@ -318,12 +318,12 @@ As of 2026-05-21:
 - Course catalog and public course detail page wrappers are Mantine-based.
 - Active course voting, discussion, and study-group components use Mantine primitives and Tabler icons.
 - Cookie consent uses compact Mantine controls.
+- Enrolled lesson runtime wrapper/actions use Mantine primitives for completion, quiz gating, saved lessons, assessment feedback, navigation, voting, and locked recovery.
 - Lesson and quiz protected-route recovery states use Mantine primitives.
 - Stale duplicate app-level course community components were removed from Amanoba.
 
 Remaining high-priority gaps:
 
-- lesson runtime body/navigation still contains legacy Tailwind page markup
 - lesson quiz runtime still contains legacy Tailwind page markup
 - final exam flow still contains legacy Tailwind page markup
 - auth/sign-in, dashboard, saved lessons, and practice hub still need full Mantine-only conversion

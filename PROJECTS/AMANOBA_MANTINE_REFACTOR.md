@@ -50,13 +50,13 @@ Amanoba currently uses:
   - `sonner`
   - `vaul`
 - Tailwind helper dependencies:
-  - `class-variance-authority`
-  - `tailwind-merge`
   - `tailwindcss-animate`
   - `@tailwindcss/typography`
-- current shared primitives in:
-  - `/Users/moldovancsaba/Projects/amanoba/app/components/ui/*`
+- remaining local UI/editor components in:
+  - `/Users/moldovancsaba/Projects/amanoba/app/components/ui/markdown-editor.tsx`
   - `/Users/moldovancsaba/Projects/amanoba/components/*`
+
+The former local `Button`, `Card`, rich text editor, and `cn` adapters were retired on 2026-05-21. The Markdown editor remains as a Mantine-governed content editor for lesson Markdown.
 
 ## Target End State
 
@@ -196,7 +196,7 @@ Exit criteria:
 
 ### Phase 2: Core Primitives
 
-Status: In progress. Active course-surface voting, discussion, study-group, cookie consent, catalog, and course detail primitives have moved to Mantine; remaining shared forms, auth controls, admin/editor forms, and legacy `app/components/ui/*` primitives still need conversion or retirement.
+Status: In progress. Active course-surface voting, discussion, study-group, cookie consent, catalog, course detail primitives, sign-in, anonymous login, dashboard, referral card, saved lessons, Practice Hub, lesson quiz runtime, final exam, public certificate verification, new-course admin form, quiz manager modal, editor lesson page, and Markdown lesson editor have moved to Mantine. The legacy local Button/Card/rich-text/cn adapters are retired.
 
 Migrate first:
 
@@ -213,10 +213,11 @@ Exit criteria:
 
 - all new forms and core actions use Mantine primitives or thin Mantine wrappers
 - legacy shared primitives are deprecated or redirected
+- remaining broad legacy product UI is tracked as surface-specific migration work, not shared primitive foundation work
 
 ### Phase 3: Auth, Course, And Learner-Critical Flows
 
-Status: In progress. Public course browse/detail/enrolment, enrolled lesson runtime, and anonymous lesson/quiz recovery states are partially migrated. Lesson quiz runtime, final exam, saved lessons, practice hub, auth return flows, and dashboard still need full Mantine-only conversion.
+Status: In progress. Public course browse/detail/enrolment, enrolled lesson runtime, lesson quiz runtime, final exam, saved lessons, Practice Hub, sign-in/anonymous login, dashboard, referral card, and public certificate verification have Mantine-governed UI. Remaining learner-critical gaps are secondary course/certificate profile surfaces, game UI internals where applicable, and older account/profile/rewards/challenges flows.
 
 Primary surfaces:
 
@@ -234,6 +235,8 @@ Exit criteria:
 - loading, empty, error, disabled, and permission states are Mantine-governed
 
 ### Phase 4: Admin And Editor Surfaces
+
+Status: In progress. New-course admin form, quiz manager modal, editor lesson page, and Markdown lesson editor have Mantine-governed UI. The full admin course editor remains the largest high-priority legacy surface and should be converted as a dedicated slice because it contains course metadata, imports/exports, lesson list, lesson modal, editor assignment, premium settings, and quiz configuration in one large page.
 
 Primary surfaces:
 
@@ -320,15 +323,18 @@ As of 2026-05-21:
 - Cookie consent uses compact Mantine controls.
 - Enrolled lesson runtime wrapper/actions use Mantine primitives for completion, quiz gating, saved lessons, assessment feedback, navigation, voting, and locked recovery.
 - Lesson and quiz protected-route recovery states use Mantine primitives.
+- Lesson quiz runtime and final exam runtime use Mantine forms, cards, buttons, progress, alerts, and result states.
+- Saved lessons, Practice Hub, dashboard/referral card, sign-in, and anonymous login use Mantine learner UI primitives.
+- Public certificate verification pages use Mantine cards, status badges, notifications, and actions.
+- New-course admin form, quiz manager modal, editor lesson page, and Markdown lesson editor use Mantine form and modal primitives.
+- Legacy local `Button`, `Card`, rich text editor, and `cn` adapters are deleted; `class-variance-authority`, `clsx`, and `tailwind-merge` are no longer direct Amanoba dependencies.
 - Stale duplicate app-level course community components were removed from Amanoba.
 
 Remaining high-priority gaps:
 
-- lesson quiz runtime still contains legacy Tailwind page markup
-- final exam flow still contains legacy Tailwind page markup
-- auth/sign-in, dashboard, saved lessons, and practice hub still need full Mantine-only conversion
-- admin/editor course forms are only partially migrated
-- `app/components/ui/*`, Tailwind config, local CSS token files, Radix, Sonner, and Vaul remain deletion-phase work after product surfaces stop depending on them
+- full admin course editor page still contains legacy Tailwind/lucide/native form markup and should be handled as a dedicated large slice
+- secondary learner/profile/certificate display, rewards, challenges, leaderboards, onboarding, and game chrome still need Mantine-only conversion or documented exception handling
+- Tailwind config, local CSS token files, Radix, Sonner, and Vaul remain deletion-phase work after product surfaces stop depending on them
 
 ## First Implementation PR Shape
 

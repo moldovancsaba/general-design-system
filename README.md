@@ -1,7 +1,7 @@
 # General Design System
 
 Status: Active SSOT
-Version: 1.3.0
+Version: 1.3.3
 Last updated: 2026-05-22
 
 `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` is the cross-project single source of truth for design, UI, and UX.
@@ -19,7 +19,7 @@ This repository serves as the central hub for all UI, UX, and design patterns ac
 
 ### What You Can Find Here
 
-- **Core Principles & Tokens**: (`FOUNDATION.md`) - The fundamental rules that guide all UI decisions.
+- **Core Principles & Tokens**: (`FOUNDATION.md`, `COLOR_MODES_READABILITY.md`) - The fundamental rules that guide UI decisions, color modes, contrast, and readable surfaces.
 - **Mantine Rules**: (`MANTINE_PLATFORM.md`, `MANTINE_RUNTIME.md`) - Strict guidelines on how to use Mantine, which is our only approved foundational UI system.
 - **Component Contracts & Patterns**: (`COMPONENT_CONTRACTS.md`, `UX_PATTERNS.md`) - Required behaviors for standard UI elements (buttons, inputs, modals, forms, dashboards, etc.).
 - **Responsive Guidelines**: (`NAVIGATION_RESPONSIVE.md`, `IMPLEMENTATION_TABLES.md`) - Rules for canonical shell, navigation, mobile breakpoints, and responsive implementations.
@@ -70,23 +70,25 @@ If a project-local UI document conflicts with this directory, this directory win
    Strict Mantine-only platform rules, wrapper policy, styling boundaries, and approved exceptions.
 3. [MANTINE_RUNTIME.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/MANTINE_RUNTIME.md)
    Root provider contract, theme/runtime ownership, wrapper boundaries, and Mantine-only implementation rules.
-4. [COMPONENT_CONTRACTS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COMPONENT_CONTRACTS.md)
+4. [COLOR_MODES_READABILITY.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COLOR_MODES_READABILITY.md)
+   Required dark/light mode ownership, contrast, readability, mixed-mode exceptions, and Mantine implementation rules.
+5. [COMPONENT_CONTRACTS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COMPONENT_CONTRACTS.md)
    Required behavior for buttons, inputs, cards, lists, tables, modals, drawers, alerts, and navigation.
-5. [NAVIGATION_RESPONSIVE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/NAVIGATION_RESPONSIVE.md)
+6. [NAVIGATION_RESPONSIVE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/NAVIGATION_RESPONSIVE.md)
    Canonical shell, navigation, mobile, dashboard, and small-screen rules.
-6. [UX_PATTERNS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/UX_PATTERNS.md)
+7. [UX_PATTERNS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/UX_PATTERNS.md)
    Form flows, admin flows, dashboards, assessment/survey flows, destructive behavior, and state messaging.
-7. [PRIMITIVE_POLICY_MATRIX.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PRIMITIVE_POLICY_MATRIX.md)
+8. [PRIMITIVE_POLICY_MATRIX.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PRIMITIVE_POLICY_MATRIX.md)
    Direct-vs-wrapper policy for common Mantine primitives and project-owned abstractions.
-8. [IMPLEMENTATION_TABLES.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/IMPLEMENTATION_TABLES.md)
+9. [IMPLEMENTATION_TABLES.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/IMPLEMENTATION_TABLES.md)
    Canonical variants, sizes, breakpoints, shell switches, and responsive implementation tables.
-9. [ENFORCEMENT.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/ENFORCEMENT.md)
+10. [ENFORCEMENT.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/ENFORCEMENT.md)
    Lint, import-boundary, style-drift, and review-enforcement guidance.
-10. [GOVERNANCE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/GOVERNANCE.md)
+11. [GOVERNANCE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/GOVERNANCE.md)
    Adoption, review, exceptions, migration order, versioning, and definition of done.
-11. [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md)
+12. [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md)
    Required per-project adapter contract and documentation template.
-12. [IMPLEMENTATION_READINESS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/IMPLEMENTATION_READINESS.md)
+13. [IMPLEMENTATION_READINESS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/IMPLEMENTATION_READINESS.md)
    Pre-implementation decision checklist to prevent drift, bridge layers, and ambiguous Mantine migrations.
 
 ## Supporting Operational Files
@@ -122,6 +124,7 @@ Required repository behavior:
 - New product UI must use Mantine primitives or thin approved wrappers around them.
 - No new product UI may bypass Mantine with raw custom primitives, ad hoc HTML/CSS controls, or alternate component frameworks.
 - Raw colors and repeated hard-coded spacing in feature code are prohibited.
+- Dark/light mode readability is mandatory; mixed-mode surfaces require documented exceptions.
 - Loading, empty, error, success, disabled, and permission states are part of every component contract.
 - Mobile and responsive behavior must be designed intentionally, not inherited accidentally from desktop.
 - Accessibility is part of design acceptance, not a cleanup pass.

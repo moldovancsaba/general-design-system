@@ -1,8 +1,8 @@
 # Foundation
 
 Status: Normative
-Version: 1.3.0
-Last updated: 2026-05-21
+Version: 1.3.3
+Last updated: 2026-05-22
 
 ## Goal
 
@@ -18,6 +18,7 @@ Provide a rigid, followable, cross-project design system for product application
 6. Accessibility is a release criterion: focus, labels, semantics, contrast, and touch ergonomics are part of the contract.
 7. Responsive design is explicit: mobile and small-screen behavior must be intentionally designed.
 8. Product UIs are work surfaces: prioritize clarity, scanability, speed, and repeated-use ergonomics over ornamental layout.
+9. Human readability outranks visual effect: dark/light mode, surface contrast, and text legibility are release gates, not polish.
 
 ## Scope
 
@@ -125,6 +126,7 @@ Prohibited:
 - Success color confirms completion or healthy state; it does not replace text.
 - Neutral surfaces and borders should carry most structure.
 - Color alone must not carry meaning.
+- Dark and light surfaces must follow [COLOR_MODES_READABILITY.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COLOR_MODES_READABILITY.md); mixed-mode islands are prohibited unless documented as narrow exceptions.
 
 ### Typography
 

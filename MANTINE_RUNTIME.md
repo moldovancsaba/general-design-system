@@ -1,8 +1,8 @@
 # Mantine Runtime and Theme Contract
 
 Status: Normative
-Version: 1.3.0
-Last updated: 2026-05-21
+Version: 1.3.3
+Last updated: 2026-05-22
 
 This document defines the implementation contract required for a product to count as Mantine-only in practice, not just in intent.
 
@@ -79,6 +79,7 @@ The theme must own:
 - breakpoint definitions
 - focus ring behavior
 - default component sizing/variant policy where practical
+- color-mode defaults that keep text, panels, fields, menus, modals, and nested surfaces readable in the active mode
 
 Recommended theme file responsibilities:
 
@@ -98,6 +99,7 @@ Use the theme for:
 
 - default button radius/size/loader placement
 - input radius/size/error treatment
+- text, title, card, paper, input, modal, drawer, tabs, badge, alert, and code readability in the active color mode
 - paper/card border and shadow defaults
 - modal padding and title rhythm
 - badge sizing and weight
@@ -105,6 +107,7 @@ Use the theme for:
 - table density defaults where feasible
 
 Do not use wrappers as the first answer to a problem that can be solved by a theme component default.
+Do not use page-level color overrides to compensate for missing dark/light mode theme defaults; fix the theme first.
 
 ## Allowed Wrapper Policy
 

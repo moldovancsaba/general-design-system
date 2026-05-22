@@ -2,6 +2,11 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 1.3.3 - 2026-05-22
+
+- Added the normative color-mode and readability contract for dark mode, light mode, contrast, mixed-mode exceptions, and Mantine theme responsibilities.
+- Updated foundation and runtime guidance to make human readability and active-mode consistency release gates.
+
 ## 1.3.2 - 2026-05-21
 
 - Updated the Amanoba migration plan from planned to in-progress.

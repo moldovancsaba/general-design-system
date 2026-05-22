@@ -1,8 +1,8 @@
 # Primitive Policy Matrix
 
 Status: Normative
-Version: 1.3.0
-Last updated: 2026-05-21
+Version: 1.3.3
+Last updated: 2026-05-22
 
 This matrix defines whether common controls should be used directly from Mantine, wrapped thinly, or treated as exception-only.
 

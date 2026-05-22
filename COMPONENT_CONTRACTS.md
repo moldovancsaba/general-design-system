@@ -1,8 +1,8 @@
 # Component Contracts
 
 Status: Normative
-Version: 1.3.0
-Last updated: 2026-05-21
+Version: 1.3.3
+Last updated: 2026-05-22
 
 These contracts define required behavior for shared UI concepts. Projects may change theme values and local wrappers, but they may not silently change interaction meaning.
 

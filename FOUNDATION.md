@@ -1,265 +1,66 @@
 # Foundation
 
-Status: Normative
-Version: 1.3.3
+Status: Active SSOT
+Version: 2.0.0
 Last updated: 2026-05-22
 
-## Goal
+## 1. Core Principles
 
-Provide a rigid, followable, cross-project design system for product applications that need predictable behavior, maintainable implementation, accessible interaction, and low UI drift.
+1. **One Source of Truth**: Design decisions live in this repository, not inside individual product codebases.
+2. **One UI Platform**: Mantine is the required, exclusive product UI foundation.
+3. **One Token Source**: The product theme is the absolute authority on design tokens.
+4. **Behavior is Design**: Loading, empty, error, success, disabled, and validation states must be explicitly designed.
+5. **Accessibility as a Release Gate**: Focus, contrast, semantic labels, and touch ergonomics are strictly required.
+6. **Readability Outranks Aesthetics**: Color modes, contrast, and typography must serve human reading speed and comprehension above visual polish.
+7. **Responsive Intent**: Mobile and small-screen behavior must be designed intentionally, not left to default browser wrapping.
 
-## Core Principles
+## 2. Mantine Platform & Runtime Contract
 
-1. One source of truth: design decisions live here, not inside individual product repos.
-2. One UI platform: Mantine is the required product UI foundation.
-3. One token source per product: the project theme is the only active token authority.
-4. One pattern per concept: do not allow page-by-page reinvention of the same interaction.
-5. Behavior is part of design: loading, empty, error, success, disabled, permission, and validation states are required.
-6. Accessibility is a release criterion: focus, labels, semantics, contrast, and touch ergonomics are part of the contract.
-7. Responsive design is explicit: mobile and small-screen behavior must be intentionally designed.
-8. Product UIs are work surfaces: prioritize clarity, scanability, speed, and repeated-use ergonomics over ornamental layout.
-9. Human readability outranks visual effect: dark/light mode, surface contrast, and text legibility are release gates, not polish.
+Mantine is the only approved foundational UI system for product applications.
 
-## Scope
+### Root Composition & Theme Ownership
+Every product must have one canonical root UI composition utilizing `MantineProvider`, `ModalsProvider`, and Mantine's notification system. 
+- The project must export **one** theme module that acts as the single token authority.
+- The theme must dictate color palettes, typography scales, spacing, radii, breakpoints, and component defaults.
+- Do not build parallel provider systems or duplicate theme behavior. 
 
-This SSOT governs:
+### Styling API Order
+When styling Mantine surfaces, enforce this exact order of preference:
+1. **Theme defaults**: Fix it for the whole app if it repeats.
+2. **Mantine props**: E.g., `c="dimmed"`, `mt="md"`.
+3. **Mantine APIs**: `classNames` or `styles`.
+4. **Shared Utility CSS**: Narrow, documented global layout classes.
+5. **Exception CSS**: Scoped, documented exceptions.
 
-- design principles
-- visual-system rules
-- UI primitive policy
-- component behavior contracts
-- navigation and responsive patterns
-- common workflow UX patterns
-- governance, migration, and exception rules
+**Prohibited**: 
+- Large custom CSS/Tailwind islands that rebuild core layout or component styling.
+- Raw CSS hex/rgb values or hard-coded spacing values (e.g., `16px`) in feature code. 
 
-It does not replace:
+## 3. Visual Language & Token Policy
 
-- local brand identity choices implemented through a project theme
-- project-specific business logic
-- highly domain-specific components
-- charting engines
-- print or PDF rendering engines
+- **Typography**: App interfaces must prioritize compact, scannable hierarchy. Labels must be concrete and short. 
+- **Spacing & Radius**: Use theme tokens strictly. Internal component spacing must be stable to ensure predictable touch targets and layouts.
+- **Elevation**: Rely on border and surface contrast for structure. Overlays may use elevation. Decorative shadow layering is prohibited.
+- **Accessibility Baseline**: Maintain visible focus states for all controls, semantic labeling, logical heading order, and AA contrast minimums. Focus traps are required on modals.
 
-## Required UI Foundation
+## 4. Color Modes & Readability
 
-Required baseline for product UI:
+Readable UI is mandatory. Visual mood never outranks whether a human can read and act without strain.
 
-- `@mantine/core`
-- `@mantine/hooks`
-- `@mantine/form`
-- `@mantine/notifications`
-- `@mantine/modals`
-- `@tabler/icons-react`
+- **One Active Mode**: A page shell must be clearly dark or light. Mixed-mode islands (light cards on dark shells) are prohibited unless explicitly documented as a preview/editor exception.
+- **Contrast Requirements**: 
+  - Ordinary text: WCAG AA (at least 4.5:1 against background).
+  - Large text / Icons: At least 3:1.
+  - Interactive states / Outlines: At least 3:1.
+- **Mantine Implementation**: The Mantine theme must define readable color-mode defaults for `Text`, `Title`, `Card`, `Paper`, inputs, and overlays so that developers do not need page-level color overrides.
 
-Approved optional Mantine packages by need:
+## 5. Primitive & Wrapper Policy
 
-- `@mantine/dates`
-- `@mantine/charts`
-- `@mantine/dropzone`
-- `@mantine/spotlight`
-- `@mantine/tiptap`
+Projects should prefer using Mantine primitives directly. **Thin wrappers** are required or recommended only to enforce consistency for product-defining surfaces.
 
-Non-Mantine packages are allowed only as non-primitive supporting integrations such as:
+- **App Shell & Page Header**: Thin wrapper **required**. Shell, navigation, and title rhythm are product-defining.
+- **Buttons & Forms**: Thin wrapper **recommended** if the project requires standardized variants, analytics hooks, or consistent validation layouts.
+- **Modals, Drawers, Tables**: Thin wrapper **recommended** to standardize padding, action layouts, and responsive behaviors.
+- **Most Other Controls** (Tabs, Badges, Checkboxes, Menus): Use **Directly**. 
 
-- charting integrations
-- rich text / editor integrations
-- provider-required branded controls
-- printed/exported document tooling
-- narrow exception surfaces documented locally
-
-They may not define the product’s primitive UI system, token system, layout system, or interaction model.
-
-## Theme Contract
-
-Every product must expose one shared theme through its root provider.
-
-The theme owns:
-
-- semantic palette and raw palette definitions
-- primary color
-- typography families and scale
-- font weights
-- spacing scale
-- radius scale
-- shadow/elevation scale
-- breakpoint definitions
-- focus ring defaults
-- component defaults
-- disabled, loading, error, warning, and success visual defaults
-
-Minimum practical theme outputs should cover:
-
-- `primaryColor`
-- `defaultRadius`
-- heading defaults
-- breakpoint set
-- semantic surface/background intent
-- component defaults for the most repeated primitives
-
-Projects may expose semantic aliases only when those aliases resolve back to the active Mantine theme.
-
-## Token Policy
-
-Allowed:
-
-- Mantine theme values
-- CSS variables derived from the theme
-- thin semantic aliases that resolve to the theme
-- documented provider-brand constants required by external integrations
-
-Prohibited:
-
-- raw hex/rgb/hsl values in feature UI code
-- repeated hard-coded spacing, radius, shadow, or font-size values
-- local color systems that compete with the theme
-- component-local token systems hidden in CSS modules
-- inline design decisions repeated across pages
-- any second design-token authority beside the Mantine theme
-
-## Visual Language
-
-### Color
-
-- Primary color is for the highest-priority active affordances.
-- Destructive color is for destructive actions, destructive confirmations, and critical errors only.
-- Warning color communicates risk, time sensitivity, or required attention.
-- Success color confirms completion or healthy state; it does not replace text.
-- Neutral surfaces and borders should carry most structure.
-- Color alone must not carry meaning.
-- Dark and light surfaces must follow [COLOR_MODES_READABILITY.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COLOR_MODES_READABILITY.md); mixed-mode islands are prohibited unless documented as narrow exceptions.
-
-### Typography
-
-- Use the theme typography scale.
-- App and admin interfaces prioritize compact, scannable hierarchy.
-- Display-scale typography is reserved for true hero or marketing surfaces.
-- Labels must be concrete and short.
-- Body copy should optimize for task completion, not promotion.
-
-### Spacing
-
-- Use theme spacing tokens only.
-- Internal spacing of repeated components must be stable.
-- Dense screens may be compact, but not cramped enough to hurt scanning or touch accuracy.
-- Viewport-scaled spacing and type are not appropriate for ordinary product surfaces.
-
-### Radius
-
-- Use theme radius tokens.
-- Keep radius systems simple and consistent.
-- Cards, panels, and field surfaces should not mix unrelated rounding schemes.
-
-### Elevation
-
-- Elevation clarifies stacking and focus.
-- Ordinary cards and panels should rely primarily on border and surface contrast.
-- Overlays may use stronger elevation.
-- Decorative shadow layering is discouraged.
-
-### Motion
-
-- Motion must clarify state change, not delay work.
-- Reduced-motion preferences must be respected.
-- Long-running operations need explicit status language, not only indefinite animation.
-
-## Layout Contract
-
-Use canonical layout primitives:
-
-- app shell
-- page header
-- section
-- stack
-- group
-- grid
-- table/list region
-- side panel
-- modal
-- drawer
-
-Page sections should generally be:
-
-- full-width bands with constrained inner content
-- or unframed vertical structure
-
-Avoid building operational pages as stacks of decorative floating cards.
-
-Cards are for:
-
-- repeated item summaries
-- framed tools
-- side panels
-- modal bodies
-- summary metrics where framing improves scanning
-
-## State Coverage Rule
-
-Every async or mutable surface must define:
-
-- loading state
-- empty state
-- error state
-- success state where useful
-- disabled state where possible actions are blocked
-- permission state when access differs by role or context
-
-Missing state design is a contract violation, not a polish issue.
-
-## Accessibility Baseline
-
-Every product must maintain:
-
-- visible focus state for all interactive controls
-- keyboard access for all actions
-- semantic labels for fields and icon-only controls
-- logical heading order
-- AA contrast for ordinary text and important controls
-- non-color communication for warnings, errors, and active state
-- modal focus trap and focus return
-- clear disabled-state explanation when the reason is not obvious
-- touch-friendly targets and spacing on mobile surfaces
-- no pointer-only critical workflow
-
-## Responsive Baseline
-
-- Public and user-critical flows must work on mobile.
-- Operational/admin flows must define a small-screen strategy instead of inheriting desktop overflow.
-- Tables must declare a responsive pattern: horizontal scroll, alternate list view, stacked rows, or priority columns.
-- Navigation must expose primary destinations on small screens without relying on hidden affordances only.
-- Modals and drawers must remain usable on small screens with reachable actions.
-
-## Internationalization Baseline
-
-- Components must tolerate longer translated labels.
-- Buttons and compact controls need resilient wrapping or sizing behavior.
-- Layout must not assume English-length copy.
-- Icon-only actions require localized accessible labels.
-- Copy must not be embedded in images when equivalent text can be rendered.
-
-## Project Adapter Rule
-
-Each product may define a local adapter for:
-
-- theme/provider file paths
-- wrapper component paths
-- notifications/modals setup
-- local validation commands
-- documented exceptions
-- migration backlog
-
-The adapter may not redefine behavior contracts or UX rules established here, and it may not introduce an alternate UI primitive system.
-
-## Approved Exceptions
-
-Exceptions must be narrow and documented.
-
-Examples:
-
-- third-party OAuth/provider buttons
-- embedded external widgets
-- complex charts and visualization layers
-- rich editorial or markdown renderers
-- printed/exported documents
-- email-client constrained rendering
-
-Even exceptions must preserve accessibility, copy quality, and the closest practical Mantine-theme alignment.
+*Wrappers must never hide underlying behavior unpredictably, invent new interaction meanings, or form a secondary UI framework.*

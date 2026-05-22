@@ -2,6 +2,12 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 2.0.0 - 2026-05-22
+
+- **Massive Consolidation & Hardening:** Refactored the sprawling 17-file structure into 3 hardened, professional rulebooks (`FOUNDATION.md`, `COMPONENTS_AND_PATTERNS.md`, and `GOVERNANCE_AND_ADOPTION.md`).
+- Eliminated all outdated, duplicated, and inconsistent language.
+- Enforced a strictly professional, prescriptive tone for all Mantine, UX, and Token boundaries.
+
 ## 1.3.3 - 2026-05-22
 
 - Added the normative color-mode and readability contract for dark mode, light mode, contrast, mixed-mode exceptions, and Mantine theme responsibilities.

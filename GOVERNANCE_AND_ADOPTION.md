@@ -1,0 +1,76 @@
+# Governance & Adoption
+
+Status: Active SSOT
+Version: 2.0.0
+Last updated: 2026-05-22
+
+This document defines how products adopt the design system, enforce compliance, and migrate legacy UI. 
+
+## 1. Project Adoption Contract
+
+New projects must use this design system immediately. Legacy projects must begin migrating and acknowledge this repository as the Single Source of Truth (SSOT).
+
+### Required Local Statement
+Every adopting project must include the following statement in their primary developer documentation:
+> `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` is the single source of truth for design, UI, and UX. Project-local files describe only implementation adapter details, migration state, validation commands, and approved exceptions.
+
+### Local Adapter Requirements
+The local adapter must document:
+- The path to the local Theme and Root Provider.
+- Local wrapper component locations.
+- Known exceptions and the migration backlog.
+
+**Compliance Definition:** A project is compliant when this directory is documented as the SSOT, Mantine is the *only* foundational UI primitive system, tokens come exclusively from the shared project theme, and legacy CSS/primitives have been deleted.
+
+## 2. Implementation Readiness
+
+Before starting a new product UI implementation or a Mantine migration, projects must make and document these mandatory decisions:
+
+1. **Theme Ownership**: Exact path for the theme and root provider.
+2. **Notifications & Modals**: Where they are set up centrally.
+3. **Primitive Policy**: Which controls are wrapped vs used directly.
+4. **Legacy Boundary**: Which files are legacy and frozen from new UI work.
+
+**First PR Shape:** The first PR should establish the root provider, theme, and modal/notification setup, migrating *one* high-value surface. Do not attempt a full-app migration in one pass.
+
+## 3. Migration Playbook
+
+Migrate legacy applications via true refactoring, not by bridging old token layers indefinitely.
+
+### Forbidden Target States
+- Keeping two active token systems in production.
+- Allowing new screens to choose freely between old CSS and Mantine.
+- Preserving a legacy theme provider as a permanent fallback.
+
+### Standard Migration Phases
+1. **Phase 0: Freeze** - Ban new product UI in the old system.
+2. **Phase 1: Root Platform** - Add `MantineProvider`, theme, and central overlays.
+3. **Phase 2: Core Primitives** - Migrate buttons, inputs, alerts, cards.
+4. **Phase 3: Auth & High-Traffic** - Migrate login, registration, and core user journeys.
+5. **Phase 4: Admin & CRUD** - Migrate dashboards, tables, and settings.
+6. **Phase 5: Secondary Surfaces** - Migrate docs and low-traffic pages.
+7. **Phase 6: Deletion** - Delete old CSS modules, legacy primitive folders, and old token systems.
+
+## 4. Enforcement & Review
+
+Projects must actively enforce the Mantine-only policy to prevent design-system drift.
+
+### Minimum Enforcement Layers
+- **Import Boundaries**: Lint rules forbidding imports from legacy primitive directories.
+- **Forbidden Values**: Lint against raw CSS colors (e.g., `#FF0000`), hard-coded radii, and unapproved size tokens in feature UI.
+- **Static Checks**: CI/CD checks to prevent new legacy patterns.
+
+### Pull Request Checklist
+Reviewers must ask:
+- Does this use Mantine primitives or thin wrappers?
+- Could theme defaults solve this instead of local override logic?
+- Are loading, empty, error, disabled, and success states explicitly handled?
+- Does the component remain keyboard and screen-reader usable?
+- Did any hard-coded design value (CSS) enter feature code?
+
+### Exception Rule
+Exceptions must be documented in the local project adapter. The note must include:
+- Reason and Scope
+- User Impact
+- Removal condition / expiration
+Exceptions must remain narrow. Do not promote a one-off exception into a shared primitive unless documented here first.

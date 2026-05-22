@@ -2,9 +2,37 @@
 
 Status: Active SSOT
 Version: 1.3.0
-Last updated: 2026-05-21
+Last updated: 2026-05-22
 
 `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` is the cross-project single source of truth for design, UI, and UX.
+
+## How to Use This Design System
+
+This repository serves as the central hub for all UI, UX, and design patterns across projects.
+
+### Getting Started
+
+1. **Familiarize Yourself with the Foundation**: Start by reading the [FOUNDATION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/FOUNDATION.md) to understand the core principles, accessibility baselines, and token rules.
+2. **Review the Component Contracts**: Before building a new UI component, check [COMPONENT_CONTRACTS.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COMPONENT_CONTRACTS.md) to see if a canonical pattern already exists.
+3. **Adopt in Your Project**: Use the [PROJECT_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECT_ADOPTION.md) template to adapt the design system into your local project. You must add the Required Local Project Statement to your project's documentation.
+4. **Follow the Migration Playbook**: If you are migrating an existing project to this design system, follow the [MIGRATION_PLAYBOOK.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/MIGRATION_PLAYBOOK.md) for a phased refactoring approach.
+
+### What You Can Find Here
+
+- **Core Principles & Tokens**: (`FOUNDATION.md`) - The fundamental rules that guide all UI decisions.
+- **Mantine Rules**: (`MANTINE_PLATFORM.md`, `MANTINE_RUNTIME.md`) - Strict guidelines on how to use Mantine, which is our only approved foundational UI system.
+- **Component Contracts & Patterns**: (`COMPONENT_CONTRACTS.md`, `UX_PATTERNS.md`) - Required behaviors for standard UI elements (buttons, inputs, modals, forms, dashboards, etc.).
+- **Responsive Guidelines**: (`NAVIGATION_RESPONSIVE.md`, `IMPLEMENTATION_TABLES.md`) - Rules for canonical shell, navigation, mobile breakpoints, and responsive implementations.
+- **Operational Files**: (`CONTRIBUTING.md`, `CHANGELOG.md`) - Shared rules for contributing to the design system and its versioned history.
+- **Templates**: (`TEMPLATES/`) - Starter templates for your project's theme, providers, shell, and thin wrappers.
+
+### Where to Find Things
+
+- `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/` (This directory): The root containing all the SSOT markdown files.
+- `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/TEMPLATES/`: Starter files to copy into your project.
+- `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECTS/`: Product-specific migration plans and adoption strategies.
+
+---
 
 Product repositories may document:
 

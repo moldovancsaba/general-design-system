@@ -1,7 +1,7 @@
 # ClassScout Mantine-Only Refactor
 
-Status: Planned
-Version: 1.0.0
+Status: In Progress
+Version: 1.1.0
 Last updated: 2026-05-21
 Project: `/Users/Shared/Projects/classscout`
 
@@ -34,11 +34,11 @@ ClassScout-local documentation may not redefine component behavior, token policy
 
 ## Current UI Foundation
 
-- primitive/component foundation: local `shadcn/ui` components in `/Users/Shared/Projects/classscout/src/components/ui`
-- interaction primitives: Radix-based wrappers inside those `ui` components
+- primitive/runtime foundation: Mantine root provider setup in `/Users/Shared/Projects/classscout/src/app/providers.tsx`
+- theme authority: `/Users/Shared/Projects/classscout/src/theme/mantineTheme.ts`
+- local wrapper layer: no live primitive wrapper directory; domain-specific media wrapper now lives in `/Users/Shared/Projects/classscout/src/components/media/CdnImage.tsx`
 - styling foundation: Tailwind utility classes plus theme variables in `/Users/Shared/Projects/classscout/src/app/globals.css`
-- theme config: `/Users/Shared/Projects/classscout/tailwind.config.ts`
-- root app providers: `/Users/Shared/Projects/classscout/src/app/providers.tsx`
+- theme config support: `/Users/Shared/Projects/classscout/tailwind.config.ts`
 - app shell and consumer surfaces:
   - `/Users/Shared/Projects/classscout/src/components/scout/*`
   - `/Users/Shared/Projects/classscout/src/components/scout/views/*`
@@ -58,12 +58,14 @@ ClassScout-local documentation may not redefine component behavior, token policy
 
 ## Legacy Inventory To Retire
 
-- `/Users/Shared/Projects/classscout/components.json`
-- `/Users/Shared/Projects/classscout/src/components/ui/*`
-- `/Users/Shared/Projects/classscout/src/app/globals.css` as the primary design-token authority
-- `/Users/Shared/Projects/classscout/tailwind.config.ts` as the primary UI token authority
-- Radix-based overlay and field primitives currently consumed from `src/components/ui`
-- shadcn toast / tooltip / sheet / dialog infrastructure in `/Users/Shared/Projects/classscout/src/app/providers.tsx`
+- removed:
+  - `/Users/Shared/Projects/classscout/components.json`
+  - obsolete shadcn/Radix primitive files previously stored in `/Users/Shared/Projects/classscout/src/components/ui`
+  - Radix-based toast/dialog/sheet/tooltip runtime concerns formerly used in `/Users/Shared/Projects/classscout/src/app/providers.tsx`
+- remaining cleanup scope:
+  - keep `/Users/Shared/Projects/classscout/src/components/ui` deleted and prevent reintroduction
+  - continue migrating Tailwind-heavy feature composition toward Mantine theme, props, layout primitives, and styles
+  - ensure `/Users/Shared/Projects/classscout/src/app/globals.css` and `/Users/Shared/Projects/classscout/tailwind.config.ts` remain styling support rather than competing primitive authority
 
 Tailwind may remain only if the project intentionally keeps it for narrow layout or utility use. It may not remain the design-system authority.
 
@@ -102,14 +104,14 @@ Tailwind may remain only if the project intentionally keeps it for narrow layout
 
 ### Phase 1: Root Mantine Platform
 
-Create:
+Completed:
 
 - one ClassScout Mantine provider
 - one exported Mantine theme
 - central notifications setup
 - central modal/drawer policy wiring
 
-Replace:
+Replaced:
 
 - current root UI provider concerns in `/Users/Shared/Projects/classscout/src/app/providers.tsx`
 
@@ -154,14 +156,18 @@ Goal:
 
 ### Phase 5: Primitive Deletion
 
-- delete unused shadcn wrappers
-- delete obsolete Radix dependencies used only for product UI primitives
-- reduce or rewrite legacy global CSS that exists only to support the removed primitive system
-- remove outdated local documentation that still describes the old stack as authoritative
+- completed:
+  - deleted unused shadcn wrappers
+  - deleted the remaining dormant Mantine-backed compatibility wrappers in `/Users/Shared/Projects/classscout/src/components/ui`
+  - deleted obsolete Radix dependencies used only for product UI primitives
+  - removed outdated local documentation that described the old stack as authoritative
+- remaining:
+  - continue reducing or rewriting global CSS and utility-heavy styling where it exists only as migration-era support
+  - keep the wrapper directory constrained to thin Mantine-backed adapters only
 
 ## Enforcement Rules
 
-- no new product UI files should import from `/Users/Shared/Projects/classscout/src/components/ui`
+- no new product UI files should introduce alternate primitive systems beside Mantine and the approved thin local adapters
 - no new product UI should add fresh Radix primitive usage for behavior Mantine already covers
 - no new design tokens should be declared outside the Mantine theme without a documented exception
 - no local document in ClassScout may describe itself as the design authority while the shared SSOT exists
@@ -183,6 +189,6 @@ ClassScout is done with this refactor only when:
 
 - Mantine is the only foundational UI library for product UI
 - the active theme is Mantine-based and is the only token authority
-- public and admin surfaces no longer depend on `src/components/ui` as their primitive base
+- public and admin surfaces use Mantine directly or only thin Mantine-backed local adapters
 - local docs consistently point to `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` as the SSOT
 - remaining exceptions are explicit, narrow, and documented

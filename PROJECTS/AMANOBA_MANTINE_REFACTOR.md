@@ -319,6 +319,8 @@ As of 2026-05-21:
 - Mantine notifications and modals are centrally available.
 - `npm run ui:check:mantine`, `npm run ui:check:foundation`, and `npm run ui:check:layout` are active local guardrails.
 - Course catalog and public course detail page wrappers are Mantine-based.
+- Learner navigation now uses `app/components/LearnerPageHeader.tsx` as the canonical Mantine header across dashboard, my courses, course catalog, Practice Hub, saved lessons, blog, and news index pages.
+- Blog/news index pages and the language switcher no longer use Tailwind/raw form chrome; they use Mantine primitives.
 - Active course voting, discussion, and study-group components use Mantine primitives and Tabler icons.
 - Cookie consent uses compact Mantine controls.
 - Enrolled lesson runtime wrapper/actions use Mantine primitives for completion, quiz gating, saved lessons, assessment feedback, navigation, voting, and locked recovery.

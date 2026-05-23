@@ -13,7 +13,7 @@ export interface EmptyStateProps {
  */
 export function EmptyState({ icon, title, description, action }: EmptyStateProps) {
   return (
-    <Stack align="center" justify="center" gap="md" py="xl" style={{ textAlign: 'center' }}>
+    <Stack align="center" justify="center" gap="md" py="xl" ta="center">
       {icon && <Box c="dimmed">{icon}</Box>}
       <Title order={3}>{title}</Title>
       <Text c="dimmed" maw={400}>

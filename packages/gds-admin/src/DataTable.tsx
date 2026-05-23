@@ -19,14 +19,14 @@ export interface DataTableProps<T> {
 export function DataTable<T extends Record<string, any>>({ data, columns, loading = false }: DataTableProps<T>) {
   if (!data.length && !loading) {
     return (
-      <Paper p="xl" withBorder style={{ textAlign: 'center' }}>
+      <Paper p="xl" withBorder ta="center">
         <Text c="dimmed">No data available.</Text>
       </Paper>
     );
   }
 
   return (
-    <Paper withBorder style={{ position: 'relative', overflow: 'hidden' }}>
+    <Paper withBorder pos="relative" style={{ overflow: 'hidden' }}>
       <LoadingOverlay visible={loading} zIndex={1000} overlayProps={{ radius: 'sm', blur: 2 }} />
       <Table striped highlightOnHover>
         <Table.Thead>

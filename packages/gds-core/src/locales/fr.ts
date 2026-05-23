@@ -8,7 +8,7 @@ export const fr = {
   'gds.action.add': 'Ajouter',
   'gds.action.edit': 'Modifier',
   'gds.action.delete': 'Supprimer',
-  'gds.action.save': 'Enregistrer',
+  'gds.action.save': 'Sauvegarder',
   'gds.action.language': 'Langue',
   'gds.action.theme': 'Thème',
   'gds.action.home': 'Accueil',

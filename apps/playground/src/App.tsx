@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import { GdsProvider } from '@gds/theme';
 import { AppShell, DataTable, StatsStrip, SemanticNavLink, InfoCard, PageHeader, FormSection } from '@gds/admin';
 import { SemanticButton, GdsVocabulary, type SemanticAction } from '@gds/core';
-import { Group, Stack, Button, SimpleGrid, TextInput, Switch, Paper, Box } from '@mantine/core';
+import { Stack, Button, SimpleGrid, TextInput, Switch, Paper, Box } from '@mantine/core';
 import { IconLanguage, IconServer, IconActivity, IconShieldCheck } from '@tabler/icons-react';
 
 const huMessages = {

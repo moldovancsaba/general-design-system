@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppShell as MantineAppShell, Burger, Group, Text, Box } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { ThemeToggle } from '@gds/core';
 
 export interface AppShellProps {
   title?: string;
@@ -25,9 +26,12 @@ export function AppShell({ title = 'Workspace', navLinks, children }: AppShellPr
       padding="md"
     >
       <MantineAppShell.Header>
-        <Group h="100%" px="md">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <Text fw={700} size="lg">{title}</Text>
+        <Group h="100%" px="md" justify="space-between">
+          <Group>
+            <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+            <Text fw={700} size="lg">{title}</Text>
+          </Group>
+          <ThemeToggle />
         </Group>
       </MantineAppShell.Header>
 

@@ -1,6 +1,6 @@
 import { GdsProvider } from '@gds/theme';
 import { AppShell, DataTable, FormSection, StatsStrip } from '@gds/admin';
-import { StatusBadge, EmptyState, ConfirmDialog } from '@gds/core';
+import { StatusBadge, EmptyState, ConfirmDialog, GdsIcons } from '@gds/core';
 import { useState } from 'react';
 import '@mantine/core/styles.css';
 
@@ -40,7 +40,7 @@ function App() {
                 { 
                   key: 'status', 
                   label: 'Status',
-                  render: (item) => (
+                  render: (item: typeof mockData[0]) => (
                     <StatusBadge status={item.status}>
                       {item.status.toUpperCase()}
                     </StatusBadge>
@@ -50,7 +50,9 @@ function App() {
                   key: 'actions',
                   label: 'Actions',
                   render: () => (
-                    <button onClick={() => setOpened(true)}>Delete</button>
+                    <button onClick={() => setOpened(true)} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <GdsIcons.Delete size="1rem" /> Delete
+                    </button>
                   )
                 }
               ]}
@@ -60,6 +62,7 @@ function App() {
 
         <div style={{ marginTop: '2rem' }}>
           <EmptyState
+            icon={<GdsIcons.Search size="3rem" stroke={1.5} />}
             title="No recent activity"
             description="There hasn't been any activity in this workspace yet."
           />

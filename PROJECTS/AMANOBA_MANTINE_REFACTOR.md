@@ -2,7 +2,7 @@
 
 Status: In Progress
 Version: 1.0.0
-Last updated: 2026-05-21
+Last updated: 2026-05-23
 Project: `/Users/moldovancsaba/Projects/amanoba`
 
 ## Objective
@@ -68,6 +68,25 @@ The former local `Button`, `Card`, rich text editor, and `cn` adapters were reti
 - page shells and responsive behavior follow `NAVIGATION_RESPONSIVE.md`
 - current Tailwind/Radix/local CSS files are deleted or reduced to narrow non-product exceptions
 - no new product UI may import Radix primitives, Tailwind design utilities, `sonner`, `vaul`, or local CSS token systems
+
+## Pattern Service Priorities
+
+Amanoba must use `PATTERN_SERVICE_MODEL.md` as the cross-project implementation plan for reusable Mantine patterns.
+
+Highest-value contracts to complete next:
+
+1. **Learner/Public/Article Shells**: promote existing Mantine learner navigation into explicit shell contracts and ensure public and article/news surfaces use equally strict shells.
+2. **Course Card System**: replace all course card variants with canonical `CourseCatalogCard`, `EnrolledCourseCard`, `CourseProgressCard`, and `AdminCourseCard` contracts.
+3. **Metric And Progress Cards**: normalize dashboard, profile, course progress, certificate, and achievement metrics through shared Mantine metric components.
+4. **State Blocks**: replace page-local loading, empty, error, permission, disabled, and success states with shared state-block contracts.
+5. **Article/News Layout**: standardize news/blog index cards, article detail layout, side rails, and metadata through an article shell contract.
+
+Acceptance requirements:
+
+- no page-local shell/card/state implementation where a local contract exists
+- all card and metric variants use Mantine primitives and the Amanoba theme
+- mobile surfaces show one visible primary action per card
+- dark-mode readability is verified through theme tokens, not page-local overrides
 
 ## Required Mantine Package Baseline
 

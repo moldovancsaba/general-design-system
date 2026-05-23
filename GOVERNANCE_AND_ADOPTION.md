@@ -1,8 +1,8 @@
 # Governance & Adoption
 
 Status: Active SSOT
-Version: 2.0.0
-Last updated: 2026-05-22
+Version: 2.1.0
+Last updated: 2026-05-23
 
 This document defines how products adopt the design system, enforce compliance, and migrate legacy UI. 
 
@@ -18,6 +18,7 @@ Every adopting project must include the following statement in their primary dev
 The local adapter must document:
 - The path to the local Theme and Root Provider.
 - Local wrapper component locations.
+- Local paths for every required pattern-service contract: shell, page header, product card, metric card, data toolbar, responsive data view, auth shell, article shell, and state block where applicable.
 - Known exceptions and the migration backlog.
 
 **Compliance Definition:** A project is compliant when this directory is documented as the SSOT, Mantine is the *only* foundational UI primitive system, tokens come exclusively from the shared project theme, and legacy CSS/primitives have been deleted.
@@ -30,6 +31,7 @@ Before starting a new product UI implementation or a Mantine migration, projects
 2. **Notifications & Modals**: Where they are set up centrally.
 3. **Primitive Policy**: Which controls are wrapped vs used directly.
 4. **Legacy Boundary**: Which files are legacy and frozen from new UI work.
+5. **Pattern Contract Inventory**: Which local files implement required GDS pattern families and which are still backlog.
 
 **First PR Shape:** The first PR should establish the root provider, theme, and modal/notification setup, migrating *one* high-value surface. Do not attempt a full-app migration in one pass.
 
@@ -59,12 +61,15 @@ Projects must actively enforce the Mantine-only policy to prevent design-system 
 - **Import Boundaries**: Lint rules forbidding imports from legacy primitive directories.
 - **Forbidden Values**: Lint against raw CSS colors (e.g., `#FF0000`), hard-coded radii, and unapproved size tokens in feature UI.
 - **Static Checks**: CI/CD checks to prevent new legacy patterns.
+- **Pattern Drift Checks**: Static or review checks that prevent new page-local shell, header, card, metric, data-toolbar, auth, article, or state-block implementations when an approved local contract already exists.
+- **Mode/Readability Checks**: Visual or computed-style checks for dark/light mode contrast, clipped labels, and mixed-mode surfaces on high-traffic pages.
 
 ### Pull Request Checklist
 Reviewers must ask:
 - Does this use Mantine primitives or thin wrappers?
 - Could theme defaults solve this instead of local override logic?
 - Are loading, empty, error, disabled, and success states explicitly handled?
+- Does this use an existing local pattern-service contract instead of inventing a page-local version?
 - Does the component remain keyboard and screen-reader usable?
 - Did any hard-coded design value (CSS) enter feature code?
 
@@ -74,3 +79,18 @@ Exceptions must be documented in the local project adapter. The note must includ
 - User Impact
 - Removal condition / expiration
 Exceptions must remain narrow. Do not promote a one-off exception into a shared primitive unless documented here first.
+
+## 5. Cross-Project Pattern Service Adoption
+
+Projects must use `PATTERN_SERVICE_MODEL.md` when a UI pattern appears in more than one project or more than one major surface inside the same project.
+
+Required adoption behavior:
+
+1. Identify the repeated workflow problem.
+2. Review Mantine and Mantine UI examples only as Mantine-native references.
+3. Document the GDS-level behavior contract before broad implementation.
+4. Implement through Mantine primitives or thin local Mantine wrappers.
+5. Delete or freeze older local variants.
+6. Add enforcement so the project cannot silently fork the pattern again.
+
+Cross-project recommendations in `PATTERN_SERVICE_MODEL.md` must be reviewed during project planning. Product-local plans may sequence the work differently, but they may not reject the shared contracts without a documented exception.

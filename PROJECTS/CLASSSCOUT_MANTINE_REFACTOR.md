@@ -2,7 +2,7 @@
 
 Status: In Progress
 Version: 1.1.0
-Last updated: 2026-05-21
+Last updated: 2026-05-23
 Project: `/Users/Shared/Projects/classscout`
 
 ## Objective
@@ -55,6 +55,25 @@ ClassScout-local documentation may not redefine component behavior, token policy
 - shell, cards, filters, forms, dialogs, drawers, tabs, tables, alerts, and badges all render from Mantine primitives or thin Mantine wrappers
 - custom CSS reduced to narrow global defaults, exceptional integration glue, and documented edge cases
 - `src/components/ui` no longer serves as the live primitive foundation for product UI
+
+## Pattern Service Priorities
+
+ClassScout must use `PATTERN_SERVICE_MODEL.md` to prevent discovery, card, filter, and admin surfaces from drifting into local composition.
+
+Highest-value contracts to complete next:
+
+1. **Public Discovery Shell**: normalize shell, neighborhood/borough context, search, filters, and primary actions through one Mantine shell contract.
+2. **Provider And Meetup Cards**: define fixed slots for media, title, metadata, availability/status, primary action, and overflow actions.
+3. **Filter/Data Toolbar**: standardize search, filters, sort, reset, and create actions for public and admin list views.
+4. **Admin Responsive Data View**: convert admin tables and forms to the shared responsive table/list strategy.
+5. **State Blocks**: replace page-local empty/error/loading states with shared Mantine state-block contracts.
+
+Acceptance requirements:
+
+- public discovery cards expose one visible primary mobile action
+- filters remain close to the data they affect and active filters are removable
+- admin views do not create local table/filter variants
+- Tailwind/global CSS cannot act as product styling authority
 
 ## Legacy Inventory To Retire
 

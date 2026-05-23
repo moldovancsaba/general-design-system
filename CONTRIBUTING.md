@@ -1,8 +1,8 @@
 # Contributing
 
 Status: Active
-Version: 2.0.0
-Last updated: 2026-05-22
+Version: 2.1.0
+Last updated: 2026-05-23
 
 This repository is shared design-system infrastructure.
 
@@ -10,6 +10,7 @@ This repository is shared design-system infrastructure.
 
 - Shared foundation rules (`FOUNDATION.md`)
 - Component and UX contracts (`COMPONENTS_AND_PATTERNS.md`)
+- Cross-project pattern-service contracts (`PATTERN_SERVICE_MODEL.md`)
 - Governance, migration, or enforcement processes (`GOVERNANCE_AND_ADOPTION.md`)
 - Project-specific migration plans under `PROJECTS/`
 
@@ -20,12 +21,14 @@ This repository is shared design-system infrastructure.
 3. If a rule is not ready for cross-project use, keep it in the project until it is.
 4. Prefer durable, reviewable language over brainstorming notes.
 5. Do not weaken the Mantine-only platform rule without an explicit major-version policy change.
+6. Promote repeated local UI solutions into `PATTERN_SERVICE_MODEL.md` before copying them across projects.
 
 ## Recommended Commit Scopes
 
 - `foundation` (Changes to tokens, accessibility, Mantine baseline)
 - `components` (Changes to component behaviors, responsive layouts)
 - `governance` (Changes to adoption rules, review processes)
+- `pattern-service` (Changes to reusable cross-project pattern contracts)
 - `project-plan` (Changes under the `PROJECTS/` directory)
 
 Examples:
@@ -33,4 +36,5 @@ Examples:
 - `foundation: tighten mantine-only token policy`
 - `components: clarify destructive modal behavior`
 - `governance: update PR checklist requirements`
+- `pattern-service: add reusable article shell contract`
 - `project-plan: add sso mantine refactor plan`

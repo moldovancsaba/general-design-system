@@ -1,8 +1,8 @@
 # Components & Patterns
 
 Status: Active SSOT
-Version: 2.0.0
-Last updated: 2026-05-22
+Version: 2.1.0
+Last updated: 2026-05-23
 
 This document defines the canonical behavior for UI components, workflows, and responsive layouts. Adopting projects may not alter interaction meanings or bypass these required UX patterns.
 
@@ -12,6 +12,7 @@ This document defines the canonical behavior for UI components, workflows, and r
 - **Primary Navigation**: Must contain top-level destinations (e.g., `Records`, `Settings`), not actions. Maintain visible indicators for the active route.
 - **Mobile Navigation**: Must preserve access to primary destinations without forcing users to open a drawer for routine work (prefer bottom nav or visible top tabs). Secondary nav and preferences belong in a drawer or overflow menu.
 - **Page Headers**: Must answer: *Where am I? What is this for? What can I do next?* Page-level primary actions belong here. Avoid massive marketing-style headers in operational UI.
+- **Shell Contracts**: Each project must define one local shell contract per user area (for example learner, admin, public, article/docs). Pages may not invent their own navigation rhythm once a shell contract exists.
 
 ## 2. Common Workflows & Patterns
 
@@ -20,6 +21,7 @@ This document defines the canonical behavior for UI components, workflows, and r
 - **Admin & Editor Flows**: Favor dense, predictable information. Bulk actions must show selected counts and consequences. Drafts should survive recoverable failures.
 - **Search, Filters, & Lists**: Place filters near the data they affect. Active filters must be visible and removable. Preserving filters during navigation is a feature, not a bug.
 - **Destructive Actions**: Must be visually distinct (e.g., danger color) and require confirmation for irreversible impacts. High-impact deletions must restate the target by name.
+- **Pattern Service Reuse**: Repeated cards, metrics, tables, filters, auth panels, article layouts, and state blocks must be implemented through local contracts derived from `PATTERN_SERVICE_MODEL.md`, not per-page composition.
 
 ## 3. Core Component Contracts
 
@@ -30,6 +32,10 @@ This document defines the canonical behavior for UI components, workflows, and r
 | **Inputs (Text/Search/Password)** | Visible labels required. Field-level errors must appear nearby. Show/hide required for passwords. Debounce remote search. | `md` |
 | **Selects / Combobox** | Use `Select` for small sets, `Combobox` (searchable) for long lists. Use `MultiSelect` only when truly needed. | `md` |
 | **Checkboxes/Radios** | Checkbox = independent opt-in. Radio = mutually exclusive. Switch = immediate on/off action. | `md` |
+| **Product Cards** | Fixed slots for media/icon, title, metadata, status/progress, primary action, and overflow actions. One visible primary action on mobile. | `md` |
+| **Metric Cards** | Prominent value, readable label, optional trend/status. Analytics may not outrank next action or urgent exceptions on mobile. | `md` |
+| **Data Toolbars** | Search, filters, sort, reset, and create actions in predictable order. Active filters visible and removable. | `md` |
+| **State Blocks** | Loading, empty, error, permission, disabled, and success states must explain the state and provide the next action where possible. | `md` |
 
 ## 4. Feedback & Messaging
 
@@ -45,3 +51,20 @@ This document defines the canonical behavior for UI components, workflows, and r
 - **Small-Screen Priority**: 1. Next action -> 2. Urgent exception -> 3. Recent work -> 4. Analytics.
 - **Table Responsive Strategies**: "Desktop table compressed onto mobile" is unacceptable. Must choose: horizontal scroll, list/card view, priority columns, or stacked rows.
 - **Mobile Action Density**: List cards should have *one* visible primary action (others in overflow). Avoid adjacent icon-only clusters to prevent accidental taps. Touch targets must remain comfortable.
+
+## 6. Required Reusable Pattern Families
+
+The following families are mandatory local contracts when a project has the corresponding surface:
+
+| Family | Required When | Must Define |
+|---|---|---|
+| **App Shell** | Product has authenticated, public, admin, or docs areas | navigation model, account controls, active route, mobile behavior |
+| **Page Header** | Product has more than one page | title, purpose text, primary action, secondary action placement |
+| **Product Card** | Product lists courses, providers, children, records, articles, accounts, or other repeated objects | content slots, action slots, mobile order, loading/empty behavior |
+| **Metric / Progress Card** | Product shows repeated stats or progress | value hierarchy, label rules, trend/status rules, mobile priority |
+| **Data Toolbar / Responsive Data View** | Product has admin/editor/search/list workflows | search, filters, sort, reset, create, desktop table strategy, mobile fallback |
+| **Auth Shell** | Product has login, signup, account linking, consent, or guest entry | auth actions, error placement, provider branding, anonymous/guest behavior |
+| **Article / Docs Shell** | Product has release notes, docs, news, or blog content | article width, side rail behavior, metadata, typography, mobile collapse |
+| **State Block** | Always | loading, empty, error, permission, disabled, success, not-enough-data states |
+
+Mantine UI examples may be used to inform these contracts only after the project confirms the GDS behavior, responsive rules, and token boundaries remain unchanged.

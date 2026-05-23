@@ -2,7 +2,7 @@
 
 Status: Planned
 Version: 1.1.0
-Last updated: 2026-05-21
+Last updated: 2026-05-23
 Project: `/Users/Shared/Projects/kidex`
 
 ## Objective
@@ -68,6 +68,25 @@ KIDEX already uses Mantine heavily, but it is not yet strict or complete:
 - explicit small-screen rules for dashboard, children, records, and survey surfaces
 - app-local design doc reduced to adapter only
 - remaining non-primitive exceptions documented and narrow
+
+## Pattern Service Priorities
+
+KIDEX must use `PATTERN_SERVICE_MODEL.md` to avoid local mobile-shell and card drift.
+
+Highest-value contracts to complete next:
+
+1. **Conductor App Shell**: define the authenticated mobile-first shell contract so primary conductor destinations are visible without drawer dependence alone.
+2. **Dashboard Priority Blocks**: normalize overdue, due-soon, start/resume, recent child, and watchlist blocks around the shared state and metric contracts.
+3. **Child Registry Cards**: reduce simultaneous actions and enforce one visible primary action per child card on mobile.
+4. **Records/Detail Page Headers**: standardize page title, purpose text, primary action, and secondary action placement.
+5. **Responsive Data View**: audit filters, tables, and record lists against the data-toolbar and mobile fallback contract.
+
+Acceptance requirements:
+
+- mobile conductor workflow exposes routine destinations quickly
+- analytics never load before urgent operational actions on small screens
+- child and record cards do not invent local action-density rules
+- local Mantine theme remains the only token authority
 
 ## Proposed Sequence
 

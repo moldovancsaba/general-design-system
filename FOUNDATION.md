@@ -1,8 +1,8 @@
 # Foundation
 
 Status: Active SSOT
-Version: 2.0.0
-Last updated: 2026-05-22
+Version: 2.1.0
+Last updated: 2026-05-23
 
 ## 1. Core Principles
 
@@ -13,10 +13,13 @@ Last updated: 2026-05-22
 5. **Accessibility as a Release Gate**: Focus, contrast, semantic labels, and touch ergonomics are strictly required.
 6. **Readability Outranks Aesthetics**: Color modes, contrast, and typography must serve human reading speed and comprehension above visual polish.
 7. **Responsive Intent**: Mobile and small-screen behavior must be designed intentionally, not left to default browser wrapping.
+8. **Pattern Reuse Before Local Invention**: Repeated shells, cards, metrics, toolbars, auth surfaces, article layouts, and state blocks must be promoted into shared contracts before they spread across pages or projects.
 
 ## 2. Mantine Platform & Runtime Contract
 
 Mantine is the only approved foundational UI system for product applications.
+
+Mantine UI may be reviewed as a Mantine-native reference library, but it is not a competing design system. Any borrowed idea must be rebuilt through this GDS, the local Mantine theme, and approved Mantine primitives or thin wrappers.
 
 ### Root Composition & Theme Ownership
 Every product must have one canonical root UI composition utilizing `MantineProvider`, `ModalsProvider`, and Mantine's notification system. 
@@ -35,6 +38,8 @@ When styling Mantine surfaces, enforce this exact order of preference:
 **Prohibited**: 
 - Large custom CSS/Tailwind islands that rebuild core layout or component styling.
 - Raw CSS hex/rgb values or hard-coded spacing values (e.g., `16px`) in feature code. 
+- Copying Mantine UI example CSS into feature code as a styling authority.
+- Creating page-local variants of reusable shells, cards, metrics, filters, auth panels, article layouts, or state blocks.
 
 ## 3. Visual Language & Token Policy
 
@@ -64,3 +69,19 @@ Projects should prefer using Mantine primitives directly. **Thin wrappers** are 
 - **Most Other Controls** (Tabs, Badges, Checkboxes, Menus): Use **Directly**. 
 
 *Wrappers must never hide underlying behavior unpredictably, invent new interaction meanings, or form a secondary UI framework.*
+
+## 6. Shared Pattern Service Requirement
+
+Reusable UI patterns must be treated as service contracts, not visual snippets.
+
+Required shared contract families:
+
+- app shells and page headers
+- product cards
+- metric and progress cards
+- data toolbars and responsive data views
+- auth shells and account-entry panels
+- article/docs/news layouts
+- loading, empty, error, permission, disabled, and success state blocks
+
+Before a project creates a second implementation of any family, it must check `PATTERN_SERVICE_MODEL.md`, update the GDS if the contract is missing, and document the local adapter path.

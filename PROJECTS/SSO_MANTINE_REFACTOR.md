@@ -2,7 +2,7 @@
 
 Status: In progress
 Version: 1.0.0
-Last updated: 2026-05-21
+Last updated: 2026-05-23
 Project: `/Users/moldovancsaba/Projects/sso`
 
 ## Objective
@@ -33,6 +33,30 @@ Refactor SSO to a pure Mantine system with no long-lived bridge between the curr
 - auth and admin surfaces rendered from Mantine primitives
 - docs surfaces moved to Mantine layout and typography where practical
 - old token/theme infrastructure deleted
+
+## Pattern Service Priorities
+
+SSO must use `PATTERN_SERVICE_MODEL.md`, but its contract set should stay intentionally smaller than full product apps.
+
+Required local contracts:
+
+1. **AuthShell**: login, consent, account entry, provider-branded controls, inline errors, and loading states.
+2. **AdminShell**: admin navigation, account controls, active route, and CRUD action placement.
+3. **DocsShell**: documentation/article layout, readable typography, side navigation where needed, and mobile collapse.
+4. **StateBlock**: loading, empty, error, permission, disabled, and success states for auth/admin/docs workflows.
+
+Recommended sequence:
+
+1. finish docs surface migration through `DocsShell`
+2. delete obsolete CSS modules and old token sources
+3. enforce no new product UI CSS modules
+4. keep provider-branded auth controls as documented narrow exceptions inside Mantine layout
+
+Acceptance requirements:
+
+- SSO does not import a broad product-card or metric system unless a real repeated SSO workflow needs it
+- auth/admin/docs shells are the only shell variants
+- legacy theme and CSS modules are removed or frozen with deletion plan
 
 ## Required Local Adapter
 

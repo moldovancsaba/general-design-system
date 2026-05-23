@@ -17,6 +17,8 @@ import {
   IconMenu2,
   IconMoon,
   IconSun,
+  IconChartBar,
+  IconPlayerPlay,
 } from '@tabler/icons-react';
 
 /**
@@ -30,6 +32,7 @@ export const GdsIcons = {
   Dashboard: IconDashboard,
   Settings: IconSettings,
   Users: IconUsers,
+  Analytics: IconChartBar,
 
   // Actions
   Add: IconPlus,
@@ -37,6 +40,8 @@ export const GdsIcons = {
   Delete: IconTrash,
   Search: IconSearch,
   Save: IconDeviceFloppy,
+  Play: IconPlayerPlay,
+  Start: IconPlayerPlay,
 
   // Feedback
   Success: IconCheck,
@@ -52,5 +57,3 @@ export const GdsIcons = {
   Moon: IconMoon,
   Sun: IconSun,
 };
-
-

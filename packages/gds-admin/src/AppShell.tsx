@@ -1,25 +1,27 @@
 import React from 'react';
-import { AppShell as MantineAppShell, Burger, Group, Text, Box } from '@mantine/core';
+import { AppShell as MantineAppShell, Burger, Group, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ThemeToggle } from '@gds/core';
 
 export interface AppShellProps {
-  title?: string;
-  navLinks: { label: string; href: string }[];
+  logoText?: string;
+  navLinks: React.ReactNode;
+  headerActions?: React.ReactNode;
   children: React.ReactNode;
 }
 
 /**
- * Standardized Admin App Shell
+ * AppShell provides the standard GDS application layout.
+ * It strictly controls the header, sidebar, and main content area.
  */
-export function AppShell({ title = 'Workspace', navLinks, children }: AppShellProps) {
+export function AppShell({ logoText = 'GDS', navLinks, headerActions, children }: AppShellProps) {
   const [opened, { toggle }] = useDisclosure();
 
   return (
     <MantineAppShell
       header={{ height: 60 }}
       navbar={{
-        width: 300,
+        width: 250,
         breakpoint: 'sm',
         collapsed: { mobile: !opened },
       }}
@@ -29,18 +31,17 @@ export function AppShell({ title = 'Workspace', navLinks, children }: AppShellPr
         <Group h="100%" px="md" justify="space-between">
           <Group>
             <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-            <Text fw={700} size="lg">{title}</Text>
+            <Title order={3}>{logoText}</Title>
           </Group>
-          <ThemeToggle />
+          <Group>
+            {headerActions}
+            <ThemeToggle />
+          </Group>
         </Group>
       </MantineAppShell.Header>
 
       <MantineAppShell.Navbar p="md">
-        {navLinks.map((link) => (
-          <Box key={link.href} py="xs" style={{ cursor: 'pointer' }}>
-            <Text>{link.label}</Text>
-          </Box>
-        ))}
+        {navLinks}
       </MantineAppShell.Navbar>
 
       <MantineAppShell.Main>

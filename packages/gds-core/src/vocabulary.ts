@@ -12,6 +12,8 @@ export const GdsVocabulary = {
   edit: { id: 'gds.action.edit', defaultMessage: 'Edit', icon: GdsIcons.Edit },
   delete: { id: 'gds.action.delete', defaultMessage: 'Delete', icon: GdsIcons.Delete },
   save: { id: 'gds.action.save', defaultMessage: 'Save', icon: GdsIcons.Save },
+  language: { id: 'gds.action.language', defaultMessage: 'Language', icon: GdsIcons.Language },
+  theme: { id: 'gds.action.theme', defaultMessage: 'Theme', icon: GdsIcons.Theme },
 
   // Navigation
   home: { id: 'gds.action.home', defaultMessage: 'Home', icon: GdsIcons.Home },

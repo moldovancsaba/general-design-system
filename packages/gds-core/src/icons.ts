@@ -53,7 +53,9 @@ import {
   IconTarget,
   IconFlag,
   IconFlame,
-  IconGift
+  IconGift,
+  IconLanguage,
+  IconPalette
 } from '@tabler/icons-react';
 
 /**
@@ -96,6 +98,10 @@ export const GdsIcons = {
   Uncheck: IconX,
   Complete: IconChecks,
   Clear: IconClearAll,
+
+  // Preferences & System
+  Language: IconLanguage,
+  Theme: IconPalette,
 
   // Media
   Capture: IconCamera,

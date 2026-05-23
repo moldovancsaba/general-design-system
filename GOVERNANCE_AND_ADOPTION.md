@@ -1,7 +1,7 @@
 # Governance & Adoption
 
 Status: Active SSOT
-Version: 2.1.0
+Version: 2.2.0
 Last updated: 2026-05-23
 
 This document defines how products adopt the design system, enforce compliance, and migrate legacy UI. 
@@ -21,7 +21,13 @@ The local adapter must document:
 - Local paths for every required pattern-service contract: shell, page header, product card, metric card, data toolbar, responsive data view, auth shell, article shell, and state block where applicable.
 - Known exceptions and the migration backlog.
 
-**Compliance Definition:** A project is compliant when this directory is documented as the SSOT, Mantine is the *only* foundational UI primitive system, tokens come exclusively from the shared project theme, and legacy CSS/primitives have been deleted.
+**Compliance Definition:** A project is compliant when this directory is documented as the SSOT, Mantine is the *only* foundational UI primitive system, tokens come exclusively from the shared project theme, and legacy CSS/primitives have been deleted or reduced to documented narrow exceptions.
+
+### Authority Conflict Rule
+
+If a project-local document still treats a pre-Mantine wrapper system, CSS token layer, Tailwind system, MUI system, or other legacy layer as the current authority, that project is not governance-compliant even if migration code has started.
+
+Those conflicts must be fixed in Phase 0, not deferred to the end.
 
 ## 2. Implementation Readiness
 
@@ -34,6 +40,8 @@ Before starting a new product UI implementation or a Mantine migration, projects
 5. **Pattern Contract Inventory**: Which local files implement required GDS pattern families and which are still backlog.
 
 **First PR Shape:** The first PR should establish the root provider, theme, and modal/notification setup, migrating *one* high-value surface. Do not attempt a full-app migration in one pass.
+
+Projects should also be classified in `PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md` before major migration work begins.
 
 ## 3. Migration Playbook
 
@@ -63,6 +71,7 @@ Projects must actively enforce the Mantine-only policy to prevent design-system 
 - **Static Checks**: CI/CD checks to prevent new legacy patterns.
 - **Pattern Drift Checks**: Static or review checks that prevent new page-local shell, header, card, metric, data-toolbar, auth, article, or state-block implementations when an approved local contract already exists.
 - **Mode/Readability Checks**: Visual or computed-style checks for dark/light mode contrast, clipped labels, and mixed-mode surfaces on high-traffic pages.
+- **Adapter Inventory Checks**: Periodic verification that required local contract paths still exist and still map to the declared responsibilities.
 
 ### Pull Request Checklist
 Reviewers must ask:
@@ -94,3 +103,40 @@ Required adoption behavior:
 6. Add enforcement so the project cannot silently fork the pattern again.
 
 Cross-project recommendations in `PATTERN_SERVICE_MODEL.md` must be reviewed during project planning. Product-local plans may sequence the work differently, but they may not reject the shared contracts without a documented exception.
+
+## 6. Portfolio Operations
+
+The GDS is a service, not just a rulebook. It must be operated across the portfolio deliberately.
+
+### Required Portfolio Artifacts
+
+- `PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md`
+- one project-specific plan per high-priority active product
+- changelog entries for normative changes
+
+### Required Portfolio Cadence
+
+- review the portfolio matrix at the start of any new migration planning effort
+- update project plans when a phase is completed or materially re-scoped
+- review stale exceptions, stale status, and unresolved authority conflicts at least monthly or once per release train
+
+### Priority Rules
+
+When choosing where to invest GDS work next, prioritize:
+
+1. projects with active authority conflicts
+2. projects with shared high-traffic surfaces that can produce reusable contracts
+3. projects already partly migrated where enforcement can prevent regression
+4. discovery-only projects only after the active portfolio is classified
+
+## 7. Recommended Fix Categories
+
+Use these categories consistently when reviewing products:
+
+- **Authority conflict**: local docs or code still treat a legacy system as current authority
+- **Hybrid primitive drift**: Mantine and a competing UI stack coexist in feature code
+- **Pattern reinvention**: page-local shells/cards/toolbars/states repeat without a contract
+- **CSS authority leakage**: global or module CSS still acts as product UI authority
+- **Validation gap**: migration exists but guardrails do not
+
+Projects should document which of these categories apply in their local adapter or project plan.

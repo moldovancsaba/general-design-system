@@ -1,10 +1,17 @@
 # Pattern Service Model
 
 Status: Active SSOT
-Version: 2.1.0
+Version: 2.2.0
 Last updated: 2026-05-23
 
 This document defines how shared UI patterns are discovered, evaluated, promoted, implemented, and enforced across projects. It exists so product teams can borrow proven Mantine-native ideas without creating a second design system, local visual drift, or page-specific UI inventions.
+
+This document works together with:
+
+- `FOUNDATION.md` for non-negotiable Mantine-only rules
+- `COMPONENTS_AND_PATTERNS.md` for canonical behavior contracts
+- `SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md` for portfolio operating structure
+- `GOVERNANCE_AND_ADOPTION.md` for local adoption and migration rules
 
 ## 1. Operating Principle
 
@@ -39,6 +46,34 @@ Every reusable UI pattern follows the same lifecycle.
 | 5. Implementation | Mantine primitives or thin Mantine wrappers | No raw product controls or alternate primitive stacks |
 | 6. Verification | Visual, responsive, accessibility, and CI checks | Failing readability or mobile behavior blocks release |
 | 7. Enforcement | Lint/static checks and deletion of older variants | Pattern is not complete until old competing variants are removed |
+
+## 2A. Required Service Outputs
+
+Every shared pattern effort must produce the following outputs before it can be considered reusable:
+
+1. **Problem Statement**: what repeated workflow is being solved
+2. **Reference Note**: what Mantine or Mantine UI example was studied
+3. **Contract Definition**: purpose, semantic slots, required states, responsive rules, accessibility rules
+4. **Local Adapter Path**: exact project file path that implements the contract
+5. **Verification Rule**: how the project proves the contract is applied correctly
+6. **Deletion Rule**: what older competing local variants must be removed or frozen
+
+If any one of these outputs is missing, the pattern is still local work, not a GDS-backed service contract.
+
+## 2B. Contract Maturity
+
+Use these maturity states when discussing reusable patterns:
+
+| State | Meaning |
+|---|---|
+| `reference-only` | idea source only |
+| `planned` | GDS intends to formalize it |
+| `pilot` | one project is validating the contract |
+| `active` | approved reusable contract |
+| `required` | mandatory where applicable |
+| `deprecated` | old contract pending removal |
+
+High-frequency patterns should move toward `required`, not remain permanently optional.
 
 ## 3. Approved Borrowing Targets
 
@@ -267,6 +302,27 @@ Every adopting project should maintain these local contracts. Names may vary, bu
 
 Local adapters must list the exact file path for each contract they implement and must mark missing contracts as backlog, not as implicit local freedom.
 
+## 4A. Compatibility Promise
+
+An active or required contract must be stable at the semantic level.
+
+Projects may localize:
+
+- content
+- data wiring
+- domain-specific metadata
+- narrow secondary actions
+
+Projects may not localize:
+
+- the role of the pattern
+- the primary action hierarchy
+- the default responsive behavior
+- the required state set
+- the Mantine-only primitive foundation
+
+When a contract changes its semantic role or action hierarchy, that is a breaking GDS change and must be versioned accordingly.
+
 ## 5. Cross-Project Recommendations
 
 ### Amanoba
@@ -318,6 +374,27 @@ Recommended sequence:
 Current risk:
 
 - auth/admin flows are mostly aligned, but docs surfaces and legacy CSS deletion remain open
+
+Recommended sequence:
+
+1. finish docs shell migration
+2. delete obsolete CSS modules and remaining old theme authority
+3. keep the SSO contract set intentionally narrow
+4. enforce no new page-local auth/admin/docs shells
+
+## 6. Portfolio Use
+
+Use this document when:
+
+- a project wants to borrow from Mantine UI
+- a repeated pattern appears in more than one major product surface
+- a project plan needs to identify which contracts it must implement locally
+
+Use `PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md` when:
+
+- choosing which project should receive the next GDS investment
+- classifying a project by migration archetype
+- checking whether a local plan should be created before implementation
 - SSO should stay intentionally simpler than product apps
 
 Recommended sequence:
@@ -418,4 +495,3 @@ A borrowed Mantine UI pattern is accepted only when:
 - it passes color-mode readability requirements
 - it supports internationalized text length without clipping
 - older competing local variants are deleted or frozen with removal date
-

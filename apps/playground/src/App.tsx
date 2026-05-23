@@ -168,16 +168,41 @@ function PlaygroundContent() {
             <Route path="/vocabulary" element={
               <Stack gap="xl">
                 <PageHeader 
-                  title="Semantic Dictionary" 
-                  description="The Canonical Visual Lexicon. These buttons map exactly 1:1 to their underlying semantic concepts."
+                  title="Semantic Dictionary & Testing Matrix" 
+                  description="Test all 45+ semantic actions across all interactive phases. These buttons map exactly 1:1 to their underlying concepts."
                 />
-                <Paper withBorder p="xl" radius="md">
-                  <SimpleGrid cols={{ base: 2, sm: 3, md: 4, lg: 5 }} spacing="lg">
-                    {(Object.keys(GdsVocabulary) as SemanticAction[]).map(action => (
-                      <SemanticButton key={action} action={action} variant="outline" fullWidth />
-                    ))}
-                  </SimpleGrid>
-                </Paper>
+                
+                <Stack gap="xl">
+                  {(Object.keys(GdsVocabulary) as SemanticAction[]).map(action => (
+                    <Paper key={action} withBorder p="lg" radius="md">
+                      <Stack gap="sm">
+                        <Box fw={600} fz="sm" tt="uppercase" c="dimmed">gds.action.{action}</Box>
+                        <SimpleGrid cols={{ base: 2, sm: 3, md: 5 }} spacing="lg" verticalSpacing="xl">
+                          <Box>
+                            <Box fz="xs" c="dimmed" mb="xs">Default</Box>
+                            <SemanticButton action={action} fullWidth />
+                          </Box>
+                          <Box>
+                            <Box fz="xs" c="dimmed" mb="xs">Hover / Active</Box>
+                            <SemanticButton action={action} fullWidth variant="light" />
+                          </Box>
+                          <Box>
+                            <Box fz="xs" c="dimmed" mb="xs">Disabled</Box>
+                            <SemanticButton action={action} fullWidth disabled />
+                          </Box>
+                          <Box>
+                            <Box fz="xs" c="dimmed" mb="xs">Loading</Box>
+                            <SemanticButton action={action} fullWidth loading />
+                          </Box>
+                          <Box>
+                            <Box fz="xs" c="dimmed" mb="xs">Micro-Feedback Demo</Box>
+                            <InteractiveDemoButton action={action} />
+                          </Box>
+                        </SimpleGrid>
+                      </Stack>
+                    </Paper>
+                  ))}
+                </Stack>
               </Stack>
             } />
           </Routes>
@@ -216,5 +241,31 @@ export default function App() {
     <Router basename="/general-design-system/">
       <PlaygroundContent />
     </Router>
+  );
+}
+
+function InteractiveDemoButton({ action }: { action: SemanticAction }) {
+  const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState<'success' | 'error' | null>(null);
+
+  const handleClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      // For destructive actions, demo the error feedback state, else success
+      const isDestructive = ['delete', 'clear', 'uncheck'].includes(action);
+      setFeedback(isDestructive ? 'error' : 'success');
+      setTimeout(() => setFeedback(null), 2000);
+    }, 1000);
+  };
+
+  return (
+    <SemanticButton 
+      action={action} 
+      fullWidth
+      loading={loading}
+      feedbackState={feedback}
+      onClick={handleClick}
+    />
   );
 }

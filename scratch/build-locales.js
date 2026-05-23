@@ -108,11 +108,67 @@ const dicts = {
   }
 };
 
+const feedbackDicts = {
+  en: {
+    deleted: 'Deleted', cleared: 'Cleared', unchecked: 'Unchecked',
+    saved: 'Saved', added: 'Added', uploaded: 'Uploaded', checked: 'Checked', completed: 'Completed',
+    sent: 'Sent', replied: 'Replied', forwarded: 'Forwarded', mailed: 'Mailed',
+    rewarded: 'Rewarded', captured: 'Captured', recorded: 'Recorded', copied: 'Copied!'
+  },
+  hu: {
+    deleted: 'Törölve', cleared: 'Kiürítve', unchecked: 'Kijelölés törölve',
+    saved: 'Mentve', added: 'Hozzáadva', uploaded: 'Feltöltve', checked: 'Kijelölve', completed: 'Befejezve',
+    sent: 'Elküldve', replied: 'Megválaszolva', forwarded: 'Továbbítva', mailed: 'Elküldve',
+    rewarded: 'Jutalmazva', captured: 'Rögzítve', recorded: 'Felvéve', copied: 'Másolva!'
+  },
+  de: {
+    deleted: 'Gelöscht', cleared: 'Geleert', unchecked: 'Häkchen entfernt',
+    saved: 'Gespeichert', added: 'Hinzugefügt', uploaded: 'Hochgeladen', checked: 'Ausgewählt', completed: 'Abgeschlossen',
+    sent: 'Gesendet', replied: 'Geantwortet', forwarded: 'Weitergeleitet', mailed: 'Gemailt',
+    rewarded: 'Belohnt', captured: 'Erfasst', recorded: 'Aufgezeichnet', copied: 'Kopiert!'
+  },
+  fr: {
+    deleted: 'Supprimé', cleared: 'Effacé', unchecked: 'Décoché',
+    saved: 'Enregistré', added: 'Ajouté', uploaded: 'Téléversé', checked: 'Coché', completed: 'Terminé',
+    sent: 'Envoyé', replied: 'Répondu', forwarded: 'Transféré', mailed: 'Envoyé',
+    rewarded: 'Récompensé', captured: 'Capturé', recorded: 'Enregistré', copied: 'Copié!'
+  },
+  it: {
+    deleted: 'Eliminato', cleared: 'Svuotato', unchecked: 'Deselezionato',
+    saved: 'Salvato', added: 'Aggiunto', uploaded: 'Caricato', checked: 'Selezionato', completed: 'Completato',
+    sent: 'Inviato', replied: 'Risposto', forwarded: 'Inoltrato', mailed: 'Inviato',
+    rewarded: 'Premiato', captured: 'Catturato', recorded: 'Registrato', copied: 'Copiato!'
+  },
+  ru: {
+    deleted: 'Удалено', cleared: 'Очищено', unchecked: 'Отметка снята',
+    saved: 'Сохранено', added: 'Добавлено', uploaded: 'Загружено', checked: 'Отмечено', completed: 'Завершено',
+    sent: 'Отправлено', replied: 'Отвечено', forwarded: 'Переслано', mailed: 'Отправлено',
+    rewarded: 'Награждено', captured: 'Снято', recorded: 'Записано', copied: 'Скопировано!'
+  },
+  he: {
+    deleted: 'נמחק', cleared: 'נוקה', unchecked: 'הסימון בוטל',
+    saved: 'נשמר', added: 'נוסף', uploaded: 'הועלה', checked: 'סומן', completed: 'הושלם',
+    sent: 'נשלח', replied: 'נענה', forwarded: 'הועבר', mailed: 'נשלח',
+    rewarded: 'תוגמל', captured: 'צולם', recorded: 'הוקלט', copied: 'הועתק!'
+  },
+  ar: {
+    deleted: 'تم الحذف', cleared: 'تم المسح', unchecked: 'تم إلغاء التحديد',
+    saved: 'تم الحفظ', added: 'تمت الإضافة', uploaded: 'تم الرفع', checked: 'تم التحديد', completed: 'اكتمل',
+    sent: 'تم الإرسال', replied: 'تم الرد', forwarded: 'تمت إعادة التوجيه', mailed: 'تم الإرسال',
+    rewarded: 'تمت المكافأة', captured: 'تم الالتقاط', recorded: 'تم التسجيل', copied: 'تم النسخ!'
+  }
+};
+
 const dir = path.join(process.cwd(), 'packages', 'gds-core', 'src', 'locales');
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
 for (const [lang, translations] of Object.entries(dicts)) {
-  const content = `export const ${lang} = {\n${Object.entries(translations).map(([k, v]) => `  'gds.action.${k}': '${v.replace(/'/g, "\\'")}',`).join('\n')}\n};\n`;
+  const feedback = feedbackDicts[lang] || {};
+  
+  const actionKeys = Object.entries(translations).map(([k, v]) => `  'gds.action.${k}': '${v.replace(/'/g, "\\'")}',`);
+  const feedbackKeys = Object.entries(feedback).map(([k, v]) => `  'gds.feedback.${k}': '${v.replace(/'/g, "\\'")}',`);
+  
+  const content = `export const ${lang} = {\n${[...actionKeys, ...feedbackKeys].join('\n')}\n};\n`;
   fs.writeFileSync(path.join(dir, `${lang}.ts`), content);
 }
 console.log('Dictionaries generated in', dir);

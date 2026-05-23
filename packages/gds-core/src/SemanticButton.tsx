@@ -34,12 +34,16 @@ export function SemanticButton({ action, loading, feedbackState, feedbackText, .
   let color = props.color;
 
   if (internalFeedback === 'success') {
-    Icon = IconCheck;
-    label = feedbackText || label;
-    color = 'teal';
+    const defaultFeedback = ('feedback' in config && config.feedback) 
+      ? config.feedback 
+      : { icon: IconCheck, color: 'teal', messageId: 'gds.feedback.saved' };
+      
+    Icon = defaultFeedback.icon;
+    label = feedbackText || t(defaultFeedback.messageId, 'Success');
+    color = defaultFeedback.color;
   } else if (internalFeedback === 'error') {
     Icon = IconX;
-    label = feedbackText || label;
+    label = feedbackText || t('gds.feedback.error', 'Error');
     color = 'red';
   }
 

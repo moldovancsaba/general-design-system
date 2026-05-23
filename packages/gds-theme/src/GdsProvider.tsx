@@ -1,5 +1,5 @@
 import React from 'react';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, DirectionProvider } from '@mantine/core';
 import { gdsTheme } from './theme';
 import { GdsI18nContext } from './i18n';
 
@@ -14,11 +14,19 @@ export interface GdsProviderProps {
  * adopting the General Design System. It injects the strict Mantine theme.
  */
 export function GdsProvider({ children, locale = 'en', messages = {} }: GdsProviderProps) {
+  const isRtl = ['ar', 'he'].includes(locale);
+  const dir = isRtl ? 'rtl' : 'ltr';
+  
   return (
-    <GdsI18nContext.Provider value={{ locale, messages }}>
-      <MantineProvider theme={gdsTheme} withCssVariables withGlobalClasses defaultColorScheme="light">
-        {children}
-      </MantineProvider>
-    </GdsI18nContext.Provider>
+    <DirectionProvider initialDirection={dir}>
+      <GdsI18nContext.Provider value={{ locale, messages }}>
+        <MantineProvider theme={gdsTheme} withCssVariables withGlobalClasses defaultColorScheme="light" forceColorScheme="light">
+          <div dir={dir} style={{ height: '100%' }}>
+            {children}
+          </div>
+        </MantineProvider>
+      </GdsI18nContext.Provider>
+    </DirectionProvider>
   );
 }
+

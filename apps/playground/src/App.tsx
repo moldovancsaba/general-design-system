@@ -2,81 +2,23 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { GdsProvider } from '@gds/theme';
 import { AppShell, DataTable, StatsStrip, SemanticNavLink, InfoCard, PageHeader, FormSection } from '@gds/admin';
-import { SemanticButton, GdsVocabulary, type SemanticAction } from '@gds/core';
-import { Stack, Button, SimpleGrid, TextInput, Switch, Paper, Box } from '@mantine/core';
-import { IconLanguage, IconServer, IconActivity, IconShieldCheck } from '@tabler/icons-react';
+import { SemanticButton, GdsVocabulary, type SemanticAction, en, hu, de, fr, it, ru, he, ar } from '@gds/core';
+import { Stack, Button, SimpleGrid, TextInput, Switch, Paper, Box, Menu } from '@mantine/core';
+import { IconLanguage, IconServer, IconActivity, IconShieldCheck, IconChevronDown } from '@tabler/icons-react';
 
-const huMessages = {
-  'gds.action.settings': 'Beállítások',
-  'gds.action.analytics': 'Analitika',
-  'gds.action.dashboard': 'Irányítópult',
-  'gds.action.play': 'Lejátszás',
-  'gds.action.start': 'Indítás',
-  'gds.action.users': 'Felhasználók',
-  'gds.action.add': 'Hozzáadás',
-  'gds.action.edit': 'Szerkesztés',
-  'gds.action.delete': 'Törlés',
-  'gds.action.save': 'Mentés',
-  'gds.action.language': 'Nyelv',
-  'gds.action.theme': 'Téma',
-  'gds.action.home': 'Főoldal',
-  'gds.action.inbox': 'Beérkező',
-  'gds.action.calendar': 'Naptár',
-  'gds.action.gallery': 'Galéria',
-  'gds.action.history': 'Előzmények',
-  'gds.action.profile': 'Profil',
-  'gds.action.send': 'Küldés',
-  'gds.action.reply': 'Válasz',
-  'gds.action.forward': 'Továbbítás',
-  'gds.action.attach': 'Csatolás',
-  'gds.action.upload': 'Feltöltés',
-  'gds.action.download': 'Letöltés',
-  'gds.action.print': 'Nyomtatás',
-  'gds.action.copy': 'Másolás',
-  'gds.action.duplicate': 'Duplikálás',
-  'gds.action.check': 'Jelölés',
-  'gds.action.uncheck': 'Jelölés törlése',
-  'gds.action.complete': 'Kész',
-  'gds.action.clear': 'Kiürítés',
-  'gds.action.capture': 'Felvétel',
-  'gds.action.record': 'Rögzítés',
-  'gds.action.flip': 'Fordítás',
-  'gds.action.flash': 'Vaku',
-  'gds.action.course': 'Tanfolyam',
-  'gds.action.lesson': 'Lecke',
-  'gds.action.certificate': 'Tanúsítvány',
-  'gds.action.student': 'Tanuló',
-  'gds.action.class': 'Osztály',
-  'gds.action.grade': 'Osztályzat',
-  'gds.action.child': 'Gyermek',
-  'gds.action.family': 'Család',
-  'gds.action.habit': 'Szokás',
-  'gds.action.goal': 'Cél',
-  'gds.action.streak': 'Sorozat',
-  'gds.action.reward': 'Jutalom',
-  'gds.action.trophy': 'Trófea',
-  'gds.action.crown': 'Korona',
-  'gds.action.pause': 'Szünet',
-  'gds.action.message': 'Üzenet',
-  'gds.action.mail': 'Levél',
-  'gds.action.refresh': 'Frissítés',
-  'gds.action.trendingUp': 'Növekvő trend',
-  'gds.action.trendingDown': 'Csökkenő trend',
-  'gds.action.currency': 'Pénznem',
-  'gds.action.grid': 'Rács',
-  'gds.action.list': 'Lista',
-  'gds.action.logout': 'Kijelentkezés',
-  'gds.action.notifications': 'Értesítések',
-  'gds.action.back': 'Vissza',
-  'gds.action.eye': 'Megtekintés',
-  'gds.action.eyeOff': 'Elrejtés',
-  'gds.action.help': 'Súgó',
-  'gds.action.filter': 'Szűrő',
-  'gds.action.sort': 'Rendezés',
+const localesMap: Record<string, { label: string, messages: Record<string, string> }> = {
+  en: { label: 'English', messages: en },
+  de: { label: 'Deutsch', messages: de },
+  fr: { label: 'Français', messages: fr },
+  it: { label: 'Italiano', messages: it },
+  ru: { label: 'Русский', messages: ru },
+  he: { label: 'עברית (Hebrew)', messages: he },
+  ar: { label: 'العربية (Arabic)', messages: ar },
+  hu: { label: 'Magyar', messages: hu },
 };
 
 function PlaygroundContent() {
-  const [locale, setLocale] = useState<'en' | 'hu'>('en');
+  const [locale, setLocale] = useState<string>('en');
   const location = useLocation();
 
   const navLinks = [
@@ -104,18 +46,29 @@ function PlaygroundContent() {
   ];
 
   const headerActions = (
-    <Button 
-      variant="light" 
-      radius="md"
-      leftSection={<IconLanguage size="1.2rem" />}
-      onClick={() => setLocale(l => l === 'en' ? 'hu' : 'en')}
-    >
-      {locale === 'en' ? 'English' : 'Magyar'}
-    </Button>
+    <Menu position="bottom-end" withArrow>
+      <Menu.Target>
+        <Button 
+          variant="light" 
+          radius="md"
+          leftSection={<IconLanguage size="1.2rem" />}
+          rightSection={<IconChevronDown size="1rem" />}
+        >
+          {localesMap[locale]?.label || 'Language'}
+        </Button>
+      </Menu.Target>
+      <Menu.Dropdown>
+        {Object.entries(localesMap).map(([key, config]) => (
+          <Menu.Item key={key} onClick={() => setLocale(key)}>
+            {config.label}
+          </Menu.Item>
+        ))}
+      </Menu.Dropdown>
+    </Menu>
   );
 
   return (
-    <GdsProvider locale={locale} messages={locale === 'hu' ? huMessages : {}}>
+    <GdsProvider locale={locale} messages={localesMap[locale]?.messages || localesMap.en.messages}>
       <AppShell
         logoText="GDS Rulebook"
         navLinks={navLinks}

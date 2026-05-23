@@ -5,3 +5,4 @@ export * from './icons';
 export * from './ThemeToggle';
 export * from './vocabulary';
 export * from './SemanticButton';
+export * from './locales';

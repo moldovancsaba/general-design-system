@@ -57,6 +57,27 @@ export const GdsVocabulary = {
   goal: { id: 'gds.action.goal', defaultMessage: 'Goal', icon: GdsIcons.Goal },
   streak: { id: 'gds.action.streak', defaultMessage: 'Streak', icon: GdsIcons.Streak },
   reward: { id: 'gds.action.reward', defaultMessage: 'Reward', icon: GdsIcons.Reward },
+
+  // Codebase analysis additions
+  trophy: { id: 'gds.action.trophy', defaultMessage: 'Trophy', icon: GdsIcons.Trophy },
+  crown: { id: 'gds.action.crown', defaultMessage: 'Crown', icon: GdsIcons.Crown },
+  pause: { id: 'gds.action.pause', defaultMessage: 'Pause', icon: GdsIcons.Pause },
+  message: { id: 'gds.action.message', defaultMessage: 'Message', icon: GdsIcons.Message },
+  mail: { id: 'gds.action.mail', defaultMessage: 'Mail', icon: GdsIcons.Mail },
+  refresh: { id: 'gds.action.refresh', defaultMessage: 'Refresh', icon: GdsIcons.Refresh },
+  trendingUp: { id: 'gds.action.trendingUp', defaultMessage: 'Trending Up', icon: GdsIcons.TrendingUp },
+  trendingDown: { id: 'gds.action.trendingDown', defaultMessage: 'Trending Down', icon: GdsIcons.TrendingDown },
+  currency: { id: 'gds.action.currency', defaultMessage: 'Currency', icon: GdsIcons.Currency },
+  grid: { id: 'gds.action.grid', defaultMessage: 'Grid', icon: GdsIcons.Grid },
+  list: { id: 'gds.action.list', defaultMessage: 'List', icon: GdsIcons.List },
+  logout: { id: 'gds.action.logout', defaultMessage: 'Logout', icon: GdsIcons.Logout },
+  notifications: { id: 'gds.action.notifications', defaultMessage: 'Notifications', icon: GdsIcons.Notifications },
+  back: { id: 'gds.action.back', defaultMessage: 'Back', icon: GdsIcons.Back },
+  eye: { id: 'gds.action.eye', defaultMessage: 'View', icon: GdsIcons.Eye },
+  eyeOff: { id: 'gds.action.eyeOff', defaultMessage: 'Hide', icon: GdsIcons.EyeOff },
+  help: { id: 'gds.action.help', defaultMessage: 'Help', icon: GdsIcons.Help },
+  filter: { id: 'gds.action.filter', defaultMessage: 'Filter', icon: GdsIcons.Filter },
+  sort: { id: 'gds.action.sort', defaultMessage: 'Sort', icon: GdsIcons.Sort },
 } as const;
 
 export type SemanticAction = keyof typeof GdsVocabulary;

@@ -55,7 +55,26 @@ import {
   IconFlame,
   IconGift,
   IconLanguage,
-  IconPalette
+  IconPalette,
+  IconTrophy,
+  IconCrown,
+  IconPlayerPause,
+  IconMessage,
+  IconMail,
+  IconRefresh,
+  IconTrendingUp,
+  IconTrendingDown,
+  IconCurrencyDollar,
+  IconLayoutGrid,
+  IconList,
+  IconDoorExit,
+  IconBell,
+  IconArrowLeft,
+  IconEye,
+  IconEyeOff,
+  IconHelpCircle,
+  IconFilter,
+  IconArrowsSort
 } from '@tabler/icons-react';
 
 /**
@@ -128,6 +147,27 @@ export const GdsIcons = {
   Warning: IconAlertTriangle,
   Danger: IconAlertCircle,
   Info: IconInfoCircle,
+
+  // Analysis additions
+  Trophy: IconTrophy,
+  Crown: IconCrown,
+  Pause: IconPlayerPause,
+  Message: IconMessage,
+  Mail: IconMail,
+  Refresh: IconRefresh,
+  TrendingUp: IconTrendingUp,
+  TrendingDown: IconTrendingDown,
+  Currency: IconCurrencyDollar,
+  Grid: IconLayoutGrid,
+  List: IconList,
+  Logout: IconDoorExit,
+  Notifications: IconBell,
+  Back: IconArrowLeft,
+  Eye: IconEye,
+  EyeOff: IconEyeOff,
+  Help: IconHelpCircle,
+  Filter: IconFilter,
+  Sort: IconArrowsSort,
 
   // System
   ChevronDown: IconChevronDown,

@@ -10,13 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@gds/theme": "*",
-    "@gds/core": "*",
     "@gds/admin": "*",
+    "@gds/core": "*",
+    "@gds/theme": "*",
     "@mantine/core": "^7.9.0",
     "@mantine/hooks": "^7.9.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.15.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

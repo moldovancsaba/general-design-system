@@ -137,6 +137,17 @@ function PlaygroundContent() {
                   </Stack>
                 </FormSection>
 
+                <FormSection title="Button Micro-Interactions" description="SemanticButtons natively support physics-based hover/active states, inline micro-feedback morphing, and width-preserving loading spinners.">
+                  <Stack gap="md">
+                    <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
+                      <SemanticButton action="save" />
+                      <SemanticButton action="save" disabled />
+                      <SemanticButton action="save" loading />
+                      <DemoFeedbackButton />
+                    </SimpleGrid>
+                  </Stack>
+                </FormSection>
+
                 <FormSection title="DataTable Component" description="Use DataTable for dense list views of domain entities. It accepts strict typed columns.">
                   <DataTable 
                     columns={[
@@ -173,6 +184,30 @@ function PlaygroundContent() {
         </Box>
       </AppShell>
     </GdsProvider>
+  );
+}
+
+function DemoFeedbackButton() {
+  const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState<'success' | null>(null);
+
+  const handleClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setFeedback('success');
+      setTimeout(() => setFeedback(null), 2000);
+    }, 1500);
+  };
+
+  return (
+    <SemanticButton 
+      action="copy" 
+      loading={loading}
+      feedbackState={feedback}
+      feedbackText="Copied!"
+      onClick={handleClick}
+    />
   );
 }
 

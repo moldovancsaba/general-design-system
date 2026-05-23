@@ -24,6 +24,25 @@ export const gdsTheme = createTheme({
         size: 'sm',
         fw: 600,
       },
+      styles: {
+        root: {
+          transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease',
+          '&:hover': {
+            transform: 'scale(1.02)',
+            filter: 'brightness(1.05)',
+          },
+          '&:active': {
+            transform: 'scale(0.97)',
+            filter: 'brightness(0.95)',
+          },
+          '&[data-disabled]': {
+            transform: 'none',
+            filter: 'grayscale(1)',
+            opacity: 0.6,
+            cursor: 'not-allowed',
+          },
+        }
+      }
     },
     Card: {
       defaultProps: {

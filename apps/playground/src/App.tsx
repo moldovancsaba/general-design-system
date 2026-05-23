@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { GdsProvider } from '@gds/theme';
 import { AppShell, DataTable, StatsStrip, SemanticNavLink, InfoCard, PageHeader, FormSection } from '@gds/admin';
 import { SemanticButton, GdsVocabulary, type SemanticAction } from '@gds/core';
@@ -185,7 +185,7 @@ function PlaygroundContent() {
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/general-design-system/">
       <PlaygroundContent />
     </Router>
   );

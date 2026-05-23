@@ -35,6 +35,8 @@ jobs:
         run: npm run build --workspace=@gds/admin
       - name: Build Playground
         run: npm run build --workspace=playground
+      - name: Setup SPA Routing Fallback
+        run: cp ./apps/playground/dist/index.html ./apps/playground/dist/404.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:

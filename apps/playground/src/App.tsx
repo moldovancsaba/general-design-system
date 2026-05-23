@@ -25,29 +25,22 @@ function PlaygroundContent() {
 
   const navLinks = [
     <SemanticNavLink 
-      key="dashboard" 
-      action="dashboard" 
+      key="overview" 
+      action="home" 
       component={Link}
       to="/"
       active={location.pathname === '/'} 
     />,
     <SemanticNavLink 
-      key="users" 
-      action="users" 
+      key="components" 
+      action="grid" 
       component={Link}
-      to="/users"
-      active={location.pathname === '/users'} 
-    />,
-    <SemanticNavLink 
-      key="settings" 
-      action="settings" 
-      component={Link}
-      to="/settings"
-      active={location.pathname === '/settings'} 
+      to="/components"
+      active={location.pathname === '/components'} 
     />,
     <SemanticNavLink 
       key="vocab" 
-      action="analytics" 
+      action="list" 
       component={Link}
       to="/vocabulary"
       active={location.pathname === '/vocabulary'} 
@@ -68,7 +61,7 @@ function PlaygroundContent() {
   return (
     <GdsProvider locale={locale} messages={locale === 'hu' ? huMessages : {}}>
       <AppShell
-        logoText="GDS Workspace"
+        logoText="GDS Rulebook"
         navLinks={navLinks}
         headerActions={headerActions}
       >
@@ -77,87 +70,78 @@ function PlaygroundContent() {
             <Route path="/" element={
               <Stack gap="xl">
                 <PageHeader 
-                  title="Overview" 
-                  description="Welcome to the General Design System Live Demo."
-                  actions={<SemanticButton action="play" size="md" />}
+                  title="GDS Principles & Guidelines" 
+                  description="The General Design System (GDS) is built on strict ubiquitous language and semantic consistency."
+                  actions={<SemanticButton action="start" size="md" />}
                 />
                 <StatsStrip 
                   stats={[
-                    { label: 'Total Revenue', value: '$84,231', diff: 12.5 },
-                    { label: 'Active Sessions', value: '1,204', diff: 4.2 },
-                    { label: 'Bounce Rate', value: '24%', diff: -1.8 }
+                    { label: 'Semantic Actions', value: '45+', diff: 100 },
+                    { label: 'Consistency', value: '100%', diff: 0 },
+                    { label: 'Dummy Text', value: '0%', diff: -100 }
                   ]}
                 />
                 <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md">
                   <InfoCard 
-                    title="Server Status" 
-                    value="Optimal" 
-                    description="All systems running smoothly in us-east-1."
-                    icon={<IconServer size="2rem" />}
-                    color="teal"
+                    title="1:1 Semantic Mapping" 
+                    value="No Duplicates" 
+                    description="Never reuse an icon for different concepts. E.g., 'Play' and 'Start' must be visually distinct."
+                    icon={<IconShieldCheck size="2rem" />}
+                    color="violet"
                   />
                   <InfoCard 
-                    title="Recent Activity" 
-                    value="48 events" 
-                    description="In the last 24 hours."
+                    title="Self Documenting" 
+                    value="Rulebook UI" 
+                    description="This Playground acts as the official documentation. We don't use fake data here."
                     icon={<IconActivity size="2rem" />}
                     color="blue"
                   />
                   <InfoCard 
-                    title="Security" 
-                    value="Verified" 
-                    description="No vulnerabilities found."
-                    icon={<IconShieldCheck size="2rem" />}
-                    color="violet"
+                    title="Accessible Routing" 
+                    value="Shareable" 
+                    description="Pages are natively routed. You can safely bookmark and share URLs."
+                    icon={<IconServer size="2rem" />}
+                    color="teal"
                   />
                 </SimpleGrid>
               </Stack>
             } />
 
-            <Route path="/users" element={
+            <Route path="/components" element={
               <Stack gap="xl">
                 <PageHeader 
-                  title="User Management" 
-                  description="Manage team members and their roles."
+                  title="Component Guidelines" 
+                  description="Learn how to use @gds/admin layout and structural components correctly."
                   actions={<SemanticButton action="add" size="md" />}
                 />
-                <DataTable 
-                  columns={[
-                    { key: 'id', label: 'ID' },
-                    { key: 'name', label: 'Name' },
-                    { key: 'role', label: 'Role' },
-                  ]}
-                  data={[
-                    { id: '1', name: 'Alice Cooper', role: 'Admin' },
-                    { id: '2', name: 'Bob Builder', role: 'Editor' },
-                    { id: '3', name: 'Charlie Davis', role: 'Viewer' },
-                  ]}
-                />
-              </Stack>
-            } />
+                <FormSection title="PageHeader Component" description="Use PageHeader at the very top of a new route view. It establishes page context and holds primary actions.">
+                  <Stack gap="md">
+                    <TextInput label="Title Requirement" value="Must concisely describe the page's primary domain entity." readOnly />
+                    <TextInput label="Description Requirement" value="Should be a short subtitle guiding the user's focus." readOnly />
+                  </Stack>
+                </FormSection>
+                
+                <FormSection title="FormSection Component" description="Use FormSection to logically chunk large forms into categorized boxes.">
+                  <Stack gap="md">
+                    <Switch label="Strict Margins" description="FormSections automatically manage vertical rhythm." defaultChecked />
+                    <Switch label="Semantic Actions" description="Actions inside forms should always use SemanticButton." defaultChecked />
+                  </Stack>
+                </FormSection>
 
-            <Route path="/settings" element={
-              <Stack gap="xl">
-                <PageHeader 
-                  title="Preferences" 
-                  description="Configure your workspace settings."
-                />
-                <FormSection title="Profile Information" description="Update your personal details.">
-                  <Stack gap="md">
-                    <TextInput label="Full Name" placeholder="John Doe" />
-                    <TextInput label="Email Address" placeholder="john@example.com" />
-                  </Stack>
+                <FormSection title="DataTable Component" description="Use DataTable for dense list views of domain entities. It accepts strict typed columns.">
+                  <DataTable 
+                    columns={[
+                      { key: 'prop', label: 'Prop Name' },
+                      { key: 'type', label: 'Type' },
+                      { key: 'required', label: 'Required' },
+                    ]}
+                    data={[
+                      { prop: 'columns', type: 'Array<{key, label}>', required: 'Yes' },
+                      { prop: 'data', type: 'Array<Record<string, any>>', required: 'Yes' },
+                      { prop: 'onRowClick', type: 'Function', required: 'No' },
+                    ]}
+                  />
                 </FormSection>
-                <FormSection title="Notifications" description="Choose what you want to be notified about.">
-                  <Stack gap="md">
-                    <Switch label="Email Notifications" description="Receive updates via email." defaultChecked />
-                    <Switch label="Push Notifications" description="Receive updates on your device." />
-                  </Stack>
-                </FormSection>
-                <Group justify="flex-end" mt="md">
-                  <SemanticButton action="delete" variant="subtle" color="red" />
-                  <SemanticButton action="save" size="md" />
-                </Group>
               </Stack>
             } />
 
@@ -165,7 +149,7 @@ function PlaygroundContent() {
               <Stack gap="xl">
                 <PageHeader 
                   title="Semantic Dictionary" 
-                  description="A visual showcase of the canonical GDS Vocabulary."
+                  description="The Canonical Visual Lexicon. These buttons map exactly 1:1 to their underlying semantic concepts."
                 />
                 <Paper withBorder p="xl" radius="md">
                   <SimpleGrid cols={{ base: 2, sm: 3, md: 4, lg: 5 }} spacing="lg">

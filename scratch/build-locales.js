@@ -17,7 +17,7 @@ const dicts = {
   },
   hu: {
     settings: 'Beállítások', analytics: 'Analitika', dashboard: 'Irányítópult', play: 'Lejátszás', start: 'Indítás',
-    users: 'Felhasználók', add: 'Hozzáadás', edit: 'Szerkesztés', delete: 'Törlés', save: 'Mentés', language: 'Nyelv', theme: 'Téma',
+    users: 'Felhasználók', add: 'Hozzáadás', edit: 'Szerkesztés', delete: 'Törlés', save: 'Mentés', cancel: 'Mégse', confirm: 'Megerősítés', close: 'Bezárás', language: 'Nyelv', theme: 'Téma',
     home: 'Főoldal', inbox: 'Beérkező', calendar: 'Naptár', gallery: 'Galéria', history: 'Előzmények', profile: 'Profil',
     send: 'Küldés', reply: 'Válasz', forward: 'Továbbítás', attach: 'Csatolás', upload: 'Feltöltés', download: 'Letöltés',
     print: 'Nyomtatás', copy: 'Másolás', duplicate: 'Duplikálás', check: 'Jelölés', uncheck: 'Jelölés törlése', complete: 'Kész',
@@ -30,7 +30,7 @@ const dicts = {
   },
   de: {
     settings: 'Einstellungen', analytics: 'Analyse', dashboard: 'Dashboard', play: 'Abspielen', start: 'Start',
-    users: 'Benutzer', add: 'Hinzufügen', edit: 'Bearbeiten', delete: 'Löschen', save: 'Speichern', language: 'Sprache', theme: 'Thema',
+    users: 'Benutzer', add: 'Hinzufügen', edit: 'Bearbeiten', delete: 'Löschen', save: 'Speichern', cancel: 'Abbrechen', confirm: 'Bestätigen', close: 'Schließen', language: 'Sprache', theme: 'Thema',
     home: 'Startseite', inbox: 'Posteingang', calendar: 'Kalender', gallery: 'Galerie', history: 'Verlauf', profile: 'Profil',
     send: 'Senden', reply: 'Antworten', forward: 'Weiterleiten', attach: 'Anhängen', upload: 'Hochladen', download: 'Herunterladen',
     print: 'Drucken', copy: 'Kopieren', duplicate: 'Duplizieren', check: 'Überprüfen', uncheck: 'Häkchen entfernen', complete: 'Abschließen',
@@ -43,7 +43,7 @@ const dicts = {
   },
   fr: {
     settings: 'Paramètres', analytics: 'Analytique', dashboard: 'Tableau de bord', play: 'Jouer', start: 'Démarrer',
-    users: 'Utilisateurs', add: 'Ajouter', edit: 'Modifier', delete: 'Supprimer', save: 'Enregistrer', language: 'Langue', theme: 'Thème',
+    users: 'Utilisateurs', add: 'Ajouter', edit: 'Modifier', delete: 'Supprimer', save: 'Enregistrer', cancel: 'Annuler', confirm: 'Confirmer', close: 'Fermer', language: 'Langue', theme: 'Thème',
     home: 'Accueil', inbox: 'Boîte de réception', calendar: 'Calendrier', gallery: 'Galerie', history: 'Historique', profile: 'Profil',
     send: 'Envoyer', reply: 'Répondre', forward: 'Transférer', attach: 'Joindre', upload: 'Téléverser', download: 'Télécharger',
     print: 'Imprimer', copy: 'Copier', duplicate: 'Dupliquer', check: 'Cocher', uncheck: 'Décocher', complete: 'Terminer',
@@ -56,7 +56,7 @@ const dicts = {
   },
   it: {
     settings: 'Impostazioni', analytics: 'Analitica', dashboard: 'Dashboard', play: 'Riproduci', start: 'Inizia',
-    users: 'Utenti', add: 'Aggiungi', edit: 'Modifica', delete: 'Elimina', save: 'Salva', language: 'Lingua', theme: 'Tema',
+    users: 'Utenti', add: 'Aggiungi', edit: 'Modifica', delete: 'Elimina', save: 'Salva', cancel: 'Annulla', confirm: 'Conferma', close: 'Chiudi', language: 'Lingua', theme: 'Tema',
     home: 'Home', inbox: 'Posta in arrivo', calendar: 'Calendario', gallery: 'Galleria', history: 'Cronologia', profile: 'Profilo',
     send: 'Invia', reply: 'Rispondi', forward: 'Inoltra', attach: 'Allega', upload: 'Carica', download: 'Scarica',
     print: 'Stampa', copy: 'Copia', duplicate: 'Duplica', check: 'Seleziona', uncheck: 'Deseleziona', complete: 'Completa',
@@ -69,7 +69,7 @@ const dicts = {
   },
   ru: {
     settings: 'Настройки', analytics: 'Аналитика', dashboard: 'Панель', play: 'Воспроизвести', start: 'Старт',
-    users: 'Пользователи', add: 'Добавить', edit: 'Изменить', delete: 'Удалить', save: 'Сохранить', language: 'Язык', theme: 'Тема',
+    users: 'Пользователи', add: 'Добавить', edit: 'Изменить', delete: 'Удалить', save: 'Сохранить', cancel: 'Отмена', confirm: 'Подтвердить', close: 'Закрыть', language: 'Язык', theme: 'Тема',
     home: 'Главная', inbox: 'Входящие', calendar: 'Календарь', gallery: 'Галерея', history: 'История', profile: 'Профиль',
     send: 'Отправить', reply: 'Ответить', forward: 'Переслать', attach: 'Прикрепить', upload: 'Загрузить', download: 'Скачать',
     print: 'Печать', copy: 'Копировать', duplicate: 'Дублировать', check: 'Отметить', uncheck: 'Снять отметку', complete: 'Завершить',
@@ -82,7 +82,7 @@ const dicts = {
   },
   he: {
     settings: 'הגדרות', analytics: 'ניתוח נתונים', dashboard: 'לוח בקרה', play: 'הפעל', start: 'התחל',
-    users: 'משתמשים', add: 'הוסף', edit: 'ערוך', delete: 'מחק', save: 'שמור', language: 'שפה', theme: 'ערכת נושא',
+    users: 'משתמשים', add: 'הוסף', edit: 'ערוך', delete: 'מחק', save: 'שמור', cancel: 'ביטול', confirm: 'אישור', close: 'סגור', language: 'שפה', theme: 'ערכת נושא',
     home: 'דף הבית', inbox: 'דואר נכנס', calendar: 'לוח שנה', gallery: 'גלריה', history: 'היסטוריה', profile: 'פרופיל',
     send: 'שלח', reply: 'השב', forward: 'העבר', attach: 'צרף', upload: 'העלה', download: 'הורד',
     print: 'הדפס', copy: 'העתק', duplicate: 'שכפל', check: 'סמן', uncheck: 'בטל סימון', complete: 'השלם',
@@ -95,7 +95,7 @@ const dicts = {
   },
   ar: {
     settings: 'الإعدادات', analytics: 'تحليلات', dashboard: 'لوحة القيادة', play: 'تشغيل', start: 'بدء',
-    users: 'المستخدمين', add: 'إضافة', edit: 'تعديل', delete: 'حذف', save: 'حفظ', language: 'اللغة', theme: 'السمة',
+    users: 'المستخدمين', add: 'إضافة', edit: 'تعديل', delete: 'حذف', save: 'حفظ', cancel: 'إلغاء', confirm: 'تأكيد', close: 'إغلاق', language: 'اللغة', theme: 'السمة',
     home: 'الرئيسية', inbox: 'صندوق الوارد', calendar: 'التقويم', gallery: 'المعرض', history: 'السجل', profile: 'الملف الشخصي',
     send: 'إرسال', reply: 'رد', forward: 'إعادة توجيه', attach: 'إرفاق', upload: 'رفع', download: 'تنزيل',
     print: 'طباعة', copy: 'نسخ', duplicate: 'تكرار', check: 'تحديد', uncheck: 'إلغاء التحديد', complete: 'اكتمال',
@@ -110,52 +110,76 @@ const dicts = {
 
 const feedbackDicts = {
   en: {
-    deleted: 'Deleted', cleared: 'Cleared', unchecked: 'Unchecked',
-    saved: 'Saved', added: 'Added', uploaded: 'Uploaded', checked: 'Checked', completed: 'Completed',
-    sent: 'Sent', replied: 'Replied', forwarded: 'Forwarded', mailed: 'Mailed',
-    rewarded: 'Rewarded', captured: 'Captured', recorded: 'Recorded', copied: 'Copied!'
+    saved: 'Saved', added: 'Added', edited: 'Edited', deleted: 'Deleted', canceled: 'Canceled',
+    confirmed: 'Confirmed', closed: 'Closed', changed: 'Changed', loaded: 'Loaded', started: 'Started',
+    opened: 'Opened', sent: 'Sent', replied: 'Replied', forwarded: 'Forwarded', attached: 'Attached',
+    uploaded: 'Uploaded', downloaded: 'Downloaded', printed: 'Printed', copied: 'Copied', duplicated: 'Duplicated',
+    checked: 'Checked', unchecked: 'Unchecked', completed: 'Completed', cleared: 'Cleared', captured: 'Captured',
+    recorded: 'Recorded', flipped: 'Flipped', flashed: 'Flashed', done: 'Done', rewarded: 'Rewarded',
+    paused: 'Paused', mailed: 'Mailed', refreshed: 'Refreshed', loggedOut: 'Logged Out', filtered: 'Filtered', sorted: 'Sorted'
   },
   hu: {
-    deleted: 'Törölve', cleared: 'Kiürítve', unchecked: 'Kijelölés törölve',
-    saved: 'Mentve', added: 'Hozzáadva', uploaded: 'Feltöltve', checked: 'Kijelölve', completed: 'Befejezve',
-    sent: 'Elküldve', replied: 'Megválaszolva', forwarded: 'Továbbítva', mailed: 'Elküldve',
-    rewarded: 'Jutalmazva', captured: 'Rögzítve', recorded: 'Felvéve', copied: 'Másolva!'
+    saved: 'Mentve', added: 'Hozzáadva', edited: 'Szerkesztve', deleted: 'Törölve', canceled: 'Megszakítva',
+    confirmed: 'Megerősítve', closed: 'Bezárva', changed: 'Megváltoztatva', loaded: 'Betöltve', started: 'Elindítva',
+    opened: 'Megnyitva', sent: 'Elküldve', replied: 'Megválaszolva', forwarded: 'Továbbítva', attached: 'Csatolva',
+    uploaded: 'Feltöltve', downloaded: 'Letöltve', printed: 'Kinyomtatva', copied: 'Másolva', duplicated: 'Duplikálva',
+    checked: 'Kijelölve', unchecked: 'Kijelölés törölve', completed: 'Befejezve', cleared: 'Kiürítve', captured: 'Rögzítve',
+    recorded: 'Felvéve', flipped: 'Megfordítva', flashed: 'Villantva', done: 'Kész', rewarded: 'Jutalmazva',
+    paused: 'Szüneteltetve', mailed: 'Elküldve', refreshed: 'Frissítve', loggedOut: 'Kijelentkezve', filtered: 'Szűrve', sorted: 'Rendezve'
   },
   de: {
-    deleted: 'Gelöscht', cleared: 'Geleert', unchecked: 'Häkchen entfernt',
-    saved: 'Gespeichert', added: 'Hinzugefügt', uploaded: 'Hochgeladen', checked: 'Ausgewählt', completed: 'Abgeschlossen',
-    sent: 'Gesendet', replied: 'Geantwortet', forwarded: 'Weitergeleitet', mailed: 'Gemailt',
-    rewarded: 'Belohnt', captured: 'Erfasst', recorded: 'Aufgezeichnet', copied: 'Kopiert!'
+    saved: 'Gespeichert', added: 'Hinzugefügt', edited: 'Bearbeitet', deleted: 'Gelöscht', canceled: 'Abgebrochen',
+    confirmed: 'Bestätigt', closed: 'Geschlossen', changed: 'Geändert', loaded: 'Geladen', started: 'Gestartet',
+    opened: 'Geöffnet', sent: 'Gesendet', replied: 'Geantwortet', forwarded: 'Weitergeleitet', attached: 'Angehängt',
+    uploaded: 'Hochgeladen', downloaded: 'Heruntergeladen', printed: 'Gedruckt', copied: 'Kopiert', duplicated: 'Dupliziert',
+    checked: 'Ausgewählt', unchecked: 'Häkchen entfernt', completed: 'Abgeschlossen', cleared: 'Geleert', captured: 'Erfasst',
+    recorded: 'Aufgezeichnet', flipped: 'Umdreht', flashed: 'Geblitzt', done: 'Erledigt', rewarded: 'Belohnt',
+    paused: 'Pausiert', mailed: 'Gemailt', refreshed: 'Aktualisiert', loggedOut: 'Abgemeldet', filtered: 'Gefiltert', sorted: 'Sortiert'
   },
   fr: {
-    deleted: 'Supprimé', cleared: 'Effacé', unchecked: 'Décoché',
-    saved: 'Enregistré', added: 'Ajouté', uploaded: 'Téléversé', checked: 'Coché', completed: 'Terminé',
-    sent: 'Envoyé', replied: 'Répondu', forwarded: 'Transféré', mailed: 'Envoyé',
-    rewarded: 'Récompensé', captured: 'Capturé', recorded: 'Enregistré', copied: 'Copié!'
+    saved: 'Enregistré', added: 'Ajouté', edited: 'Modifié', deleted: 'Supprimé', canceled: 'Annulé',
+    confirmed: 'Confirmé', closed: 'Fermé', changed: 'Modifié', loaded: 'Chargé', started: 'Démarré',
+    opened: 'Ouvert', sent: 'Envoyé', replied: 'Répondu', forwarded: 'Transféré', attached: 'Joint',
+    uploaded: 'Téléversé', downloaded: 'Téléchargé', printed: 'Imprimé', copied: 'Copié', duplicated: 'Dupliqué',
+    checked: 'Coché', unchecked: 'Décoché', completed: 'Terminé', cleared: 'Effacé', captured: 'Capturé',
+    recorded: 'Enregistré', flipped: 'Retourné', flashed: 'Flashé', done: 'Fait', rewarded: 'Récompensé',
+    paused: 'En pause', mailed: 'Envoyé', refreshed: 'Actualisé', loggedOut: 'Déconnecté', filtered: 'Filtré', sorted: 'Trié'
   },
   it: {
-    deleted: 'Eliminato', cleared: 'Svuotato', unchecked: 'Deselezionato',
-    saved: 'Salvato', added: 'Aggiunto', uploaded: 'Caricato', checked: 'Selezionato', completed: 'Completato',
-    sent: 'Inviato', replied: 'Risposto', forwarded: 'Inoltrato', mailed: 'Inviato',
-    rewarded: 'Premiato', captured: 'Catturato', recorded: 'Registrato', copied: 'Copiato!'
+    saved: 'Salvato', added: 'Aggiunto', edited: 'Modificato', deleted: 'Eliminato', canceled: 'Annullato',
+    confirmed: 'Confermato', closed: 'Chiuso', changed: 'Cambiato', loaded: 'Caricato', started: 'Iniziato',
+    opened: 'Aperto', sent: 'Inviato', replied: 'Risposto', forwarded: 'Inoltrato', attached: 'Allegato',
+    uploaded: 'Caricato', downloaded: 'Scaricato', printed: 'Stampato', copied: 'Copiato', duplicated: 'Duplicato',
+    checked: 'Selezionato', unchecked: 'Deselezionato', completed: 'Completato', cleared: 'Svuotato', captured: 'Catturato',
+    recorded: 'Registrato', flipped: 'Capovolto', flashed: 'Lampeggiato', done: 'Fatto', rewarded: 'Premiato',
+    paused: 'In pausa', mailed: 'Inviato', refreshed: 'Aggiornato', loggedOut: 'Disconnesso', filtered: 'Filtrato', sorted: 'Ordinato'
   },
   ru: {
-    deleted: 'Удалено', cleared: 'Очищено', unchecked: 'Отметка снята',
-    saved: 'Сохранено', added: 'Добавлено', uploaded: 'Загружено', checked: 'Отмечено', completed: 'Завершено',
-    sent: 'Отправлено', replied: 'Отвечено', forwarded: 'Переслано', mailed: 'Отправлено',
-    rewarded: 'Награждено', captured: 'Снято', recorded: 'Записано', copied: 'Скопировано!'
+    saved: 'Сохранено', added: 'Добавлено', edited: 'Изменено', deleted: 'Удалено', canceled: 'Отменено',
+    confirmed: 'Подтверждено', closed: 'Закрыто', changed: 'Изменено', loaded: 'Загружено', started: 'Начато',
+    opened: 'Открыто', sent: 'Отправлено', replied: 'Отвечено', forwarded: 'Переслано', attached: 'Прикреплено',
+    uploaded: 'Загружено', downloaded: 'Скачано', printed: 'Распечатано', copied: 'Скопировано', duplicated: 'Дублировано',
+    checked: 'Отмечено', unchecked: 'Отметка снята', completed: 'Завершено', cleared: 'Очищено', captured: 'Снято',
+    recorded: 'Записано', flipped: 'Перевернуто', flashed: 'Вспышка', done: 'Готово', rewarded: 'Награждено',
+    paused: 'Приостановлено', mailed: 'Отправлено', refreshed: 'Обновлено', loggedOut: 'Вышел', filtered: 'Отфильтровано', sorted: 'Отсортировано'
   },
   he: {
-    deleted: 'נמחק', cleared: 'נוקה', unchecked: 'הסימון בוטל',
-    saved: 'נשמר', added: 'נוסף', uploaded: 'הועלה', checked: 'סומן', completed: 'הושלם',
-    sent: 'נשלח', replied: 'נענה', forwarded: 'הועבר', mailed: 'נשלח',
-    rewarded: 'תוגמל', captured: 'צולם', recorded: 'הוקלט', copied: 'הועתק!'
+    saved: 'נשמר', added: 'נוסף', edited: 'נערך', deleted: 'נמחק', canceled: 'בוטל',
+    confirmed: 'אושר', closed: 'נסגר', changed: 'שונה', loaded: 'נטען', started: 'הותחל',
+    opened: 'נפתח', sent: 'נשלח', replied: 'נענה', forwarded: 'הועבר', attached: 'צורף',
+    uploaded: 'הועלה', downloaded: 'הורד', printed: 'הודפס', copied: 'הועתק', duplicated: 'שוכפל',
+    checked: 'סומן', unchecked: 'הסימון בוטל', completed: 'הושלם', cleared: 'נוקה', captured: 'צולם',
+    recorded: 'הוקלט', flipped: 'נהפך', flashed: 'הובזק', done: 'בוצע', rewarded: 'תוגמל',
+    paused: 'הושהה', mailed: 'נשלח', refreshed: 'רוענן', loggedOut: 'התנתק', filtered: 'סונן', sorted: 'מוין'
   },
   ar: {
-    deleted: 'تم الحذف', cleared: 'تم المسح', unchecked: 'تم إلغاء التحديد',
-    saved: 'تم الحفظ', added: 'تمت الإضافة', uploaded: 'تم الرفع', checked: 'تم التحديد', completed: 'اكتمل',
-    sent: 'تم الإرسال', replied: 'تم الرد', forwarded: 'تمت إعادة التوجيه', mailed: 'تم الإرسال',
-    rewarded: 'تمت المكافأة', captured: 'تم الالتقاط', recorded: 'تم التسجيل', copied: 'تم النسخ!'
+    saved: 'تم الحفظ', added: 'تمت الإضافة', edited: 'تم التعديل', deleted: 'تم الحذف', canceled: 'تم الإلغاء',
+    confirmed: 'تم التأكيد', closed: 'تم الإغلاق', changed: 'تم التغيير', loaded: 'تم التحميل', started: 'تم البدء',
+    opened: 'تم الفتح', sent: 'تم الإرسال', replied: 'تم الرد', forwarded: 'تمت إعادة التوجيه', attached: 'تم الإرفاق',
+    uploaded: 'تم الرفع', downloaded: 'تم التنزيل', printed: 'تمت الطباعة', copied: 'تم النسخ', duplicated: 'تم التكرار',
+    checked: 'تم التحديد', unchecked: 'تم إلغاء التحديد', completed: 'اكتمل', cleared: 'تم المسح', captured: 'تم الالتقاط',
+    recorded: 'تم التسجيل', flipped: 'تم القلب', flashed: 'تم الوميض', done: 'اكتمل', rewarded: 'تمت المكافأة',
+    paused: 'تم الإيقاف', mailed: 'تم الإرسال', refreshed: 'تم التحديث', loggedOut: 'تم تسجيل الخروج', filtered: 'تمت التصفية', sorted: 'تم الفرز'
   }
 };
 

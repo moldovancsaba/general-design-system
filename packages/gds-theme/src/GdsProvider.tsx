@@ -20,7 +20,7 @@ export function GdsProvider({ children, locale = 'en', messages = {} }: GdsProvi
   return (
     <DirectionProvider initialDirection={dir}>
       <GdsI18nContext.Provider value={{ locale, messages }}>
-        <MantineProvider theme={gdsTheme} withCssVariables withGlobalClasses defaultColorScheme="light" forceColorScheme="light">
+        <MantineProvider theme={gdsTheme} withCssVariables withGlobalClasses defaultColorScheme="light">
           <Box dir={dir} h="100%">
             {children}
           </Box>

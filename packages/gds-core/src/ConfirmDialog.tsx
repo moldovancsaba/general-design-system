@@ -1,5 +1,7 @@
 import React from 'react';
-import { Modal, Group, Button, Text } from '@mantine/core';
+import { Modal, Group, Text } from '@mantine/core';
+import { SemanticButton } from './SemanticButton';
+import type { SemanticAction } from './vocabulary';
 
 export interface ConfirmDialogProps {
   opened: boolean;
@@ -7,8 +9,8 @@ export interface ConfirmDialogProps {
   onConfirm: () => void;
   title: string;
   children: React.ReactNode;
-  confirmLabel?: string;
-  cancelLabel?: string;
+  confirmAction?: SemanticAction;
+  cancelAction?: SemanticAction;
   isDanger?: boolean;
   loading?: boolean;
 }
@@ -22,8 +24,8 @@ export function ConfirmDialog({
   onConfirm,
   title,
   children,
-  confirmLabel = 'Confirm',
-  cancelLabel = 'Cancel',
+  confirmAction = 'confirm',
+  cancelAction = 'cancel',
   isDanger = true,
   loading = false,
 }: ConfirmDialogProps) {
@@ -33,12 +35,8 @@ export function ConfirmDialog({
         {children}
       </Text>
       <Group justify="flex-end">
-        <Button variant="default" onClick={onClose} disabled={loading}>
-          {cancelLabel}
-        </Button>
-        <Button color={isDanger ? 'red' : 'brand'} onClick={onConfirm} loading={loading}>
-          {confirmLabel}
-        </Button>
+        <SemanticButton action={cancelAction} variant="default" onClick={onClose} disabled={loading} />
+        <SemanticButton action={confirmAction} color={isDanger ? 'red' : 'brand'} onClick={onConfirm} loading={loading} />
       </Group>
     </Modal>
   );

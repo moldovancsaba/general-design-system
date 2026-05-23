@@ -4,7 +4,7 @@ const path = require('path');
 const dicts = {
   en: {
     settings: 'Settings', analytics: 'Analytics', dashboard: 'Dashboard', play: 'Play', start: 'Start',
-    users: 'Users', add: 'Add', edit: 'Edit', delete: 'Delete', save: 'Save', language: 'Language', theme: 'Theme',
+    users: 'Users', add: 'Add', edit: 'Edit', delete: 'Delete', save: 'Save', cancel: 'Cancel', confirm: 'Confirm', close: 'Close', language: 'Language', theme: 'Theme',
     home: 'Home', inbox: 'Inbox', calendar: 'Calendar', gallery: 'Gallery', history: 'History', profile: 'Profile',
     send: 'Send', reply: 'Reply', forward: 'Forward', attach: 'Attach', upload: 'Upload', download: 'Download',
     print: 'Print', copy: 'Copy', duplicate: 'Duplicate', check: 'Check', uncheck: 'Uncheck', complete: 'Complete',

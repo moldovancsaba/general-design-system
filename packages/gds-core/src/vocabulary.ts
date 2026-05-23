@@ -12,6 +12,9 @@ export const GdsVocabulary = {
   edit: { id: 'gds.action.edit', defaultMessage: 'Edit', icon: GdsIcons.Edit },
   delete: { id: 'gds.action.delete', defaultMessage: 'Delete', icon: GdsIcons.Delete, feedback: { icon: GdsIcons.Clear, color: 'red', messageId: 'gds.feedback.deleted' } },
   save: { id: 'gds.action.save', defaultMessage: 'Save', icon: GdsIcons.Save, feedback: { icon: GdsIcons.Check, color: 'teal', messageId: 'gds.feedback.saved' } },
+  cancel: { id: 'gds.action.cancel', defaultMessage: 'Cancel', icon: GdsIcons.Cancel },
+  confirm: { id: 'gds.action.confirm', defaultMessage: 'Confirm', icon: GdsIcons.Confirm, feedback: { icon: GdsIcons.Check, color: 'teal', messageId: 'gds.feedback.confirmed' } },
+  close: { id: 'gds.action.close', defaultMessage: 'Close', icon: GdsIcons.Close },
   language: { id: 'gds.action.language', defaultMessage: 'Language', icon: GdsIcons.Language },
   theme: { id: 'gds.action.theme', defaultMessage: 'Theme', icon: GdsIcons.Theme },
 

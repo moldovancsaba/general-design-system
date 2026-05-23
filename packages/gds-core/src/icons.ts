@@ -22,6 +22,8 @@ import {
   IconChartBar,
   IconPlayerPlay,
   IconRocket,
+  IconBan,
+  IconThumbUp,
   // New domain icons
   IconHome,
   IconInbox,
@@ -119,6 +121,9 @@ export const GdsIcons = {
   Uncheck: IconSquareX,
   Complete: IconChecks,
   Clear: IconClearAll,
+  Cancel: IconBan,
+  Confirm: IconThumbUp,
+  Close: IconX,
 
   // Preferences & System
   Language: IconLanguage,
@@ -174,7 +179,6 @@ export const GdsIcons = {
   // System
   ChevronDown: IconChevronDown,
   ChevronUp: IconChevronUp,
-  Close: IconX,
   Menu: IconMenu2,
   Moon: IconMoon,
   Sun: IconSun,

@@ -3,3 +3,5 @@ export * from './DataTable';
 export * from './FormSection';
 export * from './StatsStrip';
 export * from './SemanticNavLink';
+export * from './InfoCard';
+export * from './PageHeader';

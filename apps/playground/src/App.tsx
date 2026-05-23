@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { GdsProvider } from '@gds/theme';
-import { AppShell, DataTable, StatsStrip, SemanticNavLink } from '@gds/admin';
+import { AppShell, DataTable, StatsStrip, SemanticNavLink, InfoCard, PageHeader, FormSection } from '@gds/admin';
 import { SemanticButton, GdsVocabulary, type SemanticAction } from '@gds/core';
-import { Group, Stack, Title, Text, Button } from '@mantine/core';
-import { IconLanguage } from '@tabler/icons-react';
+import { Group, Stack, Button, SimpleGrid, TextInput, Switch, Paper, Box } from '@mantine/core';
+import { IconLanguage, IconServer, IconActivity, IconShieldCheck } from '@tabler/icons-react';
 
 const huMessages = {
   'gds.action.settings': 'Beállítások',
@@ -20,14 +20,14 @@ const huMessages = {
 
 export default function App() {
   const [locale, setLocale] = useState<'en' | 'hu'>('en');
-  const [activeTab, setActiveTab] = useState('vocabulary');
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   const navLinks = [
     <SemanticNavLink 
-      key="vocab" 
+      key="dashboard" 
       action="dashboard" 
-      active={activeTab === 'vocabulary'} 
-      onClick={() => setActiveTab('vocabulary')} 
+      active={activeTab === 'dashboard'} 
+      onClick={() => setActiveTab('dashboard')} 
     />,
     <SemanticNavLink 
       key="users" 
@@ -41,12 +41,19 @@ export default function App() {
       active={activeTab === 'settings'} 
       onClick={() => setActiveTab('settings')} 
     />,
+    <SemanticNavLink 
+      key="vocab" 
+      action="analytics" 
+      active={activeTab === 'vocabulary'} 
+      onClick={() => setActiveTab('vocabulary')} 
+    />,
   ];
 
   const headerActions = (
     <Button 
       variant="light" 
-      leftSection={<IconLanguage size="1rem" />}
+      radius="md"
+      leftSection={<IconLanguage size="1.2rem" />}
       onClick={() => setLocale(l => l === 'en' ? 'hu' : 'en')}
     >
       {locale === 'en' ? 'English' : 'Magyar'}
@@ -56,63 +63,114 @@ export default function App() {
   return (
     <GdsProvider locale={locale} messages={locale === 'hu' ? huMessages : {}}>
       <AppShell
-        logoText="GDS"
+        logoText="GDS Workspace"
         navLinks={navLinks}
         headerActions={headerActions}
       >
-        {activeTab === 'vocabulary' && (
-          <Stack gap="xl" p="md">
-            <div>
-              <Title order={2}>Semantic Vocabulary Registry</Title>
-              <Text c="dimmed" mt="sm">
-                These are the canonical actions available in the GDS. Developers must use 
-                the SemanticAction key (e.g., <code>&lt;SemanticButton action="settings" /&gt;</code>) 
-                instead of providing raw strings and icons. This guarantees the ubiquitous language.
-              </Text>
-            </div>
+        <Box p="md" maw={1200} mx="auto">
+          {activeTab === 'dashboard' && (
+            <Stack gap="xl">
+              <PageHeader 
+                title="Overview" 
+                description="Welcome to the General Design System Live Demo."
+                actions={<SemanticButton action="play" size="md" />}
+              />
+              <StatsStrip 
+                stats={[
+                  { label: 'Total Revenue', value: '$84,231', diff: 12.5 },
+                  { label: 'Active Sessions', value: '1,204', diff: 4.2 },
+                  { label: 'Bounce Rate', value: '24%', diff: -1.8 }
+                ]}
+              />
+              <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md">
+                <InfoCard 
+                  title="Server Status" 
+                  value="Optimal" 
+                  description="All systems running smoothly in us-east-1."
+                  icon={<IconServer size="2rem" />}
+                  color="teal"
+                />
+                <InfoCard 
+                  title="Recent Activity" 
+                  value="48 events" 
+                  description="In the last 24 hours."
+                  icon={<IconActivity size="2rem" />}
+                  color="blue"
+                />
+                <InfoCard 
+                  title="Security" 
+                  value="Verified" 
+                  description="No vulnerabilities found."
+                  icon={<IconShieldCheck size="2rem" />}
+                  color="violet"
+                />
+              </SimpleGrid>
+            </Stack>
+          )}
 
-            <Group gap="md">
-              {(Object.keys(GdsVocabulary) as SemanticAction[]).map(action => (
-                <SemanticButton key={action} action={action} variant="outline" />
-              ))}
-            </Group>
-          </Stack>
-        )}
+          {activeTab === 'users' && (
+            <Stack gap="xl">
+              <PageHeader 
+                title="User Management" 
+                description="Manage team members and their roles."
+                actions={<SemanticButton action="add" size="md" />}
+              />
+              <DataTable 
+                columns={[
+                  { key: 'id', label: 'ID' },
+                  { key: 'name', label: 'Name' },
+                  { key: 'role', label: 'Role' },
+                ]}
+                data={[
+                  { id: '1', name: 'Alice Cooper', role: 'Admin' },
+                  { id: '2', name: 'Bob Builder', role: 'Editor' },
+                  { id: '3', name: 'Charlie Davis', role: 'Viewer' },
+                ]}
+              />
+            </Stack>
+          )}
 
-        {activeTab === 'users' && (
-          <Stack gap="xl" p="md">
-            <StatsStrip 
-              stats={[
-                { label: 'Total Users', value: '4,821' },
-                { label: 'Active Today', value: '312' },
-                { label: 'New Signups', value: '28' }
-              ]}
-            />
-            <DataTable 
-              columns={[
-                { key: 'id', label: 'ID' },
-                { key: 'name', label: 'Name' },
-                { key: 'role', label: 'Role' },
-              ]}
-              data={[
-                { id: '1', name: 'Alice Cooper', role: 'Admin' },
-                { id: '2', name: 'Bob Builder', role: 'User' },
-              ]}
-            />
-          </Stack>
-        )}
+          {activeTab === 'settings' && (
+            <Stack gap="xl">
+              <PageHeader 
+                title="Preferences" 
+                description="Configure your workspace settings."
+              />
+              <FormSection title="Profile Information" description="Update your personal details.">
+                <Stack gap="md">
+                  <TextInput label="Full Name" placeholder="John Doe" />
+                  <TextInput label="Email Address" placeholder="john@example.com" />
+                </Stack>
+              </FormSection>
+              <FormSection title="Notifications" description="Choose what you want to be notified about.">
+                <Stack gap="md">
+                  <Switch label="Email Notifications" description="Receive updates via email." defaultChecked />
+                  <Switch label="Push Notifications" description="Receive updates on your device." />
+                </Stack>
+              </FormSection>
+              <Group justify="flex-end" mt="md">
+                <SemanticButton action="delete" variant="subtle" color="red" />
+                <SemanticButton action="save" size="md" />
+              </Group>
+            </Stack>
+          )}
 
-        {activeTab === 'settings' && (
-          <Stack gap="xl" p="md">
-            <Title order={2}>Settings View</Title>
-            <Text c="dimmed">Use the language toggle in the header to see this translate.</Text>
-            <Group>
-              <SemanticButton action="edit" />
-              <SemanticButton action="save" color="blue" />
-              <SemanticButton action="delete" color="red" />
-            </Group>
-          </Stack>
-        )}
+          {activeTab === 'vocabulary' && (
+            <Stack gap="xl">
+              <PageHeader 
+                title="Semantic Dictionary" 
+                description="A visual showcase of the canonical GDS Vocabulary."
+              />
+              <Paper withBorder p="xl" radius="md">
+                <SimpleGrid cols={{ base: 2, sm: 3, md: 4, lg: 5 }} spacing="lg">
+                  {(Object.keys(GdsVocabulary) as SemanticAction[]).map(action => (
+                    <SemanticButton key={action} action={action} variant="outline" fullWidth />
+                  ))}
+                </SimpleGrid>
+              </Paper>
+            </Stack>
+          )}
+        </Box>
       </AppShell>
     </GdsProvider>
   );

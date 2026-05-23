@@ -27,10 +27,14 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-      - name: Build GDS Packages
-        run: npm run build --workspaces --if-present
+      - name: Build GDS Theme
+        run: npm run build --workspace=@gds/theme
+      - name: Build GDS Core
+        run: npm run build --workspace=@gds/core
+      - name: Build GDS Admin
+        run: npm run build --workspace=@gds/admin
       - name: Build Playground
-        run: npm run build --workspace=apps/playground
+        run: npm run build --workspace=playground
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

@@ -37,7 +37,7 @@ const huMessages = {
   'gds.action.check': 'Jelölés',
   'gds.action.uncheck': 'Jelölés törlése',
   'gds.action.complete': 'Kész',
-  'gds.action.clear': 'Törlés',
+  'gds.action.clear': 'Kiürítés',
   'gds.action.capture': 'Felvétel',
   'gds.action.record': 'Rögzítés',
   'gds.action.flip': 'Fordítás',

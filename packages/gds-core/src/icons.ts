@@ -78,8 +78,19 @@ import {
   IconEyeOff,
   IconHelpCircle,
   IconFilter,
-  IconArrowsSort
+  IconArrowsSort,
+  // New specific icons
+  IconFileExport,
+  IconFileImport,
+  IconTrashOff,
+  IconToggleLeft,
+  IconLogin,
+  IconUserPlus,
+  IconShieldCheck,
+  IconFileText,
+  IconShare
 } from '@tabler/icons-react';
+
 
 /**
  * GdsIcons is the centralized semantic icon dictionary.
@@ -175,6 +186,23 @@ export const GdsIcons = {
   Help: IconHelpCircle,
   Filter: IconFilter,
   Sort: IconArrowsSort,
+
+  // New Audit-driven additions
+  Export: IconFileExport,
+  Import: IconFileImport,
+  Preview: IconEye,
+  Clone: IconCopy,
+  Restore: IconTrashOff,
+  Toggle: IconToggleLeft,
+  Submit: IconCheck,
+  Reset: IconRefresh,
+  Login: IconLogin,
+  Register: IconUserPlus,
+  Verify: IconShieldCheck,
+  Launch: IconRocket,
+  Draft: IconFileText,
+  Refer: IconShare,
+  Evidence: IconPaperclip,
 
   // System
   ChevronDown: IconChevronDown,

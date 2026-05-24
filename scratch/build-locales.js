@@ -13,7 +13,11 @@ const dicts = {
     family: 'Family', habit: 'Habit', goal: 'Goal', streak: 'Streak', reward: 'Reward', trophy: 'Trophy',
     crown: 'Crown', pause: 'Pause', message: 'Message', mail: 'Mail', refresh: 'Refresh', trendingUp: 'Trending Up',
     trendingDown: 'Trending Down', currency: 'Currency', grid: 'Grid', list: 'List', logout: 'Logout',
-    notifications: 'Notifications', back: 'Back', eye: 'View', eyeOff: 'Hide', help: 'Help', filter: 'Filter', sort: 'Sort'
+    notifications: 'Notifications', back: 'Back', eye: 'View', eyeOff: 'Hide', help: 'Help', filter: 'Filter', sort: 'Sort',
+    // Audit additions
+    export: 'Export', import: 'Import', preview: 'Preview', clone: 'Clone', restore: 'Restore', toggle: 'Toggle',
+    search: 'Search', submit: 'Submit', reset: 'Reset', login: 'Login', register: 'Register', verify: 'Verify',
+    launch: 'Launch', draft: 'Draft', refer: 'Refer', evidence: 'Evidence'
   },
   hu: {
     settings: 'Beállítások', analytics: 'Analitika', dashboard: 'Irányítópult', play: 'Lejátszás', start: 'Indítás',
@@ -26,7 +30,11 @@ const dicts = {
     family: 'Család', habit: 'Szokás', goal: 'Cél', streak: 'Sorozat', reward: 'Jutalom', trophy: 'Trófea',
     crown: 'Korona', pause: 'Szünet', message: 'Üzenet', mail: 'Levél', refresh: 'Frissítés', trendingUp: 'Növekvő trend',
     trendingDown: 'Csökkenő trend', currency: 'Pénznem', grid: 'Rács', list: 'Lista', logout: 'Kijelentkezés',
-    notifications: 'Értesítések', back: 'Vissza', eye: 'Megtekintés', eyeOff: 'Elrejtés', help: 'Súgó', filter: 'Szűrő', sort: 'Rendezés'
+    notifications: 'Értesítések', back: 'Vissza', eye: 'Megtekintés', eyeOff: 'Elrejtés', help: 'Súgó', filter: 'Szűrő', sort: 'Rendezés',
+    // Audit additions
+    export: 'Exportálás', import: 'Importálás', preview: 'Előnézet', clone: 'Klónozás', restore: 'Visszaállítás', toggle: 'Váltás',
+    search: 'Keresés', submit: 'Küldés', reset: 'Alaphelyzet', login: 'Bejelentkezés', register: 'Regisztráció', verify: 'Ellenőrzés',
+    launch: 'Indítás', draft: 'Piszkozat', refer: 'Ajánlás', evidence: 'Bizonyíték'
   },
   de: {
     settings: 'Einstellungen', analytics: 'Analyse', dashboard: 'Dashboard', play: 'Abspielen', start: 'Start',
@@ -39,7 +47,11 @@ const dicts = {
     family: 'Familie', habit: 'Gewohnheit', goal: 'Ziel', streak: 'Serie', reward: 'Belohnung', trophy: 'Trophäe',
     crown: 'Krone', pause: 'Pause', message: 'Nachricht', mail: 'E-Mail', refresh: 'Aktualisieren', trendingUp: 'Aufwärtstrend',
     trendingDown: 'Abwärtstrend', currency: 'Währung', grid: 'Raster', list: 'Liste', logout: 'Abmelden',
-    notifications: 'Benachrichtigungen', back: 'Zurück', eye: 'Anzeigen', eyeOff: 'Ausblenden', help: 'Hilfe', filter: 'Filter', sort: 'Sortieren'
+    notifications: 'Benachrichtigungen', back: 'Zurück', eye: 'Anzeigen', eyeOff: 'Ausblenden', help: 'Hilfe', filter: 'Filter', sort: 'Sortieren',
+    // Audit additions
+    export: 'Exportieren', import: 'Importieren', preview: 'Vorschau', clone: 'Klonen', restore: 'Wiederherstellen', toggle: 'Umschalten',
+    search: 'Suchen', submit: 'Absenden', reset: 'Zurücksetzen', login: 'Einloggen', register: 'Registrieren', verify: 'Verifizieren',
+    launch: 'Starten', draft: 'Entwurf', refer: 'Empfehlen', evidence: 'Beweismittel'
   },
   fr: {
     settings: 'Paramètres', analytics: 'Analytique', dashboard: 'Tableau de bord', play: 'Jouer', start: 'Démarrer',
@@ -52,7 +64,11 @@ const dicts = {
     family: 'Famille', habit: 'Habitude', goal: 'Objectif', streak: 'Série', reward: 'Récompense', trophy: 'Trophée',
     crown: 'Couronne', pause: 'Pause', message: 'Message', mail: 'Courrier', refresh: 'Actualiser', trendingUp: 'Tendance à la hausse',
     trendingDown: 'Tendance à la baisse', currency: 'Devise', grid: 'Grille', list: 'Liste', logout: 'Déconnexion',
-    notifications: 'Notifications', back: 'Retour', eye: 'Afficher', eyeOff: 'Masquer', help: 'Aide', filter: 'Filtrer', sort: 'Trier'
+    notifications: 'Notifications', back: 'Retour', eye: 'Afficher', eyeOff: 'Masquer', help: 'Aide', filter: 'Filtrer', sort: 'Trier',
+    // Audit additions
+    export: 'Exporter', import: 'Importer', preview: 'Aperçu', clone: 'Cloner', restore: 'Restaurer', toggle: 'Basculer',
+    search: 'Rechercher', submit: 'Soumettre', reset: 'Réinitialiser', login: 'Connexion', register: "S'inscrire", verify: 'Vérifier',
+    launch: 'Lancer', draft: 'Brouillon', refer: 'Référer', evidence: 'Preuve'
   },
   it: {
     settings: 'Impostazioni', analytics: 'Analitica', dashboard: 'Dashboard', play: 'Riproduci', start: 'Inizia',
@@ -65,7 +81,11 @@ const dicts = {
     family: 'Famiglia', habit: 'Abitudine', goal: 'Obiettivo', streak: 'Serie', reward: 'Ricompensa', trophy: 'Trofeo',
     crown: 'Corona', pause: 'Pausa', message: 'Messaggio', mail: 'Posta', refresh: 'Aggiorna', trendingUp: 'In crescita',
     trendingDown: 'In calo', currency: 'Valuta', grid: 'Griglia', list: 'Elenco', logout: 'Esci',
-    notifications: 'Notifiche', back: 'Indietro', eye: 'Mostra', eyeOff: 'Nascondi', help: 'Aiuto', filter: 'Filtra', sort: 'Ordina'
+    notifications: 'Notifiche', back: 'Indietro', eye: 'Mostra', eyeOff: 'Nascondi', help: 'Aiuto', filter: 'Filtra', sort: 'Ordina',
+    // Audit additions
+    export: 'Esporta', import: 'Importa', preview: 'Anteprima', clone: 'Clona', restore: 'Ripristina', toggle: 'Attiva/Disattiva',
+    search: 'Cerca', submit: 'Invia', reset: 'Reimposta', login: 'Accedi', register: 'Registrati', verify: 'Verifica',
+    launch: 'Avvia', draft: 'Bozza', refer: 'Segnala', evidence: 'Prova'
   },
   ru: {
     settings: 'Настройки', analytics: 'Аналитика', dashboard: 'Панель', play: 'Воспроизвести', start: 'Старт',
@@ -78,11 +98,15 @@ const dicts = {
     family: 'Семья', habit: 'Привычка', goal: 'Цель', streak: 'Серия', reward: 'Награда', trophy: 'Трофей',
     crown: 'Корона', pause: 'Пауза', message: 'Сообщение', mail: 'Почта', refresh: 'Обновить', trendingUp: 'Тенденция вверх',
     trendingDown: 'Тенденция вниз', currency: 'Валюта', grid: 'Сетка', list: 'Список', logout: 'Выйти',
-    notifications: 'Уведомления', back: 'Назад', eye: 'Показать', eyeOff: 'Скрыть', help: 'Помощь', filter: 'Фильтр', sort: 'Сортировка'
+    notifications: 'Уведомления', back: 'Назад', eye: 'Показать', eyeOff: 'Скрыть', help: 'Помощь', filter: 'Фильтр', sort: 'Сортировка',
+    // Audit additions
+    export: 'Экспорт', import: 'Импорт', preview: 'Предпросмотр', clone: 'Клонировать', restore: 'Восстановить', toggle: 'Переключить',
+    search: 'Поиск', submit: 'Отправить', reset: 'Сбросить', login: 'Войти', register: 'Регистрация', verify: 'Проверить',
+    launch: 'Запустить', draft: 'Черновик', refer: 'Направить', evidence: 'Доказательство'
   },
   he: {
     settings: 'הגדרות', analytics: 'ניתוח נתונים', dashboard: 'לוח בקרה', play: 'הפעל', start: 'התחל',
-    users: 'משתמשים', add: 'הוסף', edit: 'ערוך', delete: 'מחק', save: 'שמור', cancel: 'ביטול', confirm: 'אישור', close: 'סגור', language: 'שפה', theme: 'ערכת נושא',
+    users: 'משתמשים', add: 'הוסף', edit: 'ערוך', delete: 'מחק', save: 'שמור', cancel: 'ביטول', confirm: 'אישור', close: 'סגור', language: 'שפה', theme: 'ערכת נושא',
     home: 'דף הבית', inbox: 'דואר נכנס', calendar: 'לוח שנה', gallery: 'גלריה', history: 'היסטוריה', profile: 'פרופיל',
     send: 'שלח', reply: 'השב', forward: 'העבר', attach: 'צרף', upload: 'העלה', download: 'הורד',
     print: 'הדפס', copy: 'העתק', duplicate: 'שכפל', check: 'סמן', uncheck: 'בטל סימון', complete: 'השלם',
@@ -91,7 +115,11 @@ const dicts = {
     family: 'משפחה', habit: 'הרגל', goal: 'מטרה', streak: 'רצף', reward: 'פרס', trophy: 'גביע',
     crown: 'כתר', pause: 'השהה', message: 'הודעה', mail: 'דואר', refresh: 'רענן', trendingUp: 'מגמה חיובית',
     trendingDown: 'מגמה שלילית', currency: 'מטבע', grid: 'רשת', list: 'רשימה', logout: 'התנתק',
-    notifications: 'התראות', back: 'חזור', eye: 'הצג', eyeOff: 'הסתר', help: 'עזרה', filter: 'סנן', sort: 'מיין'
+    notifications: 'התראות', back: 'חזור', eye: 'הצג', eyeOff: 'הסתר', help: 'עזרה', filter: 'סנן', sort: 'מיין',
+    // Audit additions
+    export: 'ייצוא', import: 'ייבוא', preview: 'תצוגה מקדימה', clone: 'שכפול', restore: 'שחזור', toggle: 'החלפה',
+    search: 'חיפוש', submit: 'שליחה', reset: 'איפוס', login: 'התחברות', register: 'הרשמה', verify: 'אימות',
+    launch: 'השקה', draft: 'טיוטה', refer: 'הפניה', evidence: 'ראיה'
   },
   ar: {
     settings: 'الإعدادات', analytics: 'تحليلات', dashboard: 'لوحة القيادة', play: 'تشغيل', start: 'بدء',
@@ -104,7 +132,11 @@ const dicts = {
     family: 'عائلة', habit: 'عادة', goal: 'هدف', streak: 'سلسلة', reward: 'مكافأة', trophy: 'كأس',
     crown: 'تاج', pause: 'إيقاف مؤقت', message: 'رسالة', mail: 'بريد', refresh: 'تحديث', trendingUp: 'اتجاه صاعد',
     trendingDown: 'اتجاه هابط', currency: 'عملة', grid: 'شبكة', list: 'قائمة', logout: 'تسجيل خروج',
-    notifications: 'إشعارات', back: 'رجوع', eye: 'عرض', eyeOff: 'إخفاء', help: 'مساعدة', filter: 'تصفية', sort: 'فرز'
+    notifications: 'إشعارات', back: 'رجوع', eye: 'عرض', eyeOff: 'إخفاء', help: 'مساعدة', filter: 'تصفية', sort: 'فرز',
+    // Audit additions
+    export: 'تصدير', import: 'استيراد', preview: 'معاينة', clone: 'استنساخ', restore: 'استعادة', toggle: 'تبديل',
+    search: 'بحث', submit: 'إرسال', reset: 'إعادة ضبط', login: 'تسجيل الدخول', register: 'تسجيل', verify: 'تحقق',
+    launch: 'إطلاق', draft: 'مسودة', refer: 'إحالة', evidence: 'دليل'
   }
 };
 
@@ -116,7 +148,11 @@ const feedbackDicts = {
     uploaded: 'Uploaded', downloaded: 'Downloaded', printed: 'Printed', copied: 'Copied', duplicated: 'Duplicated',
     checked: 'Checked', unchecked: 'Unchecked', completed: 'Completed', cleared: 'Cleared', captured: 'Captured',
     recorded: 'Recorded', flipped: 'Flipped', flashed: 'Flashed', done: 'Done', rewarded: 'Rewarded',
-    paused: 'Paused', mailed: 'Mailed', refreshed: 'Refreshed', loggedOut: 'Logged Out', filtered: 'Filtered', sorted: 'Sorted'
+    paused: 'Paused', mailed: 'Mailed', refreshed: 'Refreshed', loggedOut: 'Logged Out', filtered: 'Filtered', sorted: 'Sorted',
+    // Audit feedback additions
+    exported: 'Exported', imported: 'Imported', previewed: 'Previewed', cloned: 'Cloned', restored: 'Restored', toggled: 'Toggled',
+    searched: 'Searched', submitted: 'Submitted', reset: 'Reset', loggedIn: 'Logged In', registered: 'Registered', verified: 'Verified',
+    launched: 'Launched', drafted: 'Drafted', referred: 'Referred'
   },
   hu: {
     saved: 'Mentve', added: 'Hozzáadva', edited: 'Szerkesztve', deleted: 'Törölve', canceled: 'Megszakítva',
@@ -125,7 +161,11 @@ const feedbackDicts = {
     uploaded: 'Feltöltve', downloaded: 'Letöltve', printed: 'Kinyomtatva', copied: 'Másolva', duplicated: 'Duplikálva',
     checked: 'Kijelölve', unchecked: 'Kijelölés törölve', completed: 'Befejezve', cleared: 'Kiürítve', captured: 'Rögzítve',
     recorded: 'Felvéve', flipped: 'Megfordítva', flashed: 'Villantva', done: 'Kész', rewarded: 'Jutalmazva',
-    paused: 'Szüneteltetve', mailed: 'Elküldve', refreshed: 'Frissítve', loggedOut: 'Kijelentkezve', filtered: 'Szűrve', sorted: 'Rendezve'
+    paused: 'Szüneteltetve', mailed: 'Elküldve', refreshed: 'Frissítve', loggedOut: 'Kijelentkezve', filtered: 'Szűrve', sorted: 'Rendezve',
+    // Audit feedback additions
+    exported: 'Exportálva', imported: 'Importálva', previewed: 'Előnézet betöltve', cloned: 'Klónozva', restored: 'Visszaállítva', toggled: 'Átváltva',
+    searched: 'Keresve', submitted: 'Elküldve', reset: 'Alaphelyzetbe állítva', loggedIn: 'Bejelentkezve', registered: 'Regisztrálva', verified: 'Ellenőrizve',
+    launched: 'Elindítva', drafted: 'Létrehozva', referred: 'Ajánlva'
   },
   de: {
     saved: 'Gespeichert', added: 'Hinzugefügt', edited: 'Bearbeitet', deleted: 'Gelöscht', canceled: 'Abgebrochen',
@@ -134,7 +174,11 @@ const feedbackDicts = {
     uploaded: 'Hochgeladen', downloaded: 'Heruntergeladen', printed: 'Gedruckt', copied: 'Kopiert', duplicated: 'Dupliziert',
     checked: 'Ausgewählt', unchecked: 'Häkchen entfernt', completed: 'Abgeschlossen', cleared: 'Geleert', captured: 'Erfasst',
     recorded: 'Aufgezeichnet', flipped: 'Umdreht', flashed: 'Geblitzt', done: 'Erledigt', rewarded: 'Belohnt',
-    paused: 'Pausiert', mailed: 'Gemailt', refreshed: 'Aktualisiert', loggedOut: 'Abgemeldet', filtered: 'Gefiltert', sorted: 'Sortiert'
+    paused: 'Pausiert', mailed: 'Gemailt', refreshed: 'Aktualisiert', loggedOut: 'Abgemeldet', filtered: 'Gefiltert', sorted: 'Sortiert',
+    // Audit feedback additions
+    exported: 'Exportiert', imported: 'Importiert', previewed: 'Angezeigt', cloned: 'Kloniert', restored: 'Wiederhergestellt', toggled: 'Umgeschaltet',
+    searched: 'Gesucht', submitted: 'Abgesendet', reset: 'Zurückgesetzt', loggedIn: 'Eingeloggt', registered: 'Registriert', verified: 'Verifiziert',
+    launched: 'Gestartet', drafted: 'Entworfen', referred: 'Empfohlen'
   },
   fr: {
     saved: 'Enregistré', added: 'Ajouté', edited: 'Modifié', deleted: 'Supprimé', canceled: 'Annulé',
@@ -143,7 +187,11 @@ const feedbackDicts = {
     uploaded: 'Téléversé', downloaded: 'Téléchargé', printed: 'Imprimé', copied: 'Copié', duplicated: 'Dupliqué',
     checked: 'Coché', unchecked: 'Décoché', completed: 'Terminé', cleared: 'Effacé', captured: 'Capturé',
     recorded: 'Enregistré', flipped: 'Retourné', flashed: 'Flashé', done: 'Fait', rewarded: 'Récompensé',
-    paused: 'En pause', mailed: 'Envoyé', refreshed: 'Actualisé', loggedOut: 'Déconnecté', filtered: 'Filtré', sorted: 'Trié'
+    paused: 'En pause', mailed: 'Envoyé', refreshed: 'Actualisé', loggedOut: 'Déconnecté', filtered: 'Filtré', sorted: 'Trié',
+    // Audit feedback additions
+    exported: 'Exporté', imported: 'Importé', previewed: 'Visualisé', cloned: 'Cloné', restored: 'Restauré', toggled: 'Basculé',
+    searched: 'Recherché', submitted: 'Soumis', reset: 'Réinitialisé', loggedIn: 'Connecté', registered: 'Inscrit', verified: 'Vérifié',
+    launched: 'Lancé', drafted: 'Rédigé', referred: 'Référé'
   },
   it: {
     saved: 'Salvato', added: 'Aggiunto', edited: 'Modificato', deleted: 'Eliminato', canceled: 'Annullato',
@@ -152,7 +200,11 @@ const feedbackDicts = {
     uploaded: 'Caricato', downloaded: 'Scaricato', printed: 'Stampato', copied: 'Copiato', duplicated: 'Duplicato',
     checked: 'Selezionato', unchecked: 'Deselezionato', completed: 'Completato', cleared: 'Svuotato', captured: 'Catturato',
     recorded: 'Registrato', flipped: 'Capovolto', flashed: 'Lampeggiato', done: 'Fatto', rewarded: 'Premiato',
-    paused: 'In pausa', mailed: 'Inviato', refreshed: 'Aggiornato', loggedOut: 'Disconnesso', filtered: 'Filtrato', sorted: 'Ordinato'
+    paused: 'In pausa', mailed: 'Inviato', refreshed: 'Aggiornato', loggedOut: 'Disconnesso', filtered: 'Filtrato', sorted: 'Ordinato',
+    // Audit feedback additions
+    exported: 'Esportato', imported: 'Importato', previewed: 'Visualizzato', cloned: 'Clonato', restored: 'Ripristinato', toggled: 'Attivato',
+    searched: 'Cercato', submitted: 'Inviato', reset: 'Reimpostato', loggedIn: 'Accesso effettuato', registered: 'Registrato', verified: 'Verificato',
+    launched: 'Avviato', drafted: 'Bozza salvata', referred: 'Segnalato'
   },
   ru: {
     saved: 'Сохранено', added: 'Добавлено', edited: 'Изменено', deleted: 'Удалено', canceled: 'Отменено',
@@ -161,7 +213,11 @@ const feedbackDicts = {
     uploaded: 'Загружено', downloaded: 'Скачано', printed: 'Распечатано', copied: 'Скопировано', duplicated: 'Дублировано',
     checked: 'Отмечено', unchecked: 'Отметка снята', completed: 'Завершено', cleared: 'Очищено', captured: 'Снято',
     recorded: 'Записано', flipped: 'Перевернуто', flashed: 'Вспышка', done: 'Готово', rewarded: 'Награждено',
-    paused: 'Приостановлено', mailed: 'Отправлено', refreshed: 'Обновлено', loggedOut: 'Вышел', filtered: 'Отфильтровано', sorted: 'Отсортировано'
+    paused: 'Приостановлено', mailed: 'Отправлено', refreshed: 'Обновлено', loggedOut: 'Вышел', filtered: 'Отфильтровано', sorted: 'Отсортировано',
+    // Audit feedback additions
+    exported: 'Экспортировано', imported: 'Импортировано', previewed: 'Предпросмотрено', cloned: 'Клонировано', restored: 'Восстановлено', toggled: 'Переключено',
+    searched: 'Найдено', submitted: 'Отправлено', reset: 'Сброшено', loggedIn: 'Вход выполнен', registered: 'Зарегистрировано', verified: 'Проверено',
+    launched: 'Запущено', drafted: 'Черновик создан', referred: 'Направлено'
   },
   he: {
     saved: 'נשמר', added: 'נוסף', edited: 'נערך', deleted: 'נמחק', canceled: 'בוטל',
@@ -170,16 +226,28 @@ const feedbackDicts = {
     uploaded: 'הועלה', downloaded: 'הורד', printed: 'הודפס', copied: 'הועתק', duplicated: 'שוכפל',
     checked: 'סומן', unchecked: 'הסימון בוטל', completed: 'הושלם', cleared: 'נוקה', captured: 'צולם',
     recorded: 'הוקלט', flipped: 'נהפך', flashed: 'הובזק', done: 'בוצע', rewarded: 'תוגמל',
-    paused: 'הושהה', mailed: 'נשלח', refreshed: 'רוענן', loggedOut: 'התנתק', filtered: 'סונן', sorted: 'מוין'
+    paused: 'הושהה', mailed: 'נשלח', refreshed: 'רוענן', loggedOut: 'התנתק', filtered: 'סונן', sorted: 'מוין',
+    // Audit feedback additions
+    exported: 'יוצא', imported: 'יובא', previewed: 'הוצג', cloned: 'שוכפל', restored: 'שוחזר', toggled: 'הוחלף',
+    searched: 'חיפוש הושלם', submitted: 'נשלח', reset: 'אופס', loggedIn: 'התחבר', registered: 'נרשם', verified: 'אומת',
+    launched: 'הושק', drafted: 'נשמר כטיוטה', referred: 'הופנה'
   },
   ar: {
-    saved: 'تم الحفظ', added: 'تمت الإضافة', edited: 'تم التعديل', deleted: 'تم الحذف', canceled: 'تم الإلغاء',
-    confirmed: 'تم التأكيد', closed: 'تم الإغلاق', changed: 'تم التغيير', loaded: 'تم التحميل', started: 'تم البدء',
-    opened: 'تم الفتح', sent: 'تم الإرسال', replied: 'تم الرد', forwarded: 'تمت إعادة التوجيه', attached: 'تم الإرفاق',
-    uploaded: 'تم الرفع', downloaded: 'تم التنزيل', printed: 'تمت الطباعة', copied: 'تم النسخ', duplicated: 'تم التكرار',
-    checked: 'تم التحديد', unchecked: 'تم إلغاء التحديد', completed: 'اكتمل', cleared: 'تم المسح', captured: 'تم الالتقاط',
-    recorded: 'تم التسجيل', flipped: 'تم القلب', flashed: 'تم الوميض', done: 'اكتمل', rewarded: 'تمت المكافأة',
-    paused: 'تم الإيقاف', mailed: 'تم الإرسال', refreshed: 'تم التحديث', loggedOut: 'تم تسجيل الخروج', filtered: 'تمت التصفية', sorted: 'تم الفرز'
+    settings: 'الإعدادات', analytics: 'تحليلات', dashboard: 'لوحة القيادة', play: 'تشغيل', start: 'بدء',
+    users: 'المستخدمين', add: 'إضافة', edit: 'تعديل', delete: 'حذف', save: 'حفظ', cancel: 'إلغاء', confirm: 'تأكيد', close: 'إغلاق', language: 'اللغة', theme: 'السمة',
+    home: 'الرئيسية', inbox: 'صندوق الوارد', calendar: 'التقويم', gallery: 'المعرض', history: 'السجل', profile: 'الملف الشخصي',
+    send: 'إرسال', reply: 'رد', forward: 'إعادة توجيه', attach: 'إرفاق', upload: 'رفع', download: 'تنزيل',
+    print: 'طباعة', copy: 'نسخ', duplicate: 'تكرار', check: 'تحديد', uncheck: 'إلغاء التحديد', complete: 'اكتمال',
+    clear: 'مسح', capture: 'التقاط', record: 'تسجيل', flip: 'قلب', flash: 'فلاش', course: 'دورة',
+    lesson: 'درس', certificate: 'شهادة', student: 'طالب', class: 'فصل', grade: 'درجة', child: 'طفل',
+    family: 'عائلة', habit: 'عادة', goal: 'هدف', streak: 'سلسلة', reward: 'مكافأة', trophy: 'كأس',
+    crown: 'تاج', pause: 'إيقاف مؤقت', message: 'رسالة', mail: 'بريد', refresh: 'تحديث', trendingUp: 'اتجاه صاعد',
+    trendingDown: 'اتجاه هابط', currency: 'عملة', grid: 'شبكة', list: 'قائمة', logout: 'تسجيل خروج',
+    notifications: 'إشعارات', back: 'رجوع', eye: 'عرض', eyeOff: 'إخفاء', help: 'مساعدة', filter: 'تصفية', sort: 'فرز',
+    // Audit feedback additions
+    exported: 'تم التصدير', imported: 'تم الاستيراد', previewed: 'تمت المعاينة', cloned: 'تم الاستنساخ', restored: 'تمت الاستعادة', toggled: 'تم التبديل',
+    searched: 'تم البحث', submitted: 'تم الإرسال', reset: 'تمت إعادة الضبط', loggedIn: 'تم تسجيل الدخول', registered: 'تم التسجيل', verified: 'تم التحقق',
+    launched: 'تم الإطلاق', drafted: 'تم الحفظ كمسودة', referred: 'تمت الإحالة'
   }
 };
 

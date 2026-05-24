@@ -40,7 +40,7 @@ Prioritize in this order:
 | Kormanyvalto | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
 | Manus | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
 | Misisimi | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
-| Narimato | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
+| Narimato | Mantine 7 + vendored `@gds/core` / `@gds/theme`; local adapter `docs/GDS_ADOPTION.md` | Mantine-rooted enforcement | Low | Keep packages synced (`npm run gds:sync`); extend CI guard; see `PROJECTS/NARIMATO.md` |
 | Openclaw | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
 | Opencode | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
 | Paperclip | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |

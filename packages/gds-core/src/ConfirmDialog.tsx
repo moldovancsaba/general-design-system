@@ -36,7 +36,7 @@ export function ConfirmDialog({
       </Text>
       <Group justify="flex-end">
         <SemanticButton action={cancelAction} variant="default" onClick={onClose} disabled={loading} />
-        <SemanticButton action={confirmAction} color={isDanger ? 'red' : 'brand'} onClick={onConfirm} loading={loading} />
+        <SemanticButton action={confirmAction} color={isDanger ? 'red' : 'violet'} onClick={onConfirm} loading={loading} />
       </Group>
     </Modal>
   );

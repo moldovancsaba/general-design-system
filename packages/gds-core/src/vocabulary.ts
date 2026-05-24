@@ -81,6 +81,24 @@ export const GdsVocabulary = {
   help: { id: 'gds.action.help', defaultMessage: 'Help', icon: GdsIcons.Help, feedback: { icon: GdsIcons.Help, color: 'teal', messageId: 'gds.feedback.done' } },
   filter: { id: 'gds.action.filter', defaultMessage: 'Filter', icon: GdsIcons.Filter, feedback: { icon: GdsIcons.Filter, color: 'teal', messageId: 'gds.feedback.filtered' } },
   sort: { id: 'gds.action.sort', defaultMessage: 'Sort', icon: GdsIcons.Sort, feedback: { icon: GdsIcons.Sort, color: 'teal', messageId: 'gds.feedback.sorted' } },
+
+  // Audit-driven additions
+  export: { id: 'gds.action.export', defaultMessage: 'Export', icon: GdsIcons.Export, feedback: { icon: GdsIcons.Export, color: 'teal', messageId: 'gds.feedback.exported' } },
+  import: { id: 'gds.action.import', defaultMessage: 'Import', icon: GdsIcons.Import, feedback: { icon: GdsIcons.Import, color: 'teal', messageId: 'gds.feedback.imported' } },
+  preview: { id: 'gds.action.preview', defaultMessage: 'Preview', icon: GdsIcons.Preview, feedback: { icon: GdsIcons.Preview, color: 'teal', messageId: 'gds.feedback.previewed' } },
+  clone: { id: 'gds.action.clone', defaultMessage: 'Clone', icon: GdsIcons.Clone, feedback: { icon: GdsIcons.Clone, color: 'teal', messageId: 'gds.feedback.cloned' } },
+  restore: { id: 'gds.action.restore', defaultMessage: 'Restore', icon: GdsIcons.Restore, feedback: { icon: GdsIcons.Restore, color: 'teal', messageId: 'gds.feedback.restored' } },
+  toggle: { id: 'gds.action.toggle', defaultMessage: 'Toggle', icon: GdsIcons.Toggle, feedback: { icon: GdsIcons.Toggle, color: 'teal', messageId: 'gds.feedback.toggled' } },
+  search: { id: 'gds.action.search', defaultMessage: 'Search', icon: GdsIcons.Search, feedback: { icon: GdsIcons.Search, color: 'teal', messageId: 'gds.feedback.searched' } },
+  submit: { id: 'gds.action.submit', defaultMessage: 'Submit', icon: GdsIcons.Submit, feedback: { icon: GdsIcons.Submit, color: 'teal', messageId: 'gds.feedback.submitted' } },
+  reset: { id: 'gds.action.reset', defaultMessage: 'Reset', icon: GdsIcons.Reset, feedback: { icon: GdsIcons.Reset, color: 'red', messageId: 'gds.feedback.reset' } },
+  login: { id: 'gds.action.login', defaultMessage: 'Login', icon: GdsIcons.Login, feedback: { icon: GdsIcons.Login, color: 'teal', messageId: 'gds.feedback.loggedIn' } },
+  register: { id: 'gds.action.register', defaultMessage: 'Register', icon: GdsIcons.Register, feedback: { icon: GdsIcons.Register, color: 'teal', messageId: 'gds.feedback.registered' } },
+  verify: { id: 'gds.action.verify', defaultMessage: 'Verify', icon: GdsIcons.Verify, feedback: { icon: GdsIcons.Verify, color: 'teal', messageId: 'gds.feedback.verified' } },
+  launch: { id: 'gds.action.launch', defaultMessage: 'Launch', icon: GdsIcons.Launch, feedback: { icon: GdsIcons.Launch, color: 'purple', messageId: 'gds.feedback.launched' } },
+  draft: { id: 'gds.action.draft', defaultMessage: 'Draft', icon: GdsIcons.Draft, feedback: { icon: GdsIcons.Draft, color: 'teal', messageId: 'gds.feedback.drafted' } },
+  refer: { id: 'gds.action.refer', defaultMessage: 'Refer', icon: GdsIcons.Refer, feedback: { icon: GdsIcons.Refer, color: 'teal', messageId: 'gds.feedback.referred' } },
+  evidence: { id: 'gds.action.evidence', defaultMessage: 'Evidence', icon: GdsIcons.Evidence, feedback: { icon: GdsIcons.Evidence, color: 'teal', messageId: 'gds.feedback.added' } },
 } as const;
 
 export type SemanticAction = keyof typeof GdsVocabulary;

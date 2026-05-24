@@ -2,6 +2,12 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 2.2.1 - 2026-05-23
+
+- Added `PROJECTS/NARIMATO.md` for Narimato (Mantine-rooted, enforcement phase).
+- Updated `PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md` Narimato row from discovery to enforcement.
+- Fixed `@gds/core` `ConfirmDialog` confirm button color: `brand` → `violet` (valid Mantine palette).
+
 ## 2.2.0 - 2026-05-23
 
 - Added `SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md` to define the GDS as a reliable, cross-project service with authority, pattern, adoption, validation, portfolio, and lifecycle layers.

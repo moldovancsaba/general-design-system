@@ -331,7 +331,7 @@ The dedicated Mantine-only check is active as `npm run ui:check:mantine`; it rej
 
 ## Current Amanoba Progress Snapshot
 
-As of 2026-05-21:
+As of 2026-05-23:
 
 - Root Mantine runtime is active through `app/components/providers/MantineRuntimeProvider.tsx`.
 - Amanoba Mantine theme is active in `app/lib/ui/mantine-theme.ts`.
@@ -347,7 +347,11 @@ As of 2026-05-21:
 - Lesson quiz runtime and final exam runtime use Mantine forms, cards, buttons, progress, alerts, and result states.
 - Saved lessons, Practice Hub, dashboard/referral card, sign-in, anonymous login, profile, and profile certificate pages use Mantine learner UI primitives.
 - Public certificate verification pages use Mantine cards, status badges, notifications, and actions.
+- Admin navigation shell uses Mantine `AppShell` in `app/[locale]/admin/layout.tsx` with `NavLink`, `ScrollArea`, `Menu`, and Tabler icons.
 - New-course admin form, admin course-family list, full admin course editor, admin dashboard, admin payments, admin settings, admin certificates, quiz manager modal, editor lesson page, and Markdown lesson editor use Mantine form, table, card, notification, and modal primitives.
+- Local adapter docs align to GDS **2.2.0** (`DESIGN_UPDATE.md`, `PATTERN_CONTRACT_INVENTORY.md`) including service backbone and portfolio matrix read order.
+- Course access recovery uses `CourseAccessRecoveryActions` and structured day API codes for protected lesson/quiz routes.
+- Mobile course catalog/detail surfaces reserve space for cookie consent via `app/lib/ui/consent-layout.ts`.
 - Legacy local `Button`, `Card`, rich text editor, and `cn` adapters are deleted; `class-variance-authority`, `clsx`, and `tailwind-merge` are no longer direct Amanoba dependencies.
 - Stale duplicate app-level course community components were removed from Amanoba.
 
@@ -355,7 +359,8 @@ Remaining high-priority gaps:
 
 - secondary learner rewards, challenges, leaderboards, onboarding, and game chrome still need Mantine-only conversion or documented exception handling
 - admin questions, achievement editor pages, analytics, surveys, players, games, rewards, and reporting surfaces still need Mantine-only conversion or documented exception handling
-- Tailwind config, local CSS token files, Radix, Sonner, and Vaul remain deletion-phase work after product surfaces stop depending on them
+- `app/design-system.css` and transitional `app/globals.css` product rules remain deletion-phase work after remaining legacy surfaces migrate
+- `lucide-react` remains on leaderboards, stats, onboarding, admin votes, and editor shells until those surfaces migrate
 
 ## First Implementation PR Shape
 

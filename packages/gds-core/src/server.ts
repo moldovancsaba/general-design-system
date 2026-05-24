@@ -12,4 +12,7 @@ export * from './AuthShell';
 export * from './ArticleShell';
 export * from './MediaCard';
 export * from './AccessSummary';
+export * from './FormField';
+export * from './PageHeader';
+export * from './FilterDrawer';
 export * from './locales';

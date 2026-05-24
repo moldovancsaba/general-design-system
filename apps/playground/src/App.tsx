@@ -238,7 +238,7 @@ function DemoFeedbackButton() {
 
 export default function App() {
   return (
-    <Router basename="/general-design-system/">
+    <Router basename="/general-design-system">
       <PlaygroundContent />
     </Router>
   );

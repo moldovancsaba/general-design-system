@@ -85,6 +85,7 @@ export const en = {
   'gds.action.refer': 'Refer',
   'gds.action.evidence': 'Evidence',
   'gds.feedback.saved': 'Saved',
+  'gds.feedback.error': 'Something went wrong',
   'gds.feedback.added': 'Added',
   'gds.feedback.edited': 'Edited',
   'gds.feedback.deleted': 'Deleted',
@@ -135,4 +136,6 @@ export const en = {
   'gds.feedback.launched': 'Launched',
   'gds.feedback.drafted': 'Drafted',
   'gds.feedback.referred': 'Referred',
+  'gds.aria.themeToggle': 'Toggle color scheme',
+  'gds.state.emptyData': 'No data available.',
 };

@@ -85,6 +85,7 @@ export const hu = {
   'gds.action.refer': 'Ajánlás',
   'gds.action.evidence': 'Bizonyíték',
   'gds.feedback.saved': 'Mentve',
+  'gds.feedback.error': 'Hiba történt',
   'gds.feedback.added': 'Hozzáadva',
   'gds.feedback.edited': 'Szerkesztve',
   'gds.feedback.deleted': 'Törölve',
@@ -135,4 +136,6 @@ export const hu = {
   'gds.feedback.launched': 'Elindítva',
   'gds.feedback.drafted': 'Létrehozva',
   'gds.feedback.referred': 'Ajánlva',
+  'gds.aria.themeToggle': 'Színséma váltása',
+  'gds.state.emptyData': 'Nincs elérhető adat.',
 };

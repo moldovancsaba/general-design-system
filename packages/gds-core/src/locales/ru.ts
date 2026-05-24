@@ -85,6 +85,7 @@ export const ru = {
   'gds.action.refer': 'Направить',
   'gds.action.evidence': 'Доказательство',
   'gds.feedback.saved': 'Сохранено',
+  'gds.feedback.error': 'Что-то пошло не так',
   'gds.feedback.added': 'Добавлено',
   'gds.feedback.edited': 'Изменено',
   'gds.feedback.deleted': 'Удалено',
@@ -135,4 +136,6 @@ export const ru = {
   'gds.feedback.launched': 'Запущено',
   'gds.feedback.drafted': 'Черновик создан',
   'gds.feedback.referred': 'Направлено',
+  'gds.aria.themeToggle': 'Переключить цветовую схему',
+  'gds.state.emptyData': 'Нет доступных данных.',
 };

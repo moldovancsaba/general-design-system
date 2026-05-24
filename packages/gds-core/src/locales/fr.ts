@@ -85,6 +85,7 @@ export const fr = {
   'gds.action.refer': 'Référer',
   'gds.action.evidence': 'Preuve',
   'gds.feedback.saved': 'Enregistré',
+  'gds.feedback.error': 'Une erreur est survenue',
   'gds.feedback.added': 'Ajouté',
   'gds.feedback.edited': 'Modifié',
   'gds.feedback.deleted': 'Supprimé',
@@ -135,4 +136,6 @@ export const fr = {
   'gds.feedback.launched': 'Lancé',
   'gds.feedback.drafted': 'Rédigé',
   'gds.feedback.referred': 'Référé',
+  'gds.aria.themeToggle': 'Basculer le thème',
+  'gds.state.emptyData': 'Aucune donnée disponible.',
 };

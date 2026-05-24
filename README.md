@@ -1,8 +1,8 @@
 # General Design System
 
 Status: Active SSOT
-Version: 2.2.0
-Last updated: 2026-05-23
+Version: 2.3.0
+Last updated: 2026-05-24
 
 `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` is the cross-project single source of truth for design, UI, and UX.
 
@@ -17,6 +17,7 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 3. **Use the Pattern Service Model**: Before borrowing from Mantine UI or another project, read [PATTERN_SERVICE_MODEL.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PATTERN_SERVICE_MODEL.md) to convert references into governed, reusable contracts.
 4. **Read the Service Backbone Plan**: Use [SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md) to understand how the GDS operates as a reliable, cross-project service with adoption, validation, and portfolio layers.
 5. **Adopt & Migrate**: Use [GOVERNANCE_AND_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/GOVERNANCE_AND_ADOPTION.md) to understand how to correctly implement this system in a new or legacy codebase, including the required local project statement.
+6. **Check Compatibility & Release Rules**: Use [COMPATIBILITY_AND_RELEASES.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COMPATIBILITY_AND_RELEASES.md) before wiring package installs, CI/Vercel builds, or framework upgrades.
 
 ### What You Can Find Here
 
@@ -25,6 +26,9 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 - **Pattern Service Model**: [PATTERN_SERVICE_MODEL.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PATTERN_SERVICE_MODEL.md) — The reusable cross-project process for borrowing Mantine-native patterns, promoting them into contracts, and enforcing consistency.
 - **Service Backbone Plan**: [SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md) — The operating model that makes the GDS reliable, adaptable, and replicable across a portfolio of projects.
 - **Governance & Migration**: [GOVERNANCE_AND_ADOPTION.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/GOVERNANCE_AND_ADOPTION.md) — Strict rules on how projects must adopt the system, review PRs, and deprecate old code.
+- **Compatibility & Releases**: [COMPATIBILITY_AND_RELEASES.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/COMPATIBILITY_AND_RELEASES.md) — Supported Mantine/React/Next ranges, subpath exports, version alignment, and upgrade expectations.
+- **Theme Governance**: [THEME_GOVERNANCE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/THEME_GOVERNANCE.md) — Brand extension, dark-mode defaults, white-label, and tenant-theme rules.
+- **Exception Surfaces**: [EXCEPTION_SURFACES.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/EXCEPTION_SURFACES.md) — Chart, map, embed, and other approved exception-surface guidance.
 - **Portfolio Matrix**: [PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md) — The current cross-project inventory, archetypes, and recommended next actions.
 - **Operational Files**: `CONTRIBUTING.md` and `CHANGELOG.md` — Shared rules for contributing to the design system and its versioned history.
 - **Templates**: `TEMPLATES/` — Starter templates for your project's theme, providers, shell, and thin wrappers.
@@ -39,6 +43,7 @@ Product repositories may document:
 - migration state
 - validation commands
 - narrow approved exceptions
+- consumed GDS version and shared package install path
 
 Product repositories may **not** redefine:
 - component behavior
@@ -60,6 +65,20 @@ Required repository behavior:
 - projects should use the portfolio matrix and project plans when sequencing GDS work
 - breaking behavior changes should be treated as major contract changes
 - additive patterns should be documented here before they spread to multiple products
+
+## Validation Commands
+
+- `npm run verify:release` — checks release alignment, then runs build, lint, and tests
+- `npm run build` — builds `@gds/theme`, `@gds/core`, `@gds/admin`, and the playground in dependency order
+- `npm run lint` — runs the playground lint target
+- `npm run test:run` — runs the shared jsdom component test suite for the workspace packages
+
+The shared package validation path is now expected to cover:
+- provider composition in `@gds/theme`
+- behavior coverage in `@gds/core` and `@gds/admin`
+- i18n-safe shared copy
+- GitHub Actions quality gates before deployment
+- version and project-plan alignment for active adopter releases
 
 ## Non-Negotiable Rules
 

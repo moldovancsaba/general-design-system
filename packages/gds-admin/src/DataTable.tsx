@@ -1,26 +1,36 @@
-import React from 'react';
-import { Table, Paper, Text, LoadingOverlay } from '@mantine/core';
+import type { Key, ReactNode } from 'react';
+import { Table, Paper, LoadingOverlay } from '@mantine/core';
+import { useGdsTranslation } from '@gds/theme';
+import { StateBlock } from '@gds/core';
 
 export interface DataTableColumn<T> {
   key: string;
   label: string;
-  render?: (item: T) => React.ReactNode;
+  render?: (item: T) => ReactNode;
 }
 
 export interface DataTableProps<T> {
   data: T[];
   columns: DataTableColumn<T>[];
   loading?: boolean;
+  getRowKey?: (item: T, index: number) => Key;
 }
 
 /**
  * Standardized Data Table
  */
-export function DataTable<T extends Record<string, any>>({ data, columns, loading = false }: DataTableProps<T>) {
+export function DataTable<T extends Record<string, unknown>>({ data, columns, loading = false, getRowKey }: DataTableProps<T>) {
+  const { t } = useGdsTranslation();
+
   if (!data.length && !loading) {
     return (
-      <Paper p="xl" withBorder ta="center">
-        <Text c="dimmed">No data available.</Text>
+      <Paper p="xl" withBorder>
+        <StateBlock
+          variant="empty"
+          title={t('gds.state.emptyDataTitle', 'No data available')}
+          description={t('gds.state.emptyData', 'No data available.')}
+          compact
+        />
       </Paper>
     );
   }
@@ -38,10 +48,10 @@ export function DataTable<T extends Record<string, any>>({ data, columns, loadin
         </Table.Thead>
         <Table.Tbody>
           {data.map((item, rowIndex) => (
-            <Table.Tr key={item.id || rowIndex}>
+            <Table.Tr key={getRowKey ? getRowKey(item, rowIndex) : rowIndex}>
               {columns.map((col) => (
                 <Table.Td key={col.key}>
-                  {col.render ? col.render(item) : item[col.key]}
+                  {col.render ? col.render(item) : (item[col.key] as ReactNode)}
                 </Table.Td>
               ))}
             </Table.Tr>

@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { Modal, Group, Text } from '@mantine/core';
 import { SemanticButton } from './SemanticButton';
 import type { SemanticAction } from './vocabulary';
@@ -8,7 +8,7 @@ export interface ConfirmDialogProps {
   onClose: () => void;
   onConfirm: () => void;
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   confirmAction?: SemanticAction;
   cancelAction?: SemanticAction;
   isDanger?: boolean;

@@ -1,8 +1,8 @@
 # Portfolio Adoption Matrix
 
 Status: Active SSOT
-Version: 2.2.0
-Last updated: 2026-05-23
+Version: 2.3.0
+Last updated: 2026-05-24
 
 This matrix gives the shared GDS a portfolio-level view of where each project stands, what kind of migration it needs, and what the next practical move should be.
 
@@ -30,6 +30,8 @@ Prioritize in this order:
 | Amanoba | Mantine + Tailwind + Radix detected; active project plan exists | Mixed foundation | High | Continue full Mantine-only replacement. Delete remaining Tailwind/Radix product authority after high-traffic migrations. |
 | KIDEX | Mantine detected; active project plan exists | Mantine-rooted drift cleanup | Medium | Keep mobile shell, dashboard, and child-registry normalization as the next priority; focus on action hierarchy and responsive consistency. |
 | SSO | Mantine detected; active project plan exists | Mantine-rooted drift cleanup | Medium | Finish docs/editorial migration and delete the remaining legacy CSS/theme stack. |
+| Impact / sovereignsquad | Mantine 7 + Vite MPA; local shell/state adapters; vendored theme behavior | Mantine-rooted contract gap | Medium | Publish package install path first, then align public shell, docs shell, state/upload surfaces, and dark-mode policy. |
+| Camera | Shared-system candidate with admin/public/media/editor requirements; framework upgrade pressure | Shared contract driver | High | Prioritize compatibility, SSR-safe exports, admin contract strengthening, and media/editor/access pattern families. |
 | Messmass | No Mantine package detected; active product repo with local custom UI system; local coding standards still contain stale hybrid-authority language | Custom local system | Critical | Create root Mantine runtime, rewrite local authority docs, and migrate shared admin/reporting/analytics shells and primitives first. |
 | Launchmass | MUI detected from package manifest | Alternate UI framework | High | Make an explicit portfolio decision: approve a true Mantine migration or record temporary non-compliance. Do not allow silent long-lived MUI divergence. |
 | Cardmass | Tailwind detected from package manifest | Tailwind-first | Medium | Freeze new Tailwind product primitives and plan a Phase 0/1 Mantine adoption path around one high-value surface. |
@@ -41,6 +43,7 @@ Prioritize in this order:
 | Manus | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
 | Misisimi | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
 | Narimato | Mantine 7 + vendored `@gds/core` / `@gds/theme`; local adapter `docs/GDS_ADOPTION.md` | Mantine-rooted enforcement | Low | Keep packages synced (`npm run gds:sync`); extend CI guard; see `PROJECTS/NARIMATO.md` |
+| Pesti Est / budapest-night | Mantine-first product with local brand theme extension and strong i18n/RTL needs | Mantine-rooted enforcement | Medium | Close package publishing, theme-extension, discovery-shell, and RTL adapter gaps so local duplicates can shrink. |
 | Openclaw | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
 | Opencode | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |
 | Paperclip | No clear UI framework signal from package manifest alone | Discovery required | Unknown | Same discovery-first path. |

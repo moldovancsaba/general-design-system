@@ -1,8 +1,8 @@
 # Contributing
 
 Status: Active
-Version: 2.1.0
-Last updated: 2026-05-23
+Version: 2.3.0
+Last updated: 2026-05-24
 
 This repository is shared design-system infrastructure.
 
@@ -22,6 +22,17 @@ This repository is shared design-system infrastructure.
 4. Prefer durable, reviewable language over brainstorming notes.
 5. Do not weaken the Mantine-only platform rule without an explicit major-version policy change.
 6. Promote repeated local UI solutions into `PATTERN_SERVICE_MODEL.md` before copying them across projects.
+
+## Validation Expectations
+
+Before merging shared package changes, run:
+
+- `npm run verify:release`
+- `npm run build`
+- `npm run lint`
+- `npm run test:run`
+
+If a change affects root composition, shared copy, or exported component behavior, the change should include or update automated tests unless there is a documented reason it cannot.
 
 ## Recommended Commit Scopes
 

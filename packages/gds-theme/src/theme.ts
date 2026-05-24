@@ -1,9 +1,12 @@
-import { createTheme } from '@mantine/core';
+import { DEFAULT_THEME, createTheme, mergeMantineTheme, type MantineTheme, type MantineThemeOverride } from '@mantine/core';
 
-export const gdsTheme = createTheme({
+const baseTheme: MantineTheme = mergeMantineTheme(DEFAULT_THEME, createTheme({
   primaryColor: 'violet',
   fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
   fontSmoothing: true,
+  defaultRadius: 'md',
+  black: '#111827',
+  white: '#ffffff',
   headings: {
     fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
     sizes: {
@@ -12,10 +15,9 @@ export const gdsTheme = createTheme({
       h3: { fontSize: '1.25rem', fontWeight: '600' },
     },
   },
-  defaultRadius: 'md',
   shadows: {
-    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    md: '0 8px 24px rgba(15, 23, 42, 0.08)',
+    lg: '0 16px 40px rgba(15, 23, 42, 0.12)',
   },
   components: {
     Button: {
@@ -26,20 +28,14 @@ export const gdsTheme = createTheme({
       },
       styles: {
         root: {
-          transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease',
+          transition: 'transform 150ms ease, filter 120ms ease',
           '&:hover': {
-            transform: 'scale(1.02)',
+            transform: 'translateY(-1px)',
             filter: 'brightness(1.05)',
           },
           '&:active': {
-            transform: 'scale(0.97)',
+            transform: 'translateY(0)',
             filter: 'brightness(0.95)',
-          },
-          '&[data-disabled]': {
-            transform: 'none',
-            filter: 'grayscale(1)',
-            opacity: 0.6,
-            cursor: 'not-allowed',
           },
         }
       }
@@ -52,23 +48,38 @@ export const gdsTheme = createTheme({
       },
       styles: {
         root: {
-          transition: 'transform 200ms ease, box-shadow 200ms ease',
-          '&:hover': {
-            transform: 'translateY(-2px)',
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-          }
+          backgroundColor: 'var(--mantine-color-body)',
+          transition: 'transform 150ms ease, box-shadow 150ms ease',
         }
       }
+    },
+    Paper: {
+      defaultProps: {
+        radius: 'lg',
+        withBorder: true,
+      },
     },
     TextInput: {
       defaultProps: {
         radius: 'md',
       },
     },
-    Paper: {
+    Table: {
       defaultProps: {
-        radius: 'lg',
+        highlightOnHover: true,
+        verticalSpacing: 'md',
       },
-    }
+    },
+    Badge: {
+      defaultProps: {
+        radius: 'xl',
+      },
+    },
   },
-});
+}));
+
+export const gdsTheme = baseTheme;
+
+export function extendGdsTheme(overrides: MantineThemeOverride = {}) {
+  return mergeMantineTheme(baseTheme, overrides);
+}

@@ -2,6 +2,23 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 2.3.0 - 2026-05-24
+
+- Added publish-ready package metadata and explicit `client` / `server` subpath exports for `@gds/theme`, `@gds/core`, and `@gds/admin`.
+- Added `COMPATIBILITY_AND_RELEASES.md` to define the active Mantine/React/Next consumption contract, install guidance, and version-alignment rules.
+- Added new shared package primitives and scaffolds for `MetricCard`, `ProgressCard`, `ProductCard`, `StateBlock`, `DataToolbar`, `PublicShell`, `AuthShell`, `ArticleShell`, `UploadDropzone`, `MediaCard`, `AccessSummary`, `ResponsiveDataView`, `WorkspaceHeader`, and `EditorScaffold`.
+- Expanded admin primitives to support mobile footer navigation, richer page-header action slots, and shared empty-state handling in tables.
+- Added release-alignment verification via `npm run verify:release` and a shared pull-request checklist template.
+- Added `THEME_GOVERNANCE.md` and `EXCEPTION_SURFACES.md` to cover provider-brand, white-label, tenant-theme, chart, map, embed, and other approved exception surfaces.
+- Added portfolio onboarding plans for Impact, Camera, and Pesti Est plus matrix rows reflecting their current GDS adoption pressure.
+
+## 2.2.2 - 2026-05-24
+
+- Updated `@gds/theme` `GdsProvider` to include Mantine modals and notifications so the shared provider matches the documented root composition contract.
+- Added shared package i18n coverage for theme-toggle labels, empty-data messaging, and semantic error feedback.
+- Added a shared Vitest + jsdom test harness plus behavior coverage for `@gds/theme`, `@gds/core`, and `@gds/admin`.
+- Added root test commands and pull-request quality gates for build, lint, and tests.
+
 ## 2.2.1 - 2026-05-23
 
 - Added `PROJECTS/NARIMATO.md` for Narimato (Mantine-rooted, enforcement phase).

@@ -1,4 +1,5 @@
 import { ActionIcon, useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
+import { useGdsTranslation } from '@gds/theme';
 import { GdsIcons } from './icons';
 
 export interface ThemeToggleProps {
@@ -12,6 +13,7 @@ export interface ThemeToggleProps {
 export function ThemeToggle({ size = 'md' }: ThemeToggleProps) {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const { t } = useGdsTranslation();
 
   const toggleColorScheme = () => {
     setColorScheme(computedColorScheme === 'dark' ? 'light' : 'dark');
@@ -24,7 +26,7 @@ export function ThemeToggle({ size = 'md' }: ThemeToggleProps) {
       onClick={toggleColorScheme}
       variant="default"
       size={size}
-      aria-label="Toggle color scheme"
+      aria-label={t('gds.aria.themeToggle', 'Toggle color scheme')}
     >
       {isDark ? <GdsIcons.Sun size="1.2rem" /> : <GdsIcons.Moon size="1.2rem" />}
     </ActionIcon>

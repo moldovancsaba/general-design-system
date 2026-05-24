@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
-import { NavLink, NavLinkProps, createPolymorphicComponent } from '@mantine/core';
+import { NavLink, createPolymorphicComponent } from '@mantine/core';
+import type { NavLinkProps } from '@mantine/core';
 import { useGdsTranslation } from '@gds/theme';
 import { GdsVocabulary, type SemanticAction } from '@gds/core';
 

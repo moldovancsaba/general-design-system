@@ -168,4 +168,7 @@ export const ar = {
   'gds.feedback.launched': 'تم الإطلاق',
   'gds.feedback.drafted': 'تم الحفظ كمسودة',
   'gds.feedback.referred': 'تمت الإحالة',
+  'gds.feedback.error': 'حدث خطأ ما',
+  'gds.aria.themeToggle': 'تبديل نظام الألوان',
+  'gds.state.emptyData': 'لا توجد بيانات متاحة.',
 };

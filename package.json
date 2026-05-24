@@ -6,11 +6,20 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
-    "dev": "npm run dev --workspace=apps/playground"
+    "verify:release": "node scripts/check-release-alignment.mjs && npm run build && npm run lint && npm run test:run",
+    "build": "npm run build --workspace=@gds/theme && npm run build --workspace=@gds/core && npm run build --workspace=@gds/admin && npm run build --workspace=playground",
+    "dev": "npm run dev --workspace=apps/playground",
+    "lint": "npm run lint --workspace=apps/playground",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "jsdom": "^26.1.0",
     "typescript": "^5.4.5",
-    "tsup": "^8.0.2"
+    "tsup": "^8.0.2",
+    "vitest": "^3.2.4"
   }
 }

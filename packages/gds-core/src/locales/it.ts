@@ -85,6 +85,7 @@ export const it = {
   'gds.action.refer': 'Segnala',
   'gds.action.evidence': 'Prova',
   'gds.feedback.saved': 'Salvato',
+  'gds.feedback.error': 'Si è verificato un errore',
   'gds.feedback.added': 'Aggiunto',
   'gds.feedback.edited': 'Modificato',
   'gds.feedback.deleted': 'Eliminato',
@@ -135,4 +136,6 @@ export const it = {
   'gds.feedback.launched': 'Avviato',
   'gds.feedback.drafted': 'Bozza salvata',
   'gds.feedback.referred': 'Segnalato',
+  'gds.aria.themeToggle': 'Cambia schema colori',
+  'gds.state.emptyData': 'Nessun dato disponibile.',
 };

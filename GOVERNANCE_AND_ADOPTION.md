@@ -1,8 +1,8 @@
 # Governance & Adoption
 
 Status: Active SSOT
-Version: 2.2.0
-Last updated: 2026-05-23
+Version: 2.3.0
+Last updated: 2026-05-24
 
 This document defines how products adopt the design system, enforce compliance, and migrate legacy UI. 
 
@@ -17,6 +17,7 @@ Every adopting project must include the following statement in their primary dev
 ### Local Adapter Requirements
 The local adapter must document:
 - The path to the local Theme and Root Provider.
+- The consumed GDS version and package-install path.
 - Local wrapper component locations.
 - Local paths for every required pattern-service contract: shell, page header, product card, metric card, data toolbar, responsive data view, auth shell, article shell, and state block where applicable.
 - Known exceptions and the migration backlog.
@@ -69,6 +70,7 @@ Projects must actively enforce the Mantine-only policy to prevent design-system 
 - **Import Boundaries**: Lint rules forbidding imports from legacy primitive directories.
 - **Forbidden Values**: Lint against raw CSS colors (e.g., `#FF0000`), hard-coded radii, and unapproved size tokens in feature UI.
 - **Static Checks**: CI/CD checks to prevent new legacy patterns.
+- **Release Alignment**: Shared package versions and active project plans must stay aligned with `VERSION`.
 - **Pattern Drift Checks**: Static or review checks that prevent new page-local shell, header, card, metric, data-toolbar, auth, article, or state-block implementations when an approved local contract already exists.
 - **Mode/Readability Checks**: Visual or computed-style checks for dark/light mode contrast, clipped labels, and mixed-mode surfaces on high-traffic pages.
 - **Adapter Inventory Checks**: Periodic verification that required local contract paths still exist and still map to the declared responsibilities.
@@ -77,6 +79,7 @@ Projects must actively enforce the Mantine-only policy to prevent design-system 
 Reviewers must ask:
 - Does this use Mantine primitives or thin wrappers?
 - Could theme defaults solve this instead of local override logic?
+- Does this use the documented server-safe/client-safe import path for the target runtime?
 - Are loading, empty, error, disabled, and success states explicitly handled?
 - Does this use an existing local pattern-service contract instead of inventing a page-local version?
 - Does the component remain keyboard and screen-reader usable?
@@ -88,6 +91,17 @@ Exceptions must be documented in the local project adapter. The note must includ
 - User Impact
 - Removal condition / expiration
 Exceptions must remain narrow. Do not promote a one-off exception into a shared primitive unless documented here first.
+
+Reference policies:
+
+- [THEME_GOVERNANCE.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/THEME_GOVERNANCE.md)
+- [EXCEPTION_SURFACES.md](/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM/EXCEPTION_SURFACES.md)
+
+## 4A. Package Consumption Rule
+
+- Adopt shared packages through the documented install path whenever possible.
+- Vendored or sibling-repo package copies must be treated as temporary transitional strategy, not the desired steady state.
+- CI/Vercel-hosted products should prefer the published/shared package path once available.
 
 ## 5. Cross-Project Pattern Service Adoption
 

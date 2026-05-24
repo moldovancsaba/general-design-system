@@ -85,6 +85,7 @@ export const he = {
   'gds.action.refer': 'הפניה',
   'gds.action.evidence': 'ראיה',
   'gds.feedback.saved': 'נשמר',
+  'gds.feedback.error': 'משהו השתבש',
   'gds.feedback.added': 'נוסף',
   'gds.feedback.edited': 'נערך',
   'gds.feedback.deleted': 'נמחק',
@@ -135,4 +136,6 @@ export const he = {
   'gds.feedback.launched': 'הושק',
   'gds.feedback.drafted': 'נשמר כטיוטה',
   'gds.feedback.referred': 'הופנה',
+  'gds.aria.themeToggle': 'החלף ערכת צבעים',
+  'gds.state.emptyData': 'אין נתונים זמינים.',
 };

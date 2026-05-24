@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Button, ButtonProps } from '@mantine/core';
+import { Button } from '@mantine/core';
+import type { ButtonProps } from '@mantine/core';
 import { useGdsTranslation } from '@gds/theme';
 import { IconCheck, IconX } from '@tabler/icons-react';
-import { GdsVocabulary, SemanticAction } from './vocabulary';
+import { GdsVocabulary } from './vocabulary';
+import type { SemanticAction } from './vocabulary';
 
 export interface SemanticButtonProps extends ButtonProps, Omit<React.ComponentPropsWithoutRef<'button'>, keyof ButtonProps | 'leftSection' | 'children'> {
   action: SemanticAction;
@@ -43,7 +45,7 @@ export function SemanticButton({ action, loading, feedbackState, feedbackText, .
     color = defaultFeedback.color;
   } else if (internalFeedback === 'error') {
     Icon = IconX;
-    label = feedbackText || t('gds.feedback.error', 'Error');
+    label = feedbackText || t('gds.feedback.error', 'Something went wrong');
     color = 'red';
   }
 

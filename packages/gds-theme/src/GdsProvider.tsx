@@ -1,5 +1,7 @@
 import React from 'react';
 import { MantineProvider, DirectionProvider, Box } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
+import { Notifications } from '@mantine/notifications';
 import { gdsTheme } from './theme';
 import { GdsI18nContext } from './i18n';
 
@@ -21,9 +23,12 @@ export function GdsProvider({ children, locale = 'en', messages = {} }: GdsProvi
     <DirectionProvider initialDirection={dir}>
       <GdsI18nContext.Provider value={{ locale, messages }}>
         <MantineProvider theme={gdsTheme} withCssVariables withGlobalClasses defaultColorScheme="light">
-          <Box dir={dir} h="100%">
-            {children}
-          </Box>
+          <ModalsProvider>
+            <Notifications />
+            <Box dir={dir} h="100%">
+              {children}
+            </Box>
+          </ModalsProvider>
         </MantineProvider>
       </GdsI18nContext.Provider>
     </DirectionProvider>

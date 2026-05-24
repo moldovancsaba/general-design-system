@@ -1,8 +1,8 @@
 # Foundation
 
 Status: Active SSOT
-Version: 2.1.0
-Last updated: 2026-05-23
+Version: 2.3.0
+Last updated: 2026-05-24
 
 ## 1. Core Principles
 
@@ -26,6 +26,7 @@ Every product must have one canonical root UI composition utilizing `MantineProv
 - The project must export **one** theme module that acts as the single token authority.
 - The theme must dictate color palettes, typography scales, spacing, radii, breakpoints, and component defaults.
 - Do not build parallel provider systems or duplicate theme behavior. 
+- Theme extension must happen through documented overrides on top of `gdsTheme`, not by forking shared tokens into a second authority.
 
 ### Styling API Order
 When styling Mantine surfaces, enforce this exact order of preference:
@@ -85,3 +86,10 @@ Required shared contract families:
 - loading, empty, error, permission, disabled, and success state blocks
 
 Before a project creates a second implementation of any family, it must check `PATTERN_SERVICE_MODEL.md`, update the GDS if the contract is missing, and document the local adapter path.
+
+## 7. Package Runtime Boundaries
+
+- Shared packages must remain consumable in standard package-manager, CI, and hosted-build flows.
+- Package versions must align to the repository `VERSION`.
+- Server-rendered consumers should prefer documented server-safe subpath exports when they do not need hook-driven interactivity.
+- Interactive consumers may use client-safe entrypoints or root exports where backwards compatibility is required.

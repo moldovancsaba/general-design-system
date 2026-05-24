@@ -1,10 +1,10 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { Box, Title, Text, Stack, Divider } from '@mantine/core';
 
 export interface FormSectionProps {
   title: string;
   description?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   withDivider?: boolean;
 }
 

@@ -1,11 +1,12 @@
-import React from 'react';
-import { Badge, BadgeProps } from '@mantine/core';
+import type { ReactNode } from 'react';
+import { Badge } from '@mantine/core';
+import type { BadgeProps } from '@mantine/core';
 
 export type StatusVariant = 'success' | 'warning' | 'danger' | 'info' | 'neutral';
 
 export interface StatusBadgeProps extends Omit<BadgeProps, 'color'> {
   status: StatusVariant;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const statusColorMap: Record<StatusVariant, string> = {

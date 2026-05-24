@@ -1,25 +1,27 @@
-import React from 'react';
-import { AppShell as MantineAppShell, Burger, Group, Title } from '@mantine/core';
+import type { ReactNode } from 'react';
+import { AppShell as MantineAppShell, Burger, Group, Stack, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ThemeToggle } from '@gds/core';
 
 export interface AppShellProps {
   logoText?: string;
-  navLinks: React.ReactNode;
-  headerActions?: React.ReactNode;
-  children: React.ReactNode;
+  navLinks: ReactNode;
+  headerActions?: ReactNode;
+  mobileNavigation?: ReactNode;
+  children: ReactNode;
 }
 
 /**
  * AppShell provides the standard GDS application layout.
  * It strictly controls the header, sidebar, and main content area.
  */
-export function AppShell({ logoText = 'GDS', navLinks, headerActions, children }: AppShellProps) {
+export function AppShell({ logoText = 'GDS', navLinks, headerActions, mobileNavigation, children }: AppShellProps) {
   const [opened, { toggle }] = useDisclosure();
 
   return (
     <MantineAppShell
       header={{ height: 60 }}
+      footer={mobileNavigation ? { height: 68 } : undefined}
       navbar={{
         width: 250,
         breakpoint: 'sm',
@@ -41,8 +43,18 @@ export function AppShell({ logoText = 'GDS', navLinks, headerActions, children }
       </MantineAppShell.Header>
 
       <MantineAppShell.Navbar p="md">
-        {navLinks}
+        <Stack gap="xs">
+          {navLinks}
+        </Stack>
       </MantineAppShell.Navbar>
+
+      {mobileNavigation ? (
+        <MantineAppShell.Footer>
+          <Group h="100%" px="md" justify="space-around" wrap="nowrap">
+            {mobileNavigation}
+          </Group>
+        </MantineAppShell.Footer>
+      ) : null}
 
       <MantineAppShell.Main>
         {children}

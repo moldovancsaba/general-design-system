@@ -81,7 +81,7 @@ function PlaygroundContent() {
                 <PageHeader 
                   title="GDS Principles & Guidelines" 
                   description="The General Design System (GDS) is built on strict ubiquitous language and semantic consistency."
-                  actions={<SemanticButton action="start" size="md" />}
+                  primaryAction={<SemanticButton action="start" size="md" />}
                 />
                 <StatsStrip 
                   stats={[
@@ -121,7 +121,7 @@ function PlaygroundContent() {
                 <PageHeader 
                   title="Component Guidelines" 
                   description="Learn how to use @gds/admin layout and structural components correctly."
-                  actions={<SemanticButton action="add" size="md" />}
+                  primaryAction={<SemanticButton action="add" size="md" />}
                 />
                 <FormSection title="PageHeader Component" description="Use PageHeader at the very top of a new route view. It establishes page context and holds primary actions.">
                   <Stack gap="md">

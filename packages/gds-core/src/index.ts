@@ -17,3 +17,4 @@ export * from './UploadDropzone';
 export * from './MediaCard';
 export * from './AccessSummary';
 export * from './locales';
+export * from './FormField';

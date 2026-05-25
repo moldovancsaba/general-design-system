@@ -1,0 +1,16 @@
+import type { ReactNode } from 'react';
+import { GdsColorSchemeScript } from '@gds/theme/server';
+import Providers from './providers';
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <GdsColorSchemeScript />
+      </head>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
+}

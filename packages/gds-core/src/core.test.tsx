@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithGds } from '../../../test-utils/render';
 import { AccessSummary } from './AccessSummary';
+import { AccentPanel } from './AccentPanel';
 import { ArticleShell } from './ArticleShell';
 import { AuthShell } from './AuthShell';
 import { ConfirmDialog } from './ConfirmDialog';
@@ -16,6 +17,7 @@ import { StateBlock } from './StateBlock';
 import { StatusBadge } from './StatusBadge';
 import { ThemeToggle } from './ThemeToggle';
 import { UploadDropzone } from './UploadDropzone';
+import { getSemanticActionLabel } from './semanticLabels';
 
 describe('@gds/core', () => {
   it('renders semantic button labels from translation messages', () => {
@@ -105,6 +107,17 @@ describe('@gds/core', () => {
     expect(screen.getByText('No reports yet')).toBeInTheDocument();
     expect(screen.getByText('Partner access')).toBeInTheDocument();
     expect(screen.getByText('Scope: Northern region')).toBeInTheDocument();
+  });
+
+  it('renders accent panels with readable semantic structure', () => {
+    renderWithGds(
+      <AccentPanel tone="green" title="Deployment ready">
+        <p>All checks passed and the package is safe to publish.</p>
+      </AccentPanel>,
+    );
+
+    expect(screen.getByText('Deployment ready')).toBeInTheDocument();
+    expect(screen.getByText('All checks passed and the package is safe to publish.')).toBeInTheDocument();
   });
 
   it('renders the public shell and toolbar contracts', () => {
@@ -214,5 +227,11 @@ describe('@gds/core', () => {
 
     expect(onFilesSelected).toHaveBeenCalledTimes(1);
     expect(onFilesSelected.mock.calls[0][0][0].name).toBe('first.txt');
+  });
+
+  it('resolves semantic action labels on the server without hooks', () => {
+    expect(getSemanticActionLabel('save', 'hu')).toBe('Mentés');
+    expect(getSemanticActionLabel('confirm', 'de')).toBe('Bestätigen');
+    expect(getSemanticActionLabel('export', 'unknown-locale')).toBe('Export');
   });
 });

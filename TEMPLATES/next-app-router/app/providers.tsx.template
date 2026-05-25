@@ -1,0 +1,8 @@
+'use client';
+
+import type { ReactNode } from 'react';
+import { GdsProvider } from '@gds/theme/client';
+
+export default function Providers({ children }: { children: ReactNode }) {
+  return <GdsProvider>{children}</GdsProvider>;
+}

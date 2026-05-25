@@ -1,5 +1,7 @@
 export * from './icons';
 export * from './vocabulary';
+export * from './semanticLabels';
+export * from './AccentPanel';
 export * from './StatusBadge';
 export * from './EmptyState';
 export * from './MetricCard';

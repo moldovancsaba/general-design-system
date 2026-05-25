@@ -1,0 +1,44 @@
+{
+  "gdsVersion": "2.4.0",
+  "peerRanges": {
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0",
+    "@mantine/core": "^7.9.0",
+    "@mantine/hooks": "^7.9.0",
+    "@mantine/modals": "^7.9.0",
+    "@mantine/notifications": "^7.9.0",
+    "@tabler/icons-react": "^3.5.0"
+  },
+  "supportedLines": [
+    {
+      "surface": "Vite consumer runtime",
+      "react": "18.x",
+      "mantine": "7.9.x",
+      "status": "supported",
+      "validatedBy": [
+        "workspace-playground-build",
+        "package-smoke-import"
+      ]
+    },
+    {
+      "surface": "Next.js App Router package consumption",
+      "react": "18.x",
+      "mantine": "7.9.x",
+      "status": "supported",
+      "validatedBy": [
+        "server-entrypoint-import",
+        "client-entrypoint-import",
+        "template-contract-review"
+      ]
+    },
+    {
+      "surface": "React 19 package peer line",
+      "react": "19.x",
+      "mantine": "7.9.x",
+      "status": "experimental",
+      "validatedBy": [
+        "peer-range-only"
+      ]
+    }
+  ]
+}

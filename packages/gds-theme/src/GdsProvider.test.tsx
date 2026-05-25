@@ -5,6 +5,8 @@ import { notifications } from '@mantine/notifications';
 import { openConfirmModal } from '@mantine/modals';
 import { Button } from '@mantine/core';
 import { renderWithGds } from '../../../test-utils/render';
+import { getGdsAccentSurfaceStyles } from './accentSurfaces';
+import { GdsColorSchemeScript } from './GdsColorSchemeScript';
 import { gdsTheme, withGdsMotion } from './theme';
 
 function ProviderConsumer() {
@@ -53,5 +55,20 @@ describe('GdsProvider', () => {
     expect(motionTheme.components.Card?.styles?.root).toMatchObject({
       transition: 'transform 150ms ease, box-shadow 150ms ease',
     });
+  });
+
+  it('exposes color-scheme-safe accent surface tokens', () => {
+    const subtle = getGdsAccentSurfaceStyles('violet', 'subtle');
+    const outlined = getGdsAccentSurfaceStyles('violet', 'soft-outline');
+
+    expect(subtle.background).toContain('light-dark');
+    expect(subtle.borderColor).toContain('light-dark');
+    expect(subtle.mutedColor).toContain('var(--mantine-color');
+    expect(outlined.background).not.toEqual(subtle.background);
+  });
+
+  it('exports a canonical auto color-scheme bootstrap script', () => {
+    const element = GdsColorSchemeScript({});
+    expect(element.props.defaultColorScheme).toBe('auto');
   });
 });

@@ -1,19 +1,22 @@
 # Compatibility & Releases
 
 Status: Active SSOT
-Version: 2.3.1
+Version: 2.4.0
 Last updated: 2026-05-25
 
 This document defines the supported package/runtime contract for `@gds/theme`, `@gds/core`, and `@gds/admin`.
 
 ## Supported matrix
 
-| Surface | Supported now | Notes |
+Machine-readable source of truth: [COMPATIBILITY_MATRIX.json](./COMPATIBILITY_MATRIX.json)
+
+| Surface | Status | Notes |
 |---|---|---|
-| Mantine | `^7.9.0` | Current build and test target |
-| React | `^18.2.0`, `^19.0.0` | React 19 compatibility is declared at the peer layer; package behavior is still validated primarily on React 18 in this repo |
-| Next.js | App Router and Pages Router consumers | Use server-safe/client-safe subpath imports where applicable |
-| Vite | Supported | Playground and static/Multi-Page App consumers remain valid |
+| Mantine `7.9.x` | Supported | Current build and test target |
+| React `18.x` | Supported | The actively validated consumer line |
+| React `19.x` | Experimental | Allowed by peers; not yet validated as a first-class consumer line in this repo |
+| Next.js App Router package consumption | Supported | Use the documented server/client split and canonical provider template |
+| Vite consumer runtime | Supported | Playground-backed and package-smoke-validated |
 
 ## Install contract
 
@@ -30,6 +33,25 @@ Every package now exposes:
 - root export: backwards-compatible mixed surface
 - `./client`: client-safe entrypoint for interactive hooks/components
 - `./server`: server-safe entrypoint for theme data and non-hook structural components
+
+Root exports remain backwards-compatible, but production consumers should prefer the explicit `server` and `client` entrypoints so import intent remains obvious during reviews and release verification.
+
+## Accent surface contract
+
+Use semantic accent surfaces instead of raw `bg="*.0"` panel styling for public, auth, operator, and docs surfaces that need emphasized grouping.
+
+Canonical contract:
+
+- use `AccentPanel` from `@gds/core/server` or `@gds/core/client`
+- choose a supported tone: `gray`, `violet`, `green`, `red`, `amber`, `blue`
+- rely on GDS-managed light/dark background and border behavior
+- avoid page-local `light-dark(...)` copies for repeated accent surfaces
+
+Do not:
+
+- use raw `bg="violet.0"` or similar shade-based panel backgrounds on product pages
+- combine dimmed text with ad hoc accent backgrounds outside the GDS surface contract
+- introduce decorative shadows to separate accent surfaces from the page
 
 Recommended usage:
 
@@ -48,7 +70,7 @@ Use server-safe entrypoints in layouts, metadata builders, and non-interactive c
 
 ```ts
 import { gdsTheme, extendGdsTheme } from '@gds/theme/server';
-import { PageHeader, AuthShell } from '@gds/core/server';
+import { AccentPanel, PageHeader, AuthShell } from '@gds/core/server';
 import { WorkspaceHeader } from '@gds/admin/server';
 ```
 
@@ -68,12 +90,15 @@ import { AppShell, ResponsiveDataView } from '@gds/admin/client';
 
 ```tsx
 // app/layout.tsx
-import { gdsTheme } from '@gds/theme/server';
+import { GdsColorSchemeScript } from '@gds/theme/server';
 import Providers from './providers';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <GdsColorSchemeScript />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
@@ -94,6 +119,49 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 ```
 
 This is the intended stable consumer path for products that want direct package adoption without rebuilding GDS internals locally.
+
+See also:
+
+- [TEMPLATES/next-app-router](./TEMPLATES/next-app-router)
+- [TEMPLATES/vite](./TEMPLATES/vite)
+
+## Canonical Vite consumer path
+
+```tsx
+// src/main.tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import { GdsProvider } from '@gds/theme/client';
+import App from './App';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <GdsProvider>
+      <App />
+    </GdsProvider>
+  </React.StrictMode>,
+);
+```
+
+## Release verification contract
+
+`npm run verify:release` now performs:
+
+1. workspace build
+2. version and peer-range alignment against `VERSION` and `COMPATIBILITY_MATRIX.json`
+3. artifact and export-map verification for every published package
+4. clean smoke-consumer install/import validation from packed tarballs
+5. workspace lint and tests
+
+The command must fail on:
+
+- version drift
+- internal peer drift
+- missing `dist` artifacts
+- broken `exports` targets
+- smoke-consumer import/render failure
 
 ## Versioning policy
 
@@ -124,3 +192,4 @@ Adopting products are expected to:
 - record the consumed version in their local adapter doc
 - rerun build, lint, and test/compliance checks when upgrading
 - review shell, theme, and state-surface changes for regressions before promoting to production
+- adopt the canonical root template instead of rebuilding provider composition locally

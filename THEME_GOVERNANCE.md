@@ -1,8 +1,8 @@
 # Theme Governance
 
 Status: Active SSOT
-Version: 2.3.0
-Last updated: 2026-05-24
+Version: 2.4.0
+Last updated: 2026-05-25
 
 This document defines how products may extend `gdsTheme` without creating a second design authority.
 
@@ -46,3 +46,10 @@ Recommended model:
 - a product may default to dark when that is part of its deliberate shell identity
 - dark products must still provide readable tokens for text, paper, card, alert, table, and link surfaces
 - mixed-mode islands remain exceptions, not the default layout strategy
+
+## Accent surface rule
+
+- shared accent surfaces must resolve through GDS-managed semantic tokens or `AccentPanel`
+- repeated accent panels may not be implemented with raw shade backgrounds in feature code
+- product overrides may choose a different primary color, but must preserve accent-surface readability in light, dark, and `auto` color-scheme flows
+- decorative shadow stacks remain prohibited on accent surfaces; separation must come from surface contrast and border treatment

@@ -1,0 +1,4 @@
+import { GdsProvider } from '@gds/theme/client';
+import { AccentPanel, PageHeader } from '@gds/core/server';
+
+export { AccentPanel, GdsProvider, PageHeader };

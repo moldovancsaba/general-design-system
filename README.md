@@ -1,8 +1,8 @@
 # General Design System
 
 Status: Active SSOT
-Version: 2.3.0
-Last updated: 2026-05-24
+Version: 2.4.0
+Last updated: 2026-05-25
 
 `/Users/Shared/Projects/GENERAL_DESIGN_SYSTEM` is the cross-project single source of truth for design, UI, and UX.
 
@@ -79,6 +79,8 @@ The shared package validation path is now expected to cover:
 - i18n-safe shared copy
 - GitHub Actions quality gates before deployment
 - version and project-plan alignment for active adopter releases
+- semantic accent surfaces and server/client bootstrap contracts
+- clean smoke-consumer install/import validation from packed release artifacts
 
 ## Non-Negotiable Rules
 

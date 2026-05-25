@@ -1,4 +1,6 @@
 import { DEFAULT_THEME, createTheme, mergeMantineTheme, mergeThemeOverrides, type MantineTheme, type MantineThemeOverride } from '@mantine/core';
+export type { AccentPanelVariant, AccentTone, GdsAccentSurfaceStyles } from './accentSurfaces';
+export { getGdsAccentSurfaceStyles } from './accentSurfaces';
 
 const baseTheme: MantineTheme = mergeMantineTheme(DEFAULT_THEME, createTheme({
   primaryColor: 'violet',
@@ -60,6 +62,12 @@ const baseTheme: MantineTheme = mergeMantineTheme(DEFAULT_THEME, createTheme({
       defaultProps: {
         radius: 'xl',
       },
+    },
+  },
+  other: {
+    gdsAccentSurfaces: {
+      tones: ['gray', 'violet', 'green', 'red', 'amber', 'blue'],
+      variants: ['subtle', 'soft-outline'],
     },
   },
 }));

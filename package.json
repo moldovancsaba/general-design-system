@@ -6,7 +6,7 @@
     "apps/*"
   ],
   "scripts": {
-    "verify:release": "node scripts/check-release-alignment.mjs && npm run build && npm run lint && npm run test:run",
+    "verify:release": "npm run build && node scripts/verify-release.mjs && npm run lint && npm run test:run",
     "build": "npm run build --workspace=@gds/theme && npm run build --workspace=@gds/core && npm run build --workspace=@gds/admin && npm run build --workspace=playground",
     "dev": "npm run dev --workspace=apps/playground",
     "lint": "npm run lint --workspace=apps/playground",

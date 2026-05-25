@@ -2,6 +2,15 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 2.4.0 - 2026-05-25
+
+- Added a machine-readable compatibility source of truth in `COMPATIBILITY_MATRIX.json` and aligned the repository `VERSION` plus publishable package versions to `2.4.0`.
+- Added `GdsColorSchemeScript`, `defaultColorScheme="auto"` provider defaults, and documented canonical Next.js App Router and Vite root templates for consumer adoption.
+- Added the shared accent-surface contract through `getGdsAccentSurfaceStyles()` in `@gds/theme` and `AccentPanel` in `@gds/core` so light/dark emphasis panels no longer require app-local `light-dark(...)` copies.
+- Added the server-safe `getSemanticActionLabel()` helper to `@gds/core` for static and SSR consumers that need semantic button copy without client hooks.
+- Replaced the old release-alignment script with a production-grade release verifier that checks version/peer alignment, artifact/export integrity, and a clean packed-package smoke consumer import/render path.
+- Expanded compatibility, foundation, theme-governance, README, and template docs to cover semantic accent surfaces, canonical provider composition, and release validation expectations.
+
 ## 2.3.1 - 2026-05-25
 
 - Changed `@gds/core` `PageHeader` eyebrow styling to a neutral default, removing forced uppercase and decorative tracking from the canonical contract.

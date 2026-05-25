@@ -9,6 +9,7 @@ import { ConfirmDialog } from './ConfirmDialog';
 import { DataToolbar } from './DataToolbar';
 import { EmptyState } from './EmptyState';
 import { MetricCard } from './MetricCard';
+import { PageHeader } from './PageHeader';
 import { PublicShell } from './PublicShell';
 import { SemanticButton } from './SemanticButton';
 import { StateBlock } from './StateBlock';
@@ -154,6 +155,23 @@ describe('@gds/core', () => {
     expect(screen.getByRole('button', { name: 'Continue' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Install the design system' })).toBeInTheDocument();
     expect(screen.getByText('5 min read')).toBeInTheDocument();
+  });
+
+  it('renders neutral page-header eyebrows by default and supports opt-in ornamental styling', () => {
+    const { rerender } = renderWithGds(
+      <PageHeader title="Release notes" eyebrow="Docs" />,
+    );
+
+    const neutralEyebrow = screen.getByText('Docs');
+    expect(neutralEyebrow).toBeInTheDocument();
+    expect(neutralEyebrow.getAttribute('style') ?? '').not.toContain('letter-spacing');
+
+    rerender(
+      <PageHeader title="Release notes" eyebrow="Docs" eyebrowVariant="ornamental" />,
+    );
+
+    const ornamentalEyebrow = screen.getByText('Docs');
+    expect(ornamentalEyebrow.getAttribute('style') ?? '').toContain('letter-spacing');
   });
 
   it('renders status badges with a light semantic variant', () => {

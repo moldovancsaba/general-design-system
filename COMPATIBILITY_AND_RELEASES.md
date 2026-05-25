@@ -1,8 +1,8 @@
 # Compatibility & Releases
 
 Status: Active SSOT
-Version: 2.3.0
-Last updated: 2026-05-24
+Version: 2.3.1
+Last updated: 2026-05-25
 
 This document defines the supported package/runtime contract for `@gds/theme`, `@gds/core`, and `@gds/admin`.
 
@@ -34,8 +34,66 @@ Every package now exposes:
 Recommended usage:
 
 - use `@gds/theme/server` for `gdsTheme` and `extendGdsTheme`
+- use `@gds/theme/server` `withGdsMotion` only when a product explicitly opts into shared motion defaults
 - use `@gds/core/server` or `@gds/admin/server` when a server-rendered layout only needs structural primitives
 - use `@gds/*/client` for hook-driven or clearly interactive surfaces
+
+## Next.js App Router consumer path
+
+Recommended production split for App Router consumers:
+
+### Server files
+
+Use server-safe entrypoints in layouts, metadata builders, and non-interactive composition:
+
+```ts
+import { gdsTheme, extendGdsTheme } from '@gds/theme/server';
+import { PageHeader, AuthShell } from '@gds/core/server';
+import { WorkspaceHeader } from '@gds/admin/server';
+```
+
+### Client files
+
+Use client entrypoints for providers and interactive components:
+
+```tsx
+'use client';
+
+import { GdsProvider } from '@gds/theme/client';
+import { SemanticButton, ThemeToggle } from '@gds/core/client';
+import { AppShell, ResponsiveDataView } from '@gds/admin/client';
+```
+
+### Recommended root split
+
+```tsx
+// app/layout.tsx
+import { gdsTheme } from '@gds/theme/server';
+import Providers from './providers';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
+}
+```
+
+```tsx
+// app/providers.tsx
+'use client';
+
+import { GdsProvider } from '@gds/theme/client';
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  return <GdsProvider>{children}</GdsProvider>;
+}
+```
+
+This is the intended stable consumer path for products that want direct package adoption without rebuilding GDS internals locally.
 
 ## Versioning policy
 

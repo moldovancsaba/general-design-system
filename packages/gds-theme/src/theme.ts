@@ -1,4 +1,4 @@
-import { DEFAULT_THEME, createTheme, mergeMantineTheme, type MantineTheme, type MantineThemeOverride } from '@mantine/core';
+import { DEFAULT_THEME, createTheme, mergeMantineTheme, mergeThemeOverrides, type MantineTheme, type MantineThemeOverride } from '@mantine/core';
 
 const baseTheme: MantineTheme = mergeMantineTheme(DEFAULT_THEME, createTheme({
   primaryColor: 'violet',
@@ -26,19 +26,6 @@ const baseTheme: MantineTheme = mergeMantineTheme(DEFAULT_THEME, createTheme({
         size: 'sm',
         fw: 600,
       },
-      styles: {
-        root: {
-          transition: 'transform 150ms ease, filter 120ms ease',
-          '&:hover': {
-            transform: 'translateY(-1px)',
-            filter: 'brightness(1.05)',
-          },
-          '&:active': {
-            transform: 'translateY(0)',
-            filter: 'brightness(0.95)',
-          },
-        }
-      }
     },
     Card: {
       defaultProps: {
@@ -49,7 +36,6 @@ const baseTheme: MantineTheme = mergeMantineTheme(DEFAULT_THEME, createTheme({
       styles: {
         root: {
           backgroundColor: 'var(--mantine-color-body)',
-          transition: 'transform 150ms ease, box-shadow 150ms ease',
         }
       }
     },
@@ -82,4 +68,38 @@ export const gdsTheme = baseTheme;
 
 export function extendGdsTheme(overrides: MantineThemeOverride = {}) {
   return mergeMantineTheme(baseTheme, overrides);
+}
+
+export function withGdsMotion(overrides: MantineThemeOverride = {}) {
+  return extendGdsTheme(
+    mergeThemeOverrides(
+      {
+        components: {
+          Button: {
+            styles: {
+              root: {
+                transition: 'transform 150ms ease, filter 120ms ease',
+                '&:hover': {
+                  transform: 'translateY(-1px)',
+                  filter: 'brightness(1.05)',
+                },
+                '&:active': {
+                  transform: 'translateY(0)',
+                  filter: 'brightness(0.95)',
+                },
+              },
+            },
+          },
+          Card: {
+            styles: {
+              root: {
+                transition: 'transform 150ms ease, box-shadow 150ms ease',
+              },
+            },
+          },
+        },
+      },
+      overrides,
+    ),
+  );
 }

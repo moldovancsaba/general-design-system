@@ -2,6 +2,14 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 2.3.1 - 2026-05-25
+
+- Changed `@gds/core` `PageHeader` eyebrow styling to a neutral default, removing forced uppercase and decorative tracking from the canonical contract.
+- Added opt-in `eyebrowVariant="ornamental"` for products that explicitly want decorative eyebrow styling.
+- Removed forced hover motion and transform transitions from the canonical `@gds/theme` base theme.
+- Added `withGdsMotion()` as an explicit opt-in theme helper for products that want shared motion styling.
+- Expanded `COMPATIBILITY_AND_RELEASES.md` with an explicit Next.js App Router consumer path for `server` and `client` package entrypoints.
+
 ## 2.3.0 - 2026-05-24
 
 - Added publish-ready package metadata and explicit `client` / `server` subpath exports for `@gds/theme`, `@gds/core`, and `@gds/admin`.

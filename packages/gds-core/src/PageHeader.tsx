@@ -1,19 +1,33 @@
 import React from 'react';
 import { Box, Group, Stack, Text, Title } from '@mantine/core';
 
+export type PageHeaderEyebrowVariant = 'neutral' | 'ornamental';
+
 export interface PageHeaderProps {
   title: string;
   description?: string;
   eyebrow?: string;
   actions?: React.ReactNode;
+  eyebrowVariant?: PageHeaderEyebrowVariant;
 }
 
-export function PageHeader({ title, description, eyebrow, actions }: PageHeaderProps) {
+export function PageHeader({
+  title,
+  description,
+  eyebrow,
+  actions,
+  eyebrowVariant = 'neutral',
+}: PageHeaderProps) {
+  const eyebrowProps =
+    eyebrowVariant === 'ornamental'
+      ? { tt: 'uppercase' as const, style: { letterSpacing: '0.12em' } }
+      : {};
+
   return (
     <Group justify="space-between" align="flex-start" gap="lg" wrap="wrap">
       <Stack gap="xs">
         {eyebrow && (
-          <Text size="xs" fw={700} tt="uppercase" c="dimmed" style={{ letterSpacing: '0.12em' }}>
+          <Text size="xs" fw={700} c="dimmed" {...eyebrowProps}>
             {eyebrow}
           </Text>
         )}

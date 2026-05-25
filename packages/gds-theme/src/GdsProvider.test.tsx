@@ -5,6 +5,7 @@ import { notifications } from '@mantine/notifications';
 import { openConfirmModal } from '@mantine/modals';
 import { Button } from '@mantine/core';
 import { renderWithGds } from '../../../test-utils/render';
+import { gdsTheme, withGdsMotion } from './theme';
 
 function ProviderConsumer() {
   return (
@@ -37,5 +38,20 @@ describe('GdsProvider', () => {
     const { container } = renderWithGds(<div>RTL child</div>, { locale: 'ar' });
 
     expect(container.querySelector('[dir="rtl"]')).toBeInTheDocument();
+  });
+
+  it('keeps the canonical base theme motion-safe and exposes opt-in motion overrides', () => {
+    expect(gdsTheme.components.Button?.styles).toBeUndefined();
+    expect(gdsTheme.components.Card?.styles?.root).toEqual({
+      backgroundColor: 'var(--mantine-color-body)',
+    });
+
+    const motionTheme = withGdsMotion();
+    expect(motionTheme.components.Button?.styles?.root).toMatchObject({
+      transition: 'transform 150ms ease, filter 120ms ease',
+    });
+    expect(motionTheme.components.Card?.styles?.root).toMatchObject({
+      transition: 'transform 150ms ease, box-shadow 150ms ease',
+    });
   });
 });

@@ -137,5 +137,8 @@ export const he = {
   'gds.feedback.drafted': 'נשמר כטיוטה',
   'gds.feedback.referred': 'הופנה',
   'gds.aria.themeToggle': 'החלף ערכת צבעים',
+  'gds.navigation.primary': "ראשי",
+  'gds.navigation.more': "עוד",
+  'gds.reference.openSection': "פתיחת מקטע",
   'gds.state.emptyData': 'אין נתונים זמינים.',
 };

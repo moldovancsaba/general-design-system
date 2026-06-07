@@ -98,6 +98,7 @@ type ExplorerCopy = Omit<typeof referenceThemeExplorerCopy.en, 'presetLabels' | 
   presetSummaries: Partial<Record<ThemePresetId, string>>;
 };
 const fallbackExplorerCopy: ExplorerCopy = referenceThemeExplorerCopy.en;
+const fallbackExplorerLocale = Object.keys(referenceThemeExplorerCopy)[0] ?? 'en';
 
 function hasCompleteCopyValue(referenceValue: unknown, candidateValue: unknown): boolean {
   if (Array.isArray(referenceValue)) {
@@ -147,6 +148,10 @@ function resolveExplorerCopy(locale: string): ExplorerCopy {
       ...localeOverrideCopy.presetSummaries,
     },
   } as Partial<ExplorerCopy>;
+
+  if (locale !== fallbackExplorerLocale && Object.keys(mergedCopy).length > 0) {
+    return mergedCopy as ExplorerCopy;
+  }
 
   if (!hasCompleteExplorerCopy(mergedCopy)) {
     return fallbackExplorerCopy;

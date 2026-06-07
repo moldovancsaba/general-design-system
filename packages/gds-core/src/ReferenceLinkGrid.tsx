@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Anchor, Badge, Group, Paper, SimpleGrid, Stack, Text, Title } from '@mantine/core';
+import { useGdsTranslation } from '@doneisbetter/gds-theme';
 
 export interface ReferenceLinkGridItem {
   id: string;
@@ -19,6 +20,8 @@ export function ReferenceLinkGrid({
   items,
   columns = 3,
 }: ReferenceLinkGridProps) {
+  const { t } = useGdsTranslation();
+
   return (
     <SimpleGrid cols={{ base: 1, sm: Math.min(columns, 2), xl: columns }} spacing="lg" miw={0}>
       {items.map((item) => (
@@ -51,7 +54,7 @@ export function ReferenceLinkGrid({
               </Text>
             ) : null}
             <Anchor href={item.href} fw={600}>
-              Open section
+              {t('gds.reference.openSection', 'Open section')}
             </Anchor>
           </Stack>
         </Paper>

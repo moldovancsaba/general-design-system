@@ -137,5 +137,8 @@ export const es = {
   'gds.feedback.drafted': 'Guardado como borrador',
   'gds.feedback.referred': 'Referido',
   'gds.aria.themeToggle': 'Alternar esquema de color',
+  'gds.navigation.primary': "Principal",
+  'gds.navigation.more': "Más",
+  'gds.reference.openSection': "Abrir sección",
   'gds.state.emptyData': 'No hay datos disponibles.',
 };

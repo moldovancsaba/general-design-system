@@ -137,5 +137,8 @@ export const ru = {
   'gds.feedback.drafted': 'Черновик создан',
   'gds.feedback.referred': 'Направлено',
   'gds.aria.themeToggle': 'Переключить цветовую схему',
+  'gds.navigation.primary': "Основное",
+  'gds.navigation.more': "Ещё",
+  'gds.reference.openSection': "Открыть раздел",
   'gds.state.emptyData': 'Нет доступных данных.',
 };

@@ -3,8 +3,10 @@ import { createElement } from 'react';
 import App from './App';
 import { getFullCopyLocalesForRoute, hasFullRouteLocalization } from './locale-coverage';
 
+const allLocaleIds = ['en', 'de', 'fr', 'it', 'es', 'ru', 'he', 'ar', 'hu'];
+
 describe('playground route locale coverage', () => {
-  it('allows full-copy locales on covered routes and keeps other routes English-default', () => {
+  it('allows full-copy locales on every public route', () => {
     expect(hasFullRouteLocalization('/install', 'en')).toBe(true);
     expect(hasFullRouteLocalization('/install', 'de')).toBe(true);
     expect(hasFullRouteLocalization('/install', 'fr')).toBe(true);
@@ -13,39 +15,27 @@ describe('playground route locale coverage', () => {
     expect(hasFullRouteLocalization('/install', 'it')).toBe(true);
     expect(hasFullRouteLocalization('/install', 'ru')).toBe(true);
     expect(hasFullRouteLocalization('/', 'hu')).toBe(true);
-
-    expect(hasFullRouteLocalization('/api', 'de')).toBe(false);
-    expect(hasFullRouteLocalization('/maturity', 'es')).toBe(false);
-    expect(hasFullRouteLocalization('/use-cases', 'hu')).toBe(false);
-    expect(hasFullRouteLocalization('/coverage', 'de')).toBe(false);
-    expect(hasFullRouteLocalization('/patterns', 'fr')).toBe(false);
-    expect(hasFullRouteLocalization('/governance', 'fr')).toBe(false);
-    expect(hasFullRouteLocalization('/governance', 'ar')).toBe(false);
-    expect(hasFullRouteLocalization('/themes', 'de')).toBe(false);
-    expect(hasFullRouteLocalization('/themes', 'he')).toBe(false);
-    expect(hasFullRouteLocalization('/live-demos', 'ru')).toBe(false);
-    expect(hasFullRouteLocalization('/request-feature', 'it')).toBe(false);
     expect(hasFullRouteLocalization('/install', 'pl')).toBe(false);
-    expect(hasFullRouteLocalization('/patterns/public', 'de')).toBe(false);
+    expect(hasFullRouteLocalization('/patterns/public', 'de')).toBe(true);
     expect(hasFullRouteLocalization('/patterns/public', 'en')).toBe(true);
   });
 
   it('returns the full-copy locale list for each route', () => {
     expect(getFullCopyLocalesForRoute('/').includes('es')).toBe(true);
     expect(getFullCopyLocalesForRoute('/install')).toContain('hu');
-    expect(getFullCopyLocalesForRoute('/api')).toEqual(['en']);
-    expect(getFullCopyLocalesForRoute('/maturity')).toEqual(['en']);
-    expect(getFullCopyLocalesForRoute('/use-cases')).toEqual(['en']);
-    expect(getFullCopyLocalesForRoute('/coverage')).toEqual(['en']);
-    expect(getFullCopyLocalesForRoute('/patterns')).toEqual(['en']);
-    expect(getFullCopyLocalesForRoute('/governance')).toEqual(['en']);
-    expect(getFullCopyLocalesForRoute('/themes')).toEqual(['en']);
-    expect(getFullCopyLocalesForRoute('/live-demos')).toEqual(['en']);
-    expect(getFullCopyLocalesForRoute('/request-feature')).toEqual(['en']);
-    expect(getFullCopyLocalesForRoute('/patterns/public')).toEqual(['en']);
+    expect(getFullCopyLocalesForRoute('/api')).toEqual(allLocaleIds);
+    expect(getFullCopyLocalesForRoute('/maturity')).toEqual(allLocaleIds);
+    expect(getFullCopyLocalesForRoute('/use-cases')).toEqual(allLocaleIds);
+    expect(getFullCopyLocalesForRoute('/coverage')).toEqual(allLocaleIds);
+    expect(getFullCopyLocalesForRoute('/patterns')).toEqual(allLocaleIds);
+    expect(getFullCopyLocalesForRoute('/governance')).toEqual(allLocaleIds);
+    expect(getFullCopyLocalesForRoute('/themes')).toEqual(allLocaleIds);
+    expect(getFullCopyLocalesForRoute('/live-demos')).toEqual(allLocaleIds);
+    expect(getFullCopyLocalesForRoute('/request-feature')).toEqual(allLocaleIds);
+    expect(getFullCopyLocalesForRoute('/patterns/public')).toEqual(allLocaleIds);
   });
 
-  it('falls back to English on routes without complete translated copy', async () => {
+  it('keeps the selected locale on every public route', async () => {
     window.history.pushState({}, '', '/general-design-system/');
 
     render(createElement(App));
@@ -57,9 +47,8 @@ describe('playground route locale coverage', () => {
     fireEvent.click(screen.getByRole('link', { name: 'Témák' }));
 
     await waitFor(() => expect(window.location.pathname).toBe('/general-design-system/themes'));
-    await waitFor(() => expect(localeSelect.value).toBe('en'));
+    await waitFor(() => expect(localeSelect.value).toBe('hu'));
 
-    expect(Array.from(localeSelect.options).map((option) => option.value)).toEqual(['en']);
-    expect(screen.getByText(/Only routes listed as fully localized/)).toBeTruthy();
+    expect(Array.from(localeSelect.options).map((option) => option.value)).toEqual(allLocaleIds);
   });
 });

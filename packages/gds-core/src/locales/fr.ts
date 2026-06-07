@@ -137,5 +137,8 @@ export const fr = {
   'gds.feedback.drafted': 'Rédigé',
   'gds.feedback.referred': 'Référé',
   'gds.aria.themeToggle': 'Basculer le thème',
+  'gds.navigation.primary': "Principal",
+  'gds.navigation.more': "Plus",
+  'gds.reference.openSection': "Ouvrir la section",
   'gds.state.emptyData': 'Aucune donnée disponible.',
 };

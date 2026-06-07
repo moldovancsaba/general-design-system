@@ -137,5 +137,8 @@ export const hu = {
   'gds.feedback.drafted': 'Létrehozva',
   'gds.feedback.referred': 'Ajánlva',
   'gds.aria.themeToggle': 'Színséma váltása',
+  'gds.navigation.primary': "Elsődleges",
+  'gds.navigation.more': "További",
+  'gds.reference.openSection': "Szakasz megnyitása",
   'gds.state.emptyData': 'Nincs elérhető adat.',
 };

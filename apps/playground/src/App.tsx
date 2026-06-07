@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import {
   GdsProvider,
@@ -28,6 +28,7 @@ import {
   getSiteLocaleOptions,
   getSiteRouteLabel,
 } from './site-copy';
+import { translateSiteDom } from './site-phrase-translation';
 
 const PatternsIndexPage = lazy(async () => {
   const module = await import('./pattern-pages');
@@ -158,7 +159,10 @@ function RouteFallback() {
 }
 
 function PlaygroundContent() {
-  const [locale, setLocale] = useState<string>('en');
+  const [locale, setLocale] = useState<string>(() => {
+    const requestedLocale = new URLSearchParams(window.location.search).get('locale');
+    return requestedLocale && getSiteLocale(requestedLocale) ? requestedLocale : 'en';
+  });
   const {
     selection: siteThemeSelection,
     setSelection: setSiteThemeSelection,
@@ -193,7 +197,7 @@ function PlaygroundContent() {
         <SidebarNavItem
           key={route.id}
           action={route.action}
-          label={route.label}
+          label={getSiteRouteLabel(route.id, getRouteLabel(route), effectiveLocale)}
           component={Link}
           to={route.path}
           active={isRouteActive(location.pathname, route)}
@@ -203,12 +207,37 @@ function PlaygroundContent() {
 
   const headerContext = getSiteHeaderContext(location.pathname, effectiveLocale);
 
+  useEffect(() => {
+    if (effectiveLocale === 'en') {
+      return undefined;
+    }
+
+    const root = document.getElementById('root');
+    if (!root) {
+      return undefined;
+    }
+
+    translateSiteDom(root, effectiveLocale);
+
+    const observer = new MutationObserver(() => {
+      translateSiteDom(root, effectiveLocale);
+    });
+    observer.observe(root, { childList: true, subtree: true, characterData: true });
+
+    return () => observer.disconnect();
+  }, [effectiveLocale, location.pathname]);
+
   const headerActions = (
     <>
       <select
         aria-label={appShell.localeSelectLabel}
         value={effectiveLocale}
-        onChange={(event) => setLocale(event.target.value)}
+        onChange={(event) => {
+          setLocale(event.target.value);
+          const nextUrl = new URL(window.location.href);
+          nextUrl.searchParams.set('locale', event.target.value);
+          window.history.replaceState(null, '', nextUrl);
+        }}
       >
         {routeLocaleOptions.map(([id, localeValue]) => (
           <option key={id} value={id}>

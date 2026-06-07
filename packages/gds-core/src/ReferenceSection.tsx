@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Anchor, Group, Stack, Text } from '@mantine/core';
+import { useGdsTranslation } from '@doneisbetter/gds-theme';
 import { SectionPanel, type SectionPanelTone } from './SectionPanel';
 
 export interface ReferenceSectionProps {
@@ -19,10 +20,12 @@ export function ReferenceSection({
   eyebrow,
   action,
   href,
-  linkLabel = 'Open section',
+  linkLabel,
   tone = 'default',
   children,
 }: ReferenceSectionProps) {
+  const { t } = useGdsTranslation();
+
   return (
     <SectionPanel
       tone={tone}
@@ -46,7 +49,7 @@ export function ReferenceSection({
             </Stack>
             {href ? (
               <Anchor href={href} fw={600}>
-                {linkLabel}
+                {linkLabel ?? t('gds.reference.openSection', 'Open section')}
               </Anchor>
             ) : null}
           </Group>

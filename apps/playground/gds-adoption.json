@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "gdsVersion": "3.4.6",
+  "gdsVersion": "3.4.7",
   "productArchetype": "public",
   "supportedEntryPoints": [
     "@doneisbetter/gds-theme/client",
@@ -163,55 +163,127 @@
       {
         "routePrefix": "/patterns",
         "fullCopyLocales": [
-          "en"
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
         ]
       },
       {
         "routePrefix": "/api",
         "fullCopyLocales": [
-          "en"
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
         ]
       },
       {
         "routePrefix": "/maturity",
         "fullCopyLocales": [
-          "en"
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
         ]
       },
       {
         "routePrefix": "/use-cases",
         "fullCopyLocales": [
-          "en"
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
         ]
       },
       {
         "routePrefix": "/coverage",
         "fullCopyLocales": [
-          "en"
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
         ]
       },
       {
         "routePrefix": "/governance",
         "fullCopyLocales": [
-          "en"
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
         ]
       },
       {
         "routePrefix": "/themes",
         "fullCopyLocales": [
-          "en"
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
         ]
       },
       {
         "routePrefix": "/live-demos",
         "fullCopyLocales": [
-          "en"
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
         ]
       },
       {
         "routePrefix": "/request-feature",
         "fullCopyLocales": [
-          "en"
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
         ]
       }
     ],

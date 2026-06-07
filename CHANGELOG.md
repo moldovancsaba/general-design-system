@@ -2,6 +2,12 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 3.4.7 - 2026-06-07
+
+- Removed English-only route coverage from the official playground so every public route keeps all supported locales available instead of falling back to English.
+- Added checked-in generated phrase resources and release verification for route, demo, pattern, and use-case copy that still comes from registry/demo data.
+- Localized shared shell/reference labels including navigation section headings and reference link actions, and fixed direct localized URL initialization via `?locale=...`.
+
 ## 3.4.6 - 2026-06-07
 
 - Fixed the package-owned theme explorer i18n resolver so incomplete locale resources no longer render mixed-language surfaces by merging partial translations with English fallback copy.

@@ -2,6 +2,7 @@
 
 import { type ReactNode, useState } from 'react';
 import { Box, Burger, Container, Divider, Group, Paper, Stack, Text, Transition } from '@mantine/core';
+import { useGdsTranslation } from '@doneisbetter/gds-theme';
 import { DiscoveryShell } from './DiscoveryShell';
 
 export interface DocsShellProps {
@@ -29,12 +30,14 @@ function isNavigationActivationTarget(target: EventTarget | null) {
 }
 
 function DocsShellSidebar({ primaryNavigation, secondaryNavigation }: DocsShellSidebarProps) {
+  const { t } = useGdsTranslation();
+
   return (
     <Stack gap="md" h="100%">
       {primaryNavigation ? (
         <Stack gap="xs">
           <Text size="xs" fw={700} c="dimmed">
-            Primary
+            {t('gds.navigation.primary', 'Primary')}
           </Text>
           {primaryNavigation}
         </Stack>
@@ -44,7 +47,7 @@ function DocsShellSidebar({ primaryNavigation, secondaryNavigation }: DocsShellS
           <Divider />
           <Stack gap="xs">
             <Text size="xs" fw={700} c="dimmed">
-              More
+              {t('gds.navigation.more', 'More')}
             </Text>
             {secondaryNavigation}
           </Stack>

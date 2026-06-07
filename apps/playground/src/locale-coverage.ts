@@ -6,7 +6,6 @@ export interface LocalizedRouteCoverageRule {
 }
 
 const allSiteLocaleIds = Object.keys(siteLocaleRegistry);
-const englishOnlyLocaleIds = ['en'];
 
 export const localizedRouteCoverage: LocalizedRouteCoverageRule[] = [
   {
@@ -19,39 +18,39 @@ export const localizedRouteCoverage: LocalizedRouteCoverageRule[] = [
   },
   {
     routePrefix: '/patterns',
-    fullCopyLocales: englishOnlyLocaleIds,
+    fullCopyLocales: allSiteLocaleIds,
   },
   {
     routePrefix: '/api',
-    fullCopyLocales: englishOnlyLocaleIds,
+    fullCopyLocales: allSiteLocaleIds,
   },
   {
     routePrefix: '/maturity',
-    fullCopyLocales: englishOnlyLocaleIds,
+    fullCopyLocales: allSiteLocaleIds,
   },
   {
     routePrefix: '/use-cases',
-    fullCopyLocales: englishOnlyLocaleIds,
+    fullCopyLocales: allSiteLocaleIds,
   },
   {
     routePrefix: '/coverage',
-    fullCopyLocales: englishOnlyLocaleIds,
+    fullCopyLocales: allSiteLocaleIds,
   },
   {
     routePrefix: '/governance',
-    fullCopyLocales: englishOnlyLocaleIds,
+    fullCopyLocales: allSiteLocaleIds,
   },
   {
     routePrefix: '/themes',
-    fullCopyLocales: englishOnlyLocaleIds,
+    fullCopyLocales: allSiteLocaleIds,
   },
   {
     routePrefix: '/live-demos',
-    fullCopyLocales: englishOnlyLocaleIds,
+    fullCopyLocales: allSiteLocaleIds,
   },
   {
     routePrefix: '/request-feature',
-    fullCopyLocales: englishOnlyLocaleIds,
+    fullCopyLocales: allSiteLocaleIds,
   },
 ];
 

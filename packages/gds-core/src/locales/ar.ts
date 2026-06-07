@@ -137,5 +137,8 @@ export const ar = {
   'gds.feedback.drafted': 'تم حفظ المسودة',
   'gds.feedback.referred': 'تمت الإحالة',
   'gds.aria.themeToggle': 'تبديل نظام الألوان',
+  'gds.navigation.primary': "أساسي",
+  'gds.navigation.more': "المزيد",
+  'gds.reference.openSection': "فتح القسم",
   'gds.state.emptyData': 'لا توجد بيانات متاحة.',
 };

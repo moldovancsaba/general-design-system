@@ -65,23 +65,14 @@ for (const entry of routeCoverageEntries) {
 
   const manifestValue = routeCoverageFromManifest.get(entry.routePrefix);
   const sourceDeclaresAllLocales = entry.sourceValue === 'allSiteLocaleIds';
-  const sourceDeclaresEnglishOnly = entry.sourceValue === 'englishOnlyLocaleIds';
   const manifestDeclaresAllLocales = manifestValue === [...expectedLocaleIds].join(',');
-  const manifestDeclaresEnglishOnly = manifestValue === 'en';
 
-  if (sourceDeclaresAllLocales && manifestDeclaresEnglishOnly) {
-    failures.push(`${entry.routePrefix} is all-locale in locale-coverage.ts but English-only in gds-adoption.json.`);
+  if (!sourceDeclaresAllLocales) {
+    failures.push(`${entry.routePrefix} must use allSiteLocaleIds in locale-coverage.ts; English-only route coverage is not allowed.`);
   }
 
-  if (sourceDeclaresEnglishOnly && manifestDeclaresAllLocales) {
-    failures.push(`${entry.routePrefix} is English-only in locale-coverage.ts but all-locale in gds-adoption.json.`);
-  }
-}
-
-for (const routePrefix of ['/api', '/maturity', '/use-cases', '/governance', '/themes', '/live-demos']) {
-  const manifestValue = routeCoverageFromManifest.get(routePrefix);
-  if (manifestValue && manifestValue !== 'en') {
-    failures.push(`${routePrefix} must remain English-only until every registry/demo-data string on the route is centralized and translated.`);
+  if (!manifestDeclaresAllLocales) {
+    failures.push(`${entry.routePrefix} must declare every supported site locale in gds-adoption.json; English-only route coverage is not allowed.`);
   }
 }
 

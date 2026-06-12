@@ -1,6 +1,6 @@
 {
   "name": "@doneisbetter/gds-compliance",
-  "version": "3.4.9",
+  "version": "3.4.10",
   "type": "module",
   "main": "./index.js",
   "bin": {

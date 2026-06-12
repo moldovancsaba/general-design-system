@@ -1,5 +1,6 @@
 import { ActionIcon, Button, Group, Stack } from '@mantine/core';
 import type { ButtonProps, MantineSpacing } from '@mantine/core';
+import { useGdsTranslation } from '@doneisbetter/gds-theme';
 import { getSemanticActionLabel, resolveSemanticActionConfig } from './vocabulary';
 import type { GdsVocabularyPack, SemanticActionId } from './vocabulary';
 
@@ -25,12 +26,12 @@ export interface ActionBarProps {
   vocabularyPacks?: GdsVocabularyPack[];
 }
 
-function renderSemanticAction(action: ActionBarAction, slot: 'primary' | 'secondary' | 'tertiary', vocabularyPacks: GdsVocabularyPack[]) {
+function renderSemanticAction(action: ActionBarAction, slot: 'primary' | 'secondary' | 'tertiary', vocabularyPacks: GdsVocabularyPack[], t: ReturnType<typeof useGdsTranslation>['t']) {
   const { action: actionId, variant, ariaLabel, ...props } = action;
   const fallbackVariant = slot === 'primary' ? 'filled' : slot === 'secondary' ? 'default' : 'subtle';
   const config = resolveSemanticActionConfig(actionId, vocabularyPacks);
   const Icon = config.icon;
-  const label = getSemanticActionLabel(actionId, undefined, vocabularyPacks);
+  const label = getSemanticActionLabel(actionId, t, vocabularyPacks);
 
   return (
     <Button
@@ -53,12 +54,14 @@ export function ActionBar({
   gap = 'sm',
   vocabularyPacks = [],
 }: ActionBarProps) {
+  const { t } = useGdsTranslation();
+
   return (
     <Stack gap={gap}>
       <Group justify="space-between" align="center" gap={gap} wrap="wrap">
         <Group gap={gap} wrap="wrap">
-          {secondary.map((action) => renderSemanticAction(action, 'secondary', vocabularyPacks))}
-          {tertiary.map((action) => renderSemanticAction(action, 'tertiary', vocabularyPacks))}
+          {secondary.map((action) => renderSemanticAction(action, 'secondary', vocabularyPacks, t))}
+          {tertiary.map((action) => renderSemanticAction(action, 'tertiary', vocabularyPacks, t))}
         </Group>
 
         <Group gap={gap} wrap="wrap" justify="flex-end" style={{ marginInlineStart: 'auto' }}>
@@ -71,14 +74,14 @@ export function ActionBar({
                 key={`icon-${action}`}
                 variant="subtle"
                 size="lg"
-                aria-label={ariaLabel ?? getSemanticActionLabel(action, undefined, vocabularyPacks)}
+                aria-label={ariaLabel ?? getSemanticActionLabel(action, t, vocabularyPacks)}
                 {...props}
               >
                 <Icon size="1rem" stroke={1.75} />
               </ActionIcon>
             );
           })}
-          {primary ? renderSemanticAction(primary, 'primary', vocabularyPacks) : null}
+          {primary ? renderSemanticAction(primary, 'primary', vocabularyPacks, t) : null}
         </Group>
       </Group>
     </Stack>

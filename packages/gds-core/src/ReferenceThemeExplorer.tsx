@@ -20,6 +20,7 @@ import type { MantineThemeOverride } from '@mantine/core';
 import { ActionBar } from './ActionBar';
 import { FormField } from './FormField';
 import { ListingCard } from './ListingCard';
+import { getGdsMessages } from './locales';
 import { ReferenceSection } from './ReferenceSection';
 import { StateBlock } from './StateBlock';
 import { ThemeToggle } from './ThemeToggle';
@@ -254,6 +255,7 @@ export function ReferenceThemeExplorer({
 }) {
   const { locale } = useGdsTranslation();
   const copy = resolveExplorerCopy(locale);
+  const previewMessages = useMemo(() => getGdsMessages(locale), [locale]);
   const [preset, setPreset] = useState<ThemePresetId>(initialSelection?.preset ?? 'default');
   const [colorScheme, setColorScheme] = useState<ThemeSchemeId>(initialSelection?.colorScheme ?? 'light');
   const [brandPrimary, setBrandPrimary] = useState(initialSelection?.brandPrimary ?? 'blue');
@@ -464,6 +466,8 @@ export function ReferenceThemeExplorer({
             const laneCardStyle = {
               '--mantine-color-text': vibe.textLight,
               '--mantine-color-dimmed': vibe.mutedLight,
+              '--gds-local-background': `linear-gradient(135deg, ${vibe.surfaceLight}, color-mix(in srgb, ${vibe.primary} 12%, ${vibe.surfaceLight})), ${vibe.gradient}`,
+              '--gds-local-radius': 'var(--mantine-radius-lg)',
               '--gds-vibe-primary': vibe.primary,
               '--gds-vibe-accent': vibe.accent,
               '--gds-vibe-surface': vibe.surfaceLight,
@@ -474,7 +478,7 @@ export function ReferenceThemeExplorer({
               '--gds-vibe-control': `color-mix(in srgb, ${vibe.surfaceLight} 88%, ${vibe.primary} 8%)`,
               '--gds-vibe-control-text': vibe.textLight,
               color: vibe.textLight,
-              background: `linear-gradient(135deg, ${vibe.surfaceLight}, color-mix(in srgb, ${vibe.primary} 12%, ${vibe.surfaceLight})), ${vibe.gradient}`,
+              background: 'var(--gds-local-background)',
               borderColor: isSelected ? vibe.primary : vibe.borderLight,
               boxShadow: isSelected ? `0 0 0 2px ${vibe.primary}, 0 18px 46px ${vibe.glow}` : undefined,
             } as CSSProperties;
@@ -554,7 +558,28 @@ export function ReferenceThemeExplorer({
         title={copy.vibeContractTitle}
         description={copy.vibeContractDescription}
       >
-        <Paper withBorder radius="xl" p="lg" style={{ background: selectedVibe?.hero }}>
+        <Paper
+          data-gds-local-contrast="vibe-contract"
+          withBorder
+          radius="xl"
+          p="lg"
+          style={{
+            '--mantine-color-text': selectedVibe?.textLight,
+            '--mantine-color-dimmed': selectedVibe?.mutedLight,
+            '--gds-local-background': selectedVibe?.hero,
+            '--gds-local-radius': 'var(--mantine-radius-xl)',
+            '--gds-vibe-primary': selectedVibe?.primary,
+            '--gds-vibe-accent': selectedVibe?.accent,
+            '--gds-vibe-surface': selectedVibe?.surfaceLight,
+            '--gds-vibe-border': selectedVibe?.borderLight,
+            '--gds-vibe-text': selectedVibe?.textLight,
+            '--gds-vibe-muted': selectedVibe?.mutedLight,
+            '--gds-vibe-control': selectedVibe ? `color-mix(in srgb, ${selectedVibe.surfaceLight} 88%, ${selectedVibe.primary} 8%)` : undefined,
+            '--gds-vibe-control-text': selectedVibe?.textLight,
+            color: selectedVibe?.textLight,
+            background: 'var(--gds-local-background)',
+          } as CSSProperties}
+        >
           <SimpleGrid cols={{ base: 1, md: 3 }} spacing="md">
             {selectedVibe ? [
               [copy.tokenLabels[0], selectedVibe.primary],
@@ -610,7 +635,7 @@ export function ReferenceThemeExplorer({
         description={copy.livePreviewDescription}
       >
         <SimpleGrid cols={{ base: 1, xl: comparisonEnabled ? 2 : 1 }} spacing="lg">
-          <GdsProvider key={previewKey} theme={selectedTheme} defaultColorScheme={effectiveColorScheme}>
+          <GdsProvider key={previewKey} locale={locale} messages={previewMessages} theme={selectedTheme} defaultColorScheme={effectiveColorScheme}>
             <ThemePreviewSurface
               preset={selectionSummary}
               colorScheme={effectiveColorScheme}
@@ -619,7 +644,7 @@ export function ReferenceThemeExplorer({
             />
           </GdsProvider>
           {comparisonEnabled ? (
-            <GdsProvider key={comparisonPreviewKey} theme={comparedTheme} defaultColorScheme={effectiveComparisonScheme}>
+            <GdsProvider key={comparisonPreviewKey} locale={locale} messages={previewMessages} theme={comparedTheme} defaultColorScheme={effectiveComparisonScheme}>
               <Paper withBorder radius="xl" p="lg">
                 <Stack gap="md">
                   <Group justify="space-between" align="flex-start" wrap="wrap">

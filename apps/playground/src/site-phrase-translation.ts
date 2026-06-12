@@ -30,7 +30,7 @@ export function translateSitePhrase(value: string, locale: string) {
 
 function shouldSkipNode(node: Node) {
   const parent = node.parentElement;
-  return Boolean(parent?.closest('code, pre, script, style, textarea'));
+  return Boolean(parent?.closest('a, button, code, input, label, option, pre, script, select, style, textarea, [role="button"], [role="link"], [role="menuitem"]'));
 }
 
 function translateTextNode(node: Text, locale: string) {
@@ -51,7 +51,7 @@ function translateTextNode(node: Text, locale: string) {
 }
 
 function translateElementAttributes(element: Element, locale: string) {
-  if (element.closest('code, pre, script, style')) {
+  if (element.closest('a, button, code, input, label, option, pre, script, select, style, textarea, [role="button"], [role="link"], [role="menuitem"]')) {
     return;
   }
 

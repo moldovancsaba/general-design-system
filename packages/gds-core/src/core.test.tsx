@@ -659,6 +659,21 @@ describe('@doneisbetter/gds-core', () => {
     expect(onSettings).toHaveBeenCalledTimes(1);
   });
 
+  it('localizes semantic action bar labels from the GDS provider', () => {
+    renderWithGds(
+      <ActionBar
+        primary={{ action: 'save' }}
+        secondary={[{ action: 'cancel' }]}
+        tertiary={[{ action: 'preview' }]}
+      />,
+      { locale: 'fr', messages: fr },
+    );
+
+    expect(screen.getByRole('button', { name: 'Enregistrer' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Annuler' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Aperçu' })).toBeInTheDocument();
+  });
+
   it('supports governed semantic vocabulary packs without raw-label escape hatches', () => {
     const cameraPack = createGdsVocabularyPack('camera', {
       moderate: {
@@ -1684,12 +1699,31 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     expect(screen.getAllByText('Default runtime theme').length).toBeGreaterThan(0);
   });
 
+  it('marks mixed preview surfaces as local contrast owners', () => {
+    const { container } = renderWithGds(<ReferenceThemeExplorer />);
+
+    expect(container.querySelectorAll('[data-gds-local-contrast="vibe-gallery-card"]').length).toBeGreaterThan(12);
+    expect(container.querySelector('[data-gds-local-contrast="vibe-contract"]')).toBeInTheDocument();
+    expect(container.querySelector('[data-gds-local-contrast="vibe-gallery-card"]')).toHaveStyle({
+      background: 'var(--gds-local-background)',
+      color: '#111827',
+    });
+  });
+
   it('does not fall back to English reference theme explorer copy for non-English locales', () => {
     renderWithGds(<ReferenceThemeExplorer />, { locale: 'ru' });
 
     expect(screen.getByText('Лаборатория тем')).toBeInTheDocument();
     expect(screen.queryByText('Theme Lab')).not.toBeInTheDocument();
     expect(screen.getAllByText('Стандартная runtime-тема').length).toBeGreaterThan(0);
+  });
+
+  it('passes locale messages into nested theme preview providers', () => {
+    renderWithGds(<ReferenceThemeExplorer />, { locale: 'fr', messages: fr });
+
+    expect(screen.getByRole('button', { name: 'Annuler' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Aperçu' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Enregistrer' })).toBeInTheDocument();
   });
 
   it('forwards chosen files from the shared upload dropzone', async () => {

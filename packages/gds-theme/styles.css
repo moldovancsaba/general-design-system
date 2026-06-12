@@ -414,7 +414,6 @@ html[data-gds-theme-preset='cosmic'] .mantine-Card-root {
     radial-gradient(circle at 100% 0%, rgba(224, 24, 255, 0.24), transparent 13rem),
     linear-gradient(145deg, rgba(16, 24, 92, 0.88), rgba(9, 13, 58, 0.78)) !important;
   border-color: rgba(212, 190, 255, 0.58) !important;
-  border-radius: 28px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
   backdrop-filter: blur(22px) saturate(1.2);
 }
@@ -466,6 +465,67 @@ html[data-gds-theme-preset='cosmic'] .mantine-Badge-root {
   color: #f7d8ff;
   background: rgba(124, 60, 255, 0.34);
   border-color: rgba(224, 24, 255, 0.35);
+}
+
+html[data-gds-theme-preset] [data-gds-local-contrast] {
+  --mantine-color-text: var(--gds-vibe-text) !important;
+  --mantine-color-dimmed: var(--gds-vibe-muted) !important;
+  color: var(--gds-vibe-text) !important;
+  background: var(--gds-local-background, var(--gds-vibe-surface)) !important;
+  border-color: var(--gds-vibe-border) !important;
+  border-radius: var(--gds-local-radius, var(--mantine-radius-lg)) !important;
+}
+
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Text-root,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Title-root,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-List-root,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Table-root,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Checkbox-label,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Radio-label,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Switch-label,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-InputWrapper-label {
+  color: var(--gds-vibe-text) !important;
+}
+
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Text-root[data-dimmed],
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-InputWrapper-description,
+html[data-gds-theme-preset] [data-gds-local-contrast] [style*='--mantine-color-dimmed'],
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Text-root[style*='color: var(--mantine-color-dimmed)'] {
+  color: var(--gds-vibe-muted) !important;
+}
+
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Paper-root,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Card-root {
+  color: var(--gds-vibe-text) !important;
+  background: color-mix(in srgb, var(--gds-vibe-surface) 88%, white) !important;
+  border-color: var(--gds-vibe-border) !important;
+}
+
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Button-root:not([data-variant='default']) {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, var(--gds-vibe-primary), var(--gds-vibe-accent)) !important;
+  border-color: color-mix(in srgb, var(--gds-vibe-primary) 72%, var(--gds-vibe-accent)) !important;
+}
+
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Button-root[data-variant='default'],
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Input-input,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-NativeSelect-input,
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Textarea-input {
+  color: var(--gds-vibe-control-text) !important;
+  background: var(--gds-vibe-control) !important;
+  border-color: var(--gds-vibe-border) !important;
+}
+
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Code-root {
+  color: var(--gds-vibe-link) !important;
+  background: color-mix(in srgb, var(--gds-vibe-primary) 12%, var(--gds-vibe-surface)) !important;
+  border-color: var(--gds-vibe-border) !important;
+}
+
+html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Badge-root {
+  color: color-mix(in srgb, var(--gds-vibe-primary) 76%, var(--gds-vibe-text)) !important;
+  background: color-mix(in srgb, var(--gds-vibe-primary) 14%, var(--gds-vibe-surface)) !important;
+  border-color: color-mix(in srgb, var(--gds-vibe-primary) 28%, transparent) !important;
 }
 
 @media (max-width: 768px) {

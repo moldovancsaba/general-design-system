@@ -2,6 +2,13 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 3.4.10 - 2026-06-12
+
+- Fixed cosmic and dark-forward preset overrides so mixed light preview cards no longer inherit forced white text, forced dimmed text, or fixed `28px` Paper/Card radius values from the surrounding page.
+- Added local contrast CSS ownership for preview-surface buttons, inputs, badges, code, nested cards, foreground text, muted text, backgrounds, borders, and radius tokens.
+- Stopped generated phrase translation from mutating interactive controls after React render so buttons, links, labels, selects, and input attributes do not become scrambled or stale.
+- Added regression coverage for local contrast surfaces, radius governance, and safe phrase translation boundaries.
+
 ## 3.4.9 - 2026-06-12
 
 - Fixed the Theme Lab shipped-lane gallery so light VibeTheme preview cards keep their own dark foreground tokens when the surrounding page is in dark mode.

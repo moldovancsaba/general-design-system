@@ -136,6 +136,8 @@ const requiredPresetContrastProof = [
   '--gds-vibe-control-text',
   '--gds-vibe-link',
   'data-gds-local-contrast',
+  '--gds-local-background',
+  '--gds-local-radius',
   "html[data-mantine-color-scheme='dark'][data-gds-theme-preset]",
   ".mantine-Text-root[style*='--text-color: var(--mantine-color-red']",
   "html[data-gds-theme-preset='cosmic'] body",
@@ -146,6 +148,14 @@ for (const proof of requiredPresetContrastProof) {
   if (!themeStylesSource.includes(proof) && !explorerSource.includes(proof)) {
     failures.push(`Theme styles/explorer must preserve preset contrast proof: ${proof}`);
   }
+}
+
+if (/html\[data-gds-theme-preset='cosmic'\]\s+\.mantine-Paper-root[\s\S]*?border-radius:\s*28px/.test(themeStylesSource)) {
+  failures.push('Cosmic preset must not force a fixed Paper/Card radius over component radius props.');
+}
+
+if (!themeStylesSource.includes("[data-gds-local-contrast] .mantine-Button-root[data-variant='default']")) {
+  failures.push('Local contrast surfaces must override default buttons and controls inside preset pages.');
 }
 
 if (!themeGovernanceSource.includes('Light mode and dark mode are scheme choices, not the full theme offering.')) {

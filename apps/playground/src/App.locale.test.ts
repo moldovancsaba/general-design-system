@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { createElement } from 'react';
 import App from './App';
 import { getFullCopyLocalesForRoute, hasFullRouteLocalization } from './locale-coverage';
+import { translateSiteDom } from './site-phrase-translation';
 
 const allLocaleIds = ['en', 'de', 'fr', 'it', 'es', 'ru', 'he', 'ar', 'hu'];
 
@@ -50,5 +51,25 @@ describe('playground route locale coverage', () => {
     await waitFor(() => expect(localeSelect.value).toBe('hu'));
 
     expect(Array.from(localeSelect.options).map((option) => option.value)).toEqual(allLocaleIds);
+  });
+
+  it('does not rewrite interactive control text with generated phrase translation', () => {
+    const root = document.createElement('div');
+    const nodes = ['button', 'label', 'a', 'p'].map((tagName) => {
+      const element = document.createElement(tagName);
+      element.textContent = 'Accent band';
+      if (tagName === 'a') {
+        element.setAttribute('href', '/general-design-system/patterns');
+      }
+      root.appendChild(element);
+      return element;
+    });
+
+    translateSiteDom(root, 'fr');
+
+    expect(nodes[0].textContent).toBe('Accent band');
+    expect(nodes[1].textContent).toBe('Accent band');
+    expect(nodes[2].textContent).toBe('Accent band');
+    expect(nodes[3].textContent).toBe("Bande d'accent");
   });
 });

@@ -2,6 +2,12 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 3.4.8 - 2026-06-12
+
+- Hardened the shared preset stylesheet so VibeTheme surfaces push readable foreground tokens through Mantine text, dimmed text, shell, card, paper, input, table, alert, code, link, and default-button surfaces.
+- Fixed dark and dark-forward colorful lanes where nested Mantine components could keep light-mode text colors on dark or saturated backgrounds.
+- Added theme-governance verification for preset contrast token coverage so future theme changes cannot silently drop the foreground contract.
+
 ## 3.4.7 - 2026-06-07
 
 - Removed English-only route coverage from the official playground so every public route keeps all supported locales available instead of falling back to English.

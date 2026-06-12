@@ -1,8 +1,8 @@
 # Theme Governance
 
 Status: Active SSOT
-Version: 3.4.7
-Last updated: 2026-06-06
+Version: 3.4.8
+Last updated: 2026-06-12
 
 This document defines the approved adopter-facing theme lanes for products that need branding without creating a second design authority.
 
@@ -127,6 +127,8 @@ This is a governance contract first. Products still own storage and moderation, 
 - a product may default to dark when that is part of its deliberate shell identity
 - dark products must still provide readable tokens for text, paper, card, alert, table, and link surfaces
 - mixed-mode islands remain exceptions, not the default layout strategy
+- preset styles must set `--mantine-color-text` and `--mantine-color-dimmed` from `--gds-vibe-text` and `--gds-vibe-muted` on body, shell, card, and paper surfaces so nested Mantine components cannot keep stale light-mode foregrounds on dark backgrounds
+- dark and dark-forward VibeTheme controls must use `--gds-vibe-control` and `--gds-vibe-control-text` for inputs, default buttons, and code-like surfaces rather than assuming the base Mantine default variant remains readable
 
 ## Appendix: Amanoba dark shell + yellow CTA
 

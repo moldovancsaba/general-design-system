@@ -130,6 +130,23 @@ for (const proof of requiredVibeRuntimeProof) {
   }
 }
 
+const requiredPresetContrastProof = [
+  '--mantine-color-text: var(--gds-vibe-text)',
+  '--mantine-color-dimmed: var(--gds-vibe-muted)',
+  '--gds-vibe-control-text',
+  '--gds-vibe-link',
+  "html[data-mantine-color-scheme='dark'][data-gds-theme-preset]",
+  ".mantine-Text-root[style*='--text-color: var(--mantine-color-red']",
+  "html[data-gds-theme-preset='cosmic'] body",
+  '--gds-vibe-danger',
+];
+
+for (const proof of requiredPresetContrastProof) {
+  if (!themeStylesSource.includes(proof)) {
+    failures.push(`styles.css must preserve preset contrast proof: ${proof}`);
+  }
+}
+
 if (!themeGovernanceSource.includes('Light mode and dark mode are scheme choices, not the full theme offering.')) {
   failures.push('THEME_GOVERNANCE.md must state that light/dark schemes are not the full theme offering.');
 }

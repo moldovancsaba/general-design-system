@@ -191,14 +191,14 @@ html[data-gds-theme-preset] .mantine-Switch-label {
   color: inherit;
 }
 
-html[data-gds-theme-preset] [style*='--mantine-color-dimmed'],
-html[data-gds-theme-preset] .mantine-Text-root[style*='color: var(--mantine-color-dimmed)'] {
+html[data-gds-theme-preset] [style*='--mantine-color-dimmed']:not([data-gds-local-contrast]):not([data-gds-local-contrast] *),
+html[data-gds-theme-preset] .mantine-Text-root[style*='color: var(--mantine-color-dimmed)']:not([data-gds-local-contrast]):not([data-gds-local-contrast] *) {
   color: var(--gds-vibe-muted) !important;
 }
 
-html[data-gds-theme-preset] .mantine-Text-root[style*='--text-color: var(--mantine-color-red'],
-html[data-gds-theme-preset] .mantine-Text-root[style*='color: var(--mantine-color-red'],
-html[data-gds-theme-preset] .mantine-Menu-item[data-variant='danger'] {
+html[data-gds-theme-preset] .mantine-Text-root[style*='--text-color: var(--mantine-color-red']:not([data-gds-local-contrast]):not([data-gds-local-contrast] *),
+html[data-gds-theme-preset] .mantine-Text-root[style*='color: var(--mantine-color-red']:not([data-gds-local-contrast]):not([data-gds-local-contrast] *),
+html[data-gds-theme-preset] .mantine-Menu-item[data-variant='danger']:not([data-gds-local-contrast]):not([data-gds-local-contrast] *) {
   color: var(--gds-vibe-danger) !important;
 }
 

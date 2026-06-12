@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import {
   Badge,
   Box,
@@ -461,20 +461,34 @@ export function ReferenceThemeExplorer({
           {vibeCatalog.map((vibe) => {
             const lane = localizedThemeCatalog[vibe.id];
             const isSelected = vibe.id === preset;
+            const laneCardStyle = {
+              '--mantine-color-text': vibe.textLight,
+              '--mantine-color-dimmed': vibe.mutedLight,
+              '--gds-vibe-primary': vibe.primary,
+              '--gds-vibe-accent': vibe.accent,
+              '--gds-vibe-surface': vibe.surfaceLight,
+              '--gds-vibe-border': vibe.borderLight,
+              '--gds-vibe-text': vibe.textLight,
+              '--gds-vibe-muted': vibe.mutedLight,
+              '--gds-vibe-link': `color-mix(in srgb, ${vibe.primary} 64%, ${vibe.textLight})`,
+              '--gds-vibe-control': `color-mix(in srgb, ${vibe.surfaceLight} 88%, ${vibe.primary} 8%)`,
+              '--gds-vibe-control-text': vibe.textLight,
+              color: vibe.textLight,
+              background: `linear-gradient(135deg, ${vibe.surfaceLight}, color-mix(in srgb, ${vibe.primary} 12%, ${vibe.surfaceLight})), ${vibe.gradient}`,
+              borderColor: isSelected ? vibe.primary : vibe.borderLight,
+              boxShadow: isSelected ? `0 0 0 2px ${vibe.primary}, 0 18px 46px ${vibe.glow}` : undefined,
+            } as CSSProperties;
 
             return (
             <Paper
               key={lane.themeKey}
+              data-gds-local-contrast="vibe-gallery-card"
               withBorder
               radius="lg"
               p="md"
               role="group"
               aria-label={`${lane.label} ${copy.cssVibeTheme}`}
-              style={{
-                background: `linear-gradient(135deg, ${vibe.surfaceLight}, color-mix(in srgb, ${vibe.primary} 12%, ${vibe.surfaceLight})), ${vibe.gradient}`,
-                borderColor: isSelected ? vibe.primary : vibe.borderLight,
-                boxShadow: isSelected ? `0 0 0 2px ${vibe.primary}, 0 18px 46px ${vibe.glow}` : undefined,
-              }}
+              style={laneCardStyle}
             >
               <Stack gap={6}>
                 <Group gap="xs" justify="space-between" align="flex-start" wrap="nowrap">

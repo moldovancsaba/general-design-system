@@ -2,6 +2,12 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 3.4.9 - 2026-06-12
+
+- Fixed the Theme Lab shipped-lane gallery so light VibeTheme preview cards keep their own dark foreground tokens when the surrounding page is in dark mode.
+- Scoped the preset contrast guard away from `[data-gds-local-contrast]` surfaces so intentional mixed-preview cards can own local readable text, controls, and code colors.
+- Added release verification coverage for the local contrast marker used by the gallery cards.
+
 ## 3.4.8 - 2026-06-12
 
 - Hardened the shared preset stylesheet so VibeTheme surfaces push readable foreground tokens through Mantine text, dimmed text, shell, card, paper, input, table, alert, code, link, and default-button surfaces.

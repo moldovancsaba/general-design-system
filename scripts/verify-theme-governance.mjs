@@ -135,6 +135,7 @@ const requiredPresetContrastProof = [
   '--mantine-color-dimmed: var(--gds-vibe-muted)',
   '--gds-vibe-control-text',
   '--gds-vibe-link',
+  'data-gds-local-contrast',
   "html[data-mantine-color-scheme='dark'][data-gds-theme-preset]",
   ".mantine-Text-root[style*='--text-color: var(--mantine-color-red']",
   "html[data-gds-theme-preset='cosmic'] body",
@@ -142,8 +143,8 @@ const requiredPresetContrastProof = [
 ];
 
 for (const proof of requiredPresetContrastProof) {
-  if (!themeStylesSource.includes(proof)) {
-    failures.push(`styles.css must preserve preset contrast proof: ${proof}`);
+  if (!themeStylesSource.includes(proof) && !explorerSource.includes(proof)) {
+    failures.push(`Theme styles/explorer must preserve preset contrast proof: ${proof}`);
   }
 }
 

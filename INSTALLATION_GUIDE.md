@@ -2,7 +2,7 @@
 
 Status: Active SSOT
 Version: 3.4.14
-Last updated: 2026-06-06
+Last updated: 2026-06-13
 
 This guide is the canonical consumer setup path for the public umbrella package `@doneisbetter/gds`. Granular package lanes remain available when a consumer explicitly wants them.
 
@@ -31,7 +31,7 @@ Current verified consumer line:
 - Next.js `15.x` App Router or Pages Router
 - Vite SPA consumers
 
-See [COMPATIBILITY_AND_RELEASES.md](/Users/Shared/Projects/general-design-system/COMPATIBILITY_AND_RELEASES.md) and [VERIFIED_CONSUMER_INSTALL_PROOF.md](/Users/Shared/Projects/general-design-system/VERIFIED_CONSUMER_INSTALL_PROOF.md) for the evidence-backed matrix.
+See [COMPATIBILITY_AND_RELEASES.md](COMPATIBILITY_AND_RELEASES.md) and [VERIFIED_CONSUMER_INSTALL_PROOF.md](VERIFIED_CONSUMER_INSTALL_PROOF.md) for the evidence-backed matrix.
 
 ## 2. Canonical install commands
 
@@ -248,6 +248,6 @@ Do not:
 
 ## 8. Fallback install path
 
-If npm is temporarily unavailable, use the public release tarballs described in [RELEASE_PUBLISH.md](/Users/Shared/Projects/general-design-system/RELEASE_PUBLISH.md). That path is a fallback only, not the preferred steady-state install method.
+If npm is temporarily unavailable, use the public release tarballs described in [RELEASE_PUBLISH.md](RELEASE_PUBLISH.md). That path is a fallback only, not the preferred steady-state install method.
 
 For the `3.4.14` release cutover, fallback assets must use tag `gds-v3.4.14` and must not be announced as the canonical path once npm verification passes.

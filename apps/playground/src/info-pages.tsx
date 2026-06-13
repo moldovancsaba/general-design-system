@@ -740,17 +740,17 @@ export function InstallPage() {
             {
               id: 'low-risk',
               title: 'Low-risk for shipped lanes',
-              description: 'If you already use a shipped GDS theme export directly, this should be a low-risk update.',
+              description: 'If you already consume GDS package exports instead of direct Mantine or Tabler imports, this should be a low-risk update.',
             },
             {
-              id: 'theme-shift',
-              title: 'Theme governance changed',
-              description: 'The main change is governance and enforcement. This is not a visual redesign of the canonical themes.',
+              id: 'dependency-shift',
+              title: 'Dependency governance changed',
+              description: 'The main change is import-boundary enforcement and public API classification. This is not a visual redesign of the canonical themes.',
             },
             {
               id: 'compliance-shift',
               title: 'Compliance is stronger',
-              description: 'Repos that adopt the new manifest fields can now detect non-canonical theme ownership automatically.',
+              description: 'Repos that adopt the new manifest fields can now detect unreviewed direct dependency imports automatically.',
             },
           ]}
         />
@@ -860,19 +860,19 @@ export function RulebookPage() {
           columns={3}
           items={[
             {
-              id: 'approved-theme-lanes',
-              title: 'Approved theme lanes only',
-              description: 'Clients should use gdsTheme, the shipped public presets, CSS VibeThemes, or createPublicBrandTheme(...).',
+              id: 'dependency-policy',
+              title: 'Dependency policy',
+              description: 'React, Mantine, and Tabler are accepted implementation dependencies only behind GDS-owned contracts and release gates.',
             },
             {
-              id: 'css-vibes',
-              title: 'CSS-only VibeThemes',
-              description: 'Colorful app identity must come from --gds-vibe-* tokens for shell, canvas, surfaces, controls, focus, and accents, not pixel image backgrounds.',
+              id: 'api-boundaries',
+              title: 'API boundary labels',
+              description: 'The API reference now marks export stability and whether a public entry is a GDS contract, Mantine-backed, Tabler-backed, or tooling-only.',
             },
             {
-              id: 'no-custom-helper',
-              title: 'No long-term extendGdsTheme path',
-              description: 'extendGdsTheme(...) is no longer a canonical consumer branding-layer API.',
+              id: 'dependency-exceptions',
+              title: 'Exception lifecycle',
+              description: 'Strict consumers need owner, expiry, replacement issue, testing, accessibility, observability, rollback, and recovery metadata for direct dependency imports.',
             },
           ]}
         />

@@ -2,7 +2,7 @@
 
 Status: Active SSOT
 Version: 3.4.14
-Last updated: 2026-06-06
+Last updated: 2026-06-13
 
 ## 1. Core Principles
 
@@ -20,7 +20,7 @@ Last updated: 2026-06-06
 
 Mantine is the only approved foundational UI system for product applications.
 
-Mantine UI may be reviewed as a Mantine-native reference library, but it is not a competing design system. Any borrowed idea must be rebuilt through this GDS, the local Mantine theme, and approved Mantine primitives or thin wrappers.
+Mantine UI may be reviewed as a Mantine-native reference library, but it is not a competing design system. Any borrowed idea must be rebuilt through this GDS, the GDS-owned theme contract, and approved GDS primitives or narrow dependency-boundary exceptions.
 
 ### Root Composition & Theme Ownership
 Every product must have one canonical root UI composition utilizing `MantineProvider`, `ModalsProvider`, and Mantine's notification system. 
@@ -65,7 +65,7 @@ Readable UI is mandatory. Visual mood never outranks whether a human can read an
 
 ## 5. Primitive & Wrapper Policy
 
-Projects should prefer using Mantine primitives directly. **Thin wrappers** are required or recommended only to enforce consistency for product-defining surfaces.
+Projects should prefer shipped GDS contracts directly. Mantine remains an implementation engine behind GDS; direct Mantine primitive usage in strict consumer surfaces requires a reviewed dependency-boundary exception with owner, expiry, testing, accessibility, observability, rollback, and replacement metadata.
 
 - **App Shell & Page Header**: Thin wrapper **required**. Shell, navigation, and title rhythm are product-defining.
 - **Buttons & Forms**: Thin wrapper **recommended** if the project requires standardized variants, analytics hooks, or consistent validation layouts.

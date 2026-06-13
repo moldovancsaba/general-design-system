@@ -2,7 +2,7 @@
 
 Status: Active SSOT
 Version: 3.4.14
-Last updated: 2026-06-06
+Last updated: 2026-06-13
 
 `/Users/Shared/Projects/general-design-system` is the cross-project single source of truth for design, UI, and UX.
 
@@ -12,44 +12,44 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 
 ### Getting Started
 
-1. **Familiarize Yourself with the Foundation**: Start by reading [FOUNDATION.md](/Users/Shared/Projects/general-design-system/FOUNDATION.md) to understand the core principles, accessibility baselines, and our strict Mantine token policies.
-2. **Review the Component Contracts**: Before building a new UI component or workflow, check [COMPONENTS_AND_PATTERNS.md](/Users/Shared/Projects/general-design-system/COMPONENTS_AND_PATTERNS.md) to see if a canonical pattern already exists for buttons, tables, modals, public shells, docs pages, or public data surfaces.
+1. **Familiarize Yourself with the Foundation**: Start by reading [FOUNDATION.md](FOUNDATION.md) to understand the core principles, accessibility baselines, and our strict Mantine token policies.
+2. **Review the Component Contracts**: Before building a new UI component or workflow, check [COMPONENTS_AND_PATTERNS.md](COMPONENTS_AND_PATTERNS.md) to see if a canonical pattern already exists for buttons, tables, modals, public shells, docs pages, or public data surfaces.
 3. **Open the Live Pattern Catalog**: Use [https://sovereignsquad.github.io/general-design-system/patterns](https://sovereignsquad.github.io/general-design-system/patterns) to inspect the public, registry-backed reference site that demonstrates the documented contracts directly.
-4. **Use the Pattern Service Model**: Before borrowing from Mantine UI or another project, read [PATTERN_SERVICE_MODEL.md](/Users/Shared/Projects/general-design-system/PATTERN_SERVICE_MODEL.md) to convert references into governed, reusable contracts.
-5. **Read the Service Backbone Plan**: Use [SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md](/Users/Shared/Projects/general-design-system/SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md) to understand how the GDS operates as a reliable, cross-project service with adoption, validation, and portfolio layers.
-6. **Adopt & Migrate**: Use [GOVERNANCE_AND_ADOPTION.md](/Users/Shared/Projects/general-design-system/GOVERNANCE_AND_ADOPTION.md) to understand how to correctly implement this system in a new or legacy codebase, including the required local project statement, the adoption manifest, and compliance tooling.
-7. **Run the Adoption Playbook**: Use [ADOPTION_AND_MIGRATION_PLAYBOOK.md](/Users/Shared/Projects/general-design-system/ADOPTION_AND_MIGRATION_PLAYBOOK.md) when converting a local mirror, a legacy UI system, or a new product to direct package consumption.
-8. **Check Compatibility & Release Rules**: Use [COMPATIBILITY_AND_RELEASES.md](/Users/Shared/Projects/general-design-system/COMPATIBILITY_AND_RELEASES.md) before wiring package installs, CI/Vercel builds, or framework upgrades.
+4. **Use the Pattern Service Model**: Before borrowing from Mantine UI or another project, read [PATTERN_SERVICE_MODEL.md](PATTERN_SERVICE_MODEL.md) to convert references into governed, reusable contracts.
+5. **Read the Service Backbone Plan**: Use [SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md](SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md) to understand how the GDS operates as a reliable, cross-project service with adoption, validation, and portfolio layers.
+6. **Adopt & Migrate**: Use [GOVERNANCE_AND_ADOPTION.md](GOVERNANCE_AND_ADOPTION.md) to understand how to correctly implement this system in a new or legacy codebase, including the required local project statement, the adoption manifest, and compliance tooling.
+7. **Run the Adoption Playbook**: Use [ADOPTION_AND_MIGRATION_PLAYBOOK.md](ADOPTION_AND_MIGRATION_PLAYBOOK.md) when converting a local mirror, a legacy UI system, or a new product to direct package consumption.
+8. **Check Compatibility & Release Rules**: Use [COMPATIBILITY_AND_RELEASES.md](COMPATIBILITY_AND_RELEASES.md) before wiring package installs, CI/Vercel builds, or framework upgrades.
 
 ### What You Can Find Here
 
-- **Core Principles & Tokens**: [FOUNDATION.md](/Users/Shared/Projects/general-design-system/FOUNDATION.md) — The fundamental rules that guide UI decisions, dark/light modes, and Mantine boundaries.
-- **Component Contracts & Patterns**: [COMPONENTS_AND_PATTERNS.md](/Users/Shared/Projects/general-design-system/COMPONENTS_AND_PATTERNS.md) — Required behaviors for standard UI elements and full-page workflows.
+- **Core Principles & Tokens**: [FOUNDATION.md](FOUNDATION.md) — The fundamental rules that guide UI decisions, dark/light modes, and Mantine boundaries.
+- **Component Contracts & Patterns**: [COMPONENTS_AND_PATTERNS.md](COMPONENTS_AND_PATTERNS.md) — Required behaviors for standard UI elements and full-page workflows.
 - **Live Pattern Catalog**: [https://sovereignsquad.github.io/general-design-system/patterns](https://sovereignsquad.github.io/general-design-system/patterns) — The public registry-backed component and pattern reference site with family pages for foundations, public, operations, data, access, and feedback coverage.
-- **API Reference**: [https://sovereignsquad.github.io/general-design-system/api](https://sovereignsquad.github.io/general-design-system/api) and [API_REFERENCE.md](/Users/Shared/Projects/general-design-system/API_REFERENCE.md) — Registry-backed package export reference with import paths, runtime lanes, accessibility notes, state contracts, and verification coverage.
+- **API Reference**: [https://sovereignsquad.github.io/general-design-system/api](https://sovereignsquad.github.io/general-design-system/api) and [API_REFERENCE.md](API_REFERENCE.md) — Registry-backed package export reference with import paths, runtime lanes, accessibility notes, state contracts, and verification coverage.
 - **Maturity Capabilities**: [https://sovereignsquad.github.io/general-design-system/maturity](https://sovereignsquad.github.io/general-design-system/maturity) — The seven recommended high-value capability groups with issue links, package lanes, benefits, accessibility, observability, rollback, testing, and product-owner delivery value in every supported site language.
-- **Product Use Cases**: [https://sovereignsquad.github.io/general-design-system/use-cases](https://sovereignsquad.github.io/general-design-system/use-cases) and [USER_GUIDE.md](/Users/Shared/Projects/general-design-system/USER_GUIDE.md) — Product-owner adoption guide for choosing GDS package lanes and operational checks.
-- **CLI and Low-Level Design**: [CLI_AND_LLD.md](/Users/Shared/Projects/general-design-system/CLI_AND_LLD.md) — Verification command inventory and the low-level docs/i18n architecture.
+- **Product Use Cases**: [https://sovereignsquad.github.io/general-design-system/use-cases](https://sovereignsquad.github.io/general-design-system/use-cases) and [USER_GUIDE.md](USER_GUIDE.md) — Product-owner adoption guide for choosing GDS package lanes and operational checks.
+- **CLI and Low-Level Design**: [CLI_AND_LLD.md](CLI_AND_LLD.md) — Verification command inventory and the low-level docs/i18n architecture.
 - **Coverage Matrix**: [https://sovereignsquad.github.io/general-design-system/coverage](https://sovereignsquad.github.io/general-design-system/coverage) — Route-level parity view of documented patterns versus live runtime representation status.
 - **Interactive Theme Lab**: [https://sovereignsquad.github.io/general-design-system/themes](https://sovereignsquad.github.io/general-design-system/themes) — Live testing for shipped theme presets, colorful app lanes, light/dark behavior, token surfaces, and the bounded creator-authored theming lane.
 - **Feature request intake**: [https://sovereignsquad.github.io/general-design-system/request-feature](https://sovereignsquad.github.io/general-design-system/request-feature) — Canonical intake for capability requests, governance questions, and missing contracts.
 - **Repository hygiene rule**: only reusable GDS components, patterns, docs, compliance, migration, release, or package work belongs on this repository board. Product-specific requests must be transferred or closed with an explicit owner.
-- **Pattern Service Model**: [PATTERN_SERVICE_MODEL.md](/Users/Shared/Projects/general-design-system/PATTERN_SERVICE_MODEL.md) — The reusable cross-project process for borrowing Mantine-native patterns, promoting them into contracts, and enforcing consistency.
-- **Service Backbone Plan**: [SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md](/Users/Shared/Projects/general-design-system/SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md) — The operating model that makes the GDS reliable, adaptable, and replicable across a portfolio of projects.
-- **GDS 3.0.0 Implementation Plan**: [GDS_3_0_IMPLEMENTATION_PLAN.md](/Users/Shared/Projects/general-design-system/GDS_3_0_IMPLEMENTATION_PLAN.md) — The next major-release plan for the adoption platform, reference site, feature intake, compliance, and release process.
-- **Governance & Migration**: [GOVERNANCE_AND_ADOPTION.md](/Users/Shared/Projects/general-design-system/GOVERNANCE_AND_ADOPTION.md) — Strict rules on how projects must adopt the system, review PRs, and deprecate old code.
-- **Adoption & Migration Playbook**: [ADOPTION_AND_MIGRATION_PLAYBOOK.md](/Users/Shared/Projects/general-design-system/ADOPTION_AND_MIGRATION_PLAYBOOK.md) — The canonical step-by-step path from local mirrors or legacy UI systems to direct `@doneisbetter/gds` or granular `@doneisbetter/gds-*` package consumption.
-- **Compatibility & Releases**: [COMPATIBILITY_AND_RELEASES.md](/Users/Shared/Projects/general-design-system/COMPATIBILITY_AND_RELEASES.md) — Supported Mantine/React/Next ranges, subpath exports, version alignment, and upgrade expectations.
-- **Dependency Governance**: [DEPENDENCY_GOVERNANCE.md](/Users/Shared/Projects/general-design-system/DEPENDENCY_GOVERNANCE.md) — React, Mantine, and Tabler dependency classes, import boundaries, exception lifecycle, compatibility gates, and risk reporting.
-- **Installation Guide**: [INSTALLATION_GUIDE.md](/Users/Shared/Projects/general-design-system/INSTALLATION_GUIDE.md) — The canonical production install path, runtime bootstrap, verification sequence, and common setup mistakes for consumers.
-- **Release Publish Runbook**: [RELEASE_PUBLISH.md](/Users/Shared/Projects/general-design-system/RELEASE_PUBLISH.md) — Authenticated npm publish flow, dry-run command, and recovery guidance.
-- **Verified Consumer Install Proof**: [VERIFIED_CONSUMER_INSTALL_PROOF.md](/Users/Shared/Projects/general-design-system/VERIFIED_CONSUMER_INSTALL_PROOF.md) — The current evidence for Next 15 / React 19 / Mantine 8 and 9 package consumption plus the canonical npm install path.
-- **Compliance Toolkit**: [COMPLIANCE_TOOLKIT.md](/Users/Shared/Projects/general-design-system/COMPLIANCE_TOOLKIT.md) — Shared lint, manifest validation, stale-doc detection, banned-import governance, and repo-level drift checks.
-- **Reference Codemods**: [scripts/codemods/README.md](/Users/Shared/Projects/general-design-system/scripts/codemods/README.md) — Narrow, production-safe migration helpers for `DiscoveryShell`, `ActionBar`, and `ListingCard`, verified by `node scripts/verify-codemods.mjs`.
-- **Theme Governance**: [THEME_GOVERNANCE.md](/Users/Shared/Projects/general-design-system/THEME_GOVERNANCE.md) — Brand extension, dark-mode defaults, white-label, flat-surface, and tenant-theme rules.
-- **Exception Surfaces**: [EXCEPTION_SURFACES.md](/Users/Shared/Projects/general-design-system/EXCEPTION_SURFACES.md) — Chart, map, embed, and other approved exception-surface guidance.
-- **Deprecations & Migrations**: [DEPRECATIONS_AND_MIGRATIONS.md](/Users/Shared/Projects/general-design-system/DEPRECATIONS_AND_MIGRATIONS.md) — Contract retirement policy, migration rules, and release handover expectations.
-- **Portfolio Matrix**: [PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md](/Users/Shared/Projects/general-design-system/PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md) — The current cross-project inventory, archetypes, and recommended next actions.
+- **Pattern Service Model**: [PATTERN_SERVICE_MODEL.md](PATTERN_SERVICE_MODEL.md) — The reusable cross-project process for borrowing Mantine-native patterns, promoting them into contracts, and enforcing consistency.
+- **Service Backbone Plan**: [SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md](SERVICE_BACKBONE_IMPLEMENTATION_PLAN.md) — The operating model that makes the GDS reliable, adaptable, and replicable across a portfolio of projects.
+- **GDS 3.0.0 Implementation Plan**: [GDS_3_0_IMPLEMENTATION_PLAN.md](GDS_3_0_IMPLEMENTATION_PLAN.md) — The next major-release plan for the adoption platform, reference site, feature intake, compliance, and release process.
+- **Governance & Migration**: [GOVERNANCE_AND_ADOPTION.md](GOVERNANCE_AND_ADOPTION.md) — Strict rules on how projects must adopt the system, review PRs, and deprecate old code.
+- **Adoption & Migration Playbook**: [ADOPTION_AND_MIGRATION_PLAYBOOK.md](ADOPTION_AND_MIGRATION_PLAYBOOK.md) — The canonical step-by-step path from local mirrors or legacy UI systems to direct `@doneisbetter/gds` or granular `@doneisbetter/gds-*` package consumption.
+- **Compatibility & Releases**: [COMPATIBILITY_AND_RELEASES.md](COMPATIBILITY_AND_RELEASES.md) — Supported Mantine/React/Next ranges, subpath exports, version alignment, and upgrade expectations.
+- **Dependency Governance**: [DEPENDENCY_GOVERNANCE.md](DEPENDENCY_GOVERNANCE.md) — React, Mantine, and Tabler dependency classes, import boundaries, exception lifecycle, compatibility gates, and risk reporting.
+- **Installation Guide**: [INSTALLATION_GUIDE.md](INSTALLATION_GUIDE.md) — The canonical production install path, runtime bootstrap, verification sequence, and common setup mistakes for consumers.
+- **Release Publish Runbook**: [RELEASE_PUBLISH.md](RELEASE_PUBLISH.md) — Authenticated npm publish flow, dry-run command, and recovery guidance.
+- **Verified Consumer Install Proof**: [VERIFIED_CONSUMER_INSTALL_PROOF.md](VERIFIED_CONSUMER_INSTALL_PROOF.md) — The current evidence for Next 15 / React 19 / Mantine 8 and 9 package consumption plus the canonical npm install path.
+- **Compliance Toolkit**: [COMPLIANCE_TOOLKIT.md](COMPLIANCE_TOOLKIT.md) — Shared lint, manifest validation, stale-doc detection, banned-import governance, and repo-level drift checks.
+- **Reference Codemods**: [scripts/codemods/README.md](scripts/codemods/README.md) — Narrow, production-safe migration helpers for `DiscoveryShell`, `ActionBar`, and `ListingCard`, verified by `node scripts/verify-codemods.mjs`.
+- **Theme Governance**: [THEME_GOVERNANCE.md](THEME_GOVERNANCE.md) — Brand extension, dark-mode defaults, white-label, flat-surface, and tenant-theme rules.
+- **Exception Surfaces**: [EXCEPTION_SURFACES.md](EXCEPTION_SURFACES.md) — Chart, map, embed, and other approved exception-surface guidance.
+- **Deprecations & Migrations**: [DEPRECATIONS_AND_MIGRATIONS.md](DEPRECATIONS_AND_MIGRATIONS.md) — Contract retirement policy, migration rules, and release handover expectations.
+- **Portfolio Matrix**: [PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md](PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md) — The current cross-project inventory, archetypes, and recommended next actions.
 - **Operational Files**: `CONTRIBUTING.md` and `CHANGELOG.md` — Shared rules for contributing to the design system and its versioned history.
 - **Templates**: `TEMPLATES/` — Starter templates for your project's theme, providers, shell, and thin wrappers.
 - **Machine-readable Contracts**: `compatibility.matrix.json`, `schemas/gds-adoption.schema.json`, and `TEMPLATES/gds-adoption.json.template` — shared compatibility, adoption, and validation contracts.
@@ -68,8 +68,8 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 - **Reference Consumers**: `apps/reference-vite` and `apps/reference-next` — verified fixture apps that exercise the canonical package-consumption path.
 - **Docs Site Source**: `apps/playground` — the GitHub Pages source app that publishes the install guide, governance guidance, theme explorer, live demos, and the pattern catalog.
 - **Reference-Site Primitives**: `ReferenceSection`, `ReferenceLinkGrid`, `ReferenceLocaleNotice`, `ReferenceThemeExplorer`, `DocsShell`, and `DocsHeaderActionSelect` — canonical GDS-owned primitives for reference/docs surfaces without site-local pseudo-components, including bounded localized header actions.
-- **Board Sync Checklist**: [docs/BOARD_SYNC_CHECKLIST.md](/Users/Shared/Projects/general-design-system/docs/BOARD_SYNC_CHECKLIST.md) — required consistency pass between implementation, docs, and GitHub project-board issue state before release and after major delivery waves.
-- **Client Upgrade Prompt**: [CLIENT_UPGRADE_PROMPT.md](/Users/Shared/Projects/general-design-system/CLIENT_UPGRADE_PROMPT.md) — copy/paste checklist and communication template for consumer teams.
+- **Board Sync Checklist**: [docs/BOARD_SYNC_CHECKLIST.md](docs/BOARD_SYNC_CHECKLIST.md) — required consistency pass between implementation, docs, and GitHub project-board issue state before release and after major delivery waves.
+- **Client Upgrade Prompt**: [CLIENT_UPGRADE_PROMPT.md](CLIENT_UPGRADE_PROMPT.md) — copy/paste checklist and communication template for consumer teams.
 - **Projects**: `PROJECTS/` — Product-specific migration plans and adoption strategies.
 
 ## Public Site Contract
@@ -165,7 +165,7 @@ Required repository behavior:
 - `npm run audit:board` — audits the canonical GDS project board for issue-state/project-status drift and prints any open or mismatched items
   - CI note: if GitHub API rate limiting blocks board reads, the audit emits a warning and continues unless `GDS_BOARD_AUDIT_STRICT=1` is set
 - `npm run audit:board:strict` — runs the same project-board audit in fail-hard mode for local release sign-off and board normalization work
-- `npm run audit:dependencies` — enforces zero production dependency advisories and verifies any dev/reference-tooling advisories are explicitly documented in [DEPENDENCY_AUDIT.md](/Users/Shared/Projects/general-design-system/DEPENDENCY_AUDIT.md)
+- `npm run audit:dependencies` — enforces zero production dependency advisories and verifies any dev/reference-tooling advisories are explicitly documented in [DEPENDENCY_AUDIT.md](DEPENDENCY_AUDIT.md)
 - `npm run verify:mantine` — packs the packages and validates clean Mantine 8.3 and 9.2 / React 19 consumer install smoke
 - `npm run publish:dry-run` — validates the authenticated package publish sequence without uploading artifacts
 - `npm run publish:npm` — publishes the six public GDS packages from an authenticated npm environment
@@ -190,7 +190,7 @@ The shared package validation path is now expected to cover:
 
 - One interaction concept gets one canonical pattern.
 - One product gets one active theme and token source.
-- New product UI must use Mantine primitives or thin approved wrappers around them.
+- New product UI must use shipped GDS contracts first; Mantine and Tabler are implementation dependencies behind GDS-owned APIs unless a reviewed dependency-boundary exception is active.
 - No new product UI may bypass Mantine with raw custom primitives, ad hoc HTML/CSS controls, or alternate component frameworks.
 - Mantine UI examples may be used only as reference material; reusable output must become GDS-governed project contracts.
 - Raw colors and repeated hard-coded spacing in feature code are prohibited.

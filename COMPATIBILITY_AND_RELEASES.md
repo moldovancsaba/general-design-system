@@ -2,13 +2,13 @@
 
 Status: Active SSOT
 Version: 3.4.14
-Last updated: 2026-06-06
+Last updated: 2026-06-13
 
 This document defines the supported package/runtime contract for the umbrella package `@doneisbetter/gds` and the granular runtime packages `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin`.
 
 ## Supported matrix
 
-The machine-readable authority for the supported lines lives in [compatibility.matrix.json](/Users/Shared/Projects/general-design-system/compatibility.matrix.json).
+The machine-readable authority for the supported lines lives in [compatibility.matrix.json](compatibility.matrix.json).
 
 | Surface | Supported now | Notes |
 |---|---|---|
@@ -44,7 +44,7 @@ Current live status:
 
 Consumer repos should install the latest published npm version unless they are explicitly validating an unpublished release candidate or an internal pre-release cut.
 
-Authenticated release operators should use [RELEASE_PUBLISH.md](/Users/Shared/Projects/general-design-system/RELEASE_PUBLISH.md) together with:
+Authenticated release operators should use [RELEASE_PUBLISH.md](RELEASE_PUBLISH.md) together with:
 
 ```bash
 npm run verify:release
@@ -112,7 +112,7 @@ Auth expectations for the temporary path:
 - no npm token is required for consumers
 - standard GitHub public release asset availability is sufficient
 
-See [RELEASE_PUBLISH.md](/Users/Shared/Projects/general-design-system/RELEASE_PUBLISH.md) for the operator-side bundling flow.
+See [RELEASE_PUBLISH.md](RELEASE_PUBLISH.md) for the operator-side bundling flow.
 
 ### Local workspace build note
 
@@ -222,7 +222,7 @@ When a product currently uses local mirrored `src/gds/gds-*` contracts or a sibl
 3. replace mirrored contract imports family-by-family
 4. keep the local manifest and compliance config active until all mirrors are deleted
 
-See [ADOPTION_AND_MIGRATION_PLAYBOOK.md](/Users/Shared/Projects/general-design-system/ADOPTION_AND_MIGRATION_PLAYBOOK.md) for the full sequence and rollback path.
+See [ADOPTION_AND_MIGRATION_PLAYBOOK.md](ADOPTION_AND_MIGRATION_PLAYBOOK.md) for the full sequence and rollback path.
 
 ## Versioning policy
 
@@ -269,4 +269,4 @@ These fixtures are verified through `npm run verify:references` and act as the l
 - `npm run audit:dependencies` verifies production audit cleanliness and generates `dependency-risk-report.json` with direct/peer/dev dependency categories, active dependency exceptions, and release evidence commands.
 - `apps/reference-next` remains the typed App Router reference fixture. `npm run build:app-router --workspace=reference-next` is kept as an explicit non-gating harness while the upstream `/404` / `/_error` prerender failure on Next `15.5.x` is still reproducible even against a trivial reference route tree.
 
-See [VERIFIED_CONSUMER_INSTALL_PROOF.md](/Users/Shared/Projects/general-design-system/VERIFIED_CONSUMER_INSTALL_PROOF.md) for the consumer-facing proof summary.
+See [VERIFIED_CONSUMER_INSTALL_PROOF.md](VERIFIED_CONSUMER_INSTALL_PROOF.md) for the consumer-facing proof summary.

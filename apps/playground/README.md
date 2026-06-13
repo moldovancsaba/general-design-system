@@ -46,7 +46,7 @@ This is not a secondary docs sandbox.
 
 ## Client rollout artifact
 
-Use [CLIENT_UPGRADE_PROMPT.md](/Users/Shared/Projects/general-design-system/CLIENT_UPGRADE_PROMPT.md) as the standard customer-facing message when asking teams to migrate.
+Use [CLIENT_UPGRADE_PROMPT.md](CLIENT_UPGRADE_PROMPT.md) as the standard customer-facing message when asking teams to migrate.
 
 ## Deployment
 

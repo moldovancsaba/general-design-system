@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = process.cwd();
@@ -30,6 +30,28 @@ const requiredThemeLanes = [
 
 const failures = [];
 
+function listMarkdownFiles(directory) {
+  const entries = readdirSync(directory);
+  const files = [];
+
+  for (const entry of entries) {
+    if (entry === '.git' || entry === 'node_modules' || entry === 'dist') {
+      continue;
+    }
+
+    const path = resolve(directory, entry);
+    const stat = statSync(path);
+
+    if (stat.isDirectory()) {
+      files.push(...listMarkdownFiles(path));
+    } else if (path.endsWith('.md')) {
+      files.push(path);
+    }
+  }
+
+  return files;
+}
+
 for (const relativeFile of ssotDocs) {
   const source = readFileSync(resolve(root, relativeFile), 'utf8');
 
@@ -53,9 +75,19 @@ if (readme.includes('legacy/compatibility surface')) {
   failures.push('README.md still describes canonical reference-site primitives as a legacy/compatibility surface.');
 }
 
+const docsWithAbsoluteLocalLinks = listMarkdownFiles(root).filter((file) => {
+  const source = readFileSync(file, 'utf8');
+  return /\]\(\/Users\/Shared\/Projects\/general-design-system\//.test(source);
+});
+
+for (const file of docsWithAbsoluteLocalLinks) {
+  failures.push(`${file.replace(`${root}/`, '')} contains a local filesystem Markdown link target instead of a repository-relative link.`);
+}
+
 const installGuide = readFileSync(resolve(root, 'INSTALLATION_GUIDE.md'), 'utf8');
 const themeGovernance = readFileSync(resolve(root, 'THEME_GOVERNANCE.md'), 'utf8');
 const implementationPlan = readFileSync(resolve(root, 'GDS_3_0_IMPLEMENTATION_PLAN.md'), 'utf8');
+const siteCopy = readFileSync(resolve(root, 'apps/playground/src/site-copy.ts'), 'utf8');
 
 for (const lane of requiredThemeLanes) {
   if (!installGuide.includes(lane)) {
@@ -68,6 +100,14 @@ for (const lane of requiredThemeLanes) {
 
 if (implementationPlan.includes('Current stable baseline: 2.6.7')) {
   failures.push('GDS_3_0_IMPLEMENTATION_PLAN.md still references a pre-release stable baseline.');
+}
+
+if (!siteCopy.includes('Dependency governance is now explicit')) {
+  failures.push('Governance page copy does not describe the current dependency-governance release.');
+}
+
+if (siteCopy.includes('What changed in 3.4.14') && siteCopy.includes('Theme ownership now includes full CSS VibeThemes')) {
+  failures.push('Governance page copy still describes the previous theme release as the current 3.4.14 change.');
 }
 
 if (failures.length > 0) {

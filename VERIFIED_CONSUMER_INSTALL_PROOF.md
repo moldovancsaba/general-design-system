@@ -2,7 +2,7 @@
 
 Status: Active SSOT
 Version: 3.4.14
-Last updated: 2026-06-07
+Last updated: 2026-06-13
 
 This document records the current proof points for the direct package-consumption path that consumer teams should rely on when evaluating GDS adoption readiness.
 
@@ -103,7 +103,7 @@ npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-complian
 
 Fallback release-bundle install path if npm is temporarily unavailable:
 
-- use the release-asset tarballs described in [RELEASE_PUBLISH.md](/Users/Shared/Projects/general-design-system/RELEASE_PUBLISH.md)
+- use the release-asset tarballs described in [RELEASE_PUBLISH.md](RELEASE_PUBLISH.md)
 - do not use sibling `file:` links in CI or Vercel flows
 
 ## Evidence commands

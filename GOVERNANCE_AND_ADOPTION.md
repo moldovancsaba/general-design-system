@@ -74,7 +74,7 @@ Projects must actively enforce the Mantine-only policy to prevent design-system 
 - **Compliance Config**: `gds-adoption.json` may declare `compliance.documentationPaths`, `compliance.staleDocumentationReferences`, `compliance.protectedSurfacePaths`, and `compliance.bannedImports` so shared tooling can catch stale SSOT references, protected-surface drift, and lingering legacy UI dependencies without product-local scripts.
 - **Theme Governance Config**: `gds-adoption.json` may declare `compliance.approvedThemeLanes` and `compliance.themeOwnershipPaths` so shared tooling can flag non-canonical branding-layer theme ownership in consumer repos.
 - **Strict GDS-only Mode**: Repos that have already migrated to canonical shells, actions, listings, and detail surfaces should enable `compliance.strictMode` so local shell adapters, local button wrappers, and other prohibited surface drift fail fast.
-- **Compliance Toolkit Contract**: Use [COMPLIANCE_TOOLKIT.md](/Users/Shared/Projects/general-design-system/COMPLIANCE_TOOLKIT.md) as the normative package + CI contract for `@doneisbetter/gds-eslint-config` and `@doneisbetter/gds-compliance`.
+- **Compliance Toolkit Contract**: Use [COMPLIANCE_TOOLKIT.md](COMPLIANCE_TOOLKIT.md) as the normative package + CI contract for `@doneisbetter/gds-eslint-config` and `@doneisbetter/gds-compliance`.
 
 ## Feature Request Intake
 
@@ -105,11 +105,11 @@ Promote a request to a GitHub issue only when it can become a reusable GDS contr
 
 ## 5. Canonical Adoption Path
 
-Use [ADOPTION_AND_MIGRATION_PLAYBOOK.md](/Users/Shared/Projects/general-design-system/ADOPTION_AND_MIGRATION_PLAYBOOK.md) as the normative staged path from local mirrored adapters or partial GDS adoption to direct `@doneisbetter/gds-*` package consumption.
+Use [ADOPTION_AND_MIGRATION_PLAYBOOK.md](ADOPTION_AND_MIGRATION_PLAYBOOK.md) as the normative staged path from local mirrored adapters or partial GDS adoption to direct `@doneisbetter/gds-*` package consumption.
 
 ### Pull Request Checklist
 Reviewers must ask:
-- Does this use Mantine primitives or thin wrappers?
+- Does this use shipped GDS contracts first, with direct Mantine/Tabler usage only behind an approved dependency-boundary exception?
 - Could theme defaults solve this instead of local override logic?
 - Does this use the documented server-safe/client-safe import path for the target runtime?
 - If runtime theme or typography switching is present, does it persist serializable theme intent across direct links, static-host fallback reloads, browser refreshes, and route remounts?
@@ -179,7 +179,7 @@ Recommended compliance path:
 
 Before declaring a new local surface gap, teams must check both:
 
-- [COMPONENTS_AND_PATTERNS.md](/Users/Shared/Projects/general-design-system/COMPONENTS_AND_PATTERNS.md)
+- [COMPONENTS_AND_PATTERNS.md](COMPONENTS_AND_PATTERNS.md)
 - `https://sovereignsquad.github.io/general-design-system/patterns`
 
 The markdown document is the normative contract. The GitHub Pages pattern catalog is the live visual proof and demo inventory for those contracts.
@@ -206,11 +206,11 @@ For the official reference site, also prefer:
 
 Reference policies:
 
-- [THEME_GOVERNANCE.md](/Users/Shared/Projects/general-design-system/THEME_GOVERNANCE.md)
-- [DEPENDENCY_GOVERNANCE.md](/Users/Shared/Projects/general-design-system/DEPENDENCY_GOVERNANCE.md)
-- [EXCEPTION_SURFACES.md](/Users/Shared/Projects/general-design-system/EXCEPTION_SURFACES.md)
-- [DEPRECATIONS_AND_MIGRATIONS.md](/Users/Shared/Projects/general-design-system/DEPRECATIONS_AND_MIGRATIONS.md)
-- [TEMPLATES/gds-adoption.json.template](/Users/Shared/Projects/general-design-system/TEMPLATES/gds-adoption.json.template)
+- [THEME_GOVERNANCE.md](THEME_GOVERNANCE.md)
+- [DEPENDENCY_GOVERNANCE.md](DEPENDENCY_GOVERNANCE.md)
+- [EXCEPTION_SURFACES.md](EXCEPTION_SURFACES.md)
+- [DEPRECATIONS_AND_MIGRATIONS.md](DEPRECATIONS_AND_MIGRATIONS.md)
+- [TEMPLATES/gds-adoption.json.template](TEMPLATES/gds-adoption.json.template)
 
 ## 4A. Package Consumption Rule
 
@@ -233,7 +233,7 @@ Required adoption behavior:
 1. Identify the repeated workflow problem.
 2. Review Mantine and Mantine UI examples only as Mantine-native references.
 3. Document the GDS-level behavior contract before broad implementation.
-4. Implement through Mantine primitives or thin local Mantine wrappers.
+4. Implement through shipped GDS primitives or a narrow, approved dependency-boundary exception when a direct implementation dependency is temporarily unavoidable.
 5. Delete or freeze older local variants.
 6. Add enforcement so the project cannot silently fork the pattern again.
 

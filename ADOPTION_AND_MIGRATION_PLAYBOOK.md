@@ -2,7 +2,7 @@
 
 Status: Active SSOT
 Version: 3.0.0
-Last updated: 2026-05-31
+Last updated: 2026-06-13
 
 This playbook defines the canonical path for adopting GDS through direct package consumption and for migrating repos away from local mirrored adapters or legacy UI systems.
 
@@ -358,7 +358,7 @@ Every adopter must maintain:
 - strict-mode status and approved primitive lanes if the repo is targeting 100% GDS-only
 - a standardized client update template before each cross-team migration step
 
-A ready-to-send template is maintained in [CLIENT_UPGRADE_PROMPT.md](/Users/Shared/Projects/general-design-system/CLIENT_UPGRADE_PROMPT.md).
+A ready-to-send template is maintained in [CLIENT_UPGRADE_PROMPT.md](CLIENT_UPGRADE_PROMPT.md).
 
 Approved exceptions should be declared as governed records, not prose-only reminders. At minimum, each exception in `gds-adoption.json` should define:
 

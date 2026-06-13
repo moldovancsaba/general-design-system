@@ -2,7 +2,7 @@
 
 Status: Active SSOT
 Version: 3.0.0
-Last updated: 2026-05-31
+Last updated: 2026-06-13
 
 This document defines the canonical governance enforcement toolkit for GDS consumers.
 
@@ -79,7 +79,7 @@ Optional compliance extensions live in `gds-adoption.json`:
 - `exitCondition`
 - `status`
 
-`gds-compliance` will fail broad scopes such as `src/**` and will flag missing canonical fields as manifest drift. Use [EXCEPTION_SURFACES.md](/Users/Shared/Projects/general-design-system/EXCEPTION_SURFACES.md) and [TEMPLATES/gds-adoption.json.template](/Users/Shared/Projects/general-design-system/TEMPLATES/gds-adoption.json.template) as the normative examples.
+`gds-compliance` will fail broad scopes such as `src/**` and will flag missing canonical fields as manifest drift. Use [EXCEPTION_SURFACES.md](EXCEPTION_SURFACES.md) and [TEMPLATES/gds-adoption.json.template](TEMPLATES/gds-adoption.json.template) as the normative examples.
 
 Additional enforcement now applies for creator-authored experience exceptions:
 
@@ -179,7 +179,7 @@ Recommended activation order:
 
 Reference review input for migration teams:
 
-- SSOT policy: [COMPONENTS_AND_PATTERNS.md](/Users/Shared/Projects/general-design-system/COMPONENTS_AND_PATTERNS.md)
+- SSOT policy: [COMPONENTS_AND_PATTERNS.md](COMPONENTS_AND_PATTERNS.md)
 - live pattern site: `https://sovereignsquad.github.io/general-design-system/patterns`
 
 The compliance toolkit does not replace design review. It enforces the declared contract after teams have confirmed the shipped surface inventory.

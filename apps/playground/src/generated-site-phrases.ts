@@ -628,6 +628,17 @@ export const generatedSitePhrases = {
     "it": "Analisi e dati",
     "hu": "Analytics és adatok"
   },
+  "p_e7beca423992": {
+    "en": "API boundary labels",
+    "ru": "Метки границ API",
+    "es": "Etiquetas de límites de API",
+    "it": "Etichette dei limiti dell'API",
+    "he": "תוויות גבול API",
+    "ar": "تسميات حدود API",
+    "de": "API-Grenzbezeichnungen",
+    "fr": "Étiquettes de limites d'API",
+    "hu": "API határcímkék"
+  },
   "p_f0c2c42ad23c": {
     "en": "Application Shell & Navigation",
     "de": "Anwendungs-Shell und Navigation",
@@ -660,17 +671,6 @@ export const generatedSitePhrases = {
     "it": "Approvato dalla politica di identità.",
     "he": "מאושר על ידי מדיניות זהות.",
     "de": "Genehmigt durch die Identitätsrichtlinie."
-  },
-  "p_ab50e0dd8977": {
-    "en": "Approved theme lanes only",
-    "ru": "Только утвержденные тематические полосы",
-    "es": "Solo carriles temáticos aprobados",
-    "ar": "الممرات الموضوعية المعتمدة فقط",
-    "it": "Solo corsie tematiche approvate",
-    "he": "נתיבי נושא מאושרים בלבד",
-    "fr": "Voies thématiques approuvées uniquement",
-    "de": "Nur genehmigte Themenbahnen",
-    "hu": "Csak jóváhagyott témasávok"
   },
   "p_188910a4cead": {
     "en": "AppShell is backed by DiscoveryShell and remains an admin compatibility path.",
@@ -1596,28 +1596,6 @@ export const generatedSitePhrases = {
     "hu": "Kiválasztás törlése",
     "he": "נקה בחירה"
   },
-  "p_463a62f9de6a": {
-    "en": "Client lane",
-    "ar": "ممر العميل",
-    "ru": "Клиентская полоса",
-    "es": "carril del cliente",
-    "fr": "Voie client",
-    "de": "Kundenspur",
-    "it": "Corsia clienti",
-    "he": "נתיב לקוח",
-    "hu": "Ügyfélsáv"
-  },
-  "p_81a0689f9e70": {
-    "en": "Clients should use gdsTheme, the shipped public presets, CSS VibeThemes, or createPublicBrandTheme(...).",
-    "de": "Kunden sollten gdsTheme, die mitgelieferten öffentlichen Voreinstellungen, CSS VibeThemes oder createPublicBrandTheme(...) verwenden.",
-    "es": "Los clientes deben usar gdsTheme, los ajustes preestablecidos públicos enviados, CSS VibeThemes o createPublicBrandTheme(...).",
-    "ru": "Клиенты должны использовать gdsTheme, поставляемые общедоступные настройки, CSS VibeThemes или createPublicBrandTheme(...).",
-    "ar": "يجب على العملاء استخدام gdsTheme، أو الإعدادات المسبقة العامة المشحونة، أو CSS VibeThemes، أو createPublicBrandTheme(...).",
-    "it": "I clienti devono utilizzare gdsTheme, le preimpostazioni pubbliche fornite, CSS VibeThemes o createPublicBrandTheme(...).",
-    "hu": "Az ügyfeleknek a gdsTheme-et, a szállított nyilvános előre beállított értékeket, a CSS VibeThemes-t vagy a createPublicBrandTheme(...) kell használniuk.",
-    "fr": "Les clients doivent utiliser gdsTheme, les préréglages publics fournis, CSS VibeThemes ou createPublicBrandTheme(...).",
-    "he": "לקוחות צריכים להשתמש ב-gdsTheme, ההגדרות הציבוריות המוגדרות מראש, CSS VibeThemes, או createPublicBrandTheme(...)."
-  },
   "p_edfb29e935df": {
     "en": "Cluster A",
     "es": "Grupo A",
@@ -1672,17 +1650,6 @@ export const generatedSitePhrases = {
     "de": "Befehl+2",
     "he": "Cmd+2",
     "hu": "Cmd+2"
-  },
-  "p_3e5aab706e06": {
-    "en": "Colorful app identity must come from --gds-vibe-* tokens for shell, canvas, surfaces, controls, focus, and accents, not pixel image backgrounds.",
-    "ar": "يجب أن تأتي هوية التطبيق الملونة من --gds-vibe-* الرموز المميزة للواجهة واللوحة والأسطح وعناصر التحكم والتركيز واللهجات، وليس خلفيات صور البكسل.",
-    "hu": "A színes alkalmazásidentitás --gds-vibe-* tokenekből kell származnia a shell, vászon, felületek, vezérlők, fókusz és ékezetek számára, nem pedig a képpontos képek hátteréből.",
-    "ru": "Красочная идентичность приложения должна исходить из токенов --gds-vibe-* для оболочки, холста, поверхностей, элементов управления, фокуса и акцентов, а не из пиксельных изображений фона.",
-    "es": "La identidad colorida de la aplicación debe provenir de tokens --gds-vibe-* para el caparazón, el lienzo, las superficies, los controles, el enfoque y los acentos, no de fondos de imágenes de píxeles.",
-    "it": "L'identità colorata dell'app deve provenire da token --gds-vibe-* per shell, tela, superfici, controlli, messa a fuoco e accenti, non sfondi di immagini pixel.",
-    "fr": "L'identité colorée de l'application doit provenir de jetons --gds-vibe-* pour le shell, le canevas, les surfaces, les contrôles, le focus et les accents, et non d'arrière-plans d'images en pixels.",
-    "de": "Die farbenfrohe App-Identität muss von --gds-vibe-*-Tokens für Shell, Canvas, Oberflächen, Steuerelemente, Fokus und Akzente stammen, nicht von Pixelbildhintergründen.",
-    "he": "זהות אפליקציה צבעונית חייבת להגיע מאסימוני --gds-vibe-* עבור מעטפת, קנבס, משטחים, פקדים, מיקוד והדגשות, לא רקע תמונה של פיקסלים."
   },
   "p_0347f794d69c": {
     "en": "Command palette",
@@ -2080,17 +2047,6 @@ export const generatedSitePhrases = {
     "he": "חוזה אירוע צולב פרימיטיבי עם ברירות מחדל בטוחות בפרטיות.",
     "hu": "Keresztprimitív eseményszerződés adatvédelmi alapértelmezésekkel."
   },
-  "p_a966f3ef84c7": {
-    "en": "CSS-only VibeThemes",
-    "es": "VibeThemes solo CSS",
-    "ru": "VibeThemes только для CSS",
-    "ar": "CSS-VibeThemes فقط",
-    "it": "VibeThemes solo CSS",
-    "fr": "VibeThemes CSS uniquement",
-    "hu": "Csak CSS-alapú VibeThemes",
-    "de": "Nur CSS-VibeThemes",
-    "he": "VibeThemes ל-CSS בלבד"
-  },
   "p_d2234b50b78d": {
     "en": "CTA Button Groups",
     "it": "Gruppi di pulsanti CTA",
@@ -2233,6 +2189,28 @@ export const generatedSitePhrases = {
     "de": "Dichter Vertrag für engere Listen ohne lokales CSS.",
     "fr": "Contrat dense pour des listes plus serrées sans CSS local.",
     "ar": "عقد كثيف لقوائم أكثر إحكامًا بدون CSS محلي."
+  },
+  "p_3c18b6e7a2e2": {
+    "en": "Dependency governance changed",
+    "ar": "تغيرت إدارة التبعية",
+    "ru": "Управление зависимостями изменено",
+    "es": "La gobernanza de la dependencia cambió",
+    "de": "Die Abhängigkeits-Governance wurde geändert",
+    "it": "La governance delle dipendenze è cambiata",
+    "fr": "La gouvernance des dépendances a changé",
+    "he": "ממשל התלות השתנה",
+    "hu": "A függőségi irányítás megváltozott"
+  },
+  "p_bd9437085838": {
+    "en": "Dependency policy",
+    "he": "מדיניות תלות",
+    "it": "Politica di dipendenza",
+    "ru": "Политика зависимости",
+    "ar": "سياسة التبعية",
+    "es": "Política de dependencia",
+    "fr": "Politique de dépendance",
+    "de": "Abhängigkeitsrichtlinie",
+    "hu": "Függőségi politika"
   },
   "p_5264f98bf106": {
     "en": "Describe the missing primitive or behavior.",
@@ -2938,6 +2916,17 @@ export const generatedSitePhrases = {
     "ru": "Пример сообщения проверки",
     "he": "הודעת אימות לדוגמה"
   },
+  "p_1d61f342b89f": {
+    "en": "Exception lifecycle",
+    "ar": "دورة حياة الاستثناء",
+    "it": "Ciclo di vita delle eccezioni",
+    "ru": "Жизненный цикл исключения",
+    "de": "Ausnahmelebenszyklus",
+    "hu": "Kivétel életciklus",
+    "es": "Ciclo de vida de excepción",
+    "fr": "Cycle de vie des exceptions",
+    "he": "מחזור חיים חריג"
+  },
   "p_a3947998b5b0": {
     "en": "Expanded chart catalog",
     "it": "Catalogo cartografico espanso",
@@ -2959,17 +2948,6 @@ export const generatedSitePhrases = {
     "es": "Exportación rastreada",
     "ar": "تتبع التصدير",
     "he": "ייצוא במעקב"
-  },
-  "p_9be5a7f0178e": {
-    "en": "extendGdsTheme(...) is no longer a canonical consumer branding-layer API.",
-    "de": "extensionGdsTheme(...) ist keine kanonische Consumer-Branding-Layer-API mehr.",
-    "es": "extendGdsTheme(...) ya no es una API canónica de capa de marca de consumidor.",
-    "hu": "Az extendGdsTheme(...) már nem egy kanonikus fogyasztói márkaépítési réteg API.",
-    "ru": "ExtendGdsTheme(...) больше не является каноническим API уровня потребительского брендинга.",
-    "it": "extendGdsTheme(...) non è più un'API canonica a livello di branding del consumatore.",
-    "ar": "لم يعد ExtendGdsTheme(...) واجهة برمجة تطبيقات أساسية لطبقة العلامات التجارية للمستهلك.",
-    "fr": "extendGdsTheme(...) n'est plus une API canonique de couche de marque grand public.",
-    "he": "extendGdsTheme(...) אינו עוד API קנוני של שכבת מיתוג צרכנית."
   },
   "p_e69a110be518": {
     "en": "Fail release when docs or i18n coverage drifts.",
@@ -3906,16 +3884,16 @@ export const generatedSitePhrases = {
     "he": "אם לעטיפת אתר בלבד אין חוזה לשימוש חוזר, יש להסיר אותו במקום לנרמל אותו למערכת.",
     "hu": "Ha egy csak webhelyre vonatkozó burkolónak nincs újrafelhasználható szerződése, akkor a rendszerbe történő normalizálás helyett el kell távolítani."
   },
-  "p_a4af7c4bf458": {
-    "en": "If you already use a shipped GDS theme export directly, this should be a low-risk update.",
-    "es": "Si ya utiliza directamente una exportación de tema GDS enviada, esta debería ser una actualización de bajo riesgo.",
-    "ar": "إذا كنت تستخدم بالفعل تصدير سمة GDS المشحونة مباشرةً، فيجب أن يكون هذا تحديثًا منخفض المخاطر.",
-    "fr": "Si vous utilisez déjà directement une exportation de thème GDS fournie, cela devrait être une mise à jour à faible risque.",
-    "de": "Wenn Sie bereits einen ausgelieferten GDS-Theme-Export direkt nutzen, sollte es sich um ein Update mit geringem Risiko handeln.",
-    "ru": "Если вы уже используете поставляемую экспортированную тему GDS напрямую, это обновление должно быть с низким уровнем риска.",
-    "it": "Se utilizzi già direttamente l'esportazione di un tema GDS fornito, questo dovrebbe essere un aggiornamento a basso rischio.",
-    "hu": "Ha már közvetlenül használ egy szállított GDS-témaexportálást, ennek alacsony kockázatú frissítésnek kell lennie.",
-    "he": "אם אתה כבר משתמש בייצוא נושא GDS שנשלח ישירות, זה אמור להיות עדכון בסיכון נמוך."
+  "p_292343bc61f9": {
+    "en": "If you already consume GDS package exports instead of direct Mantine or Tabler imports, this should be a low-risk update.",
+    "ar": "إذا كنت تستهلك بالفعل صادرات حزمة GDS بدلاً من عمليات استيراد Mantine أو Tabler المباشرة، فيجب أن يكون هذا تحديثًا منخفض المخاطر.",
+    "de": "Wenn Sie bereits GDS-Paketexporte statt direkter Mantine- oder Tabler-Importe nutzen, sollte dies ein Update mit geringem Risiko sein.",
+    "fr": "Si vous consommez déjà des exportations de packages GDS au lieu d'importations directes Mantine ou Tabler, cela devrait être une mise à jour à faible risque.",
+    "hu": "Ha a közvetlen Mantine vagy Tabler import helyett már GDS-csomagexportot használ, ennek alacsony kockázatú frissítésnek kell lennie.",
+    "es": "Si ya consume exportaciones de paquetes GDS en lugar de importaciones directas de Mantine o Tabler, esta debería ser una actualización de bajo riesgo.",
+    "it": "Se utilizzi già esportazioni di pacchetti GDS invece di importazioni dirette Mantine o Tabler, questo dovrebbe essere un aggiornamento a basso rischio.",
+    "ru": "Если вы уже используете экспорт пакетов GDS вместо прямого импорта Mantine или Tabler, это обновление должно быть с низким уровнем риска.",
+    "he": "אם אתה כבר צורך יצוא חבילות GDS במקום יבוא ישיר של Mantine או Tabler, זה אמור להיות עדכון בסיכון נמוך."
   },
   "p_666bb33f1419": {
     "en": "If your mail client does not open, copy the address and send the same fields manually.",
@@ -5126,17 +5104,6 @@ export const generatedSitePhrases = {
     "ar": "لا حاجة إلى غلاف محلي لمحاذاة الجسم.",
     "hu": "Nincs szükség helyi borításra a test igazításához.",
     "he": "אין צורך לעטיפה מקומית ליישור הגוף."
-  },
-  "p_090f9e1d8038": {
-    "en": "No long-term extendGdsTheme path",
-    "ru": "Нет долгосрочного пути расширенияGdsTheme",
-    "fr": "Pas de chemin extendGdsTheme à long terme",
-    "es": "Sin extensión a largo plazo de la ruta del tema Gds",
-    "ar": "لا يوجد مسار ممتد طويل المدى لـGdsTheme",
-    "it": "Nessun percorso extendGdsTheme a lungo termine",
-    "de": "Kein langfristiger ExtendGdsTheme-Pfad",
-    "hu": "Nincs hosszú távú extendGdsTheme elérési út",
-    "he": "אין נתיב להארכת GdsTheme לטווח ארוך"
   },
   "p_17fe02481bf8": {
     "en": "No map source configured for this demo.",
@@ -6832,6 +6799,17 @@ export const generatedSitePhrases = {
     "hu": "Radar diagram",
     "fr": "Carte radar"
   },
+  "p_53afdd874e83": {
+    "en": "React, Mantine, and Tabler are accepted implementation dependencies only behind GDS-owned contracts and release gates.",
+    "de": "React, Mantine und Tabler sind akzeptierte Implementierungsabhängigkeiten nur hinter GDS-eigenen Verträgen und Release-Gates.",
+    "fr": "React, Mantine et Tabler sont des dépendances d'implémentation acceptées uniquement derrière les contrats et les portes de publication appartenant à GDS.",
+    "it": "React, Mantine e Tabler sono dipendenze di implementazione accettate solo dietro contratti e release gate di proprietà di GDS.",
+    "ar": "تعتبر React وMantine وTabler تبعيات تنفيذ مقبولة فقط خلف العقود المملوكة لـ GDS وبوابات الإصدار.",
+    "ru": "React, Mantine и Tabler принимаются в качестве зависимостей реализации только после контрактов, принадлежащих GDS, и шлюзов выпуска.",
+    "he": "React, Mantine ו-Tabler הם תלות יישום מקובלת רק מאחורי חוזים ושערי שחרור בבעלות GDS.",
+    "es": "React, Mantine y Tabler son dependencias de implementación aceptadas solo detrás de contratos y puertas de lanzamiento propiedad de GDS.",
+    "hu": "A React, a Mantine és a Tabler csak a GDS-tulajdonú szerződések és kiadási kapuk mögött elfogadott megvalósítási függőségek."
+  },
   "p_83b794145c0c": {
     "en": "Read more",
     "de": "Mehr lesen",
@@ -7250,16 +7228,16 @@ export const generatedSitePhrases = {
     "he": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart",
     "de": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart"
   },
-  "p_db936563d8e5": {
-    "en": "Repos that adopt the new manifest fields can now detect non-canonical theme ownership automatically.",
-    "ru": "Репозитории, в которых используются новые поля манифеста, теперь могут автоматически определять владение неканонической темой.",
-    "fr": "Les dépôts qui adoptent les nouveaux champs de manifeste peuvent désormais détecter automatiquement la propriété de thèmes non canoniques.",
-    "he": "ריפו שמאמצים את שדות המניפסט החדשים יכולים כעת לזהות בעלות על נושאים לא קנוניים באופן אוטומטי.",
-    "it": "I repository che adottano i nuovi campi manifest ora possono rilevare automaticamente la proprietà di temi non canonici.",
-    "de": "Repos, die die neuen Manifestfelder übernehmen, können jetzt automatisch den Besitz nicht-kanonischer Themes erkennen.",
-    "ar": "يمكن الآن لمستودعات إعادة الشراء التي تعتمد حقول البيان الجديدة اكتشاف ملكية السمة غير الأساسية تلقائيًا.",
-    "es": "Los repositorios que adoptan los nuevos campos de manifiesto ahora pueden detectar automáticamente la propiedad del tema no canónico.",
-    "hu": "Az új jegyzékmezőket alkalmazó repók most már automatikusan észlelhetik a nem kanonikus tématulajdonlást."
+  "p_a7e812fca1bb": {
+    "en": "Repos that adopt the new manifest fields can now detect unreviewed direct dependency imports automatically.",
+    "de": "Repos, die die neuen Manifestfelder übernehmen, können jetzt nicht überprüfte direkte Abhängigkeitsimporte automatisch erkennen.",
+    "fr": "Les dépôts qui adoptent les nouveaux champs de manifeste peuvent désormais détecter automatiquement les importations de dépendances directes non vérifiées.",
+    "it": "I repository che adottano i nuovi campi manifest ora possono rilevare automaticamente le importazioni di dipendenze dirette non revisionate.",
+    "ru": "Репозитории, в которых используются новые поля манифеста, теперь могут автоматически обнаруживать непроверенный импорт прямых зависимостей.",
+    "ar": "يمكن الآن لعمليات إعادة الشراء التي تعتمد حقول البيان الجديدة اكتشاف واردات التبعية المباشرة غير المراجعة تلقائيًا.",
+    "he": "Repos המאמצים את שדות המניפסט החדשים יכולים כעת לזהות ייבוא ​​תלות ישיר שלא נבדק באופן אוטומטי.",
+    "es": "Los repositorios que adoptan los nuevos campos de manifiesto ahora pueden detectar automáticamente las importaciones de dependencia directa no revisadas.",
+    "hu": "Az új jegyzékmezőket alkalmazó repók mostantól automatikusan észlelik a nem felülvizsgált közvetlen függőségi importálást."
   },
   "p_5f5c5baf8fbc": {
     "en": "Request a feature",
@@ -8735,6 +8713,17 @@ export const generatedSitePhrases = {
     "hu": "Szigorú fogyasztó",
     "he": "צרכן קפדני"
   },
+  "p_ced33b11be94": {
+    "en": "Strict consumers need owner, expiry, replacement issue, testing, accessibility, observability, rollback, and recovery metadata for direct dependency imports.",
+    "ru": "Строгим потребителям необходимы метаданные о владельце, сроке действия, проблеме замены, тестировании, доступности, наблюдаемости, откате и восстановлении для прямого импорта зависимостей.",
+    "ar": "يحتاج المستهلكون الصارمون إلى البيانات التعريفية للمالك، وانتهاء الصلاحية، ومشكلة الاستبدال، والاختبار، وإمكانية الوصول، وقابلية المراقبة، والتراجع، والاسترداد لواردات التبعية المباشرة.",
+    "de": "Strikte Verbraucher benötigen Eigentümer-, Ablauf-, Ersatzproblem-, Test-, Zugänglichkeits-, Beobachtbarkeits-, Rollback- und Wiederherstellungsmetadaten für direkte Abhängigkeitsimporte.",
+    "fr": "Les consommateurs stricts ont besoin de métadonnées sur le propriétaire, l'expiration, le problème de remplacement, les tests, l'accessibilité, l'observabilité, la restauration et la récupération pour les importations directes de dépendances.",
+    "hu": "A szigorú fogyasztóknak tulajdonosi, lejárati, csereproblémára, tesztelésre, hozzáférhetőségre, megfigyelhetőségre, visszaállításra és helyreállításra vonatkozó metaadatokra van szükségük a közvetlen függőségi importáláshoz.",
+    "he": "צרכנים קפדניים צריכים מטא-נתונים של בעלים, תפוגה, בעיית החלפה, בדיקה, נגישות, צפייה, החזרה ושחזור עבור ייבוא ​​תלות ישיר.",
+    "it": "I consumatori rigorosi necessitano di metadati relativi a proprietario, scadenza, problema di sostituzione, test, accessibilità, osservabilità, rollback e ripristino per le importazioni di dipendenza diretta.",
+    "es": "Los consumidores estrictos necesitan metadatos de propietario, vencimiento, problema de reemplazo, pruebas, accesibilidad, observabilidad, reversión y recuperación para las importaciones de dependencia directa."
+  },
   "p_db2fa05a04a0": {
     "en": "Structured product cards keep fixed slots for media, metadata, status, and the primary action.",
     "ru": "В структурированных карточках продуктов есть фиксированные места для медиа, метаданных, статуса и основных действий.",
@@ -8833,6 +8822,17 @@ export const generatedSitePhrases = {
     "ar": "تم تعطيل سياسة المستأجر بواسطة Microsoft.",
     "it": "I criteri del tenant hanno disabilitato Microsoft.",
     "hu": "A bérlői házirend letiltotta a Microsoftot."
+  },
+  "p_40a4cdfff94d": {
+    "en": "The API reference now marks export stability and whether a public entry is a GDS contract, Mantine-backed, Tabler-backed, or tooling-only.",
+    "de": "Die API-Referenz markiert jetzt die Exportstabilität und gibt an, ob es sich bei einem öffentlichen Eintrag um einen GDS-Vertrag, Mantine-gestützten, Tabler-gestützten oder reinen Tooling-Vertrag handelt.",
+    "it": "Il riferimento API ora indica la stabilità dell'esportazione e se una voce pubblica è un contratto GDS, supportato da Mantine, supportato da Tabler o solo da strumenti.",
+    "ru": "Ссылка на API теперь указывает на стабильность экспорта и на то, является ли публичная запись контрактом GDS, поддерживается Mantine, Tabler или предназначена только для инструментов.",
+    "es": "La referencia de API ahora marca la estabilidad de las exportaciones y si una entrada pública es un contrato GDS, respaldado por Mantine, Tabler o solo de herramientas.",
+    "he": "ההפניה ל-API מסמנת כעת יציבות בייצוא והאם כניסה ציבורית היא חוזה GDS, מגובה Mantine, מגובה טבלר או כלי עבודה בלבד.",
+    "ar": "يشير مرجع واجهة برمجة التطبيقات (API) الآن إلى استقرار التصدير وما إذا كان الإدخال العام عبارة عن عقد GDS أو مدعوم من Mantine أو مدعوم من Tabler أو أدوات فقط.",
+    "fr": "La référence API indique désormais la stabilité des exportations et indique si une entrée publique est un contrat GDS, soutenu par Mantine, soutenu par Tabler ou uniquement par des outils.",
+    "hu": "Az API hivatkozás mostantól az export stabilitását jelöli, és azt, hogy a nyilvános bejegyzés GDS-szerződés, Mantine által támogatott, Tabler által támogatott vagy csak szerszámok."
   },
   "p_696815b8d0eb": {
     "en": "The catalog should show shipped components and contracts through package-owned framing, not local demo scaffolding.",
@@ -8944,16 +8944,16 @@ export const generatedSitePhrases = {
     "hu": "Az élő demóútvonalaknak az általunk közzétett tényleges primitíveket kell mutatniuk, nem pedig az egyéni, csak webhelyekre vonatkozó csereprogramokat.",
     "de": "Die Live-Demo-Routen sollten die tatsächlichen Grundelemente zeigen, die wir veröffentlichen, und keine benutzerdefinierten, nur für die Website geltenden Ersetzungen."
   },
-  "p_8f0de2c3ad3c": {
-    "en": "The main change is governance and enforcement. This is not a visual redesign of the canonical themes.",
-    "ar": "التغيير الرئيسي هو الحكم والتنفيذ. هذه ليست إعادة تصميم مرئية للموضوعات الأساسية.",
-    "es": "El principal cambio es la gobernanza y la aplicación. Este no es un rediseño visual de los temas canónicos.",
-    "fr": "Le principal changement concerne la gouvernance et l’application. Il ne s'agit pas d'une refonte visuelle des thèmes canoniques.",
-    "de": "Die wichtigste Änderung betrifft die Governance und Durchsetzung. Dies ist keine visuelle Neugestaltung der kanonischen Themen.",
-    "ru": "Основное изменение касается управления и правоприменения. Это не визуальный редизайн канонической темы.",
-    "it": "Il cambiamento principale riguarda la governance e l’attuazione. Questa non è una riprogettazione visiva dei temi canonici.",
-    "he": "השינוי העיקרי הוא ממשל ואכיפה. זה לא עיצוב מחדש ויזואלי של הנושאים הקנוניים.",
-    "hu": "A fő változás az irányítás és a végrehajtás. Ez nem a kanonikus témák vizuális újratervezése."
+  "p_714b3056bc37": {
+    "en": "The main change is import-boundary enforcement and public API classification. This is not a visual redesign of the canonical themes.",
+    "de": "Die wichtigste Änderung ist die Durchsetzung von Importgrenzen und die öffentliche API-Klassifizierung. Dies ist keine visuelle Neugestaltung der kanonischen Themen.",
+    "ar": "التغيير الرئيسي هو إنفاذ حدود الاستيراد وتصنيف واجهة برمجة التطبيقات العامة. هذه ليست إعادة تصميم مرئية للموضوعات الأساسية.",
+    "es": "El principal cambio es la aplicación de los límites de importación y la clasificación API pública. Este no es un rediseño visual de los temas canónicos.",
+    "ru": "Основным изменением является соблюдение границ импорта и публичная классификация API. Это не визуальный редизайн канонической темы.",
+    "fr": "Le principal changement concerne l’application des limites d’importation et la classification des API publiques. Il ne s’agit pas d’une refonte visuelle des thèmes canoniques.",
+    "it": "La modifica principale riguarda l’applicazione dei confini di importazione e la classificazione API pubblica. Questa non è una riprogettazione visiva dei temi canonici.",
+    "hu": "A fő változás az importhatárok betartatása és a nyilvános API-besorolás. Ez nem a kanonikus témák vizuális újratervezése.",
+    "he": "השינוי העיקרי הוא אכיפת גבול יבוא וסיווג API ציבורי. זה לא עיצוב מחדש ויזואלי של הנושאים הקנוניים."
   },
   "p_772e84074248": {
     "en": "The official site is expected to remain a strict consumer of the primitives it documents.",
@@ -9020,17 +9020,6 @@ export const generatedSitePhrases = {
     "it": "Esplora temi, sezioni di documenti, avvisi locali e griglie di prova utilizzate dal sito ufficiale.",
     "ar": "مستكشف السمات وأقسام المستندات والإشعارات المحلية وشبكات الإثبات التي يستخدمها الموقع الرسمي.",
     "hu": "A hivatalos webhely által használt témaböngésző, dokumentumszakaszok, területi beállításokra vonatkozó megjegyzések és próbarácsok."
-  },
-  "p_622ace419c31": {
-    "en": "Theme governance changed",
-    "es": "La gobernanza del tema cambió",
-    "de": "Die Theme-Governance hat sich geändert",
-    "hu": "A témavezetés megváltozott",
-    "fr": "La gouvernance du thème a changé",
-    "ar": "تغيرت إدارة الموضوع",
-    "it": "La governance del tema è cambiata",
-    "ru": "Управление темой изменено",
-    "he": "משילות הנושא השתנה"
   },
   "p_342338f346f2": {
     "en": "Theme toggle",

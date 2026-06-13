@@ -187,6 +187,12 @@ describe('@doneisbetter/gds-core', () => {
     expect(getGdsIconToneColor('success')).toBe('var(--mantine-color-green-7)');
   });
 
+  it('supports dependency-governed semantic icon names without direct Tabler imports', () => {
+    renderWithGds(<GdsIcon name="Download" label="Download file" tone="primary" />);
+
+    expect(screen.getByRole('img', { name: 'Download file' })).toBeInTheDocument();
+  });
+
   it('renders loading and disabled button states safely', () => {
     renderWithGds(<SemanticButton action="save" loading disabled />);
 

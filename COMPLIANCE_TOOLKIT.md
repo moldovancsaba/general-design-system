@@ -155,6 +155,7 @@ For repositories targeting true GDS-only enforcement, enable strict mode:
 
 Strict mode adds hard failures for:
 - local Mantine `AppShell` wrappers
+- direct Mantine/Tabler dependency imports in strict consumer surfaces unless covered by a `dependency-boundary` exception with owner, review date, replacement issue, accessibility/testing/observability requirements, exit condition, and rollback plan
 - local shell/detail/listing/action/media/reporting/access adapters that are not approved or explicitly excepted
 - legacy local button-wrapper patterns that bypass the canonical semantic action system
 - local Mantine-card listing wrappers that should use `ListingCard`, `PublicProductCard`, `PublicFoodCard`, or `MediaCard`

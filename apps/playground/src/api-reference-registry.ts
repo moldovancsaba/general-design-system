@@ -1,4 +1,10 @@
-import { patternExportCoverage, type ExportCoveragePackage, type ExportCoverageStatus } from './pattern-export-coverage';
+import {
+  patternExportCoverage,
+  type ExportCoveragePackage,
+  type ExportCoverageStability,
+  type ExportCoverageStatus,
+  type ExportDependencyBoundary,
+} from './pattern-export-coverage';
 
 export type ApiAudience = 'developer' | 'product-owner' | 'operator';
 export type ApiExportKind = 'component' | 'provider' | 'hook' | 'helper' | 'registry' | 'theme' | 'type';
@@ -11,6 +17,8 @@ export interface ApiReferenceEntry {
   runtimeLane: ApiRuntimeLane;
   importPath: string;
   status: ExportCoverageStatus;
+  stability: ExportCoverageStability;
+  dependencyBoundary: ExportDependencyBoundary;
   registryId: string;
   audience: ApiAudience[];
   summary: string;
@@ -28,6 +36,8 @@ export const apiReferenceEntries: ApiReferenceEntry[] = patternExportCoverage.ma
   runtimeLane: inferRuntimeLane(entry.packageName, entry.exportName),
   importPath: `${entry.packageName}${inferRuntimeLane(entry.packageName, entry.exportName) === 'server' ? '/server' : ''}`,
   status: entry.status,
+  stability: entry.stability ?? inferStability(entry.status, entry.exportName),
+  dependencyBoundary: entry.dependencyBoundary ?? inferDependencyBoundary(entry.packageName, entry.exportName),
   registryId: entry.registryId,
   audience: inferAudience(entry.packageName, entry.exportName),
   summary: entry.rationale,
@@ -57,9 +67,27 @@ export function getApiReferenceSummary() {
   return apiReferenceEntries.reduce<Record<string, number>>((acc, entry) => {
     acc[entry.packageName] = (acc[entry.packageName] ?? 0) + 1;
     acc[entry.status] = (acc[entry.status] ?? 0) + 1;
+    acc[entry.stability] = (acc[entry.stability] ?? 0) + 1;
+    acc[entry.dependencyBoundary] = (acc[entry.dependencyBoundary] ?? 0) + 1;
     acc[entry.runtimeLane] = (acc[entry.runtimeLane] ?? 0) + 1;
     return acc;
   }, {});
+}
+
+function inferStability(status: ExportCoverageStatus, exportName: string): ExportCoverageStability {
+  if (status === 'compatibility' || exportName.includes('Compatibility')) return 'compatibility';
+  if (status === 'support-api') return 'support-api';
+  return 'canonical';
+}
+
+function inferDependencyBoundary(packageName: ExportCoveragePackage, exportName: string): ExportDependencyBoundary {
+  if (exportName === 'GdsIcon' || exportName === 'GdsIcons' || exportName.includes('Icon')) {
+    return 'tabler-backed';
+  }
+  if (packageName === '@doneisbetter/gds-theme' || exportName.includes('Theme') || exportName.includes('Provider')) {
+    return 'mantine-backed';
+  }
+  return 'gds-contract';
 }
 
 function inferExportKind(packageName: ExportCoveragePackage, exportName: string): ApiExportKind {

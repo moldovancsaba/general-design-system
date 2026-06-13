@@ -1,7 +1,7 @@
 # Compatibility & Releases
 
 Status: Active SSOT
-Version: 3.4.13
+Version: 3.4.14
 Last updated: 2026-06-06
 
 This document defines the supported package/runtime contract for the umbrella package `@doneisbetter/gds` and the granular runtime packages `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin`.
@@ -38,8 +38,8 @@ Canonical registry target: **npm**
 
 Current live status:
 
-- published npm baseline: `3.4.13`
-- current repository line: `3.4.13`
+- published npm baseline: `3.4.14`
+- current repository line: `3.4.14`
 - current major line: `3.0.x`
 
 Consumer repos should install the latest published npm version unless they are explicitly validating an unpublished release candidate or an internal pre-release cut.
@@ -53,21 +53,21 @@ npm run publish:npm
 npm run verify:published
 ```
 
-For the current `3.4.13` line, the install contract is:
+For the current `3.4.14` line, the install contract is:
 
 ```bash
-npm install @doneisbetter/gds@3.4.13
-npm install -D @doneisbetter/gds-eslint-config@3.4.13 @doneisbetter/gds-compliance@3.4.13
+npm install @doneisbetter/gds@3.4.14
+npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14
 ```
 
 Granular consumers should use the same version across every package:
 
 ```bash
-npm install @doneisbetter/gds-theme@3.4.13 @doneisbetter/gds-core@3.4.13 @doneisbetter/gds-admin@3.4.13
-npm install -D @doneisbetter/gds-eslint-config@3.4.13 @doneisbetter/gds-compliance@3.4.13
+npm install @doneisbetter/gds-theme@3.4.14 @doneisbetter/gds-core@3.4.14 @doneisbetter/gds-admin@3.4.14
+npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14
 ```
 
-Do not mix pre-3.0 package lines with `3.4.13` packages in the same consumer dependency graph.
+Do not mix pre-3.0 package lines with `3.4.14` packages in the same consumer dependency graph.
 
 ### Fallback release-bundle distribution path
 
@@ -93,17 +93,17 @@ Asset URL format:
 https://github.com/sovereignsquad/general-design-system/releases/download/gds-v<VERSION>/<asset-name>.tgz
 ```
 
-Example for `3.4.13`:
+Example for `3.4.14`:
 
 ```bash
 npm install \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.13/doneisbetter-gds-theme-3.4.13.tgz \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.13/doneisbetter-gds-core-3.4.13.tgz \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.13/doneisbetter-gds-admin-3.4.13.tgz
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.14/doneisbetter-gds-theme-3.4.14.tgz \
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.14/doneisbetter-gds-core-3.4.14.tgz \
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.14/doneisbetter-gds-admin-3.4.14.tgz
 
 npm install -D \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.13/doneisbetter-gds-eslint-config-3.4.13.tgz \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.13/doneisbetter-gds-compliance-3.4.13.tgz
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.14/doneisbetter-gds-eslint-config-3.4.14.tgz \
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.4.14/doneisbetter-gds-compliance-3.4.14.tgz
 ```
 
 Auth expectations for the temporary path:
@@ -265,7 +265,8 @@ These fixtures are verified through `npm run verify:references` and act as the l
 
 ## Compatibility evidence
 
-- `npm run verify:mantine` packs `@doneisbetter/gds`, `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin`, installs them into clean temporary consumers using Mantine `8.3.6` and `9.2.1`, React `19.2.0`, React DOM `19.2.0`, and Next `15.5.18`, then runs `tsc --noEmit`.
+- `npm run verify:mantine` packs `@doneisbetter/gds`, `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin`, installs them into clean temporary consumers using Mantine `7.17.8` with React `18.3.1`, plus Mantine `8.3.6` and `9.2.1` with React `19.2.0`, then runs `tsc --noEmit`.
+- `npm run audit:dependencies` verifies production audit cleanliness and generates `dependency-risk-report.json` with direct/peer/dev dependency categories, active dependency exceptions, and release evidence commands.
 - `apps/reference-next` remains the typed App Router reference fixture. `npm run build:app-router --workspace=reference-next` is kept as an explicit non-gating harness while the upstream `/404` / `/_error` prerender failure on Next `15.5.x` is still reproducible even against a trivial reference route tree.
 
 See [VERIFIED_CONSUMER_INSTALL_PROOF.md](/Users/Shared/Projects/general-design-system/VERIFIED_CONSUMER_INSTALL_PROOF.md) for the consumer-facing proof summary.

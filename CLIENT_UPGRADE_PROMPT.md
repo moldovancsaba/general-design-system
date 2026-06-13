@@ -2,20 +2,20 @@
 
 ## What this is
 
-Use this for every product team migrating to the current stable `3.4.13` GDS adoption-platform release.
+Use this for every product team migrating to the current stable `3.4.14` GDS adoption-platform release.
 
-## Copy/paste message for 3.4.13 after publish verification
+## Copy/paste message for 3.4.14 after publish verification
 
-Team, we completed the GDS upgrade to the 3.4.13 adoption platform release.
+Team, we completed the GDS upgrade to the 3.4.14 adoption platform release.
 
 - Update dependencies:
-  - `@doneisbetter/gds@3.4.13`
-  - `@doneisbetter/gds-eslint-config@3.4.13` (dev)
-  - `@doneisbetter/gds-compliance@3.4.13` (dev)
+  - `@doneisbetter/gds@3.4.14`
+  - `@doneisbetter/gds-eslint-config@3.4.14` (dev)
+  - `@doneisbetter/gds-compliance@3.4.14` (dev)
 - If you use granular packages, keep every GDS package on the same version:
-  - `@doneisbetter/gds-theme@3.4.13`
-  - `@doneisbetter/gds-core@3.4.13`
-  - `@doneisbetter/gds-admin@3.4.13`
+  - `@doneisbetter/gds-theme@3.4.14`
+  - `@doneisbetter/gds-core@3.4.14`
+  - `@doneisbetter/gds-admin@3.4.14`
 - Install Mantine peers normally; do not force peer resolution.
 - Keep the App Router split:
   - `app/layout.tsx` owns `ColorSchemeScript`

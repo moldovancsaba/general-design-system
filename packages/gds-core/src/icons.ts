@@ -226,7 +226,8 @@ export function getGdsIconKeys(): GdsIconKey[] {
 }
 
 export interface GdsIconProps {
-  icon: GdsIconKey;
+  icon?: GdsIconKey;
+  name?: GdsIconKey;
   size?: 'xs' | 'sm' | 'md' | 'lg' | number | string;
   label?: string;
   decorative?: boolean;
@@ -259,13 +260,15 @@ const iconSizes: Record<'xs' | 'sm' | 'md' | 'lg', string> = {
 
 export function GdsIcon({
   icon,
+  name,
   size = 'md',
   label,
   decorative = !label,
   stroke = 1.75,
   tone = 'default',
 }: GdsIconProps) {
-  const Icon = GdsIcons[icon] ?? GdsIcons.Help;
+  const iconKey = icon ?? name ?? 'Help';
+  const Icon = GdsIcons[iconKey] ?? GdsIcons.Help;
   return createElement(Icon, {
     size: typeof size === 'number' ? `${size}px` : iconSizes[size as keyof typeof iconSizes] ?? size,
     stroke,

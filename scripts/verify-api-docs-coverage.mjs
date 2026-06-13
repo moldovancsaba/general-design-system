@@ -94,6 +94,8 @@ for (const snippet of [
   'runtimeLane',
   'accessibility',
   'testing',
+  'stability',
+  'dependencyBoundary',
   'getApiReferenceSummary',
 ]) {
   if (!apiRegistrySource.includes(snippet)) {

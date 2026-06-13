@@ -9,12 +9,12 @@ const DEFAULT_FORBIDDEN_IMPORTS = ['@/components/ui/', '@radix-ui/', 'tailwindcs
 const STRICT_RULE_METADATA = {
   'strict.import.mantine-core': {
     family: 'package-import',
-    allowedExceptionCategories: ['package-coverage-gap', 'migration-bridge'],
+    allowedExceptionCategories: ['package-coverage-gap', 'migration-bridge', 'dependency-boundary'],
     remediation: 'Use package-native GDS primitives instead of direct @mantine/core imports in consumer code.',
   },
   'strict.import.tabler-icons': {
     family: 'package-import',
-    allowedExceptionCategories: ['package-coverage-gap', 'migration-bridge'],
+    allowedExceptionCategories: ['package-coverage-gap', 'migration-bridge', 'dependency-boundary'],
     remediation: 'Use GdsIcon, GdsIcons, or semantic GDS actions instead of direct @tabler/icons-react imports.',
   },
   'strict.raw-control': {
@@ -77,8 +77,9 @@ const EXCEPTION_CATEGORIES = new Set([
   'product-authored-experience',
   'package-coverage-gap',
   'migration-bridge',
+  'dependency-boundary',
 ]);
-const EXCEPTION_STATUSES = new Set(['temporary', 'approved', 'deprecated', 'removed']);
+const EXCEPTION_STATUSES = new Set(['temporary', 'approved', 'deprecated', 'removed', 'active', 'expired', 'removing']);
 const EXCEPTION_REQUIRED_FIELDS = [
   'category',
   'scope',
@@ -89,6 +90,14 @@ const EXCEPTION_REQUIRED_FIELDS = [
   'status',
 ];
 const PRODUCT_AUTHORED_REQUIRED_FIELDS = [
+  'a11yRequirements',
+  'testingRequirements',
+  'observabilityRequirements',
+];
+const DEPENDENCY_BOUNDARY_REQUIRED_FIELDS = [
+  'dependency',
+  'replacementIssue',
+  'rollbackPlan',
   'a11yRequirements',
   'testingRequirements',
   'observabilityRequirements',
@@ -322,6 +331,34 @@ function validateApprovedExceptions(manifest) {
           severity: 'error',
           file: exception.surface,
           message: `Creator-authored experience exception "${exception.surface}" must define ${missingProductAuthoredFields.join(', ')} so accessibility, testing, and observability obligations remain explicit.`,
+        });
+      }
+    }
+
+    if (exception.category === 'dependency-boundary') {
+      const missingDependencyFields = DEPENDENCY_BOUNDARY_REQUIRED_FIELDS.filter((field) => {
+        const value = exception[field];
+        if (Array.isArray(value)) {
+          return value.length === 0;
+        }
+        return !value;
+      });
+
+      if (missingDependencyFields.length > 0) {
+        findings.push({
+          rule: 'dependency-boundary.missing-metadata',
+          severity: 'error',
+          file: exception.surface,
+          message: `Dependency-boundary exception "${exception.surface}" must define ${missingDependencyFields.join(', ')} so dependency drift remains owned, testable, observable, and recoverable.`,
+        });
+      }
+
+      if (exception.status === 'expired') {
+        findings.push({
+          rule: 'dependency-boundary.expired',
+          severity: 'error',
+          file: exception.surface,
+          message: `Dependency-boundary exception "${exception.surface}" is expired. Remove the dependency bypass or update it through reviewed governance.`,
         });
       }
     }

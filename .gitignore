@@ -3,6 +3,7 @@ node_modules/
 dist/
 coverage/
 *.log
+dependency-risk-report.json
 node_modules
 dist
 .next/

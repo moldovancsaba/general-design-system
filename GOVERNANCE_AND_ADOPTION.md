@@ -1,7 +1,7 @@
 # Governance & Adoption
 
 Status: Active SSOT
-Version: 3.4.13
+Version: 3.4.14
 Last updated: 2026-06-13
 
 This document defines how products adopt the design system, enforce compliance, and migrate legacy UI. 
@@ -142,7 +142,7 @@ For machine-readable governance and CI enforcement, `gds-adoption.json` should u
 - `exitCondition`
 - `status`
 
-Use `category` to distinguish runtime constraints, product-authored experiences, package coverage gaps, and short-lived migration bridges. Broad file globs are not acceptable exception scope.
+Use `category` to distinguish runtime constraints, product-authored experiences, package coverage gaps, dependency boundaries, and short-lived migration bridges. Broad file globs are not acceptable exception scope.
 
 For `product-authored-experience` exceptions, the manifest must also declare:
 
@@ -159,8 +159,12 @@ If a consumer needs an approved dependency-level exception such as `lucide-react
 - `reason`
 - `owner`
 - `reviewDate`
+- `replacementIssue`
+- `rollbackPlan`
 
 Shared lint/gds-compliance tooling may use that manifest-level allowlist to keep the default GDS guardrails active without forcing a repo to abandon the shared tooling entirely.
+
+Dependency-boundary exceptions must use `category: "dependency-boundary"` when the exception permits direct imports from an implementation dependency such as Mantine, Tabler, or a temporary icon bridge. They must also define accessibility, testing, observability, exit, and rollback requirements so the exception remains operationally owned.
 
 Recommended compliance path:
 
@@ -203,6 +207,7 @@ For the official reference site, also prefer:
 Reference policies:
 
 - [THEME_GOVERNANCE.md](/Users/Shared/Projects/general-design-system/THEME_GOVERNANCE.md)
+- [DEPENDENCY_GOVERNANCE.md](/Users/Shared/Projects/general-design-system/DEPENDENCY_GOVERNANCE.md)
 - [EXCEPTION_SURFACES.md](/Users/Shared/Projects/general-design-system/EXCEPTION_SURFACES.md)
 - [DEPRECATIONS_AND_MIGRATIONS.md](/Users/Shared/Projects/general-design-system/DEPRECATIONS_AND_MIGRATIONS.md)
 - [TEMPLATES/gds-adoption.json.template](/Users/Shared/Projects/general-design-system/TEMPLATES/gds-adoption.json.template)

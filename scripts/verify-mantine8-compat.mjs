@@ -15,12 +15,25 @@ mkdirSync(appDir, { recursive: true });
 const workspaces = ['@doneisbetter/gds-theme', '@doneisbetter/gds-core', '@doneisbetter/gds-admin', '@doneisbetter/gds'];
 const matrices = [
   {
+    label: 'Mantine 7 / React 18',
+    mantineVersion: '7.17.8',
+    reactVersion: '18.3.1',
+    reactTypesVersion: '18.3.31',
+    reactDomTypesVersion: '18.3.7',
+  },
+  {
     label: 'Mantine 8 / React 19',
     mantineVersion: '8.3.6',
+    reactVersion: '19.2.0',
+    reactTypesVersion: '19.2.2',
+    reactDomTypesVersion: '19.2.2',
   },
   {
     label: 'Mantine 9 / React 19',
     mantineVersion: '9.2.1',
+    reactVersion: '19.2.0',
+    reactTypesVersion: '19.2.2',
+    reactDomTypesVersion: '19.2.2',
   },
 ];
 
@@ -102,14 +115,13 @@ try {
             '@mantine/modals': matrix.mantineVersion,
             '@mantine/notifications': matrix.mantineVersion,
             '@tabler/icons-react': '3.35.0',
-            next: '15.5.18',
-            react: '19.2.0',
-            'react-dom': '19.2.0',
+            react: matrix.reactVersion,
+            'react-dom': matrix.reactVersion,
           },
           devDependencies: {
             '@types/node': '24.10.1',
-            '@types/react': '19.2.2',
-            '@types/react-dom': '19.2.2',
+            '@types/react': matrix.reactTypesVersion,
+            '@types/react-dom': matrix.reactDomTypesVersion,
             typescript: '6.0.2',
           },
         },
@@ -118,7 +130,7 @@ try {
       ),
     );
 
-    execFileSync('npm', ['install', '--silent'], { cwd: appDir, stdio: 'inherit' });
+    execFileSync('npm', ['install'], { cwd: appDir, stdio: 'inherit' });
     execFileSync('npm', ['run', 'build'], { cwd: appDir, stdio: 'inherit' });
     console.log(`${matrix.label} compatibility smoke passed.`);
   }

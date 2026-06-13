@@ -2,6 +2,13 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 3.4.14 - 2026-06-13
+
+- Added dependency-governance policy for React, Mantine, Tabler, dependency classes, replacement triggers, and exception lifecycle.
+- Classified API reference exports by stability and implementation boundary so consumers can distinguish canonical GDS contracts from Mantine/Tabler-backed surfaces.
+- Added `GdsIcon name="..."` semantic icon support while keeping the existing `icon` prop compatible.
+- Added dependency-boundary exception validation, dependency-risk reporting, and expanded compatibility smoke coverage for Mantine 7/React 18 plus Mantine 8/9 React 19.
+
 ## 3.4.13 - 2026-06-13
 
 - Fixed `DocsShell` mobile headers so translated brand labels truncate safely instead of wrapping into the action controls.

@@ -1,6 +1,8 @@
 export type ExportCoveragePackage = '@doneisbetter/gds-theme' | '@doneisbetter/gds-core' | '@doneisbetter/gds-admin';
 
 export type ExportCoverageStatus = 'live-demo' | 'support-api' | 'compatibility';
+export type ExportCoverageStability = 'canonical' | 'support-api' | 'compatibility' | 'internal-risk';
+export type ExportDependencyBoundary = 'gds-contract' | 'mantine-backed' | 'tabler-backed' | 'tooling';
 
 export interface ExportCoverageEntry {
   exportName: string;
@@ -8,6 +10,8 @@ export interface ExportCoverageEntry {
   status: ExportCoverageStatus;
   registryId: string;
   rationale: string;
+  stability?: ExportCoverageStability;
+  dependencyBoundary?: ExportDependencyBoundary;
 }
 
 export const patternExportCoverage: ExportCoverageEntry[] = [

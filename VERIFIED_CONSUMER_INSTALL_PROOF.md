@@ -1,13 +1,13 @@
 # Verified Consumer Install Proof
 
 Status: Active SSOT
-Version: 3.4.13
+Version: 3.4.14
 Last updated: 2026-06-07
 
 This document records the current proof points for the direct package-consumption path that consumer teams should rely on when evaluating GDS adoption readiness.
 
-Latest published npm baseline validated by this proof: `3.4.13`
-Current repository line: `3.4.13`
+Latest published npm baseline validated by this proof: `3.4.14`
+Current repository line: `3.4.14`
 Current major line: `3.0.x`
 
 ## Verified consumer baseline
@@ -35,6 +35,7 @@ Current major line: `3.0.x`
 `npm run verify:mantine` packs the umbrella package plus the three runtime packages, installs them into clean temporary consumers, and verifies TypeScript compatibility against:
 
 - Next `15.5.18`
+- React `18.3.1` with Mantine `7.17.8`
 - React `19.2.0`
 - Mantine `8.3.6`
 - Mantine `9.2.1`
@@ -86,18 +87,18 @@ That means the current verified statement is:
 
 ## Consumer install commands
 
-Canonical `3.4.13` end-state install source after the release gate opens:
+Canonical `3.4.14` end-state install source after the release gate opens:
 
 ```bash
-npm install @doneisbetter/gds@3.4.13
-npm install -D @doneisbetter/gds-eslint-config@3.4.13 @doneisbetter/gds-compliance@3.4.13
+npm install @doneisbetter/gds@3.4.14
+npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14
 ```
 
 Granular package path:
 
 ```bash
-npm install @doneisbetter/gds-theme@3.4.13 @doneisbetter/gds-core@3.4.13 @doneisbetter/gds-admin@3.4.13
-npm install -D @doneisbetter/gds-eslint-config@3.4.13 @doneisbetter/gds-compliance@3.4.13
+npm install @doneisbetter/gds-theme@3.4.14 @doneisbetter/gds-core@3.4.14 @doneisbetter/gds-admin@3.4.14
+npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14
 ```
 
 Fallback release-bundle install path if npm is temporarily unavailable:
@@ -109,6 +110,7 @@ Fallback release-bundle install path if npm is temporarily unavailable:
 
 ```bash
 npm run verify:mantine
+npm run audit:dependencies
 npm run verify:references
 npm run verify:published
 ```

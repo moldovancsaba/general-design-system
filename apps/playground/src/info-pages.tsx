@@ -551,6 +551,8 @@ export function ApiReferencePage() {
     kind: entry.exportKind,
     runtime: entry.runtimeLane,
     status: entry.status,
+    stability: entry.stability,
+    boundary: entry.dependencyBoundary,
     importPath: entry.importPath,
   }));
 
@@ -564,7 +566,8 @@ export function ApiReferencePage() {
             { id: 'exports', title: 'Exports', description: `${apiReferenceEntries.length} public API entries are documented.` },
             { id: 'live', title: 'Live demo', description: `${summary['live-demo'] ?? 0} entries have live route evidence.` },
             { id: 'support', title: 'Support API', description: `${summary['support-api'] ?? 0} entries are documented support contracts.` },
-            { id: 'client', title: 'Client lane', description: `${summary.client ?? 0} entries require or allow client runtime.` },
+            { id: 'canonical', title: 'Canonical', description: `${summary.canonical ?? 0} entries are stable GDS contracts.` },
+            { id: 'boundary', title: 'Dependency-governed', description: `${(summary['mantine-backed'] ?? 0) + (summary['tabler-backed'] ?? 0)} entries expose governed implementation boundaries.` },
           ]}
         />
       </ReferenceSection>
@@ -588,6 +591,8 @@ export function ApiReferencePage() {
             { key: 'kind', header: 'Kind' },
             { key: 'runtime', header: 'Runtime' },
             { key: 'status', header: 'Docs' },
+            { key: 'stability', header: 'Stability' },
+            { key: 'boundary', header: 'Boundary' },
             { key: 'importPath', header: 'Import path' },
           ]}
           rows={rows}

@@ -68,7 +68,7 @@
     },
     {
       "surface": "Approved icon exception",
-      "category": "migration-bridge",
+      "category": "dependency-boundary",
       "scope": [
         "src/icons/legacy/*.tsx"
       ],
@@ -88,10 +88,21 @@
         "Spread lucide-react imports into feature UI",
         "Use the bridge as a permanent icon policy"
       ],
+      "a11yRequirements": [
+        "Icon-only controls keep accessible names"
+      ],
+      "testingRequirements": [
+        "Bridge imports are covered by dependency-boundary verification"
+      ],
+      "observabilityRequirements": [
+        "Bridge usage appears in dependency-risk reports"
+      ],
       "owner": "platform-ui",
-      "reviewDate": "2026-05-27",
+      "reviewDate": "2026-08-31",
+      "replacementIssue": "https://github.com/sovereignsquad/general-design-system/issues/299",
       "exitCondition": "Remove once the consumer has finished the icon migration to the canonical GDS vocabulary.",
-      "status": "temporary"
+      "rollbackPlan": "Delete the bridge and replace usage with GdsIcon, GdsIcons, or semantic actions.",
+      "status": "active"
     },
     {
       "surface": "Creator-authored campaign canvas",

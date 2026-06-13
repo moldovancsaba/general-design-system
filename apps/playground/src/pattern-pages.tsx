@@ -49,6 +49,13 @@ import {
   NotificationCenter,
   OverlayManagerProvider,
   useOverlayManager,
+  PartnerDiscoveryFilters,
+  PartnerDiscoveryShell,
+  PartnerListIndex,
+  PartnerMapListShell,
+  PartnerNewsletterForm,
+  PartnerPlaceDetailTemplate,
+  partnerDiscoveryDefaultAmenities,
   GdsNotificationProvider,
   BannerNotice,
   InlineAlert,
@@ -426,6 +433,69 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
         <SectionPanel title="Theme toggle" description="Use the package-owned color-scheme control instead of local switches.">
           <ThemeToggle />
         </SectionPanel>
+      );
+    case 'partner-discovery-system':
+      return (
+        <PartnerDiscoveryShell
+          logo={<strong>Partner Baby</strong>}
+          navItems={[
+            { id: 'add', label: 'Add to Map', href: '#submit-place' },
+            { id: 'lists', label: 'Lists', href: '#lists', current: true },
+            { id: 'about', label: 'About', href: '#about' },
+          ]}
+          footer={{
+            copyright: 'Partner LLC ©2026',
+            legalLinks: [{ id: 'privacy', label: 'Privacy Policy', href: '#privacy' }],
+          }}
+        >
+          <SectionPanel title="Partner discovery reference" description="Fake data only. Consumers supply copy, assets, data, map adapters, and submission endpoints.">
+            <>
+              <PartnerDiscoveryFilters
+                value={{ query: '', amenities: ['high-chairs'], prices: ['$$'] }}
+                labels={{
+                  search: 'Search places',
+                  searchPlaceholder: 'Search by amenity, cuisine, or neighborhood',
+                  filters: 'Filters',
+                  reset: 'Reset',
+                  close: 'Close',
+                  apply: 'Apply',
+                  amenities: 'Amenities',
+                  price: 'Price',
+                  selected: 'Selected filters',
+                }}
+                amenities={partnerDiscoveryDefaultAmenities}
+              />
+              <PartnerMapListShell
+                places={[
+                  { id: 'green-cafe', title: 'Green Cafe', category: 'Cafe', neighborhood: 'Downtown', amenities: ['high-chairs', 'changing-table'], price: '$$', href: '#green-cafe' },
+                  { id: 'park-tacos', title: 'Park Tacos', category: 'Mexican', neighborhood: 'Parkside', amenities: ['outdoor-seating'], price: '$', href: '#park-tacos' },
+                ]}
+                filters={{ query: '', amenities: [], prices: [] }}
+                activePlaceId="green-cafe"
+              />
+              <PartnerPlaceDetailTemplate
+                backHref="#back"
+                labels={{ back: 'Back', photos: 'Photos', website: 'Website', menu: 'Menu', share: 'Share', parentTip: 'Parent tip', copied: 'Copied', shareFailed: 'Share failed' }}
+                place={{
+                  id: 'green-cafe',
+                  title: 'Green Cafe',
+                  address: '1 Main St',
+                  neighborhood: 'Downtown',
+                  category: 'Cafe',
+                  parentTip: 'Room for strollers.',
+                  amenities: [{ id: 'high-chairs', label: 'High chairs' }, { id: 'changing-table', label: 'Changing table' }],
+                  links: { website: '#website', menu: '#menu', shareUrl: '#share' },
+                }}
+              />
+              <PartnerNewsletterForm
+                email=""
+                state="error"
+                labels={{ title: 'Your city got family-friendly', description: 'Get the weekly list.', emailLabel: 'Email', submitLabel: 'Join', dismissLabel: 'Close', successMessage: 'Subscribed', errorMessage: 'Retry signup' }}
+              />
+              <PartnerListIndex title="Partner lists" items={[{ id: 'cafes', title: 'Best family-friendly cafes', href: '#cafes' }]} />
+            </>
+          </SectionPanel>
+        </PartnerDiscoveryShell>
       );
     case 'form-field':
       return (

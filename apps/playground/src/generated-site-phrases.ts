@@ -45,6 +45,17 @@ export const generatedSitePhrases = {
     "fr": "© Système de conception générale",
     "he": "© מערכת עיצוב כללי"
   },
+  "p_a033b5309e1b": {
+    "en": "1 Main St",
+    "hu": "1 Fő utca",
+    "ar": "1 ش رئيسي",
+    "ru": "1 Мэйн Стрит",
+    "es": "1 calle principal",
+    "de": "1 Hauptstraße",
+    "fr": "1 rue principale",
+    "it": "1 via principale",
+    "he": "רחוב ראשי 1"
+  },
   "p_dda9d69a9fb4": {
     "en": "10 MB max",
     "ar": "10 ميجا بايت كحد أقصى",
@@ -319,6 +330,17 @@ export const generatedSitePhrases = {
     "ar": "أضف النتائج المتوقعة والأثر والإلحاح.",
     "he": "הוסף תוצאות צפויות, השפעה ודחיפות.",
     "hu": "Adja hozzá a várható eredményeket, hatást és sürgősséget."
+  },
+  "p_ca54d75f00c1": {
+    "en": "Add to Map",
+    "ru": "Добавить на карту",
+    "ar": "أضف إلى الخريطة",
+    "es": "Añadir al mapa",
+    "de": "Zur Karte hinzufügen",
+    "fr": "Ajouter à la carte",
+    "hu": "Hozzáadás a térképhez",
+    "it": "Aggiungi alla mappa",
+    "he": "הוסף למפה"
   },
   "p_1ff7887a3c4f": {
     "en": "Add to order",
@@ -847,6 +869,17 @@ export const generatedSitePhrases = {
     "ru": "Прежде чем продолжить",
     "he": "לפני שתמשיך",
     "de": "Bevor Sie fortfahren"
+  },
+  "p_ef6e8e958dbe": {
+    "en": "Best family-friendly cafes",
+    "ar": "أفضل المقاهي العائلية",
+    "hu": "A legjobb családbarát kávézók",
+    "it": "I migliori caffè per famiglie",
+    "es": "Los mejores cafés familiares",
+    "de": "Beste familienfreundliche Cafés",
+    "ru": "Лучшие кафе для семейного отдыха",
+    "he": "בתי הקפה הכי ידידותיים למשפחות",
+    "fr": "Les meilleurs cafés familiaux"
   },
   "p_b8586716c906": {
     "en": "Block-based layout schema",
@@ -1475,6 +1508,17 @@ export const generatedSitePhrases = {
     "ru": "Центрированное состояние",
     "hu": "Központos állapot"
   },
+  "p_cdaec8b49ac6": {
+    "en": "Changing table",
+    "fr": "Table à langer",
+    "ar": "تغيير الجدول",
+    "de": "Wickeltisch",
+    "hu": "Pelenkázó asztal",
+    "es": "cambiador",
+    "it": "Fasciatoio",
+    "ru": "Пеленальный столик",
+    "he": "שידת החתלה"
+  },
   "p_f396b22ea964": {
     "en": "Chart wrappers must provide text summaries, tokenized legends, and table fallback.",
     "ar": "يجب أن توفر أغلفة المخططات ملخصات نصية ووسائل إيضاح رمزية وبديلًا للجدول.",
@@ -1686,7 +1730,7 @@ export const generatedSitePhrases = {
   },
   "p_d58d9fc274e1": {
     "en": "Compatibility empty state remains visible in the catalog.",
-    "he": "Compatibility empty state remains visible in the catalog.",
+    "he": "מצב ריק תאימות נשאר גלוי בקטלוג.",
     "es": "El estado vacío de compatibilidad permanece visible en el catálogo.",
     "ru": "Пустое состояние совместимости остается видимым в каталоге.",
     "ar": "تظل حالة التوافق الفارغة مرئية في الكتالوج.",
@@ -1741,7 +1785,7 @@ export const generatedSitePhrases = {
   },
   "p_ec7cb09c3f69": {
     "en": "Confirm lighting, permissions, and the intended upload destination before opening a hardware-adjacent step.",
-    "he": "Confirm lighting, permissions, and the intended upload destination before opening a hardware-adjacent step.",
+    "he": "אשר את התאורה, ההרשאות ויעד ההעלאה המיועד לפני פתיחת שלב סמוך לחומרה.",
     "ru": "Прежде чем открывать этап, связанный с оборудованием, подтвердите освещение, разрешения и предполагаемое место загрузки.",
     "ar": "قم بتأكيد الإضاءة والأذونات ووجهة التحميل المقصودة قبل فتح خطوة الأجهزة المجاورة.",
     "it": "Conferma l'illuminazione, le autorizzazioni e la destinazione di caricamento prevista prima di aprire un passaggio adiacente all'hardware.",
@@ -2938,6 +2982,17 @@ export const generatedSitePhrases = {
     "he": "שחרור נכשל כאשר מסמכים או כיסוי i18n נסחפים.",
     "it": "Rilascio non riuscito quando la copertura dei documenti o di i18n va alla deriva."
   },
+  "p_425c0f15631e": {
+    "en": "Fake data only. Consumers supply copy, assets, data, map adapters, and submission endpoints.",
+    "ar": "بيانات وهمية فقط. يوفر المستهلكون النسخ والأصول والبيانات ومحولات الخرائط ونقاط نهاية الإرسال.",
+    "fr": "Fausses données uniquement. Les consommateurs fournissent des copies, des ressources, des données, des adaptateurs de carte et des points de terminaison de soumission.",
+    "de": "Nur gefälschte Daten. Verbraucher stellen Kopien, Assets, Daten, Kartenadapter und Übermittlungsendpunkte bereit.",
+    "hu": "Csak hamis adatok. A fogyasztók másolatot, eszközöket, adatokat, térképadaptereket és benyújtási végpontokat biztosítanak.",
+    "es": "Sólo datos falsos. Los consumidores proporcionan copias, recursos, datos, adaptadores de mapas y puntos finales de envío.",
+    "he": "נתונים מזויפים בלבד. צרכנים מספקים עותקים, נכסים, נתונים, מתאמי מפות ונקודות קצה להגשה.",
+    "ru": "Только фейковые данные. Потребители предоставляют копии, ресурсы, данные, адаптеры карт и конечные точки отправки.",
+    "it": "Solo dati falsi. I consumatori forniscono copie, risorse, dati, adattatori di mappe ed endpoint di invio."
+  },
   "p_0be6cfe4e96a": {
     "en": "Fake nested websites",
     "fr": "Faux sites Web imbriqués",
@@ -3433,6 +3488,17 @@ export const generatedSitePhrases = {
     "ar": "ابدأ",
     "hu": "Kezdje el"
   },
+  "p_210e78c30202": {
+    "en": "Get the weekly list.",
+    "hu": "Szerezd meg a heti listát.",
+    "fr": "Obtenez la liste hebdomadaire.",
+    "ru": "Получите еженедельный список.",
+    "de": "Holen Sie sich die wöchentliche Liste.",
+    "ar": "احصل على القائمة الأسبوعية.",
+    "it": "Ottieni l'elenco settimanale.",
+    "es": "Obtenga la lista semanal.",
+    "he": "קבלו את הרשימה השבועית."
+  },
   "p_a9870321df6a": {
     "en": "getGdsRecommendedMaturityCapabilities / getGdsMaturitySummary",
     "es": "getGdsRecommendedMaturityCapabilities / getGdsMaturitySummary",
@@ -3553,6 +3619,17 @@ export const generatedSitePhrases = {
     "fr": "Contexte de l’espace de travail régi et placement des actions.",
     "ar": "سياق مساحة العمل المحكومة وموضع العمل.",
     "ru": "Управляемый контекст рабочей области и размещение действий."
+  },
+  "p_51fdb555d717": {
+    "en": "Green Cafe",
+    "fr": "Café vert",
+    "ar": "جرين كافيه",
+    "he": "קפה ירוק",
+    "hu": "Green Cafe",
+    "de": "Grünes Café",
+    "ru": "Зеленое Кафе",
+    "es": "Café Verde",
+    "it": "Caffè Verde"
   },
   "p_57d0e37fc0fe": {
     "en": "Green falafel plate",
@@ -3696,6 +3773,17 @@ export const generatedSitePhrases = {
     "ru": "Иерархическое распределение.",
     "fr": "Répartition hiérarchique.",
     "hu": "Hierarchikus eloszlás."
+  },
+  "p_bab6dcd9ca7f": {
+    "en": "High chairs",
+    "es": "sillas altas",
+    "ru": "Высокие стульчики",
+    "fr": "Chaises hautes",
+    "he": "כיסאות גבוהים",
+    "ar": "كراسي عالية",
+    "hu": "Etetőszékek",
+    "de": "Hochstühle",
+    "it": "Seggioloni"
   },
   "p_f7625ad47433": {
     "en": "High-impact destructive actions must remain visually distinct and require explicit confirmation.",
@@ -4015,6 +4103,17 @@ export const generatedSitePhrases = {
     "he": "מצבי אינטראקציה נשארים גלויים ועקביים ללא מעטפת לחצנים מקומיים.",
     "ar": "تظل حالات التفاعل مرئية ومتسقة بدون أغلفة أزرار التوجيه المحلية.",
     "ru": "Состояния взаимодействия остаются видимыми и согласованными без оболочек кнопок на локальном маршруте."
+  },
+  "p_72819acb0f5b": {
+    "en": "Issue-backed partner-compatible discovery system covering theme, shell, filters, map/list, detail, newsletter, content, observability, validation, and non-copy boundaries.",
+    "ar": "نظام اكتشاف متوافق مع الشريك ومدعوم بالإصدار يغطي السمة والقشرة والمرشحات والخريطة/القائمة والتفاصيل والرسالة الإخبارية والمحتوى وإمكانية الملاحظة والتحقق من الصحة والحدود غير القابلة للنسخ.",
+    "he": "מערכת גילוי תואמת שותפים מגובת בעיה המכסה נושא, מעטפת, מסננים, מפה/רשימה, פירוט, ניוזלטר, תוכן, צפייה, אימות וגבולות ללא העתקה.",
+    "es": "Sistema de descubrimiento compatible con socios respaldado por temas que cubre temas, shell, filtros, mapa/lista, detalles, boletín informativo, contenido, observabilidad, validación y límites de no copia.",
+    "ru": "Совместимая с партнерами система обнаружения с поддержкой проблем, охватывающая тему, оболочку, фильтры, карту/список, детализацию, информационный бюллетень, контент, наблюдаемость, проверку и границы, не допускающие копирования.",
+    "fr": "Système de découverte compatible avec les partenaires couvrant le thème, le shell, les filtres, la carte/liste, les détails, la newsletter, le contenu, l'observabilité, la validation et les limites de non-copie.",
+    "it": "Sistema di rilevamento compatibile con i partner supportato dai problemi che copre tema, shell, filtri, mappa/elenco, dettagli, newsletter, contenuto, osservabilità, convalida e limiti di non copia.",
+    "hu": "Problématámogatású, partnerekkel kompatibilis felfedezőrendszer, amely témát, héjat, szűrőket, térképet/listát, részleteket, hírlevelet, tartalmat, megfigyelhetőséget, érvényesítést és nem másolható határokat tartalmaz.",
+    "de": "Issue-gestütztes, mit Partnern kompatibles Erkennungssystem, das Thema, Shell, Filter, Karte/Liste, Details, Newsletter, Inhalt, Beobachtbarkeit, Validierung und nicht kopierfähige Grenzen abdeckt."
   },
   "p_655eba3c63a0": {
     "en": "Issue-backed product maturity registry for the seven highest-value GDS capability groups, including contracts, accessibility, observability, rollback, testing, and documentation evidence.",
@@ -5512,6 +5611,28 @@ export const generatedSitePhrases = {
     "de": "Seitenüberschriften geben Auskunft darüber, wo sich der Benutzer befindet, wozu die Oberfläche dient und was als nächstes kommt.",
     "he": "כותרות הדפים עונות היכן נמצא המשתמש, לשם מה מיועד המשטח ומה מגיע לאחר מכן."
   },
+  "p_e7728e83452d": {
+    "en": "Parent tip",
+    "ar": "نصيحة الوالدين",
+    "fr": "Conseil aux parents",
+    "he": "טיפ הורים",
+    "ru": "Совет для родителей",
+    "es": "Consejo para padres",
+    "de": "Tipp für Eltern",
+    "hu": "Szülői tipp",
+    "it": "Suggerimento per i genitori"
+  },
+  "p_c9fdd8f26e45": {
+    "en": "Park Tacos",
+    "ar": "بارك تاكو",
+    "it": "Parco Tacos",
+    "de": "Park-Tacos",
+    "es": "Tacos del parque",
+    "fr": "Tacos du parc",
+    "ru": "Парк Такос",
+    "he": "פארק טאקוס",
+    "hu": "Park Tacos"
+  },
   "p_c51d8dfd8fd9": {
     "en": "Part-to-whole split.",
     "ar": "الانقسام من الجزء إلى الكل.",
@@ -5533,6 +5654,83 @@ export const generatedSitePhrases = {
     "he": "חלק אל שלם עם הקשר מרכזי.",
     "de": "Teil-zu-Ganzes mit zentralem Kontext.",
     "hu": "Rész-egész, központi kontextussal."
+  },
+  "p_d2524dfac871": {
+    "en": "Partner Baby",
+    "de": "Partnerbaby",
+    "es": "Bebé compañero",
+    "ar": "شريك الطفل",
+    "fr": "Partenaire bébé",
+    "ru": "Партнер Бэби",
+    "he": "פרטנר בייבי",
+    "hu": "Partner Baba",
+    "it": "Compagno bambino"
+  },
+  "p_68e8bd7edfd2": {
+    "en": "Partner Discovery Compatibility",
+    "fr": "Compatibilité de la découverte des partenaires",
+    "ar": "التوافق مع اكتشاف الشركاء",
+    "es": "Compatibilidad con el descubrimiento de socios",
+    "de": "Kompatibilität der Partnererkennung",
+    "hu": "Partnerkeresési kompatibilitás",
+    "he": "תאימות לגילוי שותפים",
+    "ru": "Совместимость обнаружения партнеров",
+    "it": "Compatibilità per la scoperta dei partner"
+  },
+  "p_bd05e9500ceb": {
+    "en": "Partner discovery reference",
+    "ar": "مرجع اكتشاف الشريك",
+    "hu": "Partner felfedezési hivatkozás",
+    "es": "Referencia de descubrimiento de socios",
+    "he": "הפניה לגילוי שותף",
+    "ru": "Справочник по поиску партнеров",
+    "de": "Referenz zur Partnerermittlung",
+    "fr": "Référence de découverte de partenaires",
+    "it": "Riferimento per la scoperta dei partner"
+  },
+  "p_3b085a91c0fc": {
+    "en": "Partner Discovery System",
+    "hu": "Partnerkeresési rendszer",
+    "ar": "نظام اكتشاف الشركاء",
+    "de": "Partnererkennungssystem",
+    "fr": "Système de découverte de partenaires",
+    "it": "Sistema di scoperta dei partner",
+    "ru": "Система поиска партнеров",
+    "es": "Sistema de descubrimiento de socios",
+    "he": "מערכת גילוי פרטנר"
+  },
+  "p_06298fe0212c": {
+    "en": "Partner lists",
+    "hu": "Partnerlisták",
+    "fr": "Listes de partenaires",
+    "ar": "قوائم الشركاء",
+    "it": "Elenchi partner",
+    "de": "Partnerlisten",
+    "ru": "Списки партнеров",
+    "es": "Listas de socios",
+    "he": "רשימות שותפים"
+  },
+  "p_338596a9c058": {
+    "en": "Partner LLC ©2026",
+    "ar": "الشريك ذ م م ©2026",
+    "fr": "Partenaire LLC ©2026",
+    "hu": "Partner LLC ©2026",
+    "it": "Partner LLC ©2026",
+    "ru": "ООО «Партнер» ©2026",
+    "es": "Socio LLC ©2026",
+    "de": "Partner LLC ©2026",
+    "he": "Partner LLC ©2026"
+  },
+  "p_823d70b42378": {
+    "en": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry",
+    "he": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry",
+    "de": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry",
+    "ru": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry",
+    "ar": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry",
+    "fr": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry",
+    "it": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry",
+    "hu": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry",
+    "es": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry"
   },
   "p_26ee8c981211": {
     "en": "Pattern catalog",
@@ -6018,6 +6216,17 @@ export const generatedSitePhrases = {
     "ru": "Оркестровка CTA на основе приоритетов принадлежит семантическому контракту ActionBar.",
     "hu": "A prioritásvezérelt CTA hangszerelés a szemantikai ActionBar szerződéshez tartozik."
   },
+  "p_506ff3946215": {
+    "en": "Privacy Policy",
+    "it": "politica sulla riservatezza",
+    "de": "Datenschutzrichtlinie",
+    "es": "política de privacidad",
+    "fr": "politique de confidentialité",
+    "ru": "политика конфиденциальности",
+    "hu": "Adatvédelmi szabályzat",
+    "ar": "سياسة الخصوصية",
+    "he": "מדיניות פרטיות"
+  },
   "p_2c709abb76e6": {
     "en": "Private customer-level evidence is intentionally hidden from this aggregate.",
     "it": "Le prove private a livello di cliente sono intenzionalmente nascoste da questo aggregato.",
@@ -6468,6 +6677,17 @@ export const generatedSitePhrases = {
     "de": "Öffentliche Produkt- oder Markenseite",
     "he": "אתר מוצר או מותג ציבורי",
     "hu": "Nyilvános termék vagy márka webhelye"
+  },
+  "p_9352774c07b3": {
+    "en": "Public Product Surfaces",
+    "ar": "أسطح المنتجات العامة",
+    "fr": "Surfaces de produits publics",
+    "de": "Öffentliche Produktoberflächen",
+    "he": "משטחי מוצרים ציבוריים",
+    "ru": "Поверхности общедоступных продуктов",
+    "it": "Superfici di prodotti pubblici",
+    "es": "Superficies públicas de productos",
+    "hu": "Nyilvános termékfelületek"
   },
   "p_f99613671640": {
     "en": "Public Shells",
@@ -7140,6 +7360,17 @@ export const generatedSitePhrases = {
     "de": "ResponsiveDataView und DataTable bewältigen den Desktop-/Mobil-Rhythmus, ohne lokale Listen-Shells zu erfinden.",
     "it": "ResponsiveDataView e DataTable gestiscono il ritmo desktop/mobile senza inventare shell di elenchi locali."
   },
+  "p_14dc9a2b5d7a": {
+    "en": "Retry signup",
+    "it": "Riprovare la registrazione",
+    "ar": "أعد محاولة الاشتراك",
+    "es": "Reintentar el registro",
+    "fr": "Réessayez de vous inscrire",
+    "hu": "Próbálja újra a regisztrációt",
+    "de": "Versuchen Sie es erneut",
+    "he": "נסה להירשם שוב",
+    "ru": "Повторить попытку регистрации"
+  },
   "p_731dc6e3f07a": {
     "en": "Retry upload",
     "fr": "Réessayez de télécharger",
@@ -7217,6 +7448,17 @@ export const generatedSitePhrases = {
     "de": "Rollen-, Umfangs-, Blockierungs- und Besitzhinweise müssen explizit bleiben und dürfen sich nicht nur auf die Farbe verlassen.",
     "hu": "A szerep-, hatókör-, blokkolt- és tulajdonosi jelzéseknek egyértelműnek kell maradniuk, és nem szabad csak a színekre támaszkodniuk."
   },
+  "p_53474a3cfecc": {
+    "en": "Room for strollers.",
+    "it": "Spazio per passeggini.",
+    "ar": "غرفة لعربات الأطفال.",
+    "de": "Platz für Kinderwagen.",
+    "fr": "Local pour poussettes.",
+    "es": "Espacio para cochecitos.",
+    "he": "מקום לעגלות.",
+    "ru": "Комната для колясок.",
+    "hu": "Helyiség babakocsik számára."
+  },
   "p_c8007e709645": {
     "en": "Route to docs or compliance",
     "es": "Ruta a documentos o cumplimiento",
@@ -7283,6 +7525,17 @@ export const generatedSitePhrases = {
     "he": "תצוגות חיפוש ונתונים",
     "hu": "Keresés és adatnézetek"
   },
+  "p_ccb547f37b25": {
+    "en": "Search by amenity, cuisine, or neighborhood",
+    "de": "Suchen Sie nach Annehmlichkeiten, Küche oder Nachbarschaft",
+    "es": "Buscar por servicio, cocina o vecindario",
+    "fr": "Rechercher par commodité, cuisine ou quartier",
+    "ar": "البحث عن طريق وسائل الراحة، المطبخ، أو الحي",
+    "he": "חפש לפי מתקני נוחות, מטבח או שכונה",
+    "ru": "Поиск по удобствам, кухне или району",
+    "it": "Cerca per servizi, cucina o quartiere",
+    "hu": "Keresés felszereltség, konyha vagy környék szerint"
+  },
   "p_e994a78239dc": {
     "en": "Search dataset",
     "es": "Buscar conjunto de datos",
@@ -7304,6 +7557,17 @@ export const generatedSitePhrases = {
     "it": "Cerca elementi rilevabili",
     "hu": "Keressen felfedezhető elemeket",
     "he": "חיפוש ניתנים לגילוי"
+  },
+  "p_5b8a4296530d": {
+    "en": "Search places",
+    "ru": "Поиск мест",
+    "de": "Orte suchen",
+    "ar": "أماكن البحث",
+    "fr": "Rechercher des lieux",
+    "es": "Buscar lugares",
+    "hu": "Helyek keresése",
+    "it": "Cerca luoghi",
+    "he": "חפש מקומות"
   },
   "p_2c34d2362b8e": {
     "en": "Search selection",
@@ -7436,6 +7700,17 @@ export const generatedSitePhrases = {
     "fr": "Sélectionnez la ligne 1",
     "hu": "Válassza ki az 1. sort",
     "he": "בחר שורה-1"
+  },
+  "p_f7e2d5da522c": {
+    "en": "Selected filters",
+    "de": "Ausgewählte Filter",
+    "fr": "Filtres sélectionnés",
+    "ru": "Выбранные фильтры",
+    "hu": "Kiválasztott szűrők",
+    "ar": "المرشحات المختارة",
+    "it": "Filtri selezionati",
+    "es": "Filtros seleccionados",
+    "he": "מסננים נבחרים"
   },
   "p_a6fa14371b8c": {
     "en": "Selects / Combobox",
@@ -7612,6 +7887,17 @@ export const generatedSitePhrases = {
     "hu": "Megosztás gombok",
     "ar": "أزرار المشاركة",
     "fr": "Boutons de partage"
+  },
+  "p_609fbf097c29": {
+    "en": "Share failed",
+    "fr": "Échec du partage",
+    "es": "Compartir falló",
+    "ru": "Не удалось поделиться",
+    "ar": "فشلت المشاركة",
+    "hu": "A megosztás sikertelen",
+    "de": "Die Freigabe ist fehlgeschlagen",
+    "it": "Condivisione non riuscita",
+    "he": "השיתוף נכשל"
   },
   "p_d25b71b6ba17": {
     "en": "Shared access summary",
@@ -9834,6 +10120,17 @@ export const generatedSitePhrases = {
     "fr": "vous@entreprise.com",
     "he": "you@company.com",
     "it": "tu@azienda.com"
+  },
+  "p_061eaa8521e5": {
+    "en": "Your city got family-friendly",
+    "it": "La tua città è diventata a misura di famiglia",
+    "hu": "A városod családbarát lett",
+    "fr": "Votre ville est devenue familiale",
+    "ar": "أصبحت مدينتك صديقة للعائلة",
+    "de": "Ihre Stadt ist familienfreundlich geworden",
+    "he": "העיר שלך הפכה להיות ידידותית למשפחות",
+    "es": "Tu ciudad se volvió familiar",
+    "ru": "Ваш город стал семейным"
   },
   "p_2c6b2e253c01": {
     "en": "Your name",

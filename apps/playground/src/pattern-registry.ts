@@ -1071,6 +1071,17 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     importPath: '@doneisbetter/gds-core',
     sourceComponent: 'createGdsVocabularyPack',
   },
+  {
+    id: 'partner-discovery-system',
+    title: 'Partner Discovery System',
+    docSection: 'Partner Discovery Compatibility',
+    family: 'public',
+    section: 'Public Product Surfaces',
+    coverageStatus: 'live-demo',
+    summary: 'Issue-backed partner-compatible discovery system covering theme, shell, filters, map/list, detail, newsletter, content, observability, validation, and non-copy boundaries.',
+    importPath: '@doneisbetter/gds-core',
+    sourceComponent: 'PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry',
+  },
 ];
 
 export const patternRegistry: PatternRegistryEntry[] = rawPatternRegistry.map((entry) => ({

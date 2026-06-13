@@ -9,7 +9,7 @@ import { GdsProvider } from './GdsProvider';
 import { applyGdsFontLane, getGdsFontLaneStylesheetUrls, getGdsFontLanes, isGdsFontLaneId, resolveGdsFontLane } from './font-lanes';
 import { showGdsNotification } from './notifications';
 import { createPublicBrandTheme, gdsDarkPublicTheme, gdsEditorialPublicTheme, gdsFlatSurfaceTheme, gdsTheme, withGdsMotion } from './theme';
-import { getGdsThemePresets, resolveGdsThemePreset } from './theme-presets';
+import { getGdsThemePresets, partnerDiscoveryThemePreset, resolveGdsThemePreset } from './theme-presets';
 import { useGdsThemePresetState } from './theme-runtime';
 import { getGdsVibeThemes, resolveGdsVibeTheme } from './vibe-themes';
 
@@ -128,15 +128,24 @@ describe('GdsProvider', () => {
       'cosmic',
     ];
 
-    expect(presets.length).toBeGreaterThanOrEqual(17);
+    expect(presets.length).toBeGreaterThanOrEqual(18);
     expect(presets.some((item) => item.id === 'default')).toBe(true);
     expect(presets.some((item) => item.id === 'brand')).toBe(true);
+    expect(presets.some((item) => item.id === 'partner-discovery')).toBe(true);
     expect(colorfulPresetIds.every((id) => presets.some((item) => item.id === id))).toBe(true);
     expect(colorfulPresetIds.every((id) => vibes.some((item) => item.id === id))).toBe(true);
     expect(presets.find((item) => item.id === 'coral')?.runtimeLane).toBe('resolveGdsThemePreset(coral)');
+    expect(presets.find((item) => item.id === 'partner-discovery')?.runtimeLane).toBe('partnerDiscoveryThemePreset');
 
     const resolved = resolveGdsThemePreset('sunset');
     expect(resolved.primaryColor).toBe('orange');
+    expect(resolveGdsThemePreset('partner-discovery')).toBe(partnerDiscoveryThemePreset);
+    expect(partnerDiscoveryThemePreset.primaryColor).toBe('teal');
+    expect(partnerDiscoveryThemePreset.other?.gdsPartnerDiscoveryTokens).toMatchObject({
+      teal: '#08463b',
+      lime: '#2fc800',
+      mapRadius: 16,
+    });
 
     const coral = resolveGdsThemePreset('coral');
     expect(coral.primaryColor).toBe('pink');
@@ -149,23 +158,29 @@ describe('GdsProvider', () => {
     const cosmicVibe = resolveGdsVibeTheme('cosmic');
     expect(cosmicVibe.label).toBe('Cosmic burst');
     expect(cosmicVibe.gradient).toContain('#19005c');
+
+    const partnerVibe = resolveGdsVibeTheme('partner-discovery');
+    expect(partnerVibe.primary).toBe('#08463b');
+    expect(partnerVibe.accent).toBe('#2fc800');
   });
 
   it('exposes approved font lanes and applies them to theme contracts', () => {
     const lanes = getGdsFontLanes();
-    expect(lanes.length).toBeGreaterThanOrEqual(10);
+    expect(lanes.length).toBeGreaterThanOrEqual(11);
     expect(lanes.every((lane) => lane.fontDisplay === 'swap')).toBe(true);
     expect(lanes.every((lane) => lane.fallbackStack.length > 0)).toBe(true);
     expect(lanes.every((lane) => lane.localeCoverage.includes('en'))).toBe(true);
     expect(lanes.every((lane) => lane.source === 'google-fonts-compatible' || lane.source === 'system')).toBe(true);
     expect(getGdsFontLaneStylesheetUrls().length).toBeGreaterThanOrEqual(10);
     expect(isGdsFontLaneId('space-grotesk')).toBe(true);
+    expect(isGdsFontLaneId('partner-discovery')).toBe(true);
     expect(isGdsFontLaneId('local-product-font')).toBe(false);
     expect(resolveGdsFontLane('local-product-font').id).toBe('inter');
 
     const themed = applyGdsFontLane(gdsTheme, 'instrument-serif');
     expect(themed.headings?.fontFamily).toContain('Instrument Serif');
     expect(themed.other?.gdsFontLane).toBe('instrument-serif');
+    expect(applyGdsFontLane(gdsTheme, 'partner-discovery').headings?.fontFamily).toContain('Jost');
     expect(applyGdsFontLane(gdsTheme, 'local-product-font').other?.gdsFontLane).toBe('inter');
   });
 

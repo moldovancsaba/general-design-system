@@ -1,5 +1,5 @@
 export { gdsTheme, gdsDarkPublicTheme, gdsFlatSurfaceTheme, gdsEditorialPublicTheme, createPublicBrandTheme, extendGdsTheme, withGdsMotion } from './theme';
-export { getGdsThemePresets, resolveGdsThemePreset } from './theme-presets';
+export { getGdsThemePresets, resolveGdsThemePreset, partnerDiscoveryThemePreset } from './theme-presets';
 export type { GdsThemePreset, GdsThemePresetId } from './theme-presets';
 export { gdsLocaleMetadata, getGdsLocaleIdsByScript, getGdsLocaleMetadata, isGdsRtlLocale } from './i18n';
 export type { GdsLocaleDirection, GdsLocaleId, GdsLocaleScript } from './i18n';

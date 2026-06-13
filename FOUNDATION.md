@@ -86,10 +86,17 @@ Required shared contract families:
 - data toolbars and responsive data views
 - auth shells and account-entry panels
 - article/docs/news layouts
+- partner-compatible discovery shells, filters, map/list surfaces, detail pages, newsletter capture, and content/intake templates
 - loading, empty, error, permission, disabled, and success state blocks
 - shared section/panel body presentation surfaces (`inline`, `centered`, `fill`)
 
 Before a project creates a second implementation of any family, it must check `PATTERN_SERVICE_MODEL.md`, update the GDS if the contract is missing, and document the local adapter path.
+
+### Partner Discovery Compatibility
+
+Partner discovery products that need a compact family-friendly map/list experience must use the canonical `partner-discovery` theme lane and `PartnerDiscovery*` component contracts exported from GDS. The approved surface family includes responsive public chrome, amenity filters, map/list shells, result cards, map pins/controls, location detail templates, newsletter capture, editorial/content pages, add-to-map intake, and privacy-safe event hooks.
+
+Consumer repositories own product copy, data, map provider adapters, API keys, analytics destinations, submission endpoints, and partner-owned brand assets. They must not copy third-party logos, SVG assets, restaurant data, proprietary copy, generated Webflow classes, or map scripts from the audited reference source.
 
 ## 7. Package Runtime Boundaries
 

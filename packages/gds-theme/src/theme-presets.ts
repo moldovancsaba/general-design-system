@@ -7,6 +7,7 @@ export type GdsThemePresetId =
   | 'flat-surface'
   | 'editorial'
   | 'brand'
+  | 'partner-discovery'
   | 'sunset'
   | 'oceanic'
   | 'forest'
@@ -71,7 +72,116 @@ function createVibrantPresetTheme(primaryColor: string, options: { darkForward?:
   });
 }
 
-const customPresetThemes: Record<Exclude<GdsThemePresetId, 'default' | 'dark-public' | 'flat-surface' | 'editorial' | 'brand'>, MantineThemeOverride> = {
+export const partnerDiscoveryThemePreset = extendGdsTheme({
+  primaryColor: 'teal',
+  fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  headings: {
+    fontFamily: 'Jost, Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    sizes: {
+      h1: { fontSize: '2rem', fontWeight: '500', lineHeight: '1.2' },
+      h2: { fontSize: '1.5rem', fontWeight: '500', lineHeight: '1.25' },
+      h3: { fontSize: '1.0625rem', fontWeight: '500', lineHeight: '1.2' },
+    },
+  },
+  colors: {
+    teal: ['#e8f5f2', '#cfe7e1', '#9bcfc3', '#67b5a5', '#3f9d8a', '#23816f', '#126858', '#08463b', '#06392f', '#03251f'],
+    lime: ['#ecffe4', '#d4ffc2', '#a4f58c', '#75e653', '#4fd51f', '#2fc800', '#28a900', '#208700', '#196900', '#104500'],
+  },
+  defaultRadius: 'md',
+  black: '#010800',
+  white: '#ffffff',
+  components: {
+    AppShell: {
+      styles: {
+        main: {
+          color: 'light-dark(#010800, #f4f7fb)',
+          background: 'light-dark(linear-gradient(#ffffffcc, #ffffffcc), #071411)',
+        },
+        header: {
+          color: 'light-dark(#08463b, #d4ffc2)',
+          background: 'light-dark(#ffffffd9, #071411)',
+          borderColor: 'light-dark(#dddddd, #204a2c)',
+        },
+      },
+    },
+    Button: {
+      defaultProps: {
+        radius: 'xl',
+        size: 'sm',
+        fw: 600,
+      },
+      styles: {
+        root: {
+          minHeight: 38,
+        },
+      },
+    },
+    Card: {
+      defaultProps: {
+        radius: 'md',
+        withBorder: true,
+        shadow: undefined,
+      },
+      styles: {
+        root: {
+          color: 'light-dark(#010800, #f4f7fb)',
+          background: 'light-dark(#ffffff, #0d211c)',
+          borderColor: 'light-dark(#dddddd, #204a2c)',
+        },
+      },
+    },
+    Paper: {
+      defaultProps: {
+        radius: 'md',
+        withBorder: true,
+      },
+      styles: {
+        root: {
+          color: 'light-dark(#010800, #f4f7fb)',
+          background: 'light-dark(#ffffff, #0d211c)',
+          borderColor: 'light-dark(#dddddd, #204a2c)',
+        },
+      },
+    },
+    TextInput: {
+      defaultProps: {
+        radius: 'xl',
+      },
+      styles: {
+        input: {
+          minHeight: 38,
+          color: 'light-dark(#010800, #f4f7fb)',
+          background: 'light-dark(#ffffff, #0d211c)',
+          borderColor: 'light-dark(#dddddd, #204a2c)',
+        },
+      },
+    },
+    Badge: {
+      defaultProps: {
+        radius: 'xl',
+      },
+    },
+    Modal: {
+      defaultProps: {
+        radius: 'md',
+      },
+    },
+  },
+  other: {
+    gdsPartnerDiscoveryTokens: {
+      teal: '#08463b',
+      lime: '#2fc800',
+      dark: '#010800',
+      gray: '#dddddd',
+      warm: '#eedad0',
+      cardRadius: 8,
+      mapRadius: 16,
+      pillRadius: 24,
+    },
+  },
+});
+
+const customPresetThemes: Record<Exclude<GdsThemePresetId, 'default' | 'dark-public' | 'flat-surface' | 'editorial' | 'brand' | 'partner-discovery'>, MantineThemeOverride> = {
   sunset: createVibrantPresetTheme('orange'),
   oceanic: createVibrantPresetTheme('cyan'),
   forest: createVibrantPresetTheme('green'),
@@ -93,6 +203,7 @@ const themePresetCatalog: GdsThemePreset[] = [
   { id: 'flat-surface', label: 'Flat surface theme', description: 'Lower-elevation operational lane.', runtimeLane: 'gdsFlatSurfaceTheme' },
   { id: 'editorial', label: 'Editorial serif theme', description: 'Reading-first, serif headline lane.', runtimeLane: 'gdsEditorialPublicTheme' },
   { id: 'brand', label: 'Brand theme generator', description: 'Governed brand composition lane.', runtimeLane: 'createPublicBrandTheme(...)' },
+  { id: 'partner-discovery', label: 'Partner discovery theme', description: 'Compact family-friendly map/list discovery lane with teal/lime semantics and explicit dark-mode tokens.', runtimeLane: 'partnerDiscoveryThemePreset' },
   { id: 'sunset', label: 'Sunset pulse', description: 'Warm orange-magenta vibrant lane.', runtimeLane: 'resolveGdsThemePreset(sunset)' },
   { id: 'oceanic', label: 'Oceanic wave', description: 'Cool cyan-blue vibrant lane.', runtimeLane: 'resolveGdsThemePreset(oceanic)' },
   { id: 'forest', label: 'Forest signal', description: 'Natural emerald-driven vibrant lane.', runtimeLane: 'resolveGdsThemePreset(forest)' },
@@ -128,6 +239,8 @@ export function resolveGdsThemePreset(id: GdsThemePresetId, options?: { brandPri
         flatSurfaces: options?.brandFlatSurfaces ?? true,
         overrides: { primaryColor: options?.brandPrimary ?? 'blue' },
       });
+    case 'partner-discovery':
+      return partnerDiscoveryThemePreset;
     default:
       return customPresetThemes[id] ?? gdsTheme;
   }

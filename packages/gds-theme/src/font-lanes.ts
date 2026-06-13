@@ -11,6 +11,7 @@ export type GdsFontLaneId =
   | 'work-sans'
   | 'barlow'
   | 'dm-sans'
+  | 'partner-discovery'
   | 'instrument-serif'
   | 'source-serif';
 
@@ -59,6 +60,7 @@ const lanes: readonly GdsFontLane[] = [
   lane({ id: 'work-sans', label: 'Work Sans', body: `"Work Sans", ${sansFallback}`, heading: `"Work Sans", ${sansFallback}`, fallbackStack: sansFallback, localeCoverage: broadUiLocales, source: 'google-fonts-compatible', cssImportUrl: googleFontUrl('Work+Sans') }),
   lane({ id: 'barlow', label: 'Barlow', body: `Barlow, ${sansFallback}`, heading: `Barlow, ${sansFallback}`, fallbackStack: sansFallback, localeCoverage: broadLatinLocales, source: 'google-fonts-compatible', cssImportUrl: googleFontUrl('Barlow') }),
   lane({ id: 'dm-sans', label: 'DM Sans', body: `"DM Sans", ${sansFallback}`, heading: `"DM Sans", ${sansFallback}`, fallbackStack: sansFallback, localeCoverage: broadLatinLocales, source: 'google-fonts-compatible', cssImportUrl: googleFontUrl('DM+Sans') }),
+  lane({ id: 'partner-discovery', label: 'Partner Discovery', body: `Inter, ${sansFallback}`, heading: `Jost, ${sansFallback}`, fallbackStack: sansFallback, localeCoverage: broadLatinLocales, source: 'google-fonts-compatible', cssImportUrl: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap' }),
   lane({ id: 'instrument-serif', label: 'Instrument Serif', body: sansFallback, heading: `"Instrument Serif", ${serifFallback}`, fallbackStack: serifFallback, localeCoverage: broadLatinLocales, source: 'google-fonts-compatible', cssImportUrl: googleFontUrl('Instrument+Serif') }),
   lane({ id: 'source-serif', label: 'Source Serif', body: `"Source Serif 4", ${serifFallback}`, heading: `"Source Serif 4", ${serifFallback}`, fallbackStack: serifFallback, localeCoverage: broadUiLocales, source: 'google-fonts-compatible', cssImportUrl: googleFontUrl('Source+Serif+4') }),
 ] as const;

@@ -64,4 +64,5 @@ export * from './Notifications';
 export * from './SurfacePresentation';
 export * from './CreatorTheme';
 export * from './MaturityCapabilities';
+export * from './PartnerDiscovery';
 export * from './locales';

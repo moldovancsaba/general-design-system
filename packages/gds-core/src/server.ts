@@ -21,6 +21,7 @@ export * from './FoodMenuSection';
 export * from './ListingCard';
 export * from './CardContracts';
 export * from './BrowseSurface';
+export * from './BoundedPreviewSurface';
 export * from './AccentPanel';
 export * from './SectionPanel';
 export * from './DetailProfileShell';

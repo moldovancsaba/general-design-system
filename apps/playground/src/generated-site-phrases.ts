@@ -1453,6 +1453,17 @@ export const generatedSitePhrases = {
     "it": "Operazioni sul catalogo",
     "hu": "Katalógusműveletek"
   },
+  "p_92862853baf7": {
+    "en": "Catalog workspace",
+    "ar": "مساحة عمل الكتالوج",
+    "de": "Katalogarbeitsbereich",
+    "es": "Espacio de trabajo del catálogo",
+    "fr": "Espace de travail du catalogue",
+    "hu": "Katalógus munkaterület",
+    "he": "סביבת עבודה בקטלוג",
+    "it": "Area di lavoro del catalogo",
+    "ru": "Рабочая область каталога"
+  },
   "p_263371ece4d1": {
     "en": "Catalog/discovery pages use one governed result header, toolbar, filter, and scope rhythm.",
     "ar": "تستخدم صفحات الكتالوج/الاكتشاف رأس نتيجة واحد وشريط أدوات ومرشح وإيقاع نطاق محدد.",

@@ -12,6 +12,7 @@ import { ArticleShell } from './ArticleShell';
 import { AuthShell } from './AuthShell';
 import { AsyncSurface } from './AsyncSurface';
 import { BrowseSurface } from './BrowseSurface';
+import { BoundedPreviewSurface } from './BoundedPreviewSurface';
 import { ConsumerDashboardGrid } from './ConsumerDashboardGrid';
 import { ConsumerSection } from './ConsumerSection';
 import { CtaButtonGroup } from './CtaButtonGroup';
@@ -191,6 +192,22 @@ describe('@doneisbetter/gds-core', () => {
     renderWithGds(<GdsIcon name="Download" label="Download file" tone="primary" />);
 
     expect(screen.getByRole('img', { name: 'Download file' })).toBeInTheDocument();
+  });
+
+  it('contains preview internals inside a bounded transformed surface', () => {
+    renderWithGds(
+      <BoundedPreviewSurface minHeight="24rem" maxHeight="32rem">
+        <Text>Contained preview</Text>
+      </BoundedPreviewSurface>,
+    );
+
+    expect(screen.getByText('Contained preview')).toBeInTheDocument();
+    expect(document.querySelector('[data-gds-bounded-preview-surface]')).toHaveStyle({
+      contain: 'layout paint',
+      isolation: 'isolate',
+      overflow: 'hidden',
+      transform: 'translateZ(0)',
+    });
   });
 
   it('renders loading and disabled button states safely', () => {

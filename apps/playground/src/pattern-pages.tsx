@@ -58,6 +58,7 @@ import {
   partnerDiscoveryDefaultAmenities,
   GdsNotificationProvider,
   BannerNotice,
+  BoundedPreviewSurface,
   InlineAlert,
   PlaybackSurface,
   PeriodSelector,
@@ -377,19 +378,22 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
     case 'shell-contracts':
     case 'discovery-shell':
       return (
-        <DiscoveryShell
-          header={<PageHeader title="Stable discovery surface" description="Canonical sidebar-first shell for authenticated apps." />}
-          sidebar={(
-            <SidebarNav ariaLabel="Reference navigation">
-              <SidebarNavSection label="Primary">
-                <SidebarNavItem action="dashboard" href="/general-design-system/live-demos/surfaces" active />
-                <SidebarNavItem action="settings" href="/general-design-system/patterns" />
-              </SidebarNavSection>
-            </SidebarNav>
-          )}
-        >
-          <ActionBar primary={{ action: 'save', size: 'sm' }} secondary={[{ action: 'cancel', size: 'sm' }]} />
-        </DiscoveryShell>
+        <BoundedPreviewSurface minHeight="32rem">
+          <DiscoveryShell
+            header={<BodyText>Catalog workspace</BodyText>}
+            sidebar={(
+              <SidebarNav ariaLabel="Reference navigation">
+                <SidebarNavSection label="Primary">
+                  <SidebarNavItem action="dashboard" href="/general-design-system/live-demos/surfaces" active />
+                  <SidebarNavItem action="settings" href="/general-design-system/patterns" />
+                </SidebarNavSection>
+              </SidebarNav>
+            )}
+          >
+            <PageHeader title="Stable discovery surface" description="Canonical sidebar-first shell for authenticated apps." />
+            <ActionBar primary={{ action: 'save', size: 'sm' }} secondary={[{ action: 'cancel', size: 'sm' }]} />
+          </DiscoveryShell>
+        </BoundedPreviewSurface>
       );
     case 'primary-navigation':
       return (
@@ -829,40 +833,44 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
       );
     case 'public-shells':
       return (
-        <PublicShell
-          brand={<strong>General Design System</strong>}
-          navItems={[
-            { id: 'overview', label: 'Overview', href: '/general-design-system/patterns' },
-            { id: 'docs', label: 'Docs', href: '/general-design-system/themes' },
-          ]}
-          activeNavId="overview"
-          actions={<button type="button">Sign in</button>}
-          mobileNavigationMode="inline-collapse"
-          mobileNavigation={<a href="/general-design-system/patterns">Patterns</a>}
-          footer={<PublicBrandFooter brandTitle="GDS" description="Canonical public shell." />}
-          maxContentWidth="lg"
-        >
-          <SectionPanel title="Public content area" description="Bounded public shell for docs and marketing pages.">
-            <p>Public chrome should not be re-implemented locally.</p>
-          </SectionPanel>
-        </PublicShell>
+        <BoundedPreviewSurface minHeight="30rem">
+          <PublicShell
+            brand={<strong>General Design System</strong>}
+            navItems={[
+              { id: 'overview', label: 'Overview', href: '/general-design-system/patterns' },
+              { id: 'docs', label: 'Docs', href: '/general-design-system/themes' },
+            ]}
+            activeNavId="overview"
+            actions={<button type="button">Sign in</button>}
+            mobileNavigationMode="inline-collapse"
+            mobileNavigation={<a href="/general-design-system/patterns">Patterns</a>}
+            footer={<PublicBrandFooter brandTitle="GDS" description="Canonical public shell." />}
+            maxContentWidth="lg"
+          >
+            <SectionPanel title="Public content area" description="Bounded public shell for docs and marketing pages.">
+              <p>Public chrome should not be re-implemented locally.</p>
+            </SectionPanel>
+          </PublicShell>
+        </BoundedPreviewSurface>
       );
     case 'public-nav':
       return <PublicNav activeId="patterns" items={[{ id: 'overview', label: 'Overview', href: '#overview' }, { id: 'install', label: 'Install', href: '#install' }]} />;
     case 'auth-shells':
       return (
-        <AuthShell
-          title="Sign in to GDS"
-          description="Canonical auth placement with provider errors, guest entry, and support fallback."
-          intent="sign-in"
-          error="The last provider attempt timed out. Choose a provider, retry, or continue as guest if your product allows it."
-          socialAuth={<SocialAuthButtons layout="grid" providers={[{ id: 'google', policyNote: 'Approved by identity policy.' }, { id: 'github', tenantDisabledReason: 'Disabled by tenant policy.' }]} />}
-          guestAction={<button type="button">Continue as guest</button>}
-          supportAction={<button type="button">Contact support</button>}
-          helper="Keep provider logic in the app; keep layout in GDS."
-        >
-          <p>Social auth remains part of the shared auth shell contract.</p>
-        </AuthShell>
+        <BoundedPreviewSurface minHeight="28rem">
+          <AuthShell
+            title="Sign in to GDS"
+            description="Canonical auth placement with provider errors, guest entry, and support fallback."
+            intent="sign-in"
+            error="The last provider attempt timed out. Choose a provider, retry, or continue as guest if your product allows it."
+            socialAuth={<SocialAuthButtons layout="grid" providers={[{ id: 'google', policyNote: 'Approved by identity policy.' }, { id: 'github', tenantDisabledReason: 'Disabled by tenant policy.' }]} />}
+            guestAction={<button type="button">Continue as guest</button>}
+            supportAction={<button type="button">Contact support</button>}
+            helper="Keep provider logic in the app; keep layout in GDS."
+          >
+            <p>Social auth remains part of the shared auth shell contract.</p>
+          </AuthShell>
+        </BoundedPreviewSurface>
       );
     case 'social-auth-buttons':
       return <SocialAuthButtons layout="grid" providers={[{ id: 'google' }, { id: 'apple' }, { id: 'github', error: 'Provider returned an error.' }, { id: 'microsoft', tenantDisabledReason: 'Tenant policy disabled Microsoft.' }]} />;
@@ -906,18 +914,20 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
       );
     case 'docs-shell':
       return (
-        <DocsShell
-          brand={<strong>General Design System</strong>}
-          primaryNavigation={<SidebarNavItem action="home" href="/general-design-system/patterns/public" active />}
-          secondaryNavigation={<SidebarNavItem action="theme" href="/general-design-system/themes" />}
-          headerContext="Canonical docs/reference shell contract"
-          actions={<SemanticButton action="theme" size="sm" />}
-          contentWidth="full"
-        >
-          <SectionPanel title="Docs shell content" description="Reference/docs content belongs in package-owned shell framing.">
-            <p>The official site should use this contract instead of page-local shell wrappers.</p>
-          </SectionPanel>
-        </DocsShell>
+        <BoundedPreviewSurface minHeight="30rem">
+          <DocsShell
+            brand={<strong>General Design System</strong>}
+            primaryNavigation={<SidebarNavItem action="home" href="/general-design-system/patterns/public" active />}
+            secondaryNavigation={<SidebarNavItem action="theme" href="/general-design-system/themes" />}
+            headerContext="Canonical docs/reference shell contract"
+            actions={<SemanticButton action="theme" size="sm" />}
+            contentWidth="full"
+          >
+            <SectionPanel title="Docs shell content" description="Reference/docs content belongs in package-owned shell framing.">
+              <p>The official site should use this contract instead of page-local shell wrappers.</p>
+            </SectionPanel>
+          </DocsShell>
+        </BoundedPreviewSurface>
       );
     case 'reference-section':
       return (
@@ -978,19 +988,21 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
       );
     case 'reference-site-shell':
       return (
-        <ReferenceSiteShell
-          logoText="General Design System"
-          primaryNavigation={<SidebarNavItem action="home" href="/general-design-system" active />}
-          secondaryNavigation={<SidebarNavItem action="grid" href="/general-design-system/patterns" />}
-          headerContext="Reference website shell"
-          locale="en"
-          localeOptions={[{ id: 'en', label: 'English' }]}
-          onLocaleChange={() => {}}
-        >
-          <SectionPanel title="Reference-site composition" description="Legacy reference shell retained for bounded compatibility lanes.">
-            <p>Prefer DocsShell for the official site path, keep this contract only where explicitly required.</p>
-          </SectionPanel>
-        </ReferenceSiteShell>
+        <BoundedPreviewSurface minHeight="30rem">
+          <ReferenceSiteShell
+            logoText="General Design System"
+            primaryNavigation={<SidebarNavItem action="home" href="/general-design-system" active />}
+            secondaryNavigation={<SidebarNavItem action="grid" href="/general-design-system/patterns" />}
+            headerContext="Reference website shell"
+            locale="en"
+            localeOptions={[{ id: 'en', label: 'English' }]}
+            onLocaleChange={() => {}}
+          >
+            <SectionPanel title="Reference-site composition" description="Legacy reference shell retained for bounded compatibility lanes.">
+              <p>Prefer DocsShell for the official site path, keep this contract only where explicitly required.</p>
+            </SectionPanel>
+          </ReferenceSiteShell>
+        </BoundedPreviewSurface>
       );
     case 'editorial-hero':
       return (
@@ -1105,17 +1117,19 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
       );
     case 'admin-app-shell':
       return (
-        <AppShell
-          logoText="Admin GDS"
-          primaryNavigation={<SemanticNavLink action="dashboard" href="/general-design-system/patterns/operations" active />}
-          secondaryNavigation={<SemanticNavLink action="settings" href="/general-design-system/patterns" />}
-          headerContext="Admin compatibility shell"
-          showThemeToggle={false}
-        >
-          <SectionPanel title="Admin shell content" description="AppShell is backed by DiscoveryShell and remains an admin compatibility path.">
-            <p>Use DiscoveryShell directly for new sidebar-first apps when possible.</p>
-          </SectionPanel>
-        </AppShell>
+        <BoundedPreviewSurface minHeight="30rem">
+          <AppShell
+            logoText="Admin GDS"
+            primaryNavigation={<SemanticNavLink action="dashboard" href="/general-design-system/patterns/operations" active />}
+            secondaryNavigation={<SemanticNavLink action="settings" href="/general-design-system/patterns" />}
+            headerContext="Admin compatibility shell"
+            showThemeToggle={false}
+          >
+            <SectionPanel title="Admin shell content" description="AppShell is backed by DiscoveryShell and remains an admin compatibility path.">
+              <p>Use DiscoveryShell directly for new sidebar-first apps when possible.</p>
+            </SectionPanel>
+          </AppShell>
+        </BoundedPreviewSurface>
       );
     case 'editor-scaffold':
       return (

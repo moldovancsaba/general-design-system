@@ -126,6 +126,12 @@ describe('playground theme explorer and live demos hub', () => {
     expect(screen.getByText('Capture/review stage')).toBeTruthy();
   });
 
+  it('keeps live shell demos inside bounded preview surfaces', () => {
+    const { container } = renderWithGds(<LayoutsPage />);
+
+    expect(container.querySelectorAll('[data-gds-bounded-preview-surface]').length).toBeGreaterThan(0);
+  });
+
   it('offers a layout template cookbook with editable JSON and diagnostics', () => {
     renderWithGds(<LayoutsPage />);
 

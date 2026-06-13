@@ -3,6 +3,8 @@ import {
   AccessSummary,
   ActionBar,
   AuthShell,
+  BodyText,
+  BoundedPreviewSurface,
   ConsumerDashboardGrid,
   DetailProfileShell,
   DiscoveryShell,
@@ -305,39 +307,39 @@ export function LayoutsPage() {
         title="Discovery shell"
         description="Sidebar-first applications should use the canonical shell with governed sidebar IA and semantic actions."
       >
-        <DiscoveryShell
-          header={(
+        <BoundedPreviewSurface minHeight="34rem">
+          <DiscoveryShell
+            header={<BodyText>Catalog workspace</BodyText>}
+            sidebar={(
+              <SidebarNav ariaLabel="Catalog navigation">
+                <SidebarNavSection label="Primary">
+                  <SidebarNavItem action="dashboard" href="/general-design-system/live-demos/layouts" active />
+                  <SidebarNavItem action="calendar" href="/general-design-system/patterns/foundations" />
+                  <SidebarNavItem action="analytics" href="/general-design-system/live-demos/analytics" />
+                </SidebarNavSection>
+                <SidebarNavSection label="Account" pushToBottom>
+                  <SidebarNavItem action="settings" href="/general-design-system/governance" />
+                  <SidebarNavItem action="logout" component="button" />
+                </SidebarNavSection>
+              </SidebarNav>
+            )}
+          >
             <PageHeader
               title="Catalog Operations"
               description="Governed sidebar-first shell"
-              primaryAction={<SemanticButton action="save" size="sm" />}
             />
-          )}
-          sidebar={(
-            <SidebarNav ariaLabel="Catalog navigation">
-              <SidebarNavSection label="Primary">
-                <SidebarNavItem action="dashboard" href="/general-design-system/live-demos/layouts" active />
-                <SidebarNavItem action="calendar" href="/general-design-system/patterns/foundations" />
-                <SidebarNavItem action="analytics" href="/general-design-system/live-demos/analytics" />
-              </SidebarNavSection>
-              <SidebarNavSection label="Account" pushToBottom>
-                <SidebarNavItem action="settings" href="/general-design-system/governance" />
-                <SidebarNavItem action="logout" component="button" />
-              </SidebarNavSection>
-            </SidebarNav>
-          )}
-        >
-          <SectionPanel
-            title="Contained desktop preview"
-            description="This is a real DiscoveryShell contract shown inside a bounded preview rather than a fake nested website."
-          >
-            <ActionBar
-              primary={{ action: 'save', size: 'sm' }}
-              secondary={[{ action: 'cancel', size: 'sm' }]}
-              tertiary={[{ action: 'preview', size: 'sm' }]}
-            />
-          </SectionPanel>
-        </DiscoveryShell>
+            <SectionPanel
+              title="Contained desktop preview"
+              description="This is a real DiscoveryShell contract shown inside a bounded preview rather than a fake nested website."
+            >
+              <ActionBar
+                primary={{ action: 'save', size: 'sm' }}
+                secondary={[{ action: 'cancel', size: 'sm' }]}
+                tertiary={[{ action: 'preview', size: 'sm' }]}
+              />
+            </SectionPanel>
+          </DiscoveryShell>
+        </BoundedPreviewSurface>
       </ReferenceSection>
 
       <ReferenceSection

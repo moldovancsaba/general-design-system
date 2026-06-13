@@ -53,6 +53,7 @@ export const patternExportCoverage: ExportCoverageEntry[] = [
   { packageName: '@doneisbetter/gds-core', exportName: 'AuthShell', status: 'live-demo', registryId: 'auth-shells', rationale: 'Canonical auth entry composition.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'AsyncSurface', status: 'live-demo', registryId: 'state-blocks', rationale: 'Canonical async loading/empty/error/retry surface orchestration.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'BrowseSurface', status: 'live-demo', registryId: 'browse-surface', rationale: 'Canonical browse/search/list surface.' },
+  { packageName: '@doneisbetter/gds-core', exportName: 'BoundedPreviewSurface', status: 'support-api', registryId: 'discovery-shell', rationale: 'Preview containment surface keeps shell and docs demos bounded on narrow screens without local clip/transform hacks.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'ChartTokenPanel', status: 'live-demo', registryId: 'reporting-contracts', rationale: 'Canonical chart-token and accessible chart fallback wrapper.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'GdsChart', status: 'live-demo', registryId: 'reporting-contracts', rationale: 'Governed multi-type chart primitive with shared state and fallback semantics.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'gdsChartTypeRegistry', status: 'support-api', registryId: 'reporting-contracts', rationale: 'Canonical chart type registry for governed chart lanes and rendering budgets.' },

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import type { MantineThemeOverride } from '@mantine/core';
 import { MantineProvider, DirectionProvider, Box } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
@@ -15,6 +15,27 @@ export interface GdsProviderProps {
   theme?: MantineThemeOverride;
   defaultColorScheme?: 'light' | 'dark' | 'auto';
   forceColorScheme?: 'light' | 'dark';
+  colorSchemeRootElement?: () => HTMLElement | undefined;
+  cssVariablesSelector?: string;
+  applyDocumentColorScheme?: boolean;
+}
+
+type GdsMantineColorScheme = 'light' | 'dark' | 'auto';
+
+interface GdsMantineColorSchemeManager {
+  get: (defaultValue: GdsMantineColorScheme) => GdsMantineColorScheme;
+  set: (value: GdsMantineColorScheme) => void;
+  subscribe: (onUpdate: (colorScheme: GdsMantineColorScheme) => void) => void;
+  unsubscribe: () => void;
+  clear: () => void;
+}
+
+function resolveDocumentColorScheme(colorScheme: GdsMantineColorScheme) {
+  if (colorScheme !== 'auto') {
+    return colorScheme;
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 /**
@@ -28,9 +49,32 @@ export function GdsProvider({
   theme = gdsTheme,
   defaultColorScheme = 'light',
   forceColorScheme,
+  colorSchemeRootElement,
+  cssVariablesSelector = ':root',
+  applyDocumentColorScheme = true,
 }: GdsProviderProps) {
   const isRtl = isGdsRtlLocale(locale);
   const dir = isRtl ? 'rtl' : 'ltr';
+  const colorSchemeManager = useMemo<GdsMantineColorSchemeManager>(() => ({
+    get: (fallback) => forceColorScheme ?? defaultColorScheme ?? fallback,
+    set: (value) => {
+      (colorSchemeRootElement?.() ?? document.documentElement).setAttribute('data-mantine-color-scheme', resolveDocumentColorScheme(value));
+    },
+    subscribe: () => {},
+    unsubscribe: () => {},
+    clear: () => {
+      (colorSchemeRootElement?.() ?? document.documentElement).setAttribute('data-mantine-color-scheme', resolveDocumentColorScheme(defaultColorScheme));
+    },
+  }), [colorSchemeRootElement, defaultColorScheme, forceColorScheme]);
+
+  useEffect(() => {
+    if (!applyDocumentColorScheme) {
+      return;
+    }
+
+    const requestedScheme = forceColorScheme ?? defaultColorScheme;
+    document.documentElement.setAttribute('data-mantine-color-scheme', resolveDocumentColorScheme(requestedScheme));
+  }, [applyDocumentColorScheme, defaultColorScheme, forceColorScheme]);
   
   return (
     <DirectionProvider initialDirection={dir}>
@@ -39,8 +83,11 @@ export function GdsProvider({
           theme={theme}
           withCssVariables
           withGlobalClasses
+          colorSchemeManager={colorSchemeManager}
           defaultColorScheme={defaultColorScheme}
           forceColorScheme={forceColorScheme}
+          getRootElement={colorSchemeRootElement}
+          cssVariablesSelector={cssVariablesSelector}
         >
           <ModalsProvider>
             <>

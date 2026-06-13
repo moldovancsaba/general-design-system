@@ -74,9 +74,9 @@ import {
   ReferenceLinkGrid,
   ReferenceLocaleNotice,
   ReferenceSection,
-  ReferenceThemeExplorer,
   ReportingSection,
   SectionPanel,
+  SectionTitle,
   SemanticButton,
   ShareButtonGroup,
   SidebarNav,
@@ -87,6 +87,7 @@ import {
   StatusBadge,
   CountBadge,
   LabelTag,
+  BodyText,
   SimpleDataTable,
   UploadDropzone,
   CommandRegistryProvider,
@@ -448,53 +449,53 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
             legalLinks: [{ id: 'privacy', label: 'Privacy Policy', href: '#privacy' }],
           }}
         >
-          <SectionPanel title="Partner discovery reference" description="Fake data only. Consumers supply copy, assets, data, map adapters, and submission endpoints.">
-            <>
-              <PartnerDiscoveryFilters
-                value={{ query: '', amenities: ['high-chairs'], prices: ['$$'] }}
-                labels={{
-                  search: 'Search places',
-                  searchPlaceholder: 'Search by amenity, cuisine, or neighborhood',
-                  filters: 'Filters',
-                  reset: 'Reset',
-                  close: 'Close',
-                  apply: 'Apply',
-                  amenities: 'Amenities',
-                  price: 'Price',
-                  selected: 'Selected filters',
-                }}
-                amenities={partnerDiscoveryDefaultAmenities}
-              />
-              <PartnerMapListShell
-                places={[
-                  { id: 'green-cafe', title: 'Green Cafe', category: 'Cafe', neighborhood: 'Downtown', amenities: ['high-chairs', 'changing-table'], price: '$$', href: '#green-cafe' },
-                  { id: 'park-tacos', title: 'Park Tacos', category: 'Mexican', neighborhood: 'Parkside', amenities: ['outdoor-seating'], price: '$', href: '#park-tacos' },
-                ]}
-                filters={{ query: '', amenities: [], prices: [] }}
-                activePlaceId="green-cafe"
-              />
-              <PartnerPlaceDetailTemplate
-                backHref="#back"
-                labels={{ back: 'Back', photos: 'Photos', website: 'Website', menu: 'Menu', share: 'Share', parentTip: 'Parent tip', copied: 'Copied', shareFailed: 'Share failed' }}
-                place={{
-                  id: 'green-cafe',
-                  title: 'Green Cafe',
-                  address: '1 Main St',
-                  neighborhood: 'Downtown',
-                  category: 'Cafe',
-                  parentTip: 'Room for strollers.',
-                  amenities: [{ id: 'high-chairs', label: 'High chairs' }, { id: 'changing-table', label: 'Changing table' }],
-                  links: { website: '#website', menu: '#menu', shareUrl: '#share' },
-                }}
-              />
-              <PartnerNewsletterForm
-                email=""
-                state="error"
-                labels={{ title: 'Your city got family-friendly', description: 'Get the weekly list.', emailLabel: 'Email', submitLabel: 'Join', dismissLabel: 'Close', successMessage: 'Subscribed', errorMessage: 'Retry signup' }}
-              />
-              <PartnerListIndex title="Partner lists" items={[{ id: 'cafes', title: 'Best family-friendly cafes', href: '#cafes' }]} />
-            </>
-          </SectionPanel>
+          <>
+            <SectionTitle>Partner discovery reference</SectionTitle>
+            <BodyText>Fake data only. Consumers supply copy, assets, data, map adapters, and submission endpoints.</BodyText>
+            <PartnerDiscoveryFilters
+              value={{ query: '', amenities: ['high-chairs'], prices: ['$$'] }}
+              labels={{
+                search: 'Search places',
+                searchPlaceholder: 'Search by amenity, cuisine, or neighborhood',
+                filters: 'Filters',
+                reset: 'Reset',
+                close: 'Close',
+                apply: 'Apply',
+                amenities: 'Amenities',
+                price: 'Price',
+                selected: 'Selected filters',
+              }}
+              amenities={partnerDiscoveryDefaultAmenities}
+            />
+            <PartnerMapListShell
+              places={[
+                { id: 'green-cafe', title: 'Green Cafe', category: 'Cafe', neighborhood: 'Downtown', amenities: ['high-chairs', 'changing-table'], price: '$$', href: '#green-cafe' },
+                { id: 'park-tacos', title: 'Park Tacos', category: 'Mexican', neighborhood: 'Parkside', amenities: ['outdoor-seating'], price: '$', href: '#park-tacos' },
+              ]}
+              filters={{ query: '', amenities: [], prices: [] }}
+              activePlaceId="green-cafe"
+            />
+            <PartnerPlaceDetailTemplate
+              backHref="#back"
+              labels={{ back: 'Back', photos: 'Photos', website: 'Website', menu: 'Menu', share: 'Share', parentTip: 'Parent tip', copied: 'Copied', shareFailed: 'Share failed' }}
+              place={{
+                id: 'green-cafe',
+                title: 'Green Cafe',
+                address: '1 Main St',
+                neighborhood: 'Downtown',
+                category: 'Cafe',
+                parentTip: 'Room for strollers.',
+                amenities: [{ id: 'high-chairs', label: 'High chairs' }, { id: 'changing-table', label: 'Changing table' }],
+                links: { website: '#website', menu: '#menu', shareUrl: '#share' },
+              }}
+            />
+            <PartnerNewsletterForm
+              email=""
+              state="idle"
+              labels={{ title: 'Your city got family-friendly', description: 'Get the weekly list.', emailLabel: 'Email', submitLabel: 'Join', dismissLabel: 'Close', successMessage: 'Subscribed', errorMessage: 'Retry signup' }}
+            />
+            <PartnerListIndex title="Partner lists" items={[{ id: 'cafes', title: 'Best family-friendly cafes', href: '#cafes' }]} />
+          </>
         </PartnerDiscoveryShell>
       );
     case 'form-field':
@@ -955,7 +956,26 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
         />
       );
     case 'reference-theme-explorer':
-      return <ReferenceThemeExplorer />;
+      return (
+        <div>
+          <BodyText>
+            The full reference theme explorer owns the document runtime and is mounted on the Themes route.
+            The catalog keeps this entry bounded so pattern previews cannot overwrite the active page color scheme.
+          </BodyText>
+          <ReferenceLinkGrid
+            columns={2}
+            items={[
+              {
+                id: 'themes-runtime',
+                title: 'Open theme runtime',
+                description: 'Inspect presets, color-scheme behavior, font lanes, and preview diagnostics in the canonical route.',
+                href: '/general-design-system/themes',
+                badge: 'Runtime owner',
+              },
+            ]}
+          />
+        </div>
+      );
     case 'reference-site-shell':
       return (
         <ReferenceSiteShell
@@ -1495,6 +1515,15 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
 }
 
 function PatternEntryCard({ entry }: { entry: PatternRegistryEntry }) {
+  if (entry.id === 'partner-discovery-system') {
+    return (
+      <>
+        <CoverageText entry={entry} />
+        {renderEntryDemo(entry)}
+      </>
+    );
+  }
+
   return (
     <SectionPanel title={entry.title} description={entry.summary}>
       <CoverageText entry={entry} />

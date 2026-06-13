@@ -301,6 +301,8 @@ export function ReferenceThemeExplorer({
 
   const previewKey = `${preset}-${effectiveColorScheme}-${brandPrimary}-${brandFlatSurfaces}-${brandEditorialSerif}-${fontLane}`;
   const comparisonPreviewKey = `${comparisonPreset}-${effectiveComparisonScheme}-${brandPrimary}-${brandFlatSurfaces}-${brandEditorialSerif}-${fontLane}`;
+  const previewRootId = `gds-theme-preview-${previewKey}`;
+  const comparisonPreviewRootId = `gds-theme-preview-${comparisonPreviewKey}`;
   const selectedVibe = vibeCatalogById[preset];
 
   useEffect(() => {
@@ -478,7 +480,8 @@ export function ReferenceThemeExplorer({
               '--gds-vibe-control': `color-mix(in srgb, ${vibe.surfaceLight} 88%, ${vibe.primary} 8%)`,
               '--gds-vibe-control-text': vibe.textLight,
               color: vibe.textLight,
-              background: 'var(--gds-local-background)',
+              backgroundColor: vibe.surfaceLight,
+              backgroundImage: 'var(--gds-local-background)',
               borderColor: isSelected ? vibe.primary : vibe.borderLight,
               boxShadow: isSelected ? `0 0 0 2px ${vibe.primary}, 0 18px 46px ${vibe.glow}` : undefined,
             } as CSSProperties;
@@ -577,7 +580,8 @@ export function ReferenceThemeExplorer({
             '--gds-vibe-control': selectedVibe ? `color-mix(in srgb, ${selectedVibe.surfaceLight} 88%, ${selectedVibe.primary} 8%)` : undefined,
             '--gds-vibe-control-text': selectedVibe?.textLight,
             color: selectedVibe?.textLight,
-            background: 'var(--gds-local-background)',
+            backgroundColor: selectedVibe?.surfaceLight,
+            backgroundImage: 'var(--gds-local-background)',
           } as CSSProperties}
         >
           <SimpleGrid cols={{ base: 1, md: 3 }} spacing="md">
@@ -635,38 +639,60 @@ export function ReferenceThemeExplorer({
         description={copy.livePreviewDescription}
       >
         <SimpleGrid cols={{ base: 1, xl: comparisonEnabled ? 2 : 1 }} spacing="lg">
-          <GdsProvider key={previewKey} locale={locale} messages={previewMessages} theme={selectedTheme} defaultColorScheme={effectiveColorScheme}>
-            <ThemePreviewSurface
-              preset={selectionSummary}
-              colorScheme={effectiveColorScheme}
-              requestedColorScheme={colorScheme}
-              copy={copy}
-            />
-          </GdsProvider>
-          {comparisonEnabled ? (
-            <GdsProvider key={comparisonPreviewKey} locale={locale} messages={previewMessages} theme={comparedTheme} defaultColorScheme={effectiveComparisonScheme}>
-              <Paper withBorder radius="xl" p="lg">
-                <Stack gap="md">
-                  <Group justify="space-between" align="flex-start" wrap="wrap">
-                    <Stack gap={4}>
-                      <Text fw={700}>{copy.comparisonPreviewTitle}</Text>
-                      <Text size="sm" c="dimmed">
-                        {copy.comparisonPreviewDescription}
-                      </Text>
-                    </Stack>
-                    <Badge color="violet" variant="light">
-                      {comparisonSummary.label}
-                    </Badge>
-                  </Group>
-                  <ThemePreviewSurface
-                    preset={comparisonSummary}
-                    colorScheme={effectiveComparisonScheme}
-                    requestedColorScheme={colorScheme}
-                    copy={copy}
-                  />
-                </Stack>
-              </Paper>
+          <Box id={previewRootId} data-gds-preview-root>
+            <GdsProvider
+              key={previewKey}
+              locale={locale}
+              messages={previewMessages}
+              theme={selectedTheme}
+              defaultColorScheme={effectiveColorScheme}
+              colorSchemeRootElement={() => document.getElementById(previewRootId) ?? undefined}
+              cssVariablesSelector={`#${previewRootId}`}
+              applyDocumentColorScheme={false}
+            >
+              <ThemePreviewSurface
+                preset={selectionSummary}
+                colorScheme={effectiveColorScheme}
+                requestedColorScheme={colorScheme}
+                copy={copy}
+              />
             </GdsProvider>
+          </Box>
+          {comparisonEnabled ? (
+            <Box id={comparisonPreviewRootId} data-gds-preview-root>
+              <GdsProvider
+                key={comparisonPreviewKey}
+                locale={locale}
+                messages={previewMessages}
+                theme={comparedTheme}
+                defaultColorScheme={effectiveComparisonScheme}
+                colorSchemeRootElement={() => document.getElementById(comparisonPreviewRootId) ?? undefined}
+                cssVariablesSelector={`#${comparisonPreviewRootId}`}
+                applyDocumentColorScheme={false}
+              >
+                <Paper withBorder radius="xl" p="lg">
+                  <Stack gap="md">
+                    <Group justify="space-between" align="flex-start" wrap="wrap">
+                      <Stack gap={4}>
+                        <Text fw={700}>{copy.comparisonPreviewTitle}</Text>
+                        <Text size="sm" c="dimmed">
+                          {copy.comparisonPreviewDescription}
+                        </Text>
+                      </Stack>
+                      <Badge color="violet" variant="light">
+                        {comparisonSummary.label}
+                      </Badge>
+                    </Group>
+                    <ThemePreviewSurface
+                      preset={comparisonSummary}
+                      colorScheme={effectiveComparisonScheme}
+                      requestedColorScheme={colorScheme}
+                      copy={copy}
+                    />
+                  </Stack>
+                </Paper>
+              </GdsProvider>
+            </Box>
           ) : null}
         </SimpleGrid>
       </ReferenceSection>

@@ -152,7 +152,11 @@ export function EditorialCard({
         ) : null}
 
         {(href || onClick || ctaLabel) ? (
-          <Group gap={6} c={`${palette.accent}.7`} className={classNames?.action}>
+          <Group
+            gap={6}
+            c={`light-dark(var(--mantine-color-${palette.accent}-7), var(--mantine-color-${palette.accent}-3))`}
+            className={classNames?.action}
+          >
             <Text fw={600} size="sm">
               {ctaLabel}
             </Text>

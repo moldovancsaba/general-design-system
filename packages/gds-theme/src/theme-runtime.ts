@@ -137,6 +137,8 @@ function applyDocumentRuntime(selection: GdsThemePresetSelection) {
   Object.entries(vibeVariables).forEach(([property, value]) => {
     document.documentElement.style.setProperty(property, value);
   });
+
+  return documentScheme;
 }
 
 export function useGdsThemePresetState({
@@ -147,21 +149,42 @@ export function useGdsThemePresetState({
   const [selection, setSelection] = useState<GdsThemePresetSelection>(() => readStoredSelection(storageKey, initialSelection));
 
   useEffect(() => {
+    let expectedDocumentScheme: 'light' | 'dark' | undefined;
+    let schemeObserver: MutationObserver | undefined;
+
     if (applyToDocument) {
-      applyDocumentRuntime(selection);
+      expectedDocumentScheme = applyDocumentRuntime(selection);
+
+      schemeObserver = new MutationObserver(() => {
+        if (
+          expectedDocumentScheme
+          && document.documentElement.getAttribute('data-mantine-color-scheme') !== expectedDocumentScheme
+        ) {
+          document.documentElement.setAttribute('data-mantine-color-scheme', expectedDocumentScheme);
+        }
+      });
+      schemeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-mantine-color-scheme'],
+      });
     }
 
     persistSelection(storageKey, selection);
 
     if (!applyToDocument || selection.colorScheme !== 'auto') {
-      return;
+      return () => {
+        schemeObserver?.disconnect();
+      };
     }
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = () => applyDocumentRuntime(selection);
+    const handleChange = () => {
+      expectedDocumentScheme = applyDocumentRuntime(selection);
+    };
     mediaQuery.addEventListener('change', handleChange);
 
     return () => {
+      schemeObserver?.disconnect();
       mediaQuery.removeEventListener('change', handleChange);
     };
   }, [applyToDocument, selection, storageKey]);

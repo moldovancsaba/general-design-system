@@ -257,7 +257,7 @@ describe('PartnerDiscovery', () => {
 
     expect(screen.getByRole('dialog', { name: 'Your city got family-friendly' })).toBeInTheDocument();
     expect(screen.getByText('Try again')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Best cafes ->' })).toHaveAttribute('href', '/lists/cafes');
+    expect(screen.getByRole('link', { name: 'Best cafes' })).toHaveAttribute('href', '/lists/cafes');
     expect(screen.getByRole('heading', { name: 'How are places selected?' })).toBeInTheDocument();
     expect(screen.getByText('Network timeout')).toBeInTheDocument();
   });

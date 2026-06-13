@@ -165,4 +165,23 @@ describe('playground app runtime theme flow', () => {
     );
     expect(await screen.findByText('Discovery & Cards')).toBeTruthy();
   });
+
+  it('loads public pattern routes with the persisted dark runtime scheme', async () => {
+    window.history.pushState({}, '', '/general-design-system/patterns/public');
+    window.localStorage.setItem('gds-reference-theme-selection', JSON.stringify({
+      preset: 'partner-discovery',
+      colorScheme: 'dark',
+      fontLane: 'partner-discovery',
+    }));
+
+    render(<App />);
+
+    expect(await screen.findByText('Partner discovery reference')).toBeTruthy();
+    await waitFor(() =>
+      expect(document.documentElement.getAttribute('data-mantine-color-scheme')).toBe('dark'),
+    );
+    await waitFor(() =>
+      expect(document.documentElement.getAttribute('data-gds-theme-preset')).toBe('partner-discovery'),
+    );
+  });
 });

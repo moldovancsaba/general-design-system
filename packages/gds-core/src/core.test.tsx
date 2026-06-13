@@ -1704,10 +1704,10 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
 
     expect(container.querySelectorAll('[data-gds-local-contrast="vibe-gallery-card"]').length).toBeGreaterThan(12);
     expect(container.querySelector('[data-gds-local-contrast="vibe-contract"]')).toBeInTheDocument();
-    expect(container.querySelector('[data-gds-local-contrast="vibe-gallery-card"]')).toHaveStyle({
-      background: 'var(--gds-local-background)',
-      color: '#111827',
-    });
+    const firstVibeCard = container.querySelector('[data-gds-local-contrast="vibe-gallery-card"]');
+    expect(firstVibeCard).toHaveStyle({ color: '#111827' });
+    expect(firstVibeCard?.getAttribute('style')).toContain('background-color:');
+    expect(firstVibeCard?.getAttribute('style')).toContain('background-image: var(--gds-local-background)');
   });
 
   it('does not fall back to English reference theme explorer copy for non-English locales', () => {

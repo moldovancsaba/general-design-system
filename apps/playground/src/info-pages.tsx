@@ -80,6 +80,21 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </GdsProvider>,
 );`;
 
+const scopedPreviewProviderCode = `// Scoped preview island
+const previewRootId = 'product-theme-preview';
+
+<div id={previewRootId}>
+  <GdsProvider
+    theme={previewTheme}
+    defaultColorScheme="dark"
+    colorSchemeRootElement={() => document.getElementById(previewRootId) ?? undefined}
+    cssVariablesSelector={\`#\${previewRootId}\`}
+    applyDocumentColorScheme={false}
+  >
+    <PreviewSurface />
+  </GdsProvider>
+</div>;`;
+
 const updateCode = `npm install @doneisbetter/gds@${targetGdsVersion}
 
 # or granular runtime packages
@@ -724,6 +739,7 @@ export function InstallPage() {
         <DocsCodeBlock code={nextLayoutCode} language="tsx" title={copy.nextLayoutTitle} />
         <DocsCodeBlock code={providerCode} language="tsx" title={copy.providerCodeTitle} />
         <DocsCodeBlock code={viteBootstrapCode} language="tsx" title={copy.viteBootstrapTitle} />
+        <DocsCodeBlock code={scopedPreviewProviderCode} language="tsx" title={copy.scopedPreviewProviderTitle} />
       </ReferenceSection>
 
       <ReferenceSection title={copy.adoptSectionTitle} description={copy.adoptSectionDescription}>

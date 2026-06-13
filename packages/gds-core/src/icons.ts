@@ -3,6 +3,7 @@ import {
   IconSettings,
   IconUsers,
   IconPlus,
+  IconMinus,
   IconEdit,
   IconTrash,
   IconSearch,
@@ -114,6 +115,7 @@ export const GdsIcons = {
 
   // Actions
   Add: IconPlus,
+  Remove: IconMinus,
   Edit: IconEdit,
   Delete: IconTrash,
   Search: IconSearch,

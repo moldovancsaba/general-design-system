@@ -123,13 +123,13 @@ export const partnerDiscoveryDefaultFilterState: PartnerDiscoveryFilterState = {
 };
 
 const partnerSurface = {
-  page: 'light-dark(#ffffffcc, #071411)',
-  card: 'light-dark(#ffffff, #0d211c)',
-  border: 'light-dark(#dddddd, #204a2c)',
-  text: 'light-dark(#010800, #f4f7fb)',
-  muted: 'light-dark(#333333, #c9d8d3)',
-  teal: 'light-dark(#08463b, #d4ffc2)',
-  lime: '#2fc800',
+  page: 'light-dark(color-mix(in srgb, var(--mantine-color-white) 82%, var(--mantine-color-teal-0)), color-mix(in srgb, var(--mantine-color-teal-9) 18%, var(--mantine-color-dark-9)))',
+  card: 'light-dark(var(--mantine-color-white), color-mix(in srgb, var(--mantine-color-teal-9) 28%, var(--mantine-color-dark-8)))',
+  cardActive: 'light-dark(var(--mantine-color-teal-0), color-mix(in srgb, var(--mantine-color-teal-9) 48%, var(--mantine-color-dark-8)))',
+  border: 'light-dark(var(--mantine-color-gray-3), color-mix(in srgb, var(--mantine-color-teal-4) 42%, var(--mantine-color-dark-5)))',
+  borderActive: 'light-dark(var(--mantine-color-teal-7), var(--mantine-color-lime-2))',
+  text: 'light-dark(var(--mantine-color-dark-9), var(--mantine-color-gray-0))',
+  muted: 'light-dark(var(--mantine-color-dark-5), var(--mantine-color-gray-3))',
 };
 
 function safeExternalProps(item: { external?: boolean }) {
@@ -457,7 +457,7 @@ export function PartnerDiscoveryFilters({
                     type="button"
                     variant={active ? 'filled' : 'outline'}
                     color={active ? 'teal' : 'gray'}
-                    radius="xl"
+                    radius="md"
                     aria-pressed={active}
                     onClick={() => onPriceToggle?.(price)}
                   >
@@ -474,7 +474,7 @@ export function PartnerDiscoveryFilters({
               <Button
                 type="button"
                 color="lime"
-                c="#010800"
+                c="dark.9"
                 onClick={() => {
                   emitPartnerDiscoveryEvent(onEvent, 'filter_apply', 'PartnerDiscoveryFilters', {
                     amenityCount: value.amenities.length,
@@ -506,7 +506,7 @@ export function PartnerPlaceResultCard({
   place,
   amenityLabels = {},
   active = false,
-  detailLabel = 'See details ->',
+  detailLabel = 'See details',
   onSelect,
   onEvent,
 }: PartnerPlaceResultCardProps) {
@@ -518,8 +518,8 @@ export function PartnerPlaceResultCard({
       p="sm"
       data-active={active || undefined}
       style={{
-        borderColor: active ? '#08463b' : partnerSurface.border,
-        background: active ? 'light-dark(#f0fff0, #102b24)' : partnerSurface.card,
+        borderColor: active ? partnerSurface.borderActive : partnerSurface.border,
+        background: active ? partnerSurface.cardActive : partnerSurface.card,
       }}
     >
       <Stack gap={4}>
@@ -537,12 +537,17 @@ export function PartnerPlaceResultCard({
         <Text size="xs" c="dimmed">{[place.category, place.neighborhood, place.price].filter(Boolean).join(' · ')}</Text>
         <Group gap={4} aria-label="Amenities" wrap="wrap">
           {place.amenities.slice(0, 8).map((amenity) => (
-            <Badge key={amenity} variant="filled" color="dark" radius="xl">
+            <Badge key={amenity} variant="light" color="teal" radius="md">
               {amenityLabels[amenity] ?? amenity}
             </Badge>
           ))}
         </Group>
-        <Anchor href={place.href} size="sm" c="teal.8">{detailLabel}</Anchor>
+        <Anchor href={place.href} size="sm" c="teal.8">
+          <Group component="span" gap={4} wrap="nowrap">
+            <span>{detailLabel}</span>
+            <GdsIcons.Forward size="0.95rem" aria-hidden />
+          </Group>
+        </Anchor>
       </Stack>
     </Card>
   );
@@ -567,11 +572,11 @@ export function PartnerMapPin({
       onClick={onSelect}
       variant="filled"
       color={active ? 'gray' : 'teal'}
-      radius="xl"
+      radius="md"
       w={28}
       h={28}
       p={0}
-      style={{ filter: 'drop-shadow(0 2px 2px rgb(0 0 0 / 45%))' }}
+      style={{ filter: 'drop-shadow(0 2px 2px color-mix(in srgb, var(--mantine-color-black) 45%, transparent))' }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
       <GdsIcons.Home size="1rem" aria-hidden />
@@ -594,8 +599,12 @@ export function PartnerMapControls({
 }: PartnerMapControlsProps) {
   return (
     <Group gap="xs">
-      <Button type="button" variant="default" aria-label={zoomInLabel} onClick={onZoomIn} w={32} h={32} p={0}>+</Button>
-      <Button type="button" variant="default" aria-label={zoomOutLabel} onClick={onZoomOut} w={32} h={32} p={0}>-</Button>
+      <Button type="button" variant="default" aria-label={zoomInLabel} onClick={onZoomIn} w={32} h={32} p={0}>
+        <GdsIcons.Add size="1rem" aria-hidden />
+      </Button>
+      <Button type="button" variant="default" aria-label={zoomOutLabel} onClick={onZoomOut} w={32} h={32} p={0}>
+        <GdsIcons.Remove size="1rem" aria-hidden />
+      </Button>
     </Group>
   );
 }
@@ -656,9 +665,13 @@ export function PartnerMapListShell({
     <SimpleGrid cols={{ base: 1, md: 2 }} spacing="md" style={{ alignItems: 'start' }}>
       <Paper
         withBorder
-        radius="lg"
+        radius="md"
         p="sm"
-        style={{ minHeight: 360, overflow: 'hidden', background: 'light-dark(#f7f7f7, #10201c)' }}
+        style={{
+          minHeight: 360,
+          overflow: 'hidden',
+          background: 'light-dark(var(--mantine-color-gray-0), color-mix(in srgb, var(--mantine-color-teal-9) 36%, var(--mantine-color-dark-8)))',
+        }}
       >
         {mapBody}
       </Paper>
@@ -898,7 +911,7 @@ export function PartnerNewsletterForm({
       {state === 'success' ? <StateBlock variant="success" title={labels.successMessage} compact /> : null}
       <Group justify="space-between" wrap="wrap">
         <Button type="button" variant="subtle" onClick={onDismiss}>{labels.dismissLabel}</Button>
-        <Button type="button" color="lime" c="#010800" loading={state === 'submitting'} onClick={onSubmit}>
+        <Button type="button" color="lime" c="dark.9" loading={state === 'submitting'} onClick={onSubmit}>
           {labels.submitLabel}
         </Button>
       </Group>
@@ -934,7 +947,10 @@ export function PartnerListIndex({
       <Title order={1}>{title}</Title>
       {items.length ? items.map((item) => (
         <Anchor key={item.id} href={item.href} fw={700} {...safeExternalProps(item)}>
-          {item.title} -&gt;
+          <Group component="span" gap={4} wrap="nowrap">
+            <span>{item.title}</span>
+            <GdsIcons.Forward size="0.95rem" aria-hidden />
+          </Group>
         </Anchor>
       )) : <StateBlock variant="empty" title="No links yet" description={empty} compact />}
     </Stack>

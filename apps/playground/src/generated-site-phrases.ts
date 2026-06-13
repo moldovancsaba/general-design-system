@@ -4016,6 +4016,17 @@ export const generatedSitePhrases = {
     "hu": "A bemeneteknek látható címkékre, közeli hibaszövegekre és kifejezett jelszóra van szükségük, amelyek adott esetben jelezhetik a viselkedést.",
     "he": "קלט צריך תוויות גלויות, טקסט שגיאה בקרבת מקום וסיסמה מפורשת חושפים התנהגות היכן שרלוונטי."
   },
+  "p_35e44902a0fe": {
+    "en": "Inspect presets, color-scheme behavior, font lanes, and preview diagnostics in the canonical route.",
+    "es": "Inspeccione los ajustes preestablecidos, el comportamiento de la combinación de colores, las líneas de fuentes y obtenga una vista previa de los diagnósticos en la ruta canónica.",
+    "ar": "افحص الإعدادات المسبقة وسلوك نظام الألوان وممرات الخطوط ومعاينة التشخيصات في المسار الأساسي.",
+    "hu": "Vizsgálja meg az előre beállított értékeket, a színséma viselkedését, a betűsávokat és tekintse meg a diagnosztikát a kanonikus útvonalon.",
+    "it": "Esamina le preimpostazioni, il comportamento della combinazione di colori, le corsie dei caratteri e la diagnostica di anteprima nel percorso canonico.",
+    "de": "Überprüfen Sie Voreinstellungen, Farbschemaverhalten, Schriftspuren und Vorschaudiagnosen auf der kanonischen Route.",
+    "fr": "Inspectez les préréglages, le comportement du jeu de couleurs, les bandes de polices et prévisualisez les diagnostics dans l’itinéraire canonique.",
+    "ru": "Проверьте пресеты, поведение цветовой схемы, полосы шрифтов и предварительный просмотр диагностики в каноническом маршруте.",
+    "he": "בדוק הגדרות מוגדרות מראש, התנהגות סכימת צבעים, נתיבי גופנים ואבחון תצוגה מקדימה במסלול הקנוני."
+  },
   "p_ef7d52d7feb1": {
     "en": "Inspect semantic actions and canonical social-auth surfaces.",
     "hu": "Vizsgálja meg a szemantikai műveleteket és a kanonikus közösségi hitelesítési felületeket.",
@@ -5467,6 +5478,17 @@ export const generatedSitePhrases = {
     "he": "פתח את נתיב ההתקנה הקנוני ואת הנחיית החבילה המנוסחת.",
     "es": "Abra la ruta de instalación canónica y la guía del paquete versionado.",
     "hu": "Nyissa meg a kanonikus telepítési útvonalat és a verziószámú csomag útmutatóját."
+  },
+  "p_9f1b01667262": {
+    "en": "Open theme runtime",
+    "ar": "فتح موضوع وقت التشغيل",
+    "fr": "Runtime de thème ouvert",
+    "ru": "Открытая среда выполнения темы",
+    "it": "Apri il runtime del tema",
+    "hu": "Nyissa meg a téma futási idejét",
+    "es": "Abrir tiempo de ejecución del tema",
+    "de": "Öffnen Sie die Theme-Laufzeit",
+    "he": "פתח את זמן ריצה של ערכת נושא"
   },
   "p_eac93f51f20d": {
     "en": "Operational contract",
@@ -7481,6 +7503,17 @@ export const generatedSitePhrases = {
     "it": "Wrapper di presentazione route-local",
     "hu": "Útvonal-helyi bemutatócsomagolók"
   },
+  "p_6467ea23e52b": {
+    "en": "Runtime owner",
+    "ru": "Владелец среды выполнения",
+    "fr": "Propriétaire de l'environnement d'exécution",
+    "ar": "مالك وقت التشغيل",
+    "it": "Proprietario dell'esecuzione",
+    "hu": "Futóidejű tulajdonos",
+    "es": "Propietario del tiempo de ejecución",
+    "de": "Laufzeitbesitzer",
+    "he": "בעל זמן ריצה"
+  },
   "p_215065a0a646": {
     "en": "Scatter chart",
     "ar": "مخطط مبعثر",
@@ -8877,6 +8910,17 @@ export const generatedSitePhrases = {
     "he": "חוזה הזרימה מסדיר את מצב הבמה, פעולות ומשטחי חומרה מוגבלים.",
     "de": "Der Flow-Vertrag regelt den Phasenstatus, die Aktionen und die begrenzten Hardwareoberflächen.",
     "fr": "Le contrat de flux régit l'état de l'étape, les actions et les surfaces matérielles délimitées."
+  },
+  "p_acdbd3d3476a": {
+    "en": "The full reference theme explorer owns the document runtime and is mounted on the Themes route. The catalog keeps this entry bounded so pattern previews cannot overwrite the active page color scheme.",
+    "es": "El explorador de temas de referencia completa posee el tiempo de ejecución del documento y está montado en la ruta Temas. El catálogo mantiene esta entrada delimitada para que las vistas previas del patrón no puedan sobrescribir el esquema de color de la página activa.",
+    "ar": "يمتلك مستكشف السمات المرجعي الكامل وقت تشغيل المستند ويتم تثبيته على مسار السمات. يبقي الكتالوج هذا الإدخال محدودًا بحيث لا يمكن لمعاينات النمط أن تحل محل نظام ألوان الصفحة النشط.",
+    "it": "L'esploratore di temi di riferimento completo possiede il runtime del documento ed è montato sul percorso Temi. Il catalogo mantiene questa voce delimitata in modo che le anteprime dei modelli non possano sovrascrivere la combinazione di colori della pagina attiva.",
+    "ru": "Полный справочный обозреватель тем владеет средой выполнения документа и монтируется на маршруте Themes. В каталоге эта запись ограничена, поэтому предварительный просмотр узора не может перезаписать цветовую схему активной страницы.",
+    "he": "סייר ערכות העזר המלא הוא הבעלים של זמן הריצה של המסמך והוא מותקן במסלול Themes. הקטלוג שומר על ערך זה מוגבל כך שתצוגה מקדימה של דפוסים לא יכולה לדרוס את ערכת הצבעים הפעילה של העמוד.",
+    "fr": "L'explorateur de thèmes de référence complet possède le moteur d'exécution du document et est monté sur la route Thèmes. Le catalogue limite cette entrée afin que les aperçus de motifs ne puissent pas écraser le jeu de couleurs de la page active.",
+    "de": "Der vollständige Referenz-Theme-Explorer ist Eigentümer der Dokumentlaufzeit und wird auf der Themes-Route bereitgestellt. Der Katalog hält diesen Eintrag begrenzt, sodass Mustervorschauen das Farbschema der aktiven Seite nicht überschreiben können.",
+    "hu": "A teljes referenciatéma-böngésző birtokolja a dokumentum futtatókörnyezetét, és a Témák útvonalra van csatlakoztatva. A katalógus ezt a bejegyzést korlátosan tartja, így a minta előnézetei nem írhatják felül az aktív oldal színsémáját."
   },
   "p_f09bf720df6a": {
     "en": "The last provider attempt timed out. Choose a provider, retry, or continue as guest if your product allows it.",

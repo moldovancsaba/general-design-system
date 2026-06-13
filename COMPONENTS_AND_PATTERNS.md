@@ -1,8 +1,8 @@
 # Components & Patterns
 
 Status: Active SSOT
-Version: 3.4.12
-Last updated: 2026-06-06
+Version: 3.4.13
+Last updated: 2026-06-13
 
 This document defines the canonical behavior for UI components, workflows, and responsive layouts. Adopting projects may not alter interaction meanings or bypass these required UX patterns.
 
@@ -30,6 +30,7 @@ The official website must also consume these contracts directly. `apps/playgroun
 - **Page Headers**: Must answer: *Where am I? What is this for? What can I do next?* Page-level primary actions belong here. Avoid massive marketing-style headers in operational UI.
 - **Shell Contracts**: Each project must define one local shell contract per user area (for example learner, admin, public, article/docs). Pages may not invent their own navigation rhythm once a shell contract exists.
 - **DiscoveryShell**: Sidebar-first authenticated discovery, explore, catalog, and dashboard products must use `DiscoveryShell` as the canonical shell contract unless an approved exception is documented. It owns header, sidebar, main, mobile collapse, and sticky-nav rhythm.
+- **Responsive Localization Safety**: Shell headers, brand slots, navigation labels, selectors, and action groups must survive translated text, browser zoom, dynamic content, and mobile viewport changes without horizontal overflow, clipped controls, or overlapping regions. Long brand and route labels must truncate or wrap only in slots designed for wrapping; controls must keep accessible names and touch targets.
 - **DiscoveryShell State Governance**: Sidebar open/collapse behavior must use the shipped `useDiscoveryShellState` lane or the `DiscoveryShell` controlled props (`sidebarOpened`, `onSidebarOpenedChange`, `sidebarStorageKey`). Local ad-hoc state handling is not an approved replacement.
 - **Sidebar IA**: Sidebar information architecture must be composed through `SidebarNav`, `SidebarNavSection`, and `SidebarNavItem` so section labels, active states, icon spacing, and mobile collapse semantics stay aligned.
 
@@ -84,7 +85,7 @@ The official website must also consume these contracts directly. `apps/playgroun
 | **Reference Locale Notice** | Canonical disclosure surface for partial or in-progress localized reference-site coverage so language claims stay honest. | `md` |
 | **Reference Theme Explorer** | Canonical shipped-theme explorer with preset switching, color-scheme preview, bounded creator-authored controls, and live proof surfaces. | `xl` |
 | **Reference Site Shell** | Canonical public reference-site shell for the official website and future docs/reference properties using governed navigation, route context, and footer rhythm. | `xl` |
-| **Docs Shell** | Canonical docs/reference shell for public documentation surfaces with full-width content and governed sidebar/header contracts. | `xl` |
+| **Docs Shell** | Canonical docs/reference shell for public documentation surfaces with full-width content, governed sidebar/header contracts, bounded brand/action slots, and localization-safe header overflow behavior. Use `DocsHeaderActionSelect` for language or compact header selection controls. | `xl` |
 | **Public Shells** | Public marketing/discovery/docs shells must define brand slot, navigation rhythm, readability width, CTA hierarchy, footer slot, and mobile nav behavior, including branded header variants and non-hook mobile nav patterns. | `md` |
 | **Public Nav** | Primary public navigation uses explicit nav items, an explicit active item, and semantic `aria-current` handling. | `md` |
 | **Auth Shells** | Auth entry surfaces must define intent, inline error/helper placement, guest/support lanes, provider-brand exception handling, safe action hierarchy, and canonical social-auth placement. | `md` |

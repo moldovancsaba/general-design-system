@@ -1,7 +1,7 @@
 # General Design System
 
 Status: Active SSOT
-Version: 3.4.12
+Version: 3.4.13
 Last updated: 2026-06-06
 
 `/Users/Shared/Projects/general-design-system` is the cross-project single source of truth for design, UI, and UX.
@@ -65,7 +65,7 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 - **Operator Editing Primitives**: `ContentOpsEditor`, `ContentOpsSection`, `ContentOpsActionBar`, `AppShell`, `ResponsiveDataView`, and `PageHeader` from `@doneisbetter/gds-admin` — canonical scaffolds for multi-section content/settings operations, authenticated shell framing, and operational registry/detail workflows.
 - **Reference Consumers**: `apps/reference-vite` and `apps/reference-next` — verified fixture apps that exercise the canonical package-consumption path.
 - **Docs Site Source**: `apps/playground` — the GitHub Pages source app that publishes the install guide, governance guidance, theme explorer, live demos, and the pattern catalog.
-- **Reference-Site Primitives**: `ReferenceSection`, `ReferenceLinkGrid`, `ReferenceLocaleNotice`, `ReferenceThemeExplorer`, and `DocsShell` — canonical GDS-owned primitives for reference/docs surfaces without site-local pseudo-components.
+- **Reference-Site Primitives**: `ReferenceSection`, `ReferenceLinkGrid`, `ReferenceLocaleNotice`, `ReferenceThemeExplorer`, `DocsShell`, and `DocsHeaderActionSelect` — canonical GDS-owned primitives for reference/docs surfaces without site-local pseudo-components, including bounded localized header actions.
 - **Board Sync Checklist**: [docs/BOARD_SYNC_CHECKLIST.md](/Users/Shared/Projects/general-design-system/docs/BOARD_SYNC_CHECKLIST.md) — required consistency pass between implementation, docs, and GitHub project-board issue state before release and after major delivery waves.
 - **Client Upgrade Prompt**: [CLIENT_UPGRADE_PROMPT.md](/Users/Shared/Projects/general-design-system/CLIENT_UPGRADE_PROMPT.md) — copy/paste checklist and communication template for consumer teams.
 - **Projects**: `PROJECTS/` — Product-specific migration plans and adoption strategies.
@@ -195,5 +195,6 @@ The shared package validation path is now expected to cover:
 - Dark/light mode readability is mandatory; mixed-mode surfaces require documented exceptions.
 - Loading, empty, error, success, disabled, and permission states are part of every component contract.
 - Mobile and responsive behavior must be designed intentionally, not inherited accidentally from desktop.
+- Translated labels, browser zoom, and resized windows are mandatory layout inputs. Shells and headers must avoid horizontal overflow, clipped action controls, and overlapping brand/action regions in every supported locale.
 - Accessibility is part of design acceptance, not a cleanup pass.
 - Internationalization resilience is mandatory for shared patterns.

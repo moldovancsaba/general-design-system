@@ -1,7 +1,8 @@
 'use client';
 
 import { type ReactNode, useState } from 'react';
-import { Box, Burger, Container, Divider, Group, Paper, Stack, Text, Transition } from '@mantine/core';
+import { Box, Burger, Container, Divider, Group, NativeSelect, Paper, Stack, Text, Transition } from '@mantine/core';
+import type { NativeSelectProps } from '@mantine/core';
 import { useGdsTranslation } from '@doneisbetter/gds-theme';
 import { DiscoveryShell } from './DiscoveryShell';
 
@@ -21,6 +22,17 @@ export interface DocsShellProps {
 interface DocsShellSidebarProps {
   primaryNavigation?: ReactNode;
   secondaryNavigation?: ReactNode;
+}
+
+export interface DocsHeaderActionSelectOption {
+  value: string;
+  label: string;
+}
+
+export interface DocsHeaderActionSelectProps extends Omit<NativeSelectProps, 'data' | 'onChange'> {
+  label: string;
+  options: DocsHeaderActionSelectOption[];
+  onChange: (value: string) => void;
 }
 
 const navigationActivationSelector = 'a[href], button, [role="menuitem"], [data-gds-nav-close]';
@@ -65,6 +77,30 @@ function resolveContentContainerSize(value: DocsShellProps['contentWidth']) {
   return value ?? 'lg';
 }
 
+export function DocsHeaderActionSelect({
+  label,
+  options,
+  value,
+  onChange,
+  ...props
+}: DocsHeaderActionSelectProps) {
+  return (
+    <NativeSelect
+      aria-label={label}
+      data={options}
+      value={value}
+      onChange={(event) => {
+        onChange(event.currentTarget.value);
+      }}
+      size="sm"
+      miw={0}
+      w={{ base: 'clamp(6rem, 31vw, 8.75rem)', sm: '10rem' }}
+      data-gds-docs-shell-action-select
+      {...props}
+    />
+  );
+}
+
 export function DocsShell({
   brand,
   primaryNavigation,
@@ -82,8 +118,27 @@ export function DocsShell({
   return (
     <DiscoveryShell
       header={(
-        <Group h="100%" w="100%" miw={0} justify="space-between" align="center" wrap="nowrap" gap="sm">
-          <Group gap="sm" align="center" wrap="nowrap" flex="1 1 auto" miw={0}>
+        <Box
+          data-gds-docs-shell-header
+          h="100%"
+          w="100%"
+          miw={0}
+          style={{
+            alignItems: 'center',
+            columnGap: 'var(--mantine-spacing-xs)',
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1fr) auto',
+            overflow: 'hidden',
+          }}
+        >
+          <Group
+            data-gds-docs-shell-brand-row
+            gap="sm"
+            align="center"
+            wrap="nowrap"
+            miw={0}
+            style={{ overflow: 'hidden' }}
+          >
             {mobileNavigationMode === 'inline-collapse' && mobileNavigation ? (
               <>
                 <Burger
@@ -114,19 +169,38 @@ export function DocsShell({
                 </Transition>
               </>
             ) : null}
-            <Box flex="0 1 auto" miw={0}>
+            <Box
+              data-gds-docs-shell-brand
+              flex="1 1 auto"
+              miw={0}
+              maw="100%"
+              style={{
+                display: 'block',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
               {brand}
             </Box>
             {headerContext ? (
-              <Text visibleFrom="sm" size="sm" c="dimmed" lineClamp={1} miw={0}>
+              <Text visibleFrom="sm" size="sm" c="dimmed" lineClamp={1} miw={0} flex="0 1 auto">
                 {headerContext}
               </Text>
             ) : null}
           </Group>
-          <Group gap="xs" wrap="nowrap" flex="0 1 auto" miw={0} maw="48vw">
+          <Group
+            data-gds-docs-shell-actions
+            gap="xs"
+            wrap="nowrap"
+            justify="flex-end"
+            miw={0}
+            maw={{ base: '46vw', sm: '40vw' }}
+            style={{ overflow: 'hidden' }}
+          >
             {actions}
           </Group>
-        </Group>
+        </Box>
       )}
       sidebar={(
         <DocsShellSidebar

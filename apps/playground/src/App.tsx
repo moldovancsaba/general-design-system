@@ -6,6 +6,7 @@ import {
   useGdsThemePresetState,
 } from '@doneisbetter/gds-theme';
 import {
+  DocsHeaderActionSelect,
   DocsShell,
   ReferenceLocaleNotice,
   SidebarNavItem,
@@ -229,22 +230,20 @@ function PlaygroundContent() {
 
   const headerActions = (
     <>
-      <select
-        aria-label={appShell.localeSelectLabel}
+      <DocsHeaderActionSelect
+        label={appShell.localeSelectLabel}
         value={effectiveLocale}
-        onChange={(event) => {
-          setLocale(event.target.value);
+        options={routeLocaleOptions.map(([id, localeValue]) => ({
+          value: id,
+          label: localeValue.label,
+        }))}
+        onChange={(value) => {
+          setLocale(value);
           const nextUrl = new URL(window.location.href);
-          nextUrl.searchParams.set('locale', event.target.value);
+          nextUrl.searchParams.set('locale', value);
           window.history.replaceState(null, '', nextUrl);
         }}
-      >
-        {routeLocaleOptions.map(([id, localeValue]) => (
-          <option key={id} value={id}>
-            {localeValue.label}
-          </option>
-        ))}
-      </select>
+      />
       <ThemeToggle
         onColorSchemeChange={setSiteThemeScheme}
       />

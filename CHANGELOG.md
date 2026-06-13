@@ -2,6 +2,13 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 3.4.13 - 2026-06-13
+
+- Fixed `DocsShell` mobile headers so translated brand labels truncate safely instead of wrapping into the action controls.
+- Added `DocsHeaderActionSelect` as the package-owned bounded header select for language and compact docs-shell actions.
+- Added browser runtime verification for Russian, German, Hebrew, and Arabic mobile header layouts to catch clipped controls, horizontal overflow, and brand/action overlap before release.
+- Updated governance and component rules so responsive localization failures block release instead of being treated as cosmetic defects.
+
 ## 3.4.12 - 2026-06-12
 
 - Fixed cosmic and dark-forward preset overrides so mixed light preview cards no longer inherit forced white text, forced dimmed text, or fixed `28px` Paper/Card radius values from the surrounding page.

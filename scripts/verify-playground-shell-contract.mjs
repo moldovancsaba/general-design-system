@@ -17,6 +17,10 @@ if (!appSource.includes('<DocsShell')) {
   failures.push('apps/playground/src/App.tsx must render <DocsShell> in the runtime tree.');
 }
 
+if (!appSource.includes('DocsHeaderActionSelect')) {
+  failures.push('apps/playground/src/App.tsx must use DocsHeaderActionSelect for localized header actions.');
+}
+
 if (appSource.includes('ReferenceSiteShell')) {
   failures.push('apps/playground/src/App.tsx may not use ReferenceSiteShell for the official site shell path.');
 }

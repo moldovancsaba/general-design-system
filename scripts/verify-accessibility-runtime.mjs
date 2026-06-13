@@ -6,6 +6,7 @@ import { join } from 'node:path';
 const baseUrl = process.env.GDS_A11Y_BASE_URL ?? 'http://127.0.0.1:4173/general-design-system';
 const ownsPreviewServer = !process.env.GDS_A11Y_BASE_URL;
 const routes = ['/themes', '/patterns/public', '/install'];
+const localizedHeaderRoutes = ['/?locale=ru', '/?locale=de', '/?locale=he', '/?locale=ar'];
 const cases = [
   { preset: 'default', scheme: 'light' },
   { preset: 'default', scheme: 'dark' },
@@ -240,6 +241,37 @@ async function verifyCase(client, route, testCase) {
     if (html.getAttribute('data-mantine-color-scheme') !== '${testCase.scheme}') failures.push('Color scheme did not apply.');
     if (document.documentElement.scrollWidth > window.innerWidth + 2) failures.push('Horizontal page overflow detected.');
 
+    const header = document.querySelector('[data-gds-docs-shell-header]');
+    const brand = document.querySelector('[data-gds-docs-shell-brand]');
+    const actions = document.querySelector('[data-gds-docs-shell-actions]');
+    if (!header) failures.push('DocsShell governed header marker is missing.');
+    if (!brand) failures.push('DocsShell governed brand marker is missing.');
+    if (!actions) failures.push('DocsShell governed actions marker is missing.');
+
+    if (header && brand && actions) {
+      const headerRect = header.getBoundingClientRect();
+      const brandRect = brand.getBoundingClientRect();
+      const actionsRect = actions.getBoundingClientRect();
+      const viewportWidth = document.documentElement.clientWidth;
+      const brandStyle = getComputedStyle(brand);
+      const visibleActionControls = [...actions.querySelectorAll(interactiveSelector)].filter(visible);
+
+      if (headerRect.left < -1 || headerRect.right > viewportWidth + 1) failures.push('DocsShell header is clipped by the viewport.');
+      if (actionsRect.width <= 0 || actionsRect.right > viewportWidth + 1 || actionsRect.left < -1) failures.push('DocsShell header actions are clipped by the viewport.');
+      const inlineOverlap = Math.max(brandRect.left, actionsRect.left) < Math.min(brandRect.right, actionsRect.right) - 1;
+      const blockOverlap = Math.max(brandRect.top, actionsRect.top) < Math.min(brandRect.bottom, actionsRect.bottom) - 1;
+      if (inlineOverlap && blockOverlap) failures.push('DocsShell brand overlaps header actions.');
+      if (brandStyle.whiteSpace !== 'nowrap' || brandStyle.overflow !== 'hidden') failures.push('DocsShell brand does not enforce localized no-wrap overflow protection.');
+
+      for (const control of visibleActionControls) {
+        const rect = control.getBoundingClientRect();
+        if (rect.left < -1 || rect.right > viewportWidth + 1) {
+          failures.push('DocsShell header action control is clipped by the viewport: ' + control.outerHTML.slice(0, 100));
+          break;
+        }
+      }
+    }
+
     const unnamed = [...document.querySelectorAll(interactiveSelector)]
       .filter(visible)
       .filter((element) => !element.hasAttribute('aria-hidden'))
@@ -294,6 +326,13 @@ try {
     }
   }
 
+  for (const route of localizedHeaderRoutes) {
+    const result = await verifyCase(client, route, { preset: 'default', scheme: 'light' });
+    if (result.failures.length) {
+      failures.push(result);
+    }
+  }
+
   client.close();
 } finally {
   browserSession.close();
@@ -308,4 +347,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`GDS accessibility runtime verification passed for ${routes.length * cases.length} route/theme cases at ${baseUrl}.`);
+console.log(`GDS accessibility runtime verification passed for ${(routes.length * cases.length) + localizedHeaderRoutes.length} route/theme and localized header cases at ${baseUrl}.`);

@@ -1,8 +1,8 @@
 # Governance & Adoption
 
 Status: Active SSOT
-Version: 3.4.12
-Last updated: 2026-06-06
+Version: 3.4.13
+Last updated: 2026-06-13
 
 This document defines how products adopt the design system, enforce compliance, and migrate legacy UI. 
 
@@ -98,6 +98,7 @@ Promote a request to a GitHub issue only when it can become a reusable GDS contr
 - **Release Alignment**: Shared package versions and active project plans must stay aligned with `VERSION`.
 - **Pattern Drift Checks**: Static or review checks that prevent new page-local shell, header, card, metric, data-toolbar, auth, article, or state-block implementations when an approved local contract already exists.
 - **Mode/Readability Checks**: Visual or computed-style checks for dark/light mode contrast, clipped labels, and mixed-mode surfaces on high-traffic pages.
+- **Responsive Localization Checks**: Public shells, docs shells, navigation bars, toolbars, and action clusters must be tested with localized labels at mobile width before release. Header brands must be truncation-safe, action controls must remain inside the viewport, and no translated label may push another control off-screen. The official site enforces this through `npm run verify:accessibility-runtime` with Russian, German, Hebrew, and Arabic header cases.
 - **Adapter Inventory Checks**: Periodic verification that required local contract paths still exist and still map to the declared responsibilities.
 - **GDS-only Source Gate (Mandatory)**: For the official GDS website consumer (`apps/playground`), CI must fail if core route files import from `@mantine/core` directly or use inline `style={{...}}` objects. This is enforced by `scripts/verify-playground-gds-only.mjs` through `npm run verify:references`.
 - **No Policy Bypass Rule**: If any verification gate fails, releases and board closure are blocked until the drift is fixed or an explicit reviewed exception contract is added.
@@ -193,6 +194,7 @@ Strict mode should approve the canonical lanes explicitly:
 For the official reference site, also prefer:
 
 - `DocsShell` (public/site docs shell)
+- `DocsHeaderActionSelect` (bounded, localization-safe header action select)
 - `ReferenceSection`
 - `ReferenceLinkGrid`
 - `ReferenceThemeExplorer`

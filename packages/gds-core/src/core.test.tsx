@@ -24,7 +24,7 @@ import { ActiveFilterChips, BulkActionsBar, ResultSummary, SortMenu } from './Li
 import { ListingProvider, listingQueryReducer, useListingState } from './ListingState.client';
 import { DetailProfileShell } from './DetailProfileShell';
 import { DocsCodeBlock } from './DocsCodeBlock';
-import { DocsShell } from './DocsShell';
+import { DocsHeaderActionSelect, DocsShell } from './DocsShell';
 import { DocsPageShell } from './DocsPageShell';
 import { EmptyState } from './EmptyState';
 import { EditorialCard } from './EditorialCard';
@@ -628,6 +628,37 @@ describe('@doneisbetter/gds-core', () => {
     expect(screen.getByRole('link', { name: 'Patterns' })).toHaveAttribute('href', '/patterns');
     expect(screen.getByRole('link', { name: 'Themes' })).toHaveAttribute('href', '/themes');
     expect(screen.getByRole('button', { name: 'Theme toggle' })).toBeInTheDocument();
+  });
+
+  it('keeps docs shell header slots bounded for localized copy and action controls', () => {
+    const { container } = renderWithGds(
+      <DocsShell
+        brand={<strong>Система общего проектирования с очень длинным названием</strong>}
+        actions={(
+          <DocsHeaderActionSelect
+            label="Language"
+            value="ru"
+            options={[
+              { value: 'en', label: 'English' },
+              { value: 'ru', label: 'Русский' },
+            ]}
+            onChange={vi.fn()}
+          />
+        )}
+        contentWidth="full"
+      >
+        <Text>Localized docs shell content area</Text>
+      </DocsShell>,
+    );
+
+    expect(container.querySelector('[data-gds-docs-shell-header]')).toBeInTheDocument();
+    expect(container.querySelector('[data-gds-docs-shell-actions]')).toBeInTheDocument();
+    expect(container.querySelector('[data-gds-docs-shell-action-select]')).toBeInTheDocument();
+    expect(container.querySelector('[data-gds-docs-shell-brand]')).toHaveStyle({
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    });
   });
 
   it('renders a semantic action bar with governed action priority and icon-only actions', async () => {

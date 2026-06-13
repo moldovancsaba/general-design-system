@@ -84,6 +84,7 @@ export const patternExportCoverage: ExportCoverageEntry[] = [
   { packageName: '@doneisbetter/gds-core', exportName: 'DetailProfileShell', status: 'live-demo', registryId: 'detail-profile-shell', rationale: 'Canonical detail/profile page and drawer shell.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'DiscoveryShell', status: 'live-demo', registryId: 'discovery-shell', rationale: 'Canonical sidebar-first app shell.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'DocsCodeBlock', status: 'live-demo', registryId: 'docs-code-blocks', rationale: 'Canonical install/docs code block.' },
+  { packageName: '@doneisbetter/gds-core', exportName: 'DocsHeaderActionSelect', status: 'support-api', registryId: 'docs-shell', rationale: 'Bounded docs-header selection control for localization-safe shell actions.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'DocsPageShell', status: 'live-demo', registryId: 'docs-page-shell', rationale: 'Canonical docs article page shell.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'DocsShell', status: 'live-demo', registryId: 'docs-shell', rationale: 'Canonical full-width docs/reference shell.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'EditorialCard', status: 'live-demo', registryId: 'editorial-cards', rationale: 'Canonical editorial card contract.' },

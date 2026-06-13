@@ -48,18 +48,9 @@ function isScheme(value: unknown): value is GdsThemeScheme {
   return value === 'light' || value === 'dark' || value === 'auto';
 }
 
-function resolveEffectiveScheme(preset: GdsThemePresetId, colorScheme: GdsThemeScheme): GdsThemeScheme {
-  if (preset === 'dark-public' || preset === 'neon-night' || preset === 'cosmic') {
-    return 'dark';
-  }
-
-  return colorScheme;
-}
-
 export function createGdsThemePresetSelection(stored: Partial<GdsStoredThemePresetState> = {}): GdsThemePresetSelection {
   const preset = isThemePresetId(stored.preset) ? stored.preset : 'default';
-  const requestedColorScheme = isScheme(stored.colorScheme) ? stored.colorScheme : 'light';
-  const colorScheme = resolveEffectiveScheme(preset, requestedColorScheme);
+  const colorScheme = isScheme(stored.colorScheme) ? stored.colorScheme : 'light';
   const fontLane = isGdsFontLaneId(stored.fontLane) ? stored.fontLane : 'inter';
   const brandPrimary = typeof stored.brandPrimary === 'string' ? stored.brandPrimary : 'blue';
   const brandFlatSurfaces = typeof stored.brandFlatSurfaces === 'boolean' ? stored.brandFlatSurfaces : true;

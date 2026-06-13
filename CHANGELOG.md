@@ -2,7 +2,7 @@
 
 All notable policy changes to the General Design System are recorded here.
 
-## 3.4.11 - 2026-06-12
+## 3.4.12 - 2026-06-12
 
 - Fixed cosmic and dark-forward preset overrides so mixed light preview cards no longer inherit forced white text, forced dimmed text, or fixed `28px` Paper/Card radius values from the surrounding page.
 - Added local contrast CSS ownership for preview-surface buttons, inputs, badges, code, nested cards, foreground text, muted text, backgrounds, borders, and radius tokens.

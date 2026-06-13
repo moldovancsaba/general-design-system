@@ -140,7 +140,7 @@ const requiredPresetContrastProof = [
   '--gds-local-radius',
   "html[data-mantine-color-scheme='dark'][data-gds-theme-preset]",
   ".mantine-Text-root[style*='--text-color: var(--mantine-color-red']",
-  "html[data-gds-theme-preset='cosmic'] body",
+  "html[data-mantine-color-scheme='dark'][data-gds-theme-preset='cosmic'] body",
   '--gds-vibe-danger',
 ];
 

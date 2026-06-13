@@ -158,7 +158,7 @@ describe('GdsProvider', () => {
 
     const cosmicVibe = resolveGdsVibeTheme('cosmic');
     expect(cosmicVibe.label).toBe('Cosmic burst');
-    expect(cosmicVibe.gradient).toContain('#19005c');
+    expect(cosmicVibe.gradient).toContain('#f7f3ff');
 
     const partnerVibe = resolveGdsVibeTheme('partner-discovery');
     expect(partnerVibe.primary).toBe('#08463b');

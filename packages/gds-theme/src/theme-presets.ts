@@ -29,18 +29,14 @@ export interface GdsThemePreset {
   runtimeLane: string;
 }
 
-function createVibrantPresetTheme(primaryColor: string, options: { darkForward?: boolean } = {}): MantineThemeOverride {
-  const darkSurface = options.darkForward
-    ? `color-mix(in srgb, var(--mantine-color-${primaryColor}-9) 18%, var(--mantine-color-dark-8))`
-    : 'var(--mantine-color-dark-8)';
-
+function createVibrantPresetTheme(primaryColor: string): MantineThemeOverride {
   return extendGdsTheme({
     primaryColor,
     components: {
       AppShell: {
         styles: {
           main: {
-            background: `light-dark(color-mix(in srgb, var(--mantine-color-${primaryColor}-0) 58%, var(--mantine-color-white)), ${darkSurface})`,
+            background: `light-dark(color-mix(in srgb, var(--mantine-color-${primaryColor}-0) 58%, var(--mantine-color-white)), var(--mantine-color-dark-8))`,
           },
           header: {
             background: `light-dark(color-mix(in srgb, var(--mantine-color-${primaryColor}-0) 68%, var(--mantine-color-white)), var(--mantine-color-dark-8))`,
@@ -187,19 +183,19 @@ const customPresetThemes: Record<Exclude<GdsThemePresetId, 'default' | 'dark-pub
   forest: createVibrantPresetTheme('green'),
   ruby: createVibrantPresetTheme('red'),
   amber: createVibrantPresetTheme('yellow'),
-  'neon-night': createVibrantPresetTheme('lime', { darkForward: true }),
+  'neon-night': createVibrantPresetTheme('lime'),
   skyline: createVibrantPresetTheme('indigo'),
   aurora: createVibrantPresetTheme('teal'),
   coral: createVibrantPresetTheme('pink'),
   mint: createVibrantPresetTheme('lime'),
   orchid: createVibrantPresetTheme('grape'),
   royal: createVibrantPresetTheme('violet'),
-  cosmic: createVibrantPresetTheme('violet', { darkForward: true }),
+  cosmic: createVibrantPresetTheme('violet'),
 };
 
 const themePresetCatalog: GdsThemePreset[] = [
   { id: 'default', label: 'Default runtime theme', description: 'Balanced, neutral baseline lane.', runtimeLane: 'gdsTheme' },
-  { id: 'dark-public', label: 'Dark public theme', description: 'Dark-first public lane.', runtimeLane: 'gdsDarkPublicTheme' },
+  { id: 'dark-public', label: 'Dark public theme', description: 'Dark public lane with explicit light and dark modes.', runtimeLane: 'gdsDarkPublicTheme' },
   { id: 'flat-surface', label: 'Flat surface theme', description: 'Lower-elevation operational lane.', runtimeLane: 'gdsFlatSurfaceTheme' },
   { id: 'editorial', label: 'Editorial serif theme', description: 'Reading-first, serif headline lane.', runtimeLane: 'gdsEditorialPublicTheme' },
   { id: 'brand', label: 'Brand theme generator', description: 'Governed brand composition lane.', runtimeLane: 'createPublicBrandTheme(...)' },
@@ -209,7 +205,7 @@ const themePresetCatalog: GdsThemePreset[] = [
   { id: 'forest', label: 'Forest signal', description: 'Natural emerald-driven vibrant lane.', runtimeLane: 'resolveGdsThemePreset(forest)' },
   { id: 'ruby', label: 'Ruby spark', description: 'Bold red high-contrast lane.', runtimeLane: 'resolveGdsThemePreset(ruby)' },
   { id: 'amber', label: 'Amber glow', description: 'Golden yellow energetic lane.', runtimeLane: 'resolveGdsThemePreset(amber)' },
-  { id: 'neon-night', label: 'Neon night', description: 'Lime-accented dark-forward lane.', runtimeLane: 'resolveGdsThemePreset(neon-night)' },
+  { id: 'neon-night', label: 'Neon night', description: 'Lime-accented vibrant lane with explicit light and dark modes.', runtimeLane: 'resolveGdsThemePreset(neon-night)' },
   { id: 'skyline', label: 'Skyline indigo', description: 'Indigo technology-forward lane.', runtimeLane: 'resolveGdsThemePreset(skyline)' },
   { id: 'aurora', label: 'Aurora teal', description: 'Fresh teal-cyan app lane for optimistic product surfaces.', runtimeLane: 'resolveGdsThemePreset(aurora)' },
   { id: 'coral', label: 'Coral bloom', description: 'Expressive pink-coral lane for creator, commerce, and social products.', runtimeLane: 'resolveGdsThemePreset(coral)' },

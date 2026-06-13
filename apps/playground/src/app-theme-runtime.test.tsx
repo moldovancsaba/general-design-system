@@ -91,31 +91,39 @@ describe('playground app runtime theme flow', () => {
     expect((comparisonPresetSelect as HTMLSelectElement).value).toBe('dark-public');
   });
 
-  it('applies dark-forward presets to the whole app runtime without a manual scheme step', async () => {
+  it('keeps formerly dark-forward presets responsive to the requested app runtime scheme', async () => {
     window.history.pushState({}, '', '/general-design-system/themes');
 
     render(<App />);
 
     const presetSelect = await screen.findByLabelText('Preset');
+    const schemeSelect = await screen.findByLabelText('Preview color scheme');
 
     fireEvent.change(presetSelect, { target: { value: 'neon-night' } });
+    fireEvent.change(schemeSelect, { target: { value: 'light' } });
 
     await waitFor(() =>
-      expect(document.documentElement.getAttribute('data-mantine-color-scheme')).toBe('dark'),
+      expect(document.documentElement.getAttribute('data-mantine-color-scheme')).toBe('light'),
     );
     await waitFor(() =>
-      expect(document.documentElement.getAttribute('data-gds-theme-runtime')).toContain('neon-night-dark'),
+      expect(document.documentElement.getAttribute('data-gds-theme-runtime')).toContain('neon-night-light'),
     );
 
     expect((presetSelect as HTMLSelectElement).value).toBe('neon-night');
 
+    fireEvent.change(schemeSelect, { target: { value: 'dark' } });
+    await waitFor(() =>
+      expect(document.documentElement.getAttribute('data-gds-theme-runtime')).toContain('neon-night-dark'),
+    );
+
     fireEvent.change(presetSelect, { target: { value: 'cosmic' } });
+    fireEvent.change(schemeSelect, { target: { value: 'light' } });
 
     await waitFor(() =>
-      expect(document.documentElement.getAttribute('data-mantine-color-scheme')).toBe('dark'),
+      expect(document.documentElement.getAttribute('data-mantine-color-scheme')).toBe('light'),
     );
     await waitFor(() =>
-      expect(document.documentElement.getAttribute('data-gds-theme-runtime')).toContain('cosmic-dark'),
+      expect(document.documentElement.getAttribute('data-gds-theme-runtime')).toContain('cosmic-light'),
     );
     expect((presetSelect as HTMLSelectElement).value).toBe('cosmic');
   });

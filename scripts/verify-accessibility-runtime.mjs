@@ -11,6 +11,7 @@ const cases = [
   { preset: 'default', scheme: 'dark' },
   { preset: 'partner-discovery', scheme: 'light' },
   { preset: 'partner-discovery', scheme: 'dark' },
+  { preset: 'cosmic', scheme: 'light' },
   { preset: 'cosmic', scheme: 'dark' },
 ];
 

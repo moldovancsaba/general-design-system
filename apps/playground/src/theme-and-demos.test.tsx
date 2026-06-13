@@ -72,23 +72,23 @@ describe('playground theme explorer and live demos hub', () => {
     expect(screen.getByText(/Do not create local branding-layer helpers/i)).toBeTruthy();
   });
 
-  it('forces dark-forward lanes to preview in dark mode even if light is selected', () => {
+  it('keeps every shipped lane in the requested preview color scheme', () => {
     renderWithGds(<TokensPage />);
 
     fireEvent.change(screen.getByLabelText('Preset'), { target: { value: 'dark-public' } });
     fireEvent.change(screen.getByLabelText('Preview color scheme'), { target: { value: 'light' } });
 
-    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: dark') ?? false).length).toBeGreaterThan(0);
-    expect(screen.getByText(/always previews in dark mode/i)).toBeTruthy();
+    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: light') ?? false).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/always previews in dark mode/i)).toBeNull();
 
     fireEvent.change(screen.getByLabelText('Preset'), { target: { value: 'neon-night' } });
 
-    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: dark') ?? false).length).toBeGreaterThan(0);
-    expect(screen.getByText(/dark-forward preset always renders in dark mode/i)).toBeTruthy();
+    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: light') ?? false).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/dark-forward preset always renders in dark mode/i)).toBeNull();
 
     fireEvent.change(screen.getByLabelText('Preset'), { target: { value: 'cosmic' } });
 
-    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: dark') ?? false).length).toBeGreaterThan(0);
+    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: light') ?? false).length).toBeGreaterThan(0);
     expect((screen.getByLabelText('Preset') as HTMLSelectElement).value).toBe('cosmic');
   });
 

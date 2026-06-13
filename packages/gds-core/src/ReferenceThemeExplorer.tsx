@@ -51,10 +51,7 @@ export interface ThemeExplorerSelection {
 }
 
 function resolvePreviewColorScheme(presetId: ThemePresetId, requestedScheme: ThemeSchemeId): ThemeSchemeId {
-  if (presetId === 'dark-public' || presetId === 'neon-night' || presetId === 'cosmic') {
-    return 'dark';
-  }
-
+  void presetId;
   return requestedScheme;
 }
 
@@ -165,16 +162,12 @@ function resolveExplorerCopy(locale: string): ExplorerCopy {
 function ThemePreviewSurface({
   preset,
   colorScheme,
-  requestedColorScheme,
   copy,
 }: {
   preset: { label: string; summary: string; bestFor: string; themeKey: string };
   colorScheme: ThemeSchemeId;
-  requestedColorScheme?: ThemeSchemeId;
   copy: ExplorerCopy;
 }) {
-  const forcedScheme = requestedColorScheme && requestedColorScheme !== colorScheme;
-
   return (
     <Paper withBorder radius="xl" p="lg">
       <Stack gap="lg">
@@ -193,11 +186,6 @@ function ThemePreviewSurface({
             <Text size="sm">
               <strong>{copy.previewA11yProof}</strong> {copy.previewA11yDescription}
             </Text>
-            {forcedScheme ? (
-              <Text size="sm" c="dimmed">
-                {copy.forcedDarkPreview}
-              </Text>
-            ) : null}
           </Stack>
           <ThemeToggle />
         </Group>
@@ -431,11 +419,6 @@ export function ReferenceThemeExplorer({
                 <Text size="sm">
                   <strong>{copy.colorScheme}</strong> {colorScheme} ({copy.schemes[colorScheme]})
                 </Text>
-                {(preset === 'dark-public' || preset === 'neon-night' || preset === 'cosmic') && colorScheme !== effectiveColorScheme ? (
-                  <Text size="sm" c="dimmed">
-                    {copy.darkForwardNotice}
-                  </Text>
-                ) : null}
               </Stack>
               <Checkbox
                 aria-label={copy.compareToggle}
@@ -653,7 +636,6 @@ export function ReferenceThemeExplorer({
               <ThemePreviewSurface
                 preset={selectionSummary}
                 colorScheme={effectiveColorScheme}
-                requestedColorScheme={colorScheme}
                 copy={copy}
               />
             </GdsProvider>
@@ -686,7 +668,6 @@ export function ReferenceThemeExplorer({
                     <ThemePreviewSurface
                       preset={comparisonSummary}
                       colorScheme={effectiveComparisonScheme}
-                      requestedColorScheme={colorScheme}
                       copy={copy}
                     />
                   </Stack>

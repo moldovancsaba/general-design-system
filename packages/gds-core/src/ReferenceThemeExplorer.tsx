@@ -215,7 +215,7 @@ function ThemePreviewSurface({
                 {copy.tokenControls}
               </Text>
               <FormField label={copy.referenceInput} description={copy.referenceInputDescription}>
-                <TextInput placeholder={copy.referenceInputPlaceholder} />
+                <TextInput aria-label={copy.referenceInput} placeholder={copy.referenceInputPlaceholder} />
               </FormField>
               <Group gap="xs" wrap="wrap">
                 <Badge color="teal" variant="light">

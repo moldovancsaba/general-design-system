@@ -349,6 +349,7 @@ export function getGdsVibeThemeCssVariables(id: GdsThemePresetId, colorScheme: '
     '--gds-vibe-border': dark ? vibe.borderDark : vibe.borderLight,
     '--gds-vibe-text': dark ? vibe.textDark : vibe.textLight,
     '--gds-vibe-muted': dark ? vibe.mutedDark : vibe.mutedLight,
+    '--gds-vibe-focus': dark ? vibe.textDark : vibe.textLight,
     '--gds-vibe-gradient': vibe.gradient,
     '--gds-vibe-hero': vibe.hero,
   };

@@ -80,6 +80,22 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </GdsProvider>,
 );`;
 
+const themeAccessibilityCode = `import {
+  createGdsThemeAccessibilityReport,
+  validateGdsThemeAccessibility,
+} from '@doneisbetter/gds-theme/server';
+
+const validation = validateGdsThemeAccessibility();
+if (!validation.ok) {
+  throw new Error('GDS theme accessibility verification failed');
+}
+
+const report = createGdsThemeAccessibilityReport();
+console.log(report.blockingCount, report.forcedColorRoles);`;
+
+const themeAccessibilityCliCode = `npm run verify:theme-accessibility
+npm run verify:accessibility-runtime`;
+
 const scopedPreviewProviderCode = `// Scoped preview island
 const previewRootId = 'product-theme-preview';
 
@@ -946,6 +962,19 @@ export function TokensPage({
         <FeatureBand
           columns={3}
           items={localizedLists.care}
+        />
+      </ReferenceSection>
+      <ReferenceSection
+        title={i18n.accessibilityTitle}
+        description={i18n.accessibilityDescription}
+      >
+        <DocsCodeBlock
+          code={themeAccessibilityCode}
+          title={i18n.accessibilityApiLabel}
+        />
+        <DocsCodeBlock
+          code={themeAccessibilityCliCode}
+          title={i18n.accessibilityReleaseLabel}
         />
       </ReferenceSection>
       <ReferenceSection

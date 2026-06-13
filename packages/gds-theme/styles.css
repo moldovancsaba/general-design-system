@@ -18,7 +18,8 @@
   --gds-vibe-border: rgba(124, 58, 237, 0.22);
   --gds-vibe-text: #111827;
   --gds-vibe-muted: #64748b;
-  --gds-vibe-link: color-mix(in srgb, var(--gds-vibe-primary) 72%, var(--gds-vibe-text));
+  --gds-vibe-focus: var(--gds-vibe-text);
+  --gds-vibe-link: color-mix(in srgb, var(--gds-vibe-primary) 56%, var(--gds-vibe-text));
   --gds-vibe-control: color-mix(in srgb, var(--gds-vibe-surface) 90%, var(--gds-vibe-primary) 7%);
   --gds-vibe-control-text: var(--gds-vibe-text);
   --gds-vibe-danger: light-dark(var(--mantine-color-red-7), var(--mantine-color-red-2));
@@ -99,7 +100,7 @@ html[data-gds-theme-preset] .mantine-Card-root {
 }
 
 html[data-mantine-color-scheme='dark'][data-gds-theme-preset] body {
-  --gds-vibe-link: color-mix(in srgb, var(--gds-vibe-accent) 72%, var(--gds-vibe-text));
+  --gds-vibe-link: color-mix(in srgb, var(--gds-vibe-accent) 56%, var(--gds-vibe-text));
   --gds-vibe-control: color-mix(in srgb, var(--gds-vibe-surface) 82%, transparent);
   --gds-vibe-control-text: var(--gds-vibe-text);
 }
@@ -145,8 +146,8 @@ html[data-gds-theme-preset] .mantine-Textarea-input::placeholder {
 html[data-gds-theme-preset] .mantine-Input-input:focus,
 html[data-gds-theme-preset] .mantine-NativeSelect-input:focus,
 html[data-gds-theme-preset] .mantine-Textarea-input:focus {
-  border-color: var(--gds-vibe-primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gds-vibe-primary) 18%, transparent);
+  border-color: var(--gds-vibe-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gds-vibe-focus) 24%, transparent);
 }
 
 html[data-gds-theme-preset] .mantine-Checkbox-input:checked {
@@ -161,6 +162,28 @@ html[data-gds-theme-preset] button {
 
 html[data-gds-theme-preset] a {
   color: var(--gds-vibe-link);
+}
+
+html[data-gds-theme-preset] a:focus,
+html[data-gds-theme-preset] a:focus-visible,
+html[data-gds-theme-preset] button:focus,
+html[data-gds-theme-preset] button:focus-visible,
+html[data-gds-theme-preset] input:focus,
+html[data-gds-theme-preset] input:focus-visible,
+html[data-gds-theme-preset] select:focus,
+html[data-gds-theme-preset] select:focus-visible,
+html[data-gds-theme-preset] textarea:focus,
+html[data-gds-theme-preset] textarea:focus-visible,
+html[data-gds-theme-preset] [tabindex]:focus,
+html[data-gds-theme-preset] [tabindex]:focus-visible,
+html[data-gds-theme-preset] [data-gds-copy-action]:focus,
+html[data-gds-theme-preset] [data-gds-copy-action]:focus-visible,
+html[data-gds-theme-preset] .mantine-ActionIcon-root:focus,
+html[data-gds-theme-preset] .mantine-ActionIcon-root:focus-visible,
+html[data-gds-theme-preset] .mantine-Button-root:focus,
+html[data-gds-theme-preset] .mantine-Button-root:focus-visible {
+  outline: 2px solid var(--gds-vibe-focus) !important;
+  outline-offset: 2px !important;
 }
 
 html[data-gds-theme-preset] .mantine-AppShell-main h1,
@@ -542,6 +565,145 @@ html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Badge-root {
     background:
       radial-gradient(circle at 83% 32%, rgba(160, 42, 255, 0.9) 0 8%, transparent 20%),
       radial-gradient(circle at 95% 76%, rgba(120, 25, 255, 0.7) 0 14%, transparent 34%);
+  }
+}
+
+@media (forced-colors: active) {
+  html[data-gds-theme-preset],
+  html[data-gds-theme-preset] body,
+  html[data-gds-theme-preset] .mantine-AppShell-main {
+    --mantine-color-body: Canvas !important;
+    --mantine-color-text: CanvasText !important;
+    --mantine-color-dimmed: GrayText !important;
+    --gds-vibe-primary: LinkText !important;
+    --gds-vibe-accent: Highlight !important;
+    --gds-vibe-glow: transparent !important;
+    --gds-vibe-canvas: Canvas !important;
+    --gds-vibe-shell: Canvas !important;
+    --gds-vibe-surface: Canvas !important;
+    --gds-vibe-border: CanvasText !important;
+    --gds-vibe-text: CanvasText !important;
+    --gds-vibe-muted: GrayText !important;
+    --gds-vibe-focus: Highlight !important;
+    --gds-vibe-link: LinkText !important;
+    --gds-vibe-control: ButtonFace !important;
+    --gds-vibe-control-text: ButtonText !important;
+    --gds-vibe-gradient: Canvas !important;
+    --gds-vibe-hero: Canvas !important;
+    color: CanvasText !important;
+    background: Canvas !important;
+    background-image: none !important;
+    text-shadow: none !important;
+  }
+
+  html[data-gds-theme-preset] body::before,
+  html[data-gds-theme-preset] body::after {
+    content: none !important;
+    background: none !important;
+  }
+
+  html[data-gds-theme-preset] *,
+  html[data-gds-theme-preset] *::before,
+  html[data-gds-theme-preset] *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html[data-gds-theme-preset] a,
+  html[data-gds-theme-preset] .mantine-Anchor-root {
+    color: LinkText !important;
+  }
+
+  html[data-gds-theme-preset] a:focus,
+  html[data-gds-theme-preset] a:focus-visible,
+  html[data-gds-theme-preset] button:focus,
+  html[data-gds-theme-preset] button:focus-visible,
+  html[data-gds-theme-preset] input:focus,
+  html[data-gds-theme-preset] input:focus-visible,
+  html[data-gds-theme-preset] select:focus,
+  html[data-gds-theme-preset] select:focus-visible,
+  html[data-gds-theme-preset] textarea:focus,
+  html[data-gds-theme-preset] textarea:focus-visible,
+  html[data-gds-theme-preset] [tabindex]:focus,
+  html[data-gds-theme-preset] [tabindex]:focus-visible,
+  html[data-gds-theme-preset] [data-gds-copy-action]:focus,
+  html[data-gds-theme-preset] [data-gds-copy-action]:focus-visible,
+  html[data-gds-theme-preset] .mantine-ActionIcon-root:focus,
+  html[data-gds-theme-preset] .mantine-ActionIcon-root:focus-visible,
+  html[data-gds-theme-preset] .mantine-Button-root:focus,
+  html[data-gds-theme-preset] .mantine-Button-root:focus-visible {
+    outline: 2px solid Highlight !important;
+    outline-offset: 2px !important;
+  }
+
+  html[data-gds-theme-preset] .mantine-AppShell-header,
+  html[data-gds-theme-preset] .mantine-AppShell-navbar,
+  html[data-gds-theme-preset] .mantine-AppShell-footer,
+  html[data-gds-theme-preset] .mantine-Paper-root,
+  html[data-gds-theme-preset] .mantine-Card-root,
+  html[data-gds-theme-preset] [data-gds-local-contrast] {
+    color: CanvasText !important;
+    background: Canvas !important;
+    background-image: none !important;
+    border-color: CanvasText !important;
+    backdrop-filter: none !important;
+  }
+
+  html[data-gds-theme-preset] .mantine-Button-root,
+  html[data-gds-theme-preset] .mantine-ActionIcon-root,
+  html[data-gds-theme-preset] .mantine-Menu-item,
+  html[data-gds-theme-preset] .mantine-Tabs-tab,
+  html[data-gds-theme-preset] .mantine-SegmentedControl-control,
+  html[data-gds-theme-preset] .mantine-Input-input,
+  html[data-gds-theme-preset] .mantine-NativeSelect-input,
+  html[data-gds-theme-preset] .mantine-Textarea-input {
+    color: ButtonText !important;
+    background: ButtonFace !important;
+    background-image: none !important;
+    border-color: ButtonText !important;
+  }
+
+  html[data-gds-theme-preset] .mantine-Button-root[data-disabled],
+  html[data-gds-theme-preset] .mantine-Button-root:disabled,
+  html[data-gds-theme-preset] .mantine-ActionIcon-root[data-disabled],
+  html[data-gds-theme-preset] input:disabled,
+  html[data-gds-theme-preset] select:disabled,
+  html[data-gds-theme-preset] textarea:disabled {
+    color: GrayText !important;
+    border-color: GrayText !important;
+  }
+
+  html[data-gds-theme-preset] .mantine-Button-root[data-variant='filled'],
+  html[data-gds-theme-preset] .mantine-Button-root[data-variant='light'],
+  html[data-gds-theme-preset] .mantine-Button-root:not([data-variant='default']),
+  html[data-gds-theme-preset] .mantine-Menu-item[data-hovered],
+  html[data-gds-theme-preset] .mantine-Tabs-tab[data-active],
+  html[data-gds-theme-preset] .mantine-SegmentedControl-control[data-active] {
+    color: HighlightText !important;
+    background: Highlight !important;
+    background-image: none !important;
+    border-color: Highlight !important;
+  }
+
+  html[data-gds-theme-preset] .mantine-Badge-root,
+  html[data-gds-theme-preset] .mantine-Code-root,
+  html[data-gds-theme-preset] mark {
+    color: MarkText !important;
+    background: Mark !important;
+    background-image: none !important;
+    border-color: MarkText !important;
+  }
+
+  html[data-gds-theme-preset] .mantine-Text-root[data-dimmed],
+  html[data-gds-theme-preset] .mantine-InputWrapper-description,
+  html[data-gds-theme-preset] [style*='--mantine-color-dimmed'] {
+    color: GrayText !important;
+  }
+
+  html[data-gds-theme-preset] [data-gds-swatch],
+  html[data-gds-theme-preset] [data-gds-color-swatch] {
+    border: 1px solid CanvasText !important;
+    forced-color-adjust: none;
   }
 }
 

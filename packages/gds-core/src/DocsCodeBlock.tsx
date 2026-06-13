@@ -39,7 +39,8 @@ export function DocsCodeBlock({ code, language, title, withCopy = true }: DocsCo
             </Stack>
             {withCopy ? (
               <ActionIcon
-                variant="subtle"
+                data-gds-copy-action
+                variant="default"
                 aria-label={copied ? 'Copied code block' : 'Copy code block'}
                 onClick={() => {
                   void handleCopy();

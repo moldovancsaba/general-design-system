@@ -5,6 +5,7 @@ import { notifications } from '@mantine/notifications';
 import { openConfirmModal } from '@mantine/modals';
 import { Button } from '@mantine/core';
 import { renderWithGds } from '../../../test-utils/render';
+import { createGdsThemeAccessibilityReport, validateGdsThemeAccessibility } from './accessibility-report';
 import { GdsProvider } from './GdsProvider';
 import { applyGdsFontLane, getGdsFontLaneStylesheetUrls, getGdsFontLanes, isGdsFontLaneId, resolveGdsFontLane } from './font-lanes';
 import { showGdsNotification } from './notifications';
@@ -162,6 +163,25 @@ describe('GdsProvider', () => {
     const partnerVibe = resolveGdsVibeTheme('partner-discovery');
     expect(partnerVibe.primary).toBe('#08463b');
     expect(partnerVibe.accent).toBe('#2fc800');
+  });
+
+  it('ships blocking-free theme accessibility checks for all public vibe lanes', () => {
+    const validation = validateGdsThemeAccessibility();
+    const report = createGdsThemeAccessibilityReport();
+
+    expect(validation.ok).toBe(true);
+    expect(report.blockingCount).toBe(0);
+    expect(report.themeCount).toBe(getGdsVibeThemes().length);
+    expect(report.checks.length).toBeGreaterThanOrEqual(report.themeCount * 2 * 6);
+    expect(report.forcedColorRoles.map((role) => role.cssSystemColor)).toEqual(expect.arrayContaining([
+      'Canvas',
+      'CanvasText',
+      'ButtonFace',
+      'ButtonText',
+      'LinkText',
+      'Highlight',
+      'GrayText',
+    ]));
   });
 
   it('exposes approved font lanes and applies them to theme contracts', () => {

@@ -5,5 +5,7 @@ export { gdsLocaleMetadata, getGdsLocaleIdsByScript, getGdsLocaleMetadata, isGds
 export type { GdsLocaleDirection, GdsLocaleId, GdsLocaleScript } from './i18n';
 export { getGdsVibeThemes, resolveGdsVibeTheme, getGdsVibeThemeCssVariables } from './vibe-themes';
 export type { GdsVibeTheme } from './vibe-themes';
+export { createGdsThemeAccessibilityReport, validateGdsThemeAccessibility } from './accessibility-report';
+export type { GdsAccessibilityFindingSeverity, GdsContrastCheck, GdsContrastFinding, GdsContrastMode, GdsContrastRole, GdsForcedColorRole, GdsThemeAccessibilityReport } from './accessibility-report';
 export { getGdsFontLanes, resolveGdsFontLane, applyGdsFontLane, getGdsFontLaneStylesheetUrls, isGdsFontLaneId } from './font-lanes';
 export type { GdsFontLane, GdsFontLaneId, GdsFontLaneLoadStrategy, GdsFontLaneSource } from './font-lanes';

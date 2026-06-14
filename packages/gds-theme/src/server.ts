@@ -1,8 +1,8 @@
 export { gdsTheme, gdsDarkPublicTheme, gdsFlatSurfaceTheme, gdsEditorialPublicTheme, createPublicBrandTheme, extendGdsTheme, withGdsMotion } from './theme';
 export { getGdsThemePresets, resolveGdsThemePreset, partnerDiscoveryThemePreset } from './theme-presets';
 export type { GdsThemePreset, GdsThemePresetId } from './theme-presets';
-export { gdsLocaleMetadata, getGdsLocaleIdsByScript, getGdsLocaleMetadata, isGdsRtlLocale } from './i18n';
-export type { GdsLocaleDirection, GdsLocaleId, GdsLocaleScript } from './i18n';
+export { GdsI18nContext, gdsLocaleMetadata, getGdsLocaleIdsByScript, getGdsLocaleMetadata, isGdsRtlLocale } from './i18n';
+export type { GdsI18nContextValue, GdsLocaleDirection, GdsLocaleId, GdsLocaleScript } from './i18n';
 export { getGdsVibeThemes, resolveGdsVibeTheme, getGdsVibeThemeCssVariables } from './vibe-themes';
 export type { GdsVibeTheme } from './vibe-themes';
 export { createGdsThemeAccessibilityReport, validateGdsThemeAccessibility } from './accessibility-report';

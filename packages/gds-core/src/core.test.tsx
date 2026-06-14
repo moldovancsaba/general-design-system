@@ -107,6 +107,27 @@ import {
   getGdsPageTemplates,
   validateGdsPageTemplates,
 } from './GdsPageTemplates';
+import {
+  compareGdsLocaleString,
+  createGdsMissingKeyTracker,
+  createGdsTextExpansionFixture,
+  formatGdsCurrency,
+  formatGdsDate,
+  formatGdsNumber,
+  formatGdsPlural,
+  formatGdsRelativeTime,
+  GdsDirectionBoundary,
+  GdsFormattedCurrency,
+  GdsFormattedDate,
+  GdsFormattedNumber,
+  GdsLocaleText,
+  GdsPlural,
+  GdsRelativeTime,
+  resolveGdsLocale,
+  resolveGdsMessage,
+  sortGdsLocaleStrings,
+  useGdsDirection,
+} from './GdsI18nRuntime';
 
 function mockMatchMedia(matches: boolean) {
   const original = window.matchMedia;
@@ -324,6 +345,68 @@ describe('@doneisbetter/gds-core', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
     expect(onRetry).toHaveBeenCalledTimes(1);
     expect(screen.getByRole('button', { name: 'Upload asset' })).toBeInTheDocument();
+  });
+
+  it('provides package-native i18n runtime formatting, sorting, fallback, and missing-key telemetry', () => {
+    const events: Array<{ type: string; key?: string; locale: string; fallbackLocale?: string }> = [];
+    const onEvent = (event: { type: string; key?: string; locale: string; fallbackLocale?: string }) => events.push(event);
+
+    expect(resolveGdsLocale({ locale: 'xx', fallbackLocale: 'en', onEvent })).toBe('en');
+    expect(events[0]).toMatchObject({ type: 'fallback_locale_used', locale: 'xx', fallbackLocale: 'en' });
+    expect(formatGdsNumber(1234.5, { locale: 'de', maximumFractionDigits: 1 })).toContain('1.234');
+    expect(formatGdsCurrency(12, 'EUR', { locale: 'de' })).toContain('€');
+    expect(formatGdsDate('2026-06-14T12:00:00Z', { locale: 'en', timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric' })).toBe('June 14, 2026');
+    expect(formatGdsRelativeTime(-1, 'day', { locale: 'en' })).toBe('yesterday');
+    expect(formatGdsPlural(0, { zero: 'No files', one: 'One file', other: 'Files' }, { locale: 'en' })).toBe('No files');
+    expect(formatGdsPlural(1, { one: 'One file', other: 'Files' }, { locale: 'en' })).toBe('One file');
+    expect(sortGdsLocaleStrings(['item 10', 'item 2'], { locale: 'en' })).toEqual(['item 2', 'item 10']);
+    expect(compareGdsLocaleString('á', 'a', { locale: 'hu', sensitivity: 'base' })).toBe(0);
+
+    const trackerEvents: Array<{ type: string; key?: string }> = [];
+    const tracker = createGdsMissingKeyTracker((event) => trackerEvents.push(event));
+    tracker.emit({ type: 'missing_key', locale: 'en', key: 'missing.copy' });
+    tracker.emit({ type: 'missing_key', locale: 'en', key: 'missing.copy' });
+    expect(trackerEvents).toHaveLength(1);
+
+    const missingEvents: Array<{ type: string; key?: string }> = [];
+    expect(resolveGdsMessage({ id: 'unknown.copy', defaultMessage: 'Fallback {count}', values: { count: 3 }, locale: 'en', onEvent: (event) => missingEvents.push(event) })).toBe('Fallback 3');
+    expect(missingEvents).toEqual([expect.objectContaining({ type: 'missing_key', key: 'unknown.copy' })]);
+
+    const germanFixture = createGdsTextExpansionFixture('de', 'Save');
+    expect(germanFixture.expansionRatio).toBeGreaterThan(1);
+    expect(germanFixture.minInlineSizeCh).toBeGreaterThan(4);
+    const rtlFixture = createGdsTextExpansionFixture('ar', 'Save');
+    expect(rtlFixture.direction).toBe('rtl');
+    expect(rtlFixture.notes.join(' ')).toContain('dir="auto"');
+  });
+
+  it('renders i18n runtime components with readable text and direction attributes', () => {
+    function DirectionProbe() {
+      const direction = useGdsDirection('he');
+      return <div data-testid="direction">{direction.dir}:{String(direction.isRtl)}</div>;
+    }
+
+    renderWithGds(
+      <>
+        <GdsLocaleText id="gds.action.save" defaultMessage="Save fallback" locale="de" />
+        <GdsFormattedNumber value={9876.5} locale="en" maximumFractionDigits={1} />
+        <GdsFormattedCurrency value={20} currency="USD" locale="en" />
+        <GdsFormattedDate value="2026-06-14T12:00:00Z" locale="en" timeZone="UTC" month="short" day="numeric" />
+        <GdsRelativeTime value={1} unit="day" locale="en" />
+        <GdsPlural value={2} locale="en" messages={{ one: 'One alert', other: 'Many alerts' }} />
+        <GdsDirectionBoundary locale="ar">مرحبا</GdsDirectionBoundary>
+        <DirectionProbe />
+      </>,
+    );
+
+    expect(screen.getByText('Speichern')).toBeInTheDocument();
+    expect(screen.getByText('9,876.5')).toBeInTheDocument();
+    expect(screen.getByText('$20.00')).toBeInTheDocument();
+    expect(screen.getByText('Jun 14')).toBeInTheDocument();
+    expect(screen.getByText('tomorrow')).toBeInTheDocument();
+    expect(screen.getByText('Many alerts')).toBeInTheDocument();
+    expect(screen.getByText('مرحبا')).toHaveAttribute('dir', 'rtl');
+    expect(screen.getByTestId('direction')).toHaveTextContent('rtl:true');
   });
 
   it('renders package-native typography roles without local Text and Title ladders', () => {

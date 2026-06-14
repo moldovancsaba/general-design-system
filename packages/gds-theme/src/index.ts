@@ -13,8 +13,8 @@ export { createGdsThemePresetSelection, useGdsThemePresetState } from './theme-r
 export type { GdsStoredThemePresetState, GdsThemePresetSelection, GdsThemeScheme, UseGdsThemePresetStateOptions, UseGdsThemePresetStateResult } from './theme-runtime';
 export { GdsProvider } from './GdsProvider';
 export type { GdsProviderProps } from './GdsProvider';
-export { gdsLocaleMetadata, getGdsLocaleIdsByScript, getGdsLocaleMetadata, isGdsRtlLocale, useGdsTranslation } from './i18n';
-export type { GdsLocaleDirection, GdsLocaleId, GdsLocaleScript } from './i18n';
+export { GdsI18nContext, gdsLocaleMetadata, getGdsLocaleIdsByScript, getGdsLocaleMetadata, isGdsRtlLocale, useGdsTranslation } from './i18n';
+export type { GdsI18nContextValue, GdsLocaleDirection, GdsLocaleId, GdsLocaleScript } from './i18n';
 export { showGdsNotification } from './notifications';
 export type { GdsNotificationOptions, GdsNotificationTone } from './notifications';
 export { createGdsMotionCssVariables, gdsMotionDurations, gdsMotionEasings, gdsMotionPresets, getGdsMotionPreset } from './motion';

@@ -22,6 +22,7 @@ import { ChoiceChip } from './ChoiceChip';
 import { DataToolbar } from './DataToolbar';
 import { CommandRegistryProvider, useCommandLauncher } from './CommandPalette.client';
 import { createGdsDraftAdapter, FormErrorSummary, GdsFormProvider, GdsValidationSummary, gdsFormReducer, useGdsForm, useGdsFormOrchestration, ValidatedFieldMessage } from './GdsForm.client';
+import { GdsSchemaForm, createGdsFormFromSchema, jsonSchemaToGdsFormSchema, openApiToGdsFormSchema, zodToGdsFormSchema } from './GdsSchemaForm.client';
 import { ActiveFilterChips, BulkActionsBar, ResultSummary, SortMenu } from './ListingPrimitives';
 import { ListingProvider, listingQueryReducer, useListingState } from './ListingState.client';
 import { DetailProfileShell } from './DetailProfileShell';
@@ -2516,6 +2517,90 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     await user.click(screen.getByRole('button', { name: 'Restore' }));
     expect(await screen.findByDisplayValue('Restored title')).toBeInTheDocument();
     expect(events.mock.calls.map(([event]) => event.type)).toContain('draft_restored');
+  });
+
+  it('normalizes JSON Schema, OpenAPI, and Zod-like contracts into GDS form schemas', () => {
+    const jsonSchema = jsonSchemaToGdsFormSchema({
+      title: 'Profile',
+      type: 'object',
+      required: ['email'],
+      properties: {
+        email: { type: 'string', format: 'email', title: 'Email address', description: 'Used for receipts.' },
+        role: { type: 'string', enum: ['Admin', 'Editor'] },
+        gallery: { type: 'array', title: 'Gallery' },
+      },
+    }, { id: 'profile' });
+    expect(jsonSchema.schema?.fields).toEqual(expect.arrayContaining([
+      expect.objectContaining({ name: 'email', type: 'email', required: true, i18nKey: 'gds.form.profile.email' }),
+      expect.objectContaining({ name: 'role', type: 'select' }),
+      expect.objectContaining({ name: 'gallery', type: 'unsupported' }),
+    ]));
+    expect(jsonSchema.events.map((event) => event.type)).toContain('unsupported_field');
+
+    const openApi = openApiToGdsFormSchema({
+      components: {
+        schemas: {
+          Venue: {
+            type: 'object',
+            properties: { name: { type: 'string', minLength: 3 } },
+            required: ['name'],
+          },
+        },
+      },
+    }, { schemaName: 'Venue' });
+    expect(openApi.schema?.fields[0]).toEqual(expect.objectContaining({ name: 'name', required: true, minLength: 3 }));
+
+    const zodLike = zodToGdsFormSchema({
+      shape: {
+        title: { _def: { typeName: 'ZodString' } },
+        count: { _def: { typeName: 'ZodOptional', innerType: { _def: { typeName: 'ZodNumber' } } } },
+      },
+    }, { id: 'zod-fixture' });
+    expect(zodLike.schema?.fields).toEqual(expect.arrayContaining([
+      expect.objectContaining({ name: 'title', type: 'text', required: true }),
+      expect.objectContaining({ name: 'count', type: 'number', required: false }),
+    ]));
+
+    expect(createGdsFormFromSchema({ type: 'object', properties: { active: { type: 'boolean' } } }, { adapter: 'json-schema', id: 'active-form' }).schema?.fields[0]?.type).toBe('boolean');
+  });
+
+  it('renders schema-generated forms with labels, required validation, submit payload, and overrides', async () => {
+    const user = userEvent.setup();
+    const submit = vi.fn();
+    const events = vi.fn();
+    const result = jsonSchemaToGdsFormSchema({
+      title: 'Profile',
+      description: 'Generated from contract.',
+      type: 'object',
+      required: ['name'],
+      properties: {
+        name: { type: 'string', title: 'Name', description: 'Public display name.', minLength: 3 },
+        role: { type: 'string', enum: ['Admin', 'Editor'] },
+        files: { type: 'array', title: 'Files' },
+      },
+    }, { id: 'profile-form' });
+
+    renderWithGds(
+      <GdsSchemaForm
+        schema={result.schema!}
+        onSubmit={submit}
+        onEvent={events}
+        renderers={{
+          files: ({ field }) => <input aria-label={field.label} id={field.name} />,
+        }}
+      />,
+    );
+
+    expect(screen.getByText('Generated from contract.')).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: 'Name' })).toHaveAttribute('aria-describedby', 'name-description name-error');
+    expect(screen.getByRole('combobox', { name: 'Role' })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: 'Files' })).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(screen.getAllByText('Name is required.').length).toBeGreaterThan(0);
+    await user.type(screen.getByRole('textbox', { name: 'Name' }), 'Ada');
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    await waitFor(() => expect(submit).toHaveBeenCalledWith(expect.objectContaining({ name: 'Ada' })));
   });
 
   it('manages overlay stack with top-most close rules', async () => {

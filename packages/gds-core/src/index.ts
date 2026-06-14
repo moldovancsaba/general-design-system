@@ -68,6 +68,7 @@ export * from './AccessRecoveryPanel';
 export * from './AccessibilityEvidence';
 export * from './FormField';
 export * from './GdsForm.client';
+export * from './GdsSchemaForm.client';
 export * from './PageHeader';
 export * from './FilterDrawer';
 export * from './PlaceholderPanel';

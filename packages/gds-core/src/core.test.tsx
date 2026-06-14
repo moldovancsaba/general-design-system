@@ -128,6 +128,17 @@ import {
   sortGdsLocaleStrings,
   useGdsDirection,
 } from './GdsI18nRuntime';
+import {
+  createGdsContentExpansionReport,
+  GdsContentPatternCatalog,
+  getGdsContentPattern,
+  getGdsContentPatterns,
+  getGdsCopyTemplate,
+  getGdsCopyTemplates,
+  renderGdsCopyTemplate,
+  validateGdsContentPatterns,
+  validateGdsCopyTemplate,
+} from './GdsContentDesign';
 
 function mockMatchMedia(matches: boolean) {
   const original = window.matchMedia;
@@ -407,6 +418,51 @@ describe('@doneisbetter/gds-core', () => {
     expect(screen.getByText('Many alerts')).toBeInTheDocument();
     expect(screen.getByText('مرحبا')).toHaveAttribute('dir', 'rtl');
     expect(screen.getByTestId('direction')).toHaveTextContent('rtl:true');
+  });
+
+  it('publishes content design patterns with voice, accessibility, telemetry, and localization-safe templates', () => {
+    const patterns = getGdsContentPatterns();
+    expect(patterns.map((pattern) => pattern.id)).toEqual([
+      'error-recovery',
+      'retryable-failure',
+      'destructive-confirmation',
+      'empty-state',
+      'permission-denied',
+      'primary-cta',
+      'form-hint',
+      'success-feedback',
+    ]);
+    expect(validateGdsContentPatterns(patterns)).toEqual([]);
+    for (const pattern of patterns) {
+      expect(pattern.voiceRules.length).toBeGreaterThan(0);
+      expect(pattern.componentContracts.length).toBeGreaterThan(0);
+      expect(pattern.taskPatterns.length).toBeGreaterThan(0);
+      expect(pattern.accessibility.length).toBeGreaterThan(0);
+      expect(pattern.localization.expansionLocales.length).toBeGreaterThan(0);
+      expect(pattern.doNotWrite.length).toBeGreaterThan(0);
+      expect(pattern.templates.length).toBeGreaterThan(0);
+    }
+
+    const destructive = getGdsContentPattern('destructive-confirmation');
+    expect(destructive?.componentContracts).toContain('GdsConfirmProvider');
+    patterns[0]!.voiceRules.length = 0;
+    expect(getGdsContentPattern('error-recovery')?.voiceRules).toContain('Name the failed operation.');
+  });
+
+  it('validates and renders localization-safe copy templates', () => {
+    const template = getGdsCopyTemplate('destructive-confirmation.delete');
+    expect(template).toBeDefined();
+    expect(renderGdsCopyTemplate(template!, { target: 'Draft event', undoWindow: '30 days' })).toBe('Delete Draft event? This removes it for everyone. You can restore it for 30 days.');
+    expect(validateGdsCopyTemplate(template!, { target: 'Draft event' })).toEqual([
+      'destructive-confirmation.delete is missing required placeholder undoWindow',
+    ]);
+    expect(getGdsCopyTemplates().map((item) => item.i18nKey)).toContain('gds.content.emptyFirstRun');
+    const expansion = createGdsContentExpansionReport('de');
+    expect(expansion.find((item) => item.templateId === 'primary-cta.create')?.fixture.expansionRatio).toBeGreaterThan(1);
+
+    renderWithGds(<GdsContentPatternCatalog />);
+    expect(screen.getByRole('heading', { name: 'Error recovery' })).toBeInTheDocument();
+    expect(screen.getByText(/Something went wrong/)).toBeInTheDocument();
   });
 
   it('renders package-native typography roles without local Text and Title ladders', () => {

@@ -100,5 +100,6 @@ export * from './MaturityCapabilities';
 export * from './TaskPatterns';
 export * from './GdsPageTemplates';
 export * from './GdsI18nRuntime';
+export * from './GdsContentDesign';
 export * from './PartnerDiscovery';
 export * from './locales';

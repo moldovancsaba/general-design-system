@@ -10,6 +10,7 @@ import { AccentPanel, resolveAccentPanelStyles } from './AccentPanel';
 import { ActionBar } from './ActionBar';
 import { AdvancedDataTable } from './AdvancedDataTable.client';
 import { GdsDataTable, createGdsTableAdapter, serializeGdsTableQuery } from './GdsDataTable.client';
+import { GdsResourceManager, createGdsResourceAdapter } from './GdsResourceManager.client';
 import { ArticleShell } from './ArticleShell';
 import { AuthShell } from './AuthShell';
 import { AsyncSurface } from './AsyncSurface';
@@ -813,6 +814,65 @@ describe('@doneisbetter/gds-core', () => {
     expect(await screen.findByText('Unable to load table')).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Retry' }));
     expect(await screen.findByText('No matching rows')).toBeInTheDocument();
+  });
+
+  it('manages governed resource workflows with detail, activate, delete, and copy-preview actions', async () => {
+    const user = userEvent.setup();
+    const events = vi.fn();
+    const adapter = createGdsResourceAdapter([
+      { id: 'venue-1', title: 'Venue One', status: 'draft', updatedAt: '2026-06-14' },
+      { id: 'venue-2', title: 'Venue Two', status: 'active', updatedAt: '2026-06-13' },
+    ]);
+
+    renderWithGds(
+      <GdsResourceManager
+        title="Venues"
+        description="Operational venue resources."
+        adapter={adapter}
+        onEvent={events}
+        confirmAction={() => true}
+      />,
+    );
+
+    expect(await screen.findByRole('table', { name: 'Venues resources' })).toBeInTheDocument();
+    await user.click(screen.getAllByRole('button', { name: 'Details' })[0]!);
+    expect(await screen.findByLabelText('Venue One detail')).toBeInTheDocument();
+    await user.click(screen.getAllByRole('button', { name: 'Activate' })[0]!);
+    await waitFor(() => expect(screen.getAllByText('active').length).toBeGreaterThan(0));
+    await user.click(screen.getAllByRole('button', { name: 'Copy preview' })[0]!);
+    await user.click(screen.getAllByRole('button', { name: 'Delete' })[0]!);
+    await waitFor(() => expect(screen.queryByText('Venue One')).not.toBeInTheDocument());
+    expect(events.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining([
+      'resource_loaded',
+      'action_started',
+      'action_completed',
+    ]));
+  });
+
+  it('blocks resource actions when permissions or destructive confirmations are missing', async () => {
+    const user = userEvent.setup();
+    const events = vi.fn();
+    const adapter = {
+      ...createGdsResourceAdapter([{ id: 'user-1', title: 'User One', status: 'active' }]),
+      getPermissions: () => [
+        { action: 'view' as const, allowed: true },
+        { action: 'delete' as const, allowed: false, reason: 'Only owners can delete users.' },
+        { action: 'activate' as const, allowed: true },
+        { action: 'copy-preview' as const, allowed: true },
+      ],
+    };
+
+    renderWithGds(
+      <GdsResourceManager
+        title="Users"
+        adapter={adapter}
+        onEvent={events}
+      />,
+    );
+
+    expect(await screen.findByRole('button', { name: 'Delete' })).toBeDisabled();
+    await user.click(screen.getByRole('button', { name: 'Activate' }));
+    await waitFor(() => expect(events.mock.calls.map(([event]) => event.type)).toContain('action_completed'));
   });
 
   it('renders the discovery shell with grouped sidebar navigation', () => {

@@ -63,6 +63,7 @@ export * from './UploadDropzone';
 export * from './MediaField';
 export * from './MediaCard';
 export * from './MediaPreviewCard';
+export * from './GdsAssetManager.client';
 export * from './AccessSummary';
 export * from './AccessRecoveryPanel';
 export * from './AccessibilityEvidence';

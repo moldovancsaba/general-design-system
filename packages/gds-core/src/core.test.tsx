@@ -88,6 +88,7 @@ import { GdsIcon, getGdsIconKeys, getGdsIconMetadata, getGdsIconToneColor, gdsIc
 import { GdsDrawer, GdsModal, OverlayManagerProvider, useOverlayManager } from './OverlayManager.client';
 import { GdsConfirmProvider, GdsToastProvider, useGdsConfirm, useGdsToasts } from './FeedbackRuntime.client';
 import { MediaPreviewCard } from './MediaPreviewCard';
+import { GdsAssetManager, createGdsAssetAdapter, useGdsAssetUploadQueue, validateGdsAsset } from './GdsAssetManager.client';
 import { PublicCaptureFlow } from './PublicCaptureFlow';
 import { PlaybackControls, usePlaybackKeyboardControls } from './PlaybackControls.client';
 import { CreatorThemeBoundary, validateCreatorCss } from './CreatorTheme';
@@ -2322,6 +2323,86 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
 
     expect(screen.getByText('readonly')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Choose files' })).toBeDisabled();
+  });
+
+  it('validates assets, uploads with progress, retries failures, and saves required metadata', async () => {
+    const user = userEvent.setup();
+    const events = vi.fn();
+    const upload = vi.fn()
+      .mockRejectedValueOnce(new Error('Network interrupted.'))
+      .mockImplementation(async ({ file, onProgress }) => {
+        onProgress?.(25);
+        onProgress?.(100);
+        return {
+          id: file.name,
+          fileName: file.name,
+          mimeType: file.type,
+          size: file.size,
+          url: `/assets/${file.name}`,
+          status: 'metadata-incomplete' as const,
+        };
+      });
+
+    function AssetProbe() {
+      const queue = useGdsAssetUploadQueue({
+        adapter: { upload },
+        policy: { acceptedTypes: ['image/png'], maxSizeBytes: 10, requireAlt: true, requireCaption: true },
+        onEvent: events,
+      });
+      const item = queue.items[queue.items.length - 1];
+      return (
+        <div>
+          <button type="button" onClick={() => { void queue.selectFiles([new File(['bad'], 'bad.txt', { type: 'text/plain' })]); }}>Bad file</button>
+          <button type="button" onClick={() => { void queue.selectFiles([new File(['ok'], 'logo.png', { type: 'image/png' })]); }}>Good file</button>
+          {item ? <Text>{item.status}:{item.progress}:{item.error ?? item.asset?.alt ?? 'none'}</Text> : null}
+          {item ? <button type="button" onClick={() => { void queue.retry(item.id); }}>Retry</button> : null}
+          {item?.asset ? <button type="button" onClick={() => queue.saveMetadata(item.id, { alt: 'Logo alt', caption: 'Logo caption', displayMode: 'contain' })}>Save metadata</button> : null}
+        </div>
+      );
+    }
+
+    expect(validateGdsAsset(new File(['x'], 'x.txt', { type: 'text/plain' }), { acceptedTypes: ['image/png'] }).valid).toBe(false);
+    renderWithGds(<AssetProbe />);
+
+    await user.click(screen.getByRole('button', { name: 'Bad file' }));
+    expect(screen.getByText(/Unsupported file type/)).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Good file' }));
+    await user.click(screen.getByRole('button', { name: 'Retry' }));
+    await waitFor(() => expect(screen.getByText('metadata-incomplete:100:none')).toBeInTheDocument());
+    await user.click(screen.getByRole('button', { name: 'Save metadata' }));
+    expect(await screen.findByText('ready:100:Logo alt')).toBeInTheDocument();
+    expect(events.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining([
+      'asset_selected',
+      'validation_failed',
+      'upload_started',
+      'upload_failed',
+      'upload_retry',
+      'metadata_saved',
+    ]));
+  });
+
+  it('renders the governed asset manager with preview, metadata policy, retry, and removal controls', async () => {
+    const user = userEvent.setup();
+    const adapter = createGdsAssetAdapter();
+    const file = new File(['png'], 'hero.png', { type: 'image/png' });
+    renderWithGds(
+      <GdsAssetManager
+        title="Upload hero"
+        description="Hero assets require publish-safe metadata."
+        adapter={adapter}
+        policy={{ acceptedTypes: ['image/png'], maxSizeBytes: 20, requireAlt: true }}
+        displayMode="contain"
+      />,
+    );
+
+    expect(screen.getByText('No assets selected')).toBeInTheDocument();
+    const input = document.querySelector('input[type="file"]') as HTMLInputElement;
+    await user.upload(input, file);
+    expect(await screen.findByText('Metadata incomplete. Alt text or caption is required before publish.')).toBeInTheDocument();
+    await user.type(screen.getByRole('textbox', { name: 'Alt text for hero.png' }), 'Hero image');
+    expect(await screen.findByText('ready')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Remove' }));
+    expect(screen.getByText('No assets selected')).toBeInTheDocument();
   });
 
   it('renders game board tile face and handles press', async () => {

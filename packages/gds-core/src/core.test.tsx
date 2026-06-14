@@ -139,6 +139,13 @@ import {
   validateGdsContentPatterns,
   validateGdsCopyTemplate,
 } from './GdsContentDesign';
+import {
+  GdsDesignHandoffCatalog,
+  generateGdsDesignHandoffReport,
+  getGdsDesignComponentMappings,
+  getGdsDesignTokenMappings,
+  validateGdsDesignHandoffMappings,
+} from './GdsDesignHandoff';
 
 function mockMatchMedia(matches: boolean) {
   const original = window.matchMedia;
@@ -463,6 +470,43 @@ describe('@doneisbetter/gds-core', () => {
     renderWithGds(<GdsContentPatternCatalog />);
     expect(screen.getByRole('heading', { name: 'Error recovery' })).toBeInTheDocument();
     expect(screen.getByText(/Something went wrong/)).toBeInTheDocument();
+  });
+
+  it('publishes design-to-code handoff mappings with props, tokens, statuses, and accessibility annotations', () => {
+    const components = getGdsDesignComponentMappings();
+    const tokens = getGdsDesignTokenMappings();
+    expect(components.map((component) => component.exportName)).toEqual([
+      'SemanticButton',
+      'PageHeader',
+      'GdsDataTable',
+      'GdsResourceManager',
+      'gdsTheme',
+    ]);
+    expect(validateGdsDesignHandoffMappings(components, tokens)).toEqual([]);
+    for (const component of components) {
+      expect(component.figmaComponent).toContain('GDS /');
+      expect(component.props.length).toBeGreaterThan(0);
+      expect(component.annotations.labels.length).toBeGreaterThan(0);
+      expect(component.annotations.focusBehavior).toBeTruthy();
+      expect(component.annotations.stateSemantics.length).toBeGreaterThan(0);
+      expect(component.annotations.accessibility.length).toBeGreaterThan(0);
+      expect(component.recovery).toMatch(/stale|migrate|authoritative|bespoke/i);
+    }
+    expect(tokens.map((token) => token.token)).toContain('color.focus');
+    const report = generateGdsDesignHandoffReport('2026-06-14T00:00:00Z');
+    expect(report.counts.approved).toBeGreaterThan(0);
+    expect(report.counts.experimental).toBe(1);
+    expect(report.counts.deprecated).toBe(1);
+    expect(report.approvedComponents).toContain('PageHeader');
+    components[0]!.props.length = 0;
+    expect(getGdsDesignComponentMappings()[0]!.props.length).toBeGreaterThan(0);
+  });
+
+  it('renders the design handoff catalog for docs surfaces', () => {
+    renderWithGds(<GdsDesignHandoffCatalog />);
+    expect(screen.getByRole('heading', { name: 'SemanticButton' })).toBeInTheDocument();
+    expect(screen.getByText('GDS / Actions / Semantic Button')).toBeInTheDocument();
+    expect(screen.getByText(/Visible focus ring/)).toBeInTheDocument();
   });
 
   it('renders package-native typography roles without local Text and Title ladders', () => {

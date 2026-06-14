@@ -21,7 +21,7 @@ import { ConfirmDialog } from './ConfirmDialog';
 import { ChoiceChip } from './ChoiceChip';
 import { DataToolbar } from './DataToolbar';
 import { CommandRegistryProvider, useCommandLauncher } from './CommandPalette.client';
-import { FormErrorSummary, GdsFormProvider, gdsFormReducer, useGdsForm, ValidatedFieldMessage } from './GdsForm.client';
+import { createGdsDraftAdapter, FormErrorSummary, GdsFormProvider, GdsValidationSummary, gdsFormReducer, useGdsForm, useGdsFormOrchestration, ValidatedFieldMessage } from './GdsForm.client';
 import { ActiveFilterChips, BulkActionsBar, ResultSummary, SortMenu } from './ListingPrimitives';
 import { ListingProvider, listingQueryReducer, useListingState } from './ListingState.client';
 import { DetailProfileShell } from './DetailProfileShell';
@@ -2445,6 +2445,77 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     renderWithGds(<FormProbe />);
     await user.click(screen.getByRole('button', { name: 'Submit' }));
     expect(screen.getAllByText('Title is too short.').length).toBeGreaterThan(0);
+  });
+
+  it('orchestrates autosave, optimistic submit, server errors, retry, and draft restore', async () => {
+    const user = userEvent.setup();
+    const storage = new Map<string, string>();
+    const draft = createGdsDraftAdapter<{ title: string }>('draft:test', {
+      getItem: (key) => storage.get(key) ?? null,
+      setItem: (key, value) => { storage.set(key, value); },
+      removeItem: (key) => { storage.delete(key); },
+    });
+    const submit = vi.fn()
+      .mockRejectedValueOnce(new Error('Server rejected title.'))
+      .mockResolvedValueOnce(undefined);
+    const events = vi.fn();
+
+    function FormProbe() {
+      const form = useGdsFormOrchestration({
+        initialValues: { title: '' },
+        draftAdapter: draft,
+        autosave: true,
+        optimisticSubmit: true,
+        onEvent: events,
+        validate: (snapshot) => (String(snapshot.fields.title?.value ?? '').length < 3
+          ? [{ field: 'title', message: 'Title is too short.', severity: 'blocking' as const }]
+          : []),
+        onSubmit: submit,
+        mapServerErrors: () => [{ field: 'title', message: 'Use a unique title.' }],
+      });
+      return (
+        <GdsFormProvider snapshot={form.snapshot}>
+          <input
+            id="title"
+            aria-label="Title"
+            value={String(form.snapshot.fields.title?.value ?? '')}
+            onChange={(event) => form.setFieldValue('title', event.currentTarget.value)}
+          />
+          <button type="button" onClick={() => { void form.submit(); }}>Submit</button>
+          <button type="button" onClick={() => { void form.restoreDraft?.(); }}>Restore</button>
+          <GdsValidationSummary />
+          <ValidatedFieldMessage field="title" />
+          <Text>{form.snapshot.submitState}</Text>
+        </GdsFormProvider>
+      );
+    }
+
+    renderWithGds(<FormProbe />);
+
+    await user.type(screen.getByRole('textbox', { name: 'Title' }), 'AB');
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(screen.getAllByText('Title is too short.').length).toBeGreaterThan(0);
+
+    await user.clear(screen.getByRole('textbox', { name: 'Title' }));
+    await user.type(screen.getByRole('textbox', { name: 'Title' }), 'Alpha');
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    await waitFor(() => expect(screen.getAllByText('Use a unique title.').length).toBeGreaterThan(0));
+    expect(storage.get('draft:test')).toContain('Alpha');
+
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    await waitFor(() => expect(submit).toHaveBeenCalledTimes(2));
+    expect(events.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining([
+      'dirty_changed',
+      'validation_failed',
+      'autosave_succeeded',
+      'submit_failed',
+      'retry_succeeded',
+    ]));
+
+    await draft.save({ title: 'Restored title' });
+    await user.click(screen.getByRole('button', { name: 'Restore' }));
+    expect(await screen.findByDisplayValue('Restored title')).toBeInTheDocument();
+    expect(events.mock.calls.map(([event]) => event.type)).toContain('draft_restored');
   });
 
   it('manages overlay stack with top-most close rules', async () => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useMemo, useReducer } from 'react';
+import { createContext, useCallback, useContext, useMemo, useReducer, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Alert, Anchor, Stack, Text } from '@mantine/core';
 
@@ -12,7 +12,7 @@ export interface ValidationIssue {
   severity: ValidationSeverity;
 }
 
-export type SubmitState = 'idle' | 'validating' | 'submitting' | 'success' | 'error';
+export type SubmitState = 'idle' | 'validating' | 'autosaving' | 'saved' | 'submitting' | 'optimistic' | 'success' | 'error' | 'restored';
 
 export interface FieldState {
   value: unknown;
@@ -99,12 +99,75 @@ interface UseGdsFormConfig<TValues extends Record<string, unknown>> {
   onSubmit: SubmitHandler<TValues>;
 }
 
+export interface GdsDraftAdapter<TValues extends Record<string, unknown>> {
+  load: () => Promise<TValues | null> | TValues | null;
+  save: (values: TValues) => Promise<void> | void;
+  clear: () => Promise<void> | void;
+}
+
+export interface GdsFormServerError {
+  field?: string;
+  message: string;
+}
+
+export interface GdsFormOrchestrationEvent {
+  type: 'dirty_changed' | 'validation_failed' | 'autosave_succeeded' | 'submit_failed' | 'retry_succeeded' | 'draft_restored';
+  status: SubmitState;
+  timestamp: number;
+  privacy: 'metadata-only';
+}
+
+export interface UseGdsFormOrchestrationConfig<TValues extends Record<string, unknown>> extends UseGdsFormConfig<TValues> {
+  draftAdapter?: GdsDraftAdapter<TValues>;
+  autosave?: boolean;
+  optimisticSubmit?: boolean;
+  mapServerErrors?: (error: unknown) => GdsFormServerError[];
+  onEvent?: (event: GdsFormOrchestrationEvent) => void;
+}
+
 interface GdsFormController<TValues extends Record<string, unknown>> {
   snapshot: FormSnapshot;
   setFieldValue: (field: keyof TValues & string, value: unknown) => void;
   touchField: (field: keyof TValues & string) => void;
   submit: () => Promise<boolean>;
   retrySubmit: () => Promise<boolean>;
+  restoreDraft?: () => Promise<boolean>;
+  discardDraft?: () => Promise<void>;
+  autosaveDraft?: () => Promise<boolean>;
+}
+
+function snapshotValues<TValues extends Record<string, unknown>>(snapshot: FormSnapshot) {
+  return Object.entries(snapshot.fields).reduce<Record<string, unknown>>((acc, [field, state]) => {
+    acc[field] = state.value;
+    return acc;
+  }, {}) as TValues;
+}
+
+function emitFormEvent(onEvent: UseGdsFormOrchestrationConfig<any>['onEvent'], type: GdsFormOrchestrationEvent['type'], status: SubmitState) {
+  onEvent?.({ type, status, timestamp: Date.now(), privacy: 'metadata-only' });
+}
+
+export function createGdsDraftAdapter<TValues extends Record<string, unknown>>(
+  storageKey: string,
+  storage: Pick<Storage, 'getItem' | 'setItem' | 'removeItem'> = window.localStorage,
+): GdsDraftAdapter<TValues> {
+  return {
+    load: () => {
+      const raw = storage.getItem(storageKey);
+      if (!raw) return null;
+      try {
+        return JSON.parse(raw) as TValues;
+      } catch {
+        return null;
+      }
+    },
+    save: (values) => {
+      storage.setItem(storageKey, JSON.stringify(values));
+    },
+    clear: () => {
+      storage.removeItem(storageKey);
+    },
+  };
 }
 
 export function useGdsForm<TValues extends Record<string, unknown>>({
@@ -132,10 +195,7 @@ export function useGdsForm<TValues extends Record<string, unknown>>({
     dispatch({ type: 'set-submit-state', submitState: 'submitting' });
     try {
       await onSubmit(
-        Object.entries(snapshot.fields).reduce<Record<string, unknown>>((acc, [field, state]) => {
-          acc[field] = state.value;
-          return acc;
-        }, {}) as TValues,
+        snapshotValues<TValues>(snapshot),
       );
       dispatch({ type: 'set-submit-state', submitState: 'success' });
       return true;
@@ -158,6 +218,118 @@ export function useGdsForm<TValues extends Record<string, unknown>>({
       retrySubmit: submit,
     }),
     [snapshot],
+  );
+}
+
+export function useGdsFormOrchestration<TValues extends Record<string, unknown>>({
+  initialValues,
+  validate,
+  validateAsync,
+  onSubmit,
+  draftAdapter,
+  autosave = false,
+  optimisticSubmit = false,
+  mapServerErrors,
+  onEvent,
+}: UseGdsFormOrchestrationConfig<TValues>): GdsFormController<TValues> {
+  const [snapshot, dispatch] = useReducer(gdsFormReducer, initialValues, createSnapshot);
+  const submitAttempt = useRef(0);
+  const [lastSubmitFailed, setLastSubmitFailed] = useState(false);
+
+  const setFieldValue = useCallback((field: keyof TValues & string, value: unknown) => {
+    dispatch({ type: 'set-field', field, value });
+    emitFormEvent(onEvent, 'dirty_changed', 'idle');
+  }, [onEvent]);
+
+  const validateSnapshot = useCallback(async () => {
+    dispatch({ type: 'set-submit-state', submitState: 'validating' });
+    const syncIssues = sortIssues(validate ? validate(snapshot) : []);
+    const asyncIssues = syncIssues.some((issue) => issue.severity === 'blocking') || !validateAsync
+      ? []
+      : sortIssues(await validateAsync(snapshot));
+    const mergedIssues = sortIssues([...syncIssues, ...asyncIssues]);
+    dispatch({ type: 'set-issues', issues: mergedIssues });
+    if (mergedIssues.some((issue) => issue.severity === 'blocking')) {
+      emitFormEvent(onEvent, 'validation_failed', 'error');
+      dispatch({ type: 'set-submit-state', submitState: 'error', submitError: 'Please resolve blocking validation issues.' });
+      return false;
+    }
+    return true;
+  }, [onEvent, snapshot, validate, validateAsync]);
+
+  const autosaveDraft = useCallback(async () => {
+    if (!draftAdapter) return false;
+    dispatch({ type: 'set-submit-state', submitState: 'autosaving' });
+    await draftAdapter.save(snapshotValues<TValues>(snapshot));
+    dispatch({ type: 'set-submit-state', submitState: 'saved' });
+    emitFormEvent(onEvent, 'autosave_succeeded', 'saved');
+    return true;
+  }, [draftAdapter, onEvent, snapshot]);
+
+  const submit = useCallback(async () => {
+    const attempt = submitAttempt.current + 1;
+    submitAttempt.current = attempt;
+    const valid = await validateSnapshot();
+    if (!valid) return false;
+
+    if (autosave) await autosaveDraft();
+    dispatch({ type: 'set-submit-state', submitState: optimisticSubmit ? 'optimistic' : 'submitting' });
+
+    try {
+      await onSubmit(snapshotValues<TValues>(snapshot));
+      await draftAdapter?.clear();
+      dispatch({ type: 'set-submit-state', submitState: 'success' });
+      if (lastSubmitFailed) emitFormEvent(onEvent, 'retry_succeeded', 'success');
+      setLastSubmitFailed(false);
+      return true;
+    } catch (error) {
+      const serverErrors = mapServerErrors?.(error) ?? [];
+      if (serverErrors.length > 0) {
+        dispatch({
+          type: 'set-issues',
+          issues: serverErrors.map((item) => ({
+            field: item.field ?? 'form',
+            message: item.message,
+            severity: 'blocking',
+          })),
+        });
+      }
+      setLastSubmitFailed(true);
+      emitFormEvent(onEvent, 'submit_failed', 'error');
+      dispatch({
+        type: 'set-submit-state',
+        submitState: 'error',
+        submitError: error instanceof Error ? error.message : 'Submission failed.',
+      });
+      return false;
+    }
+  }, [autosave, autosaveDraft, draftAdapter, lastSubmitFailed, mapServerErrors, onEvent, onSubmit, optimisticSubmit, snapshot, validateSnapshot]);
+
+  const restoreDraft = useCallback(async () => {
+    const draft = await draftAdapter?.load();
+    if (!draft) return false;
+    dispatch({ type: 'reset', values: draft });
+    dispatch({ type: 'set-submit-state', submitState: 'restored' });
+    emitFormEvent(onEvent, 'draft_restored', 'restored');
+    return true;
+  }, [draftAdapter, onEvent]);
+
+  const discardDraft = useCallback(async () => {
+    await draftAdapter?.clear();
+  }, [draftAdapter]);
+
+  return useMemo<GdsFormController<TValues>>(
+    () => ({
+      snapshot,
+      setFieldValue,
+      touchField: (field) => dispatch({ type: 'touch-field', field }),
+      submit,
+      retrySubmit: submit,
+      restoreDraft,
+      discardDraft,
+      autosaveDraft,
+    }),
+    [autosaveDraft, discardDraft, restoreDraft, setFieldValue, snapshot, submit],
   );
 }
 
@@ -198,6 +370,8 @@ export function FormErrorSummary({ title = 'Please review the following issues.'
     </Alert>
   );
 }
+
+export const GdsValidationSummary = FormErrorSummary;
 
 export function ValidatedFieldMessage({ field }: { field: string }) {
   const snapshot = useGdsFormSnapshot();

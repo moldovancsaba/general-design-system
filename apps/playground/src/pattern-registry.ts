@@ -151,7 +151,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     coverageStatus: 'live-demo',
     summary: 'Forms should validate without punishing typing and must expose grouped fields and loading submit states.',
     importPath: '@doneisbetter/gds-core',
-    sourceComponent: 'useGdsForm / FormErrorSummary / ValidatedFieldMessage',
+    sourceComponent: 'useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage',
   },
   {
     id: 'admin-editor-flows',

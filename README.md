@@ -48,6 +48,7 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 - **Reference Codemods**: [scripts/codemods/README.md](scripts/codemods/README.md) — Narrow, production-safe migration helpers for shells, actions, listing cards, Mantine controls, Tabler icons, raw controls, inline styles, alerts/confirms, and tables, verified by `node scripts/verify-codemods.mjs`.
 - **Layout Primitives**: [docs/LAYOUT_PRIMITIVES.md](docs/LAYOUT_PRIMITIVES.md) — Governed Box, Stack, Inline, Cluster, Grid, Split, Sidebar, Bleed, and Container composition APIs with responsive token props and replacement guidance.
 - **Safe Styling API**: [docs/SAFE_STYLING.md](docs/SAFE_STYLING.md) — Token-backed style contracts, media wrappers, overflow wrappers, responsive visibility, scanner guidance, and do-not-use examples.
+- **Icon Registry**: [docs/ICON_REGISTRY.md](docs/ICON_REGISTRY.md) — Semantic `GdsIcon`, `GdsIcons`, metadata, aliases, accessibility defaults, and direct-import replacement guidance.
 - **Theme Governance**: [THEME_GOVERNANCE.md](THEME_GOVERNANCE.md) — Brand extension, dark-mode defaults, white-label, flat-surface, and tenant-theme rules.
 - **Accessibility Evidence**: [ACCESSIBILITY_EVIDENCE.md](ACCESSIBILITY_EVIDENCE.md) — Structured keyboard, focus, WCAG, AT/browser, limitation, and recovery evidence for stable patterns.
 - **Accessibility CI Package**: [A11Y_CI_PACKAGE.md](A11Y_CI_PACKAGE.md) — Reusable Playwright/axe helpers for keyboard, focus-trap, contrast, suppression, and deterministic report gates.

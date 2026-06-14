@@ -81,7 +81,7 @@ import { resolveSurfacePresentationStyles } from './SurfacePresentation';
 import { resolveGdsCardContract } from './CardContracts';
 import { ar, de, en, es, fr, getGdsMessages, he, hu, it as itLocale, ru } from './locales';
 import { GdsIcons } from './icons';
-import { GdsIcon, getGdsIconToneColor } from './icons';
+import { GdsIcon, getGdsIconKeys, getGdsIconMetadata, getGdsIconToneColor, gdsIconRegistry } from './icons';
 import { OverlayManagerProvider, useOverlayManager } from './OverlayManager.client';
 import { GdsConfirmProvider, GdsToastProvider, useGdsConfirm, useGdsToasts } from './FeedbackRuntime.client';
 import { MediaPreviewCard } from './MediaPreviewCard';
@@ -321,6 +321,28 @@ describe('@doneisbetter/gds-core', () => {
     expect(screen.getByRole('img', { name: 'Delete item' })).toBeInTheDocument();
     expect(getGdsIconToneColor('danger')).toBe('var(--mantine-color-red-7)');
     expect(getGdsIconToneColor('success')).toBe('var(--mantine-color-green-7)');
+  });
+
+  it('exposes icon metadata, aliases, categories, and accessibility defaults', () => {
+    renderWithGds(
+      <>
+        <GdsIcon name="delete" label="Delete record" tone="danger" />
+        <GdsIcon name="warning" />
+        <GdsIcon name={'not-real' as 'Help'} label="Fallback icon" decorative={false} />
+      </>,
+    );
+
+    expect(getGdsIconKeys()).toContain('Delete');
+    expect(gdsIconRegistry.Delete.category).toBe('action');
+    expect(getGdsIconMetadata('delete')).toMatchObject({
+      name: 'Delete',
+      category: 'action',
+      defaultLabel: 'Delete',
+    });
+    expect(getGdsIconMetadata('warning').category).toBe('status');
+    expect(screen.getByRole('img', { name: 'Delete record' })).toHaveAttribute('data-gds-icon', 'Delete');
+    expect(screen.getByRole('img', { name: 'Fallback icon' })).toHaveAttribute('data-gds-icon', 'Help');
+    expect(document.querySelector('[data-gds-icon="Warning"]')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('supports dependency-governed semantic icon names without direct Tabler imports', () => {

@@ -136,6 +136,14 @@ Inline-style replacement path:
 5. replace responsive display hacks with `GdsResponsiveVisibility`
 6. use `gdsStyle()` or `createGdsStyleContract()` only for reviewed adapter or package-native integration code
 
+Direct icon import replacement path:
+
+1. replace one-to-one action/status icons with `GdsIcon name="..."` or `GdsIcons.*`
+2. use lowercase semantic aliases such as `delete`, `save`, `warning`, `filter`, or `download` where authored config needs string names
+3. use `getGdsIconMetadata()` to validate CMS/configured icon names before rendering
+4. replace icon-only buttons with `ActionBar`, `SemanticButton`, or a labelled GDS control
+5. run the `tabler-icons` codemod for safe import rewrites and manually review unsupported icons by product meaning
+
 ## 6. Required Verification Before Promotion
 
 Run:

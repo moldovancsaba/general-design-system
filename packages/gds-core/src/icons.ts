@@ -216,6 +216,121 @@ export const GdsIcons = {
 };
 
 export type GdsIconKey = keyof typeof GdsIcons;
+export type GdsIconName = GdsIconKey | Lowercase<GdsIconKey> | keyof typeof gdsIconNameAliases;
+export type GdsIconCategory = 'action' | 'status' | 'resource' | 'navigation' | 'media' | 'feedback' | 'system';
+export type GdsIconA11yMode = 'decorative' | 'informative';
+
+export interface GdsIconMetadata {
+  name: GdsIconKey;
+  category: GdsIconCategory;
+  defaultLabel: string;
+  a11yMode: GdsIconA11yMode;
+  directImportReplacement: string;
+}
+
+const gdsIconNameAliases = {
+  add: 'Add',
+  analytics: 'Analytics',
+  attach: 'Attach',
+  back: 'Back',
+  calendar: 'Calendar',
+  cancel: 'Cancel',
+  capture: 'Capture',
+  check: 'Check',
+  clear: 'Clear',
+  clone: 'Clone',
+  close: 'Close',
+  confirm: 'Confirm',
+  copy: 'Copy',
+  danger: 'Danger',
+  dashboard: 'Dashboard',
+  delete: 'Delete',
+  download: 'Download',
+  edit: 'Edit',
+  error: 'Danger',
+  evidence: 'Evidence',
+  export: 'Export',
+  filter: 'Filter',
+  gallery: 'Gallery',
+  help: 'Help',
+  home: 'Home',
+  import: 'Import',
+  info: 'Info',
+  language: 'Language',
+  launch: 'Launch',
+  login: 'Login',
+  logout: 'Logout',
+  menu: 'Menu',
+  notifications: 'Notifications',
+  preview: 'Preview',
+  print: 'Print',
+  refresh: 'Refresh',
+  remove: 'Remove',
+  reset: 'Reset',
+  restore: 'Restore',
+  save: 'Save',
+  search: 'Search',
+  settings: 'Settings',
+  sort: 'Sort',
+  submit: 'Submit',
+  success: 'Success',
+  theme: 'Theme',
+  upload: 'Upload',
+  users: 'Users',
+  verify: 'Verify',
+  warning: 'Warning',
+} as const satisfies Record<string, GdsIconKey>;
+
+const categoryByIcon = {
+  action: ['Add', 'Remove', 'Edit', 'Delete', 'Search', 'Save', 'Play', 'Start', 'Send', 'Reply', 'Forward', 'Attach', 'Upload', 'Download', 'Print', 'Copy', 'Duplicate', 'Check', 'Uncheck', 'Complete', 'Clear', 'Cancel', 'Confirm', 'Close', 'Export', 'Import', 'Preview', 'Clone', 'Restore', 'Toggle', 'Submit', 'Reset', 'Login', 'Register', 'Verify', 'Launch', 'Draft', 'Refer'],
+  status: ['Success', 'Warning', 'Danger', 'Info'],
+  resource: ['Users', 'Gallery', 'Profile', 'Course', 'Lesson', 'Certificate', 'Student', 'Class', 'Grade', 'Child', 'Family', 'Habit', 'Goal', 'Streak', 'Reward', 'Trophy', 'Crown', 'Currency', 'Evidence'],
+  navigation: ['Dashboard', 'Analytics', 'Home', 'Inbox', 'Calendar', 'History', 'Grid', 'List', 'Back', 'ChevronDown', 'ChevronUp', 'Menu'],
+  media: ['Capture', 'Record', 'Flip', 'Flash', 'Eye', 'EyeOff'],
+  feedback: ['Message', 'Mail', 'Refresh', 'TrendingUp', 'TrendingDown', 'Notifications', 'Help'],
+  system: ['Settings', 'Language', 'Theme', 'Logout', 'Moon', 'Sun', 'Filter', 'Sort'],
+} as const satisfies Record<GdsIconCategory, readonly GdsIconKey[]>;
+
+function startCase(value: string) {
+  return value.replace(/([a-z])([A-Z])/g, '$1 $2');
+}
+
+function categoryForIcon(name: GdsIconKey): GdsIconCategory {
+  for (const [category, keys] of Object.entries(categoryByIcon) as Array<[GdsIconCategory, readonly GdsIconKey[]]>) {
+    if (keys.includes(name)) {
+      return category;
+    }
+  }
+  return 'system';
+}
+
+function resolveGdsIconKey(value: GdsIconName | string | undefined): GdsIconKey {
+  if (!value) {
+    return 'Help';
+  }
+  if (isGdsIconKey(value)) {
+    return value;
+  }
+  const alias = gdsIconNameAliases[value as keyof typeof gdsIconNameAliases];
+  if (alias) {
+    return alias;
+  }
+  const normalized = value.slice(0, 1).toUpperCase() + value.slice(1);
+  return isGdsIconKey(normalized) ? normalized : 'Help';
+}
+
+export const gdsIconRegistry = Object.fromEntries(
+  (Object.keys(GdsIcons) as GdsIconKey[]).map((name) => [
+    name,
+    {
+      name,
+      category: categoryForIcon(name),
+      defaultLabel: startCase(name),
+      a11yMode: 'decorative',
+      directImportReplacement: `<GdsIcon name="${name}" label="${startCase(name)}" />`,
+    } satisfies GdsIconMetadata,
+  ]),
+) as Record<GdsIconKey, GdsIconMetadata>;
 
 export function isGdsIconKey(value: string): value is GdsIconKey {
   return value in GdsIcons;
@@ -225,9 +340,13 @@ export function getGdsIconKeys(): GdsIconKey[] {
   return Object.keys(GdsIcons) as GdsIconKey[];
 }
 
+export function getGdsIconMetadata(name: GdsIconName | string): GdsIconMetadata {
+  return gdsIconRegistry[resolveGdsIconKey(name)];
+}
+
 export interface GdsIconProps {
-  icon?: GdsIconKey;
-  name?: GdsIconKey;
+  icon?: GdsIconName;
+  name?: GdsIconName;
   size?: 'xs' | 'sm' | 'md' | 'lg' | number | string;
   label?: string;
   decorative?: boolean;
@@ -267,14 +386,18 @@ export function GdsIcon({
   stroke = 1.75,
   tone = 'default',
 }: GdsIconProps) {
-  const iconKey = icon ?? name ?? 'Help';
+  const iconKey = resolveGdsIconKey(icon ?? name);
+  const metadata = getGdsIconMetadata(iconKey);
   const Icon = GdsIcons[iconKey] ?? GdsIcons.Help;
+  const isDecorative = decorative ?? !label;
   return createElement(Icon, {
     size: typeof size === 'number' ? `${size}px` : iconSizes[size as keyof typeof iconSizes] ?? size,
     stroke,
     color: getGdsIconToneColor(tone),
-    'aria-hidden': decorative || undefined,
-    'aria-label': !decorative ? label : undefined,
-    role: !decorative ? 'img' : undefined,
-  });
+    'data-gds-icon': iconKey,
+    'data-gds-icon-category': metadata.category,
+    'aria-hidden': isDecorative || undefined,
+    'aria-label': !isDecorative ? label ?? metadata.defaultLabel : undefined,
+    role: !isDecorative ? 'img' : undefined,
+  } as Record<string, unknown>);
 }

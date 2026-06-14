@@ -5,6 +5,7 @@ export * from './StatusBadge';
 export * from './GdsPrimitives';
 export * from './Typography';
 export * from './StyleUtilities';
+export * from './LayoutPrimitives';
 export * from './EmptyState';
 export * from './MetricCard';
 export * from './ProgressCard';

@@ -1,0 +1,469 @@
+import { forwardRef, type CSSProperties, type ElementType, type ReactNode } from 'react';
+import { Box } from '@mantine/core';
+import type { BoxProps } from '@mantine/core';
+
+export type GdsLayoutBreakpoint = 'base' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type GdsLayoutToken = 0 | 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type GdsLayoutSize = Exclude<GdsLayoutToken, 0> | 'content' | 'narrow' | 'page' | 'wide' | 'full';
+export type GdsResponsiveValue<T> = T | Partial<Record<GdsLayoutBreakpoint, T>>;
+export type GdsLayoutAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
+export type GdsLayoutJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
+export type GdsLayoutOverflow = 'visible' | 'hidden' | 'auto' | 'clip';
+export type GdsLayoutWrap = 'wrap' | 'nowrap' | 'reverse';
+
+export interface GdsResponsiveResolution<T> {
+  base?: T;
+  breakpoints: Partial<Record<Exclude<GdsLayoutBreakpoint, 'base'>, T>>;
+}
+
+export interface GdsLayoutPrimitiveBaseProps extends Omit<BoxProps, 'align' | 'children' | 'component' | 'display' | 'gap' | 'justify' | 'm' | 'maw' | 'miw' | 'p' | 'style'> {
+  children?: ReactNode;
+  component?: ElementType;
+  style?: CSSProperties;
+  gap?: GdsResponsiveValue<GdsLayoutToken>;
+  padding?: GdsResponsiveValue<GdsLayoutToken>;
+  margin?: GdsResponsiveValue<GdsLayoutToken>;
+  align?: GdsResponsiveValue<GdsLayoutAlign>;
+  justify?: GdsResponsiveValue<GdsLayoutJustify>;
+  overflow?: GdsLayoutOverflow;
+  minWidth?: 'auto' | 'zero' | 'content';
+  maxWidth?: GdsResponsiveValue<GdsLayoutSize>;
+}
+
+export interface GdsBoxProps extends GdsLayoutPrimitiveBaseProps {
+  display?: GdsResponsiveValue<'block' | 'flex' | 'grid' | 'inline-flex' | 'inline-grid' | 'contents'>;
+}
+
+export interface GdsStackProps extends GdsLayoutPrimitiveBaseProps {
+  reverse?: boolean;
+}
+
+export interface GdsInlineProps extends GdsLayoutPrimitiveBaseProps {
+  wrap?: GdsResponsiveValue<GdsLayoutWrap>;
+}
+
+export interface GdsClusterProps extends GdsInlineProps {}
+
+export interface GdsGridProps extends GdsLayoutPrimitiveBaseProps {
+  columns?: GdsResponsiveValue<number | 'auto-fit' | 'auto-fill'>;
+  minColumnWidth?: GdsLayoutSize;
+}
+
+export interface GdsSplitProps extends GdsLayoutPrimitiveBaseProps {
+  ratio?: '1:1' | '2:1' | '1:2' | '3:2' | '2:3';
+  collapseBelow?: Exclude<GdsLayoutBreakpoint, 'base'>;
+}
+
+export interface GdsSidebarProps extends GdsLayoutPrimitiveBaseProps {
+  side?: 'start' | 'end';
+  sidebarWidth?: GdsLayoutSize;
+  collapseBelow?: Exclude<GdsLayoutBreakpoint, 'base'>;
+}
+
+export interface GdsBleedProps extends GdsLayoutPrimitiveBaseProps {
+  bleed?: GdsResponsiveValue<GdsLayoutToken>;
+}
+
+export interface GdsContainerProps extends GdsLayoutPrimitiveBaseProps {
+  size?: GdsResponsiveValue<GdsLayoutSize>;
+  center?: boolean;
+}
+
+const breakpointPixels: Record<Exclude<GdsLayoutBreakpoint, 'base'>, number> = {
+  xs: 480,
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+};
+
+const GdsMantineBox = Box as unknown as ElementType;
+
+const spacingTokenMap: Record<Exclude<GdsLayoutToken, 0>, string> = {
+  none: '0',
+  xs: 'var(--mantine-spacing-xs)',
+  sm: 'var(--mantine-spacing-sm)',
+  md: 'var(--mantine-spacing-md)',
+  lg: 'var(--mantine-spacing-lg)',
+  xl: 'var(--mantine-spacing-xl)',
+  '2xl': 'calc(var(--mantine-spacing-xl) * 1.5)',
+};
+
+const sizeTokenMap: Record<GdsLayoutSize, string> = {
+  none: '0',
+  xs: 'var(--mantine-spacing-xs)',
+  sm: 'var(--mantine-spacing-sm)',
+  md: 'var(--mantine-spacing-md)',
+  lg: 'var(--mantine-spacing-lg)',
+  xl: 'var(--mantine-spacing-xl)',
+  '2xl': 'calc(var(--mantine-spacing-xl) * 1.5)',
+  content: '42rem',
+  narrow: '56rem',
+  page: '72rem',
+  wide: '88rem',
+  full: '100%',
+};
+
+const alignMap: Record<GdsLayoutAlign, CSSProperties['alignItems']> = {
+  start: 'flex-start',
+  center: 'center',
+  end: 'flex-end',
+  stretch: 'stretch',
+  baseline: 'baseline',
+};
+
+const justifyMap: Record<GdsLayoutJustify, CSSProperties['justifyContent']> = {
+  start: 'flex-start',
+  center: 'center',
+  end: 'flex-end',
+  between: 'space-between',
+  around: 'space-around',
+  evenly: 'space-evenly',
+};
+
+const wrapMap: Record<GdsLayoutWrap, CSSProperties['flexWrap']> = {
+  wrap: 'wrap',
+  nowrap: 'nowrap',
+  reverse: 'wrap-reverse',
+};
+
+function isResponsiveRecord<T>(value: GdsResponsiveValue<T> | undefined): value is Partial<Record<GdsLayoutBreakpoint, T>> {
+  return Boolean(value && typeof value === 'object' && !Array.isArray(value));
+}
+
+export function normalizeGdsResponsiveValue<T>(value: GdsResponsiveValue<T> | undefined): GdsResponsiveResolution<T> {
+  if (value === undefined) {
+    return { breakpoints: {} };
+  }
+  if (!isResponsiveRecord(value)) {
+    return { base: value, breakpoints: {} };
+  }
+  const { base, xs, sm, md, lg, xl } = value;
+  return { base, breakpoints: { xs, sm, md, lg, xl } };
+}
+
+function resolveSpacing(value: GdsLayoutToken | undefined) {
+  if (value === undefined) return undefined;
+  if (value === 0) return '0';
+  return spacingTokenMap[value];
+}
+
+function resolveSize(value: GdsLayoutSize | undefined) {
+  if (value === undefined) return undefined;
+  return sizeTokenMap[value];
+}
+
+function hashLayoutSignature(input: string) {
+  let hash = 0;
+  for (let index = 0; index < input.length; index += 1) {
+    hash = ((hash << 5) - hash + input.charCodeAt(index)) | 0;
+  }
+  return `gds-layout-${Math.abs(hash).toString(36)}`;
+}
+
+function responsiveCss<T>(
+  className: string,
+  property: string,
+  value: GdsResponsiveValue<T> | undefined,
+  resolver: (value: T) => string | number | undefined,
+) {
+  const normalized = normalizeGdsResponsiveValue(value);
+  const rules = Object.entries(normalized.breakpoints)
+    .filter((entry): entry is [Exclude<GdsLayoutBreakpoint, 'base'>, T] => entry[1] !== undefined)
+    .map(([breakpoint, nextValue]) => {
+      const resolved = resolver(nextValue);
+      return resolved === undefined ? '' : `@media (min-width: ${breakpointPixels[breakpoint]}px){.${className}{${property}:${resolved};}}`;
+    })
+    .filter(Boolean);
+  return rules.join('');
+}
+
+function baseValue<T>(value: GdsResponsiveValue<T> | undefined, fallback: T): T {
+  const normalized = normalizeGdsResponsiveValue(value);
+  return normalized.base ?? fallback;
+}
+
+function composeResponsiveClass(signature: unknown) {
+  return hashLayoutSignature(JSON.stringify(signature));
+}
+
+function renderResponsiveStyle(css: string) {
+  return css ? <style data-gds-layout>{css}</style> : null;
+}
+
+export function resolveGdsLayoutStyle({
+  display = 'block',
+  gap,
+  padding,
+  margin,
+  align,
+  justify,
+  overflow,
+  minWidth,
+  maxWidth,
+  style,
+}: Pick<GdsBoxProps, 'display' | 'gap' | 'padding' | 'margin' | 'align' | 'justify' | 'overflow' | 'minWidth' | 'maxWidth' | 'style'>): CSSProperties {
+  return {
+    boxSizing: 'border-box',
+    display: baseValue(display, 'block'),
+    gap: resolveSpacing(baseValue(gap, 'none')),
+    padding: resolveSpacing(baseValue(padding, 'none')),
+    margin: resolveSpacing(baseValue(margin, 'none')),
+    alignItems: alignMap[baseValue(align, 'stretch')],
+    justifyContent: justifyMap[baseValue(justify, 'start')],
+    overflow,
+    minWidth: minWidth === 'zero' ? 0 : minWidth === 'content' ? 'max-content' : undefined,
+    maxWidth: resolveSize(baseValue(maxWidth, 'full')),
+    ...style,
+  };
+}
+
+function sharedResponsiveCss(className: string, props: Pick<GdsBoxProps, 'display' | 'gap' | 'padding' | 'margin' | 'align' | 'justify' | 'maxWidth'>) {
+  return [
+    responsiveCss(className, 'display', props.display, (value) => String(value)),
+    responsiveCss(className, 'gap', props.gap, resolveSpacing),
+    responsiveCss(className, 'padding', props.padding, resolveSpacing),
+    responsiveCss(className, 'margin', props.margin, resolveSpacing),
+    responsiveCss(className, 'align-items', props.align, (value) => alignMap[value]),
+    responsiveCss(className, 'justify-content', props.justify, (value) => justifyMap[value]),
+    responsiveCss(className, 'max-width', props.maxWidth, resolveSize),
+  ].join('');
+}
+
+function joinClassNames(...classNames: Array<string | undefined>) {
+  return classNames.filter(Boolean).join(' ') || undefined;
+}
+
+export const GdsBox = forwardRef<HTMLElement, GdsBoxProps>(function GdsBox({
+  children,
+  className,
+  component = 'div',
+  display = 'block',
+  gap,
+  padding,
+  margin,
+  align,
+  justify,
+  overflow,
+  minWidth = 'zero',
+  maxWidth,
+  style,
+  ...props
+}, ref) {
+  const generatedClassName = composeResponsiveClass({ display, gap, padding, margin, align, justify, maxWidth });
+  const css = sharedResponsiveCss(generatedClassName, { display, gap, padding, margin, align, justify, maxWidth });
+  return (
+    <>
+      {renderResponsiveStyle(css)}
+      <GdsMantineBox
+        ref={ref}
+        component={component}
+        className={joinClassNames(generatedClassName, className)}
+        style={resolveGdsLayoutStyle({ display, gap, padding, margin, align, justify, overflow, minWidth, maxWidth, style })}
+        {...props}
+      >
+        {children}
+      </GdsMantineBox>
+    </>
+  );
+});
+
+export const GdsStack = forwardRef<HTMLElement, GdsStackProps>(function GdsStack({
+  reverse = false,
+  gap = 'md',
+  align = 'stretch',
+  component = 'div',
+  style,
+  ...props
+}, ref) {
+  return (
+    <GdsBox
+      ref={ref}
+      component={component}
+      display="flex"
+      gap={gap}
+      align={align}
+      style={{ flexDirection: reverse ? 'column-reverse' : 'column', ...style }}
+      {...props}
+    />
+  );
+});
+
+export const GdsInline = forwardRef<HTMLElement, GdsInlineProps>(function GdsInline({
+  gap = 'sm',
+  align = 'center',
+  justify = 'start',
+  wrap = 'wrap',
+  component = 'div',
+  className,
+  style,
+  ...props
+}, ref) {
+  const generatedClassName = composeResponsiveClass({ wrap });
+  const css = responsiveCss(generatedClassName, 'flex-wrap', wrap, (value) => wrapMap[value]);
+  return (
+    <>
+      {renderResponsiveStyle(css)}
+      <GdsBox
+        ref={ref}
+        component={component}
+        display="flex"
+        gap={gap}
+        align={align}
+        justify={justify}
+        className={joinClassNames(generatedClassName, className)}
+        style={{ flexWrap: wrapMap[baseValue(wrap, 'wrap')], minWidth: 0, ...style }}
+        {...props}
+      />
+    </>
+  );
+});
+
+export const GdsCluster = forwardRef<HTMLElement, GdsClusterProps>(function GdsCluster({
+  align = 'center',
+  justify = 'between',
+  gap = 'sm',
+  ...props
+}, ref) {
+  return <GdsInline ref={ref} align={align} justify={justify} gap={gap} {...props} />;
+});
+
+function resolveGridColumns(columns: number | 'auto-fit' | 'auto-fill' | undefined, minColumnWidth: GdsLayoutSize) {
+  if (typeof columns === 'number') {
+    return `repeat(${columns}, minmax(0, 1fr))`;
+  }
+  if (columns === 'auto-fill' || columns === 'auto-fit') {
+    return `repeat(${columns}, minmax(min(100%, ${resolveSize(minColumnWidth)}), 1fr))`;
+  }
+  return 'repeat(1, minmax(0, 1fr))';
+}
+
+export const GdsGrid = forwardRef<HTMLElement, GdsGridProps>(function GdsGrid({
+  columns = { base: 1, md: 2 },
+  minColumnWidth = 'content',
+  gap = 'md',
+  component = 'div',
+  className,
+  style,
+  ...props
+}, ref) {
+  const generatedClassName = composeResponsiveClass({ columns, minColumnWidth });
+  const css = responsiveCss(generatedClassName, 'grid-template-columns', columns, (value) => resolveGridColumns(value, minColumnWidth));
+  return (
+    <>
+      {renderResponsiveStyle(css)}
+      <GdsBox
+        ref={ref}
+        component={component}
+        display="grid"
+        gap={gap}
+        className={joinClassNames(generatedClassName, className)}
+        style={{ gridTemplateColumns: resolveGridColumns(baseValue(columns, 1), minColumnWidth), minWidth: 0, ...style }}
+        {...props}
+      />
+    </>
+  );
+});
+
+function splitTemplate(ratio: NonNullable<GdsSplitProps['ratio']>) {
+  const [start, end] = ratio.split(':').map(Number);
+  return `minmax(0, ${start}fr) minmax(0, ${end}fr)`;
+}
+
+export const GdsSplit = forwardRef<HTMLElement, GdsSplitProps>(function GdsSplit({
+  ratio = '1:1',
+  collapseBelow = 'md',
+  gap = 'lg',
+  className,
+  style,
+  ...props
+}, ref) {
+  const generatedClassName = composeResponsiveClass({ ratio, collapseBelow, type: 'split' });
+  const css = `@media (min-width: ${breakpointPixels[collapseBelow]}px){.${generatedClassName}{grid-template-columns:${splitTemplate(ratio)};}}`;
+  return (
+    <>
+      {renderResponsiveStyle(css)}
+      <GdsBox
+        ref={ref}
+        display="grid"
+        gap={gap}
+        className={joinClassNames(generatedClassName, className)}
+        style={{ gridTemplateColumns: 'minmax(0, 1fr)', alignItems: 'start', ...style }}
+        {...props}
+      />
+    </>
+  );
+});
+
+export const GdsSidebar = forwardRef<HTMLElement, GdsSidebarProps>(function GdsSidebar({
+  side = 'start',
+  sidebarWidth = 'content',
+  collapseBelow = 'md',
+  gap = 'lg',
+  className,
+  style,
+  ...props
+}, ref) {
+  const generatedClassName = composeResponsiveClass({ side, sidebarWidth, collapseBelow, type: 'sidebar' });
+  const sidebarTrack = `minmax(min(100%, ${resolveSize(sidebarWidth)}), ${resolveSize(sidebarWidth)})`;
+  const template = side === 'start' ? `${sidebarTrack} minmax(0, 1fr)` : `minmax(0, 1fr) ${sidebarTrack}`;
+  const css = `@media (min-width: ${breakpointPixels[collapseBelow]}px){.${generatedClassName}{grid-template-columns:${template};}}`;
+  return (
+    <>
+      {renderResponsiveStyle(css)}
+      <GdsBox
+        ref={ref}
+        display="grid"
+        gap={gap}
+        className={joinClassNames(generatedClassName, className)}
+        style={{ gridTemplateColumns: 'minmax(0, 1fr)', alignItems: 'start', ...style }}
+        {...props}
+      />
+    </>
+  );
+});
+
+export const GdsBleed = forwardRef<HTMLElement, GdsBleedProps>(function GdsBleed({
+  bleed = 'md',
+  className,
+  style,
+  ...props
+}, ref) {
+  const generatedClassName = composeResponsiveClass({ bleed, type: 'bleed' });
+  const css = responsiveCss(generatedClassName, 'margin-inline', bleed, (value) => {
+    const resolved = resolveSpacing(value);
+    return resolved ? `calc(${resolved} * -1)` : undefined;
+  });
+  const baseBleed = resolveSpacing(baseValue(bleed, 'md'));
+  return (
+    <>
+      {renderResponsiveStyle(css)}
+      <GdsBox
+        ref={ref}
+        className={joinClassNames(generatedClassName, className)}
+        style={{ marginInline: baseBleed ? `calc(${baseBleed} * -1)` : undefined, ...style }}
+        {...props}
+      />
+    </>
+  );
+});
+
+export const GdsContainer = forwardRef<HTMLElement, GdsContainerProps>(function GdsContainer({
+  size = 'page',
+  center = true,
+  padding = { base: 'md', md: 'lg' },
+  className,
+  style,
+  ...props
+}, ref) {
+  return (
+    <GdsBox
+      ref={ref}
+      maxWidth={size}
+      padding={padding}
+      className={className}
+      style={{ width: '100%', marginInline: center ? 'auto' : undefined, ...style }}
+      {...props}
+    />
+  );
+});

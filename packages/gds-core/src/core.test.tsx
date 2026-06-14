@@ -39,6 +39,7 @@ import { GdsChart, gdsChartTypeRegistry, gdsChartSetATypeRegistry, gdsChartSetBT
 import { GdsBarChart, GdsLineChart, GdsStackedBarChart, getGdsSeriesColor } from './SemanticCharts';
 import { BodyText, CardTitle, InlineEmphasis, LabelText, MetadataText, PageTitle, SectionTitle } from './Typography';
 import { ClippedFlexChild, FloatingActionPlacement, ListItemSection, NumericCell, OverflowContainer, SemanticInset, VisuallyHidden } from './StyleUtilities';
+import { GdsBox, GdsCluster, GdsContainer, GdsGrid, GdsInline, GdsSidebar, GdsSplit, GdsStack, normalizeGdsResponsiveValue, resolveGdsLayoutStyle } from './LayoutPrimitives';
 import { EvidencePanel } from './EvidencePanel';
 import { ListingCard } from './ListingCard';
 import { getGdsBlockTypes, getGdsLayoutTemplate, getGdsLayoutTemplates, registerGdsBlock, renderGdsLayout, renderGdsLayoutWithDiagnostics, validateGdsLayout } from './LayoutBlocks';
@@ -222,6 +223,41 @@ describe('@doneisbetter/gds-core', () => {
     expect(screen.getByText('Long child')).toHaveStyle({ minWidth: '0' });
     expect(screen.getByText('Inset')).toBeInTheDocument();
     expect(screen.getByText('Row').tagName).toBe('LI');
+  });
+
+  it('provides governed layout primitives with responsive token contracts', () => {
+    const responsive = normalizeGdsResponsiveValue({ base: 'sm', md: 'lg' });
+    expect(responsive).toEqual({ base: 'sm', breakpoints: { xs: undefined, sm: undefined, md: 'lg', lg: undefined, xl: undefined } });
+    expect(resolveGdsLayoutStyle({ display: 'flex', gap: 'md', align: 'center', justify: 'between', minWidth: 'zero' })).toMatchObject({
+      display: 'flex',
+      gap: 'var(--mantine-spacing-md)',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      minWidth: 0,
+    });
+
+    renderWithGds(
+      <>
+        <GdsBox component="section" aria-label="Governed box" padding={{ base: 'sm', md: 'lg' }} maxWidth="page">Box</GdsBox>
+        <GdsStack component="nav" aria-label="Stack nav"><a href="#one">One</a></GdsStack>
+        <GdsInline aria-label="Inline actions" wrap={{ base: 'wrap', lg: 'nowrap' }}><button type="button">A</button><button type="button">B</button></GdsInline>
+        <GdsCluster aria-label="Cluster actions"><button type="button">C</button></GdsCluster>
+        <GdsGrid aria-label="Responsive grid" columns={{ base: 1, md: 3 }}><div>Grid item</div></GdsGrid>
+        <GdsSplit aria-label="Split layout" ratio="2:1"><div>Primary</div><div>Secondary</div></GdsSplit>
+        <GdsSidebar aria-label="Sidebar layout" side="end" sidebarWidth="narrow"><aside>Sidebar</aside><main>Main</main></GdsSidebar>
+        <GdsContainer component="main" aria-label="Page container" size={{ base: 'full', lg: 'wide' }}>Container</GdsContainer>
+      </>,
+    );
+
+    expect(screen.getByRole('region', { name: 'Governed box' })).toHaveTextContent('Box');
+    expect(screen.getByRole('navigation', { name: 'Stack nav' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Inline actions')).toHaveStyle({ display: 'flex', flexWrap: 'wrap' });
+    expect(screen.getByLabelText('Cluster actions')).toHaveStyle({ justifyContent: 'space-between' });
+    expect(screen.getByLabelText('Responsive grid')).toHaveStyle({ display: 'grid' });
+    expect(screen.getByLabelText('Split layout')).toHaveStyle({ gridTemplateColumns: 'minmax(0, 1fr)' });
+    expect(screen.getByLabelText('Sidebar layout')).toHaveTextContent('Sidebar');
+    expect(screen.getByRole('main', { name: 'Page container' })).toHaveStyle({ width: '100%' });
+    expect(document.querySelectorAll('style[data-gds-layout]').length).toBeGreaterThan(0);
   });
 
   it('exposes a server-safe semantic action label helper', () => {

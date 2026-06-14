@@ -91,14 +91,14 @@ Canonical `3.4.14` end-state install source after the release gate opens:
 
 ```bash
 npm install @doneisbetter/gds@3.4.14
-npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14
+npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14 @doneisbetter/gds-a11y@3.4.14
 ```
 
 Granular package path:
 
 ```bash
 npm install @doneisbetter/gds-theme@3.4.14 @doneisbetter/gds-core@3.4.14 @doneisbetter/gds-admin@3.4.14
-npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14
+npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14 @doneisbetter/gds-a11y@3.4.14
 ```
 
 Fallback release-bundle install path if npm is temporarily unavailable:
@@ -115,4 +115,4 @@ npm run verify:references
 npm run verify:published
 ```
 
-`npm run verify:published` uses bounded registry polling. Operators may increase the retry window for registry propagation with `GDS_REGISTRY_RETRIES` and `GDS_REGISTRY_DELAY_MS`, but release communication must wait until all six packages resolve to the same `VERSION`.
+`npm run verify:published` uses bounded registry polling. Operators may increase the retry window for registry propagation with `GDS_REGISTRY_RETRIES` and `GDS_REGISTRY_DELAY_MS`, but release communication must wait until all seven packages resolve to the same `VERSION`.

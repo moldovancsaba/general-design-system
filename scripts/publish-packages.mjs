@@ -10,6 +10,7 @@ const workspaces = [
   '@doneisbetter/gds-theme',
   '@doneisbetter/gds-core',
   '@doneisbetter/gds-admin',
+  '@doneisbetter/gds-a11y',
   '@doneisbetter/gds',
   '@doneisbetter/gds-eslint-config',
   '@doneisbetter/gds-compliance',

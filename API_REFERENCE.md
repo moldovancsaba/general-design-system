@@ -8,6 +8,7 @@ This repository ships the public API reference from `apps/playground/src/api-ref
 - `@doneisbetter/gds-theme` owns theme lanes, provider setup, font lanes, and i18n context.
 - `@doneisbetter/gds-core` owns public surfaces, docs surfaces, feedback, forms, tables, playback, media, layout, icon, and state primitives.
 - `@doneisbetter/gds-admin` owns operator CRUD, resource manager, admin table, overlay, and admin shell contracts.
+- `@doneisbetter/gds-a11y` owns optional Playwright/axe accessibility CI helpers for consumer repositories.
 - `@doneisbetter/gds-compliance` owns manifest validation, strict drift scanning, exception lifecycle reporting, and adoption scoring.
 
 ## Compliance and Adoption API
@@ -60,6 +61,21 @@ High-contrast and forced-colors release gates:
 - `validateGdsAccessibilityEvidence(entries)`
 
 These helpers back the official evidence registry rendered on the docs site. The registry publishes keyboard behavior, visible focus behavior, screen-reader semantics, WCAG mappings, assistive-technology/browser status, known limitations, owners, and recovery notes for every stable pattern.
+
+## Accessibility CI API
+
+`@doneisbetter/gds-a11y` exports the reusable consumer test helpers:
+
+- `createGdsA11yTest(page, config)`
+- `runGdsAxeScan(page, config)`
+- `expectGdsTabOrder(page, selectors, config)`
+- `expectGdsFocusTrap(page, containerSelector, config)`
+- `runGdsContrastGate(page, config)`
+- `createGdsA11yReport(config)`
+- `formatGdsA11yReport(report)`
+- `applyGdsA11ySuppressions(findings, suppressions)`
+
+The package treats `@playwright/test` and `axe-core` as optional peers. Consumers wire their own authenticated route setup, inject axe where needed, and receive deterministic JSON plus readable CI output with pass, warning, failure, suppressed, and incomplete states.
 
 ## Maturity Capability API
 
@@ -114,6 +130,7 @@ Every public entry includes:
 ```bash
 npm run verify:api-docs-coverage
 npm run verify:accessibility-evidence
+npm run verify:a11y-package
 ```
 
 The command fails when runtime exports are not represented by the API reference registry source coverage.

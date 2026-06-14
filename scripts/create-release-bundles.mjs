@@ -13,6 +13,7 @@ const workspaces = [
   { name: '@doneisbetter/gds-theme', dev: false },
   { name: '@doneisbetter/gds-core', dev: false },
   { name: '@doneisbetter/gds-admin', dev: false },
+  { name: '@doneisbetter/gds-a11y', dev: true },
   { name: '@doneisbetter/gds', dev: false, registryOnly: true },
   { name: '@doneisbetter/gds-eslint-config', dev: true },
   { name: '@doneisbetter/gds-compliance', dev: true },

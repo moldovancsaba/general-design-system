@@ -10,6 +10,7 @@ npm run verify:i18n-package-copy
 npm run verify:references
 npm run verify:release
 npm run verify:accessibility-evidence
+npm run verify:a11y-package
 npm run verify:theme-tokens
 npm run verify:forced-colors-runtime
 gds-compliance adoption-report --manifest ./gds-adoption.json --format md
@@ -77,6 +78,23 @@ Flow:
 2. `@doneisbetter/gds-core` exposes helper APIs to index, resolve, summarize, and validate those records.
 3. `/coverage`, `/api`, and `/governance` render the live evidence summary through shipped GDS docs primitives.
 4. `verify:accessibility-evidence` fails when records are missing, stale, missing required WCAG mappings, missing AT/browser rows, or missing limitation recovery metadata.
+
+## Accessibility CI Package LLD
+
+Source:
+
+- `packages/gds-a11y/src/index.ts`
+- `packages/gds-a11y/src/index.test.ts`
+- `scripts/verify-a11y-package.mjs`
+- `A11Y_CI_PACKAGE.md`
+
+Flow:
+
+1. Consumer Playwright fixtures own auth, data setup, and route selection.
+2. `createGdsA11yTest(...)` opens the route when requested, runs axe findings, optional tab-order assertions, focus-trap checks, and GDS contrast gates.
+3. Suppressions require owner, reason, expiry, and replacement path; expired suppressions return as active findings.
+4. Reports emit deterministic JSON and `formatGdsA11yReport(...)` emits readable CI output.
+5. `verify:a11y-package` builds the package, runs self-tests, and verifies required exports and documentation before release.
 
 ## Operational Telemetry LLD
 

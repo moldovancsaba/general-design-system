@@ -44,14 +44,14 @@ npm install @doneisbetter/gds@3.4.14
 Governance packages:
 
 ```bash
-npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14
+npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14 @doneisbetter/gds-a11y@3.4.14
 ```
 
 Granular runtime packages when package separation is intentional:
 
 ```bash
 npm install @doneisbetter/gds-theme@3.4.14 @doneisbetter/gds-core@3.4.14 @doneisbetter/gds-admin@3.4.14
-npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14
+npm install -D @doneisbetter/gds-eslint-config@3.4.14 @doneisbetter/gds-compliance@3.4.14 @doneisbetter/gds-a11y@3.4.14
 ```
 
 Required peers:

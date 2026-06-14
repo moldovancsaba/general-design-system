@@ -1,0 +1,46 @@
+{
+  "name": "@doneisbetter/gds-a11y",
+  "version": "3.4.14",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "bin": {
+    "gds-a11y": "bin/gds-a11y.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sovereignsquad/general-design-system.git",
+    "directory": "packages/gds-a11y"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "peerDependencies": {
+    "@playwright/test": "^1.45.0",
+    "axe-core": "^4.10.0"
+  },
+  "peerDependenciesMeta": {
+    "@playwright/test": {
+      "optional": true
+    },
+    "axe-core": {
+      "optional": true
+    }
+  }
+}

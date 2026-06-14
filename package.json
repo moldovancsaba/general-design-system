@@ -6,8 +6,8 @@
     "apps/*"
   ],
   "scripts": {
-    "verify:release": "node scripts/check-release-alignment.mjs && npm run build && node scripts/check-export-contract.mjs && npm run lint && npm run test:run && npm run verify:references && npm run verify:theme-accessibility && npm run verify:theme-tokens && npm run verify:forced-colors-runtime && npm run verify:theme-trust-runtime && npm run audit:dependencies && npm run audit:board && npm run verify:mantine",
-    "build": "npm run build --workspace=@doneisbetter/gds-theme && npm run build --workspace=@doneisbetter/gds-core && npm run build --workspace=@doneisbetter/gds-admin && npm run build --workspace=@doneisbetter/gds && npm run build --workspace=playground && npm run build --workspace=reference-vite && npm run build --workspace=reference-next",
+    "verify:release": "node scripts/check-release-alignment.mjs && npm run build && node scripts/check-export-contract.mjs && npm run lint && npm run test:run && npm run verify:references && npm run verify:a11y-package && npm run verify:theme-accessibility && npm run verify:theme-tokens && npm run verify:forced-colors-runtime && npm run verify:theme-trust-runtime && npm run audit:dependencies && npm run audit:board && npm run verify:mantine",
+    "build": "npm run build --workspace=@doneisbetter/gds-theme && npm run build --workspace=@doneisbetter/gds-core && npm run build --workspace=@doneisbetter/gds-admin && npm run build --workspace=@doneisbetter/gds-a11y && npm run build --workspace=@doneisbetter/gds && npm run build --workspace=playground && npm run build --workspace=reference-vite && npm run build --workspace=reference-next",
     "dev": "npm run dev --workspace=apps/playground",
     "lint": "npm run lint --workspace=apps/playground",
     "test": "vitest",
@@ -20,6 +20,7 @@
     "verify:forced-colors-runtime": "node scripts/verify-forced-colors-runtime.mjs",
     "verify:theme-trust-runtime": "node scripts/verify-theme-trust-runtime.mjs",
     "verify:accessibility-runtime": "node scripts/verify-accessibility-runtime.mjs",
+    "verify:a11y-package": "npm run build --workspace=@doneisbetter/gds-a11y && npm run test:run -- packages/gds-a11y/src/index.test.ts && node scripts/verify-a11y-package.mjs",
     "verify:i18n-route-coverage": "node scripts/verify-locale-coverage.mjs",
     "verify:i18n-message-parity": "node scripts/verify-i18n-message-parity.mjs",
     "verify:i18n-package-copy": "node scripts/verify-i18n-package-copy.mjs",

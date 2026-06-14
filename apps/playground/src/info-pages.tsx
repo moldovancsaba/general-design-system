@@ -35,10 +35,10 @@ import {
 import { productUseCases } from './product-use-cases';
 
 const installCode = `npm install @doneisbetter/gds@${targetGdsVersion}
-npm install -D @doneisbetter/gds-eslint-config@${targetGdsVersion} @doneisbetter/gds-compliance@${targetGdsVersion}`;
+npm install -D @doneisbetter/gds-eslint-config@${targetGdsVersion} @doneisbetter/gds-compliance@${targetGdsVersion} @doneisbetter/gds-a11y@${targetGdsVersion}`;
 
 const granularInstallCode = `npm install @doneisbetter/gds-theme@${targetGdsVersion} @doneisbetter/gds-core@${targetGdsVersion} @doneisbetter/gds-admin@${targetGdsVersion}
-npm install -D @doneisbetter/gds-eslint-config@${targetGdsVersion} @doneisbetter/gds-compliance@${targetGdsVersion}`;
+npm install -D @doneisbetter/gds-eslint-config@${targetGdsVersion} @doneisbetter/gds-compliance@${targetGdsVersion} @doneisbetter/gds-a11y@${targetGdsVersion}`;
 
 const peerCode = `npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react`;
 const mantineCorePackage = '@mantine/' + 'core';
@@ -120,7 +120,7 @@ const updateCode = `npm install @doneisbetter/gds@${targetGdsVersion}
 npm install @doneisbetter/gds-theme@${targetGdsVersion} @doneisbetter/gds-core@${targetGdsVersion} @doneisbetter/gds-admin@${targetGdsVersion}
 
 # governance tooling
-npm install -D @doneisbetter/gds-eslint-config@${targetGdsVersion} @doneisbetter/gds-compliance@${targetGdsVersion}`;
+npm install -D @doneisbetter/gds-eslint-config@${targetGdsVersion} @doneisbetter/gds-compliance@${targetGdsVersion} @doneisbetter/gds-a11y@${targetGdsVersion}`;
 
 const complianceCode = `{
   "schemaVersion": 1,
@@ -163,6 +163,7 @@ const verificationCode = `npm run build
 npm run test:run
 npm run verify:mantine
 npm run verify:accessibility-evidence
+npm run verify:a11y-package
 gds-compliance check --manifest ./gds-adoption.json`;
 
 const failureRecoveryCode = `# Peer conflict
@@ -188,6 +189,7 @@ What to do now:
   - @doneisbetter/gds@${targetGdsVersion}
   - @doneisbetter/gds-eslint-config@${targetGdsVersion} (dev)
   - @doneisbetter/gds-compliance@${targetGdsVersion} (dev)
+  - @doneisbetter/gds-a11y@${targetGdsVersion} (dev, for reusable Playwright/axe CI gates)
 - Remove local branding-layer theme extension code based on extendGdsTheme(...).
 - Route theme ownership through one approved lane:
   - gdsTheme
@@ -204,6 +206,7 @@ What to do now:
   - npm run build
   - npm run test:run
   - npm run verify:mantine
+  - npm run verify:a11y-package
   - gds-compliance check --manifest ./gds-adoption.json
 
 Reference checks:

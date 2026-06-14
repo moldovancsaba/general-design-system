@@ -45,7 +45,7 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 - **Release Publish Runbook**: [RELEASE_PUBLISH.md](RELEASE_PUBLISH.md) — Authenticated npm publish flow, dry-run command, and recovery guidance.
 - **Verified Consumer Install Proof**: [VERIFIED_CONSUMER_INSTALL_PROOF.md](VERIFIED_CONSUMER_INSTALL_PROOF.md) — The current evidence for Next 15 / React 19 / Mantine 8 and 9 package consumption plus the canonical npm install path.
 - **Compliance Toolkit**: [COMPLIANCE_TOOLKIT.md](COMPLIANCE_TOOLKIT.md) — Shared lint, manifest validation, stale-doc detection, banned-import governance, and repo-level drift checks.
-- **Reference Codemods**: [scripts/codemods/README.md](scripts/codemods/README.md) — Narrow, production-safe migration helpers for `DiscoveryShell`, `ActionBar`, and `ListingCard`, verified by `node scripts/verify-codemods.mjs`.
+- **Reference Codemods**: [scripts/codemods/README.md](scripts/codemods/README.md) — Narrow, production-safe migration helpers for shells, actions, listing cards, Mantine controls, Tabler icons, raw controls, inline styles, alerts/confirms, and tables, verified by `node scripts/verify-codemods.mjs`.
 - **Theme Governance**: [THEME_GOVERNANCE.md](THEME_GOVERNANCE.md) — Brand extension, dark-mode defaults, white-label, flat-surface, and tenant-theme rules.
 - **Accessibility Evidence**: [ACCESSIBILITY_EVIDENCE.md](ACCESSIBILITY_EVIDENCE.md) — Structured keyboard, focus, WCAG, AT/browser, limitation, and recovery evidence for stable patterns.
 - **Accessibility CI Package**: [A11Y_CI_PACKAGE.md](A11Y_CI_PACKAGE.md) — Reusable Playwright/axe helpers for keyboard, focus-trap, contrast, suppression, and deterministic report gates.
@@ -183,7 +183,7 @@ Required repository behavior:
 - `npm run verify:published` — checks the registry until all six packages resolve to the current `VERSION`
 - `npm run pack:release` — creates public tarballs, checksums, and install instructions for the fallback GitHub release-bundle distribution path
 - `npm run build` — builds `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, `@doneisbetter/gds-admin`, `@doneisbetter/gds`, and the playground in dependency order
-- `node scripts/codemods/run-codemod.mjs <transform> <path>` — runs the reference migration codemods in dry-run mode by default
+- `node scripts/codemods/run-codemod.mjs <transform> <path>` — runs the reference migration codemods in dry-run mode by default and emits `GdsCodemodResult` with changed files, manual follow-ups, failed transforms, and governed exception stubs
 - `npm install` — on supported macOS and Linux x64 environments, the root optional native bindings now bootstrap the local Vite/tsup build layer without extra manual install steps
 - `npm run lint` — runs the playground lint target
 - `npm run test:run` — runs the shared jsdom component test suite for the workspace packages

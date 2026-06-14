@@ -112,6 +112,20 @@ Reference codemods currently available:
 - `node scripts/codemods/run-codemod.mjs discovery-shell ./src`
 - `node scripts/codemods/run-codemod.mjs action-bar ./src`
 - `node scripts/codemods/run-codemod.mjs listing-card ./src`
+- `node scripts/codemods/run-codemod.mjs mantine-imports ./src`
+- `node scripts/codemods/run-codemod.mjs tabler-icons ./src`
+- `node scripts/codemods/run-codemod.mjs raw-controls ./src`
+- `node scripts/codemods/run-codemod.mjs inline-styles ./src`
+- `node scripts/codemods/run-codemod.mjs alerts-confirms ./src`
+- `node scripts/codemods/run-codemod.mjs tables ./src`
+
+Codemod governance contract:
+
+- dry-run is the default; pass `--write` only after reviewing the `GdsCodemodResult`
+- every run emits transformed, skipped, manual follow-up, failed-transform, and exception-stub counts
+- supported patches are idempotent and preserve accessibility attributes for labelled raw controls
+- unsupported inline styles, browser alerts/confirms, raw tables, unknown icons, and custom action groups must become manual follow-ups with owner and expiry metadata, not silent bypasses
+- generated exception stubs are not blanket approval; they are the reviewed temporary format to paste into `gds-adoption.json` only when a narrow exception is justified
 
 ## 6. Required Verification Before Promotion
 

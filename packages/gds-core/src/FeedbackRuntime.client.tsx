@@ -94,7 +94,7 @@ export interface GdsToastMessage extends Omit<GdsNotificationMessage, 'id' | 'se
 
 export interface GdsToastApi {
   notifySuccess: (message: GdsToastMessage) => void;
-  notifyError: (message: GdsToastMessage & { retry?: () => void }) => void;
+  notifyError: (message: GdsToastMessage & { retry?: () => void | Promise<void> }) => void;
   notifyActionComplete: (message: GdsToastMessage) => void;
 }
 
@@ -126,9 +126,7 @@ function GdsToastProviderInner({ children }: { children: ReactNode }) {
       id: message.id ?? createToastId('error'),
       severity: 'error',
       autoCloseMs: message.autoCloseMs ?? false,
-      actions: message.retry
-        ? [...(message.actions ?? []), { id: 'retry', label: 'Retry', onClick: message.retry }]
-        : message.actions,
+      retry: message.retry ? { onRetry: message.retry, maxAttempts: 3, label: 'Retry' } : undefined,
     }),
     notifyActionComplete: (message) => notify({
       ...message,

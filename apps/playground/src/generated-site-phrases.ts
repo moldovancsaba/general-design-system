@@ -3543,16 +3543,16 @@ export const generatedSitePhrases = {
     "hu": "gds-megfelelőségi ellenőrzés",
     "he": "בדיקת תאימות ל-gds"
   },
-  "p_a6fc163fc4ec": {
-    "en": "GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice",
-    "ar": "GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice",
-    "de": "GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice",
-    "ru": "GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice",
-    "es": "GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice",
-    "fr": "GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice",
-    "it": "GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice",
-    "hu": "GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice",
-    "he": "GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice"
+  "p_7550f70b0d53": {
+    "en": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice",
+    "de": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice",
+    "ar": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice",
+    "ru": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice",
+    "fr": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice",
+    "it": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice",
+    "es": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice",
+    "he": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice",
+    "hu": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice"
   },
   "p_8b5c3109b5d6": {
     "en": "General Design System",
@@ -5336,17 +5336,6 @@ export const generatedSitePhrases = {
     "he": "משטח הודעות",
     "hu": "Értesítési felület"
   },
-  "p_2702e335a840": {
-    "en": "Notifications are transient cross-surface feedback and may not be the only place a critical error appears.",
-    "it": "Le notifiche sono feedback temporanei su più superfici e potrebbero non essere l'unico luogo in cui viene visualizzato un errore critico.",
-    "hu": "Az értesítések átmeneti, felületeken átívelő visszajelzések, és előfordulhat, hogy nem az egyetlen hely, ahol kritikus hiba jelenik meg.",
-    "fr": "Les notifications sont des retours transitoires sur plusieurs surfaces et ne sont peut-être pas le seul endroit où une erreur critique apparaît.",
-    "ru": "Уведомления представляют собой временную обратную связь между поверхностями и могут быть не единственным местом появления критической ошибки.",
-    "es": "Las notificaciones son comentarios transitorios entre superficies y pueden no ser el único lugar donde aparece un error crítico.",
-    "de": "Benachrichtigungen sind vorübergehende oberflächenübergreifende Rückmeldungen und möglicherweise nicht der einzige Ort, an dem ein kritischer Fehler auftritt.",
-    "ar": "الإشعارات عبارة عن تعليقات عابرة عبر الأسطح وقد لا تكون المكان الوحيد الذي يظهر فيه خطأ فادح.",
-    "he": "הודעות הן משוב חוצה משטח חולף וייתכן שאינן המקום היחיד שבו מופיעה שגיאה קריטית."
-  },
   "p_c1adc175aa5c": {
     "en": "Notifications remain contextual, actionable, and explicit.",
     "ar": "تظل الإخطارات سياقية وقابلة للتنفيذ وصريحة.",
@@ -5357,6 +5346,17 @@ export const generatedSitePhrases = {
     "he": "הודעות נשארות הקשריות, ניתנות לפעולה ומפורשות.",
     "it": "Le notifiche rimangono contestuali, utilizzabili ed esplicite.",
     "hu": "Az értesítések kontextuálisak, végrehajthatóak és egyértelműek maradnak."
+  },
+  "p_55451c835e07": {
+    "en": "Notifications use the governed queue for severity, retry, announcement-only updates, persistence, and metadata-only audit events.",
+    "de": "Benachrichtigungen verwenden die geregelte Warteschlange für Schweregrad-, Wiederholungs-, Nur-Ankündigungs-Updates-, Persistenz- und Nur-Metadaten-Überwachungsereignisse.",
+    "ar": "تستخدم الإشعارات قائمة الانتظار المحكومة لأحداث الخطورة وإعادة المحاولة وتحديثات الإعلانات فقط والاستمرارية وأحداث تدقيق بيانات التعريف فقط.",
+    "it": "Le notifiche utilizzano la coda governata per gravità, nuovi tentativi, aggiornamenti di soli annunci, persistenza ed eventi di controllo dei soli metadati.",
+    "es": "Las notificaciones utilizan la cola gobernada para eventos de gravedad, reintentos, actualizaciones de solo anuncios, persistencia y auditoría de solo metadatos.",
+    "he": "הודעות משתמשות בתור הנשלט לאירועי חומרה, ניסיון חוזר, עדכונים להודעות בלבד, התמדה ואירועי ביקורת של מטא נתונים בלבד.",
+    "ru": "Уведомления используют управляемую очередь для определения серьезности, повторных попыток, обновлений только для объявлений, сохраняемости и событий аудита только метаданных.",
+    "fr": "Les notifications utilisent la file d'attente gouvernée pour les événements de gravité, de nouvelle tentative, de mise à jour d'annonce uniquement, de persistance et d'audit de métadonnées uniquement.",
+    "hu": "Az értesítések a szabályozott sort használják a súlyosság, az újrapróbálkozás, a csak bejelentést tartalmazó frissítések, a fennmaradás és a csak metaadatokat tartalmazó naplózási eseményekhez."
   },
   "p_a098c9c415c0": {
     "en": "npm line",

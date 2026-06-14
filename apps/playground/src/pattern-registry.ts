@@ -987,9 +987,9 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     family: 'feedback',
     section: 'Messaging Primitives',
     coverageStatus: 'live-demo',
-    summary: 'Notifications are transient cross-surface feedback and may not be the only place a critical error appears.',
+    summary: 'Notifications use the governed queue for severity, retry, announcement-only updates, persistence, and metadata-only audit events.',
     importPath: '@doneisbetter/gds-core',
-    sourceComponent: 'GdsNotificationProvider / NotificationCenter / InlineAlert / BannerNotice',
+    sourceComponent: 'GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice',
   },
   {
     id: 'badges',

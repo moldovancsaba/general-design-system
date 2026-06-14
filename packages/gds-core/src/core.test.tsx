@@ -1390,6 +1390,133 @@ describe('@doneisbetter/gds-core', () => {
     expect(screen.queryByText('Partner sync delayed')).not.toBeInTheDocument();
   });
 
+  it('governs notification dedupe, updates, audit events, and announcement-only output', async () => {
+    const user = userEvent.setup();
+    const audit = vi.fn();
+
+    function NotificationProbe() {
+      const {
+        notify,
+        updateNotification,
+      } = useGdsNotifications();
+      return (
+        <>
+          <button
+            type="button"
+            onClick={() => notify({
+              id: 'sync-1',
+              key: 'partner-sync',
+              title: 'Partner sync queued',
+              message: 'The first sync notice is visible.',
+              severity: 'info',
+            })}
+          >
+            Queue first
+          </button>
+          <button
+            type="button"
+            onClick={() => notify({
+              id: 'sync-2',
+              key: 'partner-sync',
+              title: 'Partner sync replaced',
+              message: 'The duplicate notice replaces the first one.',
+              severity: 'warning',
+            })}
+          >
+            Queue duplicate
+          </button>
+          <button
+            type="button"
+            onClick={() => updateNotification('sync-2', { title: 'Partner sync finished', severity: 'success', status: 'succeeded' })}
+          >
+            Mark finished
+          </button>
+          <button
+            type="button"
+            onClick={() => notify({
+              id: 'announce-1',
+              title: 'Screen reader only update',
+              message: 'Saved without visual interruption.',
+              severity: 'success',
+              persistence: 'announcement-only',
+            })}
+          >
+            Announce only
+          </button>
+        </>
+      );
+    }
+
+    renderWithGds(
+      <GdsNotificationProvider onAuditEvent={audit}>
+        <NotificationProbe />
+        <NotificationCenter />
+      </GdsNotificationProvider>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Queue first' }));
+    await user.click(screen.getByRole('button', { name: 'Queue duplicate' }));
+    expect(screen.queryByText('Partner sync queued')).not.toBeInTheDocument();
+    expect(screen.getByText('Partner sync replaced')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Mark finished' }));
+    expect(screen.getByText('Partner sync finished')).toBeInTheDocument();
+    expect(screen.getByText('succeeded')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Announce only' }));
+    expect(screen.queryByText('Screen reader only update')).not.toBeInTheDocument();
+    expect(screen.getAllByRole('status').some((item) => item.textContent?.includes('Screen reader only update Saved without visual interruption.'))).toBe(true);
+    expect(audit.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining(['shown', 'updated']));
+  });
+
+  it('runs bounded notification retry flows and records action telemetry', async () => {
+    const user = userEvent.setup();
+    const audit = vi.fn();
+    const action = vi.fn();
+    const retry = vi.fn().mockResolvedValue(undefined);
+
+    function NotificationProbe() {
+      const { notify } = useGdsNotifications();
+      return (
+        <button
+          type="button"
+          onClick={() => notify({
+            id: 'retry-1',
+            title: 'Publish failed',
+            message: 'Retry publishing when the connection returns.',
+            severity: 'error',
+            autoCloseMs: false,
+            actions: [{ id: 'details', label: 'Details', onClick: action }],
+            retry: { onRetry: retry, maxAttempts: 2, label: 'Retry publish' },
+          })}
+        >
+          Trigger retryable
+        </button>
+      );
+    }
+
+    renderWithGds(
+      <GdsNotificationProvider onAuditEvent={audit}>
+        <NotificationProbe />
+        <NotificationCenter />
+      </GdsNotificationProvider>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Trigger retryable' }));
+    await user.click(screen.getByRole('button', { name: 'Details' }));
+    await user.click(screen.getByRole('button', { name: 'Retry publish' }));
+
+    await waitFor(() => expect(retry).toHaveBeenCalledTimes(1));
+    expect(action).toHaveBeenCalledTimes(1);
+    expect(screen.getByText('succeeded')).toBeInTheDocument();
+    expect(audit.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining([
+      'shown',
+      'action_clicked',
+      'retry_started',
+      'retry_succeeded',
+    ]));
+  });
+
   it('renders async-surface states with deterministic retry behavior', async () => {
     const user = userEvent.setup();
     const onRetry = vi.fn();

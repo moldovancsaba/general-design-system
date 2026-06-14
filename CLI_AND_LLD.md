@@ -9,6 +9,8 @@ npm run verify:i18n-message-parity
 npm run verify:i18n-package-copy
 npm run verify:references
 npm run verify:release
+gds-compliance adoption-report --manifest ./gds-adoption.json --format md
+gds-compliance expire-check --manifest ./gds-adoption.json
 ```
 
 ## API Docs LLD
@@ -79,6 +81,23 @@ Rollback:
 - Set `sampleRate` to `0` to disable dispatch.
 - Remove the adapter or pass no sink to drop events while preserving call sites.
 - Pin the previous package version if an additive telemetry export creates unexpected adoption risk.
+
+## Adoption Governance LLD
+
+Source:
+
+- `packages/gds-compliance/index.js`
+- `packages/gds-compliance/bin/gds-compliance.js`
+- `schemas/gds-adoption.schema.json`
+- `TEMPLATES/gds-adoption.json.template`
+
+Flow:
+
+1. `runComplianceCheck(...)` loads the manifest, scans repo drift, and validates exception metadata.
+2. `createExceptionLifecycleReport(...)` summarizes dependency-boundary ownership, risk, enforcement mode, and expiry buckets.
+3. `createAdoptionReport(...)` combines compliance findings and exception debt into a governed adoption score.
+4. `gds-compliance adoption-report` emits text, JSON, Markdown, or HTML evidence for product-owner review.
+5. `gds-compliance expire-check` fails CI when dependency-boundary exceptions are past `removeBy` with `enforcementMode: "error"`.
 
 ## Rollback
 

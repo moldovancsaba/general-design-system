@@ -123,6 +123,8 @@ npm run build
 npm run test:run
 npm run verify:mantine
 gds-compliance check --manifest ./gds-adoption.json
+gds-compliance adoption-report --manifest ./gds-adoption.json --format md
+gds-compliance expire-check --manifest ./gds-adoption.json
 ```
 
 Also verify the affected surface against the live public reference when applicable:

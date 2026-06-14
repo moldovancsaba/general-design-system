@@ -98,10 +98,14 @@ const DEPENDENCY_BOUNDARY_REQUIRED_FIELDS = [
   'dependency',
   'replacementIssue',
   'rollbackPlan',
+  'riskLevel',
+  'enforcementMode',
   'a11yRequirements',
   'testingRequirements',
   'observabilityRequirements',
 ];
+const DEPENDENCY_BOUNDARY_RISK_LEVELS = new Set(['low', 'medium', 'high', 'critical']);
+const DEPENDENCY_BOUNDARY_ENFORCEMENT_MODES = new Set(['warn', 'error']);
 const IDENTITY_PROVIDER_BRANDING_FIELDS = [
   'approvedProviders',
   'forbiddenCustomizations',
@@ -270,7 +274,24 @@ function hasBroadScope(scope) {
     ['*', '**', 'app/**', 'src/**', './**', '/**'].includes(entry) || /(^|\/)\*\*$/.test(entry));
 }
 
-function validateApprovedExceptions(manifest) {
+function parseDateInput(value) {
+  if (!value || typeof value !== 'string') {
+    return null;
+  }
+
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function daysBetween(now, future) {
+  return Math.ceil((future.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+}
+
+function getCurrentDate(input) {
+  return parseDateInput(input) ?? new Date();
+}
+
+function validateApprovedExceptions(manifest, currentDate) {
   const findings = [];
 
   for (const exception of manifest.approvedExceptions ?? []) {
@@ -353,6 +374,24 @@ function validateApprovedExceptions(manifest) {
         });
       }
 
+      if (exception.riskLevel && !DEPENDENCY_BOUNDARY_RISK_LEVELS.has(exception.riskLevel)) {
+        findings.push({
+          rule: 'dependency-boundary.invalid-risk-level',
+          severity: 'error',
+          file: exception.surface,
+          message: `Dependency-boundary exception "${exception.surface}" uses unsupported risk level "${exception.riskLevel}".`,
+        });
+      }
+
+      if (exception.enforcementMode && !DEPENDENCY_BOUNDARY_ENFORCEMENT_MODES.has(exception.enforcementMode)) {
+        findings.push({
+          rule: 'dependency-boundary.invalid-enforcement-mode',
+          severity: 'error',
+          file: exception.surface,
+          message: `Dependency-boundary exception "${exception.surface}" uses unsupported enforcement mode "${exception.enforcementMode}".`,
+        });
+      }
+
       if (exception.status === 'expired') {
         findings.push({
           rule: 'dependency-boundary.expired',
@@ -361,10 +400,126 @@ function validateApprovedExceptions(manifest) {
           message: `Dependency-boundary exception "${exception.surface}" is expired. Remove the dependency bypass or update it through reviewed governance.`,
         });
       }
+
+      const removeBy = parseDateInput(exception.removeBy);
+      if (removeBy) {
+        const remainingDays = daysBetween(currentDate, removeBy);
+        if (remainingDays < 0) {
+          findings.push({
+            rule: 'dependency-boundary.remove-by-expired',
+            severity: exception.enforcementMode === 'warn' ? 'warn' : 'error',
+            file: exception.surface,
+            message: `Dependency-boundary exception "${exception.surface}" passed removeBy ${exception.removeBy}. Remove the bypass or renew reviewed governance metadata.`,
+          });
+        } else if (remainingDays <= 14) {
+          findings.push({
+            rule: 'dependency-boundary.remove-by-soon',
+            severity: 'warn',
+            file: exception.surface,
+            message: `Dependency-boundary exception "${exception.surface}" reaches removeBy ${exception.removeBy} in ${remainingDays} day(s).`,
+          });
+        }
+      }
     }
   }
 
   return findings;
+}
+
+function summarizeFindingSeverity(findings) {
+  return findings.reduce((summary, finding) => {
+    if (finding.severity === 'error') {
+      summary.errors += 1;
+    } else {
+      summary.warnings += 1;
+    }
+    return summary;
+  }, { errors: 0, warnings: 0 });
+}
+
+export function createExceptionLifecycleReport(manifest, options = {}) {
+  const currentDate = getCurrentDate(options.currentDate);
+  const exceptions = manifest.approvedExceptions ?? [];
+  const dependencyExceptions = exceptions.filter((entry) => entry.category === 'dependency-boundary');
+  const items = dependencyExceptions.map((entry) => {
+    const removeBy = parseDateInput(entry.removeBy);
+    const remainingDays = removeBy ? daysBetween(currentDate, removeBy) : null;
+    const expiryBucket =
+      entry.status === 'expired' || (remainingDays != null && remainingDays < 0)
+        ? 'expired'
+        : remainingDays != null && remainingDays <= 14
+          ? 'expiring-soon'
+          : remainingDays != null
+            ? 'scheduled'
+            : 'unscheduled';
+
+    return {
+      surface: entry.surface,
+      owner: entry.owner ?? 'unknown',
+      dependency: entry.dependency ?? 'unknown',
+      replacementIssue: entry.replacementIssue ?? null,
+      status: entry.status ?? 'unknown',
+      riskLevel: entry.riskLevel ?? 'unknown',
+      enforcementMode: entry.enforcementMode ?? 'error',
+      removeBy: entry.removeBy ?? null,
+      expiryBucket,
+      remainingDays,
+    };
+  });
+
+  const countsByRisk = {};
+  const countsByOwner = {};
+  const countsByExpiryBucket = {};
+
+  for (const item of items) {
+    countsByRisk[item.riskLevel] = (countsByRisk[item.riskLevel] ?? 0) + 1;
+    countsByOwner[item.owner] = (countsByOwner[item.owner] ?? 0) + 1;
+    countsByExpiryBucket[item.expiryBucket] = (countsByExpiryBucket[item.expiryBucket] ?? 0) + 1;
+  }
+
+  return {
+    checkedAt: currentDate.toISOString().slice(0, 10),
+    totalExceptions: exceptions.length,
+    dependencyBoundaryCount: items.length,
+    countsByRisk,
+    countsByOwner,
+    countsByExpiryBucket,
+    items,
+  };
+}
+
+export function createAdoptionReport(report, options = {}) {
+  const lifecycle = createExceptionLifecycleReport(report.manifest, options);
+  const { errors, warnings } = summarizeFindingSeverity(report.findings);
+  const suppressedExceptionDebt = lifecycle.items.reduce((count, item) => (
+    item.expiryBucket === 'expired' || item.expiryBucket === 'expiring-soon' ? count + 1 : count
+  ), 0);
+  const score = Math.max(0, 100 - (errors * 15) - (warnings * 4) - (suppressedExceptionDebt * 6));
+  const status = score >= 90 ? 'excellent' : score >= 70 ? 'at-risk' : 'blocked';
+
+  return {
+    checkedAt: lifecycle.checkedAt,
+    owner: report.manifest.owner,
+    score,
+    status,
+    findings: {
+      errors,
+      warnings,
+      total: report.findings.length,
+    },
+    exceptionDebt: {
+      total: lifecycle.dependencyBoundaryCount,
+      expiringSoon: lifecycle.countsByExpiryBucket['expiring-soon'] ?? 0,
+      expired: lifecycle.countsByExpiryBucket.expired ?? 0,
+    },
+    topRemediationSteps: [
+      errors > 0 ? 'Resolve blocking compliance findings before promotion.' : null,
+      lifecycle.countsByExpiryBucket.expired ? 'Remove or renew expired dependency-boundary exceptions.' : null,
+      lifecycle.countsByExpiryBucket['expiring-soon'] ? 'Backfill replacement work for exceptions nearing removeBy.' : null,
+      warnings > 0 ? 'Triage remaining warnings and convert accepted gaps into governed exceptions.' : null,
+    ].filter(Boolean),
+    lifecycle,
+  };
 }
 
 function walk(dir, files = []) {
@@ -1016,10 +1171,11 @@ function scanThemeGovernance({ manifestRoot, manifest, sourceFiles }) {
   return findings;
 }
 
-export function runComplianceCheck({ manifestPath }) {
+export function runComplianceCheck({ manifestPath, currentDate }) {
   const absoluteManifestPath = resolve(manifestPath);
   const manifestRoot = dirname(absoluteManifestPath);
   const manifest = JSON.parse(readFileSync(absoluteManifestPath, 'utf8'));
+  const resolvedCurrentDate = getCurrentDate(currentDate);
   const findings = validateManifest(manifest);
   const allowedImports = new Set();
   const documentationPaths = manifest.compliance?.documentationPaths ?? [];
@@ -1089,7 +1245,7 @@ export function runComplianceCheck({ manifestPath }) {
     findings.push(...scanSourceFile(filePath, allowedImports, forbiddenImports));
   }
 
-  findings.push(...validateApprovedExceptions(manifest));
+  findings.push(...validateApprovedExceptions(manifest, resolvedCurrentDate));
   findings.push(...validateApprovedExceptionsAgainstRepo({ manifestRoot, manifest, sourceFiles }));
   findings.push(...scanThemeGovernance({ manifestRoot, manifest, sourceFiles }));
   findings.push(...scanIdentityProviderBranding({ manifest, manifestRoot, sourceFiles }));
@@ -1144,6 +1300,78 @@ export function formatReport(report, format = 'text') {
       const location = finding.file ? ` (${finding.file})` : '';
       return `- [${finding.severity}] ${finding.rule}${location}: ${finding.message}`;
     }),
+  ].join('\n');
+}
+
+export function formatExceptionLifecycleReport(report, format = 'text') {
+  if (format === 'json') {
+    return JSON.stringify(report, null, 2);
+  }
+
+  if (format === 'md') {
+    const rows = report.items.map((item) =>
+      `| ${item.surface} | ${item.owner} | ${item.dependency} | ${item.riskLevel} | ${item.enforcementMode} | ${item.status} | ${item.removeBy ?? '-'} | ${item.expiryBucket} |`);
+    return [
+      '# GDS Exception Lifecycle Report',
+      '',
+      `Checked at: ${report.checkedAt}`,
+      '',
+      '| Surface | Owner | Dependency | Risk | Enforcement | Status | Remove by | Expiry bucket |',
+      '| --- | --- | --- | --- | --- | --- | --- | --- |',
+      ...(rows.length > 0 ? rows : ['| None | - | - | - | - | - | - | - |']),
+    ].join('\n');
+  }
+
+  if (format === 'html') {
+    const rows = report.items.map((item) => `<tr><td>${item.surface}</td><td>${item.owner}</td><td>${item.dependency}</td><td>${item.riskLevel}</td><td>${item.enforcementMode}</td><td>${item.status}</td><td>${item.removeBy ?? '-'}</td><td>${item.expiryBucket}</td></tr>`).join('');
+    return `<!doctype html><html><body><h1>GDS Exception Lifecycle Report</h1><p>Checked at: ${report.checkedAt}</p><table><thead><tr><th>Surface</th><th>Owner</th><th>Dependency</th><th>Risk</th><th>Enforcement</th><th>Status</th><th>Remove by</th><th>Expiry bucket</th></tr></thead><tbody>${rows || '<tr><td colspan="8">None</td></tr>'}</tbody></table></body></html>`;
+  }
+
+  if (report.items.length === 0) {
+    return `GDS exception lifecycle check passed for ${report.checkedAt}; no dependency-boundary exceptions declared.`;
+  }
+
+  return [
+    `GDS exception lifecycle report (${report.checkedAt})`,
+    `- dependency-boundary exceptions: ${report.dependencyBoundaryCount}`,
+    ...report.items.map((item) =>
+      `- ${item.surface} | owner=${item.owner} | dependency=${item.dependency} | risk=${item.riskLevel} | enforcement=${item.enforcementMode} | status=${item.status} | removeBy=${item.removeBy ?? '-'} | bucket=${item.expiryBucket}`),
+  ].join('\n');
+}
+
+export function formatAdoptionReport(report, format = 'text') {
+  if (format === 'json') {
+    return JSON.stringify(report, null, 2);
+  }
+
+  if (format === 'md') {
+    return [
+      '# GDS Adoption Report',
+      '',
+      `- Checked at: ${report.checkedAt}`,
+      `- Owner: ${report.owner}`,
+      `- Score: ${report.score}`,
+      `- Status: ${report.status}`,
+      `- Findings: ${report.findings.total} total (${report.findings.errors} errors, ${report.findings.warnings} warnings)`,
+      `- Exception debt: ${report.exceptionDebt.total} total (${report.exceptionDebt.expired} expired, ${report.exceptionDebt.expiringSoon} expiring soon)`,
+      '',
+      '## Top remediation steps',
+      ...report.topRemediationSteps.map((step) => `- ${step}`),
+    ].join('\n');
+  }
+
+  if (format === 'html') {
+    return `<!doctype html><html><body><h1>GDS Adoption Report</h1><p>Checked at: ${report.checkedAt}</p><ul><li>Owner: ${report.owner}</li><li>Score: ${report.score}</li><li>Status: ${report.status}</li><li>Findings: ${report.findings.total} total (${report.findings.errors} errors, ${report.findings.warnings} warnings)</li><li>Exception debt: ${report.exceptionDebt.total} total (${report.exceptionDebt.expired} expired, ${report.exceptionDebt.expiringSoon} expiring soon)</li></ul><h2>Top remediation steps</h2><ul>${report.topRemediationSteps.map((step) => `<li>${step}</li>`).join('')}</ul></body></html>`;
+  }
+
+  return [
+    `GDS adoption report for ${report.owner}`,
+    `- checked at: ${report.checkedAt}`,
+    `- score: ${report.score}`,
+    `- status: ${report.status}`,
+    `- findings: ${report.findings.total} total (${report.findings.errors} errors, ${report.findings.warnings} warnings)`,
+    `- exception debt: ${report.exceptionDebt.total} total (${report.exceptionDebt.expired} expired, ${report.exceptionDebt.expiringSoon} expiring soon)`,
+    ...report.topRemediationSteps.map((step) => `- remediation: ${step}`),
   ].join('\n');
 }
 

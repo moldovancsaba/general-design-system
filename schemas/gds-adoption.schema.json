@@ -84,7 +84,8 @@
               "runtime-constraint",
               "product-authored-experience",
               "package-coverage-gap",
-              "migration-bridge"
+              "migration-bridge",
+              "dependency-boundary"
             ]
           },
           "scope": {
@@ -99,6 +100,16 @@
             "uniqueItems": true
           },
           "reason": { "type": "string", "minLength": 1 },
+          "replacementIssue": { "type": "string", "minLength": 1 },
+          "rollbackPlan": { "type": "string", "minLength": 1 },
+          "riskLevel": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"]
+          },
+          "enforcementMode": {
+            "type": "string",
+            "enum": ["warn", "error"]
+          },
           "allowedImplementation": {
             "type": "array",
             "items": { "type": "string", "minLength": 1 },
@@ -137,7 +148,7 @@
           "exitCondition": { "type": "string", "minLength": 1 },
           "status": {
             "type": "string",
-            "enum": ["temporary", "approved", "deprecated", "removed"]
+            "enum": ["temporary", "approved", "deprecated", "removed", "active", "expired", "removing"]
           },
           "removeBy": {
             "type": "string",
@@ -155,6 +166,27 @@
             },
             "then": {
               "required": [
+                "a11yRequirements",
+                "testingRequirements",
+                "observabilityRequirements"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "category": {
+                  "const": "dependency-boundary"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "dependency",
+                "replacementIssue",
+                "rollbackPlan",
+                "riskLevel",
+                "enforcementMode",
                 "a11yRequirements",
                 "testingRequirements",
                 "observabilityRequirements"

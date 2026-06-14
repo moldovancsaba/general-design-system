@@ -8,6 +8,26 @@ This repository ships the public API reference from `apps/playground/src/api-ref
 - `@doneisbetter/gds-theme` owns theme lanes, provider setup, font lanes, and i18n context.
 - `@doneisbetter/gds-core` owns public surfaces, docs surfaces, feedback, forms, tables, playback, media, layout, icon, and state primitives.
 - `@doneisbetter/gds-admin` owns operator CRUD, resource manager, admin table, overlay, and admin shell contracts.
+- `@doneisbetter/gds-compliance` owns manifest validation, strict drift scanning, exception lifecycle reporting, and adoption scoring.
+
+## Compliance and Adoption API
+
+`@doneisbetter/gds-compliance` exports the package-native governance/reporting helpers:
+
+- `runComplianceCheck({ manifestPath, currentDate? })`
+- `formatReport(report, format?)`
+- `createExceptionLifecycleReport(manifest, { currentDate? })`
+- `formatExceptionLifecycleReport(report, format?)`
+- `createAdoptionReport(report, { currentDate? })`
+- `formatAdoptionReport(report, format?)`
+
+CLI entrypoints:
+
+- `gds-compliance check`
+- `gds-compliance validate-manifest`
+- `gds-compliance adoption-report`
+- `gds-compliance exceptions`
+- `gds-compliance expire-check`
 
 ## Maturity Capability API
 

@@ -23,12 +23,16 @@ Supported output modes:
 ```bash
 gds-compliance check --manifest ./gds-adoption.json --format text
 gds-compliance check --manifest ./gds-adoption.json --format json
+gds-compliance adoption-report --manifest ./gds-adoption.json --format md
+gds-compliance exceptions --manifest ./gds-adoption.json --format html
+gds-compliance expire-check --manifest ./gds-adoption.json --current-date 2026-06-14
 ```
 
 Exit behavior:
 
 - `0` when the manifest is valid and no compliance errors are found
 - non-zero when configuration is invalid or drift is detected
+- `expire-check` also exits non-zero when a dependency-boundary exception is past `removeBy` and its `enforcementMode` is `error`
 
 ## Covered rule classes
 
@@ -76,8 +80,16 @@ Optional compliance extensions live in `gds-adoption.json`:
 - `observabilityRequirements`
 - `owner`
 - `reviewDate`
+- `removeBy` for time-bounded dependency exceptions
 - `exitCondition`
 - `status`
+- `replacementIssue`, `rollbackPlan`, `riskLevel`, and `enforcementMode` for `dependency-boundary` exceptions
+
+Dependency-boundary status contract:
+
+- `active` for a reviewed live bypass
+- `removing` when rollout is in progress
+- `expired` when CI should fail and force cleanup
 
 `gds-compliance` will fail broad scopes such as `src/**` and will flag missing canonical fields as manifest drift. Use [EXCEPTION_SURFACES.md](EXCEPTION_SURFACES.md) and [TEMPLATES/gds-adoption.json.template](TEMPLATES/gds-adoption.json.template) as the normative examples.
 
@@ -194,6 +206,7 @@ Recommended consumer CI step:
 npm run lint
 gds-compliance validate-manifest --manifest ./gds-adoption.json
 gds-compliance check --manifest ./gds-adoption.json
+gds-compliance expire-check --manifest ./gds-adoption.json
 ```
 
 If the repo uses the reference codemods during migration, run them in dry-run mode in PRs before switching to strict mode:

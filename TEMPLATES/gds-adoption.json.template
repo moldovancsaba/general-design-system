@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "gdsVersion": "3.0.7",
+  "gdsVersion": "3.4.14",
   "productArchetype": "hybrid",
   "supportedEntryPoints": [
     "@doneisbetter/gds-theme/client",
@@ -99,9 +99,12 @@
       ],
       "owner": "platform-ui",
       "reviewDate": "2026-08-31",
+      "removeBy": "2026-09-30",
       "replacementIssue": "https://github.com/sovereignsquad/general-design-system/issues/299",
       "exitCondition": "Remove once the consumer has finished the icon migration to the canonical GDS vocabulary.",
       "rollbackPlan": "Delete the bridge and replace usage with GdsIcon, GdsIcons, or semantic actions.",
+      "riskLevel": "medium",
+      "enforcementMode": "error",
       "status": "active"
     },
     {

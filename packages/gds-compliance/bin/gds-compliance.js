@@ -1,5 +1,13 @@
 #!/usr/bin/env node
-import { ensureManifestExists, formatReport, runComplianceCheck } from '../index.js';
+import {
+  createAdoptionReport,
+  createExceptionLifecycleReport,
+  ensureManifestExists,
+  formatAdoptionReport,
+  formatExceptionLifecycleReport,
+  formatReport,
+  runComplianceCheck,
+} from '../index.js';
 
 const [, , command, ...rest] = process.argv;
 
@@ -13,6 +21,7 @@ function getArg(name, fallback) {
 
 const manifestPath = getArg('--manifest', './gds-adoption.json');
 const format = getArg('--format', 'text');
+const currentDate = getArg('--current-date');
 
 try {
   ensureManifestExists(manifestPath);
@@ -21,16 +30,32 @@ try {
   process.exit(1);
 }
 
-if (command !== 'check' && command !== 'validate-manifest') {
-  console.error('Usage: gds-compliance <check|validate-manifest> --manifest ./gds-adoption.json [--format text|json]');
+if (!['check', 'validate-manifest', 'adoption-report', 'exceptions', 'expire-check'].includes(command)) {
+  console.error('Usage: gds-compliance <check|validate-manifest|adoption-report|exceptions|expire-check> --manifest ./gds-adoption.json [--format text|json|md|html] [--current-date YYYY-MM-DD]');
   process.exit(1);
 }
 
-const report = runComplianceCheck({ manifestPath });
-const output = formatReport(report, format);
+const report = runComplianceCheck({ manifestPath, currentDate });
+let output = '';
+
+if (command === 'adoption-report') {
+  output = formatAdoptionReport(createAdoptionReport(report, { currentDate }), format);
+} else if (command === 'exceptions' || command === 'expire-check') {
+  output = formatExceptionLifecycleReport(createExceptionLifecycleReport(report.manifest, { currentDate }), format);
+} else {
+  output = formatReport(report, format);
+}
+
 if (output) {
   console.log(output);
 }
 
 const hasErrors = report.findings.some((finding) => finding.severity === 'error');
+
+if (command === 'expire-check') {
+  const lifecycle = createExceptionLifecycleReport(report.manifest, { currentDate });
+  const hasExpired = lifecycle.items.some((item) => item.expiryBucket === 'expired' && item.enforcementMode !== 'warn');
+  process.exit(hasErrors || hasExpired ? 1 : 0);
+}
+
 process.exit(hasErrors ? 1 : 0);

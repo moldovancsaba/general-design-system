@@ -53,6 +53,7 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 - **Operational Files**: `CONTRIBUTING.md` and `CHANGELOG.md` — Shared rules for contributing to the design system and its versioned history.
 - **Templates**: `TEMPLATES/` — Starter templates for your project's theme, providers, shell, and thin wrappers.
 - **Machine-readable Contracts**: `compatibility.matrix.json`, `schemas/gds-adoption.schema.json`, and `TEMPLATES/gds-adoption.json.template` — shared compatibility, adoption, and validation contracts.
+- **Adoption Reporting**: `gds-compliance adoption-report`, `gds-compliance exceptions`, and `gds-compliance expire-check` — score consumer drift, export Markdown/HTML evidence, and fail CI when dependency-boundary exceptions expire.
 - **Primary Runtime Package**: `@doneisbetter/gds` — the public umbrella install for most consumers, re-exporting the theme, core, and admin surface families through root, `client`, and `server` entrypoints.
 - **Granular Runtime Packages**: `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin` — direct lanes for consumers that want tighter dependency boundaries or package-by-package upgrades.
 - **Tooling Packages**: `@doneisbetter/gds-eslint-config` and `@doneisbetter/gds-compliance` — shared lint and compliance enforcement for adopting repos.
@@ -158,6 +159,8 @@ Required repository behavior:
 
 - `npm run verify:release` — checks release alignment, builds all packages/apps, verifies export boundaries, then runs lint, tests, and reference validation
 - `npm run verify:references` — validates reference consumers, adoption manifests, official `DocsShell` usage, strict playground GDS-only source rules (no `@mantine/core` imports and no inline `style={{...}}` on core Pages routes), SSOT pattern-catalog coverage, package export-to-pattern coverage, website trust/clarity checks, surface-presentation migration evidence, route-level locale coverage declarations, canonical theme-governance lanes, media/upload contracts, reporting/access contracts, and reference codemods
+- `gds-compliance adoption-report --manifest ./gds-adoption.json --format md` — emits the governed adoption score and remediation summary for a consumer repository
+- `gds-compliance expire-check --manifest ./gds-adoption.json` — fails when dependency-boundary exceptions are past `removeBy` with `enforcementMode: "error"`
 - `npm run verify:api-docs-coverage` — validates the registry-backed public API documentation contract for shipped runtime exports
 - `npm run verify:i18n-route-coverage` — validates localized route declarations and route-copy implementation markers
 - `npm run verify:i18n-message-parity` — validates package locale pack key parity

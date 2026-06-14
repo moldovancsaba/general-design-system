@@ -2,7 +2,7 @@ import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { runComplianceCheck } from './index.js';
+import { createAdoptionReport, createExceptionLifecycleReport, formatAdoptionReport, runComplianceCheck } from './index.js';
 
 const tempDirs = [];
 
@@ -820,5 +820,90 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
 
     const report = runComplianceCheck({ manifestPath: join(fixture, 'gds-adoption.json') });
     expect(report.findings.map((finding) => finding.rule)).toContain('manifest.invalidComplianceConfig');
+  });
+
+  it('tracks dependency-boundary lifecycle metadata and flags expired removeBy dates', () => {
+    const fixture = createFixture({
+      'gds-adoption.json': JSON.stringify({
+        schemaVersion: 1,
+        gdsVersion: '3.4.14',
+        productArchetype: 'hybrid',
+        requiredContracts: ['GdsIcon'],
+        localAdapters: [],
+        approvedExceptions: [
+          {
+            surface: 'Legacy icon bridge',
+            category: 'dependency-boundary',
+            scope: ['src/icons/*.tsx'],
+            dependency: 'lucide-react',
+            reason: 'Temporary icon bridge remains in use during migration.',
+            replacementIssue: 'https://github.com/sovereignsquad/general-design-system/issues/299',
+            rollbackPlan: 'Delete the bridge and move the remaining consumers to GdsIcon.',
+            riskLevel: 'high',
+            enforcementMode: 'error',
+            allowedImplementation: ['Bridge-only import boundary'],
+            mustStillUse: ['GDS semantics'],
+            mustNotDo: ['Spread direct lucide imports into feature code'],
+            a11yRequirements: ['Icon-only controls preserve accessible names'],
+            testingRequirements: ['Bridge import coverage remains green'],
+            observabilityRequirements: ['Bridge usage appears in adoption reports'],
+            owner: 'platform-ui',
+            reviewDate: '2026-06-01',
+            removeBy: '2026-06-10',
+            exitCondition: 'Remove after the icon migration completes.',
+            status: 'active',
+          },
+        ],
+        migrationStatus: 'partial',
+        owner: 'platform-ui',
+        lastReviewedAt: '2026-06-01',
+      }, null, 2),
+      'src/icons/LegacyIcon.tsx': `export const LegacyIcon = true;`,
+    });
+
+    const report = runComplianceCheck({
+      manifestPath: join(fixture, 'gds-adoption.json'),
+      currentDate: '2026-06-14',
+    });
+
+    const rules = report.findings.map((finding) => finding.rule);
+    expect(rules).toContain('dependency-boundary.remove-by-expired');
+
+    const lifecycle = createExceptionLifecycleReport(report.manifest, { currentDate: '2026-06-14' });
+    expect(lifecycle.dependencyBoundaryCount).toBe(1);
+    expect(lifecycle.items[0].expiryBucket).toBe('expired');
+    expect(lifecycle.items[0].riskLevel).toBe('high');
+  });
+
+  it('creates adoption reports with score, debt, and markdown output', () => {
+    const fixture = createFixture({
+      'gds-adoption.json': JSON.stringify({
+        schemaVersion: 1,
+        gdsVersion: '3.4.14',
+        productArchetype: 'admin',
+        requiredContracts: ['AdminTextInput'],
+        localAdapters: [],
+        approvedExceptions: [],
+        migrationStatus: 'partial',
+        owner: 'platform-ui',
+        lastReviewedAt: '2026-06-14',
+        compliance: { strictMode: true },
+      }, null, 2),
+      'src/AdminPage.tsx': `
+        import { Button } from '@mantine/core';
+        export function AdminPage() {
+          return <div style={{ color: 'red' }}><button>Delete</button><Button>Unsafe</Button></div>;
+        }
+      `,
+    });
+
+    const report = runComplianceCheck({ manifestPath: join(fixture, 'gds-adoption.json'), currentDate: '2026-06-14' });
+    const adoptionReport = createAdoptionReport(report, { currentDate: '2026-06-14' });
+    const markdown = formatAdoptionReport(adoptionReport, 'md');
+
+    expect(adoptionReport.score).toBeLessThan(100);
+    expect(['excellent', 'at-risk', 'blocked']).toContain(adoptionReport.status);
+    expect(markdown).toContain('# GDS Adoption Report');
+    expect(markdown).toContain('Top remediation steps');
   });
 });

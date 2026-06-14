@@ -97,5 +97,6 @@ export * from './PublicCaptureFlow';
 export * from './PlaybackControls.client';
 export * from './CreatorTheme';
 export * from './MaturityCapabilities';
+export * from './TaskPatterns';
 export * from './PartnerDiscovery';
 export * from './locales';

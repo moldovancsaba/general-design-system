@@ -94,6 +94,7 @@ import { PlaybackControls, usePlaybackKeyboardControls } from './PlaybackControl
 import { CreatorThemeBoundary, validateCreatorCss } from './CreatorTheme';
 import { createGdsTelemetryAdapter, emitGdsEvent, GdsTelemetryProvider, gdsOperationalEventTypes, isGdsOperationalEventType, useGdsTelemetry } from './Telemetry.client';
 import { createGdsVocabularyPack, getSemanticActionLabel } from './vocabulary';
+import { getGdsTaskPattern, getGdsTaskPatterns, validateGdsTaskPatterns } from './TaskPatterns';
 
 function mockMatchMedia(matches: boolean) {
   const original = window.matchMedia;
@@ -184,6 +185,31 @@ describe('@doneisbetter/gds-core', () => {
     const validation = validateGdsAccessibilityEvidence(entries);
     expect(validation.ok).toBe(true);
     expect(validation.failures).toEqual([]);
+  });
+
+  it('publishes complete task pattern contracts with stable ids, states, telemetry, and guidance', () => {
+    const patterns = getGdsTaskPatterns();
+    expect(patterns.map((pattern) => pattern.id)).toEqual([
+      'create-resource',
+      'review-submission',
+      'bulk-approve',
+      'recover-failed-upload',
+      'copy-public-link',
+      'publish-toggle',
+      'confirm-destructive-action',
+    ]);
+    expect(validateGdsTaskPatterns(patterns)).toEqual([]);
+    for (const pattern of patterns) {
+      expect(pattern.states).toEqual(expect.arrayContaining(['start', 'in-progress', 'success', 'empty', 'error', 'retry', 'cancelled']));
+      expect(pattern.telemetry.length).toBeGreaterThan(0);
+      expect(pattern.accessibility.length).toBeGreaterThan(0);
+      expect(pattern.doNotBuild.length).toBeGreaterThan(0);
+      expect(pattern.steps.every((step) => step.componentContracts.length > 0)).toBe(true);
+    }
+    const destructive = getGdsTaskPattern('confirm-destructive-action');
+    expect(destructive?.componentContracts).toContain('GdsConfirmProvider');
+    patterns[0]!.states.length = 0;
+    expect(getGdsTaskPattern('create-resource')?.states).toContain('start');
   });
 
   it('renders package-native typography roles without local Text and Title ladders', () => {

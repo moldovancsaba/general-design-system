@@ -29,6 +29,22 @@ CLI entrypoints:
 - `gds-compliance exceptions`
 - `gds-compliance expire-check`
 
+## Theme Operations API
+
+`@doneisbetter/gds-theme` exports the package-native theme token operations contract:
+
+- `createGdsTokenGraph()`
+- `validateGdsTokenGraph(graph?)`
+- `createGdsTokenDiff(beforeGraph, afterGraph?)`
+- `createGdsThemeCompatibilityReport(graph?)`
+
+CLI entrypoint:
+
+- `gds-theme-tokens graph`
+- `gds-theme-tokens validate`
+- `gds-theme-tokens compatibility`
+- `gds-theme-tokens diff --compare ./previous-graph.json`
+
 ## Maturity Capability API
 
 `@doneisbetter/gds-core` now exports the seven recommended maturity capability contracts:

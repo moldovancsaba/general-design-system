@@ -9,6 +9,7 @@ import { createGdsThemeAccessibilityReport, validateGdsThemeAccessibility } from
 import { GdsProvider } from './GdsProvider';
 import { applyGdsFontLane, getGdsFontLaneStylesheetUrls, getGdsFontLanes, isGdsFontLaneId, resolveGdsFontLane } from './font-lanes';
 import { showGdsNotification } from './notifications';
+import { createGdsTokenDiff, createGdsTokenGraph, createGdsThemeCompatibilityReport, validateGdsTokenGraph } from './token-operations';
 import { createPublicBrandTheme, gdsDarkPublicTheme, gdsEditorialPublicTheme, gdsFlatSurfaceTheme, gdsTheme, withGdsMotion } from './theme';
 import { getGdsThemePresets, partnerDiscoveryThemePreset, resolveGdsThemePreset } from './theme-presets';
 import { useGdsThemePresetState } from './theme-runtime';
@@ -182,6 +183,35 @@ describe('GdsProvider', () => {
       'Highlight',
       'GrayText',
     ]));
+  });
+
+  it('exposes governed token graph, compatibility, and diff reports for theme operations', () => {
+    const graph = createGdsTokenGraph();
+    const validation = validateGdsTokenGraph(graph);
+    const compatibility = createGdsThemeCompatibilityReport(graph);
+
+    expect(validation.ok).toBe(true);
+    expect(validation.errorCount).toBe(0);
+    expect(graph.themeCount).toBe(getGdsVibeThemes().length);
+    expect(graph.tokenCount).toBe(graph.themeCount * 17);
+    expect(graph.nodes.some((node) => node.id === 'default.canvas-light')).toBe(true);
+    expect(compatibility.compatibleThemeCount).toBe(compatibility.themeCount);
+    expect(compatibility.themes.find((theme) => theme.themeId === 'dark-public')?.surfaces).toHaveLength(12);
+
+    const modifiedGraph = {
+      ...graph,
+      nodes: graph.nodes.map((node) =>
+        node.id === 'coral.primary' ? { ...node, value: '#ff00aa' } : node),
+    };
+    const diff = createGdsTokenDiff(graph, modifiedGraph);
+
+    expect(diff.changedCount).toBe(1);
+    expect(diff.entries[0]).toMatchObject({
+      type: 'changed',
+      tokenId: 'coral.primary',
+      before: graph.nodes.find((node) => node.id === 'coral.primary')?.value,
+      after: '#ff00aa',
+    });
   });
 
   it('exposes approved font lanes and applies them to theme contracts', () => {

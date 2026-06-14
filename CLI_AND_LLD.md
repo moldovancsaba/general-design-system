@@ -9,8 +9,10 @@ npm run verify:i18n-message-parity
 npm run verify:i18n-package-copy
 npm run verify:references
 npm run verify:release
+npm run verify:theme-tokens
 gds-compliance adoption-report --manifest ./gds-adoption.json --format md
 gds-compliance expire-check --manifest ./gds-adoption.json
+gds-theme-tokens validate --format text
 ```
 
 ## API Docs LLD
@@ -98,6 +100,23 @@ Flow:
 3. `createAdoptionReport(...)` combines compliance findings and exception debt into a governed adoption score.
 4. `gds-compliance adoption-report` emits text, JSON, Markdown, or HTML evidence for product-owner review.
 5. `gds-compliance expire-check` fails CI when dependency-boundary exceptions are past `removeBy` with `enforcementMode: "error"`.
+
+## Theme Token Operations LLD
+
+Source:
+
+- `packages/gds-theme/src/token-operations.ts`
+- `packages/gds-theme/bin/gds-theme-tokens.js`
+- `scripts/verify-theme-token-contract.mjs`
+
+Flow:
+
+1. `createGdsTokenGraph()` normalizes the shipped vibe-theme lanes into a deterministic token graph.
+2. `validateGdsTokenGraph(...)` enforces token-id uniqueness, static color values, and light/dark pair ownership.
+3. `createGdsTokenDiff(...)` compares a prior graph snapshot with the current shipped graph for release review.
+4. `createGdsThemeCompatibilityReport(...)` summarizes page, shell, card, border, primary-action, and muted-copy compatibility per theme lane.
+5. `gds-theme-tokens` exposes graph, validate, compatibility, and diff commands for local and CI review.
+6. `verify:theme-tokens` blocks release promotion if the shipped token graph is internally inconsistent.
 
 ## Rollback
 

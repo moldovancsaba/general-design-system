@@ -6,7 +6,7 @@
     "apps/*"
   ],
   "scripts": {
-    "verify:release": "node scripts/check-release-alignment.mjs && npm run build && node scripts/check-export-contract.mjs && npm run lint && npm run test:run && npm run verify:references && npm run verify:theme-accessibility && npm run verify:theme-trust-runtime && npm run audit:dependencies && npm run audit:board && npm run verify:mantine",
+    "verify:release": "node scripts/check-release-alignment.mjs && npm run build && node scripts/check-export-contract.mjs && npm run lint && npm run test:run && npm run verify:references && npm run verify:theme-accessibility && npm run verify:theme-tokens && npm run verify:theme-trust-runtime && npm run audit:dependencies && npm run audit:board && npm run verify:mantine",
     "build": "npm run build --workspace=@doneisbetter/gds-theme && npm run build --workspace=@doneisbetter/gds-core && npm run build --workspace=@doneisbetter/gds-admin && npm run build --workspace=@doneisbetter/gds && npm run build --workspace=playground && npm run build --workspace=reference-vite && npm run build --workspace=reference-next",
     "dev": "npm run dev --workspace=apps/playground",
     "lint": "npm run lint --workspace=apps/playground",
@@ -15,6 +15,7 @@
     "verify:references": "node scripts/verify-reference-consumers.mjs && node scripts/verify-playground-shell-contract.mjs && node scripts/verify-playground-gds-only.mjs && node scripts/verify-owned-contrast-compliance.mjs && node scripts/verify-playground-internal-links.mjs && node scripts/verify-docs-governance-consistency.mjs && node scripts/verify-pattern-catalog-coverage.mjs && node scripts/verify-pattern-export-coverage.mjs && node scripts/verify-api-docs-coverage.mjs && node scripts/verify-website-trust.mjs && node scripts/verify-surface-presentation-adoption.mjs && node scripts/verify-locale-coverage.mjs && node scripts/verify-site-phrase-translations.mjs && node scripts/verify-i18n-message-parity.mjs && node scripts/verify-i18n-package-copy.mjs && node scripts/verify-theme-governance.mjs && node scripts/verify-install-bootstrap-docs.mjs && node scripts/verify-media-upload-contract.mjs && node scripts/verify-reporting-contract.mjs && node scripts/verify-access-identity-contract.mjs && node scripts/verify-codemods.mjs",
     "verify:api-docs-coverage": "node scripts/verify-api-docs-coverage.mjs",
     "verify:theme-accessibility": "node scripts/verify-theme-accessibility.mjs",
+    "verify:theme-tokens": "node scripts/verify-theme-token-contract.mjs",
     "verify:theme-trust-runtime": "node scripts/verify-theme-trust-runtime.mjs",
     "verify:accessibility-runtime": "node scripts/verify-accessibility-runtime.mjs",
     "verify:i18n-route-coverage": "node scripts/verify-locale-coverage.mjs",

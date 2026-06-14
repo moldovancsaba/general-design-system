@@ -341,5 +341,8 @@ Review checklist for runtime-theme work:
 - Can a visitor choose `Oceanic wave`, switch to dark mode, choose `Space Grotesk`, then open `/live-demos/surfaces` directly without losing the runtime?
 - Do direct links and static-host fallback pages serve the same persisted runtime as normal internal navigation?
 - Are font files or imports available for every advertised font lane?
+- Does `createGdsTokenGraph()` still expose a complete light/dark token pair for every shipped lane?
+- Does `gds-theme-tokens validate` pass before the release branch is promoted?
+- Has `gds-theme-tokens diff --compare <previous-graph.json>` been reviewed for intentional token changes and rollback safety?
 - Does the test harness use a real in-memory storage implementation instead of a no-op storage mock?
 - Does CI fail if the persistence contract is removed from the official reference app?

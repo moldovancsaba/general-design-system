@@ -5,6 +5,9 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
+  "bin": {
+    "gds-theme-tokens": "bin/gds-theme-tokens.mjs"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -33,6 +36,7 @@
   },
   "files": [
     "dist",
+    "bin",
     "styles.css"
   ],
   "scripts": {

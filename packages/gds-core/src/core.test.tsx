@@ -82,7 +82,7 @@ import { resolveGdsCardContract } from './CardContracts';
 import { ar, de, en, es, fr, getGdsMessages, he, hu, it as itLocale, ru } from './locales';
 import { GdsIcons } from './icons';
 import { GdsIcon, getGdsIconKeys, getGdsIconMetadata, getGdsIconToneColor, gdsIconRegistry } from './icons';
-import { OverlayManagerProvider, useOverlayManager } from './OverlayManager.client';
+import { GdsDrawer, GdsModal, OverlayManagerProvider, useOverlayManager } from './OverlayManager.client';
 import { GdsConfirmProvider, GdsToastProvider, useGdsConfirm, useGdsToasts } from './FeedbackRuntime.client';
 import { MediaPreviewCard } from './MediaPreviewCard';
 import { PublicCaptureFlow } from './PublicCaptureFlow';
@@ -2390,22 +2390,25 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
 
   it('manages overlay stack with top-most close rules', async () => {
     const user = userEvent.setup();
+    const events = vi.fn();
 
     function OverlayProbe() {
       const overlay = useOverlayManager();
       return (
         <>
-          <button type="button" onClick={() => overlay.registerOverlay({ id: 'dialog-a', kind: 'dialog' })}>Open A</button>
-          <button type="button" onClick={() => overlay.registerOverlay({ id: 'drawer-b', kind: 'drawer' })}>Open B</button>
-          <button type="button" onClick={() => overlay.unregisterOverlay('drawer-b')}>Close B</button>
+          <button id="open-a" type="button" onClick={() => overlay.registerOverlay({ id: 'dialog-a', kind: 'dialog', policy: { allowNested: true } })}>Open A</button>
+          <button type="button" onClick={() => overlay.registerOverlay({ id: 'drawer-b', kind: 'drawer', policy: { allowNested: true, closeOnEscape: false } })}>Open B</button>
+          <button type="button" onClick={() => overlay.closeOverlay('drawer-b', 'escape')}>Blocked escape</button>
+          <button type="button" onClick={() => overlay.closeOverlay('drawer-b', 'action')}>Close B</button>
           <Text>{overlay.requestClose('dialog-a', 'escape') ?? 'blocked'}</Text>
           <Text>{overlay.isTopMost('drawer-b') ? 'top' : 'not-top'}</Text>
+          <Text>{overlay.stack.length} overlays</Text>
         </>
       );
     }
 
     renderWithGds(
-      <OverlayManagerProvider>
+      <OverlayManagerProvider onOverlayEvent={events}>
         <OverlayProbe />
       </OverlayManagerProvider>,
     );
@@ -2413,8 +2416,61 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     await user.click(screen.getByRole('button', { name: 'Open A' }));
     await user.click(screen.getByRole('button', { name: 'Open B' }));
     expect(screen.getByText('top')).toBeInTheDocument();
+    expect(screen.getByText('2 overlays')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Blocked escape' }));
+    expect(screen.getByText('top')).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Close B' }));
     expect(screen.getByText('escape')).toBeInTheDocument();
+    expect(events.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining(['overlay_opened', 'blocked_close', 'overlay_closed']));
+  });
+
+  it('renders governed overlay surfaces with focus return and route recovery', async () => {
+    const user = userEvent.setup();
+    const events = vi.fn();
+
+    function OverlaySurfaceProbe({ routeKey }: { routeKey: string }) {
+      const [modalOpen, setModalOpen] = React.useState(false);
+      const [drawerOpen, setDrawerOpen] = React.useState(false);
+      return (
+        <OverlayManagerProvider routeKey={routeKey} onOverlayEvent={events}>
+          <button id="modal-trigger" type="button" onClick={() => setModalOpen(true)}>Open governed modal</button>
+          <button id="drawer-trigger" type="button" onClick={() => setDrawerOpen(true)}>Open governed drawer</button>
+          <GdsModal
+            id="governed-modal"
+            opened={modalOpen}
+            onClose={() => setModalOpen(false)}
+            title="Governed modal"
+            invokerId="modal-trigger"
+            policy={{ closeOnEscape: true }}
+          >
+            Modal body
+          </GdsModal>
+          <GdsDrawer
+            id="governed-drawer"
+            opened={drawerOpen}
+            onClose={() => setDrawerOpen(false)}
+            title="Governed drawer"
+            invokerId="drawer-trigger"
+            policy={{ routeChange: 'recover', mobileFullscreen: true }}
+          >
+            Drawer body
+          </GdsDrawer>
+        </OverlayManagerProvider>
+      );
+    }
+
+    const { rerender } = renderWithGds(<OverlaySurfaceProbe routeKey="one" />);
+
+    await user.click(screen.getByRole('button', { name: 'Open governed modal' }));
+    expect(await screen.findByRole('dialog', { name: 'Governed modal' })).toBeInTheDocument();
+    await user.keyboard('{Escape}');
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Governed modal' })).not.toBeInTheDocument());
+    expect(screen.getByRole('button', { name: 'Open governed modal' })).toHaveFocus();
+
+    await user.click(screen.getByRole('button', { name: 'Open governed drawer' }));
+    expect(await screen.findByRole('dialog', { name: 'Governed drawer' })).toBeInTheDocument();
+    rerender(<OverlaySurfaceProbe routeKey="two" />);
+    expect(events.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining(['overlay_opened', 'escape_close', 'route_recovered']));
   });
 
   it('registers and executes command palette commands', async () => {

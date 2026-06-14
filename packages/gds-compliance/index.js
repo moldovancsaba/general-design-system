@@ -35,7 +35,7 @@ const STRICT_RULE_METADATA = {
   'strict.inline-style': {
     family: 'inline-style',
     allowedExceptionCategories: ['runtime-constraint', 'product-authored-experience', 'package-coverage-gap', 'migration-bridge'],
-    remediation: 'Use GDS layout/style primitives or declare a narrow approved exception.',
+    remediation: 'Use GdsSafeBox, GdsMediaFrame, GdsOverflowFrame, GdsResponsiveVisibility, GDS layout primitives, or declare a narrow approved exception.',
   },
   'strict.local-gds-adapter': {
     family: 'local-adapter',

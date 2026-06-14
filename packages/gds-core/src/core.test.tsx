@@ -40,6 +40,7 @@ import { GdsBarChart, GdsLineChart, GdsStackedBarChart, getGdsSeriesColor } from
 import { BodyText, CardTitle, InlineEmphasis, LabelText, MetadataText, PageTitle, SectionTitle } from './Typography';
 import { ClippedFlexChild, FloatingActionPlacement, ListItemSection, NumericCell, OverflowContainer, SemanticInset, VisuallyHidden } from './StyleUtilities';
 import { GdsBox, GdsCluster, GdsContainer, GdsGrid, GdsInline, GdsSidebar, GdsSplit, GdsStack, normalizeGdsResponsiveValue, resolveGdsLayoutStyle } from './LayoutPrimitives';
+import { GdsMediaFrame, GdsOverflowFrame, GdsResponsiveVisibility, GdsSafeBox, createGdsStyleContract, gdsStyle } from './SafeStyles';
 import { EvidencePanel } from './EvidencePanel';
 import { ListingCard } from './ListingCard';
 import { getGdsBlockTypes, getGdsLayoutTemplate, getGdsLayoutTemplates, registerGdsBlock, renderGdsLayout, renderGdsLayoutWithDiagnostics, validateGdsLayout } from './LayoutBlocks';
@@ -258,6 +259,45 @@ describe('@doneisbetter/gds-core', () => {
     expect(screen.getByLabelText('Sidebar layout')).toHaveTextContent('Sidebar');
     expect(screen.getByRole('main', { name: 'Page container' })).toHaveStyle({ width: '100%' });
     expect(document.querySelectorAll('style[data-gds-layout]').length).toBeGreaterThan(0);
+  });
+
+  it('resolves safe style contracts without raw consumer CSS values', () => {
+    const resolved = gdsStyle({
+      background: 'danger',
+      border: 'danger',
+      radius: 'lg',
+      shadow: 'subtle',
+      overflow: 'contained',
+      inset: 'md',
+      focusRing: 'inset',
+    });
+
+    expect(resolved.attributes['data-gds-safe-style']).toBe('true');
+    expect(resolved.attributes['data-gds-overflow-policy']).toBe('contained');
+    expect(resolved.style.backgroundColor).toContain('var(--mantine-color-red-0)');
+    expect(resolved.style.border).toContain('var(--mantine-color-red-6)');
+    expect(resolved.style.borderRadius).toBe('var(--mantine-radius-lg)');
+    expect(resolved.style.padding).toBe('var(--mantine-spacing-md)');
+    expect(resolved.style.overscrollBehavior).toBe('contain');
+
+    const contract = createGdsStyleContract('visibility-test', { visibility: { base: 'screen-reader-only', md: 'visible' } });
+    expect(contract.className).toMatch(/^gds-safe-style-/);
+    expect(contract.css).toContain('@media (min-width: 768px)');
+
+    renderWithGds(
+      <>
+        <GdsSafeBox safeStyle={{ background: 'surface', border: 'default', radius: 'md' }}>Safe box</GdsSafeBox>
+        <GdsMediaFrame fit="contain" aspectRatio="video">Media</GdsMediaFrame>
+        <GdsOverflowFrame policy="contained" label="Scrollable region">Overflow</GdsOverflowFrame>
+        <GdsResponsiveVisibility visibility={{ base: 'hidden', md: 'visible' }}>Responsive copy</GdsResponsiveVisibility>
+      </>,
+    );
+
+    expect(screen.getByText('Safe box')).toHaveAttribute('data-gds-safe-style', 'safe-box');
+    expect(screen.getByText('Media')).toHaveStyle({ aspectRatio: '16 / 9', objectFit: 'contain' });
+    expect(screen.getByLabelText('Scrollable region')).toHaveAttribute('data-gds-overflow-policy', 'contained');
+    expect(screen.getByText('Responsive copy')).toHaveAttribute('data-gds-safe-style', 'responsive-visibility');
+    expect(document.querySelectorAll('style[data-gds-safe-style-sheet]').length).toBeGreaterThan(0);
   });
 
   it('exposes a server-safe semantic action label helper', () => {

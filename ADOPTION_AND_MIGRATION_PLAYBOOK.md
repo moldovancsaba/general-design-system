@@ -127,6 +127,15 @@ Codemod governance contract:
 - unsupported inline styles, browser alerts/confirms, raw tables, unknown icons, and custom action groups must become manual follow-ups with owner and expiry metadata, not silent bypasses
 - generated exception stubs are not blanket approval; they are the reviewed temporary format to paste into `gds-adoption.json` only when a narrow exception is justified
 
+Inline-style replacement path:
+
+1. replace page/layout spacing with `GdsBox`, `GdsStack`, `GdsInline`, `GdsGrid`, `GdsSidebar`, or `GdsContainer`
+2. replace token-safe visual wrappers with `GdsSafeBox`
+3. replace image/video/object wrappers with `GdsMediaFrame`
+4. replace scroll wrappers with `GdsOverflowFrame`
+5. replace responsive display hacks with `GdsResponsiveVisibility`
+6. use `gdsStyle()` or `createGdsStyleContract()` only for reviewed adapter or package-native integration code
+
 ## 6. Required Verification Before Promotion
 
 Run:

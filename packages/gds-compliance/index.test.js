@@ -94,6 +94,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
     expect(rules).toContain('strict.browser-dialog');
     expect(rules).toContain('strict.raw-table');
     expect(rules).toContain('strict.inline-style');
+    expect(report.findings.find((finding) => finding.rule === 'strict.inline-style')?.message).toContain('GdsSafeBox');
   });
 
   it('suppresses strict drift only when the exception category and status match the violation family', () => {

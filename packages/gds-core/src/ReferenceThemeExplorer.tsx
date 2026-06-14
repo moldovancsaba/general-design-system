@@ -292,6 +292,25 @@ export function ReferenceThemeExplorer({
   const previewRootId = `gds-theme-preview-${previewKey}`;
   const comparisonPreviewRootId = `gds-theme-preview-${comparisonPreviewKey}`;
   const selectedVibe = vibeCatalogById[preset];
+  const controlSurfaceStyle = selectedVibe ? ({
+    '--mantine-color-text': selectedVibe.textLight,
+    '--mantine-color-dimmed': selectedVibe.mutedLight,
+    '--gds-local-background': `linear-gradient(180deg, color-mix(in srgb, ${selectedVibe.surfaceDark} 92%, black), color-mix(in srgb, ${selectedVibe.surfaceDark} 84%, ${selectedVibe.primary} 16%))`,
+    '--gds-local-radius': 'var(--mantine-radius-xl)',
+    '--gds-vibe-primary': selectedVibe.primary,
+    '--gds-vibe-accent': selectedVibe.accent,
+    '--gds-vibe-surface': selectedVibe.surfaceLight,
+    '--gds-vibe-border': selectedVibe.borderLight,
+    '--gds-vibe-text': selectedVibe.textLight,
+    '--gds-vibe-muted': selectedVibe.mutedLight,
+    '--gds-vibe-link': `color-mix(in srgb, ${selectedVibe.primary} 64%, ${selectedVibe.textLight})`,
+    '--gds-vibe-control': `color-mix(in srgb, ${selectedVibe.surfaceLight} 90%, ${selectedVibe.primary} 10%)`,
+    '--gds-vibe-control-text': selectedVibe.textLight,
+    color: selectedVibe.textLight,
+    backgroundColor: selectedVibe.surfaceDark,
+    backgroundImage: 'var(--gds-local-background)',
+    borderColor: selectedVibe.borderLight,
+  } as CSSProperties) : undefined;
 
   useEffect(() => {
     onSelectionChange?.({
@@ -332,7 +351,13 @@ export function ReferenceThemeExplorer({
         description={copy.themeLabDescription}
       >
         <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="lg">
-          <Paper withBorder radius="xl" p="lg">
+          <Paper
+            data-gds-local-contrast="theme-lab-controls"
+            withBorder
+            radius="xl"
+            p="lg"
+            style={controlSurfaceStyle}
+          >
             <Stack gap="md">
               <Title order={4}>{copy.themePresetTitle}</Title>
               <FormField label={copy.presetLabel}>
@@ -372,7 +397,13 @@ export function ReferenceThemeExplorer({
             </Stack>
           </Paper>
 
-          <Paper withBorder radius="xl" p="lg">
+          <Paper
+            data-gds-local-contrast="theme-lab-controls"
+            withBorder
+            radius="xl"
+            p="lg"
+            style={controlSurfaceStyle}
+          >
             <Stack gap="md">
               <Title order={4}>{copy.brandOptionsTitle}</Title>
               <FormField label={copy.brandPrimaryColorLabel}>
@@ -402,7 +433,13 @@ export function ReferenceThemeExplorer({
             </Stack>
           </Paper>
 
-          <Paper withBorder radius="xl" p="lg">
+          <Paper
+            data-gds-local-contrast="theme-lab-controls"
+            withBorder
+            radius="xl"
+            p="lg"
+            style={controlSurfaceStyle}
+          >
             <Stack gap="md" role="status" aria-live="polite">
               <Title order={4}>{copy.currentSelectionTitle}</Title>
               <Stack gap={6}>

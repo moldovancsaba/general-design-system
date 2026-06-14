@@ -63,6 +63,7 @@ export * from './MediaCard';
 export * from './MediaPreviewCard';
 export * from './AccessSummary';
 export * from './AccessRecoveryPanel';
+export * from './AccessibilityEvidence';
 export * from './FormField';
 export * from './GdsForm.client';
 export * from './PageHeader';

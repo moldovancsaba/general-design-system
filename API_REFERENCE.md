@@ -50,6 +50,17 @@ High-contrast and forced-colors release gates:
 - `createGdsThemeAccessibilityReport()` includes the forced-color role registry and required runtime checks
 - `npm run verify:forced-colors-runtime` validates the live docs/runtime routes under `forced-colors: active`
 
+## Accessibility Evidence API
+
+`@doneisbetter/gds-core` exports the package-native accessibility evidence helpers:
+
+- `createGdsAccessibilityEvidenceIndex(entries)`
+- `getGdsAccessibilityEvidence(entriesOrIndex, id)`
+- `getGdsAccessibilityEvidenceSummary(entries)`
+- `validateGdsAccessibilityEvidence(entries)`
+
+These helpers back the official evidence registry rendered on the docs site. The registry publishes keyboard behavior, visible focus behavior, screen-reader semantics, WCAG mappings, assistive-technology/browser status, known limitations, owners, and recovery notes for every stable pattern.
+
 ## Maturity Capability API
 
 `@doneisbetter/gds-core` now exports the seven recommended maturity capability contracts:
@@ -102,10 +113,11 @@ Every public entry includes:
 
 ```bash
 npm run verify:api-docs-coverage
+npm run verify:accessibility-evidence
 ```
 
 The command fails when runtime exports are not represented by the API reference registry source coverage.
 
 ## Release Gate
 
-`npm run verify:references` and `npm run verify:release` include API documentation coverage.
+`npm run verify:references` and `npm run verify:release` include API documentation coverage and accessibility evidence validation.

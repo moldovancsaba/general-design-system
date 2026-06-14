@@ -17,6 +17,7 @@ import {
 } from '@doneisbetter/gds-core';
 import { useGdsTranslation } from '@doneisbetter/gds-theme';
 import { apiReferenceEntries, apiReferencePackages, getApiReferenceEntries, getApiReferenceSummary } from './api-reference-registry';
+import { accessibilityEvidenceEntries, accessibilityEvidenceSummary } from './accessibility-evidence-registry';
 import { patternRegistry } from './pattern-registry';
 import {
   apiReferenceCopy,
@@ -161,6 +162,7 @@ const themeGovernanceCode = `{
 const verificationCode = `npm run build
 npm run test:run
 npm run verify:mantine
+npm run verify:accessibility-evidence
 gds-compliance check --manifest ./gds-adoption.json`;
 
 const failureRecoveryCode = `# Peer conflict
@@ -506,6 +508,13 @@ export function CoveragePage() {
     route: entry.route,
     status: entry.coverageStatus,
   }));
+  const evidenceRows = accessibilityEvidenceEntries.map((entry) => ({
+    id: entry.id,
+    pattern: entry.title,
+    status: entry.status,
+    owner: entry.owner,
+    route: entry.route,
+  }));
 
   return (
     <DocsPageShell
@@ -537,6 +546,28 @@ export function CoveragePage() {
           getRowKey={(row) => row.id}
         />
       </ReferenceSection>
+      <ReferenceSection title="Accessibility evidence" description="Every stable pattern publishes package-owned keyboard, focus, WCAG, screen-reader, and AT/browser evidence. Known limitations stay visible here instead of hiding in release notes.">
+        <FeatureBand
+          columns={4}
+          variant="compact"
+          items={[
+            { id: 'evidence-total', title: 'Documented patterns', description: `${accessibilityEvidenceSummary.total} stable patterns publish structured accessibility evidence.` },
+            { id: 'evidence-verified', title: 'Verified', description: `${accessibilityEvidenceSummary.verified} patterns are currently marked verified.` },
+            { id: 'evidence-known', title: 'Known limitations', description: `${accessibilityEvidenceSummary.withKnownLimitations} patterns disclose an explicit limitation and recovery path.` },
+            { id: 'evidence-at', title: 'AT/browser checks', description: `${accessibilityEvidenceSummary.atStatuses.verified} verified assistive-technology/browser rows are shipped in the registry.` },
+          ]}
+        />
+        <SimpleDataTable
+          columns={[
+            { key: 'pattern', header: 'Pattern' },
+            { key: 'status', header: 'Evidence' },
+            { key: 'owner', header: 'Owner' },
+            { key: 'route', header: 'Route' },
+          ]}
+          rows={evidenceRows}
+          getRowKey={(row) => row.id}
+        />
+      </ReferenceSection>
       <SiteFooter />
     </DocsPageShell>
   );
@@ -546,6 +577,13 @@ export function ApiReferencePage() {
   const { locale } = useGdsTranslation();
   const i18n = getSiteCopy(apiReferenceCopy, locale);
   const summary = getApiReferenceSummary();
+  const evidenceRows = accessibilityEvidenceEntries.slice(0, 12).map((entry) => ({
+    id: entry.id,
+    pattern: entry.title,
+    status: entry.status,
+    route: entry.route,
+    source: entry.evidenceSource,
+  }));
   const rows = getApiReferenceEntries().map((entry) => ({
     id: `${entry.packageName}:${entry.exportName}`,
     exportName: entry.exportName,
@@ -583,6 +621,28 @@ export function ApiReferencePage() {
             href: '/general-design-system/api',
             badge: packageName.includes('admin') ? 'operator' : packageName.includes('theme') ? 'theme' : 'runtime',
           }))}
+        />
+      </ReferenceSection>
+      <ReferenceSection title="Accessibility evidence contract" description="The API surface is paired with a package-owned evidence registry so consumers can audit keyboard behavior, visible focus, WCAG mapping, assistive-technology coverage, known limitations, and recovery notes before adoption.">
+        <FeatureBand
+          columns={4}
+          variant="compact"
+          items={[
+            { id: 'evidence-registry', title: 'Evidence records', description: `${accessibilityEvidenceSummary.total} stable pattern records are generated from the shipped registry.` },
+            { id: 'evidence-helper', title: 'Lookup helpers', description: 'The public @doneisbetter/gds-core helper exports resolve evidence by id, build deterministic indexes, summarize coverage, and validate freshness.' },
+            { id: 'evidence-status', title: 'Visible limitations', description: `${accessibilityEvidenceSummary.knownLimitation} patterns remain flagged as known limitations instead of pretending to be fully verified.` },
+            { id: 'evidence-at-status', title: 'AT/browser matrix', description: `${accessibilityEvidenceSummary.atStatuses.verified} verified assistive-technology/browser rows are included in the current release.` },
+          ]}
+        />
+        <SimpleDataTable
+          columns={[
+            { key: 'pattern', header: 'Pattern' },
+            { key: 'status', header: 'Evidence' },
+            { key: 'route', header: 'Route' },
+            { key: 'source', header: 'Source' },
+          ]}
+          rows={evidenceRows}
+          getRowKey={(row) => row.id}
         />
       </ReferenceSection>
       <ReferenceSection title={i18n.tableTitle} description={i18n.tableDescription}>
@@ -924,6 +984,28 @@ export function RulebookPage() {
               id: 'site-authority',
               title: 'Site-only styling systems',
               description: 'Brand or theme exploration must use the shipped theme helpers, not a parallel token authority.',
+            },
+          ]}
+        />
+      </ReferenceSection>
+      <ReferenceSection title="Accessibility evidence rules" description="Stable patterns must publish structured evidence with owner, freshness, WCAG mapping, AT/browser status, known limitations, and recovery text. Missing or stale records fail release verification.">
+        <FeatureBand
+          columns={3}
+          items={[
+            {
+              id: 'evidence-baseline',
+              title: 'No anonymous claims',
+              description: 'Accessibility statements must resolve to a concrete registry record with keyboard, focus, and screen-reader behavior instead of narrative marketing copy.',
+            },
+            {
+              id: 'evidence-freshness',
+              title: 'Freshness is enforced',
+              description: 'Evidence older than the allowed window must be marked expired or the release gate fails.',
+            },
+            {
+              id: 'evidence-recovery',
+              title: 'Limitations stay visible',
+              description: 'Known limitations require an owner, replacement path, follow-up issue, and recovery guidance before the pattern can remain in the shipped registry.',
             },
           ]}
         />

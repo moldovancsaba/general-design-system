@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { renderWithGds } from '../../../test-utils/render';
 import { AccessSummary } from './AccessSummary';
 import { AccessRecoveryPanel } from './AccessRecoveryPanel';
+import { createGdsAccessibilityEvidenceIndex, getGdsAccessibilityEvidence, getGdsAccessibilityEvidenceSummary, validateGdsAccessibilityEvidence } from './AccessibilityEvidence';
 import { AccentPanel, resolveAccentPanelStyles } from './AccentPanel';
 import { ActionBar } from './ActionBar';
 import { AdvancedDataTable } from './AdvancedDataTable.client';
@@ -119,6 +120,64 @@ describe('@doneisbetter/gds-core', () => {
     });
 
     expect(screen.getByRole('button', { name: 'Speichern' })).toBeInTheDocument();
+  });
+
+  it('indexes and validates structured accessibility evidence', () => {
+    const entries = [
+      {
+        id: 'demo',
+        title: 'Demo pattern',
+        kind: 'pattern' as const,
+        route: '/patterns/foundations',
+        packageName: '@doneisbetter/gds-core',
+        owner: 'GDS foundations',
+        status: 'verified' as const,
+        updatedAt: '2026-06-14',
+        evidenceSource: 'Official docs route',
+        summary: 'Structured accessibility evidence for a stable pattern.',
+        keyboard: {
+          tabSequence: 'Tab and Shift+Tab move through the pattern in visible order.',
+          activation: 'Enter and Space activate the focused control.',
+        },
+        focusBehavior: 'Visible focus remains present across light, dark, and forced-colors modes.',
+        screenReader: {
+          summary: 'Screen readers receive named controls and current state copy.',
+          semantics: ['button', 'heading'],
+          announcements: ['current state is visible and announced'],
+        },
+        wcagMappings: [
+          { criterion: '1.3.1', level: 'A' as const, note: 'Relationships are explicit.' },
+          { criterion: '1.4.3', level: 'AA' as const, note: 'Contrast is validated.' },
+          { criterion: '2.1.1', level: 'A' as const, note: 'Keyboard path is available.' },
+          { criterion: '2.4.7', level: 'AA' as const, note: 'Focus is visible.' },
+          { criterion: '4.1.2', level: 'A' as const, note: 'Name, role, and value are exposed.' },
+        ],
+        atBrowserStatus: [
+          {
+            assistiveTechnology: 'VoiceOver',
+            browser: 'Safari 18',
+            os: 'iOS 18',
+            status: 'verified' as const,
+            verifiedAt: '2026-06-14',
+            note: 'Reviewed on the official route.',
+          },
+        ],
+        recovery: 'Pin the previous package version if the pattern regresses.',
+      },
+    ];
+
+    const index = createGdsAccessibilityEvidenceIndex(entries);
+    expect(getGdsAccessibilityEvidence(index, 'demo')?.title).toBe('Demo pattern');
+    expect(getGdsAccessibilityEvidence(entries, 'demo')?.owner).toBe('GDS foundations');
+
+    const summary = getGdsAccessibilityEvidenceSummary(entries);
+    expect(summary.total).toBe(1);
+    expect(summary.verified).toBe(1);
+    expect(summary.atStatuses.verified).toBe(1);
+
+    const validation = validateGdsAccessibilityEvidence(entries);
+    expect(validation.ok).toBe(true);
+    expect(validation.failures).toEqual([]);
   });
 
   it('renders package-native typography roles without local Text and Title ladders', () => {

@@ -47,6 +47,7 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 - **Compliance Toolkit**: [COMPLIANCE_TOOLKIT.md](COMPLIANCE_TOOLKIT.md) — Shared lint, manifest validation, stale-doc detection, banned-import governance, and repo-level drift checks.
 - **Reference Codemods**: [scripts/codemods/README.md](scripts/codemods/README.md) — Narrow, production-safe migration helpers for `DiscoveryShell`, `ActionBar`, and `ListingCard`, verified by `node scripts/verify-codemods.mjs`.
 - **Theme Governance**: [THEME_GOVERNANCE.md](THEME_GOVERNANCE.md) — Brand extension, dark-mode defaults, white-label, flat-surface, and tenant-theme rules.
+- **Accessibility Evidence**: [ACCESSIBILITY_EVIDENCE.md](ACCESSIBILITY_EVIDENCE.md) — Structured keyboard, focus, WCAG, AT/browser, limitation, and recovery evidence for stable patterns.
 - **Exception Surfaces**: [EXCEPTION_SURFACES.md](EXCEPTION_SURFACES.md) — Chart, map, embed, and other approved exception-surface guidance.
 - **Deprecations & Migrations**: [DEPRECATIONS_AND_MIGRATIONS.md](DEPRECATIONS_AND_MIGRATIONS.md) — Contract retirement policy, migration rules, and release handover expectations.
 - **Portfolio Matrix**: [PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md](PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md) — The current cross-project inventory, archetypes, and recommended next actions.
@@ -160,6 +161,7 @@ Required repository behavior:
 
 - `npm run verify:release` — checks release alignment, builds all packages/apps, verifies export boundaries, then runs lint, tests, and reference validation
 - `npm run verify:references` — validates reference consumers, adoption manifests, official `DocsShell` usage, strict playground GDS-only source rules (no `@mantine/core` imports and no inline `style={{...}}` on core Pages routes), SSOT pattern-catalog coverage, package export-to-pattern coverage, website trust/clarity checks, surface-presentation migration evidence, route-level locale coverage declarations, canonical theme-governance lanes, media/upload contracts, reporting/access contracts, and reference codemods
+- `npm run verify:accessibility-evidence` — validates that every stable pattern publishes structured accessibility evidence with required WCAG mappings, AT/browser rows, freshness, owners, limitations, and recovery metadata
 - `npm run verify:theme-tokens` — validates the shipped theme token graph, light/dark pair ownership, and per-surface compatibility coverage
 - `npm run verify:forced-colors-runtime` — emulates `forced-colors: active` in a headless browser and checks governed routes for platform-backed surfaces, visible focus, and readable control states
 - `gds-compliance adoption-report --manifest ./gds-adoption.json --format md` — emits the governed adoption score and remediation summary for a consumer repository

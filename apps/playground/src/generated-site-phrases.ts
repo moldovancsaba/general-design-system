@@ -221,6 +221,50 @@ export const generatedSitePhrases = {
     "fr": "Accessibilité et récupération",
     "he": "נגישות והתאוששות"
   },
+  "p_c0aee753a5a6": {
+    "en": "Accessibility evidence",
+    "es": "Evidencia de accesibilidad",
+    "fr": "Preuve d'accessibilité",
+    "de": "Nachweise zur Barrierefreiheit",
+    "ar": "أدلة إمكانية الوصول",
+    "ru": "Доказательства доступности",
+    "it": "Prove di accessibilità",
+    "he": "עדות נגישות",
+    "hu": "A hozzáférhetőség bizonyítékai"
+  },
+  "p_95a255235032": {
+    "en": "Accessibility evidence contract",
+    "ar": "عقد أدلة الوصول",
+    "it": "Contratto sulle prove di accessibilità",
+    "es": "Contrato de evidencia de accesibilidad",
+    "de": "Vertrag über Barrierefreiheitsnachweise",
+    "fr": "Contrat de preuves d'accessibilité",
+    "he": "חוזה ראיות נגישות",
+    "hu": "Hozzáférhetőségi bizonyítási szerződés",
+    "ru": "Контракт на доказательства доступности"
+  },
+  "p_b5a68556abf5": {
+    "en": "Accessibility evidence rules",
+    "ar": "قواعد أدلة الوصول",
+    "es": "Reglas de evidencia de accesibilidad",
+    "fr": "Règles de preuve d'accessibilité",
+    "de": "Regeln für den Nachweis der Barrierefreiheit",
+    "he": "כללי ראיות נגישות",
+    "hu": "Hozzáférhetőségi bizonyítékok szabályai",
+    "it": "Regole sull'evidenza dell'accessibilità",
+    "ru": "Правила доказательства доступности"
+  },
+  "p_d11ffe45da4b": {
+    "en": "Accessibility statements must resolve to a concrete registry record with keyboard, focus, and screen-reader behavior instead of narrative marketing copy.",
+    "de": "Erklärungen zur Barrierefreiheit müssen in einen konkreten Registrierungseintrag mit Tastatur-, Fokus- und Screenreader-Verhalten und nicht in eine narrative Marketingkopie umgewandelt werden.",
+    "fr": "Les déclarations d'accessibilité doivent se résumer à un enregistrement de registre concret avec un comportement de clavier, de focus et de lecteur d'écran au lieu d'une copie marketing narrative.",
+    "es": "Las declaraciones de accesibilidad deben resolverse en un registro de registro concreto con comportamiento de teclado, enfoque y lector de pantalla en lugar de una copia narrativa de marketing.",
+    "ar": "يجب أن تتوافق بيانات إمكانية الوصول مع سجل تسجيل ملموس باستخدام لوحة المفاتيح والتركيز وسلوك قارئ الشاشة بدلاً من النسخة التسويقية السردية.",
+    "it": "Le dichiarazioni di accessibilità devono risolversi in un record di registro concreto con il comportamento della tastiera, del focus e dello screen reader invece di un testo di marketing narrativo.",
+    "he": "הצהרות נגישות חייבות להתייחס לרשומת רישום קונקרטית עם התנהגות מקלדת, מיקוד וקורא מסך במקום עותק שיווקי נרטיבי.",
+    "hu": "A kisegítő lehetőségekről szóló nyilatkozatoknak konkrét nyilvántartási rekordot kell létrehozniuk billentyűzettel, fókusszal és képernyőolvasó viselkedéssel a narratív marketingmásolat helyett.",
+    "ru": "Заявления о доступности должны соответствовать конкретной записи реестра с клавиатурой, фокусом и функциями чтения с экрана, а не повествовательным маркетинговым текстом."
+  },
   "p_a2dfa2d6f369": {
     "en": "Accessible playback surface with bounded description and media containment.",
     "ar": "سطح تشغيل يمكن الوصول إليه مع وصف محدد واحتواء الوسائط.",
@@ -726,6 +770,28 @@ export const generatedSitePhrases = {
     "hu": "Cikkhéjak",
     "de": "Artikelschalen",
     "he": "קונכיות מאמר"
+  },
+  "p_d6b48fbd2526": {
+    "en": "AT/browser checks",
+    "it": "Controlli AT/browser",
+    "fr": "Vérifications AT/navigateur",
+    "ar": "الشيكات في/المتصفح",
+    "he": "בדיקות AT/דפדפן",
+    "es": "Comprobaciones de AT/navegador",
+    "ru": "Проверка AT/браузера",
+    "hu": "AT/böngésző ellenőrzések",
+    "de": "AT/Browser-Prüfungen"
+  },
+  "p_a8a2244fd5a9": {
+    "en": "AT/browser matrix",
+    "fr": "Matrice AT/navigateur",
+    "es": "Matriz AT/navegador",
+    "ru": "AT/браузерная матрица",
+    "de": "AT/Browser-Matrix",
+    "hu": "AT/böngésző mátrix",
+    "ar": "مصفوفة في/المتصفح",
+    "it": "Matrice AT/browser",
+    "he": "מטריצת AT/דפדפן"
   },
   "p_1b6f11f81cca": {
     "en": "Auth and social login",
@@ -2586,6 +2652,17 @@ export const generatedSitePhrases = {
     "hu": "Dokumentációs kérdés",
     "he": "שאלת תיעוד"
   },
+  "p_3313b68aa223": {
+    "en": "Documented patterns",
+    "ru": "Документированные шаблоны",
+    "de": "Dokumentierte Muster",
+    "ar": "الأنماط الموثقة",
+    "it": "Modelli documentati",
+    "es": "Patrones documentados",
+    "fr": "Modèles documentés",
+    "he": "תבניות מתועדות",
+    "hu": "Dokumentált minták"
+  },
   "p_eb952b79f88c": {
     "en": "Documented patterns should be represented by shipped package surfaces or bounded examples.",
     "es": "Los patrones documentados deben estar representados por superficies de paquetes enviados o ejemplos delimitados.",
@@ -2883,6 +2960,17 @@ export const generatedSitePhrases = {
     "hu": "Minden sor arra a kanonikus családi útvonalra mutat, ahol a minta látható.",
     "ru": "Каждая строка указывает на канонический семейный маршрут, на котором представлен шаблон."
   },
+  "p_dbda824f8ff8": {
+    "en": "Every stable pattern publishes package-owned keyboard, focus, WCAG, screen-reader, and AT/browser evidence. Known limitations stay visible here instead of hiding in release notes.",
+    "ru": "Каждый стабильный шаблон публикует принадлежащие пакету данные о клавиатуре, фокусе, WCAG, программе чтения с экрана и AT/браузере. Известные ограничения остаются видимыми здесь, а не прячутся в примечаниях к выпуску.",
+    "ar": "ينشر كل نمط مستقر لوحة المفاتيح المملوكة للحزمة والتركيز وWCAG وقارئ الشاشة وأدلة AT/المتصفح. تظل القيود المعروفة مرئية هنا بدلاً من إخفائها في ملاحظات الإصدار.",
+    "es": "Cada patrón estable publica pruebas de teclado, enfoque, WCAG, lector de pantalla y AT/navegador propiedad del paquete. Las limitaciones conocidas permanecen visibles aquí en lugar de ocultarse en las notas de la versión.",
+    "fr": "Chaque modèle stable publie des preuves de clavier, de focus, de WCAG, de lecteur d'écran et d'AT/navigateur appartenant au package. Les limitations connues restent visibles ici au lieu de se cacher dans les notes de version.",
+    "it": "Ogni modello stabile pubblica prove di tastiera, focus, WCAG, screen reader e AT/browser di proprietà del pacchetto. Le limitazioni note rimangono visibili qui invece di nascondersi nelle note di rilascio.",
+    "hu": "Minden stabil minta közzéteszi a csomaghoz tartozó billentyűzetet, fókuszt, WCAG-t, képernyőolvasót és AT/böngésző bizonyítékokat. Az ismert korlátozások itt maradnak láthatók, ahelyett, hogy a kiadási megjegyzésekben rejtőznének.",
+    "de": "Jedes stabile Muster veröffentlicht paketeigene Tastatur-, Fokus-, WCAG-, Screenreader- und AT-/Browser-Informationen. Bekannte Einschränkungen bleiben hier sichtbar und werden nicht in den Versionshinweisen ausgeblendet.",
+    "he": "כל תבנית יציבה מפרסמת מקלדת, פוקוס, WCAG, קורא מסך ו-AT/דפדפן בבעלות החבילה. מגבלות ידועות נשארות גלויות כאן במקום להסתתר בהערות שחרור."
+  },
   "p_e450e475b9f0": {
     "en": "Evidence coverage",
     "de": "Beweissicherung",
@@ -2894,6 +2982,17 @@ export const generatedSitePhrases = {
     "he": "סיקור ראיות",
     "hu": "Bizonyítéki lefedettség"
   },
+  "p_1a538d050b1e": {
+    "en": "Evidence older than the allowed window must be marked expired or the release gate fails.",
+    "fr": "Les preuves plus anciennes que la fenêtre autorisée doivent être marquées comme expirées, sinon la porte de libération échoue.",
+    "ar": "يجب وضع علامة على الأدلة الأقدم من النافذة المسموح بها منتهية الصلاحية وإلا ستفشل بوابة التحرير.",
+    "es": "La evidencia anterior al período permitido debe marcarse como vencida o la puerta de liberación fallará.",
+    "it": "Le prove più vecchie della finestra consentita devono essere contrassegnate come scadute altrimenti il ​​cancello di rilascio fallisce.",
+    "ru": "Доказательства старше разрешенного периода должны быть помечены как просроченные, иначе ворота выпуска не сработают.",
+    "hu": "A megengedettnél régebbi bizonyítékokat lejártnak kell jelölni, különben a kioldókapu meghibásodik.",
+    "de": "Beweise, die älter als das zulässige Zeitfenster sind, müssen als abgelaufen markiert werden, andernfalls schlägt das Freigabetor fehl.",
+    "he": "יש לסמן עדויות ישנות יותר מהחלון המותר שפג תוקפן או ששער השחרור נכשל."
+  },
   "p_1a7824d76948": {
     "en": "Evidence panels disclose source, freshness, confidence, count, and access limitations.",
     "ru": "Группы доказательств раскрывают источник, свежесть, достоверность, количество и ограничения доступа.",
@@ -2904,6 +3003,17 @@ export const generatedSitePhrases = {
     "ar": "تكشف لوحات الأدلة عن المصدر والنضارة والثقة والعدد وقيود الوصول.",
     "he": "לוחות ראיות חושפים מקור, טריות, ביטחון, ספירה ומגבלות גישה.",
     "hu": "A bizonyíték panelek felfedik a forrást, a frissességet, a megbízhatóságot, a számot és a hozzáférési korlátozásokat."
+  },
+  "p_67046966c7df": {
+    "en": "Evidence records",
+    "he": "רישומי עדויות",
+    "it": "Registrazioni di prove",
+    "es": "Registros de evidencia",
+    "de": "Beweisaufzeichnungen",
+    "ru": "Доказательства",
+    "fr": "Dossiers de preuves",
+    "ar": "سجلات الأدلة",
+    "hu": "Bizonyítéki jegyzőkönyvek"
   },
   "p_ffa065309844": {
     "en": "Evidence trail",
@@ -3344,6 +3454,17 @@ export const generatedSitePhrases = {
     "fr": "Les formulaires doivent être validés sans punir la saisie et doivent exposer des champs groupés et charger les états de soumission.",
     "hu": "Az űrlapoknak a gépelés büntetése nélkül kell érvényesülniük, és fel kell tüntetniük a csoportosított mezőket és a beküldési állapotok betöltését.",
     "es": "Los formularios deben validarse sin penalizar la escritura y deben exponer los campos agrupados y los estados de envío de carga."
+  },
+  "p_680731bf4a38": {
+    "en": "Freshness is enforced",
+    "he": "טריות נאכפת",
+    "it": "La freschezza è imposta",
+    "de": "Frische wird durchgesetzt",
+    "ru": "Свежесть обеспечивается",
+    "es": "Se impone la frescura",
+    "fr": "La fraîcheur est renforcée",
+    "ar": "يتم فرض النضارة",
+    "hu": "A frissesség érvényesül"
   },
   "p_0dce84e9d0ae": {
     "en": "Funnel chart",
@@ -4258,6 +4379,28 @@ export const generatedSitePhrases = {
     "he": "זרימות קיוסק, הבמה, העלאה וביקורת צריכות להיות מיוצגות על ידי חוזה מפוקח אחד.",
     "hu": "A kioszk-, állomásozás-, feltöltés- és felülvizsgálati folyamatokat egyetlen szabályozott szerződésnek kell képviselnie."
   },
+  "p_a3c71b90162b": {
+    "en": "Known limitations",
+    "de": "Bekannte Einschränkungen",
+    "it": "Limitazioni note",
+    "fr": "Limites connues",
+    "es": "Limitaciones conocidas",
+    "ar": "القيود المعروفة",
+    "ru": "Известные ограничения",
+    "he": "מגבלות ידועות",
+    "hu": "Ismert korlátozások"
+  },
+  "p_2287eea4fbff": {
+    "en": "Known limitations require an owner, replacement path, follow-up issue, and recovery guidance before the pattern can remain in the shipped registry.",
+    "hu": "Az ismert korlátozások megkövetelik a tulajdonost, a csereútvonalat, a nyomon követési problémát és a helyreállítási útmutatást, mielőtt a minta a szállított beállításjegyzékben maradhat.",
+    "ar": "تتطلب القيود المعروفة وجود مالك ومسار بديل ومشكلة متابعة وإرشادات استرداد قبل أن يظل النمط في السجل الذي تم شحنه.",
+    "fr": "Les limitations connues nécessitent un propriétaire, un chemin de remplacement, un problème de suivi et des conseils de récupération avant que le modèle puisse rester dans le registre fourni.",
+    "it": "Le limitazioni note richiedono un proprietario, un percorso di sostituzione, un problema di follow-up e una guida per il ripristino prima che il modello possa rimanere nel registro spedito.",
+    "ru": "Известные ограничения требуют указания владельца, пути замены, последующей проблемы и руководства по восстановлению, прежде чем шаблон сможет остаться в поставляемом реестре.",
+    "he": "מגבלות ידועות דורשות בעלים, נתיב החלפה, בעיית מעקב והנחיית שחזור לפני שהדפוס יוכל להישאר ברישום שנשלח.",
+    "es": "Las limitaciones conocidas requieren un propietario, una ruta de reemplazo, un problema de seguimiento y una guía de recuperación antes de que el patrón pueda permanecer en el registro enviado.",
+    "de": "Bekannte Einschränkungen erfordern einen Eigentümer, einen Ersatzpfad, ein Folgeproblem und eine Anleitung zur Wiederherstellung, bevor das Muster in der ausgelieferten Registrierung verbleiben kann."
+  },
   "p_f8f03fb441b8": {
     "en": "Last 30 days",
     "fr": "30 derniers jours",
@@ -4345,6 +4488,17 @@ export const generatedSitePhrases = {
     "it": "Le sezioni di reporting leggere richiedono caricamento, soglia, errore e stati attivi espliciti.",
     "ru": "Упрощенные разделы отчетов требуют явных состояний загрузки, порога, ошибки и текущего состояния.",
     "hu": "A könnyű jelentési szakaszoknak kifejezett betöltési, küszöbérték-, hiba- és élő állapotra van szükségük."
+  },
+  "p_f15b38f6e66b": {
+    "en": "Limitations stay visible",
+    "ru": "Ограничения остаются видимыми",
+    "ar": "تظل القيود مرئية",
+    "it": "Le limitazioni rimangono visibili",
+    "de": "Einschränkungen bleiben sichtbar",
+    "es": "Las limitaciones siguen siendo visibles",
+    "fr": "Les limites restent visibles",
+    "he": "המגבלות נשארות גלויות",
+    "hu": "A korlátok láthatóak maradnak"
   },
   "p_1a2856d814e5": {
     "en": "Limited batch",
@@ -4565,6 +4719,17 @@ export const generatedSitePhrases = {
     "de": "Das Hochladen des Logos ist fehlgeschlagen",
     "hu": "Az embléma feltöltése sikertelen",
     "he": "העלאת הלוגו נכשלה"
+  },
+  "p_cede4f4376ee": {
+    "en": "Lookup helpers",
+    "ru": "Помощники поиска",
+    "de": "Suchhilfen",
+    "es": "Ayudantes de búsqueda",
+    "he": "עוזרי חיפוש",
+    "it": "Aiutanti di ricerca",
+    "hu": "Kereső segítők",
+    "ar": "مساعدين البحث",
+    "fr": "Aides à la recherche"
   },
   "p_46781eabc810": {
     "en": "Low-risk for shipped lanes",
@@ -5071,6 +5236,17 @@ export const generatedSitePhrases = {
     "es": "Siguiente acción",
     "fr": "Action suivante",
     "he": "הפעולה הבאה"
+  },
+  "p_34e6050a0ab5": {
+    "en": "No anonymous claims",
+    "de": "Keine anonymen Ansprüche",
+    "fr": "Aucune réclamation anonyme",
+    "it": "Nessuna rivendicazione anonima",
+    "ru": "Никаких анонимных претензий",
+    "es": "Sin reclamos anónimos",
+    "ar": "لا توجد مطالبات مجهولة المصدر",
+    "he": "אין טענות אנונימיות",
+    "hu": "Nincs névtelen állítás"
   },
   "p_12e97436fdce": {
     "en": "No coordinates published yet.",
@@ -8493,6 +8669,17 @@ export const generatedSitePhrases = {
     "ru": "Стабильная поверхность открытия",
     "hu": "Stabil felfedezési felület"
   },
+  "p_2a2049abbb42": {
+    "en": "Stable patterns must publish structured evidence with owner, freshness, WCAG mapping, AT/browser status, known limitations, and recovery text. Missing or stale records fail release verification.",
+    "ar": "يجب أن تنشر الأنماط الثابتة أدلة منظمة مع المالك والحداثة وتخطيط WCAG وحالة AT/المتصفح والقيود المعروفة ونص الاسترداد. السجلات المفقودة أو القديمة تفشل في التحقق من الإصدار.",
+    "fr": "Les modèles stables doivent publier des preuves structurées avec le propriétaire, la fraîcheur, le mappage WCAG, l'état AT/navigateur, les limitations connues et le texte de récupération. Les enregistrements manquants ou périmés échouent à la vérification de la version.",
+    "ru": "Стабильные шаблоны должны публиковать структурированные доказательства с указанием владельца, актуальности, сопоставления WCAG, статуса AT/браузера, известных ограничений и текста для восстановления. Отсутствующие или устаревшие записи не проходят проверку выпуска.",
+    "he": "דפוסים יציבים חייבים לפרסם ראיות מובנות עם בעלים, רעננות, מיפוי WCAG, סטטוס AT/דפדפן, מגבלות ידועות וטקסט שחזור. רשומות חסרות או מיושנות נכשלות באימות שחרור.",
+    "de": "Stabile Muster müssen strukturierte Beweise mit Eigentümer, Aktualität, WCAG-Zuordnung, AT-/Browserstatus, bekannten Einschränkungen und Wiederherstellungstext veröffentlichen. Fehlende oder veraltete Datensätze schlagen bei der Freigabeüberprüfung fehl.",
+    "it": "I modelli stabili devono pubblicare prove strutturate con proprietario, freschezza, mappatura WCAG, stato AT/browser, limitazioni note e testo di ripristino. I record mancanti o obsoleti non superano la verifica del rilascio.",
+    "es": "Los patrones estables deben publicar evidencia estructurada con propietario, actualización, mapeo WCAG, estado de AT/navegador, limitaciones conocidas y texto de recuperación. Los registros faltantes o obsoletos no superan la verificación de publicación.",
+    "hu": "A stabil mintáknak strukturált bizonyítékokat kell közzétenniük a tulajdonossal, a frissességgel, a WCAG-leképezéssel, az AT/böngésző állapotával, az ismert korlátozásokkal és a helyreállítási szöveggel. A hiányzó vagy elavult rekordok kiadásának ellenőrzése sikertelen."
+  },
   "p_7638f4699025": {
     "en": "Stable Shell",
     "ar": "شل مستقرة",
@@ -8845,6 +9032,17 @@ export const generatedSitePhrases = {
     "fr": "La référence API indique désormais la stabilité des exportations et indique si une entrée publique est un contrat GDS, soutenu par Mantine, soutenu par Tabler ou uniquement par des outils.",
     "hu": "Az API hivatkozás mostantól az export stabilitását jelöli, és azt, hogy a nyilvános bejegyzés GDS-szerződés, Mantine által támogatott, Tabler által támogatott vagy csak szerszámok."
   },
+  "p_6453d3b80de8": {
+    "en": "The API surface is paired with a package-owned evidence registry so consumers can audit keyboard behavior, visible focus, WCAG mapping, assistive-technology coverage, known limitations, and recovery notes before adoption.",
+    "it": "La superficie API è abbinata a un registro delle prove di proprietà del pacchetto in modo che i consumatori possano verificare il comportamento della tastiera, il focus visibile, la mappatura WCAG, la copertura delle tecnologie assistive, le limitazioni note e le note di ripristino prima dell'adozione.",
+    "fr": "La surface de l'API est associée à un registre de preuves appartenant au package afin que les consommateurs puissent vérifier le comportement du clavier, la mise au point visible, le mappage WCAG, la couverture des technologies d'assistance, les limitations connues et les notes de récupération avant l'adoption.",
+    "ar": "يتم إقران سطح واجهة برمجة التطبيقات (API) بسجل أدلة مملوكة للحزمة حتى يتمكن المستهلكون من تدقيق سلوك لوحة المفاتيح والتركيز المرئي ورسم خرائط WCAG وتغطية التكنولوجيا المساعدة والقيود المعروفة وملاحظات الاسترداد قبل اعتمادها.",
+    "de": "Die API-Oberfläche ist mit einem paketeigenen Beweisregister gekoppelt, sodass Verbraucher das Tastaturverhalten, den sichtbaren Fokus, die WCAG-Zuordnung, die Abdeckung unterstützender Technologien, bekannte Einschränkungen und Wiederherstellungshinweise vor der Einführung überprüfen können.",
+    "he": "משטח ה-API משויך לרישום ראיות בבעלות החבילה, כך שצרכנים יכולים לבדוק את התנהגות המקלדת, מיקוד גלוי, מיפוי WCAG, כיסוי טכנולוגי מסייע, מגבלות ידועות והערות שחזור לפני אימוץ.",
+    "es": "La superficie API se combina con un registro de evidencia propiedad del paquete para que los consumidores puedan auditar el comportamiento del teclado, el enfoque visible, el mapeo WCAG, la cobertura de tecnología de asistencia, las limitaciones conocidas y las notas de recuperación antes de la adopción.",
+    "hu": "Az API felület egy csomag tulajdonában lévő bizonyítéknyilvántartással párosul, így a fogyasztók ellenőrizhetik a billentyűzet viselkedését, a látható fókuszt, a WCAG-leképezést, a kisegítő technológiai lefedettséget, az ismert korlátozásokat és a helyreállítási megjegyzéseket az elfogadás előtt.",
+    "ru": "Поверхность API связана с реестром доказательств, принадлежащим пакету, поэтому потребители могут проверять поведение клавиатуры, видимый фокус, сопоставление WCAG, охват вспомогательных технологий, известные ограничения и примечания по восстановлению перед внедрением."
+  },
   "p_696815b8d0eb": {
     "en": "The catalog should show shipped components and contracts through package-owned framing, not local demo scaffolding.",
     "es": "El catálogo debe mostrar los componentes y contratos enviados a través de estructuras propiedad del paquete, no de andamios de demostración locales.",
@@ -8987,6 +9185,17 @@ export const generatedSitePhrases = {
     "fr": "Le site officiel devrait utiliser ce contrat au lieu des wrappers shell locaux de la page.",
     "he": "האתר הרשמי צריך להשתמש בחוזה זה במקום במעטפת מעטפת מקומית.",
     "de": "Die offizielle Website sollte diesen Vertrag anstelle seitenlokaler Shell-Wrapper verwenden."
+  },
+  "p_1a5e65230c29": {
+    "en": "The public @doneisbetter/gds-core helper exports resolve evidence by id, build deterministic indexes, summarize coverage, and validate freshness.",
+    "fr": "Les exportations d'assistance publiques @doneisbetter/gds-core résolvent les preuves par identifiant, créent des index déterministes, résument la couverture et valident la fraîcheur.",
+    "ar": "يقوم @doneisbetter/gds-core المساعد العام بتصدير الأدلة عن طريق المعرف، وبناء فهارس حتمية، وتلخيص التغطية، والتحقق من صحة الحداثة.",
+    "de": "Die öffentlichen @doneisbetter/gds-core-Hilfsexporte lösen Beweise nach ID auf, erstellen deterministische Indizes, fassen die Abdeckung zusammen und validieren die Aktualität.",
+    "he": "העוזר הציבורי @doneisbetter/gds-core לייצוא פתרון ראיות לפי מזהה, בניית אינדקסים דטרמיניסטיים, מסכם כיסוי ומאמת את הרעננות.",
+    "es": "Las exportaciones públicas de ayuda @doneisbetter/gds-core resuelven evidencia por identificación, crean índices deterministas, resumen la cobertura y validan la actualización.",
+    "hu": "A nyilvános @doneisbetter/gds-core segédexportálás a bizonyítékokat azonosító alapján oldja fel, determinisztikus indexeket épít fel, összefoglalja a lefedettséget és érvényesíti a frissességet.",
+    "ru": "Публичный помощник @doneisbetter/gds-core экспортирует доказательства по идентификатору, строит детерминированные индексы, суммирует охват и проверяет актуальность.",
+    "it": "Le esportazioni pubbliche dell'helper @doneisbetter/gds-core risolvono le prove in base all'ID, creano indici deterministici, riepilogano la copertura e convalidano l'aggiornamento."
   },
   "p_f44a0b37c5dd": {
     "en": "The reference-site narrative remains English while semantic vocabulary is already localized.",
@@ -10021,6 +10230,17 @@ export const generatedSitePhrases = {
     "fr": "L'étiquette visible, le texte d'aide et le placement des erreurs appartiennent à GDS.",
     "he": "תווית גלויה, טקסט עוזר ומיקום שגיאה הם בבעלות GDS.",
     "hu": "A látható címke, a segédszöveg és a hibaelhelyezés a GDS tulajdona."
+  },
+  "p_46e9176ad5e9": {
+    "en": "Visible limitations",
+    "es": "Limitaciones visibles",
+    "ar": "قيود مرئية",
+    "de": "Sichtbare Einschränkungen",
+    "ru": "Видимые ограничения",
+    "hu": "Látható korlátok",
+    "fr": "Limites visibles",
+    "it": "Limitazioni visibili",
+    "he": "מגבלות גלויות"
   },
   "p_d9d2770ec44f": {
     "en": "Weekly menu",

@@ -53,12 +53,14 @@ describe('playground overview page', () => {
     renderWithGds(<CoveragePage />);
     expect(screen.getByRole('heading', { name: 'Coverage Matrix' })).toBeTruthy();
     expect(screen.getByText('Pattern parity status')).toBeTruthy();
+    expect(screen.getByText('Accessibility evidence')).toBeTruthy();
   });
 
   it('renders API reference, maturity, and product-owner use-case routes', () => {
     const { unmount } = renderWithGds(<ApiReferencePage />);
     expect(screen.getByRole('heading', { name: 'API Reference' })).toBeTruthy();
     expect(screen.getByText('Published package contracts')).toBeTruthy();
+    expect(screen.getByText('Accessibility evidence contract')).toBeTruthy();
     expect(screen.getAllByText('@doneisbetter/gds-core').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Import path').length).toBeGreaterThan(0);
     unmount();
@@ -78,6 +80,7 @@ describe('playground overview page', () => {
   it('keeps localized headings for themes and governance in de/fr', () => {
     const { unmount } = renderWithGds(<RulebookPage />, { locale: 'fr' });
     expect(screen.getByText('Comment appliquer correctement les règles')).toBeTruthy();
+    expect(screen.getByText('Accessibility evidence rules')).toBeTruthy();
     unmount();
 
     renderWithGds(<TokensPage />, { locale: 'de' });

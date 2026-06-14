@@ -9,6 +9,7 @@ npm run verify:i18n-message-parity
 npm run verify:i18n-package-copy
 npm run verify:references
 npm run verify:release
+npm run verify:accessibility-evidence
 npm run verify:theme-tokens
 npm run verify:forced-colors-runtime
 gds-compliance adoption-report --manifest ./gds-adoption.json --format md
@@ -60,6 +61,22 @@ Flow:
 2. The package maturity registry exposes the same seven capability groups as typed static data.
 3. `/maturity` renders benefits, package lanes, contracts, states, observability, rollback, and test evidence in every supported site language.
 4. `verify:api-docs-coverage` ensures the registry helpers are represented in public API coverage.
+
+## Accessibility Evidence LLD
+
+Source:
+
+- `packages/gds-core/src/AccessibilityEvidence.ts`
+- `apps/playground/src/accessibility-evidence-registry.ts`
+- `scripts/verify-accessibility-evidence.mjs`
+- `ACCESSIBILITY_EVIDENCE.md`
+
+Flow:
+
+1. The playground evidence registry derives one structured accessibility record for every stable pattern in the canonical pattern registry.
+2. `@doneisbetter/gds-core` exposes helper APIs to index, resolve, summarize, and validate those records.
+3. `/coverage`, `/api`, and `/governance` render the live evidence summary through shipped GDS docs primitives.
+4. `verify:accessibility-evidence` fails when records are missing, stale, missing required WCAG mappings, missing AT/browser rows, or missing limitation recovery metadata.
 
 ## Operational Telemetry LLD
 

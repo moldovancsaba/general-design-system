@@ -49,6 +49,7 @@ export * from './MediaField';
 export * from './MediaCard';
 export * from './MediaPreviewCard';
 export * from './AccessSummary';
+export * from './AccessibilityEvidence';
 export * from './FormField';
 export * from './PageHeader';
 export * from './FilterDrawer';

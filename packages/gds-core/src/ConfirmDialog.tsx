@@ -31,7 +31,7 @@ export function ConfirmDialog({
 }: ConfirmDialogProps) {
   return (
     <Modal opened={opened} onClose={onClose} title={title} centered trapFocus>
-      <Text size="sm" mb="xl">
+      <Text component="div" size="sm" mb="xl">
         {children}
       </Text>
       <Group justify="flex-end">

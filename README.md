@@ -52,6 +52,7 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 - **Notification Center**: [docs/NOTIFICATION_CENTER.md](docs/NOTIFICATION_CENTER.md) — Unified notification queue, severity/state policy, retry behavior, screen-reader announcements, metadata-only audit events, and disabled-provider rollback semantics.
 - **Motion System**: [docs/MOTION_SYSTEM.md](docs/MOTION_SYSTEM.md) — Duration/easing tokens, overlay/list/feedback/skeleton/state presets, reduced-motion/no-motion fallbacks, CSS variables, and the `useGdsReducedMotion` client hook.
 - **Overlay System**: [docs/OVERLAY_SYSTEM.md](docs/OVERLAY_SYSTEM.md) — Modal, drawer, sheet, command, nesting, close policy, focus return, route recovery, mobile-fullscreen, and overlay-event governance.
+- **Confirmation Service**: [docs/CONFIRMATION_SERVICE.md](docs/CONFIRMATION_SERVICE.md) — Typed destructive action requests, risk copy, async execution, retry, undo windows, focus return, and metadata-only confirmation events.
 - **Theme Governance**: [THEME_GOVERNANCE.md](THEME_GOVERNANCE.md) — Brand extension, dark-mode defaults, white-label, flat-surface, and tenant-theme rules.
 - **Accessibility Evidence**: [ACCESSIBILITY_EVIDENCE.md](ACCESSIBILITY_EVIDENCE.md) — Structured keyboard, focus, WCAG, AT/browser, limitation, and recovery evidence for stable patterns.
 - **Accessibility CI Package**: [A11Y_CI_PACKAGE.md](A11Y_CI_PACKAGE.md) — Reusable Playwright/axe helpers for keyboard, focus-trap, contrast, suppression, and deterministic report gates.

@@ -465,6 +465,65 @@ describe('@doneisbetter/gds-core', () => {
     expect(screen.getByText('Deleted')).toBeInTheDocument();
   });
 
+  it('runs typed confirmation actions with async failure, retry, undo, events, and focus return', async () => {
+    const user = userEvent.setup();
+    const execute = vi.fn()
+      .mockRejectedValueOnce(new Error('Permission changed.'))
+      .mockResolvedValueOnce(undefined);
+    const undo = vi.fn().mockResolvedValue(undefined);
+    const events = vi.fn();
+
+    function Probe() {
+      const confirm = useGdsConfirm();
+      return (
+        <button
+          type="button"
+          onClick={() => {
+            void confirm.confirmAction({
+              id: 'delete-project',
+              title: 'Delete project',
+              message: 'This removes the project from the workspace.',
+              targetName: 'Launch plan',
+              payload: { id: 'project-1' },
+              riskLevel: 'critical',
+              retryable: true,
+              execute,
+              undo: { windowMs: 10000, label: 'Undo delete', onUndo: undo },
+            });
+          }}
+        >
+          Delete project
+        </button>
+      );
+    }
+
+    renderWithGds(
+      <GdsConfirmProvider onConfirmationEvent={events}>
+        <Probe />
+      </GdsConfirmProvider>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Delete project' }));
+    expect(await screen.findByRole('dialog')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Delete' }));
+    expect(await screen.findByText('Permission changed.')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Delete' }));
+
+    await waitFor(() => expect(execute).toHaveBeenCalledTimes(2));
+    expect(await screen.findByRole('status')).toHaveTextContent('Action can be undone');
+    expect(screen.getByRole('button', { name: 'Delete project' })).toHaveFocus();
+    await user.click(screen.getByRole('button', { name: 'Undo delete' }));
+    await waitFor(() => expect(undo).toHaveBeenCalledTimes(1));
+    expect(events.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining([
+      'opened',
+      'failed',
+      'retry',
+      'confirmed',
+      'undo_started',
+      'undo_completed',
+    ]));
+  });
+
   it('renders empty states with optional action content', () => {
     renderWithGds(
       <EmptyState

@@ -95,6 +95,18 @@ import { CreatorThemeBoundary, validateCreatorCss } from './CreatorTheme';
 import { createGdsTelemetryAdapter, emitGdsEvent, GdsTelemetryProvider, gdsOperationalEventTypes, isGdsOperationalEventType, useGdsTelemetry } from './Telemetry.client';
 import { createGdsVocabularyPack, getSemanticActionLabel } from './vocabulary';
 import { getGdsTaskPattern, getGdsTaskPatterns, validateGdsTaskPatterns } from './TaskPatterns';
+import {
+  createGdsPageTemplateEvent,
+  GdsAdminDashboardTemplate,
+  GdsCrudEditorTemplate,
+  GdsEmptyStateTemplate,
+  GdsErrorPageTemplate,
+  GdsPublicEventTemplate,
+  GdsResourceManagerTemplate,
+  getGdsPageTemplate,
+  getGdsPageTemplates,
+  validateGdsPageTemplates,
+} from './GdsPageTemplates';
 
 function mockMatchMedia(matches: boolean) {
   const original = window.matchMedia;
@@ -210,6 +222,108 @@ describe('@doneisbetter/gds-core', () => {
     expect(destructive?.componentContracts).toContain('GdsConfirmProvider');
     patterns[0]!.states.length = 0;
     expect(getGdsTaskPattern('create-resource')?.states).toContain('start');
+  });
+
+  it('publishes complete production page template contracts with stable ids, states, telemetry, and recovery guidance', () => {
+    const templates = getGdsPageTemplates();
+    expect(templates.map((template) => template.id)).toEqual([
+      'admin-dashboard',
+      'settings',
+      'resource-manager',
+      'crud-editor',
+      'analytics',
+      'public-event',
+      'error-page',
+      'empty-state-page',
+    ]);
+    expect(validateGdsPageTemplates(templates)).toEqual([]);
+    for (const template of templates) {
+      expect(template.packageName).toBe('@doneisbetter/gds-core');
+      expect(template.telemetryEvents).toEqual(expect.arrayContaining(['page_view', 'state_visible']));
+      expect(template.componentContracts.length).toBeGreaterThan(0);
+      expect(template.accessibility.length).toBeGreaterThan(0);
+      expect(template.edgeCases.length).toBeGreaterThan(0);
+      expect(template.rollback).toMatch(/adopt|replace|keep/i);
+    }
+    const event = createGdsPageTemplateEvent('analytics', 'empty', 'retry_requested', {
+      actionId: 'reload-report',
+      metadata: { period: '30d', rowCount: 0 },
+    });
+    expect(event).toEqual({
+      name: 'retry_requested',
+      templateId: 'analytics',
+      state: 'empty',
+      actionId: 'reload-report',
+      metadata: { period: '30d', rowCount: 0 },
+    });
+    templates[0]!.requiredStates.length = 0;
+    expect(getGdsPageTemplate('admin-dashboard')?.requiredStates).toContain('ready');
+  });
+
+  it('renders production page templates with landmarks, state copy, actions, and accessible fallbacks', () => {
+    const onRetry = vi.fn();
+    const onAction = vi.fn();
+
+    renderWithGds(
+      <>
+        <GdsAdminDashboardTemplate
+          title="Operations"
+          description="Live operator overview"
+          state="ready"
+          actions={[{ id: 'create', label: 'Create', kind: 'primary', onClick: onAction }]}
+          metrics={[{ label: 'Open reviews', value: '12', description: 'Pending review queue' }]}
+          sections={[{ id: 'queue', title: 'Review queue', content: <Text>Ready for review</Text> }]}
+        />
+        <GdsResourceManagerTemplate
+          title="Events"
+          description="Manage public events"
+          rows={[{ id: 'event-1', name: 'Launch' }]}
+          columns={[{ key: 'name', header: 'Name' }]}
+          detail={<Text>Selected event detail</Text>}
+          getRowKey={(row) => String(row.id)}
+        />
+        <GdsCrudEditorTemplate
+          title="Edit event"
+          description="Governed editor"
+          state="saving"
+          form={<label htmlFor="event-title">Title<input id="event-title" defaultValue="Launch" /></label>}
+          destructiveZone={<button type="button">Delete event</button>}
+        />
+        <GdsPublicEventTemplate
+          title="Public launch"
+          description="Registration page"
+          when="June 30, 2026"
+          location="Budapest"
+          details={<Text>Open to partners.</Text>}
+          registration={<button type="button">Register</button>}
+        />
+        <GdsErrorPageTemplate
+          title="Could not load"
+          description="The report service timed out."
+          code={503}
+          onRetry={onRetry}
+        />
+        <GdsEmptyStateTemplate
+          title="No assets yet"
+          description="Upload the first asset to continue."
+          actions={[{ id: 'upload', label: 'Upload asset', kind: 'primary' }]}
+        />
+      </>,
+    );
+
+    expect(screen.getAllByRole('main')).toHaveLength(6);
+    expect(screen.getByRole('heading', { name: 'Operations', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Create' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Create' }));
+    expect(onAction).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('table')).toBeInTheDocument();
+    expect(screen.getByText('Selected event detail')).toBeInTheDocument();
+    expect(screen.getByText('Saving')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Register' })).toBeInTheDocument();
+    expect(screen.getByText('503: Could not load')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    expect(onRetry).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('button', { name: 'Upload asset' })).toBeInTheDocument();
   });
 
   it('renders package-native typography roles without local Text and Title ladders', () => {

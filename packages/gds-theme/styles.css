@@ -654,7 +654,9 @@ html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Badge-root {
   html[data-gds-theme-preset] .mantine-ActionIcon-root:focus-visible,
   html[data-gds-theme-preset] .mantine-Button-root:focus,
   html[data-gds-theme-preset] .mantine-Button-root:focus-visible {
-    outline: 2px solid Highlight !important;
+    outline-color: Highlight !important;
+    outline-style: solid !important;
+    outline-width: 2px !important;
     outline-offset: 2px !important;
   }
 
@@ -680,6 +682,7 @@ html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Badge-root {
   html[data-gds-theme-preset] .mantine-Input-input,
   html[data-gds-theme-preset] .mantine-NativeSelect-input,
   html[data-gds-theme-preset] .mantine-Textarea-input {
+    forced-color-adjust: none !important;
     color: ButtonText !important;
     background: ButtonFace !important;
     background-image: none !important;

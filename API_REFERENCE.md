@@ -45,6 +45,11 @@ CLI entrypoint:
 - `gds-theme-tokens compatibility`
 - `gds-theme-tokens diff --compare ./previous-graph.json`
 
+High-contrast and forced-colors release gates:
+
+- `createGdsThemeAccessibilityReport()` includes the forced-color role registry and required runtime checks
+- `npm run verify:forced-colors-runtime` validates the live docs/runtime routes under `forced-colors: active`
+
 ## Maturity Capability API
 
 `@doneisbetter/gds-core` now exports the seven recommended maturity capability contracts:

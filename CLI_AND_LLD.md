@@ -10,6 +10,7 @@ npm run verify:i18n-package-copy
 npm run verify:references
 npm run verify:release
 npm run verify:theme-tokens
+npm run verify:forced-colors-runtime
 gds-compliance adoption-report --manifest ./gds-adoption.json --format md
 gds-compliance expire-check --manifest ./gds-adoption.json
 gds-theme-tokens validate --format text
@@ -117,6 +118,22 @@ Flow:
 4. `createGdsThemeCompatibilityReport(...)` summarizes page, shell, card, border, primary-action, and muted-copy compatibility per theme lane.
 5. `gds-theme-tokens` exposes graph, validate, compatibility, and diff commands for local and CI review.
 6. `verify:theme-tokens` blocks release promotion if the shipped token graph is internally inconsistent.
+
+## Forced-Colors Runtime LLD
+
+Source:
+
+- `packages/gds-theme/styles.css`
+- `packages/gds-theme/src/accessibility-report.ts`
+- `scripts/verify-forced-colors-runtime.mjs`
+
+Flow:
+
+1. The browser verifier launches a real headless Chrome session.
+2. CDP emulates `forced-colors: active` and the selected color scheme.
+3. Real docs/demo routes load with shipped theme presets.
+4. The verifier checks that governed surfaces lose decorative backgrounds, controls keep platform-backed colors, and focus outlines remain visible.
+5. `verify:forced-colors-runtime` blocks release promotion if those runtime checks fail.
 
 ## Rollback
 

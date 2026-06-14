@@ -151,9 +151,19 @@ Required runtime behavior:
 Release blocking policy:
 
 - `npm run verify:theme-trust-runtime` is mandatory for release verification
+- `npm run verify:forced-colors-runtime` is mandatory for release verification
 - source-level owned-contrast compliance must fail if route code declares owned-contrast markers directly instead of using the package helper
 - if a route-level preview or mixed-theme surface fails owned contrast or preview isolation, rollback to the previous stable release line and keep the board item open
 - exceptions require a documented package-owned helper or primitive, never a route-local style patch
+
+Forced-colors contract:
+
+- `@media (forced-colors: active)` must replace decorative gradients with system-backed canvas/control colors
+- controls must resolve from `ButtonFace` / `ButtonText`
+- disabled states must resolve from `GrayText`
+- selected/active states must resolve from `Highlight` / `HighlightText`
+- focus indicators must stay visibly outlined in forced-colors mode
+- runtime acceptance requires the browser-level `verify:forced-colors-runtime` gate, not only static CSS review
 
 ## Appendix: Amanoba dark shell + yellow CTA
 

@@ -94,6 +94,7 @@ const report = createGdsThemeAccessibilityReport();
 console.log(report.blockingCount, report.forcedColorRoles);`;
 
 const themeAccessibilityCliCode = `npm run verify:theme-accessibility
+npm run verify:forced-colors-runtime
 npm run verify:accessibility-runtime
 npm run verify:theme-trust-runtime`;
 

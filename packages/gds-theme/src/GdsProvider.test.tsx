@@ -183,6 +183,9 @@ describe('GdsProvider', () => {
       'Highlight',
       'GrayText',
     ]));
+    expect(report.recommendedRuntimeChecks).toEqual(expect.arrayContaining([
+      'Run npm run verify:forced-colors-runtime against the docs site before publishing.',
+    ]));
   });
 
   it('exposes governed token graph, compatibility, and diff reports for theme operations', () => {

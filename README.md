@@ -161,6 +161,7 @@ Required repository behavior:
 - `npm run verify:release` — checks release alignment, builds all packages/apps, verifies export boundaries, then runs lint, tests, and reference validation
 - `npm run verify:references` — validates reference consumers, adoption manifests, official `DocsShell` usage, strict playground GDS-only source rules (no `@mantine/core` imports and no inline `style={{...}}` on core Pages routes), SSOT pattern-catalog coverage, package export-to-pattern coverage, website trust/clarity checks, surface-presentation migration evidence, route-level locale coverage declarations, canonical theme-governance lanes, media/upload contracts, reporting/access contracts, and reference codemods
 - `npm run verify:theme-tokens` — validates the shipped theme token graph, light/dark pair ownership, and per-surface compatibility coverage
+- `npm run verify:forced-colors-runtime` — emulates `forced-colors: active` in a headless browser and checks governed routes for platform-backed surfaces, visible focus, and readable control states
 - `gds-compliance adoption-report --manifest ./gds-adoption.json --format md` — emits the governed adoption score and remediation summary for a consumer repository
 - `gds-compliance expire-check --manifest ./gds-adoption.json` — fails when dependency-boundary exceptions are past `removeBy` with `enforcementMode: "error"`
 - `npm run verify:api-docs-coverage` — validates the registry-backed public API documentation contract for shipped runtime exports

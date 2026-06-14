@@ -79,6 +79,7 @@ const forcedColorRoles: GdsForcedColorRole[] = [
 const recommendedRuntimeChecks = [
   'Run npm run verify:theme-accessibility after changing package theme tokens.',
   'Run npm run verify:accessibility-runtime against the docs site before publishing.',
+  'Run npm run verify:forced-colors-runtime against the docs site before publishing.',
   'Validate light, dark, and forced-colors active modes before accepting partner themes.',
 ];
 

@@ -9,6 +9,7 @@ import { createGdsAccessibilityEvidenceIndex, getGdsAccessibilityEvidence, getGd
 import { AccentPanel, resolveAccentPanelStyles } from './AccentPanel';
 import { ActionBar } from './ActionBar';
 import { AdvancedDataTable } from './AdvancedDataTable.client';
+import { GdsDataTable, createGdsTableAdapter, serializeGdsTableQuery } from './GdsDataTable.client';
 import { ArticleShell } from './ArticleShell';
 import { AuthShell } from './AuthShell';
 import { AsyncSurface } from './AsyncSurface';
@@ -736,6 +737,82 @@ describe('@doneisbetter/gds-core', () => {
     await user.click(screen.getByRole('checkbox', { name: 'Select row 1' }));
     expect(screen.getByText('2 rows')).toBeInTheDocument();
     expect(screen.getByRole('checkbox', { name: 'Select row 1' })).toBeChecked();
+  });
+
+  it('runs the GDS data table engine with sort, filter, selection, export, and virtual windows', async () => {
+    const user = userEvent.setup();
+    const events = vi.fn();
+    const exported = vi.fn();
+    const rows = [
+      { id: '1', name: 'Alpha', status: 'Published', score: 3 },
+      { id: '2', name: 'Bravo', status: 'Draft', score: 1 },
+      { id: '3', name: 'Charlie', status: 'Published', score: 2 },
+    ];
+    const columns = [
+      { key: 'name' as const, label: 'Name', sortable: true, filterable: true, mobilePriority: 1 },
+      { key: 'status' as const, label: 'Status', sortable: true, filterable: true, mobilePriority: 2 },
+      { key: 'score' as const, label: 'Score', sortable: true, mobilePriority: 3 },
+    ];
+
+    renderWithGds(
+      <GdsDataTable
+        caption="Members"
+        summary="Operational members table."
+        columns={columns}
+        rowId={(row) => String(row.id)}
+        adapter={createGdsTableAdapter(rows, columns)}
+        initialQuery={{ pageSize: 2 }}
+        virtualizedRowLimit={1}
+        onEvent={events}
+        onExport={exported}
+      />,
+    );
+
+    expect(await screen.findByRole('table', { name: 'Members' })).toBeInTheDocument();
+    expect(screen.getByText('1 of 2 rows rendered in the virtualized window.')).toBeInTheDocument();
+    expect(screen.getByRole('columnheader', { name: 'Name' })).toHaveAttribute('aria-sort', 'none');
+
+    await user.click(screen.getByRole('button', { name: 'Name' }));
+    await waitFor(() => expect(screen.getByRole('columnheader', { name: 'Name' })).toHaveAttribute('aria-sort', 'ascending'));
+    await user.click(screen.getByRole('checkbox', { name: 'Select row 1' }));
+    expect(screen.getByText('1 selected')).toBeInTheDocument();
+    await user.type(screen.getByRole('textbox', { name: 'Search rows' }), 'Charlie');
+    await waitFor(() => expect(screen.getAllByText('Charlie').length).toBeGreaterThan(0));
+    expect(screen.getByText('0 selected')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Export' }));
+    await waitFor(() => expect(exported).toHaveBeenCalledWith(expect.objectContaining({
+      query: expect.objectContaining({ search: 'Charlie' }),
+      selectedRowIds: [],
+    })));
+    expect(events.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining([
+      'load_started',
+      'sort_changed',
+      'selection_changed',
+      'filter_changed',
+      'export_requested',
+    ]));
+    expect(serializeGdsTableQuery({ page: 1, pageSize: 25, search: 'alpha', sortBy: 'name', sortDirection: 'asc', filters: { status: 'Published' } })).toBe('page=1&pageSize=25&search=alpha&sortBy=name&sortDirection=asc&filter.status=Published');
+  });
+
+  it('supports remote table adapters, retries, and filtered-empty states', async () => {
+    const user = userEvent.setup();
+    const load = vi.fn()
+      .mockRejectedValueOnce(new Error('Network down'))
+      .mockResolvedValue({ rows: [], total: 0 });
+
+    renderWithGds(
+      <GdsDataTable
+        caption="Remote records"
+        columns={[{ key: 'name', label: 'Name', sortable: true }]}
+        rowId={(row) => String(row.id)}
+        adapter={{ mode: 'remote', load }}
+        initialQuery={{ search: 'missing' }}
+      />,
+    );
+
+    expect(await screen.findByText('Unable to load table')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Retry' }));
+    expect(await screen.findByText('No matching rows')).toBeInTheDocument();
   });
 
   it('renders the discovery shell with grouped sidebar navigation', () => {

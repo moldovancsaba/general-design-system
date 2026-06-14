@@ -74,6 +74,7 @@ export * from './FilterDrawer';
 export * from './PlaceholderPanel';
 export * from './SimpleDataTable';
 export * from './AdvancedDataTable.client';
+export * from './GdsDataTable.client';
 export * from './OverlayManager.client';
 export * from './FeedbackRuntime.client';
 export * from './CommandPalette.client';

@@ -1,4 +1,5 @@
 import { DEFAULT_THEME, createTheme, mergeMantineTheme, mergeThemeOverrides, type MantineTheme, type MantineThemeOverride } from '@mantine/core';
+import { getGdsMotionPreset } from './motion';
 
 const baseTheme: MantineTheme = mergeMantineTheme(DEFAULT_THEME, createTheme({
   primaryColor: 'violet',
@@ -202,6 +203,8 @@ export function extendGdsTheme(overrides: MantineThemeOverride = {}) {
 }
 
 export function withGdsMotion(overrides: MantineThemeOverride = {}) {
+  const feedbackMotion = getGdsMotionPreset('feedback');
+  const listMotion = getGdsMotionPreset('list');
   return extendGdsTheme(
     mergeThemeOverrides(
       {
@@ -209,7 +212,7 @@ export function withGdsMotion(overrides: MantineThemeOverride = {}) {
           Button: {
             styles: {
               root: {
-                transition: 'transform 150ms ease, filter 120ms ease',
+                transition: `transform ${feedbackMotion.durationMs}ms ${feedbackMotion.easingValue}, filter var(--gds-motion-duration-fast) var(--gds-motion-ease-standard)`,
                 '&:hover': {
                   transform: 'translateY(-1px)',
                   filter: 'brightness(1.05)',
@@ -224,7 +227,7 @@ export function withGdsMotion(overrides: MantineThemeOverride = {}) {
           Card: {
             styles: {
               root: {
-                transition: 'transform 150ms ease, box-shadow 150ms ease',
+                transition: `transform ${listMotion.durationMs}ms ${listMotion.easingValue}, box-shadow ${listMotion.durationMs}ms ${listMotion.easingValue}`,
               },
             },
           },

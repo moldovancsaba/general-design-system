@@ -8,6 +8,7 @@ import { renderWithGds } from '../../../test-utils/render';
 import { createGdsThemeAccessibilityReport, validateGdsThemeAccessibility } from './accessibility-report';
 import { GdsProvider } from './GdsProvider';
 import { applyGdsFontLane, getGdsFontLaneStylesheetUrls, getGdsFontLanes, isGdsFontLaneId, resolveGdsFontLane } from './font-lanes';
+import { createGdsMotionCssVariables, getGdsMotionPreset, gdsMotionDurations, gdsMotionPresets } from './motion';
 import { showGdsNotification } from './notifications';
 import { createGdsTokenDiff, createGdsTokenGraph, createGdsThemeCompatibilityReport, validateGdsTokenGraph } from './token-operations';
 import { createPublicBrandTheme, gdsDarkPublicTheme, gdsEditorialPublicTheme, gdsFlatSurfaceTheme, gdsTheme, withGdsMotion } from './theme';
@@ -81,10 +82,34 @@ describe('GdsProvider', () => {
 
     const motionTheme = withGdsMotion();
     expect(motionTheme.components.Button?.styles?.root).toMatchObject({
-      transition: 'transform 150ms ease, filter 120ms ease',
+      transition: 'transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1), filter var(--gds-motion-duration-fast) var(--gds-motion-ease-standard)',
     });
     expect(motionTheme.components.Card?.styles?.root).toMatchObject({
-      transition: 'transform 150ms ease, box-shadow 150ms ease',
+      transition: 'transform 180ms cubic-bezier(0.2, 0, 0, 1), box-shadow 180ms cubic-bezier(0.2, 0, 0, 1)',
+    });
+  });
+
+  it('resolves governed motion presets with reduced and no-motion fallbacks', () => {
+    expect(Object.keys(gdsMotionPresets)).toEqual(expect.arrayContaining(['overlay', 'drawer', 'command', 'list', 'feedback', 'skeleton', 'state']));
+    expect(gdsMotionDurations.base).toBe(180);
+
+    const overlay = getGdsMotionPreset('overlay');
+    expect(overlay.durationMs).toBe(180);
+    expect(overlay.shouldAnimate).toBe(true);
+    expect(overlay.transition).toContain('var(--gds-motion-duration-base)');
+
+    const reducedOverlay = getGdsMotionPreset('overlay', 'reduce');
+    expect(reducedOverlay.transition).toBe('opacity var(--gds-motion-duration-fast) linear');
+    expect(reducedOverlay.enterTransform).toBe('none');
+
+    const noMotionOverlay = getGdsMotionPreset('overlay', 'no-motion');
+    expect(noMotionOverlay.durationMs).toBe(0);
+    expect(noMotionOverlay.transition).toBe('none');
+    expect(noMotionOverlay.shouldAnimate).toBe(false);
+
+    expect(createGdsMotionCssVariables('no-motion')).toMatchObject({
+      '--gds-motion-duration-base': '0ms',
+      '--gds-motion-ease-standard': 'linear',
     });
   });
 

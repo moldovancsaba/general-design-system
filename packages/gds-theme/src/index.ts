@@ -17,3 +17,7 @@ export { gdsLocaleMetadata, getGdsLocaleIdsByScript, getGdsLocaleMetadata, isGds
 export type { GdsLocaleDirection, GdsLocaleId, GdsLocaleScript } from './i18n';
 export { showGdsNotification } from './notifications';
 export type { GdsNotificationOptions, GdsNotificationTone } from './notifications';
+export { createGdsMotionCssVariables, gdsMotionDurations, gdsMotionEasings, gdsMotionPresets, getGdsMotionPreset } from './motion';
+export type { GdsMotionDurationToken, GdsMotionEasingToken, GdsMotionPreset, GdsMotionPresetId, GdsReducedMotionPolicy, GdsResolvedMotionPreset } from './motion';
+export { useGdsReducedMotion } from './motion.client';
+export type { UseGdsReducedMotionResult } from './motion.client';

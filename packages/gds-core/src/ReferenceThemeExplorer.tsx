@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Badge,
   Box,
@@ -20,6 +20,7 @@ import type { MantineThemeOverride } from '@mantine/core';
 import { ActionBar } from './ActionBar';
 import { FormField } from './FormField';
 import { ListingCard } from './ListingCard';
+import { createGdsOwnedContrastTokens, getGdsOwnedContrastProps } from './OwnedContrastSurface';
 import { getGdsMessages } from './locales';
 import { ReferenceSection } from './ReferenceSection';
 import { StateBlock } from './StateBlock';
@@ -292,25 +293,17 @@ export function ReferenceThemeExplorer({
   const previewRootId = `gds-theme-preview-${previewKey}`;
   const comparisonPreviewRootId = `gds-theme-preview-${comparisonPreviewKey}`;
   const selectedVibe = vibeCatalogById[preset];
-  const controlSurfaceStyle = selectedVibe ? ({
-    '--mantine-color-text': selectedVibe.textLight,
-    '--mantine-color-dimmed': selectedVibe.mutedLight,
-    '--gds-local-background': `linear-gradient(180deg, color-mix(in srgb, ${selectedVibe.surfaceDark} 92%, black), color-mix(in srgb, ${selectedVibe.surfaceDark} 84%, ${selectedVibe.primary} 16%))`,
-    '--gds-local-radius': 'var(--mantine-radius-xl)',
-    '--gds-vibe-primary': selectedVibe.primary,
-    '--gds-vibe-accent': selectedVibe.accent,
-    '--gds-vibe-surface': selectedVibe.surfaceLight,
-    '--gds-vibe-border': selectedVibe.borderLight,
-    '--gds-vibe-text': selectedVibe.textLight,
-    '--gds-vibe-muted': selectedVibe.mutedLight,
-    '--gds-vibe-link': `color-mix(in srgb, ${selectedVibe.primary} 64%, ${selectedVibe.textLight})`,
-    '--gds-vibe-control': `color-mix(in srgb, ${selectedVibe.surfaceLight} 90%, ${selectedVibe.primary} 10%)`,
-    '--gds-vibe-control-text': selectedVibe.textLight,
-    color: selectedVibe.textLight,
-    backgroundColor: selectedVibe.surfaceDark,
-    backgroundImage: 'var(--gds-local-background)',
-    borderColor: selectedVibe.borderLight,
-  } as CSSProperties) : undefined;
+  const controlSurfaceProps = selectedVibe ? getGdsOwnedContrastProps({
+    role: 'theme-lab-controls',
+    tokens: createGdsOwnedContrastTokens(selectedVibe, {
+      background: `linear-gradient(180deg, color-mix(in srgb, ${selectedVibe.surfaceDark} 92%, black), color-mix(in srgb, ${selectedVibe.surfaceDark} 84%, ${selectedVibe.primary} 16%))`,
+      radius: 'var(--mantine-radius-xl)',
+      surface: selectedVibe.surfaceLight,
+      backgroundColor: selectedVibe.surfaceDark,
+      control: `color-mix(in srgb, ${selectedVibe.surfaceLight} 90%, ${selectedVibe.primary} 10%)`,
+      borderColor: selectedVibe.borderLight,
+    }),
+  }) : undefined;
 
   useEffect(() => {
     onSelectionChange?.({
@@ -352,11 +345,10 @@ export function ReferenceThemeExplorer({
       >
         <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="lg">
           <Paper
-            data-gds-local-contrast="theme-lab-controls"
             withBorder
             radius="xl"
             p="lg"
-            style={controlSurfaceStyle}
+            {...controlSurfaceProps}
           >
             <Stack gap="md">
               <Title order={4}>{copy.themePresetTitle}</Title>
@@ -398,11 +390,10 @@ export function ReferenceThemeExplorer({
           </Paper>
 
           <Paper
-            data-gds-local-contrast="theme-lab-controls"
             withBorder
             radius="xl"
             p="lg"
-            style={controlSurfaceStyle}
+            {...controlSurfaceProps}
           >
             <Stack gap="md">
               <Title order={4}>{copy.brandOptionsTitle}</Title>
@@ -434,11 +425,10 @@ export function ReferenceThemeExplorer({
           </Paper>
 
           <Paper
-            data-gds-local-contrast="theme-lab-controls"
             withBorder
             radius="xl"
             p="lg"
-            style={controlSurfaceStyle}
+            {...controlSurfaceProps}
           >
             <Stack gap="md" role="status" aria-live="polite">
               <Title order={4}>{copy.currentSelectionTitle}</Title>
@@ -485,37 +475,26 @@ export function ReferenceThemeExplorer({
           {vibeCatalog.map((vibe) => {
             const lane = localizedThemeCatalog[vibe.id];
             const isSelected = vibe.id === preset;
-            const laneCardStyle = {
-              '--mantine-color-text': vibe.textLight,
-              '--mantine-color-dimmed': vibe.mutedLight,
-              '--gds-local-background': `linear-gradient(135deg, ${vibe.surfaceLight}, color-mix(in srgb, ${vibe.primary} 12%, ${vibe.surfaceLight})), ${vibe.gradient}`,
-              '--gds-local-radius': 'var(--mantine-radius-lg)',
-              '--gds-vibe-primary': vibe.primary,
-              '--gds-vibe-accent': vibe.accent,
-              '--gds-vibe-surface': vibe.surfaceLight,
-              '--gds-vibe-border': vibe.borderLight,
-              '--gds-vibe-text': vibe.textLight,
-              '--gds-vibe-muted': vibe.mutedLight,
-              '--gds-vibe-link': `color-mix(in srgb, ${vibe.primary} 64%, ${vibe.textLight})`,
-              '--gds-vibe-control': `color-mix(in srgb, ${vibe.surfaceLight} 88%, ${vibe.primary} 8%)`,
-              '--gds-vibe-control-text': vibe.textLight,
-              color: vibe.textLight,
-              backgroundColor: vibe.surfaceLight,
-              backgroundImage: 'var(--gds-local-background)',
-              borderColor: isSelected ? vibe.primary : vibe.borderLight,
-              boxShadow: isSelected ? `0 0 0 2px ${vibe.primary}, 0 18px 46px ${vibe.glow}` : undefined,
-            } as CSSProperties;
+            const laneCardProps = getGdsOwnedContrastProps({
+              role: 'vibe-gallery-card',
+              tokens: createGdsOwnedContrastTokens(vibe, {
+                background: `linear-gradient(135deg, ${vibe.surfaceLight}, color-mix(in srgb, ${vibe.primary} 12%, ${vibe.surfaceLight})), ${vibe.gradient}`,
+                radius: 'var(--mantine-radius-lg)',
+                backgroundColor: vibe.surfaceLight,
+                borderColor: isSelected ? vibe.primary : vibe.borderLight,
+                boxShadow: isSelected ? `0 0 0 2px ${vibe.primary}, 0 18px 46px ${vibe.glow}` : undefined,
+              }),
+            });
 
             return (
             <Paper
               key={lane.themeKey}
-              data-gds-local-contrast="vibe-gallery-card"
               withBorder
               radius="lg"
               p="md"
               role="group"
               aria-label={`${lane.label} ${copy.cssVibeTheme}`}
-              style={laneCardStyle}
+              {...laneCardProps}
             >
               <Stack gap={6}>
                 <Group gap="xs" justify="space-between" align="flex-start" wrap="nowrap">
@@ -582,27 +561,17 @@ export function ReferenceThemeExplorer({
         description={copy.vibeContractDescription}
       >
         <Paper
-          data-gds-local-contrast="vibe-contract"
           withBorder
           radius="xl"
           p="lg"
-          style={{
-            '--mantine-color-text': selectedVibe?.textLight,
-            '--mantine-color-dimmed': selectedVibe?.mutedLight,
-            '--gds-local-background': selectedVibe?.hero,
-            '--gds-local-radius': 'var(--mantine-radius-xl)',
-            '--gds-vibe-primary': selectedVibe?.primary,
-            '--gds-vibe-accent': selectedVibe?.accent,
-            '--gds-vibe-surface': selectedVibe?.surfaceLight,
-            '--gds-vibe-border': selectedVibe?.borderLight,
-            '--gds-vibe-text': selectedVibe?.textLight,
-            '--gds-vibe-muted': selectedVibe?.mutedLight,
-            '--gds-vibe-control': selectedVibe ? `color-mix(in srgb, ${selectedVibe.surfaceLight} 88%, ${selectedVibe.primary} 8%)` : undefined,
-            '--gds-vibe-control-text': selectedVibe?.textLight,
-            color: selectedVibe?.textLight,
-            backgroundColor: selectedVibe?.surfaceLight,
-            backgroundImage: 'var(--gds-local-background)',
-          } as CSSProperties}
+          {...(selectedVibe ? getGdsOwnedContrastProps({
+            role: 'vibe-contract',
+            tokens: createGdsOwnedContrastTokens(selectedVibe, {
+              background: selectedVibe.hero,
+              radius: 'var(--mantine-radius-xl)',
+              backgroundColor: selectedVibe.surfaceLight,
+            }),
+          }) : undefined)}
         >
           <SimpleGrid cols={{ base: 1, md: 3 }} spacing="md">
             {selectedVibe ? [

@@ -94,7 +94,8 @@ const report = createGdsThemeAccessibilityReport();
 console.log(report.blockingCount, report.forcedColorRoles);`;
 
 const themeAccessibilityCliCode = `npm run verify:theme-accessibility
-npm run verify:accessibility-runtime`;
+npm run verify:accessibility-runtime
+npm run verify:theme-trust-runtime`;
 
 const scopedPreviewProviderCode = `// Scoped preview island
 const previewRootId = 'product-theme-preview';
@@ -911,7 +912,7 @@ export function RulebookPage() {
             {
               id: 'fake-apps',
               title: 'Fake nested websites',
-              description: 'Contained previews are valid. Full docs-in-docs shells pretending to be a second site are not.',
+              description: 'Contained previews are valid only when preview isolation and owned contrast are both package-owned. Full docs-in-docs shells pretending to be a second site are not.',
             },
             {
               id: 'local-wrappers',

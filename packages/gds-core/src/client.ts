@@ -28,6 +28,7 @@ export * from './ListingCard';
 export * from './CardContracts';
 export * from './BrowseSurface';
 export * from './BoundedPreviewSurface';
+export * from './OwnedContrastSurface';
 export * from './AccentPanel';
 export * from './SectionPanel';
 export * from './DetailProfileShell';

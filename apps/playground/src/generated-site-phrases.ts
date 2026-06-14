@@ -1860,16 +1860,16 @@ export const generatedSitePhrases = {
     "ru": "Содержащиеся примеры предпочтительнее поддельных вложенных веб-сайтов, поэтому документация остается читабельной и честной.",
     "hu": "A mellékelt példákat előnyben részesítjük a hamis beágyazott webhelyekkel szemben, így a dokumentumok olvashatóak és őszinték maradnak."
   },
-  "p_07e488d79052": {
-    "en": "Contained previews are valid. Full docs-in-docs shells pretending to be a second site are not.",
-    "fr": "Les aperçus contenus sont valides. Les shells docs-in-docs complets prétendant être un deuxième site ne le sont pas.",
-    "es": "Las vistas previas contenidas son válidas. Los shells completos de documentos en documentos que pretenden ser un segundo sitio no lo son.",
-    "ar": "المعاينات الواردة صالحة. الأصداف الكاملة للمستندات في المستندات التي تتظاهر بأنها موقع ثانٍ ليست كذلك.",
-    "de": "Enthaltene Vorschauen sind gültig. Vollständige Docs-in-Docs-Shells, die vorgeben, eine zweite Site zu sein, sind es nicht.",
-    "ru": "Содержащиеся превью действительны. Полные оболочки «документы в документах», притворяющиеся вторым сайтом, таковыми не являются.",
-    "he": "תצוגות מקדימות תקפות. קונכיות מלאות של מסמכים במסמכים המתחזות לאתר שני אינן.",
-    "it": "Le anteprime contenute sono valide. Le shell complete di documenti in documenti che fingono di essere un secondo sito non lo sono.",
-    "hu": "A benne lévő előnézetek érvényesek. A teljes dokumentumok a dokumentumokban parancsértelmezők, amelyek második webhelynek adják ki magukat, nem."
+  "p_17c0ddee72e4": {
+    "en": "Contained previews are valid only when preview isolation and owned contrast are both package-owned. Full docs-in-docs shells pretending to be a second site are not.",
+    "ar": "تكون المعاينات المضمنة صالحة فقط عندما يكون كل من عزل المعاينة والتباين المملوك مملوكًا للحزمة. الأصداف الكاملة للمستندات في المستندات التي تتظاهر بأنها موقع ثانٍ ليست كذلك.",
+    "fr": "Les aperçus contenus sont valides uniquement lorsque l’isolation de l’aperçu et le contraste détenu appartiennent tous deux au package. Les shells docs-in-docs complets prétendant être un deuxième site ne le sont pas.",
+    "it": "Le anteprime contenute sono valide solo quando l'isolamento dell'anteprima e il contrasto di proprietà sono entrambi di proprietà del pacchetto. Le shell complete di documenti in documenti che fingono di essere un secondo sito non lo sono.",
+    "ru": "Содержащиеся предварительные просмотры действительны только в том случае, если изоляция предварительного просмотра и собственный контраст принадлежат пакету. Полные оболочки «документы в документах», притворяющиеся вторым сайтом, таковыми не являются.",
+    "de": "Enthaltene Vorschauen sind nur gültig, wenn Vorschauisolation und eigener Kontrast beide Paketeigentümer sind. Vollständige Docs-in-Docs-Shells, die vorgeben, eine zweite Site zu sein, sind es nicht.",
+    "es": "Las vistas previas contenidas son válidas solo cuando el aislamiento de la vista previa y el contraste propio son propiedad del paquete. Los shells completos de documentos en documentos que pretenden ser un segundo sitio no lo son.",
+    "he": "תצוגות מקדימות תקפות רק כאשר בידוד התצוגה המקדימה והניגודיות בבעלות הן בבעלות החבילה. קונכיות מלאות של מסמכים במסמכים המתחזות לאתר שני אינן.",
+    "hu": "A tartalmazott előnézetek csak akkor érvényesek, ha az előnézeti elkülönítés és a tulajdonolt kontraszt egyaránt csomag tulajdonában van. A teljes dokumentumok a dokumentumokban parancsértelmezők, amelyek második webhelynek adják ki magukat, nem."
   },
   "p_f8e119dc686f": {
     "en": "Content fills the governed panel body without custom layout CSS.",

@@ -2,7 +2,7 @@
 
 Status: Active SSOT
 Version: 3.4.14
-Last updated: 2026-06-12
+Last updated: 2026-06-14
 
 This document defines the approved adopter-facing theme lanes for products that need branding without creating a second design authority.
 
@@ -130,6 +130,30 @@ This is a governance contract first. Products still own storage and moderation, 
 - preset styles must set `--mantine-color-text` and `--mantine-color-dimmed` from `--gds-vibe-text` and `--gds-vibe-muted` on body, shell, card, and paper surfaces so nested Mantine components cannot keep stale light-mode foregrounds on dark backgrounds
 - dark and dark-forward VibeTheme controls must use `--gds-vibe-control` and `--gds-vibe-control-text` for inputs, default buttons, and code-like surfaces rather than assuming the base Mantine default variant remains readable
 - mixed-preview surfaces, such as the Theme Lab shipped-lane gallery and VibeTheme contract preview, must use `data-gds-local-contrast` plus local `--gds-vibe-*`, Mantine foreground variables, local control tokens, and a local radius token when they intentionally render a light preview card inside a dark page
+
+## Theme trust hardening
+
+Owned contrast is a first-class contract. A surface that intentionally renders with a different readability envelope than the surrounding page must not rely on ambient page colors or ad hoc route-local `Paper` styling.
+
+Required split of responsibilities:
+
+- `BoundedPreviewSurface` owns preview isolation. It prevents nested shell demos from escaping their frame and painting over the page.
+- `getGdsOwnedContrastProps(...)` owns mixed-surface readability. It marks the surface with `data-gds-owned-contrast` and `data-gds-local-contrast`, then applies the package-owned `--gds-local-background`, `--gds-local-radius`, `--gds-vibe-*`, and control-text tokens.
+- These are separate contracts. Preview isolation does not replace owned contrast, and owned contrast does not replace preview isolation.
+
+Required runtime behavior:
+
+- any GDS-controlled route that renders a live shell inside documentation must use `BoundedPreviewSurface`
+- any GDS-controlled route that renders a light card inside a dark shell, a dark control cluster inside a light shell, or any other mixed readability island must use `getGdsOwnedContrastProps(...)`
+- consumers may not declare `data-gds-owned-contrast` or `data-gds-local-contrast` directly in product-local route code
+- package-owned controlled surfaces must keep local control tokens for buttons, inputs, selects, code blocks, badges, labels, and dimmed copy
+
+Release blocking policy:
+
+- `npm run verify:theme-trust-runtime` is mandatory for release verification
+- source-level owned-contrast compliance must fail if route code declares owned-contrast markers directly instead of using the package helper
+- if a route-level preview or mixed-theme surface fails owned contrast or preview isolation, rollback to the previous stable release line and keep the board item open
+- exceptions require a documented package-owned helper or primitive, never a route-local style patch
 
 ## Appendix: Amanoba dark shell + yellow CTA
 

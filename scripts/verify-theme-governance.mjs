@@ -8,6 +8,7 @@ const manifests = [
   'apps/reference-next/gds-adoption.json',
 ];
 const explorerSource = readFileSync(resolve(root, 'packages/gds-core/src/ReferenceThemeExplorer.tsx'), 'utf8');
+const ownedContrastSource = readFileSync(resolve(root, 'packages/gds-core/src/OwnedContrastSurface.tsx'), 'utf8');
 const explorerCopySource = readFileSync(resolve(root, 'packages/gds-core/src/ReferenceThemeExplorer.copy.ts'), 'utf8');
 const explorerContractSource = `${explorerSource}\n${explorerCopySource}`;
 const themePresetSource = readFileSync(resolve(root, 'packages/gds-theme/src/theme-presets.ts'), 'utf8');
@@ -135,6 +136,7 @@ const requiredPresetContrastProof = [
   '--mantine-color-dimmed: var(--gds-vibe-muted)',
   '--gds-vibe-control-text',
   '--gds-vibe-link',
+  'data-gds-owned-contrast',
   'data-gds-local-contrast',
   '--gds-local-background',
   '--gds-local-radius',
@@ -158,8 +160,30 @@ if (!themeStylesSource.includes("[data-gds-local-contrast] .mantine-Button-root[
   failures.push('Local contrast surfaces must override default buttons and controls inside preset pages.');
 }
 
+for (const proof of [
+  'createGdsOwnedContrastTokens',
+  'getGdsOwnedContrastProps',
+  'data-gds-owned-contrast',
+  'data-gds-local-contrast',
+]) {
+  if (!ownedContrastSource.includes(proof)) {
+    failures.push(`Owned contrast helper must preserve proof: ${proof}`);
+  }
+}
+
 if (!themeGovernanceSource.includes('Light mode and dark mode are scheme choices, not the full theme offering.')) {
   failures.push('THEME_GOVERNANCE.md must state that light/dark schemes are not the full theme offering.');
+}
+
+for (const proof of [
+  'Owned contrast is a first-class contract',
+  'BoundedPreviewSurface',
+  'getGdsOwnedContrastProps',
+  'verify:theme-trust-runtime',
+]) {
+  if (!themeGovernanceSource.includes(proof)) {
+    failures.push(`THEME_GOVERNANCE.md must document theme trust hardening: ${proof}`);
+  }
 }
 
 if (!themeGovernanceSource.includes('3.0.0 theme explorer proof contract')) {

@@ -851,6 +851,17 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     sourceComponent: 'AccessRecoveryPanel',
   },
   {
+    id: 'access-gates',
+    title: 'Access Gates',
+    docSection: 'Core Component Contracts',
+    family: 'access',
+    section: 'Auth, Share, & Access',
+    coverageStatus: 'live-demo',
+    summary: 'Paywalls and login gates must expose a public teaser while never rendering protected content until access is unlocked.',
+    importPath: '@doneisbetter/gds-core',
+    sourceComponent: 'GdsAccessGate / resolveGdsAccessState',
+  },
+  {
     id: 'placeholder-panels',
     title: 'Placeholder Panels',
     docSection: 'Core Component Contracts',

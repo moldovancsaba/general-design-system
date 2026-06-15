@@ -51,6 +51,7 @@ export * from './MediaField';
 export * from './MediaCard';
 export * from './MediaPreviewCard';
 export * from './AccessSummary';
+export * from './GdsAccessGateRuntime';
 export * from './AccessibilityEvidence';
 export * from './FormField';
 export * from './PageHeader';

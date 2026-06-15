@@ -177,6 +177,17 @@ export const generatedSitePhrases = {
     "ar": "يظل الوصول والنطاق واضحين.",
     "it": "L'accesso e l'ambito rimangono espliciti."
   },
+  "p_b8360073745c": {
+    "en": "Access Gates",
+    "ar": "بوابات الوصول",
+    "ru": "Доступ к воротам",
+    "it": "Cancelli di accesso",
+    "he": "שערי גישה",
+    "fr": "Portes d'accès",
+    "de": "Zugangstore",
+    "es": "Puertas de acceso",
+    "hu": "Bejárati kapuk"
+  },
   "p_6587f8a0295b": {
     "en": "Access Recovery Panels",
     "de": "Greifen Sie auf Wiederherstellungsfenster zu",
@@ -759,6 +770,17 @@ export const generatedSitePhrases = {
     "de": "Der Artikelinhalt bleibt in einer gemeinsamen Shell.",
     "hu": "A cikk tartalma egyetlen megosztott héjban marad.",
     "he": "תוכן המאמר נשאר במעטפת משותפת אחת."
+  },
+  "p_a80508fd65cf": {
+    "en": "Article preview",
+    "it": "Anteprima dell'articolo",
+    "ru": "Предварительный просмотр статьи",
+    "ar": "معاينة المادة",
+    "fr": "Aperçu de l'article",
+    "es": "Vista previa del artículo",
+    "hu": "Cikk előnézete",
+    "de": "Artikelvorschau",
+    "he": "תצוגה מקדימה של מאמר"
   },
   "p_77e51f5b9a5f": {
     "en": "Article Shells",
@@ -2003,6 +2025,17 @@ export const generatedSitePhrases = {
     "de": "Als Gast fortfahren",
     "hu": "Továbbra is vendégként"
   },
+  "p_acb4c05a1787": {
+    "en": "Continue with membership",
+    "ru": "Продолжить членство",
+    "es": "Continuar con la membresía",
+    "ar": "تواصل مع العضوية",
+    "fr": "Continuer avec l'adhésion",
+    "hu": "Folytassa a tagsággal",
+    "it": "Continua con l'iscrizione",
+    "de": "Fahren Sie mit der Mitgliedschaft fort",
+    "he": "המשך בחברות"
+  },
   "p_116a311ba5c6": {
     "en": "Controlled freshness and helper copy contract.",
     "de": "Kontrollierte Frische und Hilfskopievertrag.",
@@ -2299,6 +2332,17 @@ export const generatedSitePhrases = {
     "ru": "Опишите недостающий примитив или поведение.",
     "fr": "Décrivez la primitive ou le comportement manquant.",
     "hu": "Ismertesse a hiányzó primitívet vagy viselkedést!"
+  },
+  "p_bd6a02e30899": {
+    "en": "Design system paywall pattern",
+    "it": "Modello di paywall del sistema di progettazione",
+    "ru": "Шаблон платного доступа в системе разработки",
+    "fr": "Modèle de paywall du système de conception",
+    "es": "Patrón de muro de pago del sistema de diseño",
+    "ar": "نمط تصميم نظام حظر الاشتراك غير المدفوع",
+    "de": "Design-System-Paywall-Muster",
+    "hu": "Tervezési rendszer fizetőfal minta",
+    "he": "עיצוב דפוס חומת תשלום של מערכת"
   },
   "p_a2ae49bddabd": {
     "en": "Desktop tables must adapt through scroll, cards, priority columns, or stacked rows rather than naive shrinking.",
@@ -3542,6 +3586,17 @@ export const generatedSitePhrases = {
     "ru": "проверка соответствия gds",
     "hu": "gds-megfelelőségi ellenőrzés",
     "he": "בדיקת תאימות ל-gds"
+  },
+  "p_6488b9eb88c6": {
+    "en": "GdsAccessGate / resolveGdsAccessState",
+    "ar": "GdsAccessGate / ResolveGdsAccessState",
+    "de": "GdsAccessGate/resolveGdsAccessState",
+    "he": "GdsAccessGate / resolveGdsAccessState",
+    "it": "GdsAccessGate / risolvereGdsAccessState",
+    "es": "GdsAccessGate/resolveGdsAccessState",
+    "fr": "GdsAccessGate/résolveGdsAccessState",
+    "ru": "GdsAccessGate/solveGdsAccessState",
+    "hu": "GdsAccessGate / solveGdsAccessState"
   },
   "p_7550f70b0d53": {
     "en": "GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice",
@@ -6018,6 +6073,17 @@ export const generatedSitePhrases = {
     "fr": "Couverture du site modèle",
     "he": "כיסוי אתר דפוס"
   },
+  "p_f7a38d868108": {
+    "en": "Paywalls and login gates must expose a public teaser while never rendering protected content until access is unlocked.",
+    "es": "Los muros de pago y las puertas de inicio de sesión deben exponer un avance público y nunca mostrar contenido protegido hasta que se desbloquee el acceso.",
+    "ar": "يجب أن تعرض نظام حظر الاشتراك غير المدفوع وبوابات تسجيل الدخول إعلانًا تشويقيًا عامًا مع عدم عرض محتوى محمي مطلقًا حتى يتم إلغاء قفل الوصول.",
+    "de": "Paywalls und Login-Gates müssen einen öffentlichen Teaser anzeigen und dürfen niemals geschützte Inhalte wiedergeben, bis der Zugriff freigeschaltet ist.",
+    "it": "I paywall e le porte di accesso devono esporre un teaser pubblico e non eseguire mai il rendering del contenuto protetto finché l'accesso non viene sbloccato.",
+    "he": "חומות תשלום ושערי כניסה חייבים לחשוף טיזר ציבורי ולעולם לא להציג תוכן מוגן עד לביטול נעילת הגישה.",
+    "ru": "Платный доступ и шлюзы входа должны предоставлять общедоступный тизер, но никогда не отображать защищенный контент, пока доступ не будет разблокирован.",
+    "fr": "Les paywalls et les portes de connexion doivent exposer un teaser public sans jamais afficher de contenu protégé tant que l'accès n'est pas déverrouillé.",
+    "hu": "A fizetőfalaknak és a bejelentkezési kapuknak nyilvános kedvcsinálót kell közzétenniük, miközben soha nem jelenítenek meg védett tartalmat, amíg a hozzáférést fel nem oldják."
+  },
   "p_b25557b83c28": {
     "en": "Pending primitive",
     "es": "Primitiva pendiente",
@@ -6523,6 +6589,17 @@ export const generatedSitePhrases = {
     "it": "Promuovi a problema GDS",
     "he": "קדם לנושא GDS",
     "hu": "Előléptetés a GDS-kiadással"
+  },
+  "p_305f645a5f7f": {
+    "en": "Protected member-only article body",
+    "ru": "Защищенное тело статьи только для участников",
+    "ar": "نص المقالة المحمي للأعضاء فقط",
+    "it": "Corpo dell'articolo protetto per soli membri",
+    "de": "Geschützter Artikeltext nur für Mitglieder",
+    "es": "Cuerpo del artículo protegido solo para miembros",
+    "fr": "Corps de l'article protégé réservé aux membres",
+    "he": "גוף מאמר מוגן לחבר בלבד",
+    "hu": "Védett, csak tagoknak szóló cikktörzs"
   },
   "p_d288766f219e": {
     "en": "Protected-content and expired-session failures need one canonical recovery surface with clear next actions.",
@@ -9230,6 +9307,17 @@ export const generatedSitePhrases = {
     "fr": "Le fichier sélectionné est plus grand que la taille autorisée.",
     "hu": "A kiválasztott fájl nagyobb, mint a megengedett méret."
   },
+  "p_f23ebaf883d3": {
+    "en": "The teaser is public. The member-only body is never rendered until the session and entitlement are allowed.",
+    "es": "El teaser es público. El organismo exclusivo para miembros nunca se presenta hasta que se permitan la sesión y los derechos.",
+    "de": "Der Teaser ist öffentlich. Der Nur-Mitglieder-Körper wird niemals gerendert, bis die Sitzung und die Berechtigung zugelassen sind.",
+    "fr": "Le teaser est public. Le corps réservé aux membres n'est jamais rendu tant que la session et les droits ne sont pas autorisés.",
+    "ru": "Тизер является публичным. Тело, предназначенное только для членов, никогда не отображается до тех пор, пока не будут разрешены сеанс и право.",
+    "it": "Il teaser è pubblico. Il corpo riservato ai soli membri non viene mai visualizzato finché non vengono consentiti la sessione e il diritto.",
+    "he": "הטיזר פומבי. הגוף לחבר בלבד לעולם אינו מוצג עד שההפעלה והזכאות מותרים.",
+    "ar": "الجملة التشويقية عامة. لا يتم أبدًا تقديم الهيئة المخصصة للأعضاء فقط حتى يتم السماح بالجلسة والاستحقاق.",
+    "hu": "Az előzetes nyilvános. A csak tagoknak szóló testület addig nem jelenik meg, amíg a munkamenet és a jogosultság nem engedélyezett."
+  },
   "p_621d23b1656a": {
     "en": "Theme explorer, docs sections, locale notices, and proof grids used by the official site.",
     "es": "Explorador de temas, secciones de documentos, avisos locales y cuadrículas de prueba utilizadas por el sitio oficial.",
@@ -9328,6 +9416,17 @@ export const generatedSitePhrases = {
     "ru": "В этом каталоге документированная инвентаризация шаблонов отображается в реальном времени. Уценка SSOT остается нормативной, и этот сайт является визуальным ориентиром.",
     "de": "Dieser Katalog ordnet den dokumentierten Musterbestand einem Live-Laufzeitnachweis zu. Der Markdown-SSOT bleibt normativ und diese Website dient als visuelle Referenz.",
     "hu": "Ez a katalógus leképezi a dokumentált mintakészletet élő futásidejű bizonyításra. A leértékelés SSOT továbbra is normatív, és ez a webhely a vizuális referencia."
+  },
+  "p_36b95b719349": {
+    "en": "This content only mounts after the access resolver returns unlocked.",
+    "ru": "Это содержимое монтируется только после того, как преобразователь доступа снова разблокируется.",
+    "it": "Questo contenuto viene montato solo dopo che il risolutore di accesso ritorna sbloccato.",
+    "ar": "يتم تحميل هذا المحتوى فقط بعد عودة أداة حل الوصول إلى إلغاء القفل.",
+    "de": "Dieser Inhalt wird erst bereitgestellt, nachdem der Access Resolver wieder entsperrt ist.",
+    "es": "Este contenido solo se monta después de que el solucionador de acceso vuelve a estar desbloqueado.",
+    "fr": "Ce contenu n'est monté qu'une fois que le résolveur d'accès est revenu déverrouillé.",
+    "hu": "Ez a tartalom csak akkor jelenik meg, ha a hozzáférés-feloldó feloldva tér vissza.",
+    "he": "תוכן זה נטען רק לאחר שפותר הגישה חוזר ללא נעילה."
   },
   "p_712c488cba58": {
     "en": "This documented pattern is represented through the shared component family.",
@@ -10132,6 +10231,17 @@ export const generatedSitePhrases = {
     "hu": "Használja a megosztott PublicFoodCard-ot az egyértelmű elérhetőséggel és segítő jelzésekkel rendelkező menüelemekhez.",
     "de": "Nutzen Sie die gemeinsame PublicFoodCard für Menüpunkte mit klarer Verfügbarkeit und Helferhinweisen."
   },
+  "p_56eaeb4dc442": {
+    "en": "Use this boundary when a page can show summary content while protecting premium or private detail.",
+    "ar": "استخدم هذا الحد عندما تتمكن الصفحة من عرض محتوى ملخص مع حماية التفاصيل المميزة أو الخاصة.",
+    "it": "Utilizza questo limite quando una pagina può mostrare contenuti di riepilogo proteggendo al tempo stesso i dettagli premium o privati.",
+    "es": "Utilice este límite cuando una página pueda mostrar contenido resumido y al mismo tiempo proteger detalles premium o privados.",
+    "de": "Verwenden Sie diese Grenze, wenn eine Seite zusammenfassende Inhalte anzeigen und gleichzeitig Premium- oder private Details schützen kann.",
+    "ru": "Используйте эту границу, если на странице можно отображать сводный контент, защищая при этом премиум- или личную информацию.",
+    "fr": "Utilisez cette limite lorsqu'une page peut afficher un contenu récapitulatif tout en protégeant les détails premium ou privés.",
+    "hu": "Használja ezt a határt, ha egy oldal összefoglaló tartalmat jeleníthet meg, miközben védi a prémium vagy privát részleteket.",
+    "he": "השתמש בגבול זה כאשר דף יכול להציג תוכן סיכום תוך הגנה על פרטי פרימיום או פרטיים."
+  },
   "p_cbc42c2bc13f": {
     "en": "Use this panel as the canonical bounded composition for grouped content.",
     "ar": "استخدم هذه اللوحة باعتبارها التركيبة المحددة الأساسية للمحتوى المجمع.",
@@ -10208,6 +10318,17 @@ export const generatedSitePhrases = {
     "ar": "يجب أن يتم تشغيل الفيديو والوسائط الموقوتة من خلال عقد التشغيل الأساسي.",
     "ru": "Воспроизведение видео и мультимедиа по времени должно выполняться через контракт канонического воспроизведения.",
     "he": "הפעלת וידאו ומדיה מתוזמנת צריכה להיות עיבוד באמצעות חוזה ההשמעה הקנוני."
+  },
+  "p_560ed268ef7e": {
+    "en": "View membership",
+    "es": "Ver membresía",
+    "fr": "Voir l'adhésion",
+    "ar": "عرض العضوية",
+    "he": "צפה בחברות",
+    "ru": "Посмотреть членство",
+    "hu": "Tagság megtekintése",
+    "de": "Mitgliedschaft anzeigen",
+    "it": "Visualizza l'appartenenza"
   },
   "p_c56bdc732b1b": {
     "en": "Visible aggregate.",

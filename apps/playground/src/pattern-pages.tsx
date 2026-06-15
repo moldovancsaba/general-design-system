@@ -36,6 +36,7 @@ import {
   FoodMenuSection,
   FormField,
   FormErrorSummary,
+  GdsAccessGate,
   GdsFormProvider,
   useGdsForm,
   ValidatedFieldMessage,
@@ -1256,6 +1257,35 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
           <AccessRecoveryPanel state="unauthenticated" onSignIn={() => {}} onBack={() => {}} />
           <AccessRecoveryPanel state="timeout" onRetry={() => {}} onBack={() => {}} supportAction={{ action: 'help', onClick: () => {}, variant: 'subtle' }} />
         </div>
+      );
+    case 'access-gates':
+      return (
+        <GdsAccessGate
+          id="article-paywall-demo"
+          state="locked"
+          reason="subscription-required"
+          title="Continue with membership"
+          description="The teaser is public. The member-only body is never rendered until the session and entitlement are allowed."
+          entitlementLabel="Member"
+          teaserLabel="Article preview"
+          actions={[
+            { kind: 'subscribe', label: 'View membership' },
+            { kind: 'sign-in', label: 'Sign in' },
+          ]}
+          protectedContentPolicy="never-render-while-locked"
+          preview={
+            <div>
+              <h4>Design system paywall pattern</h4>
+              <p>Use this boundary when a page can show summary content while protecting premium or private detail.</p>
+            </div>
+          }
+          protectedContent={() => (
+            <div>
+              <h4>Protected member-only article body</h4>
+              <p>This content only mounts after the access resolver returns unlocked.</p>
+            </div>
+          )}
+        />
       );
     case 'placeholder-panels':
       return (

@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { renderWithGds } from '../../../test-utils/render';
 import { AccessSummary } from './AccessSummary';
 import { AccessRecoveryPanel } from './AccessRecoveryPanel';
+import { GdsAccessGate, createGdsAccessAdapter, createGdsAccessGateEvent, getGdsAccessGateActionPriority, getGdsAccessGateReasons, getGdsAccessGateStates, redactGdsAccessGateMetadata, resolveGdsAccessAdapterState, resolveGdsAccessState, sortGdsAccessGateActions, validateGdsAccessGateContract } from './GdsAccessGate';
 import { createGdsAccessibilityEvidenceIndex, getGdsAccessibilityEvidence, getGdsAccessibilityEvidenceSummary, validateGdsAccessibilityEvidence } from './AccessibilityEvidence';
 import { AccentPanel, resolveAccentPanelStyles } from './AccentPanel';
 import { ActionBar } from './ActionBar';
@@ -236,6 +237,156 @@ describe('@doneisbetter/gds-core', () => {
     const validation = validateGdsAccessibilityEvidence(entries);
     expect(validation.ok).toBe(true);
     expect(validation.failures).toEqual([]);
+  });
+
+  it('publishes the access gate state model, validation, action order, and privacy-safe events', () => {
+    expect(getGdsAccessGateStates()).toEqual([
+      'loading-auth',
+      'preview',
+      'locked',
+      'unlocking',
+      'unlocked',
+      'permission-denied',
+      'expired',
+      'error',
+    ]);
+    expect(getGdsAccessGateReasons()).toContain('subscription-required');
+    expect(getGdsAccessGateActionPriority('sign-in')).toBeLessThan(getGdsAccessGateActionPriority('back'));
+    expect(sortGdsAccessGateActions([{ kind: 'back' }, { kind: 'sign-in' }, { kind: 'subscribe' }]).map((action) => action.kind)).toEqual([
+      'sign-in',
+      'subscribe',
+      'back',
+    ]);
+
+    expect(validateGdsAccessGateContract({
+      id: 'article-paywall',
+      state: 'locked',
+      reason: 'subscription-required',
+      title: 'Subscribe to continue',
+      description: 'The preview remains visible.',
+      actions: [{ kind: 'subscribe' }],
+      protectedContentPolicy: 'never-render-while-locked',
+    })).toEqual([]);
+
+    expect(validateGdsAccessGateContract({
+      id: 'article-paywall',
+      state: 'locked',
+      title: 'Subscribe to continue',
+      description: 'The preview remains visible.',
+    })).toEqual([
+      'Locked access gates must declare protectedContentPolicy: never-render-while-locked.',
+      'Locked and denied access gates require at least one recovery action.',
+    ]);
+
+    expect(redactGdsAccessGateMetadata({
+      route: '/members/story',
+      email: 'reader@example.com',
+      body: 'Protected member-only article body',
+      paid: true,
+    })).toEqual({
+      route: '/members/story',
+      email: '[redacted]',
+      body: '[redacted]',
+      paid: true,
+    });
+
+    expect(createGdsAccessGateEvent(
+      'gds.access_gate.action',
+      { id: 'article-paywall', state: 'locked', reason: 'login-required' },
+      { token: 'secret', plan: 'pro' },
+      'sign-in',
+    )).toMatchObject({
+      gateId: 'article-paywall',
+      actionKind: 'sign-in',
+      metadata: { token: '[redacted]', plan: 'pro' },
+    });
+  });
+
+  it('never evaluates protected content while the access gate is locked', () => {
+    const protectedContent = vi.fn(() => <p>Protected member-only article body</p>);
+
+    renderWithGds(
+      <GdsAccessGate
+        id="article-paywall"
+        state="locked"
+        reason="subscription-required"
+        title="Subscribe to continue"
+        description="Read the summary now. Full article unlocks after subscription."
+        actions={[{ kind: 'subscribe' }, { kind: 'sign-in' }]}
+        protectedContentPolicy="never-render-while-locked"
+        preview={<p>Public teaser summary.</p>}
+        protectedContent={protectedContent}
+      />,
+    );
+
+    expect(screen.getByText('Public teaser summary.')).toBeInTheDocument();
+    expect(screen.getAllByText('Subscribe to continue')).toHaveLength(2);
+    expect(screen.queryByText('Protected member-only article body')).not.toBeInTheDocument();
+    expect(protectedContent).not.toHaveBeenCalled();
+  });
+
+  it('renders protected content only after access is unlocked and emits action events', async () => {
+    const events: string[] = [];
+    const actionHandler = vi.fn();
+
+    renderWithGds(
+      <GdsAccessGate
+        id="article-paywall"
+        state="unlocked"
+        title="Content unlocked"
+        description="Member session is active."
+        actions={[]}
+        preview={<p>Public teaser summary.</p>}
+        protectedContent={() => <p>Protected member-only article body</p>}
+        metadata={{ route: '/members/story' }}
+        onEvent={(event) => events.push(event.type)}
+        onAction={actionHandler}
+      />,
+    );
+
+    await waitFor(() => expect(events).toContain('gds.access_gate.unlocked'));
+    expect(screen.getByText('Protected member-only article body')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /subscribe/i })).not.toBeInTheDocument();
+  });
+
+  it('resolves access adapter states for anonymous, entitled, denied, expired, error, and timeout flows', async () => {
+    expect(resolveGdsAccessState({
+      gateId: 'article-paywall',
+      session: { status: 'anonymous' },
+    })).toMatchObject({ state: 'locked', reason: 'login-required' });
+
+    expect(resolveGdsAccessState({
+      gateId: 'article-paywall',
+      session: { status: 'authenticated', subjectId: 'user-1' },
+      entitlement: { allowed: true, label: 'Pro' },
+    })).toMatchObject({ state: 'unlocked' });
+
+    expect(resolveGdsAccessState({
+      gateId: 'article-paywall',
+      session: { status: 'authenticated', subjectId: 'user-1' },
+      entitlement: { allowed: false, reason: 'subscription-required', label: 'Pro plan' },
+    })).toMatchObject({ state: 'permission-denied', reason: 'subscription-required', entitlementLabel: 'Pro plan' });
+
+    expect(resolveGdsAccessState({
+      gateId: 'article-paywall',
+      session: { status: 'expired' },
+    })).toMatchObject({ state: 'expired', reason: 'session-expired' });
+
+    const adapter = createGdsAccessAdapter({
+      getSession: () => ({ status: 'authenticated', subjectId: 'user-1' }),
+      getEntitlement: () => ({ allowed: true, label: 'Pro plan' }),
+    });
+    await expect(resolveGdsAccessAdapterState(adapter, { gateId: 'article-paywall' })).resolves.toMatchObject({ state: 'unlocked' });
+
+    await expect(resolveGdsAccessAdapterState({
+      getSession: () => {
+        throw new Error('provider offline');
+      },
+    }, { gateId: 'article-paywall' })).resolves.toMatchObject({ state: 'error', reason: 'unknown-error' });
+
+    await expect(resolveGdsAccessAdapterState({
+      getSession: () => new Promise(() => {}),
+    }, { gateId: 'article-paywall', timeoutMs: 5 })).resolves.toMatchObject({ state: 'error', reason: 'network-timeout' });
   });
 
   it('publishes complete task pattern contracts with stable ids, states, telemetry, and guidance', () => {

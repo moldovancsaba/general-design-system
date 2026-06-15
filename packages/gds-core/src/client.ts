@@ -66,6 +66,7 @@ export * from './MediaPreviewCard';
 export * from './GdsAssetManager.client';
 export * from './AccessSummary';
 export * from './AccessRecoveryPanel';
+export * from './GdsAccessGate';
 export * from './AccessibilityEvidence';
 export * from './FormField';
 export * from './GdsForm.client';

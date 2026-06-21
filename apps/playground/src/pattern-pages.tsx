@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   AccessSummary,
   AccessRecoveryPanel,
@@ -14,6 +14,8 @@ import {
   ConfirmDialog,
   ConsumerDashboardGrid,
   ConsumerSection,
+  type GdsAccessGateAction,
+  resolveGdsAccessState,
   createGdsVocabularyPack,
   DataToolbar,
   ListingProvider,
@@ -308,6 +310,105 @@ function TelemetryDemo() {
     <GdsTelemetryProvider sink={(event) => setEvents((current) => [...current, `${event.component}:${event.eventType}`])}>
       <TelemetryProbe events={events} />
     </GdsTelemetryProvider>
+  );
+}
+
+function AccessGatePlaygroundDemo() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isSigningIn, setIsSigningIn] = useState(false);
+
+  useEffect(() => {
+    if (!isSigningIn) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setIsAuthenticated(true);
+      setIsSigningIn(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [isSigningIn]);
+
+  const baseContract = resolveGdsAccessState({
+    gateId: 'article-paywall-demo',
+    session: isSigningIn
+      ? { status: 'loading' }
+      : isAuthenticated
+        ? { status: 'authenticated', subjectId: 'demo-user' }
+        : { status: 'anonymous' },
+    entitlement: isAuthenticated ? { allowed: true, label: 'Member' } : undefined,
+  });
+
+  const contract = isSigningIn
+    ? {
+        ...baseContract,
+        state: 'unlocking' as const,
+        reason: baseContract.reason ?? 'login-required',
+        title: 'Signing in',
+        description: 'Authenticating your demo identity and role to unlock premium content.',
+      }
+    : baseContract;
+
+  const previewTitle = isAuthenticated ? 'Member unlocked' : 'Article preview';
+
+  const beginSignIn = () => {
+    if (isSigningIn || isAuthenticated) {
+      return;
+    }
+
+    setIsSigningIn(true);
+  };
+
+  const beginSignOut = () => {
+    setIsSigningIn(false);
+    setIsAuthenticated(false);
+  };
+
+  const handleAction = (action: GdsAccessGateAction) => {
+    if (action.kind === 'sign-in' || action.kind === 'sign-up') {
+      beginSignIn();
+    }
+  };
+
+  return (
+    <div>
+      <GdsAccessGate
+        {...contract}
+        protectedContentPolicy="never-render-while-locked"
+        teaserLabel="Article preview"
+        entitlementLabel="Member"
+        preview={
+          <div>
+            <h4>{previewTitle}</h4>
+            <p>
+              Use this boundary when a page can show summary content while protecting premium or private detail.
+              The protected member section is never mounted until unlocked.
+            </p>
+          </div>
+        }
+        protectedContent={() => (
+          <div>
+            <h4>Protected member-only article body</h4>
+            <p>This content only mounts after the access state is unlocked.</p>
+          </div>
+        )}
+        onAction={handleAction}
+      />
+      <div>
+        <button type="button" onClick={beginSignIn} disabled={isSigningIn || isAuthenticated}>
+          Click to login
+        </button>
+        {isAuthenticated ? (
+          <>
+            {' '}
+            <button type="button" onClick={beginSignOut}>
+              Sign out
+            </button>
+          </>
+        ) : null}
+      </div>
+    </div>
   );
 }
 
@@ -1259,34 +1360,7 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
         </div>
       );
     case 'access-gates':
-      return (
-        <GdsAccessGate
-          id="article-paywall-demo"
-          state="locked"
-          reason="subscription-required"
-          title="Continue with membership"
-          description="The teaser is public. The member-only body is never rendered until the session and entitlement are allowed."
-          entitlementLabel="Member"
-          teaserLabel="Article preview"
-          actions={[
-            { kind: 'subscribe', label: 'View membership' },
-            { kind: 'sign-in', label: 'Sign in' },
-          ]}
-          protectedContentPolicy="never-render-while-locked"
-          preview={
-            <div>
-              <h4>Design system paywall pattern</h4>
-              <p>Use this boundary when a page can show summary content while protecting premium or private detail.</p>
-            </div>
-          }
-          protectedContent={() => (
-            <div>
-              <h4>Protected member-only article body</h4>
-              <p>This content only mounts after the access resolver returns unlocked.</p>
-            </div>
-          )}
-        />
-      );
+      return <AccessGatePlaygroundDemo />;
     case 'placeholder-panels':
       return (
         <PlaceholderPanel

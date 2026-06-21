@@ -881,6 +881,17 @@ export const generatedSitePhrases = {
     "fr": "Les produits authentifiés nécessitent une coque structurelle stable avec un emplacement et un rythme de destination évidents.",
     "hu": "A hitelesített termékeknek egyetlen stabil szerkezeti héjra van szükségük, egyértelmű elhelyezkedéssel és rendeltetési ritmussal."
   },
+  "p_38d8694c380b": {
+    "en": "Authenticating your demo identity and role to unlock premium content.",
+    "ar": "التحقق من هويتك التجريبية ودورك لفتح المحتوى المتميز.",
+    "de": "Authentifizieren Sie Ihre Demo-Identität und -Rolle, um Premium-Inhalte freizuschalten.",
+    "fr": "Authentifier votre identité de démonstration et votre rôle pour débloquer du contenu premium.",
+    "it": "Autentica la tua identità e il tuo ruolo demo per sbloccare contenuti premium.",
+    "he": "אימות הזהות ותפקיד ההדגמה שלך כדי לפתוח תוכן פרימיום.",
+    "hu": "A demóazonosító és szerepkör hitelesítése a prémium tartalom feloldásához.",
+    "es": "Autenticar su identidad y rol de demostración para desbloquear contenido premium.",
+    "ru": "Аутентификация вашей демо-личности и роли для разблокировки премиум-контента."
+  },
   "p_4021ef2fc383": {
     "en": "Avoid local component duplication.",
     "es": "Evite la duplicación de componentes locales.",
@@ -1695,6 +1706,17 @@ export const generatedSitePhrases = {
     "hu": "Kiválasztás törlése",
     "he": "נקה בחירה"
   },
+  "p_13673180377e": {
+    "en": "Click to login",
+    "ru": "Нажмите, чтобы войти",
+    "ar": "انقر لتسجيل الدخول",
+    "fr": "Cliquez pour vous connecter",
+    "de": "Klicken Sie hier, um sich anzumelden",
+    "hu": "Kattintson a bejelentkezéshez",
+    "it": "Fare clic per accedere",
+    "he": "לחץ כדי להיכנס",
+    "es": "Haga clic para iniciar sesión"
+  },
   "p_edfb29e935df": {
     "en": "Cluster A",
     "es": "Grupo A",
@@ -2025,17 +2047,6 @@ export const generatedSitePhrases = {
     "de": "Als Gast fortfahren",
     "hu": "Továbbra is vendégként"
   },
-  "p_acb4c05a1787": {
-    "en": "Continue with membership",
-    "ru": "Продолжить членство",
-    "es": "Continuar con la membresía",
-    "ar": "تواصل مع العضوية",
-    "fr": "Continuer avec l'adhésion",
-    "hu": "Folytassa a tagsággal",
-    "it": "Continua con l'iscrizione",
-    "de": "Fahren Sie mit der Mitgliedschaft fort",
-    "he": "המשך בחברות"
-  },
   "p_116a311ba5c6": {
     "en": "Controlled freshness and helper copy contract.",
     "de": "Kontrollierte Frische und Hilfskopievertrag.",
@@ -2332,17 +2343,6 @@ export const generatedSitePhrases = {
     "ru": "Опишите недостающий примитив или поведение.",
     "fr": "Décrivez la primitive ou le comportement manquant.",
     "hu": "Ismertesse a hiányzó primitívet vagy viselkedést!"
-  },
-  "p_bd6a02e30899": {
-    "en": "Design system paywall pattern",
-    "it": "Modello di paywall del sistema di progettazione",
-    "ru": "Шаблон платного доступа в системе разработки",
-    "fr": "Modèle de paywall du système de conception",
-    "es": "Patrón de muro de pago del sistema de diseño",
-    "ar": "نمط تصميم نظام حظر الاشتراك غير المدفوع",
-    "de": "Design-System-Paywall-Muster",
-    "hu": "Tervezési rendszer fizetőfal minta",
-    "he": "עיצוב דפוס חומת תשלום של מערכת"
   },
   "p_a2ae49bddabd": {
     "en": "Desktop tables must adapt through scroll, cards, priority columns, or stacked rows rather than naive shrinking.",
@@ -4961,6 +4961,17 @@ export const generatedSitePhrases = {
     "es": "Mapa de ruta de la reunión",
     "hu": "Találkozási útvonal térkép",
     "he": "מפת מסלולי Meetup"
+  },
+  "p_ea7070ee9a06": {
+    "en": "Member unlocked",
+    "fr": "Membre débloqué",
+    "it": "Membro sbloccato",
+    "ar": "تم فتح العضو",
+    "he": "חבר לא נעול",
+    "es": "Miembro desbloqueado",
+    "de": "Mitglied freigeschaltet",
+    "hu": "Tag feloldva",
+    "ru": "Участник разблокирован"
   },
   "p_16f5d4b1b0ef": {
     "en": "Messaging Primitives",
@@ -8570,6 +8581,28 @@ export const generatedSitePhrases = {
     "hu": "Jelentkezzen be a GDS-be",
     "de": "Melden Sie sich bei GDS an"
   },
+  "p_48f0d3d397d4": {
+    "en": "Sign out",
+    "de": "Abmelden",
+    "it": "disconnessione",
+    "fr": "se déconnecter",
+    "es": "desconectar",
+    "ru": "выход",
+    "he": "צא",
+    "ar": "تسجيل الخروج",
+    "hu": "Jelentkezzen ki"
+  },
+  "p_824a1d703ce6": {
+    "en": "Signing in",
+    "de": "Anmelden",
+    "fr": "Connexion",
+    "es": "Iniciar sesión",
+    "ar": "تسجيل الدخول",
+    "hu": "Bejelentkezés",
+    "it": "Accesso",
+    "ru": "Вход в систему",
+    "he": "כניסה"
+  },
   "p_a84af9418ab0": {
     "en": "Simple Data Tables",
     "he": "טבלאות נתונים פשוטות",
@@ -9307,17 +9340,6 @@ export const generatedSitePhrases = {
     "fr": "Le fichier sélectionné est plus grand que la taille autorisée.",
     "hu": "A kiválasztott fájl nagyobb, mint a megengedett méret."
   },
-  "p_f23ebaf883d3": {
-    "en": "The teaser is public. The member-only body is never rendered until the session and entitlement are allowed.",
-    "es": "El teaser es público. El organismo exclusivo para miembros nunca se presenta hasta que se permitan la sesión y los derechos.",
-    "de": "Der Teaser ist öffentlich. Der Nur-Mitglieder-Körper wird niemals gerendert, bis die Sitzung und die Berechtigung zugelassen sind.",
-    "fr": "Le teaser est public. Le corps réservé aux membres n'est jamais rendu tant que la session et les droits ne sont pas autorisés.",
-    "ru": "Тизер является публичным. Тело, предназначенное только для членов, никогда не отображается до тех пор, пока не будут разрешены сеанс и право.",
-    "it": "Il teaser è pubblico. Il corpo riservato ai soli membri non viene mai visualizzato finché non vengono consentiti la sessione e il diritto.",
-    "he": "הטיזר פומבי. הגוף לחבר בלבד לעולם אינו מוצג עד שההפעלה והזכאות מותרים.",
-    "ar": "الجملة التشويقية عامة. لا يتم أبدًا تقديم الهيئة المخصصة للأعضاء فقط حتى يتم السماح بالجلسة والاستحقاق.",
-    "hu": "Az előzetes nyilvános. A csak tagoknak szóló testület addig nem jelenik meg, amíg a munkamenet és a jogosultság nem engedélyezett."
-  },
   "p_621d23b1656a": {
     "en": "Theme explorer, docs sections, locale notices, and proof grids used by the official site.",
     "es": "Explorador de temas, secciones de documentos, avisos locales y cuadrículas de prueba utilizadas por el sitio oficial.",
@@ -9417,16 +9439,16 @@ export const generatedSitePhrases = {
     "de": "Dieser Katalog ordnet den dokumentierten Musterbestand einem Live-Laufzeitnachweis zu. Der Markdown-SSOT bleibt normativ und diese Website dient als visuelle Referenz.",
     "hu": "Ez a katalógus leképezi a dokumentált mintakészletet élő futásidejű bizonyításra. A leértékelés SSOT továbbra is normatív, és ez a webhely a vizuális referencia."
   },
-  "p_36b95b719349": {
-    "en": "This content only mounts after the access resolver returns unlocked.",
-    "ru": "Это содержимое монтируется только после того, как преобразователь доступа снова разблокируется.",
-    "it": "Questo contenuto viene montato solo dopo che il risolutore di accesso ritorna sbloccato.",
-    "ar": "يتم تحميل هذا المحتوى فقط بعد عودة أداة حل الوصول إلى إلغاء القفل.",
-    "de": "Dieser Inhalt wird erst bereitgestellt, nachdem der Access Resolver wieder entsperrt ist.",
-    "es": "Este contenido solo se monta después de que el solucionador de acceso vuelve a estar desbloqueado.",
-    "fr": "Ce contenu n'est monté qu'une fois que le résolveur d'accès est revenu déverrouillé.",
-    "hu": "Ez a tartalom csak akkor jelenik meg, ha a hozzáférés-feloldó feloldva tér vissza.",
-    "he": "תוכן זה נטען רק לאחר שפותר הגישה חוזר ללא נעילה."
+  "p_c37617048a2f": {
+    "en": "This content only mounts after the access state is unlocked.",
+    "ar": "يتم تحميل هذا المحتوى فقط بعد إلغاء قفل حالة الوصول.",
+    "es": "Este contenido solo se monta después de que se desbloquea el estado de acceso.",
+    "fr": "Ce contenu n'est monté qu'une fois l'état d'accès déverrouillé.",
+    "de": "Dieser Inhalt wird erst bereitgestellt, nachdem der Zugriffsstatus entsperrt wurde.",
+    "ru": "Этот контент монтируется только после разблокировки состояния доступа.",
+    "it": "Questo contenuto viene montato solo dopo che lo stato di accesso è stato sbloccato.",
+    "hu": "Ez a tartalom csak a hozzáférési állapot feloldása után épül fel.",
+    "he": "תוכן זה נטען רק לאחר ביטול הנעילה של מצב הגישה."
   },
   "p_712c488cba58": {
     "en": "This documented pattern is represented through the shared component family.",
@@ -10231,16 +10253,16 @@ export const generatedSitePhrases = {
     "hu": "Használja a megosztott PublicFoodCard-ot az egyértelmű elérhetőséggel és segítő jelzésekkel rendelkező menüelemekhez.",
     "de": "Nutzen Sie die gemeinsame PublicFoodCard für Menüpunkte mit klarer Verfügbarkeit und Helferhinweisen."
   },
-  "p_56eaeb4dc442": {
-    "en": "Use this boundary when a page can show summary content while protecting premium or private detail.",
-    "ar": "استخدم هذا الحد عندما تتمكن الصفحة من عرض محتوى ملخص مع حماية التفاصيل المميزة أو الخاصة.",
-    "it": "Utilizza questo limite quando una pagina può mostrare contenuti di riepilogo proteggendo al tempo stesso i dettagli premium o privati.",
-    "es": "Utilice este límite cuando una página pueda mostrar contenido resumido y al mismo tiempo proteger detalles premium o privados.",
-    "de": "Verwenden Sie diese Grenze, wenn eine Seite zusammenfassende Inhalte anzeigen und gleichzeitig Premium- oder private Details schützen kann.",
-    "ru": "Используйте эту границу, если на странице можно отображать сводный контент, защищая при этом премиум- или личную информацию.",
-    "fr": "Utilisez cette limite lorsqu'une page peut afficher un contenu récapitulatif tout en protégeant les détails premium ou privés.",
-    "hu": "Használja ezt a határt, ha egy oldal összefoglaló tartalmat jeleníthet meg, miközben védi a prémium vagy privát részleteket.",
-    "he": "השתמש בגבול זה כאשר דף יכול להציג תוכן סיכום תוך הגנה על פרטי פרימיום או פרטיים."
+  "p_5e03f60ce3e8": {
+    "en": "Use this boundary when a page can show summary content while protecting premium or private detail. The protected member section is never mounted until unlocked.",
+    "de": "Verwenden Sie diese Grenze, wenn eine Seite zusammenfassende Inhalte anzeigen und gleichzeitig Premium- oder private Details schützen kann. Der geschützte Mitgliedsbereich wird erst dann gemountet, wenn er entsperrt ist.",
+    "ru": "Используйте эту границу, если на странице можно отображать сводный контент, защищая при этом премиум- или личную информацию. Защищенный раздел участников никогда не монтируется, пока не разблокирован.",
+    "it": "Utilizza questo limite quando una pagina può mostrare contenuti di riepilogo proteggendo al tempo stesso i dettagli premium o privati. La sezione del membro protetto non viene mai montata finché non viene sbloccata.",
+    "ar": "استخدم هذا الحد عندما تتمكن الصفحة من عرض محتوى ملخص مع حماية التفاصيل المميزة أو الخاصة. لا يتم تثبيت قسم العضو المحمي أبدًا حتى يتم إلغاء قفله.",
+    "es": "Utilice este límite cuando una página pueda mostrar contenido resumido y al mismo tiempo proteger detalles premium o privados. La sección de miembros protegidos nunca se monta hasta que se desbloquea.",
+    "fr": "Utilisez cette limite lorsqu'une page peut afficher un contenu récapitulatif tout en protégeant les détails premium ou privés. La section de membre protégée n'est jamais montée tant qu'elle n'est pas déverrouillée.",
+    "hu": "Használja ezt a határt, ha egy oldal összefoglaló tartalmat jeleníthet meg, miközben védi a prémium vagy privát részleteket. A védett tagrészt soha nem szerelik fel, amíg ki nem oldják.",
+    "he": "השתמש בגבול זה כאשר דף יכול להציג תוכן סיכום תוך הגנה על פרטי פרימיום או פרטיים. חלק החבר המוגן לעולם אינו מותקן עד לביטול הנעילה."
   },
   "p_cbc42c2bc13f": {
     "en": "Use this panel as the canonical bounded composition for grouped content.",
@@ -10318,17 +10340,6 @@ export const generatedSitePhrases = {
     "ar": "يجب أن يتم تشغيل الفيديو والوسائط الموقوتة من خلال عقد التشغيل الأساسي.",
     "ru": "Воспроизведение видео и мультимедиа по времени должно выполняться через контракт канонического воспроизведения.",
     "he": "הפעלת וידאו ומדיה מתוזמנת צריכה להיות עיבוד באמצעות חוזה ההשמעה הקנוני."
-  },
-  "p_560ed268ef7e": {
-    "en": "View membership",
-    "es": "Ver membresía",
-    "fr": "Voir l'adhésion",
-    "ar": "عرض العضوية",
-    "he": "צפה בחברות",
-    "ru": "Посмотреть членство",
-    "hu": "Tagság megtekintése",
-    "de": "Mitgliedschaft anzeigen",
-    "it": "Visualizza l'appartenenza"
   },
   "p_c56bdc732b1b": {
     "en": "Visible aggregate.",

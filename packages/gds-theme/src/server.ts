@@ -13,3 +13,5 @@ export { getGdsFontLanes, resolveGdsFontLane, applyGdsFontLane, getGdsFontLaneSt
 export type { GdsFontLane, GdsFontLaneId, GdsFontLaneLoadStrategy, GdsFontLaneSource } from './font-lanes';
 export { createGdsMotionCssVariables, gdsMotionDurations, gdsMotionEasings, gdsMotionPresets, getGdsMotionPreset } from './motion';
 export type { GdsMotionDurationToken, GdsMotionEasingToken, GdsMotionPreset, GdsMotionPresetId, GdsReducedMotionPolicy, GdsResolvedMotionPreset } from './motion';
+export { createBrandTheme, deriveBrandSemanticTokens, brandContrastRatio, GdsBrandThemeError } from './brand-tokens';
+export type { BrandColorRamps, BrandFonts, CreateBrandThemeOptions, BrandSemanticRole, BrandThemeResult } from './brand-tokens';

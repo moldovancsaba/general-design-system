@@ -6,6 +6,10 @@ export interface PublicNavItem {
   label: string;
   href: string;
   external?: boolean;
+  /** Optional icon, used by surfaces that render icons (e.g. bottom-tab nav). */
+  icon?: ReactNode;
+  /** Disabled items are dimmed and non-interactive in icon-based surfaces. */
+  disabled?: boolean;
 }
 
 export interface PublicNavProps {

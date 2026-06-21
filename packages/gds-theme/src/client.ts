@@ -21,3 +21,5 @@ export { createGdsMotionCssVariables, gdsMotionDurations, gdsMotionEasings, gdsM
 export type { GdsMotionDurationToken, GdsMotionEasingToken, GdsMotionPreset, GdsMotionPresetId, GdsReducedMotionPolicy, GdsResolvedMotionPreset } from './motion';
 export { useGdsReducedMotion } from './motion.client';
 export type { UseGdsReducedMotionResult } from './motion.client';
+export { createBrandTheme, deriveBrandSemanticTokens, brandContrastRatio, GdsBrandThemeError } from './brand-tokens';
+export type { BrandColorRamps, BrandFonts, CreateBrandThemeOptions, BrandSemanticRole, BrandThemeResult } from './brand-tokens';

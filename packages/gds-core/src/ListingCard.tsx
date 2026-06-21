@@ -34,6 +34,14 @@ export interface ListingCardProps {
   sponsoredDisclosure?: ReactNode;
   price?: ReactNode;
   primaryAction?: ReactNode;
+  /** "Why this fits" reason content (e.g. 2–4 reasons). Rendered as a labeled region. */
+  reason?: ReactNode;
+  /** Accessible label for the reason region. */
+  reasonLabel?: string;
+  /** Match-quality element, typically a `<FitScoreChip />`. */
+  score?: ReactNode;
+  /** Footer affordances (2–4). When present, replaces the default primaryAction footer slot. */
+  actions?: ReactNode[];
   saveAction?: ListingCardAffordance;
   shareAction?: ListingCardAffordance;
   compact?: boolean;
@@ -58,6 +66,18 @@ const toneColorMap: Record<NonNullable<ListingMetadataRow['tone']>, string | und
   warning: 'orange',
   muted: 'gray',
 };
+
+export const MAX_LISTING_CARD_ACTIONS = 4;
+
+function resolveCardActions(actions?: ReactNode[]): ReactNode[] | null {
+  if (!actions || actions.length === 0) {
+    return null;
+  }
+  if (actions.length > MAX_LISTING_CARD_ACTIONS) {
+    throw new Error(`ListingCard supports at most ${MAX_LISTING_CARD_ACTIONS} actions, received ${actions.length}.`);
+  }
+  return actions;
+}
 
 function isNestedInteractiveTarget(eventTarget: EventTarget | null, currentTarget: EventTarget | null) {
   if (!(eventTarget instanceof Element) || !(currentTarget instanceof Element)) {
@@ -128,6 +148,10 @@ export function ListingCard({
   sponsoredDisclosure,
   price,
   primaryAction,
+  reason,
+  reasonLabel = 'Why this fits',
+  score,
+  actions,
   saveAction,
   shareAction,
   compact = false,
@@ -140,6 +164,7 @@ export function ListingCard({
   defaultFlipped = false,
 }: ListingCardProps) {
   const [flipped, setFlipped] = useState(defaultFlipped);
+  const resolvedActions = resolveCardActions(actions);
   const contract = resolveGdsCardContract({ compact, size, density, variant });
   const cardPadding = contract.padding;
   const isInteractive = interactiveMode !== 'none';
@@ -266,6 +291,15 @@ export function ListingCard({
               </Stack>
             ) : null}
 
+            {reason ? (
+              <Stack gap={4} role="group" aria-label={reasonLabel}>
+                <Text size="xs" fw={700} tt="uppercase" c="dimmed">
+                  {reasonLabel}
+                </Text>
+                {reason}
+              </Stack>
+            ) : null}
+
             <Group justify="space-between" align="center" gap="sm" wrap="wrap">
               <Stack gap={2} style={{ minWidth: 0, flex: 1 }}>
                 {price ? (
@@ -275,13 +309,24 @@ export function ListingCard({
                 ) : null}
               </Stack>
 
+              {score ? <Group gap="xs" wrap="nowrap">{score}</Group> : null}
+
               <Group gap="xs" wrap="nowrap" justify="flex-end" style={{ marginInlineStart: 'auto' }}>
                 {saveAction ? <ListingAffordance affordance={saveAction} /> : null}
                 {shareAction ? <ListingAffordance affordance={shareAction} /> : null}
-                {primaryAction}
+                {resolvedActions ? null : primaryAction}
                 {isFlipMode ? <Text size="xs" c="dimmed">Press Enter or Space to reveal details.</Text> : null}
               </Group>
             </Group>
+
+            {resolvedActions ? (
+              <Group gap="sm" wrap="wrap" role="group" aria-label="Listing actions">
+                {resolvedActions.map((action, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <span key={index}>{action}</span>
+                ))}
+              </Group>
+            ) : null}
           </>
         )}
       </Stack>

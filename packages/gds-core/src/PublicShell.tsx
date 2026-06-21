@@ -2,9 +2,19 @@ import { useRef } from 'react';
 import type { ReactNode } from 'react';
 import { AppShell, Box, Burger, Container, Group, Stack, Text } from '@mantine/core';
 import { PublicNav, type PublicNavItem } from './PublicNav';
+import { BOTTOM_TAB_HEIGHT, BottomTabBar } from './BottomTabBar';
 
 export type PublicShellHeaderVariant = 'default' | 'branded-quiet' | 'compact';
-export type PublicShellMobileNavigationMode = 'sheet' | 'inline-collapse' | 'drawer';
+export type PublicShellMobileNavigationMode = 'sheet' | 'inline-collapse' | 'drawer' | 'bottom-tab';
+
+export interface PublicShellBottomTabOptions {
+  /** Item id rendered as a raised center action (e.g. an assistant entry). */
+  emphasizedItemId?: string;
+  /** Hard cap on rendered tabs (max 5). */
+  maxItems?: 3 | 4 | 5;
+  /** Analytics hook fired when a tab is selected. */
+  onNavItemSelect?: (id: string) => void;
+}
 
 export interface PublicShellClassNames {
   root?: string;
@@ -30,6 +40,7 @@ export interface PublicShellProps {
   maxContentWidth?: number | 'sm' | 'md' | 'lg';
   headerVariant?: PublicShellHeaderVariant;
   mobileNavigationMode?: PublicShellMobileNavigationMode;
+  bottomTab?: PublicShellBottomTabOptions;
   classNames?: PublicShellClassNames;
 }
 
@@ -105,13 +116,16 @@ export function PublicShell({
   maxContentWidth,
   headerVariant = 'default',
   mobileNavigationMode = 'sheet',
+  bottomTab,
   classNames,
 }: PublicShellProps) {
   const resolvedNavigation = navigation ?? (navItems ? <PublicNav items={navItems} activeId={activeNavId} /> : null);
   const containerSize = maxContentWidth ?? (compact ? 'md' : 'lg');
   const headerHeight = headerVariant === 'compact' ? 64 : headerVariant === 'branded-quiet' ? 88 : 72;
   const mainPadding = headerVariant === 'compact' ? 'lg' : 'xl';
-  const usesInlineMobileNavigation = Boolean(mobileNavigation) && mobileNavigationMode !== 'sheet';
+  const usesBottomTabNavigation = mobileNavigationMode === 'bottom-tab' && Boolean(navItems?.length);
+  const usesInlineMobileNavigation =
+    Boolean(mobileNavigation) && mobileNavigationMode !== 'sheet' && mobileNavigationMode !== 'bottom-tab';
   const usesSheetMobileNavigation = Boolean(mobileNavigation) && mobileNavigationMode === 'sheet';
 
   return (
@@ -160,7 +174,16 @@ export function PublicShell({
       ) : null}
 
       <AppShell.Main>
-        <Container size={containerSize} py={mainPadding} className={classNames?.content}>
+        <Container
+          size={containerSize}
+          py={mainPadding}
+          className={classNames?.content}
+          style={
+            usesBottomTabNavigation
+              ? { paddingBottom: `calc(${BOTTOM_TAB_HEIGHT}px + env(safe-area-inset-bottom, 0px) + var(--mantine-spacing-xl))` }
+              : undefined
+          }
+        >
           <Stack gap="xl">{children}</Stack>
         </Container>
         {footer ? (
@@ -177,6 +200,17 @@ export function PublicShell({
           </Box>
         ) : null}
       </AppShell.Main>
+
+      {usesBottomTabNavigation && navItems ? (
+        <BottomTabBar
+          items={navItems}
+          activeId={activeNavId}
+          emphasizedItemId={bottomTab?.emphasizedItemId}
+          maxItems={bottomTab?.maxItems}
+          onNavItemSelect={bottomTab?.onNavItemSelect}
+          className={classNames?.mobileNavigation}
+        />
+      ) : null}
     </AppShell>
   );
 }

@@ -4,6 +4,10 @@ All notable policy changes to the General Design System are recorded here.
 
 ## 3.5.0 - 2026-06-21
 
+- ClassScout pure-GDS unblock (issues GH-316–GH-325): closed the 10 gaps required for consumers to ship on pure GDS with no app-level forks.
+  - `gds-theme`: `createBrandTheme({ brandColors, fonts })` plus a brand-named semantic token layer (`brand.primary`, `bg.page`, `text.*`, `price`, `state.*`) emitted as `--gds-*` variables on top of the governed token graph, with WCAG-AA contrast enforcement (GH-316).
+  - `gds-core`: `'bottom-tab'` mobile navigation mode + `BottomTabBar` (safe-area aware, raised center action) for `PublicShell`/`DiscoveryShell` (GH-317); `SearchableSelect` combobox with async/grouped options and full keyboard a11y (GH-318); `FitScoreChip` (GH-319); `ListingCard` `reason`/`score`/`actions` composition slots (GH-320); conversation surface `ChatThread`/`ChatMessage`/`ChatInput`/`StreamingIndicator` (GH-321); `MeaningBadge` distinct from `StatusBadge` (GH-322); `MediaWithFallback` resilient media (GH-323); `NumberStepper` (GH-324); `AISearchCard` governed assistant-entry pattern (GH-325).
+  - All new UI consumes GDS tokens, is keyboard- and screen-reader-accessible, and is registered in the pattern export/API-docs coverage registries.
 - Added an AI-agent integration layer so GDS is consumable by Claude, Claude Code, Cursor, Copilot, and any LLM tool: `llms.txt` (universal machine-readable entry point), `docs/AI_AGENT_GUIDE.md`, and a "Use with AI" quick-start in the README.
 - Added drop-in repo rule templates `TEMPLATES/AGENTS.md.template` (cross-tool `AGENTS.md` standard) and `TEMPLATES/CLAUDE.md.template` so consuming repos make every agent session build with GDS automatically.
 - Added `docs/CLAUDE_DESIGN.md` documenting the Claude Design integration: syncing GDS into claude.ai/design (via `/design-sync` in Claude Code) so the design agent builds screens with the real GDS components, and the committed `.design-sync/` inputs that make a re-sync one command.

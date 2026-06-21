@@ -48,7 +48,7 @@ export function PublicBrandFooter({
       data-layout-variant={layoutVariant}
     >
       <Stack gap="lg">
-        <Grid gutter={compact ? 'lg' : 'xl'} align="flex-start">
+        <Grid gutter={compact ? 'lg' : 'xl'} style={{ alignItems: 'flex-start' }}>
           {media ? (
             <Grid.Col span={{ base: 12, md: mediaSpan }}>
               <Box className={classNames?.media}>{media}</Box>

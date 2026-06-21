@@ -38,7 +38,7 @@ jobs:
       - name: Override to Mantine 9
         if: matrix.mantine-version == 9
         run: |
-          npm install --no-save @mantine/core@^9 @mantine/hooks@^9 @mantine/notifications@^9 react@^19 react-dom@^19
+          npm install --no-save @mantine/core@^9 @mantine/hooks@^9 @mantine/modals@^9 @mantine/notifications@^9 react@^19 react-dom@^19
           find packages -maxdepth 5 -type d -name react -path '*/node_modules/react' | xargs -r rm -rf
           find packages -maxdepth 5 -type d -name react-dom -path '*/node_modules/react-dom' | xargs -r rm -rf
 

@@ -127,6 +127,15 @@ export const publicSiteRoutes: PublicSiteRoute[] = [
     activePrefixes: ['/request-feature'],
   },
   {
+    id: 'ai',
+    path: '/ai',
+    label: 'Use with AI',
+    action: 'settings',
+    audienceIntent: 'install',
+    navGroup: 'primary',
+    activePrefixes: ['/ai'],
+  },
+  {
     id: 'demo-surfaces',
     path: '/live-demos/surfaces',
     label: 'Discovery & Cards',

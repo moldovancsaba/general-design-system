@@ -1244,7 +1244,7 @@ describe('@doneisbetter/gds-core', () => {
       />,
     );
 
-    expect(await screen.findByRole('table', { name: 'Members' })).toBeInTheDocument();
+    expect(await screen.findByRole('grid', { name: 'Members' })).toBeInTheDocument();
     expect(screen.getByText('1 of 2 rows rendered in the virtualized window.')).toBeInTheDocument();
     expect(screen.getByRole('columnheader', { name: 'Name' })).toHaveAttribute('aria-sort', 'none');
 
@@ -1309,7 +1309,7 @@ describe('@doneisbetter/gds-core', () => {
       />,
     );
 
-    expect(await screen.findByRole('table', { name: 'Venues resources' })).toBeInTheDocument();
+    expect(await screen.findByRole('grid', { name: 'Venues resources' })).toBeInTheDocument();
     await user.click(screen.getAllByRole('button', { name: 'Details' })[0]!);
     expect(await screen.findByLabelText('Venue One detail')).toBeInTheDocument();
     await user.click(screen.getAllByRole('button', { name: 'Activate' })[0]!);

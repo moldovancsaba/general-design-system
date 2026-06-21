@@ -1,8 +1,8 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { ReactNode } from 'react';
-import { Button, Checkbox, Group, Pagination, ScrollArea, Stack, Table, Text, TextInput } from '@mantine/core';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { KeyboardEvent, ReactNode } from 'react';
+import { Button, Checkbox, Group, Pagination, ScrollArea, Stack, Table, Text, TextInput, VisuallyHidden } from '@mantine/core';
 import { StateBlock } from './StateBlock';
 
 export type GdsTableSortDirection = 'asc' | 'desc';
@@ -274,6 +274,46 @@ export function useGdsDataTable<T extends Record<string, unknown>>({
   };
 }
 
+function useGdsTableKeyNav(rowCount: number) {
+  const tbodyRef = useRef<HTMLTableSectionElement>(null);
+  const [focusedRowIndex, setFocusedRowIndex] = useState<number | null>(null);
+
+  const handleKeyDown = useCallback((event: KeyboardEvent<HTMLTableSectionElement>) => {
+    const rows = tbodyRef.current?.querySelectorAll<HTMLTableRowElement>('tr[data-gds-row]') ?? [];
+    const total = rows.length;
+    if (total === 0) return;
+
+    const currentIndex = focusedRowIndex ?? 0;
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      const next = Math.min(currentIndex + 1, total - 1);
+      setFocusedRowIndex(next);
+      (rows[next] as HTMLTableRowElement).focus();
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      const prev = Math.max(currentIndex - 1, 0);
+      setFocusedRowIndex(prev);
+      (rows[prev] as HTMLTableRowElement).focus();
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      setFocusedRowIndex(0);
+      (rows[0] as HTMLTableRowElement).focus();
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      const last = total - 1;
+      setFocusedRowIndex(last);
+      (rows[last] as HTMLTableRowElement).focus();
+    }
+  }, [focusedRowIndex]);
+
+  useEffect(() => {
+    setFocusedRowIndex(null);
+  }, [rowCount]);
+
+  return { tbodyRef, handleKeyDown, focusedRowIndex, setFocusedRowIndex };
+}
+
 export function GdsDataTable<T extends Record<string, unknown>>({
   columns,
   rowId,
@@ -292,6 +332,7 @@ export function GdsDataTable<T extends Record<string, unknown>>({
   const table = useGdsDataTable({ columns, rowId, adapter, initialQuery, onEvent, onExport, timeoutMs, virtualizedRowLimit });
   const visibleColumns = columns.filter((column) => !column.hidden);
   const pageCount = Math.max(1, Math.ceil(table.total / table.query.pageSize));
+  const { tbodyRef, handleKeyDown, focusedRowIndex, setFocusedRowIndex } = useGdsTableKeyNav(table.visibleRows.length);
 
   if (table.status === 'loading') return <StateBlock variant="loading" title="Loading table" description="Preparing governed data rows." compact />;
   if (table.status === 'error') return <StateBlock variant="error" title="Unable to load table" description={table.error ?? 'The data adapter failed.'} action={<Button onClick={table.retry}>{retryLabel}</Button>} compact />;
@@ -312,7 +353,7 @@ export function GdsDataTable<T extends Record<string, unknown>>({
         </Group>
       </Group>
       <ScrollArea>
-        <Table withTableBorder striped highlightOnHover>
+        <Table withTableBorder striped highlightOnHover role="grid" aria-label={caption} aria-rowcount={table.total}>
           <caption>{caption}</caption>
           <Table.Thead>
             <Table.Tr>
@@ -326,21 +367,36 @@ export function GdsDataTable<T extends Record<string, unknown>>({
               ))}
             </Table.Tr>
           </Table.Thead>
-          <Table.Tbody>
-            {table.visibleRows.map((row, index) => {
-              const id = rowId(row, index);
+          <Table.Tbody
+            ref={tbodyRef}
+            onKeyDown={handleKeyDown}
+          >
+            {table.visibleRows.map((row, rowIndex) => {
+              const id = rowId(row, rowIndex);
+              const isFocused = focusedRowIndex === rowIndex;
               return (
-                <Table.Tr key={id}>
+                <Table.Tr
+                  key={id}
+                  data-gds-row
+                  tabIndex={0}
+                  aria-selected={table.selectedRowIds.includes(id)}
+                  aria-rowindex={(table.query.page - 1) * table.query.pageSize + rowIndex + 2}
+                  onFocus={() => setFocusedRowIndex(rowIndex)}
+                  style={isFocused ? { outline: '2px solid var(--mantine-color-blue-5)', outlineOffset: '-2px' } : undefined}
+                >
                   <Table.Td>
-                    <Checkbox aria-label={`Select row ${id}`} checked={table.selectedRowIds.includes(id)} onChange={() => table.toggleRow(id)} />
+                    <Checkbox aria-label={`Select row ${id}`} checked={table.selectedRowIds.includes(id)} onChange={() => table.toggleRow(id)} tabIndex={-1} />
                   </Table.Td>
-                  {visibleColumns.map((column) => <Table.Td key={column.key}>{column.render ? column.render(row) : String(getCellValue(row, column) ?? '')}</Table.Td>)}
+                  {visibleColumns.map((column) => <Table.Td key={column.key} role="gridcell">{column.render ? column.render(row) : String(getCellValue(row, column) ?? '')}</Table.Td>)}
                 </Table.Tr>
               );
             })}
           </Table.Tbody>
         </Table>
       </ScrollArea>
+      <VisuallyHidden aria-live="polite" aria-atomic="true">
+        {focusedRowIndex !== null ? `Row ${focusedRowIndex + 1} of ${table.visibleRows.length}` : ''}
+      </VisuallyHidden>
       {virtualizedRowLimit && table.rows.length > table.visibleRows.length ? <Text size="xs" c="dimmed">{table.visibleRows.length} of {table.rows.length} rows rendered in the virtualized window.</Text> : null}
       <Group justify="space-between">
         <Text size="xs" c="dimmed">{table.selectedRowIds.length} selected</Text>

@@ -91,8 +91,8 @@ export function GdsStackedBarChart({ seriesTone = 'primary', ...props }: Semanti
   return <GdsChart {...props} type="stacked-bar" legend={[{ label: 'Series', token: seriesTone }]} renderer={semanticRenderer('stacked-bar', seriesTone)} />;
 }
 
-export const GdsChartTooltip = Paper;
-export const GdsChartLegend = Group;
-export const GdsChartAxis = Box;
+export const GdsChartTooltip: typeof Paper = Paper;
+export const GdsChartLegend: typeof Group = Group;
+export const GdsChartAxis: typeof Box = Box;
 export const GdsResponsiveChartFrame = SemanticChartFrame;
 

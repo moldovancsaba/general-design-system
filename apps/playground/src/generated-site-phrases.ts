@@ -639,6 +639,17 @@ export const generatedSitePhrases = {
     "ru": "Расширенная таблица данных/таблица данных",
     "hu": "AdvancedDataTable / DataTable"
   },
+  "p_9678315695a3": {
+    "en": "AI Search Card",
+    "it": "Scheda di ricerca IA",
+    "ar": "بطاقة بحث الذكاء الاصطناعي",
+    "fr": "Carte de recherche IA",
+    "es": "Tarjeta de búsqueda de IA",
+    "ru": "Карточка поиска ИИ",
+    "de": "KI-Suchkarte",
+    "hu": "AI keresőkártya",
+    "he": "כרטיס חיפוש בינה מלאכותית"
+  },
   "p_5dc7acde28f7": {
     "en": "Alerts must explain the current state and the next action instead of acting as decorative chrome.",
     "es": "Las alertas deben explicar el estado actual y la siguiente acción en lugar de actuar como cromo decorativo.",
@@ -792,6 +803,17 @@ export const generatedSitePhrases = {
     "hu": "Cikkhéjak",
     "de": "Artikelschalen",
     "he": "קונכיות מאמר"
+  },
+  "p_9ced794b9f1c": {
+    "en": "Assistant chat surface: an auto-scrolling live-region thread, role-styled bubbles with embedded result cards, streaming indicator, and an Enter-to-send input.",
+    "fr": "Surface de discussion de l'assistant : un fil de discussion de région en direct à défilement automatique, des bulles de style rôle avec des cartes de résultats intégrées, un indicateur de streaming et une entrée Entrée pour envoyer.",
+    "ru": "Поверхность чата Ассистента: ветка с автоматической прокруткой в ​​реальном времени, пузырьки в стиле ролей со встроенными карточками результатов, индикатор потоковой передачи и ввод для отправки.",
+    "he": "משטח צ'אט מסייע: שרשור חי של אזור חי עם גלילה אוטומטית, בועות בסגנון תפקידים עם כרטיסי תוצאות משובצים, מחוון סטרימינג וקלט של Enter-to-שליחה.",
+    "de": "Assistenten-Chat-Oberfläche: ein automatisch scrollender Live-Region-Thread, rollenbasierte Sprechblasen mit eingebetteten Ergebniskarten, Streaming-Anzeige und eine Enter-to-Send-Eingabe.",
+    "es": "Superficie de chat del asistente: un hilo de región en vivo con desplazamiento automático, burbujas con estilos de roles con tarjetas de resultados integradas, indicador de transmisión y una entrada de entrada para enviar.",
+    "ar": "سطح الدردشة المساعد: سلسلة محادثات للمنطقة المباشرة يتم تمريرها تلقائيًا، وفقاعات ذات نمط الأدوار مع بطاقات النتائج المضمنة، ومؤشر التدفق، ومدخل الإدخال للإرسال.",
+    "it": "Superficie di chat dell'assistente: un thread della regione live a scorrimento automatico, bolle in stile ruolo con schede dei risultati incorporate, indicatore di streaming e un input Invio per inviare.",
+    "hu": "Asszisztens csevegési felület: automatikusan gördülő élő régiós szál, szerepszerű buborékok beágyazott eredménykártyákkal, streamingjelző és Enter-to-send bemenet."
   },
   "p_d6b48fbd2526": {
     "en": "AT/browser checks",
@@ -990,6 +1012,39 @@ export const generatedSitePhrases = {
     "it": "Schema di layout basato su blocchi",
     "hu": "Blokk alapú elrendezési séma",
     "de": "Blockbasiertes Layoutschema"
+  },
+  "p_8f2b5c0c13d3": {
+    "en": "Bottom Tab Navigation",
+    "ar": "التنقل في علامة التبويب السفلية",
+    "fr": "Navigation dans l'onglet inférieur",
+    "es": "Navegación de pestaña inferior",
+    "ru": "Нижняя вкладка навигации",
+    "de": "Navigation auf der unteren Registerkarte",
+    "it": "Navigazione nella scheda inferiore",
+    "hu": "Navigáció az alsó lapon",
+    "he": "ניווט בכרטיסייה התחתונה"
+  },
+  "p_dab16290c876": {
+    "en": "BottomTabBar, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT",
+    "es": "Barra de pestañas inferior, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT",
+    "ar": "BottomTabBar، BOTTOM_TAB_MAX_ITEMS، BOTTOM_TAB_HEIGHT",
+    "fr": "Barre de tabulation inférieure, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT",
+    "it": "BottomTabBar, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT",
+    "ru": "BottomTabBar, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT",
+    "hu": "BottomTabBar, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT",
+    "de": "BottomTabBar, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT",
+    "he": "סרגל טאב תחתון, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT"
+  },
+  "p_06bd8e353e33": {
+    "en": "Bounded accessible quantity stepper with clamp/snap, keyboard support, and spinbutton semantics.",
+    "es": "Paso a paso de cantidad accesible limitada con abrazadera/enganche, soporte para teclado y semántica de botón giratorio.",
+    "it": "Stepper di quantità accessibili limitate con morsetto/snap, supporto per tastiera e semantica del pulsante di selezione.",
+    "ar": "جهاز متدرج ذو كمية يمكن الوصول إليها مع مشبك/مشبك، ودعم لوحة المفاتيح، ودلالات زر الدوران.",
+    "fr": "Stepper de quantité accessible limité avec pince/enclenchement, prise en charge du clavier et sémantique des boutons rotatifs.",
+    "ru": "Степпер ограниченного доступного количества с зажимом/привязкой, поддержкой клавиатуры и семантикой кнопки вращения.",
+    "hu": "Korlátozott, hozzáférhető mennyiség léptető rögzítővel/pattintással, billentyűzet támasztékkal és forgógomb szemantikával.",
+    "he": "סטפר כמות נגיש מוגבל עם מהדק/הצמדה, תמיכה במקלדת וסמנטיקה של כפתור סיבוב.",
+    "de": "Begrenzter, zugänglicher Mengenschrittmotor mit Klemme/Schnappverschluss, Tastaturunterstützung und Spinbutton-Semantik."
   },
   "p_68007f4d09f7": {
     "en": "Bounded immersive/game tile primitive with reduced-motion-aware reveal and matched states.",
@@ -1640,6 +1695,17 @@ export const generatedSitePhrases = {
     "it": "I wrapper del grafico devono fornire riepiloghi di testo, legende tokenizzate e fallback della tabella.",
     "he": "עטיפת תרשים חייבת לספק סיכומי טקסט, אגדות אסימוניות וחזרה בטבלה."
   },
+  "p_e72b3210dfb5": {
+    "en": "ChatThread, ChatMessage, ChatInput, StreamingIndicator",
+    "fr": "ChatThread, ChatMessage, ChatInput, StreamingIndicator",
+    "it": "ChatThread, ChatMessage, ChatInput, StreamingIndicator",
+    "ru": "ChatThread, ChatMessage, ChatInput, StreamingIndicator",
+    "es": "ChatThread, ChatMessage, ChatInput, StreamingIndicator",
+    "ar": "ChatThread، ChatMessage، ChatInput، StreamingIndicator",
+    "de": "ChatThread, ChatMessage, ChatInput, StreamingIndicator",
+    "hu": "ChatThread, ChatMessage, ChatInput, StreamingIndicator",
+    "he": "ChatThread, ChatMessage, ChatInput, StreamingIndicator"
+  },
   "p_daf74b7cd34b": {
     "en": "Checkbox, radio, and switch semantics must remain distinct and predictable.",
     "it": "La semantica delle caselle di controllo, della radio e degli interruttori deve rimanere distinta e prevedibile.",
@@ -1793,6 +1859,17 @@ export const generatedSitePhrases = {
     "ru": "Общие рабочие процессы и шаблоны",
     "he": "זרימות עבודה ותבניות נפוצות",
     "hu": "Gyakori munkafolyamatok és minták"
+  },
+  "p_6d9b9fe7e7c4": {
+    "en": "Compact match-quality pill on a sage to terracotta band scale with an accessible tooltip, distinct from status badges.",
+    "es": "Píldora compacta con calidad de coincidencia en una escala de banda de salvia a terracota con información sobre herramientas accesible, distinta de las insignias de estado.",
+    "it": "Pillola compatta di qualità corrispondente su una scala da salvia a terracotta con un tooltip accessibile, distinto dai badge di stato.",
+    "ar": "جهاز لوحي صغير الحجم ذو جودة متطابقة على نطاق يتراوح ما بين المريمية إلى التيراكوتا مع تلميح أدوات يمكن الوصول إليه، وهو يختلف عن شارات الحالة.",
+    "ru": "Компактная таблетка соответствующего качества на шкале от шалфейного до терракотового цвета с доступной подсказкой, отличной от значков статуса.",
+    "de": "Kompakte Pille in Match-Qualität auf einer Skala von Salbei bis Terrakotta mit einem leicht zugänglichen Tooltip, der sich von Statusabzeichen unterscheidet.",
+    "hu": "Kompakt, megfelelő minőségű tabletta a bölcstől a terrakotta szalagig terjedő skálán, hozzáférhető eszköztippel, amely különbözik a státuszjelvényektől.",
+    "fr": "Pilule compacte de qualité équivalente sur une échelle de bande sauge à terre cuite avec une info-bulle accessible, distincte des badges de statut.",
+    "he": "גלולה קומפקטית באיכות התאמה בסולם להקות מרווה עד טרקוטה עם קצה כלי נגיש, נבדל מתגי סטטוס."
   },
   "p_35862e4648f1": {
     "en": "Compact product",
@@ -2090,6 +2167,17 @@ export const generatedSitePhrases = {
     "de": "Kontrollen sollten kompakt und überprüfbar bleiben.",
     "fr": "Les contrôles doivent rester compacts et vérifiables.",
     "hu": "A vezérlőelemeknek kompaktnak és ellenőrizhetőnek kell maradniuk."
+  },
+  "p_b8056b5e4377": {
+    "en": "Conversation Surface",
+    "de": "Konversationsoberfläche",
+    "ar": "سطح المحادثة",
+    "fr": "Surface de conversation",
+    "es": "Superficie de conversación",
+    "ru": "Поверхность разговора",
+    "he": "משטח שיחה",
+    "it": "Superficie di conversazione",
+    "hu": "Beszélgetési felület"
   },
   "p_528e04d060be": {
     "en": "Core Component Contracts",
@@ -2850,6 +2938,17 @@ export const generatedSitePhrases = {
     "de": "Redaktionelles und Marken-Storytelling",
     "he": "עריכה וסיפור מותג"
   },
+  "p_e21e98a5af46": {
+    "en": "Editorial brand-meaning labels (attention, validation, info, urgency) kept separate from system status badges.",
+    "fr": "Les étiquettes éditoriales signifiant la marque (attention, validation, information, urgence) sont séparées des badges d'état du système.",
+    "ru": "Редакционные метки, обозначающие бренд (внимание, проверка, информация, срочность), хранятся отдельно от значков статуса системы.",
+    "es": "Las etiquetas editoriales con el significado de la marca (atención, validación, información, urgencia) se mantienen separadas de las insignias de estado del sistema.",
+    "ar": "تظل التسميات التحريرية التي تحمل معنى العلامة التجارية (الانتباه، والتحقق، والمعلومات، والإلحاح) منفصلة عن شارات حالة النظام.",
+    "it": "Etichette editoriali di significato del marchio (attenzione, validazione, informazioni, urgenza) mantenute separate dai badge di stato del sistema.",
+    "de": "Redaktionelle Labels mit Markenbedeutung (Aufmerksamkeit, Validierung, Info, Dringlichkeit) werden getrennt von den Systemstatus-Badges gehalten.",
+    "he": "תוויות עריכה של משמעות המותג (תשומת לב, אימות, מידע, דחיפות) נשמרו בנפרד מתגי סטטוס המערכת.",
+    "hu": "A szerkesztői márkajelzésű címkék (figyelem, érvényesítés, információ, sürgősség) elkülönítve vannak a rendszerállapot-jelvényektől."
+  },
   "p_f69549cca0e2": {
     "en": "Editorial Cards",
     "es": "Tarjetas editoriales",
@@ -3334,6 +3433,17 @@ export const generatedSitePhrases = {
     "fr": "Les filtres restent proches des données qu'ils affectent, les filtres actifs restent amovibles et l'état du filtre préservé est une fonctionnalité.",
     "he": "מסננים נשארים ליד הנתונים שהם משפיעים עליהם, מסננים פעילים נשארים ניתנים להסרה ומצב מסנן שמור הוא תכונה."
   },
+  "p_5346b16d802e": {
+    "en": "Fit Score Chip",
+    "ar": "تناسب النتيجة رقاقة",
+    "fr": "Puce de score d'ajustement",
+    "he": "Fit Score Chip",
+    "es": "Chip de puntuación de ajuste",
+    "it": "Chip del punteggio di adattamento",
+    "ru": "Чип для оценки соответствия",
+    "de": "Fit Score Chip",
+    "hu": "Fit Score Chip"
+  },
   "p_195978ed96a0": {
     "en": "Flat media-first variant for licensed surfaces.",
     "fr": "Variante Flat Media First pour les surfaces sous licence.",
@@ -3487,6 +3597,17 @@ export const generatedSitePhrases = {
     "ru": "Раздел формы",
     "hu": "Űrlap szakasz",
     "he": "מדור טופס"
+  },
+  "p_47b1911e16e9": {
+    "en": "Forms & Inputs",
+    "fr": "Formulaires et entrées",
+    "ar": "النماذج والمدخلات",
+    "es": "Formularios y entradas",
+    "it": "Moduli e input",
+    "ru": "Формы и входы",
+    "de": "Formulare und Eingaben",
+    "hu": "Űrlapok és bemenetek",
+    "he": "טפסים ותשומות"
   },
   "p_76ccb3ab581d": {
     "en": "Forms should validate without punishing typing and must expose grouped fields and loading submit states.",
@@ -3696,6 +3817,17 @@ export const generatedSitePhrases = {
     "de": "Governance-Regeln",
     "he": "כללי ממשל",
     "hu": "Kormányzási szabályok"
+  },
+  "p_f29a50fe0861": {
+    "en": "Governed AI search entry surface composing a search input, BETA meaning badge, and prompt chips that route a query into the assistant.",
+    "es": "Superficie de entrada de búsqueda gobernada por IA que compone una entrada de búsqueda, una insignia de significado BETA y chips de aviso que dirigen una consulta al asistente.",
+    "fr": "Surface d'entrée de recherche IA régie comprenant une entrée de recherche, un badge de signification BETA et des puces d'invite qui acheminent une requête vers l'assistant.",
+    "de": "Gesteuerte KI-Sucheingabeoberfläche, die eine Sucheingabe, ein BETA-Bedeutungszeichen und Eingabeaufforderungschips erstellt, die eine Abfrage an den Assistenten weiterleiten.",
+    "it": "Superficie di immissione della ricerca AI governata che compone un input di ricerca, BETA che significa badge e chip di richiesta che instradano una query nell'assistente.",
+    "ar": "يتكون سطح إدخال بحث الذكاء الاصطناعي المتحكم من مدخلات بحث وشارة معنى BETA وشرائح مطالبة توجه استعلامًا إلى المساعد.",
+    "ru": "Управляемая ИИ поверхность ввода поиска, состоящая из входных данных для поиска, значка БЕТА и чипов подсказок, которые направляют запрос помощнику.",
+    "hu": "Irányított mesterséges intelligencia keresési bejegyzési felület, amely egy keresési bevitelt, BETA jelentése jelvényt és prompt chipeket tartalmaz, amelyek a lekérdezést az asszisztenshez irányítják.",
+    "he": "משטח כניסת חיפוש בינה מלאכותית בינה מלאכותית המרכיבה קלט חיפוש, תג BETA שמשמעותו, ושבבי הנחיה המנתבים שאילתה אל העוזר."
   },
   "p_6f8998d71606": {
     "en": "Governed control and descriptive labels.",
@@ -4103,6 +4235,17 @@ export const generatedSitePhrases = {
     "de": "Wenn Ihre Anfrage mit der nächsten Adoptionswelle übereinstimmt, erhält sie schneller einen klaren Weg zur Produktion.",
     "ru": "Если ваш запрос соответствует поверхности внедрения следующей волны, он быстрее получит четкий путь к производству.",
     "it": "Se la tua richiesta è in linea con la superficie di adozione della prossima ondata, otterrà un percorso chiaro verso la produzione prima."
+  },
+  "p_202f9da55e70": {
+    "en": "Image primitive with a branded fallback and reserved aspect-ratio box so a failed image never collapses a card or shifts layout.",
+    "fr": "Image primitive avec une solution de repli de marque et une zone de rapport hauteur/largeur réservée afin qu'une image défaillante ne réduise jamais une carte ou ne modifie jamais la mise en page.",
+    "de": "Bildprimitiv mit einem gebrandeten Fallback und einem reservierten Seitenverhältnisfeld, sodass ein fehlgeschlagenes Bild niemals eine Karte ausblendet oder das Layout verschiebt.",
+    "it": "Immagine primitiva con fallback marchiato e riquadro delle proporzioni riservato in modo che un'immagine non riuscita non comprima mai una scheda o sposti il ​​layout.",
+    "ar": "الصورة بدائية مع علامة احتياطية ومربع نسبة عرض إلى ارتفاع محجوز، لذا فإن الصورة الفاشلة لا تؤدي أبدًا إلى طي البطاقة أو تغيير التخطيط.",
+    "ru": "Примитив изображения с фирменным запасным вариантом и зарезервированным полем соотношения сторон, поэтому неудачное изображение никогда не сворачивает карточку и не смещает макет.",
+    "es": "Imagen primitiva con un respaldo de marca y un cuadro de relación de aspecto reservado para que una imagen fallida nunca colapse una tarjeta ni cambie el diseño.",
+    "hu": "Primitív kép, márkajelzéssel ellátott tartalékkal és fenntartott képarány-dobozsal, így a hibás kép soha nem csukja össze a kártyát, és nem változtatja meg az elrendezést.",
+    "he": "תמונה פרימיטיבית עם מיתוג ממותג ותיבת יחס גובה-רוחב שמורה כך שתמונה כושלת לעולם אינה ממוטטת כרטיס או משנה פריסה."
   },
   "p_e55026675e45": {
     "en": "Image URL",
@@ -4885,6 +5028,17 @@ export const generatedSitePhrases = {
     "de": "Reifefähigkeiten",
     "he": "יכולות בגרות"
   },
+  "p_06109605d5ab": {
+    "en": "Meaning Badge",
+    "de": "Bedeutungsabzeichen",
+    "hu": "Jelentés Jelvény",
+    "fr": "Insigne de signification",
+    "ar": "شارة المعنى",
+    "it": "Significato Distintivo",
+    "ru": "Значение значка",
+    "es": "Insignia de significado",
+    "he": "פירוש תג"
+  },
   "p_2ef849283a54": {
     "en": "Media Card",
     "ar": "بطاقة الوسائط",
@@ -4928,6 +5082,17 @@ export const generatedSitePhrases = {
     "he": "שדות מדיה",
     "it": "Campi multimediali",
     "hu": "Médiamezők"
+  },
+  "p_fc7dfc441d52": {
+    "en": "Media With Fallback",
+    "ar": "وسائل الإعلام مع التراجع",
+    "it": "Supporti multimediali con fallback",
+    "ru": "Медиа с запасным вариантом",
+    "es": "Medios con respaldo",
+    "he": "מדיה עם נפילה",
+    "de": "Medien mit Fallback",
+    "fr": "Médias avec repli",
+    "hu": "Média tartalékkal"
   },
   "p_b25c61212046": {
     "en": "Media-first public cards must retain price, availability, helper text, and one clear mobile action.",
@@ -5126,6 +5291,17 @@ export const generatedSitePhrases = {
     "it": "Navigazione mobile",
     "hu": "Mobil navigáció",
     "he": "ניווט נייד"
+  },
+  "p_f8be6a9ce963": {
+    "en": "Mobile-first persistent bottom tab bar driven by nav items, with safe-area insets, an active token, and an optional raised center action.",
+    "es": "Barra de pestañas inferior persistente para dispositivos móviles impulsada por elementos de navegación, con inserciones de área segura, un token activo y una acción central elevada opcional.",
+    "ru": "Постоянная нижняя панель вкладок, ориентированная на мобильные устройства, управляемая элементами навигации, со вставками в безопасной области, активным маркером и дополнительным действием в центре.",
+    "it": "Barra delle schede inferiore persistente mobile-first guidata da elementi di navigazione, con inserti di aree sicure, un token attivo e un'azione centrale rialzata opzionale.",
+    "ar": "شريط علامة تبويب سفلي ثابت للأجهزة المحمولة أولاً، مدفوع بعناصر التنقل، مع إدراجات للمنطقة الآمنة، ورمز نشط، وإجراء مركزي مرتفع اختياري.",
+    "he": "סרגל כרטיסיות תחתון מתמשך המותקן על-ידי נייד, מונע על-ידי פריטי ניווט, עם הוספות של אזור בטוח, אסימון פעיל ופעולה מרכזית מוגבהת אופציונלית.",
+    "fr": "Barre d'onglets inférieure persistante pour mobile pilotée par des éléments de navigation, avec des encarts de zone de sécurité, un jeton actif et une action centrale surélevée facultative.",
+    "hu": "Mobil-első, állandó alsó lapsáv navigációs elemek által vezérelve, biztonságos terület beillesztésekkel, aktív tokennel és opcionálisan megemelt középső művelettel.",
+    "de": "Mobile-First-persistente untere Tab-Leiste, gesteuert durch Navigationselemente, mit Einfügungen für sichere Bereiche, einem aktiven Token und einer optionalen Aktion in der erhöhten Mitte."
   },
   "p_7ab15f6e67be": {
     "en": "Modals support focused edits and confirmations with trapped focus and no stacking.",
@@ -5489,6 +5665,17 @@ export const generatedSitePhrases = {
     "it": "npm esegui verifica: riferimenti",
     "ru": "npm запустить проверку: ссылки",
     "he": "npm run verify:references"
+  },
+  "p_78532e18069a": {
+    "en": "Number Stepper",
+    "ru": "Числовой степпер",
+    "he": "מספר סטפר",
+    "es": "Número paso a paso",
+    "ar": "عدد السائر",
+    "fr": "Nombre pas à pas",
+    "de": "Zahlenschrittmacher",
+    "it": "Passo-passo numerico",
+    "hu": "Számléptető"
   },
   "p_7d0c256428ff": {
     "en": "OAuth/OIDC provider rollout detail surface",
@@ -7899,6 +8086,17 @@ export const generatedSitePhrases = {
     "hu": "Keresés, szűrők, táblázatok, elemzési ritmus és reszponzív adatnézetek.",
     "es": "Búsqueda, filtros, tablas, ritmo analítico y vistas de datos receptivas."
   },
+  "p_c4ccd0c6d59d": {
+    "en": "Searchable Select",
+    "ar": "اختيار قابل للبحث",
+    "ru": "Выбор с возможностью поиска",
+    "de": "Durchsuchbare Auswahl",
+    "fr": "Sélection consultable",
+    "es": "Seleccionar con capacidad de búsqueda",
+    "it": "Seleziona ricercabile",
+    "hu": "Kereshető Select",
+    "he": "בחירה ניתנת לחיפוש"
+  },
   "p_9a99188946de": {
     "en": "Searchable Selection",
     "he": "בחירה ניתנת לחיפוש",
@@ -7920,6 +8118,17 @@ export const generatedSitePhrases = {
     "fr": "La sélection consultable suit le chemin documenté de la recette Mantine jusqu'à ce qu'une exportation GDS dédiée soit promue.",
     "he": "הבחירה הניתנת לחיפוש עוקבת אחר נתיב המתכון המתועד של Mantine עד לקידום ייצוא GDS ייעודי.",
     "hu": "A kereshető kijelölés a dokumentált Mantine receptútvonalat követi, amíg egy dedikált GDS-exportot elő nem állítanak."
+  },
+  "p_c4fe6e67ea47": {
+    "en": "Searchable single-select / combobox with async options, grouping, clearable value, and full WAI-ARIA keyboard accessibility.",
+    "de": "Durchsuchbare Einzelauswahl-/Combobox mit asynchronen Optionen, Gruppierung, löschbarem Wert und vollständiger Zugänglichkeit über die WAI-ARIA-Tastatur.",
+    "ru": "Доступный для поиска одиночный выбор или поле со списком с асинхронными параметрами, группировкой, очищаемым значением и полной доступностью клавиатуры WAI-ARIA.",
+    "it": "Casella combinata/a selezione singola ricercabile con opzioni asincrone, raggruppamento, valore cancellabile e accessibilità completa da tastiera WAI-ARIA.",
+    "es": "Cuadro combinado/selección única con capacidad de búsqueda con opciones asíncronas, agrupación, valor borrable y accesibilidad completa al teclado WAI-ARIA.",
+    "fr": "Sélection unique / combobox consultable avec options asynchrones, regroupement, valeur effaçable et accessibilité complète au clavier WAI-ARIA.",
+    "ar": "اختيار فردي / مربع تحرير وسرد قابل للبحث مع خيارات غير متزامنة، وتجميع، وقيمة قابلة للمسح، وإمكانية الوصول الكاملة إلى لوحة مفاتيح WAI-ARIA.",
+    "he": "ניתן לחיפוש עם בחירה יחידה / משולבת עם אפשרויות אסינכרון, קיבוץ, ערך ניתן לניקוי ונגישות מלאה למקלדת WAI-ARIA.",
+    "hu": "Kereshető egyszeri kiválasztó / kombinált doboz aszinkronizálási lehetőségekkel, csoportosítással, törölhető értékkel és teljes WAI-ARIA billentyűzet-hozzáféréssel."
   },
   "p_488dd37d62ad": {
     "en": "Section children are now explicit to satisfy required layout contract.",

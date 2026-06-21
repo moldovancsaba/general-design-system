@@ -44,3 +44,22 @@ Object.defineProperty(globalThis, 'ResizeObserver', {
   writable: true,
   value: ResizeObserverMock,
 });
+
+// Mantine 9 Textarea autosize calls document.fonts.addEventListener — jsdom doesn't implement FontFaceSet
+if (typeof document !== 'undefined' && !document.fonts) {
+  Object.defineProperty(document, 'fonts', {
+    writable: true,
+    value: {
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+      ready: Promise.resolve(undefined as unknown as FontFaceSet),
+      status: 'loaded' as FontFaceSetLoadStatus,
+      size: 0,
+      check: () => true,
+      load: () => Promise.resolve([]),
+      forEach: () => {},
+      [Symbol.iterator]: function* () {},
+    },
+  });
+}

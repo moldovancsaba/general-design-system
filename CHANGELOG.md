@@ -2,6 +2,13 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 3.5.0 - 2026-06-21
+
+- Added an AI-agent integration layer so GDS is consumable by Claude, Claude Code, Cursor, Copilot, and any LLM tool: `llms.txt` (universal machine-readable entry point), `docs/AI_AGENT_GUIDE.md`, and a "Use with AI" quick-start in the README.
+- Added drop-in repo rule templates `TEMPLATES/AGENTS.md.template` (cross-tool `AGENTS.md` standard) and `TEMPLATES/CLAUDE.md.template` so consuming repos make every agent session build with GDS automatically.
+- Added `docs/CLAUDE_DESIGN.md` documenting the Claude Design integration: syncing GDS into claude.ai/design (via `/design-sync` in Claude Code) so the design agent builds screens with the real GDS components, and the committed `.design-sync/` inputs that make a re-sync one command.
+- Synced all 252 components (249 hand-authored, render-verified previews + 3 floor-carded body-portal overlays) into the canonical GDS Claude Design project, with a conventions header teaching the GdsProvider/prop-token/semantic-action build idiom.
+
 ## 3.4.14 - 2026-06-13
 
 - Added dependency-governance policy for React, Mantine, Tabler, dependency classes, replacement triggers, and exception lifecycle.

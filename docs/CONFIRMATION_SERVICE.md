@@ -1,8 +1,8 @@
 # Confirmation Service
 
 Status: Active SSOT
-Version: 3.4.14
-Last updated: 2026-06-14
+Version: 3.5.0
+Last updated: 2026-06-21
 
 `GdsConfirmProvider` is the canonical GDS runtime for confirmation and destructive action workflows. Products must use it instead of `window.confirm`, ad hoc modals, route-local destructive buttons, or custom undo toast systems.
 

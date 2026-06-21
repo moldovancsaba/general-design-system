@@ -14,3 +14,4 @@ ds-bundle/
 .design-sync/learnings/
 .design-sync/node_modules
 packages/gds/.ds-resolved-styles.css
+.design-sync/batches/

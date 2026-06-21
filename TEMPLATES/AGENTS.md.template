@@ -1,0 +1,36 @@
+<!--
+  Drop this file in at your repository root as `AGENTS.md` (the cross-tool
+  standard read by Claude Code, Cursor, Codex, and others). It tells any AI
+  coding agent that this project consumes the General Design System (GDS) and
+  must build UI with GDS contracts. Replace the PROJECT-SPECIFIC lines.
+-->
+
+# AGENTS.md — UI is built with the General Design System (GDS)
+
+This project consumes **`@doneisbetter/gds`** (the General Design System) for all UI, UX, and design. When you build or change any interface, follow these rules. The full agent guide is in your installed package and at the GDS repo's `docs/AI_AGENT_GUIDE.md`.
+
+## Setup
+
+- The app is wrapped once in `GdsProvider` (PROJECT-SPECIFIC path, e.g. `src/providers.tsx`). Do not add a second provider or a second Mantine `MantineProvider`.
+- Theme/token authority is GDS — PROJECT-SPECIFIC theme extension path (e.g. `src/theme.ts`) only layers documented overrides on top of `gdsTheme`.
+
+## Rules (do)
+
+- Compose shipped GDS components: import from `'@doneisbetter/gds'`. Check `COMPONENTS_AND_PATTERNS.md` / the API reference before building anything new.
+- Style with component props and theme tokens — `c="dimmed"`, `mt="md"`, `p="lg"`, `variant`, `color`, `size`, `radius` — and GDS layout primitives (`GdsStack`, `GdsInline`, `GdsBox`, `GdsGrid`).
+- Use `SemanticButton action="…"` (semantic `action` enum) for actions; `Select`/`MultiSelect` take `data={[{value,label}]}`.
+- Design loading / empty / error / disabled / success states (`StateBlock`, `EmptyState`, `loading`/`error` props).
+- Gate private/paid content with `GdsAccessGate protectedContentPolicy="never-render-while-locked"`.
+
+## Rules (don't)
+
+- Don't use raw Mantine primitives, raw HTML/CSS controls, or another UI framework where a GDS contract exists.
+- Don't write custom CSS classes, raw hex/rgb colors, or hard-coded spacing (e.g. `16px`) in feature code.
+- Don't create page-local variants of shared shells, cards, toolbars, auth panels, or state blocks — promote a contract instead.
+- Don't mix light/dark surfaces on one shell without a documented exception.
+
+## Where to look
+
+- Component props: each package's TypeScript types (`<Name>Props`).
+- Patterns & rules: GDS `FOUNDATION.md`, `COMPONENTS_AND_PATTERNS.md`, `GOVERNANCE_AND_ADOPTION.md`.
+- PROJECT-SPECIFIC: list your wrapper components, local theme path, and any approved dependency-boundary exceptions here.

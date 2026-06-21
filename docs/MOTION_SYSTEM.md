@@ -1,8 +1,8 @@
 # Motion System
 
 Status: Active SSOT
-Version: 3.4.14
-Last updated: 2026-06-14
+Version: 3.5.0
+Last updated: 2026-06-21
 
 GDS motion is a governed token and preset system. Consumers must use `@doneisbetter/gds-theme` motion exports instead of route-local transition durations, custom easing curves, animation-only loading states, or unbounded overlay motion.
 

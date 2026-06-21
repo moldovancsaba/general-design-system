@@ -1,8 +1,8 @@
 # Dependency Governance
 
 Status: Active SSOT
-Version: 3.4.14
-Last updated: 2026-06-13
+Version: 3.5.0
+Last updated: 2026-06-21
 
 GDS is dependency-governed, not dependency-free. React, Mantine, and Tabler are accepted only behind GDS-owned contracts, release gates, and exception lifecycle rules.
 

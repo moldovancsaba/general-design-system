@@ -329,3 +329,7 @@ if (failures.length) {
 }
 
 console.log(`GDS theme trust runtime verification passed for ${(themeRoutes.length * themeCases.length * viewports.length) + localizedHeaderRoutes.length} route/theme/localized-header cases at ${baseUrl}.`);
+// Force a clean exit: spawned preview-server/browser children can keep the Node
+// event loop alive under CI (orphaned child handles), which previously hung the
+// verify:release chain for the full 6-hour job timeout. The OS reaps the orphans.
+process.exit(0);

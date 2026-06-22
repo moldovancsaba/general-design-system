@@ -241,6 +241,127 @@ function SiteFooter() {
   );
 }
 
+export function AiPage() {
+  const installCode = `npm install @doneisbetter/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react react react-dom`;
+
+  const providerCode = `import { GdsProvider, MetricCard, SemanticButton } from '@doneisbetter/gds';
+
+export default function App() {
+  return (
+    <GdsProvider defaultColorScheme="light">
+      <MetricCard label="Active adopters" value="18 apps" trend={{ tone: 'positive', label: '+2%' }} />
+      <SemanticButton action="save" />
+    </GdsProvider>
+  );
+}`;
+
+  const agentsTemplate = `# AGENTS.md — UI is built with the General Design System (GDS)
+
+This project uses @doneisbetter/gds for all UI.
+When building UI, compose shipped GDS components — do not author parallel primitives.
+Full rules: https://sovereignsquad.github.io/general-design-system/ai`;
+
+  const claudeTemplate = `# CLAUDE.md
+GDS is the design system: npm install @doneisbetter/gds
+Wrap once in GdsProvider. Use SemanticButton action="..." not free text.
+Style with props/tokens only — no custom CSS.
+Full guide: https://sovereignsquad.github.io/general-design-system/ai`;
+
+  return (
+    <DocsPageShell
+      title="Use GDS with AI"
+      eyebrow="AI agent integration"
+      lead="GDS is designed to be used by Claude, Claude Code, Cursor, Copilot, and any LLM-powered coding tool. Every component ships TypeScript contracts, a machine-readable entry point (llms.txt), and drop-in repo rules so agents build with the real system automatically."
+    >
+      <ReferenceSection
+        title="Machine-readable entry point (llms.txt)"
+        description="Any LLM tool can discover GDS rules by fetching llms.txt at the repo root. It lists install steps, non-negotiable rules, packages, and component families."
+      >
+        <StateBlock
+          variant="info"
+          title="How agents find GDS"
+          description="Claude Code, Cursor, and any tool that honors the llms.txt standard reads this file automatically when present in a repo. Drop it into your consuming repo or point your agent at the GDS llms.txt directly."
+        />
+        <ReferenceLinkGrid
+          items={[
+            { id: 'llmstxt', title: 'llms.txt', description: 'Universal machine-readable entry point — install steps, rules, packages, component families.', href: 'https://raw.githubusercontent.com/sovereignsquad/general-design-system/main/llms.txt' },
+            { id: 'agent-guide', title: 'AI Agent Guide', description: 'Long-form guide for Claude Code, Cursor, Copilot — install, provider, contracts, component families.', href: 'https://github.com/sovereignsquad/general-design-system/blob/main/docs/AI_AGENT_GUIDE.md' },
+            { id: 'claude-design', title: 'Claude Design', description: 'Sync GDS into claude.ai/design so the design agent builds with real components.', href: 'https://github.com/sovereignsquad/general-design-system/blob/main/docs/CLAUDE_DESIGN.md' },
+          ]}
+          columns={3}
+        />
+      </ReferenceSection>
+
+      <ReferenceSection
+        title="Install and bootstrap"
+        description="One install command, one required provider. Agents follow these same steps."
+      >
+        <DocsCodeBlock code={installCode} language="bash" />
+        <DocsCodeBlock code={providerCode} language="tsx" />
+      </ReferenceSection>
+
+      <ReferenceSection
+        title="Drop-in repo rules"
+        description="Paste these into your repo root so every agent session follows GDS automatically — no per-session prompting required."
+      >
+        <SimpleDataTable
+          columns={[
+            { key: 'file', header: 'File' },
+            { key: 'reads', header: 'Read by' },
+            { key: 'purpose', header: 'Purpose' },
+          ]}
+          rows={[
+            { file: 'AGENTS.md', reads: 'Claude Code, Cursor, Codex, Copilot', purpose: 'Cross-tool standard. Tells any agent this project uses GDS and must not invent parallel primitives.' },
+            { file: 'CLAUDE.md', reads: 'Claude Code', purpose: 'Claude-specific rules: install path, GdsProvider, SemanticButton action enum, token-only styling.' },
+            { file: 'llms.txt', reads: 'Any LLM tool', purpose: 'Machine-readable summary of GDS rules, packages, and component families.' },
+          ]}
+        />
+        <DocsCodeBlock code={agentsTemplate} language="markdown" />
+        <DocsCodeBlock code={claudeTemplate} language="markdown" />
+      </ReferenceSection>
+
+      <ReferenceSection
+        title="Non-negotiable rules for agents"
+        description="These rules are encoded in llms.txt and the drop-in templates. Agents that follow them produce on-brand, shippable code."
+      >
+        <SimpleDataTable
+          columns={[
+            { key: 'rule', header: 'Rule' },
+            { key: 'why', header: 'Why' },
+          ]}
+          rows={[
+            { rule: 'Compose shipped GDS components — import from @doneisbetter/gds', why: 'Prevents parallel primitives that diverge from the governed contract.' },
+            { rule: 'Style with props and tokens only — no custom CSS or raw hex', why: 'Ensures designs stay in the theme and remain maintainable.' },
+            { rule: 'SemanticButton takes action="save"|"add"|"edit"|... not free text', why: 'The action enum drives icon, label, and aria-label automatically.' },
+            { rule: 'Select/MultiSelect take data={[{value,label}]} not <option> children', why: 'Mantine-backed API; children are ignored.' },
+            { rule: 'One GdsProvider at the app root — never nest a second one', why: 'Nesting creates duplicate theme contexts and breaks token resolution.' },
+            { rule: 'Gate private content with GdsAccessGate protectedContentPolicy="never-render-while-locked"', why: 'Prevents private/paid content from being mounted while locked.' },
+          ]}
+        />
+      </ReferenceSection>
+
+      <ReferenceSection
+        title="Design with GDS in Claude Design"
+        description="Sync GDS into claude.ai/design so the design agent builds screens with your real components. Every preview is a live render of the shipped component."
+      >
+        <StateBlock
+          variant="info"
+          title="How to sync"
+          description="In Claude Code, run /design-sync from a checkout of this repo. It builds the bundle, authors and verifies all 252 component previews, and uploads everything to a new Claude Design project. Re-syncs are one command."
+        />
+        <ReferenceLinkGrid
+          items={[
+            { id: 'claude-design-guide', title: 'Claude Design sync guide', description: 'How to run /design-sync and use the synced project in claude.ai/design.', href: 'https://github.com/sovereignsquad/general-design-system/blob/main/docs/CLAUDE_DESIGN.md' },
+            { id: 'patterns', title: 'Component families', description: 'Browse the full GDS pattern catalog with live renders.', href: '/patterns' },
+            { id: 'api', title: 'API reference', description: 'Full TypeScript prop types for every GDS component.', href: '/api' },
+          ]}
+          columns={3}
+        />
+      </ReferenceSection>
+    </DocsPageShell>
+  );
+}
+
 export function RequestFeaturePage() {
   const [name, setName] = useState('Your name');
   const [email, setEmail] = useState('');

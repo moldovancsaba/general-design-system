@@ -109,6 +109,7 @@ export function GdsAccessGate({
   const headingId = useId();
   const sortedActions = sortGdsAccessGateActions(actions);
   const unlocked = state === 'unlocked';
+  const softGate = protectedContentPolicy === 'render-degraded-while-locked';
   const loading = state === 'loading-auth' || state === 'unlocking';
   const validation = validateGdsAccessGateContract({
     id,
@@ -174,6 +175,12 @@ export function GdsAccessGate({
 
         {unlocked ? (
           <Box data-gds-access-protected>
+            {renderProtectedContent(protectedContent)}
+          </Box>
+        ) : null}
+
+        {!unlocked && softGate && !loading ? (
+          <Box data-gds-access-degraded aria-hidden={!unlocked} inert={!unlocked || undefined}>
             {renderProtectedContent(protectedContent)}
           </Box>
         ) : null}

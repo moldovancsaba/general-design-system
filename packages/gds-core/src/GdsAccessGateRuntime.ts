@@ -42,7 +42,7 @@ export interface GdsAccessGateContract {
   actions?: GdsAccessGateAction[];
   entitlementLabel?: string;
   teaserLabel?: string;
-  protectedContentPolicy?: 'never-render-while-locked';
+  protectedContentPolicy?: 'never-render-while-locked' | 'render-degraded-while-locked';
 }
 
 export interface GdsAccessSession {
@@ -147,7 +147,11 @@ export function validateGdsAccessGateContract(contract: GdsAccessGateContract) {
   if (!contract.description.trim()) {
     failures.push('Access gate requires a visible description.');
   }
-  if (contract.state !== 'unlocked' && contract.protectedContentPolicy !== 'never-render-while-locked') {
+  const validPolicies = ['never-render-while-locked', 'render-degraded-while-locked'] as const;
+  if (contract.state !== 'unlocked' && contract.protectedContentPolicy != null && !validPolicies.includes(contract.protectedContentPolicy)) {
+    failures.push('Locked access gates must declare protectedContentPolicy: never-render-while-locked or render-degraded-while-locked.');
+  }
+  if (contract.state !== 'unlocked' && contract.protectedContentPolicy == null) {
     failures.push('Locked access gates must declare protectedContentPolicy: never-render-while-locked.');
   }
   if ((contract.state === 'locked' || contract.state === 'permission-denied') && (!contract.actions || contract.actions.length === 0)) {

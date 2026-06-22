@@ -146,6 +146,11 @@ const RequestFeaturePage = lazy(async () => {
   return { default: module.RequestFeaturePage };
 });
 
+const AiPage = lazy(async () => {
+  const module = await import('./info-pages');
+  return { default: module.AiPage };
+});
+
 function RouteFallback() {
   const { locale } = useGdsTranslation();
   const copy = getAppShellCopy(locale);
@@ -307,6 +312,7 @@ function PlaygroundContent() {
           <Route path="/live-demos/playback" element={<Suspense fallback={<RouteFallback />}><PlaybackPage /></Suspense>} />
           <Route path="/live-demos/analytics" element={<Suspense fallback={<RouteFallback />}><AnalyticsPage /></Suspense>} />
           <Route path="/request-feature" element={<Suspense fallback={<RouteFallback />}><RequestFeaturePage /></Suspense>} />
+          <Route path="/ai" element={<Suspense fallback={<RouteFallback />}><AiPage /></Suspense>} />
           {getLegacyRedirects().map((redirect) => (
             <Route
               key={redirect.legacyPath}

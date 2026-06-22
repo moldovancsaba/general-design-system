@@ -30,6 +30,7 @@ describe('public site routes', () => {
       'Governance',
       'Live Demos',
       'Request a Feature',
+      'Use with AI',
     ]);
   });
 

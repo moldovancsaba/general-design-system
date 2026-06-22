@@ -639,6 +639,28 @@ export const generatedSitePhrases = {
     "ru": "Расширенная таблица данных/таблица данных",
     "hu": "AdvancedDataTable / DataTable"
   },
+  "p_ee52155c8f00": {
+    "en": "AI Agent Guide",
+    "de": "Leitfaden für KI-Agenten",
+    "ar": "دليل وكيل الذكاء الاصطناعي",
+    "it": "Guida all'agente AI",
+    "ru": "Руководство для ИИ-агента",
+    "fr": "Guide des agents IA",
+    "es": "Guía del agente de IA",
+    "hu": "AI ügynök útmutató",
+    "he": "מדריך סוכן בינה מלאכותית"
+  },
+  "p_c03714b8df3e": {
+    "en": "AI agent integration",
+    "ru": "Интеграция AI-агента",
+    "de": "Integration von KI-Agenten",
+    "it": "Integrazione dell'agente AI",
+    "ar": "تكامل وكيل الذكاء الاصطناعي",
+    "fr": "Intégration d'agents IA",
+    "es": "Integración de agentes de IA",
+    "hu": "AI ügynök integráció",
+    "he": "שילוב סוכני AI"
+  },
   "p_9678315695a3": {
     "en": "AI Search Card",
     "it": "Scheda di ricerca IA",
@@ -694,6 +716,28 @@ export const generatedSitePhrases = {
     "it": "Analisi e dati",
     "hu": "Analytics és adatok"
   },
+  "p_78dc8b705a80": {
+    "en": "Any LLM tool",
+    "de": "Jedes LLM-Tool",
+    "ar": "أي أداة LLM",
+    "ru": "Любой инструмент LLM",
+    "fr": "Tout outil LLM",
+    "es": "Cualquier herramienta LLM",
+    "it": "Qualsiasi strumento LLM",
+    "hu": "Bármilyen LLM eszköz",
+    "he": "כל כלי LLM"
+  },
+  "p_44ae001073ae": {
+    "en": "Any LLM tool can discover GDS rules by fetching llms.txt at the repo root. It lists install steps, non-negotiable rules, packages, and component families.",
+    "es": "Cualquier herramienta LLM puede descubrir reglas de GDS obteniendo llms.txt en la raíz del repositorio. Enumera los pasos de instalación, reglas no negociables, paquetes y familias de componentes.",
+    "de": "Jedes LLM-Tool kann GDS-Regeln erkennen, indem es llms.txt im Repo-Stammverzeichnis abruft. Es listet Installationsschritte, nicht verhandelbare Regeln, Pakete und Komponentenfamilien auf.",
+    "ar": "يمكن لأي أداة LLM اكتشاف قواعد GDS عن طريق جلب llms.txt في جذر الريبو. فهو يسرد خطوات التثبيت والقواعد غير القابلة للتفاوض والحزم وعائلات المكونات.",
+    "fr": "Tout outil LLM peut découvrir les règles GDS en récupérant llms.txt à la racine du dépôt. Il répertorie les étapes d'installation, les règles non négociables, les packages et les familles de composants.",
+    "ru": "Любой инструмент LLM может обнаружить правила GDS, загрузив llms.txt в корне репо. В нем перечислены этапы установки, не подлежащие обсуждению правила, пакеты и семейства компонентов.",
+    "he": "כל כלי LLM יכול לגלות כללי GDS על ידי שליפת llms.txt בשורש הריפו. הוא מפרט את שלבי ההתקנה, כללים שאינם ניתנים למשא ומתן, חבילות ומשפחות רכיבים.",
+    "it": "Qualsiasi strumento LLM può scoprire le regole GDS recuperando llms.txt nella radice del repository. Elenca i passaggi di installazione, le regole non negoziabili, i pacchetti e le famiglie di componenti.",
+    "hu": "Bármely LLM-eszköz felfedezheti a GDS-szabályokat, ha lekéri az llms.txt fájlt a repo gyökérkönyvtárában. Felsorolja a telepítési lépéseket, a nem megtárgyalható szabályokat, a csomagokat és az összetevőcsaládokat."
+  },
   "p_e7beca423992": {
     "en": "API boundary labels",
     "ru": "Метки границ API",
@@ -704,6 +748,17 @@ export const generatedSitePhrases = {
     "de": "API-Grenzbezeichnungen",
     "fr": "Étiquettes de limites d'API",
     "hu": "API határcímkék"
+  },
+  "p_484ee9bb6e51": {
+    "en": "API reference",
+    "de": "API-Referenz",
+    "fr": "Référence API",
+    "it": "Riferimento API",
+    "ar": "مرجع واجهة برمجة التطبيقات",
+    "ru": "Справочник по API",
+    "hu": "API hivatkozás",
+    "es": "Referencia API",
+    "he": "הפניה ל-API"
   },
   "p_f0c2c42ad23c": {
     "en": "Application Shell & Navigation",
@@ -1144,6 +1199,17 @@ export const generatedSitePhrases = {
     "ru": "Обзор поверхности",
     "hu": "Tallózás a Surface-en",
     "he": "עיין במשטח"
+  },
+  "p_3dd764c4b4f5": {
+    "en": "Browse the full GDS pattern catalog with live renders.",
+    "ru": "Просмотрите полный каталог шаблонов GDS с живыми рендерами.",
+    "es": "Explore el catálogo completo de patrones GDS con renderizados en vivo.",
+    "ar": "تصفح كتالوج أنماط GDS الكامل مع العروض المباشرة.",
+    "fr": "Parcourez le catalogue complet de modèles GDS avec des rendus en direct.",
+    "it": "Sfoglia il catalogo completo dei modelli GDS con rendering in tempo reale.",
+    "he": "עיין בקטלוג הדפוסים המלא של GDS עם עיבודים חיים.",
+    "hu": "Böngésszen a teljes GDS-minta-katalógusban élő renderelésekkel.",
+    "de": "Durchsuchen Sie den vollständigen GDS-Musterkatalog mit Live-Renderings."
   },
   "p_8fc5d10130a0": {
     "en": "Bubble chart",
@@ -1761,6 +1827,72 @@ export const generatedSitePhrases = {
     "hu": "Citrusos csirke tál",
     "fr": "Bol de poulet aux agrumes"
   },
+  "p_246ef8c1130d": {
+    "en": "Claude Code",
+    "de": "Claude Code",
+    "it": "Codice Claudio",
+    "es": "Código Claude",
+    "he": "קלוד קוד",
+    "ar": "كلود كود",
+    "ru": "Клод Код",
+    "hu": "Claude Code",
+    "fr": "Claude Code"
+  },
+  "p_fb2a36e6fc62": {
+    "en": "Claude Code, Cursor, and any tool that honors the llms.txt standard reads this file automatically when present in a repo. Drop it into your consuming repo or point your agent at the GDS llms.txt directly.",
+    "es": "Claude Code, Cursor y cualquier herramienta que respete el estándar llms.txt lee este archivo automáticamente cuando está presente en un repositorio. Colóquelo en su repositorio de consumo o indique a su agente el archivo GDS llms.txt directamente.",
+    "ar": "يقوم Claude Code وCursor وأي أداة تحترم معيار llms.txt بقراءة هذا الملف تلقائيًا عند وجوده في الريبو. قم بإسقاطه في مستودع الاستهلاك الخاص بك أو قم بتوجيه وكيلك إلى GDS llms.txt مباشرة.",
+    "it": "Claude Code, Cursor e qualsiasi strumento che rispetti lo standard llms.txt leggono automaticamente questo file quando presente in un repository. Inseriscilo nel tuo repository di consumo o indirizza il tuo agente direttamente al GDS llms.txt.",
+    "he": "קוד קלוד, סמן וכל כלי שמכבד את תקן llms.txt קורא את הקובץ הזה באופן אוטומטי כאשר הוא נמצא ב-repo. זרוק אותו לריפו הצרכני שלך או כוון את הסוכן שלך ישירות ל-GDS llms.txt.",
+    "ru": "Claude Code, Cursor и любой инструмент, соответствующий стандарту llms.txt, автоматически считывает этот файл, если он присутствует в репозитории. Поместите его в свой потребляющий репозиторий или укажите своему агенту непосредственно на GDS llms.txt.",
+    "de": "Claude Code, Cursor und jedes Tool, das den llms.txt-Standard berücksichtigt, lesen diese Datei automatisch, wenn sie in einem Repo vorhanden ist. Legen Sie es in Ihrem konsumierenden Repo ab oder verweisen Sie Ihren Agenten direkt auf die GDS llms.txt.",
+    "fr": "Claude Code, Cursor et tout outil respectant la norme llms.txt lisent automatiquement ce fichier lorsqu'il est présent dans un dépôt. Déposez-le dans votre dépôt de consommation ou dirigez votre agent directement vers le GDS llms.txt.",
+    "hu": "A Claude kód, a kurzor és minden olyan eszköz, amely tiszteletben tartja az llms.txt szabványt, automatikusan beolvassa ezt a fájlt, ha jelen van egy tárhelyen. Dobja be a fogyasztási tárolójába, vagy irányítsa ügynökét közvetlenül a GDS llms.txt fájlra."
+  },
+  "p_1287a28939db": {
+    "en": "Claude Code, Cursor, Codex, Copilot",
+    "it": "Codice Claude, Cursore, Codice, Copilota",
+    "ar": "كلود كود، المؤشر، الدستور الغذائي، مساعد الطيار",
+    "de": "Claude Code, Cursor, Codex, Copilot",
+    "es": "Código Claude, Cursor, Códice, Copiloto",
+    "ru": "Клод Код, Курсор, Кодекс, Второй пилот",
+    "fr": "Claude Code, Curseur, Codex, Copilote",
+    "hu": "Claude kód, kurzor, kódex, másodpilóta",
+    "he": "קוד קלוד, סמן, קודקס, טייס משנה"
+  },
+  "p_328f812fce0f": {
+    "en": "Claude Design",
+    "fr": "Claude Conception",
+    "it": "Claudio Design",
+    "es": "Diseño Claude",
+    "ru": "Клод Дизайн",
+    "ar": "كلود ديزاين",
+    "he": "קלוד דיזיין",
+    "de": "Claude Design",
+    "hu": "Claude Design"
+  },
+  "p_90fdb5acda3c": {
+    "en": "Claude Design sync guide",
+    "ar": "دليل مزامنة كلود ديزاين",
+    "ru": "Руководство по синхронизации Claude Design",
+    "it": "Guida alla sincronizzazione di Claude Design",
+    "de": "Claude Design-Synchronisierungsanleitung",
+    "es": "Guía de sincronización de Claude Design",
+    "fr": "Guide de synchronisation Claude Design",
+    "hu": "Claude Design szinkronizálási útmutató",
+    "he": "מדריך סינכרון קלוד דיזיין"
+  },
+  "p_7fa9c2b2329d": {
+    "en": "Claude-specific rules: install path, GdsProvider, SemanticButton action enum, token-only styling.",
+    "de": "Claude-spezifische Regeln: Installationspfad, GdsProvider, SemanticButton-Aktionsenum, Nur-Token-Stil.",
+    "es": "Reglas específicas de Claude: ruta de instalación, GdsProvider, enumeración de acciones de SemanticButton, estilo de solo token.",
+    "ar": "القواعد الخاصة بكلود: مسار التثبيت، GdsProvider، تعداد الإجراء SemanticButton، التصميم المميز فقط.",
+    "fr": "Règles spécifiques à Claude : chemin d'installation, GdsProvider, énumération d'action SemanticButton, style de jeton uniquement.",
+    "it": "Regole specifiche di Claude: percorso di installazione, GdsProvider, enumerazione dell'azione SemanticButton, stile solo token.",
+    "hu": "Claude-specifikus szabályok: telepítési útvonal, GdsProvider, SemanticButton műveletsor, csak token stílus.",
+    "he": "כללים ספציפיים לקלוד: נתיב התקנה, GdsProvider, סימון פעולה של SemanticButton, סגנון אסימון בלבד.",
+    "ru": "Правила, специфичные для Claude: путь установки, GdsProvider, перечисление действий SemanticButton, стиль только для токена."
+  },
   "p_cea4d2e010b8": {
     "en": "Clear selection",
     "de": "Klare Auswahl",
@@ -1947,6 +2079,28 @@ export const generatedSitePhrases = {
     "de": "Compliance-Frage",
     "he": "שאלת ציות",
     "hu": "Megfelelőségi kérdés"
+  },
+  "p_0ca4897dac7e": {
+    "en": "Component families",
+    "ru": "Семейства компонентов",
+    "es": "Familias de componentes",
+    "ar": "العائلات المكونة",
+    "fr": "Familles de composants",
+    "it": "Famiglie di componenti",
+    "hu": "Alkatrészcsaládok",
+    "de": "Komponentenfamilien",
+    "he": "משפחות רכיבים"
+  },
+  "p_5d8c9f045be6": {
+    "en": "Compose shipped GDS components — import from @doneisbetter/gds",
+    "es": "Redactar componentes GDS enviados: importar desde @doneisbetter/gds",
+    "fr": "Composer les composants GDS expédiés - importer depuis @doneisbetter/gds",
+    "it": "Componi i componenti GDS spediti: importa da @doneisbetter/gds",
+    "de": "Ausgelieferte GDS-Komponenten zusammenstellen – Import aus @doneisbetter/gds",
+    "hu": "Szállított GDS-összetevők összeállítása – importálás a @doneisbetter/gds webhelyről",
+    "ar": "إنشاء مكونات GDS المشحونة - الاستيراد من @doneisbetter/gds",
+    "ru": "Compose поставляемые компоненты GDS — импорт из @doneisbetter/gds",
+    "he": "חיבור רכיבי GDS שנשלחו - ייבוא ​​מ-@doneisbetter/gds"
   },
   "p_ec7cb09c3f69": {
     "en": "Confirm lighting, permissions, and the intended upload destination before opening a hardware-adjacent step.",
@@ -2256,6 +2410,17 @@ export const generatedSitePhrases = {
     "he": "חוזה אירוע צולב פרימיטיבי עם ברירות מחדל בטוחות בפרטיות.",
     "hu": "Keresztprimitív eseményszerződés adatvédelmi alapértelmezésekkel."
   },
+  "p_9e43b571cb27": {
+    "en": "Cross-tool standard. Tells any agent this project uses GDS and must not invent parallel primitives.",
+    "ru": "Стандарт перекрестного инструмента. Сообщает любому агенту, что этот проект использует GDS и не должен изобретать параллельные примитивы.",
+    "es": "Estándar de herramientas cruzadas. Le dice a cualquier agente que este proyecto utiliza GDS y que no debe inventar primitivas paralelas.",
+    "fr": "Norme multi-outils. Indique à tout agent que ce projet utilise GDS et ne doit pas inventer de primitives parallèles.",
+    "ar": "معيار عبر الأدوات. يخبر أي وكيل أن هذا المشروع يستخدم نظام التوزيع العالمي (GDS) ويجب ألا يخترع عناصر أولية متوازية.",
+    "it": "Standard multiutensile. Dice a qualsiasi agente che questo progetto utilizza GDS e non deve inventare primitive parallele.",
+    "de": "Werkzeugübergreifender Standard. Teilt jedem Agenten mit, dass dieses Projekt GDS verwendet und keine parallelen Grundelemente erfinden darf.",
+    "hu": "Keresztszerszám szabvány. Azt mondja minden ügynöknek, hogy ez a projekt GDS-t használ, és nem találhat ki párhuzamos primitíveket.",
+    "he": "תקן צולב כלים. אומר לכל סוכן שהפרויקט הזה משתמש ב-GDS ואסור להמציא פרימיטיבים מקבילים."
+  },
   "p_d2234b50b78d": {
     "en": "CTA Button Groups",
     "it": "Gruppi di pulsanti CTA",
@@ -2431,6 +2596,17 @@ export const generatedSitePhrases = {
     "ru": "Опишите недостающий примитив или поведение.",
     "fr": "Décrivez la primitive ou le comportement manquant.",
     "hu": "Ismertesse a hiányzó primitívet vagy viselkedést!"
+  },
+  "p_67e48da7783d": {
+    "en": "Design with GDS in Claude Design",
+    "de": "Design mit GDS in Claude Design",
+    "es": "Diseñar con GDS en Claude Design",
+    "ar": "التصميم باستخدام GDS في تصميم كلود",
+    "fr": "Concevoir avec GDS dans Claude Design",
+    "hu": "Tervezés GDS-sel a Claude Designban",
+    "ru": "Проектирование с помощью GDS в Claude Design",
+    "it": "Progetta con GDS presso Claude Design",
+    "he": "עיצוב עם GDS בקלוד דיזיין"
   },
   "p_a2ae49bddabd": {
     "en": "Desktop tables must adapt through scroll, cards, priority columns, or stacked rows rather than naive shrinking.",
@@ -2850,6 +3026,17 @@ export const generatedSitePhrases = {
     "he": "מגירות תומכות במסננים ובפאנלים משניים עם התנהגות מפורשת של גודל נייד ושולחן עבודה.",
     "hu": "A fiókok támogatják a szűrőket és a másodlagos paneleket kifejezetten mobil és asztali méretezési viselkedéssel."
   },
+  "p_bb10de6369ec": {
+    "en": "Drop-in repo rules",
+    "ru": "Правила прямого репо",
+    "ar": "قواعد الريبو المسقطة",
+    "es": "Reglas de repositorio directo",
+    "fr": "Règles de dépôt sans dépôt",
+    "it": "Regole del pronti contro termine drop-in",
+    "de": "Drop-in-Repo-Regeln",
+    "hu": "Drop-in repószabályok",
+    "he": "כללי ריפו צניחה"
+  },
   "p_ceb3e9d30b21": {
     "en": "Each demo is also a migration target for teams currently using local wrappers and bespoke UI.",
     "it": "Ogni demo è anche un obiettivo di migrazione per i team che attualmente utilizzano wrapper locali e un'interfaccia utente personalizzata.",
@@ -3036,6 +3223,17 @@ export const generatedSitePhrases = {
     "ru": "Пустое состояние",
     "it": "Stato vuoto",
     "hu": "Üres állapot"
+  },
+  "p_2817ac7d286b": {
+    "en": "Ensures designs stay in the theme and remain maintainable.",
+    "es": "Garantiza que los diseños permanezcan en el tema y sean mantenibles.",
+    "fr": "Garantit que les conceptions restent dans le thème et restent maintenables.",
+    "ar": "يضمن بقاء التصميمات في الموضوع وتبقى قابلة للصيانة.",
+    "ru": "Гарантирует, что дизайн останется в теме и останется поддерживаемым.",
+    "hu": "Biztosítja, hogy a tervek a témában maradjanak, és karbantarthatók maradjanak.",
+    "de": "Stellt sicher, dass Designs im Thema bleiben und wartbar bleiben.",
+    "it": "Garantisce che i progetti rimangano nel tema e mantengano.",
+    "he": "מבטיח שהעיצובים יישארו בנושא ושיישארו ניתנים לתחזוקה."
   },
   "p_5d987c963c5b": {
     "en": "Error states must keep the next action visible and accessible.",
@@ -3631,6 +3829,17 @@ export const generatedSitePhrases = {
     "ar": "يتم فرض النضارة",
     "hu": "A frissesség érvényesül"
   },
+  "p_79bfc20568c5": {
+    "en": "Full TypeScript prop types for every GDS component.",
+    "ar": "أنواع دعائم TypeScript الكاملة لكل مكون GDS.",
+    "fr": "Types d'accessoires TypeScript complets pour chaque composant GDS.",
+    "de": "Vollständige TypeScript-Requisitentypen für jede GDS-Komponente.",
+    "ru": "Полные типы свойств TypeScript для каждого компонента GDS.",
+    "es": "Tipos completos de accesorios de TypeScript para cada componente de GDS.",
+    "it": "Tipi di prop TypeScript completi per ogni componente GDS.",
+    "hu": "Teljes TypeScript prop típusok minden GDS-komponenshez.",
+    "he": "סוגי אביזרי TypeScript מלאים עבור כל רכיב GDS."
+  },
   "p_0dce84e9d0ae": {
     "en": "Funnel chart",
     "it": "Grafico a imbuto",
@@ -3652,6 +3861,17 @@ export const generatedSitePhrases = {
     "it": "Tessera del tabellone di gioco",
     "hu": "Játéktábla csempe",
     "he": "אריח לוח משחק"
+  },
+  "p_f0c9caf24231": {
+    "en": "Gate private content with GdsAccessGate protectedContentPolicy=\"never-render-while-locked\"",
+    "de": "Schützen Sie private Inhalte mit GdsAccessGate protectedContentPolicy=\"never-render-while-locked\"",
+    "ru": "Защищайте частный контент с помощью GdsAccessGate protectedContentPolicy=\"never-render- while-locked\"",
+    "es": "Controle el contenido privado con GdsAccessGate protectedContentPolicy=\"never-render- while-locked\"",
+    "fr": "Bloquez le contenu privé avec GdsAccessGate protectedContentPolicy=\"never-render-while-locked\"",
+    "it": "Accedi ai contenuti privati ​​con GdsAccessGate protectedContentPolicy=\"never-render-when-locked\"",
+    "ar": "بوابة المحتوى الخاص باستخدام GdsAccessGate protectedContentPolicy=\"never-render-while-locked\"",
+    "hu": "Privát tartalom kapuja a GdsAccessGate protectedContentPolicy=\"never-render-while-locked\" segítségével",
+    "he": "שער תוכן פרטי עם GdsAccessGate protectedContentPolicy=\"never-render-while-locked\""
   },
   "p_6813d6e4d364": {
     "en": "GDS actions and auth live demo",
@@ -4115,6 +4335,17 @@ export const generatedSitePhrases = {
     "he": "עמוד הבית והתקנת מסלולים",
     "hu": "Honlap és útvonalak telepítése"
   },
+  "p_e713db6dadb5": {
+    "en": "How agents find GDS",
+    "ru": "Как агенты находят GDS",
+    "ar": "كيف يجد الوكلاء نظام التوزيع العالمي (GDS).",
+    "es": "Cómo los agentes encuentran GDS",
+    "he": "איך סוכנים מוצאים את GDS",
+    "it": "Come gli agenti trovano GDS",
+    "de": "Wie Agenten GDS finden",
+    "fr": "Comment les agents trouvent GDS",
+    "hu": "Hogyan találják meg az ügynökök a GDS-t"
+  },
   "p_8a67fb00246e": {
     "en": "How reference docs stay strict",
     "fr": "Comment les documents de référence restent stricts",
@@ -4136,6 +4367,28 @@ export const generatedSitePhrases = {
     "it": "Come leggere queste demo",
     "hu": "Hogyan kell elolvasni ezeket a bemutatókat",
     "he": "איך לקרוא את ההדגמות האלה"
+  },
+  "p_552c565d99d0": {
+    "en": "How to run /design-sync and use the synced project in claude.ai/design.",
+    "de": "So führen Sie /design-sync aus und verwenden das synchronisierte Projekt in claude.ai/design.",
+    "ar": "كيفية تشغيل /design-sync واستخدام المشروع المتزامن في claude.ai/design.",
+    "es": "Cómo ejecutar /design-sync y usar el proyecto sincronizado en claude.ai/design.",
+    "he": "כיצד להפעיל /design-sync ולהשתמש בפרויקט המסונכרן ב- claude.ai/design.",
+    "it": "Come eseguire /design-sync e utilizzare il progetto sincronizzato in claude.ai/design.",
+    "fr": "Comment exécuter /design-sync et utiliser le projet synchronisé dans claude.ai/design.",
+    "ru": "Как запустить /design-sync и использовать синхронизированный проект в claude.ai/design.",
+    "hu": "A /design-sync futtatása és a szinkronizált projekt használata a claude.ai/design fájlban."
+  },
+  "p_1a8f5e8e0090": {
+    "en": "How to sync",
+    "fr": "Comment synchroniser",
+    "ru": "Как синхронизировать",
+    "it": "Come sincronizzare",
+    "he": "איך לסנכרן",
+    "es": "Cómo sincronizar",
+    "ar": "كيفية المزامنة",
+    "de": "So synchronisieren Sie",
+    "hu": "Hogyan kell szinkronizálni"
   },
   "p_b3dc7dc1d427": {
     "en": "How to use this family",
@@ -4269,6 +4522,17 @@ export const generatedSitePhrases = {
     "de": "Pfad importieren",
     "hu": "Importálási útvonal"
   },
+  "p_7a779f32f0c3": {
+    "en": "In Claude Code, run /design-sync from a checkout of this repo. It builds the bundle, authors and verifies all 252 component previews, and uploads everything to a new Claude Design project. Re-syncs are one command.",
+    "ar": "في Claude Code، قم بتشغيل /design-sync من خلال الخروج من هذا الريبو. فهو يبني الحزمة، ويؤلف ويتحقق من جميع معاينات المكونات البالغ عددها 252، ويحمل كل شيء إلى مشروع Claude Design الجديد. إعادة المزامنة هي أمر واحد.",
+    "es": "En Claude Code, ejecute /design-sync desde la compra de este repositorio. Crea el paquete, crea y verifica las 252 vistas previas de componentes y carga todo en un nuevo proyecto de Claude Design. Las resincronizaciones son un comando.",
+    "fr": "Dans Claude Code, exécutez /design-sync à partir d'une extraction de ce dépôt. Il crée le bundle, crée et vérifie les 252 aperçus de composants, et télécharge le tout dans un nouveau projet Claude Design. Les resynchronisations sont une commande.",
+    "de": "Führen Sie in Claude Code /design-sync aus, wenn Sie dieses Repo auschecken. Es erstellt das Bundle, erstellt und überprüft alle 252 Komponentenvorschauen und lädt alles in ein neues Claude Design-Projekt hoch. Neusynchronisierungen sind ein Befehl.",
+    "hu": "A Claude Code-ban futtassa a /design-sync-et a repó kijelentkezéséből. Összeállítja a csomagot, elkészíti és ellenőrzi mind a 252 összetevő előnézetét, és mindent feltölt egy új Claude Design projektbe. Az újraszinkronizálás egyetlen parancs.",
+    "ru": "В Claude Code запустите /design-sync из этого репозитория. Он собирает пакет, создает и проверяет все 252 предварительных просмотра компонентов и загружает все в новый проект Claude Design. Повторная синхронизация — это одна команда.",
+    "it": "In Claude Code, esegui /design-sync dal checkout di questo repository. Costruisce il pacchetto, crea e verifica tutte le 252 anteprime dei componenti e carica tutto in un nuovo progetto Claude Design. Le risincronizzazioni sono un comando.",
+    "he": "ב-Claude Code, הפעל /design-sync מקופה של ריפו זה. הוא בונה את החבילה, מחבר ומאמת את כל 252 התצוגה המקדימה של הרכיבים, ומעלה הכל לפרויקט חדש של קלוד עיצוב. סנכרון מחדש הוא פקודה אחת."
+  },
   "p_93477ab40f89": {
     "en": "Include request type, reusable use case, accessibility needs, affected product, urgency, and whether an existing GDS primitive nearly covers it.",
     "es": "Incluya el tipo de solicitud, el caso de uso reutilizable, las necesidades de accesibilidad, el producto afectado, la urgencia y si una primitiva GDS existente casi lo cubre.",
@@ -4367,6 +4631,17 @@ export const generatedSitePhrases = {
     "de": "Überprüfen Sie den versendeten Musterbestand.",
     "he": "בדוק את מלאי הדפוסים שנשלח.",
     "hu": "Vizsgálja meg a szállított mintakészletet."
+  },
+  "p_89e86dbbf3bb": {
+    "en": "Install and bootstrap",
+    "ru": "Установите и загрузите",
+    "ar": "التثبيت والتمهيد",
+    "hu": "Telepítés és bootstrap",
+    "fr": "Installer et démarrer",
+    "it": "Installa e avvia",
+    "es": "Instalar y arrancar",
+    "de": "Installieren und booten",
+    "he": "התקן ו-bootstrap"
   },
   "p_63c5fe32b30b": {
     "en": "Install and reference code blocks need a shared wrapper with accessible copy affordances.",
@@ -4918,6 +5193,17 @@ export const generatedSitePhrases = {
     "hu": "Az embléma feltöltése sikertelen",
     "he": "העלאת הלוגו נכשלה"
   },
+  "p_1f3eb08f3bd3": {
+    "en": "Long-form guide for Claude Code, Cursor, Copilot — install, provider, contracts, component families.",
+    "ru": "Полное руководство по Claude Code, Cursor, Copilot — установка, поставщик, контракты, семейства компонентов.",
+    "es": "Guía detallada para Claude Code, Cursor, Copilot: instalación, proveedor, contratos, familias de componentes.",
+    "de": "Ausführlicher Leitfaden für Claude Code, Cursor, Copilot – Installation, Anbieter, Verträge, Komponentenfamilien.",
+    "he": "מדריך ארוך צורה עבור קלוד קוד, סמן, Copilot - התקנה, ספק, חוזים, משפחות רכיבים.",
+    "it": "Guida di lunga durata per Claude Code, Cursor, Copilot: installazione, fornitore, contratti, famiglie di componenti.",
+    "hu": "Hosszú formátumú útmutató Claude Code, Cursor, Copilot – telepítés, szolgáltató, szerződések, alkatrészcsaládok számára.",
+    "ar": "دليل طويل لـ Claude Code، وCursor، وCopilot — التثبيت، والموفر، والعقود، وعائلات المكونات.",
+    "fr": "Guide détaillé pour Claude Code, Cursor, Copilot — installation, fournisseur, contrats, familles de composants."
+  },
   "p_cede4f4376ee": {
     "en": "Lookup helpers",
     "ru": "Помощники поиска",
@@ -4940,6 +5226,28 @@ export const generatedSitePhrases = {
     "it": "A basso rischio per le corsie spedite",
     "he": "סיכון נמוך לנתיבי שילוח"
   },
+  "p_e02c7b73c34a": {
+    "en": "Machine-readable entry point (llms.txt)",
+    "ru": "Машиночитаемая точка входа (llms.txt)",
+    "it": "Punto di ingresso leggibile dalla macchina (llms.txt)",
+    "de": "Maschinenlesbarer Einstiegspunkt (llms.txt)",
+    "fr": "Point d'entrée lisible par machine (llms.txt)",
+    "es": "Punto de entrada legible por máquina (llms.txt)",
+    "hu": "Géppel olvasható belépési pont (llms.txt)",
+    "he": "נקודת כניסה הניתנת לקריאה במכונה (llms.txt)",
+    "ar": "نقطة إدخال يمكن قراءتها آليًا (llms.txt)"
+  },
+  "p_52c1272115bd": {
+    "en": "Machine-readable summary of GDS rules, packages, and component families.",
+    "de": "Maschinenlesbare Zusammenfassung der GDS-Regeln, Pakete und Komponentenfamilien.",
+    "it": "Riepilogo leggibile dalla macchina delle regole, dei pacchetti e delle famiglie di componenti GDS.",
+    "es": "Resumen legible por máquina de reglas, paquetes y familias de componentes de GDS.",
+    "fr": "Résumé lisible par machine des règles, packages et familles de composants GDS.",
+    "ru": "Машиночитаемая сводка правил, пакетов и семейств компонентов GDS.",
+    "ar": "ملخص يمكن قراءته آليًا لقواعد نظام التوزيع العالمي (GDS) وحزمه وعائلات المكونات.",
+    "hu": "GDS-szabályok, csomagok és alkatrészcsaládok géppel olvasható összefoglalása.",
+    "he": "סיכום קריא במכונה של כללי GDS, חבילות ומשפחות רכיבים."
+  },
   "p_6c4b69b29b3d": {
     "en": "Made fresh in small batches.",
     "hu": "Frissen, kis tételekben készül.",
@@ -4961,6 +5269,17 @@ export const generatedSitePhrases = {
     "fr": "Solution de secours du client de messagerie",
     "hu": "Levelező-kliens tartalék",
     "he": "ניתוק של לקוח דואר"
+  },
+  "p_c4768c3f7824": {
+    "en": "Mantine-backed API; children are ignored.",
+    "he": "API מגובה Mantine; מתעלמים מהילדים.",
+    "es": "API respaldada por Mantine; los niños son ignorados.",
+    "ru": "API на основе Mantine; детей игнорируют.",
+    "hu": "Mantine által támogatott API; a gyerekeket figyelmen kívül hagyják.",
+    "fr": "API basée sur Mantine ; les enfants sont ignorés.",
+    "ar": "واجهة برمجة التطبيقات المدعومة من Mantine؛ يتم تجاهل الأطفال.",
+    "it": "API supportata da Mantine; i bambini vengono ignorati.",
+    "de": "Von Mantine unterstützte API; Kinder werden ignoriert."
   },
   "p_b2ac2d5c094e": {
     "en": "Map and media containment",
@@ -5446,6 +5765,17 @@ export const generatedSitePhrases = {
     "it": "Guida del quartiere",
     "he": "מדריך שכונה"
   },
+  "p_a54e5cc6f4c1": {
+    "en": "Nesting creates duplicate theme contexts and breaks token resolution.",
+    "es": "El anidamiento crea contextos de temas duplicados y rompe la resolución del token.",
+    "ru": "Вложение создает дублирующиеся контексты тем и нарушает разрешение токенов.",
+    "it": "La nidificazione crea contesti di temi duplicati e interrompe la risoluzione dei token.",
+    "hu": "A beágyazás duplikált témakörnyezeteket hoz létre, és megszakítja a jogkivonat felbontását.",
+    "de": "Durch die Verschachtelung werden doppelte Themenkontexte erstellt und die Token-Auflösung unterbrochen.",
+    "ar": "يؤدي التداخل إلى إنشاء سياقات سمات مكررة وكسر دقة الرمز المميز.",
+    "he": "קינון יוצר הקשרים כפולים של נושא ושובר את רזולוציית האסימון.",
+    "fr": "L'imbrication crée des contextes de thème en double et interrompt la résolution des jetons."
+  },
   "p_b24077c1b68d": {
     "en": "New capability request",
     "ar": "طلب قدرات جديدة",
@@ -5544,6 +5874,17 @@ export const generatedSitePhrases = {
     "fr": "Aucune source cartographique configurée pour cette démo.",
     "hu": "Nincs beállítva térképforrás ehhez a demóhoz.",
     "he": "לא הוגדר מקור מפה עבור הדגמה זו."
+  },
+  "p_6cb53dac3893": {
+    "en": "Non-negotiable rules for agents",
+    "he": "כללים בלתי ניתנים למשא ומתן עבור סוכנים",
+    "es": "Reglas no negociables para agentes",
+    "it": "Regole non negoziabili per gli agenti",
+    "fr": "Règles non négociables pour les agents",
+    "de": "Nicht verhandelbare Regeln für Agenten",
+    "ru": "Непреложные правила для агентов",
+    "hu": "Az ügynökökre vonatkozó nem megtárgyalható szabályok",
+    "ar": "قواعد غير قابلة للتفاوض للوكلاء"
   },
   "p_0b224ab262b2": {
     "en": "Not enough data yet for this report.",
@@ -5753,6 +6094,28 @@ export const generatedSitePhrases = {
     "he": "חוזה פרט אחד עבור מצבי דפים ומגירה.",
     "hu": "Egy részlet szerződés az oldal- és fiókmódokhoz.",
     "it": "Un contratto dettagliato per le modalità pagina e cassetto."
+  },
+  "p_a5024eaddd5d": {
+    "en": "One GdsProvider at the app root — never nest a second one",
+    "es": "Un GdsProvider en la raíz de la aplicación: nunca anide un segundo",
+    "ar": "GdsProvider واحد في جذر التطبيق - لا تقم أبدًا بدمج واحد آخر",
+    "ru": "Один GdsProvider в корне приложения — никогда не вставляйте второй",
+    "de": "Ein GdsProvider im App-Stammverzeichnis – niemals einen zweiten verschachteln",
+    "hu": "Egy GdsProvider az alkalmazás gyökerében – soha ne helyezzen be egy másodikat",
+    "it": "Un GdsProvider nella root dell'app: non nidificarne mai un secondo",
+    "fr": "Un GdsProvider à la racine de l’application – n’en imbriquez jamais un deuxième",
+    "he": "ספק GdsProvider אחד בשורש האפליקציה - לעולם אל תקנן אחד שני"
+  },
+  "p_cf42005cf5c1": {
+    "en": "One install command, one required provider. Agents follow these same steps.",
+    "ru": "Одна команда установки, один необходимый поставщик. Агенты выполняют те же действия.",
+    "it": "Un comando di installazione, un provider richiesto. Gli agenti seguono gli stessi passaggi.",
+    "de": "Ein Installationsbefehl, ein erforderlicher Anbieter. Agenten befolgen dieselben Schritte.",
+    "hu": "Egy telepítési parancs, egy szükséges szolgáltató. Az ügynökök ugyanezeket a lépéseket követik.",
+    "es": "Un comando de instalación, un proveedor requerido. Los agentes siguen estos mismos pasos.",
+    "fr": "Une commande d'installation, un fournisseur requis. Les agents suivent ces mêmes étapes.",
+    "ar": "أمر تثبيت واحد وموفر واحد مطلوب. يتبع الوكلاء نفس الخطوات.",
+    "he": "פקודת התקנה אחת, ספק נדרש אחד. סוכנים מבצעים את אותם השלבים."
   },
   "p_4164ceeedce7": {
     "en": "One partner connector is degraded",
@@ -6161,6 +6524,17 @@ export const generatedSitePhrases = {
     "hu": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry",
     "es": "PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry"
   },
+  "p_3948e987da99": {
+    "en": "Paste these into your repo root so every agent session follows GDS automatically — no per-session prompting required.",
+    "es": "Péguelos en la raíz de su repositorio para que cada sesión del agente siga GDS automáticamente, sin necesidad de solicitudes por sesión.",
+    "ru": "Вставьте их в корень вашего репозитория, чтобы каждый сеанс агента автоматически следовал за GDS — никаких запросов для каждого сеанса не требуется.",
+    "it": "Incollali nella root del repository in modo che ogni sessione dell'agente segua GDS automaticamente, senza che sia richiesta alcuna richiesta per sessione.",
+    "de": "Fügen Sie diese in Ihr Repo-Stammverzeichnis ein, damit jede Agentensitzung automatisch GDS folgt – keine Eingabeaufforderung pro Sitzung erforderlich.",
+    "he": "הדבק אותם בשורש הריפו שלך כך שכל הפעלת סוכן תעקוב אחר GDS באופן אוטומטי - לא נדרשת הנחיה לכל הפעלה.",
+    "ar": "الصقها في جذر الريبو الخاص بك بحيث تتبع كل جلسة وكيل نظام التوزيع العالمي (GDS) تلقائيًا - دون الحاجة إلى مطالبة لكل جلسة.",
+    "hu": "Illessze be ezeket a repo gyökérkönyvtárába, így minden ügynöki munkamenet automatikusan követi a GDS-t – nincs szükség munkamenetenkénti felszólításra.",
+    "fr": "Collez-les dans la racine de votre dépôt afin que chaque session d'agent suive automatiquement GDS — aucune invite par session n'est requise."
+  },
   "p_26ee8c981211": {
     "en": "Pattern catalog",
     "es": "Catálogo de patrones",
@@ -6545,6 +6919,28 @@ export const generatedSitePhrases = {
     "ru": "Готовится небольшими ежедневными порциями.",
     "he": "מוכן במנות יומיות קטנות",
     "hu": "Kis napi adagokban készítve"
+  },
+  "p_dd17fd077faa": {
+    "en": "Prevents parallel primitives that diverge from the governed contract.",
+    "es": "Evita primitivas paralelas que divergen del contrato gobernado.",
+    "ru": "Предотвращает параллельные примитивы, которые расходятся с управляемым контрактом.",
+    "he": "מונע פרימיטיבים מקבילים החורגים מהחוזה הנשלט.",
+    "it": "Impedisce primitive parallele che divergono dal contratto governato.",
+    "fr": "Empêche les primitives parallèles qui s'écartent du contrat régi.",
+    "ar": "يمنع البدائيات الموازية التي تختلف عن العقد المحكوم.",
+    "de": "Verhindert parallele Grundelemente, die vom geregelten Vertrag abweichen.",
+    "hu": "Megakadályozza a párhuzamos primitíveket, amelyek eltérnek a szabályozott szerződéstől."
+  },
+  "p_500edbcd53a1": {
+    "en": "Prevents private/paid content from being mounted while locked.",
+    "ru": "Предотвращает монтирование частного/платного контента во время блокировки.",
+    "ar": "يمنع تحميل المحتوى الخاص/المدفوع أثناء القفل.",
+    "es": "Evita que se monte contenido privado/pago mientras está bloqueado.",
+    "it": "Impedisce che i contenuti privati/a pagamento vengano montati mentre sono bloccati.",
+    "fr": "Empêche le montage de contenu privé/payant lorsqu'il est verrouillé.",
+    "de": "Verhindert, dass private/kostenpflichtige Inhalte im gesperrten Zustand gemountet werden.",
+    "he": "מונע התקנת תוכן פרטי/בתשלום בזמן נעול.",
+    "hu": "Megakadályozza a privát/fizetős tartalmak csatlakoztatását zárolt állapotban."
   },
   "p_66c86321337a": {
     "en": "Preview content",
@@ -7271,6 +7667,17 @@ export const generatedSitePhrases = {
     "he": "React, Mantine ו-Tabler הם תלות יישום מקובלת רק מאחורי חוזים ושערי שחרור בבעלות GDS.",
     "es": "React, Mantine y Tabler son dependencias de implementación aceptadas solo detrás de contratos y puertas de lanzamiento propiedad de GDS.",
     "hu": "A React, a Mantine és a Tabler csak a GDS-tulajdonú szerződések és kiadási kapuk mögött elfogadott megvalósítási függőségek."
+  },
+  "p_d90fe2d1a1d9": {
+    "en": "Read by",
+    "es": "Leer por",
+    "ru": "Читать",
+    "fr": "Lu par",
+    "de": "Gelesen von",
+    "ar": "اقرأ بواسطة",
+    "it": "Leggi di",
+    "hu": "Olvasta",
+    "he": "קרא על ידי"
   },
   "p_83b794145c0c": {
     "en": "Read more",
@@ -8317,6 +8724,17 @@ export const generatedSitePhrases = {
     "hu": "Szemantikus szókincs kiterjesztési sáv",
     "he": "מסלול הרחבת אוצר מילים סמנטי"
   },
+  "p_36237161ed04": {
+    "en": "SemanticButton takes action=\"save\"|\"add\"|\"edit\"|... not free text",
+    "ar": "يأخذ SemanticButton الإجراء = \"حفظ\"|\"إضافة\"|\"تحرير\"|... وليس نصًا حرًا",
+    "es": "SemanticButton toma acción=\"guardar\"|\"añadir\"|\"editar\"|... no texto libre",
+    "fr": "SemanticButton prend l'action=\"save\"|\"add\"|\"edit\"|... pas de texte libre",
+    "ru": "SemanticButton принимает action=\"save\"|\"add\"|\"edit\"|... не свободный текст",
+    "it": "SemanticButton esegue l'azione=\"salva\"|\"aggiungi\"|\"modifica\"|... testo non libero",
+    "he": "SemanticButton נוקט action=\"save\"|\"add\"|\"edit\"|... לא טקסט חופשי",
+    "hu": "A SemanticButton műveletet hajt végre=\"save\"|\"add\"|\"edit\"|... nem szabad szöveg",
+    "de": "SemanticButton ergreift die Aktion = „Speichern“ | „Hinzufügen“ | „Bearbeiten“ | ... kein Freitext"
+  },
   "p_8f42cc1f745a": {
     "en": "Separate hardware preview from surrounding GDS UI.",
     "es": "Separe la vista previa del hardware de la interfaz de usuario del GDS circundante.",
@@ -9252,6 +9670,17 @@ export const generatedSitePhrases = {
     "he": "כרטיסי מוצר מובנים שומרים על חריצים קבועים עבור מדיה, מטא נתונים, סטטוס והפעולה העיקרית.",
     "hu": "A strukturált termékkártyák rögzített helyeket tárolnak a média, a metaadatok, az állapot és az elsődleges művelet számára."
   },
+  "p_bbd27adb033a": {
+    "en": "Style with props and tokens only — no custom CSS or raw hex",
+    "es": "Estilo con accesorios y tokens únicamente: sin CSS personalizado ni hexadecimal sin formato",
+    "ar": "النمط يحتوي على الدعائم والرموز المميزة فقط - لا يوجد CSS مخصص أو سداسي عشري خام",
+    "fr": "Style avec des accessoires et des jetons uniquement - pas de CSS personnalisé ni d'hexadécimal brut",
+    "de": "Stil nur mit Requisiten und Token – kein benutzerdefiniertes CSS oder rohes Hex",
+    "ru": "Стиль только с реквизитами и токенами — без специального CSS или необработанного шестнадцатеричного кода.",
+    "it": "Stile solo con oggetti di scena e token: nessun CSS personalizzato o esadecimale grezzo",
+    "hu": "Stílus csak kellékekkel és tokenekkel – nincs egyéni CSS vagy nyers hex",
+    "he": "סגנון עם אביזרים ואסימונים בלבד - ללא CSS מותאם אישית או משושה גולמית"
+  },
   "p_13f2c7e89637": {
     "en": "Support API",
     "ru": "Поддержка API",
@@ -9284,6 +9713,28 @@ export const generatedSitePhrases = {
     "ar": "تُظهر القضبان الجانبية السطحية الفهارس والمراجع المجاورة.",
     "it": "Le guide laterali di superficie mostrano indici e riferimenti adiacenti.",
     "he": "מסילות הצד על פני השטח מציגות אינדקסים והפניות סמוכות."
+  },
+  "p_13b9c4a89916": {
+    "en": "Sync GDS into claude.ai/design so the design agent builds screens with your real components. Every preview is a live render of the shipped component.",
+    "ru": "Синхронизируйте GDS с файлом claude.ai/design, чтобы агент по проектированию создавал экраны с использованием ваших реальных компонентов. Каждый предварительный просмотр представляет собой живую визуализацию поставленного компонента.",
+    "es": "Sincronice GDS con claude.ai/design para que el agente de diseño cree pantallas con sus componentes reales. Cada vista previa es una representación en vivo del componente enviado.",
+    "ar": "قم بمزامنة نظام التوزيع العالمي (GDS) في claude.ai/design حتى يقوم وكيل التصميم ببناء الشاشات بمكوناتك الحقيقية. كل معاينة هي عرض مباشر للمكون الذي تم شحنه.",
+    "it": "Sincronizza GDS in claude.ai/design in modo che l'agente di progettazione crei schermate con i tuoi componenti reali. Ogni anteprima è un rendering dal vivo del componente spedito.",
+    "de": "Synchronisieren Sie GDS mit claude.ai/design, damit der Design-Agent Bildschirme mit Ihren echten Komponenten erstellt. Jede Vorschau ist ein Live-Rendering der ausgelieferten Komponente.",
+    "hu": "Szinkronizálja a GDS-t a claude.ai/design-ba, hogy a tervezőügynök képernyőket építsen az Ön valódi összetevőiből. Minden előnézet a szállított komponens élő megjelenítése.",
+    "he": "סנכרן את GDS לתוך claude.ai/design כך שסוכן העיצוב יבנה מסכים עם הרכיבים האמיתיים שלך. כל תצוגה מקדימה היא עיבוד חי של הרכיב שנשלח.",
+    "fr": "Synchronisez GDS dans claude.ai/design pour que l'agent de conception crée des écrans avec vos composants réels. Chaque aperçu est un rendu en direct du composant livré."
+  },
+  "p_b5a4315e0f38": {
+    "en": "Sync GDS into claude.ai/design so the design agent builds with real components.",
+    "de": "Synchronisieren Sie GDS mit claude.ai/design, damit der Design-Agent mit echten Komponenten baut.",
+    "ru": "Синхронизируйте GDS с файлом claude.ai/design, чтобы агент проектирования создавал проекты с использованием реальных компонентов.",
+    "he": "סנכרון GDS לתוך claude.ai/design כך שסוכן העיצוב יבנה עם רכיבים אמיתיים.",
+    "fr": "Synchronisez GDS dans claude.ai/design pour que l'agent de conception construise avec de vrais composants.",
+    "ar": "قم بمزامنة نظام التوزيع العالمي (GDS) في claude.ai/design حتى يقوم وكيل التصميم بالبناء باستخدام مكونات حقيقية.",
+    "hu": "Szinkronizálja a GDS-t a claude.ai/design fájlba, így a tervezőügynök valós komponensekből építkezik.",
+    "it": "Sincronizza GDS in claude.ai/design in modo che l'agente di progettazione crei con componenti reali.",
+    "es": "Sincronice GDS con claude.ai/design para que el agente de diseño construya con componentes reales."
   },
   "p_23321427e7d1": {
     "en": "Table Responsive Strategies",
@@ -9339,6 +9790,17 @@ export const generatedSitePhrases = {
     "ar": "تم تعطيل سياسة المستأجر بواسطة Microsoft.",
     "it": "I criteri del tenant hanno disabilitato Microsoft.",
     "hu": "A bérlői házirend letiltotta a Microsoftot."
+  },
+  "p_fba314db5ab0": {
+    "en": "The action enum drives icon, label, and aria-label automatically.",
+    "de": "Die Aktionsaufzählung steuert automatisch Icon, Label und Aria-Label.",
+    "ru": "Перечисление действий автоматически управляет значком, меткой и меткой-арией.",
+    "he": "מפרט הפעולה מניע באופן אוטומטי סמל, תווית ותווית aria.",
+    "es": "La enumeración de acciones controla automáticamente el icono, la etiqueta y la etiqueta aria.",
+    "ar": "يقوم تعداد الإجراء بتشغيل الأيقونة والتسمية وتسمية aria تلقائيًا.",
+    "fr": "L'énumération d'action pilote automatiquement l'icône, l'étiquette et l'étiquette aria.",
+    "hu": "A műveleti enum automatikusan mozgatja az ikont, a címkét és az aria-címkét.",
+    "it": "L'enumerazione azione gestisce automaticamente l'icona, l'etichetta e l'etichetta aria."
   },
   "p_40a4cdfff94d": {
     "en": "The API reference now marks export stability and whether a public entry is a GDS contract, Mantine-backed, Tabler-backed, or tooling-only.",
@@ -9603,6 +10065,17 @@ export const generatedSitePhrases = {
     "ar": "يجب أن تقوم هذه المسارات بتكوين مستندات/أسطح مرجعية مملوكة للحزمة بدلاً من أغلفة التخطيط المصممة يدويًا.",
     "de": "Diese Routen sollten paketeigene Dokumente/Referenzoberflächen anstelle von manuell erstellten Layout-Wrappern bilden.",
     "he": "מסלולים אלה צריכים להרכיב מסמכים/משטחי עזר בבעלות החבילה במקום עטיפות פריסה שנבנו ביד."
+  },
+  "p_bc164c494438": {
+    "en": "These rules are encoded in llms.txt and the drop-in templates. Agents that follow them produce on-brand, shippable code.",
+    "ar": "يتم ترميز هذه القواعد في llms.txt والقوالب المنسدلة. يقوم الوكلاء الذين يتبعونهم بإنتاج رمز خاص بالعلامة التجارية وقابل للشحن.",
+    "ru": "Эти правила закодированы в llms.txt и шаблонах всплывающих окон. Агенты, которые следуют за ними, создают фирменный готовый к отправке код.",
+    "es": "Estas reglas están codificadas en llms.txt y en las plantillas desplegables. Los agentes que los siguen producen códigos de marca que se pueden enviar.",
+    "de": "Diese Regeln sind in llms.txt und den Drop-in-Vorlagen kodiert. Agenten, die ihnen folgen, produzieren markengerechten, versandfähigen Code.",
+    "fr": "Ces règles sont codées dans llms.txt et dans les modèles déroulants. Les agents qui les suivent produisent du code livrable de marque.",
+    "hu": "Ezek a szabályok az llms.txt fájlban és a beugró sablonokban vannak kódolva. Az őket követő ügynökök a márkához tartozó, szállítható kódot állítanak elő.",
+    "he": "כללים אלה מקודדים ב-llms.txt ובתבניות הנפתחות. סוכנים שעוקבים אחריהם מייצרים קוד מותאם למותג הניתן למשלוח.",
+    "it": "Queste regole sono codificate in llms.txt e nei modelli drop-in. Gli agenti che li seguono producono codice spedibile in base al marchio."
   },
   "p_252bd72b6508": {
     "en": "Third-party embeds and maps must render inside the sanctioned GDS containment surface.",
@@ -9923,6 +10396,17 @@ export const generatedSitePhrases = {
     "it": "Scheda di elenco unificata",
     "hu": "Egységes listakártya"
   },
+  "p_56de97e77403": {
+    "en": "Universal machine-readable entry point — install steps, rules, packages, component families.",
+    "ru": "Универсальная машиночитаемая точка входа — шаги установки, правила, пакеты, семейства компонентов.",
+    "ar": "نقطة دخول عالمية يمكن قراءتها آليًا - خطوات التثبيت والقواعد والحزم وعائلات المكونات.",
+    "es": "Punto de entrada universal legible por máquina: pasos de instalación, reglas, paquetes y familias de componentes.",
+    "fr": "Point d'entrée universel lisible par machine : étapes d'installation, règles, packages, familles de composants.",
+    "hu": "Univerzális, géppel olvasható belépési pont – telepítési lépések, szabályok, csomagok, alkatrészcsaládok.",
+    "he": "נקודת כניסה אוניברסלית הניתנת לקריאה במכונה - התקנת שלבים, כללים, חבילות, משפחות רכיבים.",
+    "de": "Universeller maschinenlesbarer Einstiegspunkt – Installationsschritte, Regeln, Pakete, Komponentenfamilien.",
+    "it": "Punto di ingresso universale leggibile dalla macchina: passaggi di installazione, regole, pacchetti, famiglie di componenti."
+  },
   "p_06bc837e0c83": {
     "en": "Universal profile",
     "ru": "Универсальный профиль",
@@ -10175,6 +10659,17 @@ export const generatedSitePhrases = {
     "de": "Verwenden Sie öffentliche GDS-Grundelemente, wenn die Oberfläche Benutzer vor der Authentifizierung erklärt, vermarktet, konvertiert oder weiterleitet.",
     "he": "השתמש בפרימיטיבים ציבוריים של GDS כאשר פני השטח מסבירים, משווקים, ממירים או מנתבים משתמשים לפני אימות.",
     "ru": "Используйте общедоступные примитивы GDS, когда поверхность объясняет, продает, конвертирует или направляет пользователей перед аутентификацией."
+  },
+  "p_73b3bb62fb9f": {
+    "en": "Use GDS with AI",
+    "fr": "Utiliser GDS avec l'IA",
+    "ru": "Используйте GDS с ИИ",
+    "ar": "استخدم نظام التوزيع العالمي (GDS) مع الذكاء الاصطناعي",
+    "it": "Utilizza GDS con l'intelligenza artificiale",
+    "es": "Utilice GDS con IA",
+    "de": "Verwenden Sie GDS mit KI",
+    "he": "השתמש ב-GDS עם AI",
+    "hu": "Használja a GDS-t az AI-val"
   },
   "p_444340e73e23": {
     "en": "Use live demo routes to verify runtime behavior, not just static documentation copy.",
@@ -10483,6 +10978,17 @@ export const generatedSitePhrases = {
     "de": "Verwenden Sie dieses Panel als kanonisch begrenzte Komposition für gruppierte Inhalte.",
     "fr": "Utilisez ce panneau comme composition délimitée canonique pour le contenu groupé.",
     "he": "השתמש בחלונית זו כהרכב התחום הקנוני עבור תוכן מקובץ."
+  },
+  "p_84292c66fb4a": {
+    "en": "Use with AI",
+    "ru": "Использование с ИИ",
+    "ar": "استخدم مع الذكاء الاصطناعي",
+    "it": "Utilizzare con l'intelligenza artificiale",
+    "he": "השתמש עם AI",
+    "fr": "Utiliser avec l'IA",
+    "es": "Usar con IA",
+    "hu": "Használd az AI-vel",
+    "de": "Verwendung mit KI"
   },
   "p_5965c882211a": {
     "en": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",

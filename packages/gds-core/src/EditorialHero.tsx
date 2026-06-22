@@ -130,7 +130,7 @@ function HeroAction({ action, variant }: { action: EditorialHeroAction; variant:
 function LoadingHero({ compact }: { compact: boolean }) {
   return (
     <Paper withBorder radius="xl" p={compact ? 'lg' : 'xl'}>
-      <Grid gutter={compact ? 'lg' : 'xl'} align="center">
+      <Grid style={{ gap: compact ? 'var(--mantine-spacing-lg)' : 'var(--mantine-spacing-xl)', alignItems: 'center' }}>
         <Grid.Col span={{ base: 12, md: 6 }}>
           <Stack gap="md">
             <Skeleton height={16} width={96} radius="xl" />
@@ -338,7 +338,7 @@ export function EditorialHero({
       className={classNames?.root}
       style={surfaceVariant === 'flat-public' ? { boxShadow: 'none' } : undefined}
     >
-      <Grid gutter={compact ? 'lg' : 'xl'} align="center">
+      <Grid style={{ gap: compact ? 'var(--mantine-spacing-lg)' : 'var(--mantine-spacing-xl)', alignItems: 'center' }}>
         {textCol}
         {mediaCol}
       </Grid>

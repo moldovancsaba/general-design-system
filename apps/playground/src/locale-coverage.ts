@@ -52,6 +52,10 @@ export const localizedRouteCoverage: LocalizedRouteCoverageRule[] = [
     routePrefix: '/request-feature',
     fullCopyLocales: allSiteLocaleIds,
   },
+  {
+    routePrefix: '/ai',
+    fullCopyLocales: allSiteLocaleIds,
+  },
 ];
 
 function getRouteLocalizationRule(pathname: string) {

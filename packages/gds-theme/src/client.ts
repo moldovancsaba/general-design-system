@@ -3,6 +3,8 @@ export { getGdsThemePresets, resolveGdsThemePreset } from './theme-presets';
 export type { GdsThemePreset, GdsThemePresetId } from './theme-presets';
 export { getGdsVibeThemes, resolveGdsVibeTheme, getGdsVibeThemeCssVariables } from './vibe-themes';
 export type { GdsVibeTheme } from './vibe-themes';
+export { VibeThemePicker } from './VibeThemePicker.client';
+export type { VibeThemePickerProps } from './VibeThemePicker.client';
 export { createGdsThemeAccessibilityReport, validateGdsThemeAccessibility } from './accessibility-report';
 export type { GdsAccessibilityFindingSeverity, GdsContrastCheck, GdsContrastFinding, GdsContrastMode, GdsContrastRole, GdsForcedColorRole, GdsThemeAccessibilityReport } from './accessibility-report';
 export { createGdsTokenDiff, createGdsTokenGraph, createGdsThemeCompatibilityReport, validateGdsTokenGraph } from './token-operations';

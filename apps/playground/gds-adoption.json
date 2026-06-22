@@ -285,6 +285,20 @@
           "ar",
           "hu"
         ]
+      },
+      {
+        "routePrefix": "/ai",
+        "fullCopyLocales": [
+          "en",
+          "de",
+          "fr",
+          "it",
+          "es",
+          "ru",
+          "he",
+          "ar",
+          "hu"
+        ]
       }
     ],
     "themeOwnershipPaths": [

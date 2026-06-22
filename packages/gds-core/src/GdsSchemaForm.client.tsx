@@ -1,13 +1,13 @@
 'use client';
 
-import { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Button, Stack, Text } from '@mantine/core';
 import { FormField } from './FormField';
 import { GdsFormProvider, GdsValidationSummary, type GdsFormOrchestrationEvent, type ValidationIssue, ValidatedFieldMessage, useGdsFormOrchestration } from './GdsForm.client';
 import { StateBlock } from './StateBlock';
 
-export type GdsSchemaFieldType = 'text' | 'email' | 'url' | 'password' | 'number' | 'boolean' | 'select' | 'textarea' | 'date' | 'hidden' | 'conditional' | 'unsupported';
+export type GdsSchemaFieldType = 'text' | 'email' | 'url' | 'password' | 'number' | 'boolean' | 'select' | 'textarea' | 'date' | 'hidden' | 'conditional' | 'file-upload' | 'unsupported';
 
 export interface GdsFieldOption {
   label: string;
@@ -257,6 +257,48 @@ function validateSchemaValues(schema: GdsFormSchema, values: Record<string, unkn
   });
 }
 
+export interface FileUploadFieldProps {
+  id: string;
+  label: string;
+  describedBy?: string;
+  invalid?: boolean;
+  required?: boolean;
+  accept?: string;
+  multiple?: boolean;
+  onChange?: (files: File[]) => void;
+}
+
+export function FileUploadField({ id, label, describedBy, invalid, required, accept, multiple, onChange }: FileUploadFieldProps) {
+  const [fileNames, setFileNames] = useState<string[]>([]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.currentTarget.files ?? []);
+    setFileNames(files.map((file) => file.name));
+    onChange?.(files);
+  };
+
+  return (
+    <Stack gap={4}>
+      <input
+        id={id}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        required={required}
+        aria-label={label}
+        aria-describedby={describedBy}
+        aria-invalid={invalid || undefined}
+        onChange={handleChange}
+      />
+      {fileNames.length > 0 ? (
+        <Text size="xs" c="dimmed">
+          {fileNames.join(', ')}
+        </Text>
+      ) : null}
+    </Stack>
+  );
+}
+
 function renderDefaultField({ field, value, setValue, describedBy, invalid }: GdsFieldRendererContext) {
   const common = {
     id: field.name,
@@ -265,6 +307,15 @@ function renderDefaultField({ field, value, setValue, describedBy, invalid }: Gd
     'aria-invalid': invalid || undefined,
     required: field.required,
   };
+  if (field.type === 'file-upload') {
+    return (
+      <FileUploadField
+        {...common}
+        label={field.label}
+        onChange={(files) => setValue(files.map((file) => file.name).join(', '))}
+      />
+    );
+  }
   if (field.type === 'boolean') return <input {...common} type="checkbox" checked={Boolean(value)} onChange={(event) => setValue(event.currentTarget.checked)} />;
   if (field.type === 'number') return <input {...common} type="number" value={String(value ?? '')} onChange={(event) => setValue(event.currentTarget.value === '' ? '' : Number(event.currentTarget.value))} />;
   if (field.type === 'select') {

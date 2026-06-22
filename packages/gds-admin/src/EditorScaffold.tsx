@@ -24,7 +24,7 @@ export function EditorScaffold({
     <Stack gap="lg">
       {header}
       {context}
-      <Grid gutter="lg" align="start">
+      <Grid style={{ gap: 'var(--mantine-spacing-lg)', alignItems: 'start' }}>
         <Grid.Col span={{ base: 12, md: preview ? 7 : 8 }}>
           {form}
         </Grid.Col>

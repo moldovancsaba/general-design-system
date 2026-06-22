@@ -185,6 +185,30 @@ async function evaluate(client, expression) {
   return result.result.value;
 }
 
+// Poll until the page has actually rendered a governed surface with readable
+// text, instead of relying on a fixed delay. The Theme Lab (/themes) route is
+// heavy and can take longer than a flat wait to paint under CI load, which
+// previously caused flaky "No visible governed surface found" failures.
+async function waitForReady(client, { timeout = 12000, interval = 200 } = {}) {
+  const deadline = Date.now() + timeout;
+  while (Date.now() < deadline) {
+    const ready = await evaluate(client, `(() => {
+      const visible = (el) => {
+        if (!el) return false;
+        const s = getComputedStyle(el);
+        const r = el.getBoundingClientRect();
+        return s.visibility !== 'hidden' && s.display !== 'none' && r.width > 0 && r.height > 0;
+      };
+      const surface = [...document.querySelectorAll('.mantine-Card-root,.mantine-Paper-root,[data-gds-owned-contrast],[data-gds-local-contrast]')].some(visible);
+      const hasText = (document.body?.innerText || '').trim().length >= 120;
+      return surface && hasText;
+    })()`);
+    if (ready) return true;
+    await wait(interval);
+  }
+  return false;
+}
+
 async function verifyCase(client, route, testCase) {
   await client.send('Page.bringToFront');
   await client.send('Emulation.setEmulatedMedia', {
@@ -195,7 +219,8 @@ async function verifyCase(client, route, testCase) {
     ],
   });
   await client.send('Page.navigate', { url: absoluteUrl(route) });
-  await wait(900);
+  await wait(300);
+  await waitForReady(client);
 
   await evaluate(client, `
     localStorage.setItem('gds-reference-theme-selection', JSON.stringify({
@@ -208,7 +233,8 @@ async function verifyCase(client, route, testCase) {
     }));
     location.reload();
   `);
-  await wait(900);
+  await wait(400);
+  await waitForReady(client);
 
   return evaluate(client, `(() => {
     const failures = [];

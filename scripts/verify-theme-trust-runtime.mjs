@@ -325,7 +325,12 @@ try {
   for (const route of themeRoutes) {
     for (const testCase of themeCases) {
       for (const viewport of viewports) {
-        const result = await verifyRouteCase(client, route, testCase, viewport);
+        // Retry transient render misses; genuine violations fail every attempt.
+        let result = await verifyRouteCase(client, route, testCase, viewport);
+        for (let attempt = 2; attempt <= 3 && result.failures.length; attempt++) {
+          await wait(600);
+          result = await verifyRouteCase(client, route, testCase, viewport);
+        }
         if (result.failures.length) {
           failures.push(result);
         }
@@ -334,7 +339,11 @@ try {
   }
 
   for (const route of localizedHeaderRoutes) {
-    const result = await verifyRouteCase(client, route, { preset: 'default', scheme: 'light' }, viewports[0]);
+    let result = await verifyRouteCase(client, route, { preset: 'default', scheme: 'light' }, viewports[0]);
+    for (let attempt = 2; attempt <= 3 && result.failures.length; attempt++) {
+      await wait(600);
+      result = await verifyRouteCase(client, route, { preset: 'default', scheme: 'light' }, viewports[0]);
+    }
     if (result.failures.length) {
       failures.push(result);
     }

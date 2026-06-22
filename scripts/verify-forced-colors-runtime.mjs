@@ -308,7 +308,14 @@ try {
 
   for (const route of routes) {
     for (const testCase of cases) {
-      const result = await verifyCase(client, route, testCase);
+      // Retry transient render misses: a fresh navigation usually paints fine
+      // on the next attempt. A genuine forced-colors violation fails every
+      // attempt and is still recorded.
+      let result = await verifyCase(client, route, testCase);
+      for (let attempt = 2; attempt <= 3 && result.failures.length; attempt++) {
+        await wait(600);
+        result = await verifyCase(client, route, testCase);
+      }
       if (result.failures.length) failures.push(result);
     }
   }

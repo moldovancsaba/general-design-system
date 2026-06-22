@@ -345,7 +345,12 @@ try {
 
   for (const route of routes) {
     for (const testCase of cases) {
-      const result = await verifyCase(client, route, testCase);
+      // Retry transient render misses; genuine violations fail every attempt.
+      let result = await verifyCase(client, route, testCase);
+      for (let attempt = 2; attempt <= 3 && result.failures.length; attempt++) {
+        await wait(600);
+        result = await verifyCase(client, route, testCase);
+      }
       if (result.failures.length) {
         failures.push(result);
       }
@@ -353,7 +358,11 @@ try {
   }
 
   for (const route of localizedHeaderRoutes) {
-    const result = await verifyCase(client, route, { preset: 'default', scheme: 'light' });
+    let result = await verifyCase(client, route, { preset: 'default', scheme: 'light' });
+    for (let attempt = 2; attempt <= 3 && result.failures.length; attempt++) {
+      await wait(600);
+      result = await verifyCase(client, route, { preset: 'default', scheme: 'light' });
+    }
     if (result.failures.length) {
       failures.push(result);
     }

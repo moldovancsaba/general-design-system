@@ -1,0 +1,22 @@
+{
+  "$comment": "Canonical governance record for the GDS vendor UI engine (issue #348). The engine is a peer dependency (single resolved instance). Upgrades are deliberate internal migrations behind the stable public contract enforced by `npm run verify:boundary`; consumers are unaffected. Update this file only via the documented runbook (docs/VENDOR_UPGRADE_RUNBOOK.md).",
+  "engine": "@mantine/core",
+  "enginePackages": [
+    "@mantine/core",
+    "@mantine/hooks",
+    "@mantine/modals",
+    "@mantine/notifications"
+  ],
+  "iconEngine": "@tabler/icons-react",
+  "pinnedRange": "^7.9.0 || ^8.3.0 || ^9.0.0",
+  "iconRange": "^3.5.0",
+  "platformPeers": {
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
+  },
+  "candidate": "^9.0.0",
+  "ciMatrix": ["mantine-7", "mantine-9"],
+  "lastReviewed": "2026-06-23",
+  "rollbackRef": "main",
+  "notes": "Engine stays a peer for single-instance safety. A candidate major is smoke-tested by the CI matrix before adoption; adoption changes only adapter/seam files behind GDS's owned public contract."
+}

@@ -1,0 +1,25 @@
+{
+  "name": "reference-next",
+  "private": true,
+  "version": "3.5.0",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "build:app-router": "next build",
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "@doneisbetter/gds-core": "3.5.0",
+    "@doneisbetter/gds-theme": "3.5.0",
+    "@mantine/core": "^7.9.0",
+    "@mantine/hooks": "^7.9.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "next": "^15.5.6",
+    "typescript": "~6.0.2"
+  }
+}

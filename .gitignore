@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+dist/
+coverage/
+*.log
+dependency-risk-report.json
+node_modules
+dist
+.next/
+*.tsbuildinfo
+.ds-sync/
+ds-bundle/
+.design-sync/.cache/
+.design-sync/learnings/
+.design-sync/node_modules
+packages/gds/.ds-resolved-styles.css
+.design-sync/batches/

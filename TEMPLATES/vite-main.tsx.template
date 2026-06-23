@@ -1,0 +1,13 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+// Mandatory: load the GDS stylesheet exactly once, before your own app styles.
+// Without it, GDS surfaces (including dropdown/overlay backgrounds) render unstyled.
+import "@doneisbetter/gds-theme/styles.css";
+import { GdsProvider } from "@doneisbetter/gds/client";
+import App from "./App";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <GdsProvider>
+    <App />
+  </GdsProvider>,
+);

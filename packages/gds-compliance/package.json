@@ -1,0 +1,24 @@
+{
+  "name": "@doneisbetter/gds-compliance",
+  "version": "3.5.0",
+  "type": "module",
+  "main": "./index.js",
+  "bin": {
+    "gds-compliance": "bin/gds-compliance.js"
+  },
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "bin",
+    "index.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sovereignsquad/general-design-system.git",
+    "directory": "packages/gds-compliance"
+  }
+}

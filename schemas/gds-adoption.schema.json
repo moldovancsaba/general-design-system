@@ -1,0 +1,313 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sovereignsquad.github.io/general-design-system/gds-adoption.schema.json",
+  "title": "GDS Adoption Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "gdsVersion",
+    "productArchetype",
+    "requiredContracts",
+    "localAdapters",
+    "approvedExceptions",
+    "migrationStatus",
+    "owner",
+    "lastReviewedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "gdsVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "productArchetype": {
+      "type": "string",
+      "enum": ["public", "admin", "hybrid", "theme-only"]
+    },
+    "supportedEntryPoints": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "@doneisbetter/gds-theme",
+          "@doneisbetter/gds-theme/client",
+          "@doneisbetter/gds-theme/server",
+          "@doneisbetter/gds-core",
+          "@doneisbetter/gds-core/client",
+          "@doneisbetter/gds-core/server",
+          "@doneisbetter/gds-admin",
+          "@doneisbetter/gds-admin/client",
+          "@doneisbetter/gds-admin/server"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "requiredContracts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "localAdapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["contract", "path", "status"],
+        "properties": {
+          "contract": { "type": "string", "minLength": 1 },
+          "path": { "type": "string", "minLength": 1 },
+          "status": {
+            "type": "string",
+            "enum": ["planned", "active", "deprecated", "exception"]
+          }
+        }
+      }
+    },
+    "approvedExceptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["surface", "reason", "owner", "reviewDate"],
+        "properties": {
+          "surface": { "type": "string", "minLength": 1 },
+          "category": {
+            "type": "string",
+            "enum": [
+              "runtime-constraint",
+              "product-authored-experience",
+              "package-coverage-gap",
+              "migration-bridge",
+              "dependency-boundary"
+            ]
+          },
+          "scope": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "dependency": { "type": "string", "minLength": 1 },
+          "allowImports": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "reason": { "type": "string", "minLength": 1 },
+          "replacementIssue": { "type": "string", "minLength": 1 },
+          "rollbackPlan": { "type": "string", "minLength": 1 },
+          "riskLevel": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"]
+          },
+          "enforcementMode": {
+            "type": "string",
+            "enum": ["warn", "error"]
+          },
+          "allowedImplementation": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "mustStillUse": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "mustNotDo": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "a11yRequirements": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "testingRequirements": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "observabilityRequirements": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "owner": { "type": "string", "minLength": 1 },
+          "reviewDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "exitCondition": { "type": "string", "minLength": 1 },
+          "status": {
+            "type": "string",
+            "enum": ["temporary", "approved", "deprecated", "removed", "active", "expired", "removing"]
+          },
+          "removeBy": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "category": {
+                  "const": "product-authored-experience"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "a11yRequirements",
+                "testingRequirements",
+                "observabilityRequirements"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "category": {
+                  "const": "dependency-boundary"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "dependency",
+                "replacementIssue",
+                "rollbackPlan",
+                "riskLevel",
+                "enforcementMode",
+                "a11yRequirements",
+                "testingRequirements",
+                "observabilityRequirements"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "documentationPaths": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "staleDocumentationReferences": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "protectedSurfacePaths": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "bannedImports": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "strictMode": {
+          "type": "boolean"
+        },
+        "approvedShellPrimitives": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "approvedDetailPrimitives": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "approvedListingPrimitives": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "approvedActionPrimitives": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "approvedTemporaryExceptions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "approvedThemeLanes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "themeOwnershipPaths": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "identityProviderBranding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["approvedProviders"],
+          "properties": {
+            "approvedProviders": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true
+            },
+            "forbiddenCustomizations": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true
+            },
+            "allowedVariants": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["solid", "outline", "neutral"]
+              },
+              "uniqueItems": true
+            },
+            "colorAuthority": {
+              "type": "string",
+              "enum": ["provider", "gds-outline", "gds-neutral"]
+            },
+            "minTouchTargetPx": {
+              "type": "integer",
+              "minimum": 24
+            },
+            "policyDocument": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "migrationStatus": {
+      "type": "string",
+      "enum": ["planned", "partial", "governed", "blocked", "deprecated"]
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lastReviewedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    }
+  }
+}

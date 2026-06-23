@@ -1,0 +1,37 @@
+{
+  "gdsVersion": "3.5.0",
+  "supportedLines": [
+    {
+      "react": "18.2.x",
+      "next": "15.x",
+      "mantine": "7.9.x",
+      "vite": "8.x",
+      "status": "supported",
+      "notes": "Primary CI validation line for published packages and reference consumers."
+    },
+    {
+      "react": "19.x",
+      "next": "15.x",
+      "mantine": "7.9.x",
+      "vite": "8.x",
+      "status": "supported",
+      "notes": "Peer-compatible line for direct package consumers; covered by typed entrypoint and fixture validation."
+    },
+    {
+      "react": "19.x",
+      "next": "15.x",
+      "mantine": "8.3.x",
+      "vite": "8.x",
+      "status": "supported",
+      "notes": "Validated through packed consumer installation smoke using Mantine 8.3.6 and React 19.2.0."
+    },
+    {
+      "react": "19.x",
+      "next": "15.x",
+      "mantine": "9.2.x",
+      "vite": "8.x",
+      "status": "supported",
+      "notes": "Validated through packed consumer installation smoke using Mantine 9.2.1 and React 19.2.0."
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+import { fireEvent, screen } from '@testing-library/react';
+import { renderWithGds } from '../../../test-utils/render';
+import { TokensPage } from './info-pages';
+import {
+  CardsPage,
+  FoodMenuPage,
+  LayoutsPage,
+  LiveDemosPage,
+  PlaybackPage,
+  VocabularyPage,
+} from './showcase-pages';
+
+describe('playground theme explorer and live demos hub', () => {
+  it('lets visitors switch theme presets and compare a second shipped lane', () => {
+    renderWithGds(<TokensPage />);
+
+    const presetSelect = screen.getByLabelText('Preset');
+    const schemeSelect = screen.getByLabelText('Preview color scheme');
+
+    fireEvent.change(presetSelect, { target: { value: 'brand' } });
+    fireEvent.change(schemeSelect, { target: { value: 'dark' } });
+
+    expect((presetSelect as HTMLSelectElement).value).toBe('brand');
+    expect(screen.getAllByText('createPublicBrandTheme(...)').length).toBeGreaterThan(0);
+    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: dark') ?? false).length).toBeGreaterThan(0);
+
+    fireEvent.click(screen.getByLabelText('Compare against a second shipped preset'));
+    fireEvent.change(screen.getByLabelText('Comparison preset'), { target: { value: 'flat-surface' } });
+
+    expect(screen.getByText('Comparison Preview Surface')).toBeTruthy();
+    expect((screen.getByLabelText('Comparison preset') as HTMLSelectElement).value).toBe('flat-surface');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reset theme lab' }));
+
+    expect((screen.getByLabelText('Preset') as HTMLSelectElement).value).toBe('default');
+  });
+
+  it('keeps brand controls disabled unless brand lane is selected', () => {
+    renderWithGds(<TokensPage />);
+
+    const presetSelect = screen.getByLabelText('Preset');
+    const primaryColorSelect = screen.getByLabelText('Brand primary color');
+    const flatSurfacesCheckbox = screen.getByLabelText('Use flat surfaces');
+    const editorialCheckbox = screen.getByLabelText('Use editorial serif headings');
+
+    expect((primaryColorSelect as HTMLSelectElement).disabled).toBe(true);
+    expect((flatSurfacesCheckbox as HTMLInputElement).disabled).toBe(true);
+    expect((editorialCheckbox as HTMLInputElement).disabled).toBe(true);
+
+    fireEvent.change(presetSelect, { target: { value: 'brand' } });
+
+    expect((primaryColorSelect as HTMLSelectElement).disabled).toBe(false);
+    expect((flatSurfacesCheckbox as HTMLInputElement).disabled).toBe(false);
+    expect((editorialCheckbox as HTMLInputElement).disabled).toBe(false);
+
+    fireEvent.change(presetSelect, { target: { value: 'default' } });
+
+    expect((primaryColorSelect as HTMLSelectElement).disabled).toBe(true);
+    expect((flatSurfacesCheckbox as HTMLInputElement).disabled).toBe(true);
+    expect((editorialCheckbox as HTMLInputElement).disabled).toBe(true);
+  });
+
+  it('shows supported and avoid guidance for each shipped lane', () => {
+    renderWithGds(<TokensPage />);
+
+    expect(screen.getAllByText('CSS VibeTheme').length).toBeGreaterThanOrEqual(12);
+    expect(screen.getByText('Current VibeTheme contract')).toBeTruthy();
+    expect(screen.getAllByRole('button', { name: 'Preview this vibe' }).length).toBeGreaterThanOrEqual(12);
+    expect(screen.getAllByText(/Best for:/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Avoid for:/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Unsupported lane boundary').length).toBeGreaterThan(0);
+    expect(screen.getByText(/Do not create local branding-layer helpers/i)).toBeTruthy();
+  });
+
+  it('keeps every shipped lane in the requested preview color scheme', () => {
+    renderWithGds(<TokensPage />);
+
+    fireEvent.change(screen.getByLabelText('Preset'), { target: { value: 'dark-public' } });
+    fireEvent.change(screen.getByLabelText('Preview color scheme'), { target: { value: 'light' } });
+
+    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: light') ?? false).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/always previews in dark mode/i)).toBeNull();
+
+    fireEvent.change(screen.getByLabelText('Preset'), { target: { value: 'neon-night' } });
+
+    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: light') ?? false).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/dark-forward preset always renders in dark mode/i)).toBeNull();
+
+    fireEvent.change(screen.getByLabelText('Preset'), { target: { value: 'cosmic' } });
+
+    expect(screen.getAllByText((_, node) => node?.textContent?.includes('Color scheme: light') ?? false).length).toBeGreaterThan(0);
+    expect((screen.getByLabelText('Preset') as HTMLSelectElement).value).toBe('cosmic');
+  });
+
+  it('frames the live demos section as the official runtime showcase', () => {
+    renderWithGds(<LiveDemosPage />);
+
+    expect(screen.getByText('Live Demos')).toBeTruthy();
+    expect(screen.getByText(/public runtime showcase/i)).toBeTruthy();
+    expect(screen.getAllByRole('link', { name: 'Open section' }).length).toBeGreaterThan(0);
+    expect(screen.getByText('Discovery & Cards')).toBeTruthy();
+    expect(screen.getByText('Actions & Auth')).toBeTruthy();
+    expect(screen.getByText('Food & Menus')).toBeTruthy();
+    expect(screen.getByText('Playback & Capture')).toBeTruthy();
+  });
+
+  it('renders all dedicated demo families with GDS-owned contracts', () => {
+    renderWithGds(<CardsPage />);
+    expect(screen.getByText('Discovery & Cards')).toBeTruthy();
+    expect(screen.getByText('Governed sharing')).toBeTruthy();
+
+    renderWithGds(<LayoutsPage />);
+    expect(screen.getByText('Shells & Layouts')).toBeTruthy();
+    expect(screen.getByText('Discovery shell')).toBeTruthy();
+
+    renderWithGds(<VocabularyPage />);
+    expect(screen.getByText('Actions & Auth')).toBeTruthy();
+    expect(screen.getByText('Canonical social auth')).toBeTruthy();
+
+    renderWithGds(<FoodMenuPage />);
+    expect(screen.getByText('Food & Menu')).toBeTruthy();
+    expect(screen.getByText('Food cards')).toBeTruthy();
+
+    renderWithGds(<PlaybackPage />);
+    expect(screen.getByText('Playback & Capture')).toBeTruthy();
+    expect(screen.getByText('Capture/review stage')).toBeTruthy();
+  });
+
+  it('keeps live shell demos inside bounded preview surfaces', () => {
+    const { container } = renderWithGds(<LayoutsPage />);
+
+    expect(container.querySelectorAll('[data-gds-bounded-preview-surface]').length).toBeGreaterThan(0);
+  });
+
+  it('offers a layout template cookbook with editable JSON and diagnostics', () => {
+    renderWithGds(<LayoutsPage />);
+
+    expect(screen.getByText('Block-based layout schema')).toBeTruthy();
+    expect(screen.getByRole('combobox', { name: 'Template preset' })).toBeTruthy();
+    expect(screen.getByLabelText('Layout schema JSON')).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Apply schema' })).toBeTruthy();
+    expect(screen.getByText(/Diagnostic result:/i)).toBeTruthy();
+
+    fireEvent.change(screen.getByRole('combobox', { name: 'Template preset' }), {
+      target: { value: 'diagnostic-invalid' },
+    });
+
+    expect(screen.getByText(/Validation Failure Example/i)).toBeTruthy();
+    expect(screen.getAllByText(/Unsupported layout block type "ghost"/i).length).toBeGreaterThan(0);
+
+    fireEvent.change(screen.getByLabelText('Layout schema JSON'), {
+      target: { value: '{ "version": "1", "blocks": [ { "id": "broken", "type": "hero", "props": { "title": "Edited", "description": "inline edit" } } ] }' },
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Apply schema' }));
+
+    expect(screen.getByText('Edited')).toBeTruthy();
+    expect(screen.getByText(/No issues|Diagnostic result: no issues/i)).toBeTruthy();
+  });
+});

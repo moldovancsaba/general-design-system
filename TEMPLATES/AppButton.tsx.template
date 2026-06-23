@@ -1,0 +1,21 @@
+import { Button, type ButtonProps } from "@mantine/core";
+
+type AppButtonVariant = "primary" | "secondary" | "subtle" | "danger";
+
+const VARIANT_MAP: Record<AppButtonVariant, Pick<ButtonProps, "variant" | "color">> = {
+  primary: { variant: "filled", color: "brand" },
+  secondary: { variant: "light", color: "brand" },
+  subtle: { variant: "subtle", color: "brand" },
+  danger: { variant: "filled", color: "red" }
+};
+
+export function AppButton({
+  tone = "primary",
+  ...props
+}: ButtonProps & {
+  tone?: AppButtonVariant;
+}) {
+  const mapped = VARIANT_MAP[tone];
+
+  return <Button size="md" radius="md" {...mapped} {...props} />;
+}

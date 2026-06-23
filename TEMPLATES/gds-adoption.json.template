@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "gdsVersion": "3.4.14",
+  "productArchetype": "hybrid",
+  "supportedEntryPoints": [
+    "@doneisbetter/gds-theme/client",
+    "@doneisbetter/gds-theme/server",
+    "@doneisbetter/gds-core/client",
+    "@doneisbetter/gds-core/server",
+    "@doneisbetter/gds-admin/client",
+    "@doneisbetter/gds-admin/server",
+    "@doneisbetter/gds/client",
+    "@doneisbetter/gds/server"
+  ],
+  "requiredContracts": [
+    "AppShell",
+    "PageHeader",
+    "StateBlock",
+    "PublicShell",
+    "AdminTextInput",
+    "AdminDataTable",
+    "GdsConfirmProvider",
+    "GdsIcon",
+    "GdsLayoutTemplatePreview"
+  ],
+  "localAdapters": [
+    {
+      "contract": "PublicShell",
+      "path": "src/ui/PublicShell.tsx",
+      "status": "active"
+    }
+  ],
+  "approvedExceptions": [
+    {
+      "surface": "Map embed",
+      "category": "package-coverage-gap",
+      "scope": [
+        "src/features/venues/components/VenueMap.tsx"
+      ],
+      "reason": "Third-party map engine remains outside canonical GDS scope.",
+      "allowedImplementation": [
+        "MapPanel with a sanctioned iframe or map-runtime slot"
+      ],
+      "mustStillUse": [
+        "GDS spacing tokens",
+        "GDS accessibility labels",
+        "GDS loading, empty, and error states"
+      ],
+      "mustNotDo": [
+        "Create a local replacement shell",
+        "Bypass accessibility labeling",
+        "Use free-form raw layout CSS as a parallel design system"
+      ],
+      "a11yRequirements": [
+        "Keyboard reachable fallback actions",
+        "Accessible title for the embedded runtime"
+      ],
+      "testingRequirements": [
+        "Empty and provider-error states covered in component tests"
+      ],
+      "observabilityRequirements": [
+        "Recoverable provider failures visible to operators"
+      ],
+      "owner": "platform-ui",
+      "reviewDate": "2026-05-27",
+      "exitCondition": "Replace with the canonical GDS primitive once the package line covers this surface directly.",
+      "status": "temporary"
+    },
+    {
+      "surface": "Approved icon exception",
+      "category": "dependency-boundary",
+      "scope": [
+        "src/icons/legacy/*.tsx"
+      ],
+      "dependency": "lucide-react",
+      "allowImports": [
+        "lucide-react"
+      ],
+      "reason": "Consumer keeps a reviewed icon exception while remaining on shared lint/gds-compliance tooling.",
+      "allowedImplementation": [
+        "Imports confined to the reviewed bridge layer"
+      ],
+      "mustStillUse": [
+        "GDS action semantics",
+        "GDS spacing and color tokens"
+      ],
+      "mustNotDo": [
+        "Spread lucide-react imports into feature UI",
+        "Use the bridge as a permanent icon policy"
+      ],
+      "a11yRequirements": [
+        "Icon-only controls keep accessible names"
+      ],
+      "testingRequirements": [
+        "Bridge imports are covered by dependency-boundary verification"
+      ],
+      "observabilityRequirements": [
+        "Bridge usage appears in dependency-risk reports"
+      ],
+      "owner": "platform-ui",
+      "reviewDate": "2026-08-31",
+      "removeBy": "2026-09-30",
+      "replacementIssue": "https://github.com/sovereignsquad/general-design-system/issues/299",
+      "exitCondition": "Remove once the consumer has finished the icon migration to the canonical GDS vocabulary.",
+      "rollbackPlan": "Delete the bridge and replace usage with GdsIcon, GdsIcons, or semantic actions.",
+      "riskLevel": "medium",
+      "enforcementMode": "error",
+      "status": "active"
+    },
+    {
+      "surface": "Creator-authored campaign canvas",
+      "category": "product-authored-experience",
+      "scope": [
+        "src/features/campaigns/creator-canvas/*.tsx",
+        "src/features/campaigns/creator-canvas/*.css.ts"
+      ],
+      "reason": "A bounded creator-owned campaign surface temporarily retains product-local presentation overrides.",
+      "allowedImplementation": [
+        "Creator-authored CSS scoped to the approved canvas root only"
+      ],
+      "mustStillUse": [
+        "GDS public shell",
+        "GDS shared consent and legal controls",
+        "GDS state and recovery surfaces outside the canvas"
+      ],
+      "mustNotDo": [
+        "Replace shared app chrome",
+        "Hide required consent controls",
+        "Apply creator CSS outside the approved canvas scope"
+      ],
+      "a11yRequirements": [
+        "Shared controls remain keyboard accessible and labeled",
+        "Critical text and consent surfaces preserve contrast and readability"
+      ],
+      "testingRequirements": [
+        "Base fallback presentation covered when creator styles fail to load",
+        "Mobile layout and shared control visibility covered in route verification"
+      ],
+      "observabilityRequirements": [
+        "Broken or malformed override payloads are visible to operators",
+        "Moderation and publish workflows can identify the themed canvas owner"
+      ],
+      "owner": "platform-ui",
+      "reviewDate": "2026-05-28",
+      "exitCondition": "Replace once the shared creator-authored experience theming lane covers this use case directly.",
+      "status": "temporary"
+    }
+  ],
+  "compliance": {
+    "documentationPaths": [
+      "README.md",
+      "docs/design-system-adapter.md"
+    ],
+    "staleDocumentationReferences": [
+      "MANTINE_RUNTIME.md",
+      "COMPONENT_CONTRACTS.md",
+      "MANTINE_PLATFORM.md"
+    ],
+    "protectedSurfacePaths": [
+      "src/gds",
+      "src/components/public"
+    ],
+    "bannedImports": [
+      "legacy-ui-kit"
+    ],
+    "strictMode": false,
+    "approvedShellPrimitives": [
+      "DiscoveryShell"
+    ],
+    "approvedDetailPrimitives": [
+      "DetailProfileShell"
+    ],
+    "approvedListingPrimitives": [
+      "ListingCard",
+      "AdminResourceManager",
+      "AdminResourceGrid",
+      "AdminResourceCard"
+    ],
+    "approvedActionPrimitives": [
+      "ActionBar",
+      "AdminFormActions",
+      "GdsConfirmProvider",
+      "GdsToastProvider"
+    ],
+    "approvedMediaPrimitives": [
+      "MediaField",
+      "UploadDropzone",
+      "MediaPreviewCard"
+    ],
+    "approvedReportingPrimitives": [
+      "ReportingSection",
+      "PeriodSelector",
+      "EvidencePanel",
+      "ChartTokenPanel",
+      "AdminDataTable",
+      "AdminAnalyticsTable"
+    ],
+    "approvedAccessPrimitives": [
+      "AuthShell",
+      "ProviderIdentityButtonGroup",
+      "SocialAuthButtons",
+      "AccessSummary",
+      "AccessRecoveryPanel"
+    ],
+    "identityProviderBranding": {
+      "approvedProviders": [
+        "google",
+        "apple",
+        "facebook",
+        "github",
+        "microsoft",
+        "linkedin",
+        "discord",
+        "x",
+        "email"
+      ],
+      "forbiddenCustomizations": [
+        "variant",
+        "leftSection",
+        "rightSection",
+        "fullWidth",
+        "size"
+      ],
+      "allowedVariants": [
+        "solid",
+        "outline",
+        "neutral"
+      ],
+      "colorAuthority": "provider",
+      "minTouchTargetPx": 44,
+      "policyDocument": "IDENTITY_PROVIDER_BRANDING.md"
+    },
+    "approvedThemeLanes": [
+      "gdsTheme",
+      "gdsDarkPublicTheme",
+      "gdsFlatSurfaceTheme",
+      "gdsEditorialPublicTheme",
+      "createPublicBrandTheme"
+    ],
+    "themeOwnershipPaths": [
+      "src/providers.tsx",
+      "src/theme.ts"
+    ],
+    "approvedTemporaryExceptions": [
+      "MapPanel"
+    ],
+    "strictViolationFamilies": [
+      "strict.import.mantine-core",
+      "strict.import.tabler-icons",
+      "strict.raw-control",
+      "strict.browser-dialog",
+      "strict.raw-table",
+      "strict.inline-style",
+      "strict.local-gds-adapter"
+    ]
+  },
+  "migrationStatus": "partial",
+  "owner": "platform-ui",
+  "lastReviewedAt": "2026-05-25"
+}

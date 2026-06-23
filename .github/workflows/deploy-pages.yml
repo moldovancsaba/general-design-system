@@ -1,0 +1,64 @@
+name: Deploy GDS Playground to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --omit=optional
+      - name: Install Linux native build bindings
+        run: npm install --no-save @rollup/rollup-linux-x64-gnu @rolldown/binding-linux-x64-gnu
+      - name: Build GDS Theme
+        run: npm run build --workspace=@doneisbetter/gds-theme
+      - name: Build GDS Core
+        run: npm run build --workspace=@doneisbetter/gds-core
+      - name: Build GDS Admin
+        run: npm run build --workspace=@doneisbetter/gds-admin
+      - name: Build Playground
+        run: npm run build --workspace=playground
+      - name: Setup SPA Routing Fallback
+        run: cp ./apps/playground/dist/index.html ./apps/playground/dist/404.html
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './apps/playground/dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "gdsVersion": "3.0.7",
+  "productArchetype": "public",
+  "supportedEntryPoints": [
+    "@doneisbetter/gds-theme/client",
+    "@doneisbetter/gds-core/client"
+  ],
+  "requiredContracts": [
+    "PublicShell",
+    "PublicNav",
+    "DocsPageShell",
+    "EditorialHero",
+    "FeatureBand",
+    "BrowseSurface",
+    "EditorialCard",
+    "ConsumerSection",
+    "MediaField",
+    "PublicBrandFooter",
+    "SimpleDataTable",
+    "PlaceholderPanel"
+  ],
+  "localAdapters": [],
+  "approvedExceptions": [],
+  "migrationStatus": "governed",
+  "owner": "gds-platform",
+  "lastReviewedAt": "2026-05-29",
+  "compliance": {
+    "approvedThemeLanes": [
+      "gdsTheme",
+      "gdsDarkPublicTheme",
+      "gdsFlatSurfaceTheme",
+      "gdsEditorialPublicTheme",
+      "createPublicBrandTheme"
+    ],
+    "themeOwnershipPaths": [
+      "src/main.tsx"
+    ]
+  }
+}

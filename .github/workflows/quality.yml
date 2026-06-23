@@ -1,0 +1,47 @@
+name: GDS Quality
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: validate (mantine-${{ matrix.mantine-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        mantine-version: [7, 9]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --omit=optional
+
+      - name: Install Linux native build bindings
+        run: npm install --no-save @rollup/rollup-linux-x64-gnu @rolldown/binding-linux-x64-gnu
+
+      - name: Override to Mantine 9
+        if: matrix.mantine-version == 9
+        run: |
+          npm install --no-save @mantine/core@^9 @mantine/hooks@^9 @mantine/modals@^9 @mantine/notifications@^9 react@^19 react-dom@^19
+          find . -maxdepth 7 -name 'react' -path '*/node_modules/react' -type d -not -path './node_modules/react' | xargs -r rm -rf
+          find . -maxdepth 7 -name 'react-dom' -path '*/node_modules/react-dom' -type d -not -path './node_modules/react-dom' | xargs -r rm -rf
+          find . -maxdepth 7 -name '@mantine' -path '*/node_modules/@mantine' -type d -not -path './node_modules/@mantine' | xargs -r rm -rf
+
+      - name: Verify release alignment and quality gates
+        run: npm run verify:release

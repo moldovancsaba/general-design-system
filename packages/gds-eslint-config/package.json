@@ -1,0 +1,23 @@
+{
+  "name": "@doneisbetter/gds-eslint-config",
+  "version": "3.5.0",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sovereignsquad/general-design-system.git",
+    "directory": "packages/gds-eslint-config"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0 || ^10.0.0"
+  }
+}

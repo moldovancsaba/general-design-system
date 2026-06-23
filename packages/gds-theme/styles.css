@@ -8,6 +8,40 @@
   transform: translateX(0) !important;
 }
 
+/*
+ * GDS-owned opaque overlay-surface guarantee (issue #342).
+ *
+ * Dropdown / popover / menu / combobox / hovercard containers must never render
+ * a transparent background — even if the vendor base stylesheet is not loaded by
+ * the consumer, or an unlayered consumer reset competes. GDS owns this surface
+ * rather than delegating it to the vendor. The background reads from a GDS-owned
+ * opaque token with hard fallbacks, so it self-heals when --mantine-* vars are
+ * absent. Real class selectors (specificity 0,1,0) reliably beat a `*`-level
+ * consumer reset; forced-colors keeps system Canvas.
+ */
+:root {
+  --gds-overlay-surface: #ffffff;
+}
+html[data-mantine-color-scheme='dark'] {
+  --gds-overlay-surface: var(--mantine-color-dark-6, #25262b);
+}
+@media (forced-colors: active) {
+  :root {
+    --gds-overlay-surface: Canvas;
+  }
+}
+
+.mantine-Popover-dropdown,
+.mantine-Menu-dropdown,
+.mantine-Combobox-dropdown,
+.mantine-Select-dropdown,
+.mantine-MultiSelect-dropdown,
+.mantine-Autocomplete-dropdown,
+.mantine-HoverCard-dropdown,
+[data-gds-overlay-surface] {
+  background-color: var(--gds-overlay-surface);
+}
+
 :root {
   --gds-vibe-primary: #7c3aed;
   --gds-vibe-accent: #06b6d4;

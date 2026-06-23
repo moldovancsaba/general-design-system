@@ -2,6 +2,10 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## 3.8.0 - Unreleased (vendor boundary sealing)
+
+- **Opaque overlay surfaces** (#342): GDS now owns the painted background of every overlay/dropdown surface (`Popover`, `Menu`, `Select`/`Combobox`, `MultiSelect`, `Autocomplete`, `HoverCard`). `styles.css` sets an opaque, GDS-owned `--gds-overlay-surface` token (white / `--mantine-color-dark-6` / system `Canvas` under forced-colors) and applies it to all dropdown containers with hard fallbacks, so overlays stay solid even when the vendor base stylesheet is absent or an unlayered consumer reset competes. Resolves the cross-client transparent-dropdown failures.
+
 ## 3.6.0 - Unreleased (sprint 2 in-progress)
 
 - **GdsDataTable keyboard navigation** (GH-333): arrow-key row traversal (Up/Down/Home/End), `role="grid"` semantics, `aria-selected`/`aria-rowindex` per row, and `aria-live` screen-reader announcements for focused row position.

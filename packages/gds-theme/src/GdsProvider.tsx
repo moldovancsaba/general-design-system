@@ -7,6 +7,7 @@ import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 import { gdsTheme } from './theme';
 import { GdsI18nContext, isGdsRtlLocale } from './i18n';
+import { OverlayAdapterProvider, mantineOverlayAdapter, type OverlayAdapter } from './overlay-adapter';
 
 export interface GdsProviderProps {
   children: React.ReactNode;
@@ -18,6 +19,12 @@ export interface GdsProviderProps {
   colorSchemeRootElement?: () => HTMLElement | undefined;
   cssVariablesSelector?: string;
   applyDocumentColorScheme?: boolean;
+  /**
+   * Overlay engine adapter (issue #349). Defaults to the Mantine-backed adapter.
+   * Provide a custom adapter to swap the overlay engine without changing any
+   * consumer code or component API.
+   */
+  overlayAdapter?: OverlayAdapter;
 }
 
 type GdsMantineColorScheme = 'light' | 'dark' | 'auto';
@@ -52,6 +59,7 @@ export function GdsProvider({
   colorSchemeRootElement,
   cssVariablesSelector = ':root',
   applyDocumentColorScheme = true,
+  overlayAdapter = mantineOverlayAdapter,
 }: GdsProviderProps) {
   const isRtl = isGdsRtlLocale(locale);
   const dir = isRtl ? 'rtl' : 'ltr';
@@ -90,7 +98,7 @@ export function GdsProvider({
           cssVariablesSelector={cssVariablesSelector}
         >
           <ModalsProvider>
-            <>
+            <OverlayAdapterProvider adapter={overlayAdapter}>
               <Notifications />
               <Box
                 dir={dir}
@@ -102,7 +110,7 @@ export function GdsProvider({
               >
                 {children}
               </Box>
-            </>
+            </OverlayAdapterProvider>
           </ModalsProvider>
         </MantineProvider>
       </GdsI18nContext.Provider>

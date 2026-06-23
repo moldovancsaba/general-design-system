@@ -15,6 +15,8 @@ export { createGdsThemePresetSelection, useGdsThemePresetState } from './theme-r
 export type { GdsStoredThemePresetState, GdsThemePresetSelection, GdsThemeScheme, UseGdsThemePresetStateOptions, UseGdsThemePresetStateResult } from './theme-runtime';
 export { GdsProvider } from './GdsProvider';
 export type { GdsProviderProps } from './GdsProvider';
+export { OverlayAdapterProvider, useOverlayAdapter, mantineOverlayAdapter, defaultGdsOverlayConfig } from './overlay-adapter';
+export type { OverlayAdapter, GdsOverlayConfig, GdsOverlayPlacement, GdsOverlayRole, GdsOverlayDismissReason } from './overlay-adapter';
 export { GdsI18nContext, gdsLocaleMetadata, getGdsLocaleIdsByScript, getGdsLocaleMetadata, isGdsRtlLocale, useGdsTranslation } from './i18n';
 export type { GdsI18nContextValue, GdsLocaleDirection, GdsLocaleId, GdsLocaleScript } from './i18n';
 export { showGdsNotification } from './notifications';

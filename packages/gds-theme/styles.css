@@ -131,8 +131,8 @@ html[data-gds-theme-preset] .mantine-AppShell-navbar {
     linear-gradient(155deg, color-mix(in srgb, var(--gds-vibe-shell) 82%, var(--gds-vibe-primary) 10%), var(--gds-vibe-shell));
 }
 
-html[data-gds-theme-preset] .mantine-Paper-root,
-html[data-gds-theme-preset] .mantine-Card-root {
+html[data-gds-theme-preset] .gds-paper,
+html[data-gds-theme-preset] .gds-card {
   --mantine-color-text: var(--gds-vibe-text);
   --mantine-color-dimmed: var(--gds-vibe-muted);
   color: var(--gds-vibe-text);
@@ -148,8 +148,8 @@ html[data-mantine-color-scheme='dark'][data-gds-theme-preset] body {
   --gds-vibe-control-text: var(--gds-vibe-text);
 }
 
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset] .mantine-Card-root {
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset] .gds-card {
   background:
     linear-gradient(145deg, color-mix(in srgb, var(--gds-vibe-surface) 88%, black), color-mix(in srgb, var(--gds-vibe-surface) 76%, var(--gds-vibe-primary) 14%));
 }
@@ -268,13 +268,13 @@ html[data-gds-theme-preset] .mantine-Menu-item[data-variant='danger']:not([data-
   color: var(--gds-vibe-danger) !important;
 }
 
-html[data-gds-theme-preset] .mantine-Alert-root {
+html[data-gds-theme-preset] .gds-alert {
   color: var(--gds-vibe-text);
   background: color-mix(in srgb, var(--gds-vibe-surface) 84%, transparent);
   border-color: var(--gds-vibe-border);
 }
 
-html[data-gds-theme-preset] .mantine-Code-root {
+html[data-gds-theme-preset] .gds-code {
   color: var(--gds-vibe-link);
   background: color-mix(in srgb, var(--gds-vibe-primary) 12%, transparent);
   border: 1px solid color-mix(in srgb, var(--gds-vibe-border) 82%, transparent);
@@ -339,30 +339,30 @@ html[data-gds-theme-preset='royal'] .mantine-AppShell-navbar {
     linear-gradient(135deg, color-mix(in srgb, var(--gds-vibe-shell) 68%, var(--gds-vibe-primary) 20%), color-mix(in srgb, var(--gds-vibe-shell) 74%, var(--gds-vibe-accent) 10%)) !important;
 }
 
-html[data-gds-theme-preset='sunset'] .mantine-Paper-root,
-html[data-gds-theme-preset='sunset'] .mantine-Card-root,
-html[data-gds-theme-preset='oceanic'] .mantine-Paper-root,
-html[data-gds-theme-preset='oceanic'] .mantine-Card-root,
-html[data-gds-theme-preset='forest'] .mantine-Paper-root,
-html[data-gds-theme-preset='forest'] .mantine-Card-root,
-html[data-gds-theme-preset='ruby'] .mantine-Paper-root,
-html[data-gds-theme-preset='ruby'] .mantine-Card-root,
-html[data-gds-theme-preset='amber'] .mantine-Paper-root,
-html[data-gds-theme-preset='amber'] .mantine-Card-root,
-html[data-gds-theme-preset='neon-night'] .mantine-Paper-root,
-html[data-gds-theme-preset='neon-night'] .mantine-Card-root,
-html[data-gds-theme-preset='skyline'] .mantine-Paper-root,
-html[data-gds-theme-preset='skyline'] .mantine-Card-root,
-html[data-gds-theme-preset='aurora'] .mantine-Paper-root,
-html[data-gds-theme-preset='aurora'] .mantine-Card-root,
-html[data-gds-theme-preset='coral'] .mantine-Paper-root,
-html[data-gds-theme-preset='coral'] .mantine-Card-root,
-html[data-gds-theme-preset='mint'] .mantine-Paper-root,
-html[data-gds-theme-preset='mint'] .mantine-Card-root,
-html[data-gds-theme-preset='orchid'] .mantine-Paper-root,
-html[data-gds-theme-preset='orchid'] .mantine-Card-root,
-html[data-gds-theme-preset='royal'] .mantine-Paper-root,
-html[data-gds-theme-preset='royal'] .mantine-Card-root {
+html[data-gds-theme-preset='sunset'] .gds-paper,
+html[data-gds-theme-preset='sunset'] .gds-card,
+html[data-gds-theme-preset='oceanic'] .gds-paper,
+html[data-gds-theme-preset='oceanic'] .gds-card,
+html[data-gds-theme-preset='forest'] .gds-paper,
+html[data-gds-theme-preset='forest'] .gds-card,
+html[data-gds-theme-preset='ruby'] .gds-paper,
+html[data-gds-theme-preset='ruby'] .gds-card,
+html[data-gds-theme-preset='amber'] .gds-paper,
+html[data-gds-theme-preset='amber'] .gds-card,
+html[data-gds-theme-preset='neon-night'] .gds-paper,
+html[data-gds-theme-preset='neon-night'] .gds-card,
+html[data-gds-theme-preset='skyline'] .gds-paper,
+html[data-gds-theme-preset='skyline'] .gds-card,
+html[data-gds-theme-preset='aurora'] .gds-paper,
+html[data-gds-theme-preset='aurora'] .gds-card,
+html[data-gds-theme-preset='coral'] .gds-paper,
+html[data-gds-theme-preset='coral'] .gds-card,
+html[data-gds-theme-preset='mint'] .gds-paper,
+html[data-gds-theme-preset='mint'] .gds-card,
+html[data-gds-theme-preset='orchid'] .gds-paper,
+html[data-gds-theme-preset='orchid'] .gds-card,
+html[data-gds-theme-preset='royal'] .gds-paper,
+html[data-gds-theme-preset='royal'] .gds-card {
   color: var(--gds-vibe-text);
   background:
     radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--gds-vibe-accent) 16%, transparent), transparent 12rem),
@@ -370,30 +370,30 @@ html[data-gds-theme-preset='royal'] .mantine-Card-root {
   border-color: color-mix(in srgb, var(--gds-vibe-border) 78%, var(--gds-vibe-primary)) !important;
 }
 
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='sunset'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='sunset'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='oceanic'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='oceanic'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='forest'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='forest'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='ruby'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='ruby'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='amber'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='amber'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='neon-night'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='neon-night'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='skyline'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='skyline'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='aurora'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='aurora'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='coral'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='coral'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='mint'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='mint'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='orchid'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='orchid'] .mantine-Card-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='royal'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='royal'] .mantine-Card-root {
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='sunset'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='sunset'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='oceanic'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='oceanic'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='forest'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='forest'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='ruby'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='ruby'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='amber'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='amber'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='neon-night'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='neon-night'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='skyline'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='skyline'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='aurora'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='aurora'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='coral'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='coral'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='mint'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='mint'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='orchid'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='orchid'] .gds-card,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='royal'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='royal'] .gds-card {
   background:
     radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--gds-vibe-accent) 18%, transparent), transparent 12rem),
     linear-gradient(145deg, color-mix(in srgb, var(--gds-vibe-surface) 90%, black), color-mix(in srgb, var(--gds-vibe-surface) 80%, var(--gds-vibe-primary) 12%)) !important;
@@ -471,8 +471,8 @@ html[data-mantine-color-scheme='dark'][data-gds-theme-preset='cosmic'] .mantine-
   backdrop-filter: blur(22px) saturate(1.25);
 }
 
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='cosmic'] .mantine-Paper-root,
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='cosmic'] .mantine-Card-root {
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='cosmic'] .gds-paper,
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='cosmic'] .gds-card {
   --mantine-color-text: #ffffff;
   --mantine-color-dimmed: rgba(245, 247, 255, 0.84);
   color: #ffffff;
@@ -521,7 +521,7 @@ html[data-mantine-color-scheme='dark'][data-gds-theme-preset='cosmic'] .mantine-
   color: rgba(245, 247, 255, 0.84) !important;
 }
 
-html[data-mantine-color-scheme='dark'][data-gds-theme-preset='cosmic'] .mantine-Code-root {
+html[data-mantine-color-scheme='dark'][data-gds-theme-preset='cosmic'] .gds-code {
   color: #ffffff;
   background: rgba(16, 26, 86, 0.82);
   border: 1px solid rgba(212, 190, 255, 0.36);
@@ -573,10 +573,10 @@ html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Text-root[style*=
   color: var(--gds-vibe-muted) !important;
 }
 
-html[data-gds-theme-preset] [data-gds-owned-contrast] .mantine-Paper-root,
-html[data-gds-theme-preset] [data-gds-owned-contrast] .mantine-Card-root,
-html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Paper-root,
-html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Card-root {
+html[data-gds-theme-preset] [data-gds-owned-contrast] .gds-paper,
+html[data-gds-theme-preset] [data-gds-owned-contrast] .gds-card,
+html[data-gds-theme-preset] [data-gds-local-contrast] .gds-paper,
+html[data-gds-theme-preset] [data-gds-local-contrast] .gds-card {
   color: var(--gds-vibe-text) !important;
   background: color-mix(in srgb, var(--gds-vibe-surface) 88%, white) !important;
   border-color: var(--gds-vibe-border) !important;
@@ -602,8 +602,8 @@ html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Textarea-input {
   border-color: var(--gds-vibe-border) !important;
 }
 
-html[data-gds-theme-preset] [data-gds-owned-contrast] .mantine-Code-root,
-html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Code-root {
+html[data-gds-theme-preset] [data-gds-owned-contrast] .gds-code,
+html[data-gds-theme-preset] [data-gds-local-contrast] .gds-code {
   color: var(--gds-vibe-link) !important;
   background: color-mix(in srgb, var(--gds-vibe-primary) 12%, var(--gds-vibe-surface)) !important;
   border-color: var(--gds-vibe-border) !important;
@@ -706,8 +706,8 @@ html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Badge-root {
   html[data-gds-theme-preset] .mantine-AppShell-header,
   html[data-gds-theme-preset] .mantine-AppShell-navbar,
   html[data-gds-theme-preset] .mantine-AppShell-footer,
-  html[data-gds-theme-preset] .mantine-Paper-root,
-  html[data-gds-theme-preset] .mantine-Card-root,
+  html[data-gds-theme-preset] .gds-paper,
+  html[data-gds-theme-preset] .gds-card,
   html[data-gds-theme-preset] [data-gds-owned-contrast],
   html[data-gds-theme-preset] [data-gds-local-contrast] {
     color: CanvasText !important;
@@ -755,7 +755,7 @@ html[data-gds-theme-preset] [data-gds-local-contrast] .mantine-Badge-root {
   }
 
   html[data-gds-theme-preset] .mantine-Badge-root,
-  html[data-gds-theme-preset] .mantine-Code-root,
+  html[data-gds-theme-preset] .gds-code,
   html[data-gds-theme-preset] mark {
     color: MarkText !important;
     background: Mark !important;

@@ -23,6 +23,8 @@ This repository serves as the central, hardened hub for all UI, UX, and design p
 
 ### Getting Started
 
+> **Mandatory first step for consumers:** import the GDS stylesheet exactly once at your app entry, before your own app styles — `import '@doneisbetter/gds-theme/styles.css'`. Without it, GDS surfaces (including dropdown/menu/overlay backgrounds) render unstyled. See [INSTALLATION_GUIDE.md](INSTALLATION_GUIDE.md).
+
 1. **Familiarize Yourself with the Foundation**: Start by reading [FOUNDATION.md](FOUNDATION.md) to understand the core principles, accessibility baselines, and our strict Mantine token policies.
 2. **Review the Component Contracts**: Before building a new UI component or workflow, check [COMPONENTS_AND_PATTERNS.md](COMPONENTS_AND_PATTERNS.md) to see if a canonical pattern already exists for buttons, tables, modals, public shells, docs pages, or public data surfaces.
 3. **Open the Live Pattern Catalog**: Use [https://sovereignsquad.github.io/general-design-system/patterns](https://sovereignsquad.github.io/general-design-system/patterns) to inspect the public, registry-backed reference site that demonstrates the documented contracts directly.

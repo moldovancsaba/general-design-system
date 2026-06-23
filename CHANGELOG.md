@@ -5,6 +5,7 @@ All notable policy changes to the General Design System are recorded here.
 ## 3.8.0 - Unreleased (vendor boundary sealing)
 
 - **Opaque overlay surfaces** (#342): GDS now owns the painted background of every overlay/dropdown surface (`Popover`, `Menu`, `Select`/`Combobox`, `MultiSelect`, `Autocomplete`, `HoverCard`). `styles.css` sets an opaque, GDS-owned `--gds-overlay-surface` token (white / `--mantine-color-dark-6` / system `Canvas` under forced-colors) and applies it to all dropdown containers with hard fallbacks, so overlays stay solid even when the vendor base stylesheet is absent or an unlayered consumer reset competes. Resolves the cross-client transparent-dropdown failures.
+- **Mandatory stylesheet import documented + guarded** (#344): every consumer integration path — `INSTALLATION_GUIDE.md`, `docs/CLASSSCOUT_INTEGRATION.md`, `docs/AI_AGENT_GUIDE.md`, `README.md`, the Vite/Next `TEMPLATES`, and the playground install code — now shows `import '@doneisbetter/gds-theme/styles.css'` as the first bootstrap step. `verify-install-bootstrap-docs.mjs` fails CI if any tracked integration doc or template omits it, preventing the documentation gap that caused unstyled/transparent surfaces in consumer apps.
 
 ## 3.6.0 - Unreleased (sprint 2 in-progress)
 

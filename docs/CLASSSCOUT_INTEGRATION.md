@@ -12,6 +12,13 @@ npm install @doneisbetter/gds@3.5.0 @mantine/core @mantine/hooks @mantine/modals
 
 Wrap the app once. For ClassScout the provider belongs in your root layout/providers file:
 
+> **Mandatory first step — load the GDS stylesheet.** Import `@doneisbetter/gds-theme/styles.css` exactly once at your app entry (Vite `main.tsx`, Next `app/layout.tsx`), before your own app styles. Without it, GDS surfaces — including dropdown/menu/overlay backgrounds — render unstyled (transparent dropdowns).
+
+```tsx
+// At your app entry, before app styles:
+import '@doneisbetter/gds-theme/styles.css';
+```
+
 ```tsx
 import { GdsProvider } from '@doneisbetter/gds';
 import { createBrandTheme } from '@doneisbetter/gds-theme';

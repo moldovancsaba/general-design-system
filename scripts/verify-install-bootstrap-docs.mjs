@@ -15,7 +15,14 @@ const files = [
   'TEMPLATES/README.md',
   'TEMPLATES/next-app-layout.tsx.template',
   'TEMPLATES/vite-main.tsx.template',
+  'docs/CLASSSCOUT_INTEGRATION.md',
+  'docs/AI_AGENT_GUIDE.md',
 ];
+
+// The GDS stylesheet import is the single mandatory integration step that paints
+// every GDS surface (including dropdown/overlay backgrounds). Every consumer
+// integration path must document it or the build fails here (issue #344).
+const MANDATORY_STYLESHEET_IMPORT = '@doneisbetter/gds-theme/styles.css';
 
 const requiredByFile = {
   'INSTALLATION_GUIDE.md': [
@@ -24,6 +31,7 @@ const requiredByFile = {
     'ColorSchemeScript',
     'GDS_REGISTRY_RETRIES=8 GDS_REGISTRY_DELAY_MS=7000 npm run verify:published',
     `gds-v${version}`,
+    MANDATORY_STYLESHEET_IMPORT,
   ],
   'COMPATIBILITY_AND_RELEASES.md': [
     `@doneisbetter/gds@${version}`,
@@ -53,6 +61,7 @@ const requiredByFile = {
     'viteBootstrapCode',
     'failureRecoveryCode',
     'fallbackInstallCode',
+    MANDATORY_STYLESHEET_IMPORT,
   ],
   'apps/playground/src/site-copy.ts': [
     `export const targetGdsVersion = '${version}'`,
@@ -65,10 +74,18 @@ const requiredByFile = {
   'TEMPLATES/next-app-layout.tsx.template': [
     'ColorSchemeScript',
     'Providers',
+    MANDATORY_STYLESHEET_IMPORT,
   ],
   'TEMPLATES/vite-main.tsx.template': [
     'GdsProvider',
     '@doneisbetter/gds/client',
+    MANDATORY_STYLESHEET_IMPORT,
+  ],
+  'docs/CLASSSCOUT_INTEGRATION.md': [
+    MANDATORY_STYLESHEET_IMPORT,
+  ],
+  'docs/AI_AGENT_GUIDE.md': [
+    MANDATORY_STYLESHEET_IMPORT,
   ],
 };
 

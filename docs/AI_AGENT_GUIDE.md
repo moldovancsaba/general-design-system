@@ -16,7 +16,13 @@ GDS (`@doneisbetter/gds`) is a governed React design system built on Mantine. It
 npm install @doneisbetter/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react react react-dom
 ```
 
-Wrap the app once in `GdsProvider` (the single required root provider — it injects theme, tokens, fonts, color-scheme handling, and locale):
+First, load the GDS stylesheet exactly once at the app entry, before any app styles — this is mandatory; without it GDS surfaces (including dropdown/overlay backgrounds) render unstyled:
+
+```tsx
+import '@doneisbetter/gds-theme/styles.css';
+```
+
+Then wrap the app once in `GdsProvider` (the single required root provider — it injects theme, tokens, fonts, color-scheme handling, and locale):
 
 ```tsx
 import { GdsProvider, AppShell, PageHeader, MetricCard, SemanticButton, EmptyState } from '@doneisbetter/gds';

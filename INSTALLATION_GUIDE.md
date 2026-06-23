@@ -66,8 +66,11 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
 
 Use the server/client split explicitly. The layout owns the color-scheme script and the provider file owns the single client boundary.
 
+> **Mandatory:** import `@doneisbetter/gds-theme/styles.css` exactly once, before your own app styles. Without it, GDS surfaces — including dropdown/menu/overlay backgrounds — render unstyled (transparent dropdowns).
+
 ```tsx
 // app/layout.tsx
+import '@doneisbetter/gds-theme/styles.css';
 import { ColorSchemeScript } from '@mantine/core';
 import Providers from './providers';
 
@@ -103,6 +106,7 @@ Mount one provider at the application root:
 ```tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import '@doneisbetter/gds-theme/styles.css'; // mandatory: load once, before app styles
 import { GdsProvider } from '@doneisbetter/gds/client';
 import App from './App';
 

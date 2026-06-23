@@ -1,4 +1,7 @@
 import type { ReactNode } from "react";
+// Mandatory: load the GDS stylesheet exactly once, before your own app styles.
+// Without it, GDS surfaces (including dropdown/overlay backgrounds) render unstyled.
+import "@doneisbetter/gds-theme/styles.css";
 import { ColorSchemeScript } from "@mantine/core";
 import Providers from "./providers";
 

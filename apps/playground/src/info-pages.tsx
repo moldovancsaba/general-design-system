@@ -44,6 +44,8 @@ const peerCode = `npm install @mantine/core @mantine/hooks @mantine/modals @mant
 const mantineCorePackage = '@mantine/' + 'core';
 
 const nextLayoutCode = `// app/layout.tsx
+// Mandatory: load the GDS stylesheet once, before your app styles.
+import '@doneisbetter/gds-theme/styles.css';
 import { ColorSchemeScript } from '${mantineCorePackage}';
 import Providers from './providers';
 
@@ -72,6 +74,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 const viteBootstrapCode = `// src/main.tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+// Mandatory: load the GDS stylesheet once, before your app styles.
+import '@doneisbetter/gds-theme/styles.css';
 import { GdsProvider } from '@doneisbetter/gds/client';
 import App from './App';
 

@@ -1,7 +1,6 @@
 {
   "packages/gds-theme/styles.css": [
     ".mantine-ActionIcon-root",
-    ".mantine-Alert-root",
     ".mantine-Anchor-root",
     ".mantine-AppShell-footer",
     ".mantine-AppShell-header",
@@ -10,10 +9,8 @@
     ".mantine-Autocomplete-dropdown",
     ".mantine-Badge-root",
     ".mantine-Button-root",
-    ".mantine-Card-root",
     ".mantine-Checkbox-input",
     ".mantine-Checkbox-label",
-    ".mantine-Code-root",
     ".mantine-Combobox-dropdown",
     ".mantine-HoverCard-dropdown",
     ".mantine-Input-input",
@@ -24,7 +21,6 @@
     ".mantine-Menu-item",
     ".mantine-MultiSelect-dropdown",
     ".mantine-NativeSelect-input",
-    ".mantine-Paper-root",
     ".mantine-Popover-dropdown",
     ".mantine-Radio-label",
     ".mantine-SegmentedControl-control",

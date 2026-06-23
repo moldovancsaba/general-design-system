@@ -29,6 +29,10 @@ const baseTheme: MantineTheme = mergeMantineTheme(DEFAULT_THEME, createTheme({
       },
     },
     Card: {
+      // GDS-owned styling hook (issue #345): theme classNames land `gds-card` on
+      // every Card root, so the theme CSS keys on a GDS class instead of the
+      // vendor-internal `.mantine-Card-root`. Survives preset theme merging.
+      classNames: { root: 'gds-card' },
       defaultProps: {
         radius: 'lg',
         shadow: 'sm',
@@ -41,10 +45,17 @@ const baseTheme: MantineTheme = mergeMantineTheme(DEFAULT_THEME, createTheme({
       }
     },
     Paper: {
+      classNames: { root: 'gds-paper' },
       defaultProps: {
         radius: 'lg',
         withBorder: true,
       },
+    },
+    Alert: {
+      classNames: { root: 'gds-alert' },
+    },
+    Code: {
+      classNames: { root: 'gds-code' },
     },
     TextInput: {
       defaultProps: {

@@ -6,6 +6,20 @@ Last updated: 2026-06-21
 
 This guide is the canonical consumer setup path for the public umbrella package `@doneisbetter/gds`. Granular package lanes remain available when a consumer explicitly wants them.
 
+## Single install surface
+
+The vendor UI engine is GDS's concern, not yours. Install the umbrella package and your own React; the engine is pulled in automatically:
+
+```bash
+npm install @doneisbetter/gds react react-dom
+```
+
+`@doneisbetter/gds` declares the engine (`@mantine/*`, `@tabler/icons-react`) as peer dependencies, and npm 7+ installs peers automatically — so you do **not** list them yourself. They stay peers (not bundled) on purpose: that guarantees a single resolved engine instance and avoids dual-instance/version-skew failures. All GDS packages pin the **same** engine range, enforced by `npm run verify:install-surface`.
+
+Use icons through the GDS-owned `GdsIcons` surface (`import { GdsIcons } from '@doneisbetter/gds'`) — do not import `@tabler/icons-react` directly.
+
+> If your installer uses `--legacy-peer-deps` (which disables peer auto-install), add the engine to your install line explicitly; see the granular lane below.
+
 Release-line rule:
 
 - current stable package line: `3.5.0`

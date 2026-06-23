@@ -6,7 +6,7 @@
     "apps/*"
   ],
   "scripts": {
-    "verify:release": "node scripts/check-release-alignment.mjs && npm run build && node scripts/check-export-contract.mjs && npm run verify:public-types && npm run lint && npm run test:run && npm run verify:references && npm run verify:a11y-package && npm run verify:theme-accessibility && npm run verify:theme-tokens && npm run verify:forced-colors-runtime && npm run verify:theme-trust-runtime && npm run audit:dependencies && npm run audit:board && npm run verify:mantine",
+    "verify:release": "node scripts/check-release-alignment.mjs && npm run build && node scripts/check-export-contract.mjs && npm run verify:public-types && npm run verify:install-surface && npm run lint && npm run test:run && npm run verify:references && npm run verify:a11y-package && npm run verify:theme-accessibility && npm run verify:theme-tokens && npm run verify:forced-colors-runtime && npm run verify:theme-trust-runtime && npm run audit:dependencies && npm run audit:board && npm run verify:mantine",
     "build": "npm run build --workspace=@doneisbetter/gds-theme && npm run build --workspace=@doneisbetter/gds-core && npm run build --workspace=@doneisbetter/gds-admin && npm run build --workspace=@doneisbetter/gds-a11y && npm run build --workspace=@doneisbetter/gds && npm run build --workspace=playground && npm run build --workspace=reference-vite && npm run build --workspace=reference-next",
     "dev": "npm run dev --workspace=apps/playground",
     "lint": "npm run lint --workspace=apps/playground",
@@ -34,6 +34,7 @@
     "verify:mantine": "node scripts/verify-mantine8-compat.mjs",
     "verify:mantine8": "node scripts/verify-mantine8-compat.mjs",
     "verify:public-types": "node scripts/verify-public-types-boundary.mjs",
+    "verify:install-surface": "node scripts/verify-single-install-surface.mjs",
     "pack:release": "node scripts/create-release-bundles.mjs",
     "publish:dry-run": "node scripts/publish-packages.mjs --dry-run",
     "publish:npm": "node scripts/publish-packages.mjs",

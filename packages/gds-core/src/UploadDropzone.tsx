@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, type ReactNode } from 'react';
-import { Badge, Box, Button, Group, Stack, Text } from '@mantine/core';
+import { Badge, Box, Button, Group, Progress, Stack, Text } from '@mantine/core';
 import { GdsIcons } from './icons';
 
 export type UploadDropzoneState =
@@ -29,6 +29,11 @@ export interface UploadDropzoneProps {
   selectedFiles?: string[];
   error?: string;
   policyText?: string;
+  progressValue?: number;
+  inputId?: string;
+  describedBy?: string;
+  invalid?: boolean;
+  required?: boolean;
   retryAction?: ReactNode;
   removeAction?: ReactNode;
   readonly?: boolean;
@@ -48,6 +53,11 @@ export function UploadDropzone({
   selectedFiles = [],
   error,
   policyText,
+  progressValue,
+  inputId,
+  describedBy,
+  invalid,
+  required,
   retryAction,
   removeAction,
   readonly = false,
@@ -57,7 +67,8 @@ export function UploadDropzone({
   const UploadIcon = GdsIcons.Upload;
   const effectiveState = readonly ? 'readonly' : dragging ? 'drag-active' : state;
   const isDisabled = readonly || effectiveState === 'upload-pending';
-  const isError = ['upload-failed', 'unsupported-type', 'too-large'].includes(effectiveState);
+  const isError = invalid || ['upload-failed', 'unsupported-type', 'too-large'].includes(effectiveState);
+  const normalizedProgress = typeof progressValue === 'number' ? Math.max(0, Math.min(100, progressValue)) : undefined;
 
   const forwardFiles = (files: FileList | null) => {
     if (isDisabled || !files?.length || !onFilesSelected) {
@@ -90,11 +101,16 @@ export function UploadDropzone({
       aria-invalid={isError || undefined}
     >
       <input
+        id={inputId}
         ref={inputRef}
         type="file"
         hidden
         accept={accept}
         multiple={multiple}
+        required={required}
+        aria-label={title}
+        aria-describedby={describedBy}
+        aria-invalid={isError || undefined}
         disabled={isDisabled}
         onChange={(event) => forwardFiles(event.currentTarget.files)}
       />
@@ -119,6 +135,14 @@ export function UploadDropzone({
           <Text size="sm">
             Selected: {selectedFiles.join(', ')}
           </Text>
+        ) : null}
+        {effectiveState === 'upload-pending' && normalizedProgress !== undefined ? (
+          <Box w="100%" maw={360}>
+            <Progress value={normalizedProgress} aria-label={`${title} upload progress`} />
+            <Text size="xs" c="dimmed" mt={4}>
+              {Math.round(normalizedProgress)}% uploaded
+            </Text>
+          </Box>
         ) : null}
         {policyText ? (
           <Text size="sm" c={isError ? 'red.7' : 'dimmed'}>

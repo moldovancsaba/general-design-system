@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { ReactNode } from 'react';
 import { Button, Stack, Text } from '@mantine/core';
 import { FormField } from './FormField';
 import { GdsFormProvider, GdsValidationSummary, type GdsFormOrchestrationEvent, type ValidationIssue, ValidatedFieldMessage, useGdsFormOrchestration } from './GdsForm.client';
 import { StateBlock } from './StateBlock';
+import { UploadDropzone, type UploadDropzoneState } from './UploadDropzone';
 
 export type GdsSchemaFieldType = 'text' | 'email' | 'url' | 'password' | 'number' | 'boolean' | 'select' | 'textarea' | 'date' | 'hidden' | 'conditional' | 'file-upload' | 'unsupported';
 
@@ -30,6 +31,14 @@ export interface GdsFieldDescriptor {
   min?: number;
   max?: number;
   pattern?: string;
+  accept?: string;
+  multiple?: boolean;
+  maxFileSizeBytes?: number;
+  maxFileSizeLabel?: string;
+  uploadActionLabel?: string;
+  uploadPolicyText?: string;
+  uploadState?: UploadDropzoneState;
+  uploadProgress?: number;
   unsupportedReason?: string;
 }
 
@@ -117,6 +126,14 @@ function normalizeJsonField(formId: string, name: string, source: Record<string,
     min: typeof source.minimum === 'number' ? source.minimum : undefined,
     max: typeof source.maximum === 'number' ? source.maximum : undefined,
     pattern: typeof source.pattern === 'string' ? source.pattern : undefined,
+    accept: typeof source['x-gds-accept'] === 'string' ? source['x-gds-accept'] : typeof source.contentMediaType === 'string' ? source.contentMediaType : undefined,
+    multiple: typeof source['x-gds-multiple'] === 'boolean' ? source['x-gds-multiple'] : undefined,
+    maxFileSizeBytes: typeof source['x-gds-maxFileSizeBytes'] === 'number' ? source['x-gds-maxFileSizeBytes'] : undefined,
+    maxFileSizeLabel: typeof source['x-gds-maxFileSizeLabel'] === 'string' ? source['x-gds-maxFileSizeLabel'] : undefined,
+    uploadActionLabel: typeof source['x-gds-uploadActionLabel'] === 'string' ? source['x-gds-uploadActionLabel'] : undefined,
+    uploadPolicyText: typeof source['x-gds-uploadPolicyText'] === 'string' ? source['x-gds-uploadPolicyText'] : undefined,
+    uploadState: typeof source['x-gds-uploadState'] === 'string' ? source['x-gds-uploadState'] as UploadDropzoneState : undefined,
+    uploadProgress: typeof source['x-gds-uploadProgress'] === 'number' ? source['x-gds-uploadProgress'] : undefined,
   };
   const enumValues = Array.isArray(source.enum) ? source.enum : undefined;
 
@@ -139,6 +156,7 @@ function normalizeJsonField(formId: string, name: string, source: Record<string,
   if (source.format === 'uri' || source.format === 'url') return { ...base, type: 'url' };
   if (source.format === 'date') return { ...base, type: 'date' };
   if (source.format === 'password') return { ...base, type: 'password' };
+  if (source.format === 'binary' || source.format === 'data-url') return { ...base, type: 'file-upload' };
   if (Number(source.maxLength) > 160) return { ...base, type: 'textarea' };
   return { ...base, type: 'text' };
 }
@@ -240,9 +258,12 @@ function validateSchemaValues(schema: GdsFormSchema, values: Record<string, unkn
   return schema.fields.flatMap((field) => {
     if (field.hidden || field.type === 'hidden') return [];
     const value = values[field.name];
+    const fileValues = Array.isArray(value) ? value : [];
     const text = String(value ?? '').trim();
     if (field.type === 'unsupported' && !renderers[field.name] && !renderers[field.type]) return [{ field: field.name, message: field.unsupportedReason ?? 'Unsupported schema field.', severity: 'blocking' as const }];
-    if (field.required && (value === undefined || value === null || text === '')) return [{ field: field.name, message: `${field.label} is required.`, severity: 'blocking' as const }];
+    if (field.required && field.type === 'file-upload' && fileValues.length === 0) return [{ field: field.name, message: `${field.label} is required.`, severity: 'blocking' as const }];
+    if (field.required && field.type !== 'file-upload' && (value === undefined || value === null || text === '')) return [{ field: field.name, message: `${field.label} is required.`, severity: 'blocking' as const }];
+    if (field.type === 'file-upload' && field.maxFileSizeBytes && fileValues.some((file) => typeof File !== 'undefined' && file instanceof File && file.size > field.maxFileSizeBytes!)) return [{ field: field.name, message: `${field.label} contains a file larger than ${field.maxFileSizeLabel ?? `${field.maxFileSizeBytes} bytes`}.`, severity: 'blocking' as const }];
     if (field.minLength && text.length > 0 && text.length < field.minLength) return [{ field: field.name, message: `${field.label} must contain at least ${field.minLength} characters.`, severity: 'blocking' as const }];
     if (field.maxLength && text.length > field.maxLength) return [{ field: field.name, message: `${field.label} must contain at most ${field.maxLength} characters.`, severity: 'blocking' as const }];
     if (field.pattern && text.length > 0 && !new RegExp(field.pattern).test(text)) return [{ field: field.name, message: `${field.label} does not match the required format.`, severity: 'blocking' as const }];
@@ -260,41 +281,82 @@ function validateSchemaValues(schema: GdsFormSchema, values: Record<string, unkn
 export interface FileUploadFieldProps {
   id: string;
   label: string;
+  value?: unknown;
   describedBy?: string;
   invalid?: boolean;
   required?: boolean;
   accept?: string;
   multiple?: boolean;
+  maxFileSizeBytes?: number;
+  maxFileSizeLabel?: string;
+  actionLabel?: string;
+  policyText?: string;
+  state?: UploadDropzoneState;
+  progressValue?: number;
   onChange?: (files: File[]) => void;
 }
 
-export function FileUploadField({ id, label, describedBy, invalid, required, accept, multiple, onChange }: FileUploadFieldProps) {
-  const [fileNames, setFileNames] = useState<string[]>([]);
+function getUploadFileNames(value: unknown) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  return value.map((file) => {
+    if (typeof File !== 'undefined' && file instanceof File) return file.name;
+    if (file && typeof file === 'object' && 'name' in file) return String((file as { name: unknown }).name);
+    return String(file);
+  });
+}
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.currentTarget.files ?? []);
-    setFileNames(files.map((file) => file.name));
+export function FileUploadField({
+  id,
+  label,
+  value,
+  describedBy,
+  invalid,
+  required,
+  accept,
+  multiple,
+  maxFileSizeBytes,
+  maxFileSizeLabel,
+  actionLabel,
+  policyText,
+  state,
+  progressValue,
+  onChange,
+}: FileUploadFieldProps) {
+  const selectedFiles = getUploadFileNames(value);
+  const oversize = Array.isArray(value) && maxFileSizeBytes
+    ? value.some((file) => typeof File !== 'undefined' && file instanceof File && file.size > maxFileSizeBytes)
+    : false;
+  const effectiveState = state ?? (oversize ? 'too-large' : selectedFiles.length > 0 ? 'selected' : 'idle');
+  const effectivePolicyText = oversize
+    ? `One or more files exceed ${maxFileSizeLabel ?? `${maxFileSizeBytes} bytes`}.`
+    : policyText;
+
+  const handleFilesSelected = (files: File[]) => {
     onChange?.(files);
   };
 
   return (
     <Stack gap={4}>
-      <input
-        id={id}
-        type="file"
+      <UploadDropzone
+        title={label}
+        inputId={id}
+        describedBy={describedBy}
+        invalid={invalid || oversize}
+        required={required}
         accept={accept}
         multiple={multiple}
-        required={required}
-        aria-label={label}
-        aria-describedby={describedBy}
-        aria-invalid={invalid || undefined}
-        onChange={handleChange}
+        actionLabel={actionLabel}
+        acceptedTypesLabel={accept}
+        maxSizeLabel={maxFileSizeLabel}
+        policyText={effectivePolicyText}
+        state={effectiveState}
+        selectedFiles={selectedFiles}
+        progressValue={progressValue}
+        mode="inline"
+        onFilesSelected={handleFilesSelected}
       />
-      {fileNames.length > 0 ? (
-        <Text size="xs" c="dimmed">
-          {fileNames.join(', ')}
-        </Text>
-      ) : null}
     </Stack>
   );
 }
@@ -312,7 +374,16 @@ function renderDefaultField({ field, value, setValue, describedBy, invalid }: Gd
       <FileUploadField
         {...common}
         label={field.label}
-        onChange={(files) => setValue(files.map((file) => file.name).join(', '))}
+        value={value}
+        accept={field.accept}
+        multiple={field.multiple}
+        maxFileSizeBytes={field.maxFileSizeBytes}
+        maxFileSizeLabel={field.maxFileSizeLabel}
+        actionLabel={field.uploadActionLabel}
+        policyText={field.uploadPolicyText}
+        state={field.uploadState}
+        progressValue={field.uploadProgress}
+        onChange={(files) => setValue(files)}
       />
     );
   }

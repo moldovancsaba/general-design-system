@@ -1270,6 +1270,42 @@ describe('@doneisbetter/gds-core', () => {
     expect(serializeGdsTableQuery({ page: 1, pageSize: 25, search: 'alpha', sortBy: 'name', sortDirection: 'asc', filters: { status: 'Published' } })).toBe('page=1&pageSize=25&search=alpha&sortBy=name&sortDirection=asc&filter.status=Published');
   });
 
+  it('moves data table focus by row and cell with arrow keys', async () => {
+    const rows = [
+      { id: '1', name: 'Alpha', status: 'Published' },
+      { id: '2', name: 'Bravo', status: 'Draft' },
+    ];
+    const columns = [
+      { key: 'name' as const, label: 'Name' },
+      { key: 'status' as const, label: 'Status' },
+    ];
+    const { container } = renderWithGds(
+      <GdsDataTable
+        caption="Keyboard members"
+        columns={columns}
+        rowId={(row) => String(row.id)}
+        adapter={createGdsTableAdapter(rows, columns)}
+        mobileCards={false}
+      />,
+    );
+
+    expect(await screen.findByRole('grid', { name: 'Keyboard members' })).toBeInTheDocument();
+    const cells = () => Array.from(container.querySelectorAll<HTMLElement>('tbody [data-gds-cell]'));
+
+    cells()[0]?.focus();
+    fireEvent.keyDown(cells()[0]!, { key: 'ArrowRight' });
+    expect(document.activeElement).toHaveTextContent('Alpha');
+    expect(screen.getByText('Row 1 of 2, Name column')).toBeInTheDocument();
+
+    fireEvent.keyDown(document.activeElement!, { key: 'ArrowDown' });
+    expect(document.activeElement).toHaveTextContent('Bravo');
+    expect(screen.getByText('Row 2 of 2, Name column')).toBeInTheDocument();
+
+    fireEvent.keyDown(document.activeElement!, { key: 'ArrowRight' });
+    expect(document.activeElement).toHaveTextContent('Draft');
+    expect(screen.getByText('Row 2 of 2, Status column')).toBeInTheDocument();
+  });
+
   it('supports remote table adapters, retries, and filtered-empty states', async () => {
     const user = userEvent.setup();
     const load = vi.fn()
@@ -3293,6 +3329,47 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     await user.type(screen.getByRole('textbox', { name: 'Name' }), 'Ada');
     await user.click(screen.getByRole('button', { name: 'Submit' }));
     await waitFor(() => expect(submit).toHaveBeenCalledWith(expect.objectContaining({ name: 'Ada' })));
+  });
+
+  it('renders schema file-upload fields with dropzone policy, validation, and File payloads', async () => {
+    const user = userEvent.setup();
+    const submit = vi.fn();
+    const result = jsonSchemaToGdsFormSchema({
+      title: 'Upload',
+      type: 'object',
+      required: ['attachment'],
+      properties: {
+        attachment: {
+          type: 'string',
+          format: 'binary',
+          title: 'Training file',
+          description: 'Upload the workout evidence.',
+          contentMediaType: 'image/png',
+          'x-gds-multiple': true,
+          'x-gds-maxFileSizeBytes': 1024,
+          'x-gds-maxFileSizeLabel': '1 KB',
+          'x-gds-uploadActionLabel': 'Attach file',
+          'x-gds-uploadPolicyText': 'PNG evidence only.',
+        },
+      },
+    }, { id: 'upload-form' });
+
+    renderWithGds(<GdsSchemaForm schema={result.schema!} onSubmit={submit} />);
+
+    expect(screen.getByText('PNG evidence only.')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(screen.getAllByText('Training file is required.').length).toBeGreaterThan(0);
+
+    const input = document.querySelector<HTMLInputElement>('input[type="file"]');
+    expect(input).toHaveAttribute('accept', 'image/png');
+    const file = new File(['x'], 'evidence.png', { type: 'image/png' });
+    await user.upload(input!, file);
+
+    expect(await screen.findByText('Selected: evidence.png')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    await waitFor(() => expect(submit).toHaveBeenCalledWith(expect.objectContaining({
+      attachment: [file],
+    })));
   });
 
   it('manages overlay stack with top-most close rules', async () => {

@@ -153,6 +153,7 @@ describe('GdsProvider', () => {
       'orchid',
       'royal',
       'cosmic',
+      'athlete-gold',
     ];
 
     expect(presets.length).toBeGreaterThanOrEqual(18);
@@ -185,6 +186,12 @@ describe('GdsProvider', () => {
     const cosmicVibe = resolveGdsVibeTheme('cosmic');
     expect(cosmicVibe.label).toBe('Cosmic burst');
     expect(cosmicVibe.gradient).toContain('#f7f3ff');
+
+    const athleteGoldVibe = resolveGdsVibeTheme('athlete-gold');
+    expect(athleteGoldVibe.label).toBe('Athlete Gold');
+    expect(athleteGoldVibe.primary).toBe('#e4a623');
+    expect(athleteGoldVibe.canvasDark).toBe('#03080f');
+    expect(athleteGoldVibe.hero).toContain('rgba(5, 11, 20, 0.92)');
 
     const partnerVibe = resolveGdsVibeTheme('partner-discovery');
     expect(partnerVibe.primary).toBe('#08463b');

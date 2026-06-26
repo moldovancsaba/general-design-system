@@ -274,44 +274,59 @@ export function useGdsDataTable<T extends Record<string, unknown>>({
   };
 }
 
-function useGdsTableKeyNav(rowCount: number) {
+interface GdsTableFocusedCell {
+  rowIndex: number;
+  columnIndex: number;
+}
+
+function useGdsTableKeyNav(rowCount: number, columnCount: number) {
   const tbodyRef = useRef<HTMLTableSectionElement>(null);
-  const [focusedRowIndex, setFocusedRowIndex] = useState<number | null>(null);
+  const [focusedCell, setFocusedCell] = useState<GdsTableFocusedCell | null>(rowCount > 0 && columnCount > 0 ? { rowIndex: 0, columnIndex: 0 } : null);
+
+  const focusCell = useCallback((rowIndex: number, columnIndex: number) => {
+    const rows = tbodyRef.current?.querySelectorAll<HTMLTableRowElement>('tr[data-gds-row]') ?? [];
+    const nextRowIndex = Math.max(0, Math.min(rowIndex, rows.length - 1));
+    const cells = rows[nextRowIndex]?.querySelectorAll<HTMLElement>('[data-gds-cell]') ?? [];
+    if (cells.length === 0) return;
+    const nextColumnIndex = Math.max(0, Math.min(columnIndex, cells.length - 1));
+    setFocusedCell({ rowIndex: nextRowIndex, columnIndex: nextColumnIndex });
+    cells[nextColumnIndex]?.focus();
+  }, []);
 
   const handleKeyDown = useCallback((event: KeyboardEvent<HTMLTableSectionElement>) => {
     const rows = tbodyRef.current?.querySelectorAll<HTMLTableRowElement>('tr[data-gds-row]') ?? [];
-    const total = rows.length;
-    if (total === 0) return;
+    if (rows.length === 0 || columnCount === 0) return;
 
-    const currentIndex = focusedRowIndex ?? 0;
+    const current = focusedCell ?? { rowIndex: 0, columnIndex: 0 };
+    const lastRow = rows.length - 1;
+    const lastColumn = columnCount - 1;
 
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      const next = Math.min(currentIndex + 1, total - 1);
-      setFocusedRowIndex(next);
-      (rows[next] as HTMLTableRowElement).focus();
+      focusCell(current.rowIndex + 1, current.columnIndex);
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
-      const prev = Math.max(currentIndex - 1, 0);
-      setFocusedRowIndex(prev);
-      (rows[prev] as HTMLTableRowElement).focus();
+      focusCell(current.rowIndex - 1, current.columnIndex);
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      focusCell(current.rowIndex, current.columnIndex + 1);
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      focusCell(current.rowIndex, current.columnIndex - 1);
     } else if (event.key === 'Home') {
       event.preventDefault();
-      setFocusedRowIndex(0);
-      (rows[0] as HTMLTableRowElement).focus();
+      focusCell(event.ctrlKey || event.metaKey ? 0 : current.rowIndex, 0);
     } else if (event.key === 'End') {
       event.preventDefault();
-      const last = total - 1;
-      setFocusedRowIndex(last);
-      (rows[last] as HTMLTableRowElement).focus();
+      focusCell(event.ctrlKey || event.metaKey ? lastRow : current.rowIndex, lastColumn);
     }
-  }, [focusedRowIndex]);
+  }, [columnCount, focusCell, focusedCell]);
 
   useEffect(() => {
-    setFocusedRowIndex(null);
-  }, [rowCount]);
+    setFocusedCell(rowCount > 0 && columnCount > 0 ? { rowIndex: 0, columnIndex: 0 } : null);
+  }, [columnCount, rowCount]);
 
-  return { tbodyRef, handleKeyDown, focusedRowIndex, setFocusedRowIndex };
+  return { tbodyRef, handleKeyDown, focusedCell, setFocusedCell };
 }
 
 export function GdsDataTable<T extends Record<string, unknown>>({
@@ -332,7 +347,11 @@ export function GdsDataTable<T extends Record<string, unknown>>({
   const table = useGdsDataTable({ columns, rowId, adapter, initialQuery, onEvent, onExport, timeoutMs, virtualizedRowLimit });
   const visibleColumns = columns.filter((column) => !column.hidden);
   const pageCount = Math.max(1, Math.ceil(table.total / table.query.pageSize));
-  const { tbodyRef, handleKeyDown, focusedRowIndex, setFocusedRowIndex } = useGdsTableKeyNav(table.visibleRows.length);
+  const gridColumnCount = visibleColumns.length + 1;
+  const { tbodyRef, handleKeyDown, focusedCell, setFocusedCell } = useGdsTableKeyNav(table.visibleRows.length, gridColumnCount);
+  const focusedColumnLabel = focusedCell
+    ? focusedCell.columnIndex === 0 ? 'Selection' : visibleColumns[focusedCell.columnIndex - 1]?.label
+    : undefined;
 
   if (table.status === 'loading') return <StateBlock variant="loading" title="Loading table" description="Preparing governed data rows." compact />;
   if (table.status === 'error') return <StateBlock variant="error" title="Unable to load table" description={table.error ?? 'The data adapter failed.'} action={<Button onClick={table.retry}>{retryLabel}</Button>} compact />;
@@ -373,21 +392,40 @@ export function GdsDataTable<T extends Record<string, unknown>>({
           >
             {table.visibleRows.map((row, rowIndex) => {
               const id = rowId(row, rowIndex);
-              const isFocused = focusedRowIndex === rowIndex;
               return (
                 <Table.Tr
                   key={id}
                   data-gds-row
-                  tabIndex={0}
                   aria-selected={table.selectedRowIds.includes(id)}
                   aria-rowindex={(table.query.page - 1) * table.query.pageSize + rowIndex + 2}
-                  onFocus={() => setFocusedRowIndex(rowIndex)}
-                  style={isFocused ? { outline: '2px solid var(--mantine-color-blue-5)', outlineOffset: '-2px' } : undefined}
                 >
-                  <Table.Td>
+                  <Table.Td
+                    role="gridcell"
+                    data-gds-cell
+                    tabIndex={focusedCell?.rowIndex === rowIndex && focusedCell.columnIndex === 0 ? 0 : -1}
+                    aria-colindex={1}
+                    onFocus={() => setFocusedCell({ rowIndex, columnIndex: 0 })}
+                    style={focusedCell?.rowIndex === rowIndex && focusedCell.columnIndex === 0 ? { outline: '2px solid var(--mantine-color-blue-5)', outlineOffset: '-2px' } : undefined}
+                  >
                     <Checkbox aria-label={`Select row ${id}`} checked={table.selectedRowIds.includes(id)} onChange={() => table.toggleRow(id)} tabIndex={-1} />
                   </Table.Td>
-                  {visibleColumns.map((column) => <Table.Td key={column.key} role="gridcell">{column.render ? column.render(row) : String(getCellValue(row, column) ?? '')}</Table.Td>)}
+                  {visibleColumns.map((column, columnIndex) => {
+                    const gridColumnIndex = columnIndex + 1;
+                    const isCellFocused = focusedCell?.rowIndex === rowIndex && focusedCell.columnIndex === gridColumnIndex;
+                    return (
+                      <Table.Td
+                        key={column.key}
+                        role="gridcell"
+                        data-gds-cell
+                        tabIndex={isCellFocused ? 0 : -1}
+                        aria-colindex={gridColumnIndex + 1}
+                        onFocus={() => setFocusedCell({ rowIndex, columnIndex: gridColumnIndex })}
+                        style={isCellFocused ? { outline: '2px solid var(--mantine-color-blue-5)', outlineOffset: '-2px' } : undefined}
+                      >
+                        {column.render ? column.render(row) : String(getCellValue(row, column) ?? '')}
+                      </Table.Td>
+                    );
+                  })}
                 </Table.Tr>
               );
             })}
@@ -395,7 +433,7 @@ export function GdsDataTable<T extends Record<string, unknown>>({
         </Table>
       </ScrollArea>
       <VisuallyHidden aria-live="polite" aria-atomic="true">
-        {focusedRowIndex !== null ? `Row ${focusedRowIndex + 1} of ${table.visibleRows.length}` : ''}
+        {focusedCell ? `Row ${focusedCell.rowIndex + 1} of ${table.visibleRows.length}, ${focusedColumnLabel ?? `column ${focusedCell.columnIndex + 1}`} column` : ''}
       </VisuallyHidden>
       {virtualizedRowLimit && table.rows.length > table.visibleRows.length ? <Text size="xs" c="dimmed">{table.visibleRows.length} of {table.rows.length} rows rendered in the virtualized window.</Text> : null}
       <Group justify="space-between">

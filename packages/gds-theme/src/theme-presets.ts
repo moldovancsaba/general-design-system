@@ -21,7 +21,8 @@ export type GdsThemePresetId =
   | 'orchid'
   | 'royal'
   | 'cosmic'
-  | 'warm';
+  | 'warm'
+  | 'athlete-gold';
 
 export interface GdsThemePreset {
   id: GdsThemePresetId;
@@ -193,6 +194,7 @@ const customPresetThemes: Record<Exclude<GdsThemePresetId, 'default' | 'dark-pub
   royal: createVibrantPresetTheme('violet'),
   cosmic: createVibrantPresetTheme('violet'),
   warm: createVibrantPresetTheme('orange'),
+  'athlete-gold': createVibrantPresetTheme('yellow'),
 };
 
 const themePresetCatalog: GdsThemePreset[] = [
@@ -216,6 +218,7 @@ const themePresetCatalog: GdsThemePreset[] = [
   { id: 'royal', label: 'Royal violet', description: 'Confident violet lane for SaaS dashboards and professional apps.', runtimeLane: 'resolveGdsThemePreset(royal)' },
   { id: 'cosmic', label: 'Cosmic burst', description: 'Highly saturated blue-violet-cyan-magenta showcase lane for bold public apps and launch surfaces.', runtimeLane: 'resolveGdsThemePreset(cosmic)' },
   { id: 'warm', label: 'Warm sand', description: 'Honey-amber warm lane for lifestyle, commerce, and community products.', runtimeLane: 'resolveGdsThemePreset(warm)' },
+  { id: 'athlete-gold', label: 'Athlete Gold', description: 'Premium black-and-gold performance lane with stronger metallic gold accents and dark operator surfaces.', runtimeLane: 'resolveGdsThemePreset(athlete-gold)' },
 ];
 
 export function getGdsThemePresets() {

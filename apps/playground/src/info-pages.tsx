@@ -175,7 +175,8 @@ npm ls @mantine/core @mantine/hooks @mantine/modals @mantine/notifications react
 npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react
 
 # Registry propagation after publish
-GDS_REGISTRY_RETRIES=8 GDS_REGISTRY_DELAY_MS=7000 npm run verify:published
+GDS_REGISTRY_RETRIES=8 GDS_REGISTRY_DELAY_MS=7000 npm run verify:published:availability
+npm run verify:published:consumer
 
 # Consumer verification failure
 gds-compliance check --manifest ./gds-adoption.json --format text`;

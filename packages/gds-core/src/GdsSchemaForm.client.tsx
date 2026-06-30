@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Button, Stack, Text } from '@mantine/core';
 import { FormField } from './FormField';
@@ -55,8 +55,46 @@ export interface GdsSchemaAdapterResult {
   events: GdsSchemaFormEvent[];
 }
 
+export interface GdsSchemaUploadResult {
+  [key: string]: unknown;
+  id?: string;
+  name?: string;
+  url?: string;
+  size?: number;
+  type?: string;
+  metadata?: Record<string, unknown>;
+}
+
+export interface GdsSchemaUploadRequest {
+  field: GdsFieldDescriptor;
+  files: File[];
+  signal: AbortSignal;
+  onProgress: (progress: number) => void;
+}
+
+export interface GdsSchemaUploadRemoveRequest {
+  field: GdsFieldDescriptor;
+  value: GdsSchemaUploadResult[];
+  signal: AbortSignal;
+}
+
+export interface GdsSchemaUploadAdapter {
+  upload: (request: GdsSchemaUploadRequest) => Promise<GdsSchemaUploadResult | GdsSchemaUploadResult[]>;
+  remove?: (request: GdsSchemaUploadRemoveRequest) => Promise<void>;
+}
+
 export interface GdsSchemaFormEvent {
-  type: 'schema_parse_failed' | 'unsupported_field' | 'generated_submit_failed';
+  type:
+    | 'schema_parse_failed'
+    | 'unsupported_field'
+    | 'generated_submit_failed'
+    | 'upload_started'
+    | 'upload_progress'
+    | 'upload_succeeded'
+    | 'upload_failed'
+    | 'upload_cancelled'
+    | 'upload_removed'
+    | 'upload_retry_requested';
   field?: string;
   timestamp: number;
   privacy: 'metadata-only';
@@ -85,6 +123,7 @@ export interface GdsSchemaFormProps<TValues extends Record<string, unknown> = Re
   schema: GdsFormSchema;
   onSubmit: (values: TValues) => Promise<void> | void;
   renderers?: GdsFieldRendererMap;
+  uploadAdapter?: GdsSchemaUploadAdapter;
   onEvent?: (event: GdsSchemaFormEvent | GdsFormOrchestrationEvent) => void;
   submitLabel?: string;
 }
@@ -254,7 +293,11 @@ function getInitialValues(schema: GdsFormSchema) {
   }));
 }
 
-function validateSchemaValues(schema: GdsFormSchema, values: Record<string, unknown>, renderers: GdsFieldRendererMap = {}): ValidationIssue[] {
+function isFileValue(value: unknown) {
+  return typeof File !== 'undefined' && value instanceof File;
+}
+
+function validateSchemaValues(schema: GdsFormSchema, values: Record<string, unknown>, renderers: GdsFieldRendererMap = {}, options: { uploadAdapter?: GdsSchemaUploadAdapter } = {}): ValidationIssue[] {
   return schema.fields.flatMap((field) => {
     if (field.hidden || field.type === 'hidden') return [];
     const value = values[field.name];
@@ -263,7 +306,8 @@ function validateSchemaValues(schema: GdsFormSchema, values: Record<string, unkn
     if (field.type === 'unsupported' && !renderers[field.name] && !renderers[field.type]) return [{ field: field.name, message: field.unsupportedReason ?? 'Unsupported schema field.', severity: 'blocking' as const }];
     if (field.required && field.type === 'file-upload' && fileValues.length === 0) return [{ field: field.name, message: `${field.label} is required.`, severity: 'blocking' as const }];
     if (field.required && field.type !== 'file-upload' && (value === undefined || value === null || text === '')) return [{ field: field.name, message: `${field.label} is required.`, severity: 'blocking' as const }];
-    if (field.type === 'file-upload' && field.maxFileSizeBytes && fileValues.some((file) => typeof File !== 'undefined' && file instanceof File && file.size > field.maxFileSizeBytes!)) return [{ field: field.name, message: `${field.label} contains a file larger than ${field.maxFileSizeLabel ?? `${field.maxFileSizeBytes} bytes`}.`, severity: 'blocking' as const }];
+    if (field.type === 'file-upload' && field.maxFileSizeBytes && fileValues.some((file) => isFileValue(file) && file.size > field.maxFileSizeBytes!)) return [{ field: field.name, message: `${field.label} contains a file larger than ${field.maxFileSizeLabel ?? `${field.maxFileSizeBytes} bytes`}.`, severity: 'blocking' as const }];
+    if (field.type === 'file-upload' && options.uploadAdapter && fileValues.some(isFileValue)) return [{ field: field.name, message: `${field.label} upload must finish before submit.`, severity: 'blocking' as const }];
     if (field.minLength && text.length > 0 && text.length < field.minLength) return [{ field: field.name, message: `${field.label} must contain at least ${field.minLength} characters.`, severity: 'blocking' as const }];
     if (field.maxLength && text.length > field.maxLength) return [{ field: field.name, message: `${field.label} must contain at most ${field.maxLength} characters.`, severity: 'blocking' as const }];
     if (field.pattern && text.length > 0 && !new RegExp(field.pattern).test(text)) return [{ field: field.name, message: `${field.label} does not match the required format.`, severity: 'blocking' as const }];
@@ -281,6 +325,7 @@ function validateSchemaValues(schema: GdsFormSchema, values: Record<string, unkn
 export interface FileUploadFieldProps {
   id: string;
   label: string;
+  field?: GdsFieldDescriptor;
   value?: unknown;
   describedBy?: string;
   invalid?: boolean;
@@ -293,7 +338,9 @@ export interface FileUploadFieldProps {
   policyText?: string;
   state?: UploadDropzoneState;
   progressValue?: number;
-  onChange?: (files: File[]) => void;
+  uploadAdapter?: GdsSchemaUploadAdapter;
+  onUploadEvent?: (event: GdsSchemaFormEvent) => void;
+  onChange?: (value: File[] | GdsSchemaUploadResult[]) => void;
 }
 
 function getUploadFileNames(value: unknown) {
@@ -310,6 +357,7 @@ function getUploadFileNames(value: unknown) {
 export function FileUploadField({
   id,
   label,
+  field,
   value,
   describedBy,
   invalid,
@@ -322,19 +370,135 @@ export function FileUploadField({
   policyText,
   state,
   progressValue,
+  uploadAdapter,
+  onUploadEvent,
   onChange,
 }: FileUploadFieldProps) {
+  const abortRef = useRef<AbortController | null>(null);
+  const lastFilesRef = useRef<File[]>([]);
+  const [adapterState, setAdapterState] = useState<UploadDropzoneState | undefined>();
+  const [adapterProgress, setAdapterProgress] = useState<number | undefined>();
+  const [adapterError, setAdapterError] = useState<string | undefined>();
   const selectedFiles = getUploadFileNames(value);
   const oversize = Array.isArray(value) && maxFileSizeBytes
-    ? value.some((file) => typeof File !== 'undefined' && file instanceof File && file.size > maxFileSizeBytes)
+    ? value.some((file) => isFileValue(file) && file.size > maxFileSizeBytes)
     : false;
-  const effectiveState = state ?? (oversize ? 'too-large' : selectedFiles.length > 0 ? 'selected' : 'idle');
+  const effectiveState = adapterState ?? state ?? (oversize ? 'too-large' : selectedFiles.length > 0 ? 'selected' : 'idle');
   const effectivePolicyText = oversize
     ? `One or more files exceed ${maxFileSizeLabel ?? `${maxFileSizeBytes} bytes`}.`
     : policyText;
+  const effectiveProgressValue = adapterProgress ?? progressValue;
+
+  const emitUploadEvent = useCallback((type: GdsSchemaFormEvent['type'], message?: string) => {
+    onUploadEvent?.(createSchemaEvent(type, message, field?.name ?? id));
+  }, [field?.name, id, onUploadEvent]);
+
+  useEffect(() => () => {
+    abortRef.current?.abort();
+  }, []);
+
+  const uploadFiles = useCallback((files: File[]) => {
+    const selectedOversize = Boolean(maxFileSizeBytes && files.some((file) => file.size > maxFileSizeBytes));
+    if (!uploadAdapter || !field || selectedOversize) {
+      onChange?.(files);
+      if (selectedOversize) {
+        setAdapterState('too-large');
+      }
+      return;
+    }
+
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+    lastFilesRef.current = files;
+    onChange?.(files);
+    setAdapterState('upload-pending');
+    setAdapterProgress(0);
+    setAdapterError(undefined);
+    emitUploadEvent('upload_started');
+
+    void uploadAdapter.upload({
+      field,
+      files,
+      signal: controller.signal,
+      onProgress: (progress) => {
+        const clamped = Math.max(0, Math.min(100, progress));
+        setAdapterProgress(clamped);
+        emitUploadEvent('upload_progress');
+      },
+    }).then((result) => {
+      if (controller.signal.aborted) {
+        return;
+      }
+      const results = Array.isArray(result) ? result : [result];
+      onChange?.(results);
+      setAdapterState('selected');
+      setAdapterProgress(100);
+      setAdapterError(undefined);
+      emitUploadEvent('upload_succeeded');
+    }).catch((error) => {
+      if (controller.signal.aborted) {
+        return;
+      }
+      setAdapterState('upload-failed');
+      setAdapterError(error instanceof Error ? error.message : 'Upload failed.');
+      emitUploadEvent('upload_failed', error instanceof Error ? error.message : undefined);
+    });
+  }, [emitUploadEvent, field, maxFileSizeBytes, onChange, uploadAdapter]);
 
   const handleFilesSelected = (files: File[]) => {
-    onChange?.(files);
+    uploadFiles(files);
+  };
+
+  const retryUpload = () => {
+    if (!lastFilesRef.current.length) {
+      return;
+    }
+    emitUploadEvent('upload_retry_requested');
+    uploadFiles(lastFilesRef.current);
+  };
+
+  const cancelUpload = () => {
+    abortRef.current?.abort();
+    abortRef.current = null;
+    setAdapterState('idle');
+    setAdapterProgress(undefined);
+    setAdapterError(undefined);
+    onChange?.([]);
+    emitUploadEvent('upload_cancelled');
+  };
+
+  const removeUpload = () => {
+    const controller = new AbortController();
+    const currentValue = Array.isArray(value) ? value.filter((item): item is GdsSchemaUploadResult => !isFileValue(item) && typeof item === 'object' && item !== null) : [];
+
+    abortRef.current?.abort();
+    abortRef.current = controller;
+    const completeRemoval = () => {
+      onChange?.([]);
+      setAdapterState('removed');
+      setAdapterProgress(undefined);
+      setAdapterError(undefined);
+      emitUploadEvent('upload_removed');
+    };
+
+    if (!uploadAdapter?.remove || !field || currentValue.length === 0) {
+      completeRemoval();
+      return;
+    }
+
+    void uploadAdapter.remove({ field, value: currentValue, signal: controller.signal })
+      .then(() => {
+        if (!controller.signal.aborted) completeRemoval();
+      })
+      .catch((error) => {
+        if (controller.signal.aborted) {
+          return;
+        }
+        setAdapterState('upload-failed');
+        setAdapterError(error instanceof Error ? error.message : 'Remove failed.');
+        emitUploadEvent('upload_failed', error instanceof Error ? error.message : undefined);
+      });
   };
 
   return (
@@ -353,15 +517,18 @@ export function FileUploadField({
         policyText={effectivePolicyText}
         state={effectiveState}
         selectedFiles={selectedFiles}
-        progressValue={progressValue}
+        progressValue={effectiveProgressValue}
+        error={adapterError}
         mode="inline"
+        retryAction={effectiveState === 'upload-failed' && uploadAdapter ? <Button size="xs" variant="light" onClick={retryUpload}>Retry upload</Button> : undefined}
+        removeAction={effectiveState === 'upload-pending' && uploadAdapter ? <Button size="xs" variant="subtle" onClick={cancelUpload}>Cancel upload</Button> : selectedFiles.length > 0 ? <Button size="xs" variant="subtle" onClick={removeUpload}>Remove</Button> : undefined}
         onFilesSelected={handleFilesSelected}
       />
     </Stack>
   );
 }
 
-function renderDefaultField({ field, value, setValue, describedBy, invalid }: GdsFieldRendererContext) {
+function renderDefaultField({ field, value, setValue, describedBy, invalid }: GdsFieldRendererContext, options: { uploadAdapter?: GdsSchemaUploadAdapter; onEvent?: (event: GdsSchemaFormEvent) => void } = {}) {
   const common = {
     id: field.name,
     'aria-label': field.label,
@@ -374,6 +541,7 @@ function renderDefaultField({ field, value, setValue, describedBy, invalid }: Gd
       <FileUploadField
         {...common}
         label={field.label}
+        field={field}
         value={value}
         accept={field.accept}
         multiple={field.multiple}
@@ -383,6 +551,8 @@ function renderDefaultField({ field, value, setValue, describedBy, invalid }: Gd
         policyText={field.uploadPolicyText}
         state={field.uploadState}
         progressValue={field.uploadProgress}
+        uploadAdapter={options.uploadAdapter}
+        onUploadEvent={options.onEvent}
         onChange={(files) => setValue(files)}
       />
     );
@@ -405,13 +575,14 @@ export function GdsSchemaForm<TValues extends Record<string, unknown> = Record<s
   schema,
   onSubmit,
   renderers = {},
+  uploadAdapter,
   onEvent,
   submitLabel = 'Submit',
 }: GdsSchemaFormProps<TValues>) {
   const initialValues = useMemo(() => getInitialValues(schema), [schema]);
   const form = useGdsFormOrchestration({
     initialValues,
-    validate: (snapshot) => validateSchemaValues(schema, Object.fromEntries(Object.entries(snapshot.fields).map(([name, field]) => [name, field.value])), renderers),
+    validate: (snapshot) => validateSchemaValues(schema, Object.fromEntries(Object.entries(snapshot.fields).map(([name, field]) => [name, field.value])), renderers, { uploadAdapter }),
     onSubmit: async (values) => {
       try {
         await onSubmit(values as TValues);
@@ -442,14 +613,14 @@ export function GdsSchemaForm<TValues extends Record<string, unknown> = Record<s
             describedBy: `${field.name}-description ${field.name}-error`,
             invalid: Boolean(issue),
           };
-          const renderer = renderers[field.name] ?? renderers[field.type] ?? renderDefaultField;
+          const renderer = renderers[field.name] ?? renderers[field.type];
           return (
             <FormField
               key={field.name}
               label={`${field.label}${field.required ? ' (required)' : ''}`}
               description={field.description ? <Text id={`${field.name}-description`} size="xs" c="dimmed">{field.description}</Text> : undefined}
             >
-              {renderer(context)}
+              {renderer ? renderer(context) : renderDefaultField(context, { uploadAdapter, onEvent })}
               <span id={`${field.name}-error`}>
                 <ValidatedFieldMessage field={field.name} />
               </span>

@@ -1,8 +1,8 @@
 # Data Table Engine
 
 Status: Active SSOT
-Version: 3.5.0
-Last updated: 2026-06-21
+Version: 3.7.0
+Last updated: 2026-06-30
 
 The GDS data table engine provides a headless state contract and a governed visual table for operational products. It covers local and remote data adapters, sorting, filtering, pagination, selection, export requests, mobile cards, loading/error/empty states, and virtualized row windows.
 
@@ -42,6 +42,7 @@ Existing table components remain supported. New products should prefer the engin
 - Tables include a caption.
 - Sortable headers expose `aria-sort`.
 - Row and visible-bulk selection controls have accessible names.
+- Columns with `interactive: true` mark grid cells that contain nested controls. Cell focus stays roving with arrow keys; `Enter` or `F2` enters the first button/link/input in the cell; `Escape` returns focus to the grid cell.
 - Mobile cards keep row names and key fields visible without horizontal traps.
 - Virtualized windows announce the rendered row count.
 

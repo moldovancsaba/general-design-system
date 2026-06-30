@@ -15,6 +15,7 @@ export interface GdsTableColumn<T extends Record<string, unknown>> {
   filterable?: boolean;
   hidden?: boolean;
   width?: number | string;
+  interactive?: boolean;
   render?: (row: T) => ReactNode;
   accessor?: (row: T) => string | number | boolean | null | undefined;
   mobilePriority?: number;
@@ -279,6 +280,21 @@ interface GdsTableFocusedCell {
   columnIndex: number;
 }
 
+const interactiveCellSelector = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled]):not([type="hidden"])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[role="button"]:not([aria-disabled="true"])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+function getInteractiveCellElements(cell: HTMLElement) {
+  return Array.from(cell.querySelectorAll<HTMLElement>(interactiveCellSelector))
+    .filter((element) => !element.hasAttribute('hidden') && element.getAttribute('aria-hidden') !== 'true');
+}
+
 function useGdsTableKeyNav(rowCount: number, columnCount: number) {
   const tbodyRef = useRef<HTMLTableSectionElement>(null);
   const [focusedCell, setFocusedCell] = useState<GdsTableFocusedCell | null>(rowCount > 0 && columnCount > 0 ? { rowIndex: 0, columnIndex: 0 } : null);
@@ -296,6 +312,27 @@ function useGdsTableKeyNav(rowCount: number, columnCount: number) {
   const handleKeyDown = useCallback((event: KeyboardEvent<HTMLTableSectionElement>) => {
     const rows = tbodyRef.current?.querySelectorAll<HTMLTableRowElement>('tr[data-gds-row]') ?? [];
     if (rows.length === 0 || columnCount === 0) return;
+
+    const target = event.target instanceof HTMLElement ? event.target : null;
+    const activeCell = target?.closest<HTMLElement>('[data-gds-cell]');
+    const isCellTarget = Boolean(activeCell && target === activeCell);
+
+    if (activeCell && !isCellTarget) {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        activeCell.focus();
+      }
+      return;
+    }
+
+    if (activeCell && (event.key === 'Enter' || event.key === 'F2')) {
+      const [firstInteractive] = getInteractiveCellElements(activeCell);
+      if (firstInteractive) {
+        event.preventDefault();
+        firstInteractive.focus();
+        return;
+      }
+    }
 
     const current = focusedCell ?? { rowIndex: 0, columnIndex: 0 };
     const lastRow = rows.length - 1;
@@ -402,6 +439,8 @@ export function GdsDataTable<T extends Record<string, unknown>>({
                   <Table.Td
                     role="gridcell"
                     data-gds-cell
+                    data-gds-row-index={rowIndex}
+                    data-gds-column-index={0}
                     tabIndex={focusedCell?.rowIndex === rowIndex && focusedCell.columnIndex === 0 ? 0 : -1}
                     aria-colindex={1}
                     onFocus={() => setFocusedCell({ rowIndex, columnIndex: 0 })}
@@ -417,6 +456,10 @@ export function GdsDataTable<T extends Record<string, unknown>>({
                         key={column.key}
                         role="gridcell"
                         data-gds-cell
+                        data-gds-actionable-cell={column.interactive || undefined}
+                        data-gds-row-index={rowIndex}
+                        data-gds-column-index={gridColumnIndex}
+                        aria-keyshortcuts={column.interactive ? 'Enter F2 Escape' : undefined}
                         tabIndex={isCellFocused ? 0 : -1}
                         aria-colindex={gridColumnIndex + 1}
                         onFocus={() => setFocusedCell({ rowIndex, columnIndex: gridColumnIndex })}

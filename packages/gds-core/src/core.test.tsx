@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Title } from '@mantine/core';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithGds } from '../../../test-utils/render';
 import { AccessSummary } from './AccessSummary';
@@ -1304,6 +1304,61 @@ describe('@doneisbetter/gds-core', () => {
     fireEvent.keyDown(document.activeElement!, { key: 'ArrowRight' });
     expect(document.activeElement).toHaveTextContent('Draft');
     expect(screen.getByText('Row 2 of 2, Status column')).toBeInTheDocument();
+  });
+
+  it('enters and exits actionable data table cells without stealing nested control keys', async () => {
+    const user = userEvent.setup();
+    const rows = [
+      { id: '1', name: 'Alpha', action: 'open' },
+      { id: '2', name: 'Bravo', action: 'open' },
+    ];
+    const open = vi.fn();
+    const columns = [
+      { key: 'name' as const, label: 'Name' },
+      {
+        key: 'action' as const,
+        label: 'Action',
+        interactive: true,
+        render: (row: (typeof rows)[number]) => (
+          <button type="button" onClick={() => open(row.id)}>
+            Open {row.name}
+          </button>
+        ),
+      },
+    ];
+    const { container } = renderWithGds(
+      <GdsDataTable
+        caption="Actionable members"
+        columns={columns}
+        rowId={(row) => String(row.id)}
+        adapter={createGdsTableAdapter(rows, columns)}
+        mobileCards={false}
+      />,
+    );
+
+    expect(await screen.findByRole('grid', { name: 'Actionable members' })).toBeInTheDocument();
+    const cells = () => Array.from(container.querySelectorAll<HTMLElement>('tbody [data-gds-cell]'));
+
+    act(() => {
+      cells()[0]?.focus();
+    });
+    fireEvent.keyDown(cells()[0]!, { key: 'ArrowRight' });
+    expect(document.activeElement).toHaveTextContent('Alpha');
+    fireEvent.keyDown(document.activeElement!, { key: 'ArrowRight' });
+    expect(document.activeElement).toHaveAttribute('data-gds-actionable-cell', 'true');
+    expect(document.activeElement).toHaveTextContent('Open Alpha');
+
+    fireEvent.keyDown(document.activeElement!, { key: 'Enter' });
+    expect(document.activeElement).toBe(screen.getByRole('button', { name: 'Open Alpha' }));
+
+    fireEvent.keyDown(document.activeElement!, { key: 'ArrowLeft' });
+    expect(document.activeElement).toBe(screen.getByRole('button', { name: 'Open Alpha' }));
+
+    fireEvent.keyDown(document.activeElement!, { key: 'Escape' });
+    expect(document.activeElement).toHaveAttribute('data-gds-actionable-cell', 'true');
+
+    await user.click(screen.getByRole('button', { name: 'Open Alpha' }));
+    expect(open).toHaveBeenCalledWith('1');
   });
 
   it('supports remote table adapters, retries, and filtered-empty states', async () => {
@@ -2733,6 +2788,8 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     expect(screen.getAllByText('createPublicBrandTheme(...)').length).toBeGreaterThan(0);
     expect(screen.getByText('Light, dark, and auto proof')).toBeInTheDocument();
     expect(screen.getByText('Unsupported lane boundary')).toBeInTheDocument();
+    expect(screen.getByText('Athlete Gold reference surface')).toBeInTheDocument();
+    expect(screen.getByText('Athlete IQ')).toBeInTheDocument();
 
     await user.selectOptions(screen.getByLabelText('Preset'), 'brand');
     await user.selectOptions(screen.getByLabelText('Brand primary color'), 'teal');
@@ -2751,6 +2808,7 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     expect(container.querySelectorAll('[data-gds-owned-contrast="theme-lab-controls"]').length).toBe(3);
     expect(container.querySelectorAll('[data-gds-owned-contrast="vibe-gallery-card"]').length).toBeGreaterThan(12);
     expect(container.querySelector('[data-gds-owned-contrast="vibe-contract"]')).toBeInTheDocument();
+    expect(container.querySelector('[data-gds-owned-contrast="athlete-gold-reference"]')).toBeInTheDocument();
     const firstControlSurface = container.querySelector('[data-gds-owned-contrast="theme-lab-controls"]');
     expect(firstControlSurface?.getAttribute('style')).toContain('background-image: var(--gds-local-background)');
     expect(firstControlSurface?.getAttribute('style')).toContain('--gds-vibe-control-text');
@@ -3370,6 +3428,64 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     await waitFor(() => expect(submit).toHaveBeenCalledWith(expect.objectContaining({
       attachment: [file],
     })));
+  });
+
+  it('uploads schema file-upload fields through an adapter before submit', async () => {
+    const user = userEvent.setup();
+    const submit = vi.fn();
+    const events = vi.fn();
+    const uploadResult = { id: 'asset-1', name: 'evidence.png', url: '/uploads/evidence.png' };
+    let resolveUpload: (value: typeof uploadResult) => void = () => {};
+    const uploadAdapter = {
+      upload: vi.fn(({ onProgress }) => {
+        onProgress(42);
+        return new Promise<typeof uploadResult>((resolve) => {
+          resolveUpload = resolve;
+        });
+      }),
+      remove: vi.fn(),
+    };
+    const result = jsonSchemaToGdsFormSchema({
+      title: 'Upload',
+      type: 'object',
+      required: ['attachment'],
+      properties: {
+        attachment: {
+          type: 'string',
+          format: 'binary',
+          title: 'Training file',
+          'x-gds-uploadPolicyText': 'PNG evidence only.',
+        },
+      },
+    }, { id: 'upload-adapter-form' });
+
+    renderWithGds(<GdsSchemaForm schema={result.schema!} onSubmit={submit} uploadAdapter={uploadAdapter} onEvent={events} />);
+
+    const input = document.querySelector<HTMLInputElement>('input[type="file"]');
+    const file = new File(['x'], 'evidence.png', { type: 'image/png' });
+    await user.upload(input!, file);
+
+    expect(uploadAdapter.upload).toHaveBeenCalledWith(expect.objectContaining({
+      field: expect.objectContaining({ name: 'attachment' }),
+      files: [file],
+    }));
+    expect(await screen.findByText('42% uploaded')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(screen.getAllByText('Training file upload must finish before submit.').length).toBeGreaterThan(0);
+
+    await act(async () => {
+      resolveUpload(uploadResult);
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+    await waitFor(() => expect(submit).toHaveBeenCalledWith(expect.objectContaining({
+      attachment: [uploadResult],
+    })));
+    expect(events.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining([
+      'upload_started',
+      'upload_progress',
+      'upload_succeeded',
+    ]));
   });
 
   it('manages overlay stack with top-most close rules', async () => {

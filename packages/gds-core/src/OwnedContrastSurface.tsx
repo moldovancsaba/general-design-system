@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { GdsVibeTheme } from '@doneisbetter/gds-theme';
 
-export type GdsOwnedContrastRole = 'theme-lab-controls' | 'vibe-gallery-card' | 'vibe-contract';
+export type GdsOwnedContrastRole = 'theme-lab-controls' | 'vibe-gallery-card' | 'vibe-contract' | 'athlete-gold-reference';
 
 export interface GdsOwnedContrastTokens {
   text: string;

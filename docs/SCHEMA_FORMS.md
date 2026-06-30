@@ -1,8 +1,8 @@
 # Schema Forms
 
 Status: Active SSOT
-Version: 3.5.0
-Last updated: 2026-06-21
+Version: 3.7.0
+Last updated: 2026-06-30
 
 Schema forms turn existing contracts into governed GDS form models. Use them when a product already has JSON Schema, OpenAPI, or Zod contracts and needs predictable labels, required state, validation, i18n keys, and accessibility wiring.
 
@@ -13,11 +13,12 @@ Schema forms turn existing contracts into governed GDS form models. Use them whe
 - `openApiToGdsFormSchema(document, options?)`: extracts a request body or component schema before normalization.
 - `zodToGdsFormSchema(schema, options?)`: reads consumer-supplied Zod-like object schemas without adding Zod as a hard dependency.
 - `GdsSchemaForm`: renders a generated form through `useGdsFormOrchestration`, `GdsFormProvider`, `GdsValidationSummary`, `FormField`, and `ValidatedFieldMessage`.
+- `uploadAdapter`: optional `GdsSchemaUploadAdapter` for schema file-upload fields that must upload immediately and submit upload results instead of raw `File[]` values.
 
 ## Support Matrix
 
-- Supported: string, email, URL, password, date, number, integer, boolean, enum/select, textarea by long `maxLength`, hidden fields, and conditional-field metadata.
-- Requires renderer override: arrays, file uploads, nested objects, `$ref`, `oneOf`, and `anyOf`.
+- Supported: string, email, URL, password, date, number, integer, boolean, enum/select, textarea by long `maxLength`, hidden fields, conditional-field metadata, and schema file uploads.
+- Requires renderer override: arrays, nested objects, `$ref`, `oneOf`, and `anyOf`.
 - Unsupported schema nodes produce advisory adapter issues and blocking generated-form validation until a renderer override is supplied.
 
 ## Accessibility Contract
@@ -53,6 +54,31 @@ Unsafe or product-specific fields must use explicit renderers:
 
 Overrides must still use GDS components and tokens. Do not bypass GDS with route-local visual systems.
 
+## Upload Adapter
+
+When `uploadAdapter` is provided, the default `file-upload` field:
+
+- starts upload immediately after file selection
+- renders progress, retry, cancel, and remove controls through `UploadDropzone`
+- blocks submit while raw `File` values are still pending
+- writes `GdsSchemaUploadResult[]` into form values after upload succeeds
+
+```tsx
+<GdsSchemaForm
+  schema={schema}
+  uploadAdapter={{
+    upload: async ({ files, signal, onProgress }) => {
+      onProgress(25);
+      return uploadFiles(files, { signal });
+    },
+    remove: async ({ value, signal }) => {
+      await removeFiles(value, { signal });
+    },
+  }}
+  onSubmit={save}
+/>
+```
+
 ## Observability
 
 Schema adapters emit metadata-only events:
@@ -60,6 +86,13 @@ Schema adapters emit metadata-only events:
 - `schema_parse_failed`
 - `unsupported_field`
 - `generated_submit_failed`
+- `upload_started`
+- `upload_progress`
+- `upload_succeeded`
+- `upload_failed`
+- `upload_cancelled`
+- `upload_removed`
+- `upload_retry_requested`
 
 Payloads never include form values.
 

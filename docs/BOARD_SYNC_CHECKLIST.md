@@ -149,6 +149,15 @@ Maintenance command:
 npm run board:sync-hvb
 ```
 
+Release delivery sync:
+
+```bash
+GDS_RELEASE_DELIVERED_ISSUES=331 npm run board:sync-release
+npm run audit:board:strict
+```
+
+The release sync is idempotent: already-closed issues are skipped, closed issue cards are moved to `Done`, and no open issue is closed unless it is explicitly listed in `GDS_RELEASE_DELIVERED_ISSUES`.
+
 Expected board audit:
 
 ```text

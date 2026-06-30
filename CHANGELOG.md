@@ -13,6 +13,14 @@ All notable policy changes to the General Design System are recorded here.
 - **Styling-contract migration to GDS hooks** (#345): GDS themes its core surface group (`Paper`, `Card`, `Alert`, `Code`) through GDS-owned classes (`.gds-paper`, `.gds-card`, `.gds-alert`, `.gds-code`) attached globally via theme `classNames`, instead of vendor-internal `.mantine-*` selectors. The published stylesheet's vendor-selector surface shrank 38 → 34 (enforced down by `verify:css-boundary`); migration is visually identical (the GDS class lands on the same element) and verified by the theme-trust + forced-colors runtime checks across all presets. Remaining selectors migrate incrementally under the gate. See [`docs/THEME_STYLING_HOOKS.md`](docs/THEME_STYLING_HOOKS.md).
 - **Overlay adapter seam** (#349): a GDS-owned `OverlayAdapter` interface (with default `mantineOverlayAdapter`) makes the overlay engine swappable without changing any consumer call site or the public component API. `GdsProvider` accepts an `overlayAdapter` prop (defaults to current behavior); `useOverlayAdapter()` exposes it; `surfaceProps(role)` carries the `data-gds-overlay-surface` hook (#342). All adapter types are GDS-owned, so the seam does not widen the vendor type boundary. Swappability is proven by a test that reads a different engine purely by swapping the injected adapter. Overlay components adopt the seam incrementally. See [`docs/OVERLAY_ADAPTER.md`](docs/OVERLAY_ADAPTER.md).
 
+## 3.7.0 - 2026-06-30
+
+- **Published consumer smoke**: `verify:published` now runs registry polling and a clean npm consumer fixture that installs the published package line outside the monorepo, type-checks imports, and verifies runtime exports across all seven public packages.
+- **Athlete Gold reference surface**: `/themes` now includes a package-owned black-and-metallic-gold navigation reference panel backed by the shipped Athlete Gold VibeTheme tokens.
+- **Schema upload adapter**: `GdsSchemaForm` accepts `uploadAdapter` for file-upload fields, with progress, retry, cancel, remove, upload-result payloads, and metadata-only upload events.
+- **Actionable table cells**: `GdsDataTable` columns can mark `interactive: true`; grid-cell focus remains roving while `Enter`/`F2` enters nested controls and `Escape` returns to the cell.
+- **Release board sync**: `board:sync-release` closes explicitly delivered issues and normalizes closed GitHub project-board cards to `Done`, with dry-run and idempotent behavior.
+
 ## 3.6.0 - 2026-06-26
 
 - **GdsDataTable keyboard navigation** (GH-333): roving grid-cell focus with Up/Down/Left/Right/Home/End traversal, `role="grid"` semantics, `aria-selected`/`aria-rowindex` per row, and `aria-live` row/column announcements.

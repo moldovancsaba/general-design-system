@@ -1,7 +1,7 @@
 # General Design System
 
 Status: Active SSOT
-Version: 3.6.0
+Version: 3.7.0
 Last updated: 2026-06-26
 
 `/Users/Shared/Projects/general-design-system` is the cross-project single source of truth for design, UI, and UX.
@@ -214,8 +214,11 @@ Required repository behavior:
 - `npm run audit:dependencies` — enforces zero production dependency advisories and verifies any dev/reference-tooling advisories are explicitly documented in [DEPENDENCY_AUDIT.md](DEPENDENCY_AUDIT.md)
 - `npm run verify:mantine` — packs the packages and validates clean Mantine 8.3 and 9.2 / React 19 consumer install smoke
 - `npm run publish:dry-run` — validates the authenticated package publish sequence without uploading artifacts
-- `npm run publish:npm` — publishes the six public GDS packages from an authenticated npm environment
-- `npm run verify:published` — checks the registry until all six packages resolve to the current `VERSION`
+- `npm run publish:npm` — publishes the seven public GDS packages from an authenticated npm environment
+- `npm run verify:published` — checks the registry until all seven packages resolve to the current `VERSION`, then installs and type-checks a clean npm consumer fixture
+- `npm run verify:published:availability` — checks only npm registry version availability for the current `VERSION`
+- `npm run verify:published:consumer` — installs the current `VERSION` from npm into a temporary consumer and verifies imports/types outside the monorepo
+- `npm run board:sync-release` — closes explicitly delivered release issues from `GDS_RELEASE_DELIVERED_ISSUES` and syncs closed project cards to `Done`
 - `npm run pack:release` — creates public tarballs, checksums, and install instructions for the fallback GitHub release-bundle distribution path
 - `npm run build` — builds `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, `@doneisbetter/gds-admin`, `@doneisbetter/gds`, and the playground in dependency order
 - `node scripts/codemods/run-codemod.mjs <transform> <path>` — runs the reference migration codemods in dry-run mode by default and emits `GdsCodemodResult` with changed files, manual follow-ups, failed transforms, and governed exception stubs

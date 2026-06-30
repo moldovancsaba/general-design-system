@@ -1,7 +1,7 @@
 # Release Publish Runbook
 
 Status: Active SSOT
-Version: 3.6.0
+Version: 3.7.0
 Last updated: 2026-06-07
 
 This runbook defines the authenticated package-publish flow for the General Design System.
@@ -11,8 +11,8 @@ Canonical registry target: **npm**
 Current registry reality:
 
 - canonical install source: npm
-- latest published baseline: `3.6.0`
-- current repository line: `3.6.0`
+- latest published baseline: `3.7.0`
+- current repository line: `3.7.0`
 
 GitHub release assets remain an optional fallback distribution path for unpublished release candidates:
 
@@ -101,15 +101,15 @@ npm run publish:npm
 npm run verify:published
 ```
 
-Do not announce the release or update client install prompts until `npm run verify:published` confirms all seven packages resolve from npm.
+Do not announce the release or update client install prompts until `npm run verify:published` confirms all seven packages resolve from npm and the clean published-consumer smoke passes.
 
-The `3.6.0` release install matrix must remain version-locked:
+The `3.7.0` release install matrix must remain version-locked:
 
 ```bash
-npm install @doneisbetter/gds@3.6.0
-npm install -D @doneisbetter/gds-eslint-config@3.6.0 @doneisbetter/gds-compliance@3.6.0 @doneisbetter/gds-a11y@3.6.0
+npm install @doneisbetter/gds@3.7.0
+npm install -D @doneisbetter/gds-eslint-config@3.7.0 @doneisbetter/gds-compliance@3.7.0 @doneisbetter/gds-a11y@3.7.0
 
-npm install @doneisbetter/gds-theme@3.6.0 @doneisbetter/gds-core@3.6.0 @doneisbetter/gds-admin@3.6.0
+npm install @doneisbetter/gds-theme@3.7.0 @doneisbetter/gds-core@3.7.0 @doneisbetter/gds-admin@3.7.0
 ```
 
 ## Expected publish order
@@ -132,6 +132,15 @@ Environment knobs for propagation delay:
 
 ```bash
 GDS_REGISTRY_RETRIES=8 GDS_REGISTRY_DELAY_MS=7000 npm run verify:published
+```
+
+Use `npm run verify:published:availability` when you need only registry polling during incident triage. Use `npm run verify:published:consumer` to rerun the clean npm install/import smoke after propagation succeeds.
+
+To close known delivered issues and normalize project-board cards after publish:
+
+```bash
+GDS_RELEASE_DELIVERED_ISSUES=123,124 npm run board:sync-release
+npm run audit:board:strict
 ```
 
 Retry policy:
@@ -172,7 +181,8 @@ The bundle workflow:
 ## Recovery guidance
 
 - if `verify:release` fails, do not publish anything
-- if `verify:published` fails because of propagation delay, rerun only the verification step with a larger retry window before assuming publication failed
+- if `verify:published` fails because of propagation delay, rerun the availability step with a larger retry window before assuming publication failed
+- if `verify:published:consumer` fails, treat the release as not ready for client communication even if registry availability passed
 - if a partial publish succeeds, do not republish the same version with changed contents
 - ship a corrective patch version instead
 - update `CHANGELOG.md` if the corrective patch changes consumer behavior

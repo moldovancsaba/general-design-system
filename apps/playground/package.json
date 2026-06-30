@@ -1,7 +1,7 @@
 {
   "name": "playground",
   "private": true,
-  "version": "3.6.0",
+  "version": "3.7.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,9 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@doneisbetter/gds-admin": "3.6.0",
-    "@doneisbetter/gds-core": "3.6.0",
-    "@doneisbetter/gds-theme": "3.6.0",
+    "@doneisbetter/gds-admin": "3.7.0",
+    "@doneisbetter/gds-core": "3.7.0",
+    "@doneisbetter/gds-theme": "3.7.0",
     "@floating-ui/core": "^1.7.5",
     "@mantine/core": "^7.9.0",
     "@mantine/hooks": "^7.9.0",

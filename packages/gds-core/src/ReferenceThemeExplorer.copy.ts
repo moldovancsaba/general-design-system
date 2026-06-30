@@ -27,6 +27,8 @@ const referenceThemeExplorerCopy = {
     previewVibe: 'Preview this vibe',
     avoidFor: 'Avoid for:',
     noSpecialExclusion: 'No special exclusion noted for this lane.',
+    athleteGoldReferenceTitle: 'Athlete Gold reference surface',
+    athleteGoldReferenceDescription: 'Black performance navigation with stronger metallic gold, based on the shipped Athlete Gold VibeTheme tokens.',
     vibeContractTitle: 'Current VibeTheme contract',
     vibeContractDescription: 'The selected preset exports these package-owned CSS tokens. Consumers can render expressive product surfaces while staying inside GDS theme ownership.',
     tokenLabels: ['Primary', 'Accent', 'Light canvas', 'Dark canvas', 'Light surface', 'Dark surface'],
@@ -90,6 +92,7 @@ const referenceThemeExplorerCopy = {
       orchid: 'Orchid signal',
       royal: 'Royal violet',
       cosmic: 'Cosmic burst',
+      'athlete-gold': 'Athlete Gold',
     },
     presetSummaries: {
       default: 'Balanced neutral baseline lane.',
@@ -110,6 +113,7 @@ const referenceThemeExplorerCopy = {
       orchid: 'Purple-grape lane for editorial, culture, and premium tools.',
       royal: 'Confident violet lane for SaaS dashboards and professional apps.',
       cosmic: 'Highly saturated blue-violet-cyan-magenta showcase lane for bold public apps and launch surfaces.',
+      'athlete-gold': 'Premium black-and-gold performance lane with metallic gold accents.',
     },
   },
   de: {

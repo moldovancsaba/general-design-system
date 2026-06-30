@@ -41,7 +41,10 @@
     "pack:release": "node scripts/create-release-bundles.mjs",
     "publish:dry-run": "node scripts/publish-packages.mjs --dry-run",
     "publish:npm": "node scripts/publish-packages.mjs",
-    "verify:published": "node scripts/check-registry-publication.mjs"
+    "verify:published": "node scripts/check-registry-publication.mjs && node scripts/verify-published-consumer-smoke.mjs",
+    "verify:published:availability": "node scripts/check-registry-publication.mjs",
+    "verify:published:consumer": "node scripts/verify-published-consumer-smoke.mjs",
+    "board:sync-release": "node scripts/sync-release-board.mjs"
   },
   "optionalDependencies": {
     "@rolldown/binding-darwin-arm64": "1.0.2",
@@ -63,7 +66,7 @@
     "typescript": "^5.4.5",
     "vitest": "^4.1.8"
   },
-  "version": "3.6.0",
+  "version": "3.7.0",
   "overrides": {
     "tsup": {
       "esbuild": "0.28.1"

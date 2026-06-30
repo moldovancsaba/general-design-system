@@ -235,6 +235,125 @@ function ThemePreviewSurface({
   );
 }
 
+function AthleteGoldReferenceSurface({ copy }: { copy: ExplorerCopy }) {
+  const athleteGold = vibeCatalogById['athlete-gold'];
+  const navItems = [
+    { id: 'home', label: 'Home', marker: '⌂', active: true },
+    { id: 'check-in', label: 'Check-in', marker: '◇' },
+    { id: 'live-session', label: 'Live Session', marker: '▶' },
+    { id: 'daily-to-do', label: 'Daily To-Do', marker: '☑' },
+    { id: 'learning-hub', label: 'Learning Hub', marker: '□' },
+    { id: 'recovery', label: 'Recovery', marker: '♡', section: 'TWO PILLARS' },
+    { id: 'fuel', label: 'Fuel', marker: '○' },
+    { id: 'mental', label: 'Mental', marker: '◎' },
+    { id: 'reflection', label: 'Reflection', marker: '✎' },
+    { id: 'habits', label: 'Habits', marker: '✓' },
+  ];
+
+  const surfaceProps = getGdsOwnedContrastProps({
+    role: 'athlete-gold-reference',
+    tokens: createGdsOwnedContrastTokens(athleteGold, {
+      background: athleteGold.gradient,
+      radius: 'var(--mantine-radius-xl)',
+      backgroundColor: athleteGold.canvasDark,
+      borderColor: athleteGold.borderDark,
+    }),
+  });
+
+  return (
+    <Paper
+      withBorder
+      radius="xl"
+      p="lg"
+      aria-label={copy.athleteGoldReferenceTitle ?? 'Athlete Gold reference surface'}
+      {...surfaceProps}
+    >
+      <Stack gap="xl">
+        <Group gap="md" align="center">
+          <Box
+            aria-hidden="true"
+            style={{
+              width: 64,
+              height: 64,
+              borderRadius: 999,
+              display: 'grid',
+              placeItems: 'center',
+              color: athleteGold.canvasDark,
+              background: `linear-gradient(135deg, ${athleteGold.accent}, ${athleteGold.primary})`,
+              boxShadow: `0 18px 38px ${athleteGold.glow}`,
+              fontFamily: 'Georgia, serif',
+              fontSize: 28,
+              fontWeight: 800,
+            }}
+          >
+            IQ
+          </Box>
+          <Stack gap={0}>
+            <Title order={3} style={{ color: athleteGold.textDark }}>
+              Athlete IQ
+            </Title>
+            <Text size="sm" fw={700} tt="uppercase" style={{ color: athleteGold.accent, letterSpacing: 0 }}>
+              Performance OS
+            </Text>
+          </Stack>
+        </Group>
+
+        <Stack gap="sm">
+          <Text size="xs" tt="uppercase" style={{ color: athleteGold.mutedDark, letterSpacing: 0 }}>
+            Today
+          </Text>
+          {navItems.map((item) => (
+            <Stack key={item.id} gap="xs">
+              {item.section ? (
+                <Text size="xs" tt="uppercase" style={{ color: athleteGold.mutedDark, letterSpacing: 0, marginTop: 12 }}>
+                  {item.section}
+                </Text>
+              ) : null}
+              <Group
+                justify="space-between"
+                wrap="nowrap"
+                px="md"
+                py="sm"
+                style={{
+                  minHeight: 54,
+                  borderRadius: 18,
+                  color: item.active ? athleteGold.accent : athleteGold.textDark,
+                  background: item.active
+                    ? `linear-gradient(90deg, rgba(228, 166, 35, 0.18), rgba(255, 215, 106, 0.06))`
+                    : 'transparent',
+                  border: item.active ? `1px solid ${athleteGold.borderDark}` : '1px solid transparent',
+                  boxShadow: item.active ? `0 18px 38px rgba(0, 0, 0, 0.28), inset 0 0 0 1px rgba(255, 215, 106, 0.08)` : undefined,
+                }}
+              >
+                <Group gap="md" wrap="nowrap">
+                  <Text aria-hidden="true" fw={700} style={{ width: 20, color: item.active ? athleteGold.accent : athleteGold.mutedDark }}>
+                    {item.marker}
+                  </Text>
+                  <Text fw={item.active ? 700 : 500}>
+                    {item.label}
+                  </Text>
+                </Group>
+                {item.active ? (
+                  <Box
+                    aria-hidden="true"
+                    style={{
+                      width: 10,
+                      height: 10,
+                      borderRadius: 999,
+                      background: athleteGold.accent,
+                      boxShadow: `0 0 22px ${athleteGold.glow}`,
+                    }}
+                  />
+                ) : null}
+              </Group>
+            </Stack>
+          ))}
+        </Stack>
+      </Stack>
+    </Paper>
+  );
+}
+
 export function ReferenceThemeExplorer({
   initialSelection,
   onSelectionChange,
@@ -600,6 +719,13 @@ export function ReferenceThemeExplorer({
             )) : null}
           </SimpleGrid>
         </Paper>
+      </ReferenceSection>
+
+      <ReferenceSection
+        title={copy.athleteGoldReferenceTitle ?? fallbackExplorerCopy.athleteGoldReferenceTitle}
+        description={copy.athleteGoldReferenceDescription ?? fallbackExplorerCopy.athleteGoldReferenceDescription}
+      >
+        <AthleteGoldReferenceSurface copy={copy} />
       </ReferenceSection>
 
       <ReferenceSection

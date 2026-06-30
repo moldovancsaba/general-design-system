@@ -1,13 +1,13 @@
 # Verified Consumer Install Proof
 
 Status: Active SSOT
-Version: 3.6.0
+Version: 3.7.0
 Last updated: 2026-06-21
 
 This document records the current proof points for the direct package-consumption path that consumer teams should rely on when evaluating GDS adoption readiness.
 
-Latest published npm baseline validated by this proof: `3.6.0`
-Current repository line: `3.6.0`
+Latest published npm baseline validated by this proof: `3.7.0`
+Current repository line: `3.7.0`
 Current major line: `3.0.x`
 
 ## Verified consumer baseline
@@ -59,7 +59,23 @@ The repository root also declares platform-scoped optional native bindings for:
 
 This is intended to make a fresh root `npm install` sufficient for local Vite and tsup builds on the supported macOS and Linux x64 environments.
 
-### 2. Typed App Router reference fixture
+### 2. Published npm consumer smoke
+
+`npm run verify:published` now runs registry availability followed by `npm run verify:published:consumer`.
+
+The published smoke creates a temporary consumer outside the monorepo, installs the current `VERSION` from npm, type-checks imports from the umbrella and granular packages, and runs runtime import checks for:
+
+- `@doneisbetter/gds`
+- `@doneisbetter/gds-theme`
+- `@doneisbetter/gds-core`
+- `@doneisbetter/gds-admin`
+- `@doneisbetter/gds-a11y`
+- `@doneisbetter/gds-eslint-config`
+- `@doneisbetter/gds-compliance`
+
+The fixture also verifies the `Athlete Gold` VibeTheme, actionable `GdsDataTable` columns, and schema upload adapter types from the published packages.
+
+### 3. Typed App Router reference fixture
 
 `apps/reference-next` is the in-repo App Router consumer reference. It exists to validate the documented root split:
 
@@ -74,7 +90,7 @@ This is intended to make a fresh root `npm install` sufficient for local Vite an
 
 This fixture is covered by `npm run verify:references`.
 
-### 3. Known boundary
+### 4. Known boundary
 
 The App Router fixture remains a typed runtime reference rather than a hard release gate for full `next build`, because the upstream `/404` / `/_error` prerender edge on Next `15.5.x` is still reproducible even against a trivial route tree.
 
@@ -87,18 +103,18 @@ That means the current verified statement is:
 
 ## Consumer install commands
 
-Canonical `3.6.0` end-state install source after the release gate opens:
+Canonical `3.7.0` end-state install source after the release gate opens:
 
 ```bash
-npm install @doneisbetter/gds@3.6.0
-npm install -D @doneisbetter/gds-eslint-config@3.6.0 @doneisbetter/gds-compliance@3.6.0 @doneisbetter/gds-a11y@3.6.0
+npm install @doneisbetter/gds@3.7.0
+npm install -D @doneisbetter/gds-eslint-config@3.7.0 @doneisbetter/gds-compliance@3.7.0 @doneisbetter/gds-a11y@3.7.0
 ```
 
 Granular package path:
 
 ```bash
-npm install @doneisbetter/gds-theme@3.6.0 @doneisbetter/gds-core@3.6.0 @doneisbetter/gds-admin@3.6.0
-npm install -D @doneisbetter/gds-eslint-config@3.6.0 @doneisbetter/gds-compliance@3.6.0 @doneisbetter/gds-a11y@3.6.0
+npm install @doneisbetter/gds-theme@3.7.0 @doneisbetter/gds-core@3.7.0 @doneisbetter/gds-admin@3.7.0
+npm install -D @doneisbetter/gds-eslint-config@3.7.0 @doneisbetter/gds-compliance@3.7.0 @doneisbetter/gds-a11y@3.7.0
 ```
 
 Fallback release-bundle install path if npm is temporarily unavailable:
@@ -116,3 +132,5 @@ npm run verify:published
 ```
 
 `npm run verify:published` uses bounded registry polling. Operators may increase the retry window for registry propagation with `GDS_REGISTRY_RETRIES` and `GDS_REGISTRY_DELAY_MS`, but release communication must wait until all seven packages resolve to the same `VERSION`.
+
+After registry polling, the command installs from npm into a clean temporary consumer. A passing publish is not considered communicable until that smoke also passes.

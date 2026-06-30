@@ -1,7 +1,7 @@
 # Installation Guide
 
 Status: Active SSOT
-Version: 3.6.0
+Version: 3.7.0
 Last updated: 2026-06-26
 
 This guide is the canonical consumer setup path for the public umbrella package `@doneisbetter/gds`. Granular package lanes remain available when a consumer explicitly wants them.
@@ -22,7 +22,7 @@ Use icons through the GDS-owned `GdsIcons` surface (`import { GdsIcons } from '@
 
 Release-line rule:
 
-- current stable package line: `3.6.0`
+- current stable package line: `3.7.0`
 - current major line: `3.0.x`
 - do not publish, announce, or ask clients to install a new version until `npm run verify:published` confirms npm availability
 
@@ -49,23 +49,23 @@ See [COMPATIBILITY_AND_RELEASES.md](COMPATIBILITY_AND_RELEASES.md) and [VERIFIED
 
 ## 2. Canonical install commands
 
-Preferred `3.6.0` runtime package after the release gate opens:
+Preferred `3.7.0` runtime package after the release gate opens:
 
 ```bash
-npm install @doneisbetter/gds@3.6.0
+npm install @doneisbetter/gds@3.7.0
 ```
 
 Governance packages:
 
 ```bash
-npm install -D @doneisbetter/gds-eslint-config@3.6.0 @doneisbetter/gds-compliance@3.6.0 @doneisbetter/gds-a11y@3.6.0
+npm install -D @doneisbetter/gds-eslint-config@3.7.0 @doneisbetter/gds-compliance@3.7.0 @doneisbetter/gds-a11y@3.7.0
 ```
 
 Granular runtime packages when package separation is intentional:
 
 ```bash
-npm install @doneisbetter/gds-theme@3.6.0 @doneisbetter/gds-core@3.6.0 @doneisbetter/gds-admin@3.6.0
-npm install -D @doneisbetter/gds-eslint-config@3.6.0 @doneisbetter/gds-compliance@3.6.0 @doneisbetter/gds-a11y@3.6.0
+npm install @doneisbetter/gds-theme@3.7.0 @doneisbetter/gds-core@3.7.0 @doneisbetter/gds-admin@3.7.0
+npm install -D @doneisbetter/gds-eslint-config@3.7.0 @doneisbetter/gds-compliance@3.7.0 @doneisbetter/gds-a11y@3.7.0
 ```
 
 Required peers:
@@ -250,7 +250,7 @@ gds-compliance check --manifest ./gds-adoption.json
 Expected failure handling:
 
 - peer conflict: run `npm ls @mantine/core @mantine/hooks @mantine/modals @mantine/notifications react react-dom`, then reinstall the supported peer line instead of forcing resolution
-- registry propagation after publish: rerun `GDS_REGISTRY_RETRIES=8 GDS_REGISTRY_DELAY_MS=7000 npm run verify:published`
+- registry propagation after publish: rerun `GDS_REGISTRY_RETRIES=8 GDS_REGISTRY_DELAY_MS=7000 npm run verify:published:availability`, then `npm run verify:published:consumer`
 - compliance failure: keep `strictMode` disabled until the failing local shell/card/action/detail adapter is migrated or declared as a temporary exception with owner, review date, tests, and exit condition
 
 ## 7. Common mistakes
@@ -268,4 +268,4 @@ Do not:
 
 If npm is temporarily unavailable, use the public release tarballs described in [RELEASE_PUBLISH.md](RELEASE_PUBLISH.md). That path is a fallback only, not the preferred steady-state install method.
 
-For the `3.6.0` release cutover, fallback assets must use tag `gds-v3.6.0` and must not be announced as the canonical path once npm verification passes.
+For the `3.7.0` release cutover, fallback assets must use tag `gds-v3.7.0` and must not be announced as the canonical path once npm verification passes.

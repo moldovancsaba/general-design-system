@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClassScout UI Kit — Mobile-First (provisional v0.1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cs-terracotta:#ca8570; --cs-terracotta-600:#b06a54; --cs-terracotta-100:#f2e2db;
+    --cs-sage:#90a287; --cs-sage-600:#6f8270; --cs-sage-100:#e4eae0;
+    --cs-navy:#0b223e; --cs-navy-700:#16314f;
+    --cs-cream:#faf7f1; --cs-slate:#434c59; --cs-slate-300:#aab0b8;
+    --white:#ffffff; --line:rgba(11,34,62,.12);
+    --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+    --shadow:0 1px 2px rgba(11,34,62,.06), 0 8px 24px rgba(11,34,62,.06);
+    --font-display:"Bogart","Fraunces","Playfair Display",Georgia,serif;
+    --font-body:"Garet","Outfit","Inter",ui-sans-serif,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cs-cream);color:var(--cs-navy);font-family:var(--font-body);line-height:1.5;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.display{font-family:var(--font-display);line-height:1.15;font-weight:700}
+  h1{font-size:40px;margin:0 0 4px}
+  h2{font-size:26px;margin:0 0 16px}
+  h3{font-size:18px;margin:0 0 10px}
+  a{color:var(--cs-terracotta-600)}
+  .wrap{max-width:1120px;margin:0 auto;padding:32px 20px 96px}
+  .lead{color:var(--cs-slate);max-width:760px}
+  .note{background:var(--cs-terracotta-100);border:1px solid var(--cs-terracotta);color:var(--cs-terracotta-600);
+    padding:12px 16px;border-radius:var(--r-md);font-size:14px;margin:16px 0}
+  section{margin-top:48px;padding-top:24px;border-top:1px solid var(--line)}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cs-terracotta-600);font-weight:600;margin-bottom:6px}
+  .grid{display:grid;gap:16px}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  .cols-2{grid-template-columns:repeat(2,1fr)}
+  .cols-5{grid-template-columns:repeat(5,1fr)}
+  @media(max-width:760px){.cols-3,.cols-2,.cols-5{grid-template-columns:1fr}}
+  /* tokens */
+  .swatch{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:var(--white)}
+  .swatch .chip{height:72px}
+  .swatch .meta{padding:10px 12px;font-size:13px}
+  .swatch .meta b{display:block;font-size:14px}
+  .swatch code{font-size:12px;color:var(--cs-slate)}
+  .type-row{display:flex;align-items:baseline;gap:16px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .type-row span:last-child{color:var(--cs-slate);font-size:13px}
+  .scale{display:flex;gap:8px;flex-wrap:wrap}
+  .scale i{display:block;background:var(--cs-sage-100);border:1px solid var(--cs-sage);border-radius:6px;height:28px}
+  /* buttons + chips */
+  .btn{font-family:var(--font-body);font-weight:600;font-size:15px;border-radius:var(--r-pill);border:0;padding:11px 18px;cursor:pointer}
+  .btn.primary{background:var(--cs-navy);color:var(--cs-cream)}
+  .btn.accent{background:var(--cs-terracotta);color:var(--cs-cream)}
+  .btn.secondary{background:var(--white);border:1px solid var(--line);color:var(--cs-navy)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--cs-navy)}
+  .chip{display:inline-flex;align-items:center;gap:6px;border-radius:var(--r-pill);padding:7px 12px;font-size:13px;
+    border:1px solid var(--line);background:var(--white);color:var(--cs-navy);cursor:pointer}
+  .chip.on{background:var(--cs-terracotta);border-color:var(--cs-terracotta);color:var(--cs-cream)} /* filter selected */
+  .chip.borough.on{background:var(--cs-navy);border-color:var(--cs-navy);color:var(--cs-cream)} /* macro selection */
+  .chip.hood.on{background:var(--cs-sage);border-color:var(--cs-sage);color:var(--cs-navy)} /* micro selection */
+  .chip.dismiss{background:var(--cs-terracotta);color:var(--cs-cream);border-color:var(--cs-terracotta)}
+  .badge{display:inline-flex;align-items:center;gap:4px;border-radius:var(--r-pill);padding:3px 9px;font-size:11px;font-weight:600}
+  .badge.feat{background:var(--cs-terracotta);color:var(--cs-cream)} /* attention */
+  .badge.trust{background:var(--cs-sage);color:#22331f} /* validation */
+  .badge.neutral{background:#f1ece4;color:var(--cs-slate)} /* info tag */
+  .badge.urgency{background:#f5ddd5;color:var(--cs-t6,#b06a54)} /* alert */
+  .badge.muted{background:#f1ece4;color:var(--cs-slate)}
+  /* fit score */
+  .fit{display:inline-flex;align-items:center;gap:8px;border-radius:var(--r-pill);padding:5px 10px;font-size:12px;font-weight:600;
+    background:linear-gradient(90deg,var(--cs-sage-100),var(--cs-terracotta-100));border:1px solid var(--cs-terracotta);color:var(--cs-terracotta-600)}
+  .fit .dot{width:8px;height:8px;border-radius:50%;background:var(--cs-terracotta)}
+  /* cards */
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+  .card .img{height:160px;background:linear-gradient(135deg,var(--cs-sage),var(--cs-navy));position:relative}
+  .card .img .b{position:absolute;top:10px;left:10px}
+  .card .img .save{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);
+    display:flex;align-items:center;justify-content:center}
+  .card .body{padding:14px}
+  .card .title{font-family:var(--font-display);font-weight:700;font-size:17px;margin:0 0 4px}
+  .card .loc{color:var(--cs-slate);font-size:13px;margin-bottom:8px}
+  .card .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .price{font-weight:700;color:var(--cs-terracotta-600)}
+  .price small{font-weight:600;color:var(--cs-slate);font-size:11px}
+  .star{color:var(--cs-terracotta)}
+  .why{background:var(--cs-cream);border:1px dashed var(--cs-terracotta);border-radius:var(--r-md);padding:10px;font-size:13px;color:var(--cs-slate);margin:10px 0}
+  .why b{color:var(--cs-navy)}
+  .actions{display:flex;gap:8px;flex-wrap:wrap}
+  .icnbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .compact{display:flex;gap:12px;padding:12px}
+  .compact .img{height:72px;width:72px;border-radius:var(--r-md);flex:0 0 72px}
+  /* nav */
+  .frame{display:flex;gap:16px;flex-wrap:wrap}
+  .sidebar{width:240px;background:var(--cs-navy);color:var(--cs-cream);border-radius:var(--r-lg);padding:16px;flex:0 0 240px}
+  .sidebar .sect{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cs-slate-300);margin:14px 0 6px}
+  .sidebar .item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r-md);font-size:14px;color:#cfd6df}
+  .sidebar .item.on{background:var(--cs-terracotta);color:var(--cs-cream);font-weight:600}
+  .phone{width:300px;flex:0 0 300px;border:8px solid var(--cs-navy);border-radius:28px;overflow:hidden;background:var(--cs-cream);position:relative;height:560px}
+  .phone .top{background:var(--white);padding:12px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+  .phone .scroll{padding:12px;height:438px;overflow:auto}
+  .tabbar{position:absolute;bottom:0;left:0;right:0;height:62px;background:var(--white);border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-around;padding-bottom:4px}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--cs-slate)}
+  .tab.on{color:var(--cs-terracotta)}
+  .tab .ic{width:24px;height:24px;border-radius:7px;background:#e7e2d8}
+  .tab.center .ic{width:46px;height:46px;border-radius:50%;background:var(--cs-terracotta);margin-top:-22px;box-shadow:var(--shadow)}
+  .aisearch{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px;box-shadow:var(--shadow)}
+  .aisearch .row{display:flex;align-items:center;gap:8px;border:1px solid var(--cs-terracotta);border-radius:var(--r-pill);padding:8px 8px 8px 14px}
+  .aisearch input{border:0;outline:0;flex:1;font-family:var(--font-body);font-size:14px;background:transparent}
+  .bubble{max-width:80%;padding:10px 12px;border-radius:14px;font-size:14px;margin:8px 0}
+  .bubble.ai{background:var(--white);border:1px solid var(--line)}
+  .bubble.me{background:var(--cs-navy);color:var(--cs-cream);margin-left:auto}
+  .sheet{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg) var(--r-lg) 0 0;box-shadow:var(--shadow);padding:16px;max-width:360px}
+  .sheet .handle{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 14px}
+  .state{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;text-align:center}
+  .state .ic{width:48px;height:48px;border-radius:50%;background:var(--cs-sage-100);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:var(--cs-sage-600);font-size:22px}
+  .sk{background:linear-gradient(90deg,#eee,#f6f6f6,#eee);border-radius:8px;height:14px;margin:6px 0;animation:sh 1.2s infinite}
+  .sk.img{height:120px}
+  @keyframes sh{0%{opacity:.7}50%{opacity:1}100%{opacity:.7}}
+  .tag{font-size:12px;color:var(--cs-slate)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Class Scout · Scout Smarter. Find the Perfect Fit.</div>
+  <h1>ClassScout UI Kit</h1>
+  <p class="lead">Mobile-first component set rendered from the brand sheet and the canonical SSOT. Provisional v0.1 — tokens are reconciled against <code>Class_Scout_Design_System.pdf</code> and the <code>nyc-kid-scout</code> Lovable UI once available.</p>
+  <div class="note">Interim fonts: <b>Fraunces</b> (display, lookalike for Bogart) + <b>Outfit</b> (UI, lookalike for Garet) — both free/OFL. Swap to licensed <b>Bogart</b> + <b>Garet</b> later by changing the first name in the font stack. Colors are the brand five; verify AA contrast for terracotta-on-cream text (use the 600 shade for small text).</div>
+
+  <!-- COLOR -->
+  <section>
+    <div class="eyebrow">Foundation</div>
+    <h2>Color</h2>
+    <div class="grid cols-5">
+      <div class="swatch"><div class="chip" style="background:#ca8570"></div><div class="meta"><b>Terracotta</b><code>#ca8570</code><div class="tag">primary / active</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#90a287"></div><div class="meta"><b>Sage</b><code>#90a287</code><div class="tag">secondary / success</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#0b223e"></div><div class="meta"><b>Navy</b><code>#0b223e</code><div class="tag">ink / dark surface</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#faf7f1"></div><div class="meta"><b>Cream</b><code>#faf7f1</code><div class="tag">page background</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#434c59"></div><div class="meta"><b>Slate</b><code>#434c59</code><div class="tag">muted text</div></div></div>
+    </div>
+  </section>
+
+  <!-- TYPE -->
+  <section>
+    <div class="eyebrow">Foundation</div>
+    <h2>Type &amp; scale</h2>
+    <div class="type-row"><span class="display" style="font-size:40px">Discover kids activities</span><span>H1 · Bogart · 28→44</span></div>
+    <div class="type-row"><span class="display" style="font-size:26px">Browse family activities</span><span>H2 · Bogart · 22→32</span></div>
+    <div class="type-row"><span class="display" style="font-size:18px">Featured providers</span><span>H3 · Bogart · 18→24</span></div>
+    <div class="type-row"><span style="font-size:16px">Body — find the right local activity for your kid.</span><span>Body · Garet · 16</span></div>
+    <div class="type-row"><span style="font-size:13px;color:var(--cs-slate)">Caption / metadata · Garet · 12–14</span><span>small</span></div>
+    <h3 style="margin-top:24px">Spacing (4-based)</h3>
+    <div class="scale">
+      <i style="width:4px"></i><i style="width:8px"></i><i style="width:12px"></i><i style="width:16px"></i><i style="width:20px"></i><i style="width:24px"></i><i style="width:32px"></i><i style="width:40px"></i><i style="width:48px"></i>
+    </div>
+  </section>
+
+  <!-- BUTTONS / CHIPS -->
+  <section>
+    <div class="eyebrow">Primitives</div>
+    <h2>Buttons, chips, badges, Fit Score</h2>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:6px">
+      <button class="btn primary">View details</button>
+      <button class="btn accent">Add to calculator</button>
+      <button class="btn secondary">Share</button>
+    </div>
+    <div class="tag" style="margin-bottom:16px">Primary = navy · Accent = terracotta (sparingly) · Secondary = white/bordered</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+      <span class="chip borough on">Brooklyn</span><span class="chip borough">Manhattan</span><span class="chip hood on">Park Slope</span><span class="chip hood">Astoria</span>
+      <span class="chip on">Weekend</span><span class="chip dismiss">Ages 5–8 ✕</span>
+    </div>
+    <div class="tag" style="margin-bottom:16px">Borough selected = navy · Neighborhood selected = sage · Filter selected = terracotta</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <span class="badge feat">Featured</span><span class="badge trust">Recommended</span><span class="badge neutral">Ages 5–8</span><span class="badge urgency">Few spots left</span>
+      <span class="fit"><span class="dot"></span>Great fit · 92</span>
+    </div>
+  </section>
+
+  <!-- PROVIDER CARD VARIANTS -->
+  <section>
+    <div class="eyebrow">Core component</div>
+    <h2>Provider card — one component, three variants</h2>
+    <div class="grid cols-3">
+      <!-- rich -->
+      <div class="card">
+        <div class="img"><span class="b badge feat">Featured</span><span class="save">♥</span></div>
+        <div class="body">
+          <div class="title">Brooklyn Soccer Lab</div>
+          <div class="loc">Park Slope, Brooklyn</div>
+          <div class="tags"><span class="badge neutral">Classes</span><span class="badge muted">Ages 5–8</span><span class="badge muted">Weekend</span></div>
+          <div class="price">est. $45<small>/class</small> · <span class="star">★</span> 4.8 <span class="tag">(36)</span></div>
+          <div class="actions" style="margin-top:10px">
+            <button class="btn primary" style="flex:1">View details</button>
+            <button class="icnbtn">＋</button><button class="icnbtn">♥</button><button class="icnbtn">↗</button>
+          </div>
+        </div>
+      </div>
+      <!-- ai -->
+      <div class="card">
+        <div class="img" style="background:linear-gradient(135deg,var(--cs-terracotta),var(--cs-navy))"><span class="b fit"><span class="dot"></span>Great fit · 92</span><span class="save">♥</span></div>
+        <div class="body">
+          <div class="title">Future Kickers</div>
+          <div class="loc">Jackson Heights, Queens · Soccer</div>
+          <div class="why"><b>Why this fits:</b> matches your child's age (6), Queens preference, and weekend schedule.</div>
+          <div class="price">est. $40<small>/class</small></div>
+          <div class="actions" style="margin-top:10px">
+            <button class="btn primary" style="flex:1">View details</button>
+            <button class="icnbtn">♥</button><button class="icnbtn">✉</button><button class="icnbtn">↗</button>
+          </div>
+        </div>
+      </div>
+      <!-- compact -->
+      <div class="card">
+        <div class="compact">
+          <div class="img"></div>
+          <div style="min-width:0">
+            <div class="title" style="font-size:15px">Tumble Tots Studio</div>
+            <div class="loc">Tribeca, Manhattan</div>
+            <div class="tags"><span class="badge neutral">Drop-In</span><span class="badge muted">Toddler</span></div>
+            <div class="price" style="font-size:14px">est. $25<small>/visit</small></div>
+          </div>
+        </div>
+        <div class="actions" style="padding:0 12px 12px">
+          <button class="btn ghost" style="flex:1">View</button>
+          <button class="icnbtn">＋</button><button class="icnbtn">♥</button>
+        </div>
+      </div>
+    </div>
+    <div class="note">Card never collapses to <code>null</code> on image failure — it shows a branded category fallback (the gradient tiles above stand in for that). Price always carries an <b>est.</b> marker; ratings render only when real.</div>
+  </section>
+
+  <!-- NAVIGATION -->
+  <section>
+    <div class="eyebrow">Navigation</div>
+    <h2>Desktop sidebar + mobile bottom tab bar</h2>
+    <div class="frame">
+      <div class="sidebar">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:18px;margin-bottom:6px">Class Scout <span style="font-size:11px;color:var(--cs-slate-300)">NYC</span></div>
+        <div class="sect">Discover</div>
+        <div class="item on">🏠 Home</div>
+        <div class="item">🎓 Classes</div>
+        <div class="item">⛺ Camps</div>
+        <div class="item">🎉 Birthday Parties</div>
+        <div class="item">✨ Drop-In Activities</div>
+        <div class="item">📅 Family Events</div>
+        <div class="item">👥 Meet-Up Groups</div>
+        <div class="item">🔍 Scout AI Assistant</div>
+        <div class="sect">My tools</div>
+        <div class="item">♥ Saved</div>
+        <div class="item">🧮 Calculator</div>
+        <div class="item">👤 My Account</div>
+      </div>
+      <div class="phone">
+        <div class="top"><b style="font-family:var(--font-display)">Class Scout</b><span>♥ 🔔 👤</span></div>
+        <div class="scroll">
+          <div class="aisearch">
+            <div style="font-weight:600;margin-bottom:8px">✨ Scout AI <span class="badge muted">BETA</span></div>
+            <div class="row"><input placeholder="What are you looking for today?"><button class="btn primary" style="padding:8px 14px">Ask</button></div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
+              <span class="chip">Weekend activities</span><span class="chip">Classes near me</span><span class="chip">Birthday ideas</span>
+            </div>
+          </div>
+          <div style="margin:14px 0 8px;font-family:var(--font-display);font-weight:700">Featured</div>
+          <div class="card"><div class="compact"><div class="img"></div><div><div class="title" style="font-size:15px">Brooklyn Soccer Lab</div><div class="loc">Park Slope</div><div class="price" style="font-size:14px">est. $45<small>/class</small></div></div></div></div>
+        </div>
+        <div class="tabbar">
+          <div class="tab on"><div class="ic"></div>Home</div>
+          <div class="tab"><div class="ic"></div>Discover</div>
+          <div class="tab center"><div class="ic"></div>Scout AI</div>
+          <div class="tab"><div class="ic"></div>Saved</div>
+          <div class="tab"><div class="ic"></div>Account</div>
+        </div>
+      </div>
+    </div>
+    <div class="note">Mobile primary nav is a persistent 5-tab bar with Scout AI emphasized in the center — not a hamburger. No content is hidden on mobile; it reflows.</div>
+  </section>
+
+  <!-- AI -->
+  <section>
+    <div class="eyebrow">Scout AI</div>
+    <h2>Assistant thread + filter sheet</h2>
+    <div class="frame">
+      <div style="flex:1;min-width:280px">
+        <div class="bubble me">can you provide soccer class in queens</div>
+        <div class="bubble ai">Here are a few soccer options in Queens for different ages. What's the age of your player so I can narrow the best sessions?</div>
+        <div class="card" style="max-width:320px"><div class="compact"><div class="img"></div><div><div class="title" style="font-size:15px">Future Kickers</div><div class="loc">Jackson Heights, Queens</div><span class="fit"><span class="dot"></span>Good fit</span></div></div></div>
+      </div>
+      <div class="sheet">
+        <div class="handle"></div>
+        <h3>Filters</h3>
+        <div class="tag" style="margin-bottom:6px">Age</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px"><span class="chip on">5–8</span><span class="chip">0–4</span><span class="chip">9–12</span></div>
+        <div class="tag" style="margin-bottom:6px">Day &amp; time</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px"><span class="chip on">Weekend</span><span class="chip">After-school</span><span class="chip">Weekday</span></div>
+        <div style="display:flex;gap:8px"><button class="btn primary" style="flex:1">Apply (2)</button><button class="btn ghost">Clear</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATES -->
+  <section>
+    <div class="eyebrow">Every surface defines all five</div>
+    <h2>States</h2>
+    <div class="grid cols-3">
+      <div class="state"><div class="ic">⌛</div><b>Loading</b><div class="tag">Skeletons, never blank</div>
+        <div style="margin-top:12px"><div class="sk img"></div><div class="sk" style="width:70%"></div><div class="sk" style="width:40%"></div></div>
+      </div>
+      <div class="state"><div class="ic">🧭</div><b>Empty</b><div class="tag">What happened · why · next action</div>
+        <button class="btn ghost" style="margin-top:12px">Broaden filters</button></div>
+      <div class="state"><div class="ic">⚠️</div><b>Error</b><div class="tag">Human cause + retry (Home included)</div>
+        <button class="btn primary" style="margin-top:12px">Try again</button></div>
+    </div>
+    <div class="note">Partial state: if some listings lack required media/data, show the valid ones and reflect the true count — never silently drop items so the count mismatches.</div>
+  </section>
+
+  <p class="tag" style="margin-top:40px">ClassScout UI Kit · provisional v0.1 · reconcile with Design System PDF + nyc-kid-scout · see ClassScout-UIUX-SSOT.md and ClassScout-GDS-Implementability.md</p>
+</div>
+</body>
+</html>

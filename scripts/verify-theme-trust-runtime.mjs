@@ -43,6 +43,20 @@ async function requestJson(url) {
   return response.json();
 }
 
+async function disposeBrowser(browser, userDataDir) {
+  // Wait for Chrome to actually exit before removing its profile dir, otherwise
+  // the still-live process holds handles under Default/ and rmSync throws ENOTEMPTY.
+  if (browser.exitCode === null && browser.signalCode === null) {
+    await new Promise((resolve) => {
+      const done = () => { clearTimeout(kill); resolve(); };
+      const kill = setTimeout(() => { try { browser.kill('SIGKILL'); } catch {} }, 2000);
+      browser.once('exit', done);
+      browser.kill('SIGTERM');
+    });
+  }
+  rmSync(userDataDir, { recursive: true, force: true, maxRetries: 8, retryDelay: 125 });
+}
+
 async function launchBrowser() {
   const chromePath = resolveChromePath();
   if (!chromePath) {
@@ -87,9 +101,8 @@ async function launchBrowser() {
         browser,
         userDataDir,
         webSocketDebuggerUrl: pageTarget.webSocketDebuggerUrl,
-        close() {
-          browser.kill('SIGTERM');
-          rmSync(userDataDir, { recursive: true, force: true, maxRetries: 8, retryDelay: 125 });
+        async close() {
+          await disposeBrowser(browser, userDataDir);
         },
       };
     } catch {
@@ -97,8 +110,7 @@ async function launchBrowser() {
     }
   }
 
-  browser.kill('SIGTERM');
-  rmSync(userDataDir, { recursive: true, force: true, maxRetries: 8, retryDelay: 125 });
+  await disposeBrowser(browser, userDataDir);
   throw new Error(`Timed out waiting for Chrome DevTools endpoint. ${stderr.trim()}`.trim());
 }
 
@@ -352,7 +364,7 @@ try {
 
   client.close();
 } finally {
-  browserSession.close();
+  await browserSession.close();
   previewServer?.kill('SIGTERM');
 }
 

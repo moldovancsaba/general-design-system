@@ -2,7 +2,7 @@
 
 All notable policy changes to the General Design System are recorded here.
 
-## Unreleased — brand-completion-lane (#362–#368)
+## 3.9.0 - 2026-07-01 — brand-completion-lane (#362–#368)
 
 - **Choice-chip family catalog coverage** (#362): the `choice-chips` catalog demo now mounts the full exported family — `ChoiceChip` (static, link/button, multi-select toggles) plus the stateful `PillBar`, `SoftChipGroup`, and `FilterChipGroup` selection groups (including a disabled option) — so every-theme render, forced-colors, and a11y-evidence gates exercise the whole family, not just the base chip.
 - **MissingDataPrompt catalog coverage + i18n catalog keys** (#363): the `state-blocks` catalog demo renders `MissingDataPrompt` with a required-fields list, a call-to-action slot, and a `role="status"` recovery variant. Localized message keys `gds.state.missingData.title` / `gds.state.missingData.description` are added to all 9 locale packs (public catalog). `MissingDataPrompt` stays server-safe (no `'use client'`, no context hook) with English semantic defaults, so consumers localize by passing `title`/`description` resolved from the catalog — the component remains usable from `@doneisbetter/gds-core/server`.

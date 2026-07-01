@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Title } from '@mantine/core';
-import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithGds } from '../../../test-utils/render';
 import { AccessSummary } from './AccessSummary';
@@ -4089,6 +4089,27 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     expect(screen.getByRole('img', { name: 'Sparkline kit' })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Radar kit' })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Calendar kit' })).toBeInTheDocument();
+  });
+
+  it('mirrors chart wrapper input data into the accessible table fallback', () => {
+    const benchmarkData = [
+      { label: 'Sprint', value: 42 },
+      { label: 'Endurance', value: 87 },
+      { label: 'Recovery', value: 63 },
+    ];
+
+    renderWithGds(
+      <GdsBenchmarkBarChart title="Benchmark fallback" summary="Benchmark summary" data={benchmarkData} />,
+    );
+
+    const table = screen.getByRole('table');
+    const utils = within(table);
+    expect(utils.getByText('Label')).toBeInTheDocument();
+    expect(utils.getByText('Value')).toBeInTheDocument();
+    benchmarkData.forEach((datum) => {
+      expect(utils.getByText(datum.label)).toBeInTheDocument();
+      expect(utils.getByText(String(datum.value))).toBeInTheDocument();
+    });
   });
 
   it('renders Set A chart primitive metadata and scatter fallback fields', () => {

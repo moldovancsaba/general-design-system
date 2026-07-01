@@ -151,7 +151,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     coverageStatus: 'live-demo',
     summary: 'Forms should validate without punishing typing and must expose grouped fields and loading submit states.',
     importPath: '@doneisbetter/gds-core',
-    sourceComponent: 'useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage',
+    sourceComponent: 'useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper',
   },
   {
     id: 'admin-editor-flows',
@@ -251,7 +251,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     coverageStatus: 'live-demo',
     summary: 'Lightweight filter and scope chips should use governed active state and shared token rhythm.',
     importPath: '@doneisbetter/gds-core',
-    sourceComponent: 'ChoiceChip',
+    sourceComponent: 'ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup',
   },
   {
     id: 'icon-buttons',
@@ -364,7 +364,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     coverageStatus: 'live-demo',
     summary: 'Loading, empty, error, permission, disabled, and success states now include shared presentation modes for centered/fill bounded surfaces.',
     importPath: '@doneisbetter/gds-core',
-    sourceComponent: 'StateBlock / AsyncSurface',
+    sourceComponent: 'StateBlock / AsyncSurface / MissingDataPrompt',
   },
   {
     id: 'surface-presentation',
@@ -969,7 +969,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     coverageStatus: 'live-demo',
     summary: 'Reporting-heavy workflows use governed period controls, evidence panels, chart-token wrappers, and fallback tables.',
     importPath: '@doneisbetter/gds-core',
-    sourceComponent: 'ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart',
+    sourceComponent: 'ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart',
   },
   {
     id: 'alerts',
@@ -1022,7 +1022,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     coverageStatus: 'live-demo',
     summary: 'Modals support focused edits and confirmations with trapped focus and no stacking.',
     importPath: '@doneisbetter/gds-core',
-    sourceComponent: 'ConfirmDialog / OverlayManagerProvider',
+    sourceComponent: 'ConfirmDialog / OverlayManagerProvider / GdsDialog',
   },
   {
     id: 'drawers',
@@ -1033,7 +1033,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     coverageStatus: 'live-demo',
     summary: 'Drawers support filters and secondary panels with explicit mobile and desktop sizing behavior.',
     importPath: '@doneisbetter/gds-core',
-    sourceComponent: 'FilterDrawer / CommandRegistryProvider',
+    sourceComponent: 'FilterDrawer / CommandRegistryProvider / GdsSidePanel',
   },
   {
     id: 'small-screen-priority',

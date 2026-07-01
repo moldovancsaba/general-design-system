@@ -135,6 +135,28 @@ const vibeThemes: Record<GdsThemePresetId, GdsVibeTheme> = {
     gradient: 'radial-gradient(circle at 16% 8%, rgba(202, 133, 112, 0.18), transparent 28%), radial-gradient(circle at 88% 18%, rgba(144, 162, 135, 0.16), transparent 30%), linear-gradient(135deg, #faf7f1, #f4eee2)',
     hero: 'linear-gradient(135deg, rgba(11, 34, 62, 0.12), rgba(202, 133, 112, 0.16))',
   },
+  'gold-athlete': {
+    ...neutralVibe,
+    id: 'gold-athlete',
+    label: 'Gold Athlete',
+    primary: '#8a5a00',
+    accent: '#f0b642',
+    glow: 'rgba(240, 182, 66, 0.24)',
+    canvasLight: '#fbf7ee',
+    canvasDark: '#0a0d12',
+    shellLight: 'rgba(255, 255, 255, 0.92)',
+    shellDark: 'rgba(18, 21, 27, 0.92)',
+    surfaceLight: 'rgba(255, 255, 255, 0.96)',
+    surfaceDark: 'rgba(22, 25, 32, 0.9)',
+    borderLight: '#ede2c6',
+    borderDark: '#2b303a',
+    textLight: '#12161c',
+    textDark: '#fbf7ee',
+    mutedLight: '#414b57',
+    mutedDark: '#d6c8a6',
+    gradient: 'radial-gradient(circle at 14% 8%, rgba(240, 182, 66, 0.18), transparent 26%), radial-gradient(circle at 86% 18%, rgba(192, 138, 18, 0.16), transparent 30%), linear-gradient(135deg, #fbf7ee, #f5eeda)',
+    hero: 'linear-gradient(135deg, rgba(18, 22, 28, 0.14), rgba(240, 182, 66, 0.2))',
+  },
   sunset: {
     ...neutralVibe,
     id: 'sunset',
@@ -466,6 +488,80 @@ const classUsaSemanticCssVariables = {
   '--gds-control-disabledText-dark': '#8d97a6',
 };
 
+const goldAthleteSemanticCssVariables = {
+  '--gds-brand-primary': '#12161c',
+  '--gds-brand-primary-dark': '#fbf7ee',
+  '--gds-brand-primary-pressed': '#0a0d12',
+  '--gds-brand-primary-pressed-dark': '#0a0d12',
+  '--gds-brand-accent': '#c08a12',
+  '--gds-brand-accent-dark': '#e7bd5c',
+  '--gds-brand-accent-action': '#8a5a00',
+  '--gds-brand-accent-action-dark': '#e7bd5c',
+  '--gds-accent': '#c08a12',
+  '--gds-accent-dark': '#e7bd5c',
+  '--gds-support': '#b3261e',
+  '--gds-support-dark': '#e5776e',
+  '--gds-bg-canvas': '#fbf7ee',
+  '--gds-bg-canvas-dark': '#0a0d12',
+  '--gds-bg-card': '#ffffff',
+  '--gds-bg-card-dark': '#16191f',
+  '--gds-bg-page': '#fbf7ee',
+  '--gds-bg-page-dark': '#0a0d12',
+  '--gds-bg-surface': '#ffffff',
+  '--gds-bg-surface-dark': '#16191f',
+  '--gds-bg-inverse': '#12161c',
+  '--gds-bg-inverse-dark': '#12161c',
+  '--gds-border-card': '#ede2c6',
+  '--gds-border-card-dark': '#2b303a',
+  '--gds-text-body': '#12161c',
+  '--gds-text-body-dark': '#fbf7ee',
+  '--gds-text-meta': '#414b57',
+  '--gds-text-meta-dark': '#d6c8a6',
+  '--gds-text-primary': '#12161c',
+  '--gds-text-primary-dark': '#fbf7ee',
+  '--gds-text-secondary': '#414b57',
+  '--gds-text-secondary-dark': '#d6c8a6',
+  '--gds-text-on-inverse': '#fbf7ee',
+  '--gds-text-on-inverse-dark': '#fbf7ee',
+  '--gds-nav-inactiveOnInverse': 'rgba(251,247,238,0.72)',
+  '--gds-nav-inactiveOnInverse-dark': 'rgba(251,247,238,0.72)',
+  '--gds-price': '#8a5a00',
+  '--gds-price-dark': '#e7bd5c',
+  '--gds-star': '#8a5a00',
+  '--gds-star-dark': '#e7bd5c',
+  '--gds-state-success': '#3f6f2a',
+  '--gds-state-success-dark': '#8fc271',
+  '--gds-state-warning': '#8a5a00',
+  '--gds-state-warning-dark': '#e0a23c',
+  '--gds-state-danger': '#b3261e',
+  '--gds-state-danger-dark': '#f2786f',
+  '--gds-state-info': '#12161c',
+  '--gds-state-info-dark': '#aab1ba',
+  '--gds-badge-attention': '#c08a12',
+  '--gds-badge-attention-dark': '#e7bd5c',
+  '--gds-badge-validation': '#3f6f2a',
+  '--gds-badge-validation-dark': '#8fc271',
+  '--gds-badge-info': '#f5eeda',
+  '--gds-badge-info-dark': '#232830',
+  '--gds-badge-urgencyBg': '#f9cfcc',
+  '--gds-badge-urgencyBg-dark': '#54100c',
+  '--gds-bg-info-tag': '#f5eeda',
+  '--gds-bg-info-tag-dark': '#232830',
+  '--gds-brand-accent-tint': '#f9cfcc',
+  '--gds-brand-accent-tint-dark': '#54100c',
+  '--gds-focus-ring': '#8a5a00',
+  '--gds-focus-ring-dark': '#efd189',
+  '--gds-control-disabledBg': '#e7e2d5',
+  '--gds-control-disabledBg-dark': '#2b303a',
+  '--gds-control-disabledText': '#77746c',
+  '--gds-control-disabledText-dark': '#8a8f99',
+};
+
+const brandSemanticCssVariablesByPreset: Partial<Record<GdsThemePresetId, Record<string, string>>> = {
+  'class-usa': classUsaSemanticCssVariables,
+  'gold-athlete': goldAthleteSemanticCssVariables,
+};
+
 export function getGdsVibeThemeCssVariables(id: GdsThemePresetId, colorScheme: 'light' | 'dark') {
   const vibe = resolveGdsVibeTheme(id);
   const dark = colorScheme === 'dark';
@@ -485,13 +581,14 @@ export function getGdsVibeThemeCssVariables(id: GdsThemePresetId, colorScheme: '
     '--gds-vibe-hero': vibe.hero,
   };
 
-  if (id !== 'class-usa') {
+  const brandSemanticCssVariables = brandSemanticCssVariablesByPreset[id];
+  if (!brandSemanticCssVariables) {
     return variables;
   }
 
-  const semanticVariables: Record<string, string> = { ...classUsaSemanticCssVariables };
+  const semanticVariables: Record<string, string> = { ...brandSemanticCssVariables };
   if (dark) {
-    Object.entries(classUsaSemanticCssVariables).forEach(([property, value]) => {
+    Object.entries(brandSemanticCssVariables).forEach(([property, value]) => {
       if (property.endsWith('-dark')) {
         semanticVariables[property.replace(/-dark$/, '')] = value;
       }

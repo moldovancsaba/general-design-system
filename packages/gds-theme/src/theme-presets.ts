@@ -24,7 +24,8 @@ export type GdsThemePresetId =
   | 'cosmic'
   | 'warm'
   | 'athlete-gold'
-  | 'class-usa';
+  | 'class-usa'
+  | 'gold-athlete';
 
 export interface GdsThemePreset {
   id: GdsThemePresetId;
@@ -183,6 +184,8 @@ export const partnerDiscoveryThemePreset = extendGdsTheme({
 
 export const classUsaThemePreset = createBrandTheme('class-usa').mantineTheme;
 
+export const goldAthleteThemePreset = createBrandTheme('gold-athlete').mantineTheme;
+
 const customPresetThemes: Record<Exclude<GdsThemePresetId, 'default' | 'dark-public' | 'flat-surface' | 'editorial' | 'brand' | 'partner-discovery'>, MantineThemeOverride> = {
   sunset: createVibrantPresetTheme('orange'),
   oceanic: createVibrantPresetTheme('cyan'),
@@ -200,6 +203,7 @@ const customPresetThemes: Record<Exclude<GdsThemePresetId, 'default' | 'dark-pub
   warm: createVibrantPresetTheme('orange'),
   'athlete-gold': createVibrantPresetTheme('yellow'),
   'class-usa': classUsaThemePreset,
+  'gold-athlete': goldAthleteThemePreset,
 };
 
 const themePresetCatalog: GdsThemePreset[] = [
@@ -225,6 +229,7 @@ const themePresetCatalog: GdsThemePreset[] = [
   { id: 'warm', label: 'Warm sand', description: 'Honey-amber warm lane for lifestyle, commerce, and community products.', runtimeLane: 'resolveGdsThemePreset(warm)' },
   { id: 'athlete-gold', label: 'Athlete Gold', description: 'Premium black-and-gold performance lane with stronger metallic gold accents and dark operator surfaces.', runtimeLane: 'resolveGdsThemePreset(athlete-gold)' },
   { id: 'class-usa', label: 'Class USA', description: 'Warm ivory, navy, sage, and terracotta family-discovery brand lane for ClassScout-style listings.', runtimeLane: 'resolveGdsThemePreset(class-usa)' },
+  { id: 'gold-athlete', label: 'Gold Athlete', description: 'Governed black-and-metallic-gold performance brand lane for Habigoal, with charcoal body text on ivory in light mode and ivory text with gold accents in dark mode.', runtimeLane: 'resolveGdsThemePreset(gold-athlete)' },
 ];
 
 export function getGdsThemePresets() {

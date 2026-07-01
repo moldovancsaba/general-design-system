@@ -456,6 +456,7 @@ export const patternExportCoverage: ExportCoverageEntry[] = [
 
   // Class USA and Gold-Athlete completion lane (milestone GDS 3.8.0, issues GH-359 / Habigoal GH-502).
   { packageName: '@doneisbetter/gds-theme', exportName: 'classUsaThemePreset', status: 'support-api', registryId: 'reference-theme-explorer', rationale: 'First-class Class USA preset exposes the governed brand theme through the public preset catalog.' },
+  { packageName: '@doneisbetter/gds-theme', exportName: 'goldAthleteThemePreset', status: 'support-api', registryId: 'reference-theme-explorer', rationale: 'First-class Gold Athlete (Habigoal) preset exposes the governed black-and-gold brand theme through the public preset catalog.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'PillBar', status: 'support-api', registryId: 'choice-chips', rationale: 'Macro single-select pill bar covers Class USA region/borough selection.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'SoftChipGroup', status: 'support-api', registryId: 'choice-chips', rationale: 'Micro soft-chip selection covers compact taxonomy filtering without app-local chip CSS.' },
   { packageName: '@doneisbetter/gds-core', exportName: 'FilterChipGroup', status: 'support-api', registryId: 'choice-chips', rationale: 'Filter chip group covers token-backed active filters with terracotta/accent semantics.' },

@@ -42,6 +42,23 @@ describe('createBrandTheme', () => {
     expect(result.cssVariables['--gds-border-card']).toBe('#eee7dd');
   });
 
+  it('creates the first-class Gold Athlete theme from ramps and semantic roles', () => {
+    const result = createBrandTheme('gold-athlete');
+
+    expect(result.tokenGraph.themes).toEqual(['gold-athlete']);
+    expect(result.mantineTheme.primaryColor).toBe('goldAthleteCharcoal');
+    expect(result.mantineTheme.other?.gdsBrandThemeId).toBe('gold-athlete');
+    expect(result.cssVariables['--gds-brand-primary']).toBe('#12161c');
+    expect(result.cssVariables['--gds-brand-primary-pressed']).toBe('#0a0d12');
+    expect(result.cssVariables['--gds-brand-accent']).toBe('#c08a12');
+    expect(result.cssVariables['--gds-brand-accent-action']).toBe('#8a5a00');
+    expect(result.cssVariables['--gds-bg-card']).toBe('#ffffff');
+    expect(result.cssVariables['--gds-border-card']).toBe('#ede2c6');
+    // Gold accent must never be the on-white body-text color; body stays charcoal.
+    expect(brandContrastRatio('#ffffff', result.cssVariables['--gds-brand-accent-action'])).toBeGreaterThanOrEqual(4.5);
+    expect(brandContrastRatio(result.cssVariables['--gds-text-primary'], result.cssVariables['--gds-bg-page'])).toBeGreaterThanOrEqual(4.5);
+  });
+
   it('emits light and dark values for every semantic role', () => {
     const { cssVariables } = createBrandTheme({ brandColors: classScoutColors, fonts });
     const roles = Object.keys(deriveBrandSemanticTokens(classScoutColors));

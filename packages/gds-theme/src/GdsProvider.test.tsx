@@ -15,6 +15,7 @@ import { createPublicBrandTheme, gdsDarkPublicTheme, gdsEditorialPublicTheme, gd
 import { getGdsThemePresets, partnerDiscoveryThemePreset, resolveGdsThemePreset } from './theme-presets';
 import { useGdsThemePresetState } from './theme-runtime';
 import { getGdsVibeThemes, resolveGdsVibeTheme } from './vibe-themes';
+import { createBrandTheme } from './brand-tokens';
 
 function ProviderConsumer() {
   return (
@@ -154,9 +155,10 @@ describe('GdsProvider', () => {
       'royal',
       'cosmic',
       'athlete-gold',
+      'class-usa',
     ];
 
-    expect(presets.length).toBeGreaterThanOrEqual(18);
+    expect(presets.length).toBeGreaterThanOrEqual(19);
     expect(presets.some((item) => item.id === 'default')).toBe(true);
     expect(presets.some((item) => item.id === 'brand')).toBe(true);
     expect(presets.some((item) => item.id === 'partner-discovery')).toBe(true);
@@ -193,9 +195,31 @@ describe('GdsProvider', () => {
     expect(athleteGoldVibe.canvasDark).toBe('#03080f');
     expect(athleteGoldVibe.hero).toContain('rgba(5, 11, 20, 0.92)');
 
+    const classUsaVibe = resolveGdsVibeTheme('class-usa');
+    expect(classUsaVibe.label).toBe('Class USA');
+    expect(classUsaVibe.primary).toBe('#0b223e');
+    expect(resolveGdsThemePreset('class-usa').primaryColor).toBe('classUsaNavy');
+
     const partnerVibe = resolveGdsVibeTheme('partner-discovery');
     expect(partnerVibe.primary).toBe('#08463b');
     expect(partnerVibe.accent).toBe('#2fc800');
+  });
+
+  it('applies theme-owned CSS variables at the provider root for portalled overlays', () => {
+    const classUsaTheme = createBrandTheme('class-usa').mantineTheme;
+
+    const { unmount } = renderWithGds(
+      <GdsProvider theme={classUsaTheme}>
+        <div>Class USA shell</div>
+      </GdsProvider>,
+    );
+
+    expect(screen.getByText('Class USA shell')).toBeInTheDocument();
+    expect(document.documentElement.style.getPropertyValue('--gds-brand-primary')).toBe('#0b223e');
+    expect(document.documentElement.style.getPropertyValue('--gds-brand-accent-action')).toBe('#a85a44');
+
+    unmount();
+    expect(document.documentElement.style.getPropertyValue('--gds-brand-primary')).toBe('');
   });
 
   it('ships blocking-free theme accessibility checks for all public vibe lanes', () => {

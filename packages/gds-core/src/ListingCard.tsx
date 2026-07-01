@@ -20,6 +20,7 @@ export interface ListingCardAffordance {
   href?: string;
   ariaLabel?: string;
   disabled?: boolean;
+  active?: boolean;
 }
 
 export interface ListingCardProps {
@@ -33,6 +34,8 @@ export interface ListingCardProps {
   featured?: boolean;
   sponsoredDisclosure?: ReactNode;
   price?: ReactNode;
+  rating?: ReactNode;
+  ratingLabel?: string;
   primaryAction?: ReactNode;
   /** "Why this fits" reason content (e.g. 2–4 reasons). Rendered as a labeled region. */
   reason?: ReactNode;
@@ -43,6 +46,7 @@ export interface ListingCardProps {
   /** Footer affordances (2–4). When present, replaces the default primaryAction footer slot. */
   actions?: ReactNode[];
   saveAction?: ListingCardAffordance;
+  saved?: boolean;
   shareAction?: ListingCardAffordance;
   compact?: boolean;
   size?: GdsCardSize;
@@ -108,6 +112,12 @@ function ListingAffordance({ affordance }: { affordance: ListingCardAffordance }
   const config = GdsVocabulary[affordance.action];
   const Icon = config.icon;
   const label = affordance.ariaLabel ?? getSemanticActionLabel(affordance.action);
+  const activeStyle = affordance.active
+    ? {
+        color: 'var(--gds-brand-accent-action, var(--gds-brand-accent, var(--gds-vibe-accent, var(--mantine-primary-color-filled))))',
+        background: 'var(--gds-brand-accent-tint, var(--mantine-color-default-hover))',
+      }
+    : undefined;
 
   if (affordance.href) {
     return (
@@ -117,6 +127,8 @@ function ListingAffordance({ affordance }: { affordance: ListingCardAffordance }
         variant="subtle"
         size="lg"
         aria-label={label}
+        data-gds-active={affordance.active ? 'true' : undefined}
+        style={activeStyle}
         disabled={affordance.disabled}
       >
         <Icon size="1rem" stroke={1.75} />
@@ -130,6 +142,8 @@ function ListingAffordance({ affordance }: { affordance: ListingCardAffordance }
       size="lg"
       aria-label={label}
       onClick={affordance.onClick}
+      data-gds-active={affordance.active ? 'true' : undefined}
+      style={activeStyle}
       disabled={affordance.disabled}
     >
       <Icon size="1rem" stroke={1.75} />
@@ -147,12 +161,15 @@ export function ListingCard({
   featured = false,
   sponsoredDisclosure,
   price,
+  rating,
+  ratingLabel = 'Rating',
   primaryAction,
   reason,
   reasonLabel = 'Why this fits',
   score,
   actions,
   saveAction,
+  saved = false,
   shareAction,
   compact = false,
   size = 'md',
@@ -166,6 +183,7 @@ export function ListingCard({
   const [flipped, setFlipped] = useState(defaultFlipped);
   const resolvedActions = resolveCardActions(actions);
   const contract = resolveGdsCardContract({ compact, size, density, variant });
+  const resolvedSaveAction = saveAction ? { ...saveAction, active: saveAction.active ?? saved } : undefined;
   const cardPadding = contract.padding;
   const isInteractive = interactiveMode !== 'none';
   const isFlipMode = interactiveMode === 'flip' && Boolean(revealContent);
@@ -231,9 +249,14 @@ export function ListingCard({
       radius="lg"
       padding={cardPadding}
       {...contract.dataAttributes}
+      data-gds-listing-card
       data-gds-card-interactive-mode={interactiveMode}
       data-gds-card-flipped={isFlipMode ? String(flipped) : undefined}
-      style={isInteractive ? { cursor: 'pointer', transition: 'transform 120ms ease, box-shadow 120ms ease' } : undefined}
+      style={{
+        background: 'var(--gds-bg-card, var(--gds-vibe-surface, var(--mantine-color-body)))',
+        borderColor: 'var(--gds-border-card, var(--gds-vibe-border, var(--mantine-color-default-border)))',
+        ...(isInteractive ? { cursor: 'pointer', transition: 'transform 120ms ease, box-shadow 120ms ease' } : {}),
+      }}
       {...interactiveProps}
     >
       <Stack gap={contract.gap}>
@@ -303,16 +326,33 @@ export function ListingCard({
             <Group justify="space-between" align="center" gap="sm" wrap="wrap">
               <Stack gap={2} style={{ minWidth: 0, flex: 1 }}>
                 {price ? (
-                  <Text fw={700} size={contract.size === 'xs' || contract.size === 'sm' ? 'md' : 'lg'}>
+                  <Text
+                    fw={700}
+                    size={contract.size === 'xs' || contract.size === 'sm' ? 'md' : 'lg'}
+                    style={{ color: 'var(--gds-price, var(--gds-brand-accent-action, var(--gds-vibe-accent, var(--mantine-primary-color-filled))))' }}
+                  >
                     {price}
                   </Text>
+                ) : null}
+                {rating ? (
+                  <Group gap={4} wrap="nowrap" aria-label={ratingLabel}>
+                    <GdsIcons.Star
+                      size="1rem"
+                      stroke={1.75}
+                      fill="currentColor"
+                      style={{ color: 'var(--gds-star, var(--gds-brand-accent-action, var(--gds-vibe-accent, var(--mantine-primary-color-filled))))' }}
+                    />
+                    <Text size="sm" fw={600} style={{ color: 'var(--gds-star, var(--gds-brand-accent-action, var(--gds-vibe-accent, var(--mantine-primary-color-filled))))' }}>
+                      {rating}
+                    </Text>
+                  </Group>
                 ) : null}
               </Stack>
 
               {score ? <Group gap="xs" wrap="nowrap">{score}</Group> : null}
 
               <Group gap="xs" wrap="nowrap" justify="flex-end" style={{ marginInlineStart: 'auto' }}>
-                {saveAction ? <ListingAffordance affordance={saveAction} /> : null}
+                {resolvedSaveAction ? <ListingAffordance affordance={resolvedSaveAction} /> : null}
                 {shareAction ? <ListingAffordance affordance={shareAction} /> : null}
                 {resolvedActions ? null : primaryAction}
                 {isFlipMode ? <Text size="xs" c="dimmed">Press Enter or Space to reveal details.</Text> : null}

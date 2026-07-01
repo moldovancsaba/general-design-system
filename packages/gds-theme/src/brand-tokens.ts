@@ -36,6 +36,30 @@ export interface BrandFonts {
   body: string;
 }
 
+export type BrandColorRamp = readonly [
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+];
+
+export type ClassUsaColorRampName = 'navy' | 'terracotta' | 'sage' | 'cream' | 'slate';
+
+export type ClassUsaColorRamps = Record<ClassUsaColorRampName, BrandColorRamp>;
+
+export interface CreateClassUsaBrandThemeOptions {
+  colorRamps?: Partial<ClassUsaColorRamps>;
+  fonts?: Partial<BrandFonts>;
+  flatSurfaces?: boolean;
+  overrides?: MantineThemeOverride;
+}
+
 export interface CreateBrandThemeOptions {
   brandColors: BrandColorRamps;
   fonts: BrandFonts;
@@ -47,18 +71,35 @@ export interface CreateBrandThemeOptions {
 
 export type BrandSemanticRole =
   | 'brand.primary'
+  | 'brand.primaryPressed'
   | 'brand.accent'
+  | 'accent'
+  | 'support'
+  | 'bg.canvas'
+  | 'bg.card'
   | 'bg.page'
   | 'bg.surface'
   | 'bg.inverse'
+  | 'border.card'
+  | 'text.body'
+  | 'text.meta'
   | 'text.primary'
   | 'text.secondary'
   | 'text.onInverse'
+  | 'nav.inactiveOnInverse'
   | 'price'
+  | 'star'
   | 'state.success'
   | 'state.warning'
   | 'state.danger'
-  | 'state.info';
+  | 'state.info'
+  | 'badge.attention'
+  | 'badge.validation'
+  | 'badge.info'
+  | 'badge.urgencyBg'
+  | 'focus.ring'
+  | 'control.disabledBg'
+  | 'control.disabledText';
 
 export interface BrandThemeResult {
   mantineTheme: MantineTheme;
@@ -79,6 +120,40 @@ export class GdsBrandThemeError extends Error {
 
 const HEX_PATTERN = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
 const REQUIRED_RAMPS: (keyof BrandColorRamps)[] = ['navy', 'terracotta', 'sage', 'cream', 'slate'];
+const classUsaDefaultColorRamps: ClassUsaColorRamps = {
+  navy: ['#e9eef6', '#cbd8ea', '#a6bbdb', '#7d9bc9', '#5e82bb', '#345a8c', '#0b223e', '#0a1d36', '#08192e', '#07182c'],
+  terracotta: ['#fbf2ee', '#f5ddd5', '#eac4b7', '#e1a892', '#d68d74', '#ca8570', '#a85a44', '#8f4a37', '#763c2c', '#5d2f22'],
+  sage: ['#f0f3ee', '#dde3d7', '#c3cdb9', '#a9b89c', '#94a787', '#90a287', '#5c6e52', '#4a5942', '#3a4634', '#2b3427'],
+  cream: ['#faf7f1', '#f4eee2', '#ece3d1', '#e3d6bd', '#d9c9a8', '#cdba92', '#bfad80', '#a8946a', '#8a7a57', '#6b5e44'],
+  slate: ['#f7f8fa', '#eceff3', '#d9dee7', '#bfc7d2', '#98a3b3', '#6f7a89', '#434c59', '#323a46', '#252b34', '#171c24'],
+};
+
+const classUsaDefaultFonts: BrandFonts = {
+  display: '"Bogart","Fraunces","Playfair Display"',
+  body: '"Garet","Outfit",ui-sans-serif',
+};
+
+function assertColorRamp(name: string, ramp: readonly string[] | undefined): GdsTokenValidationFinding[] {
+  if (!ramp) {
+    return [{ severity: 'error', rule: 'token.invalid-color', tokenId: `colorRamps.${name}`, message: `Missing color ramp "${name}".` }];
+  }
+  if (ramp.length !== 10) {
+    return [{ severity: 'error', rule: 'token.invalid-color', tokenId: `colorRamps.${name}`, message: `Color ramp "${name}" must contain exactly 10 color steps.` }];
+  }
+  return ramp.flatMap((value, index) => HEX_PATTERN.test(value)
+    ? []
+    : [{ severity: 'error' as const, rule: 'token.invalid-color' as const, tokenId: `colorRamps.${name}.${index}`, message: `Color ramp "${name}" step ${index} must be a 3- or 6-digit hex color, received "${value}".` }]);
+}
+
+function mergeClassUsaColorRamps(overrides: Partial<ClassUsaColorRamps> = {}): ClassUsaColorRamps {
+  return {
+    navy: overrides.navy ?? classUsaDefaultColorRamps.navy,
+    terracotta: overrides.terracotta ?? classUsaDefaultColorRamps.terracotta,
+    sage: overrides.sage ?? classUsaDefaultColorRamps.sage,
+    cream: overrides.cream ?? classUsaDefaultColorRamps.cream,
+    slate: overrides.slate ?? classUsaDefaultColorRamps.slate,
+  };
+}
 
 function expandHex(hex: string): [number, number, number] {
   let value = hex.replace('#', '').trim();
@@ -125,18 +200,80 @@ export function deriveBrandSemanticTokens(colors: BrandColorRamps): Record<Brand
 
   return {
     'brand.primary': { light: navy, dark: cream },
+    'brand.primaryPressed': { light: '#07182c', dark: '#07182c' },
     'brand.accent': { light: terracotta, dark: terracotta },
+    accent: { light: terracotta, dark: '#e1a892' },
+    support: { light: sage, dark: '#a9b89c' },
+    'bg.canvas': { light: cream, dark: darkPage },
+    'bg.card': { light: white, dark: darkSurface },
     'bg.page': { light: cream, dark: darkPage },
     'bg.surface': { light: white, dark: darkSurface },
     'bg.inverse': { light: navy, dark: navy },
+    'border.card': { light: '#eee7dd', dark: '#2d3b50' },
+    'text.body': { light: navy, dark: cream },
+    'text.meta': { light: slate, dark: '#aeb6c2' },
     'text.primary': { light: navy, dark: cream },
     'text.secondary': { light: slate, dark: '#aeb6c2' },
     'text.onInverse': { light: cream, dark: cream },
+    'nav.inactiveOnInverse': { light: 'rgba(250,247,241,0.72)', dark: 'rgba(250,247,241,0.72)' },
     price: { light: terracotta, dark: '#e0a892' },
+    star: { light: terracotta, dark: '#e0a892' },
     'state.success': { light: sage, dark: sage },
     'state.warning': { light: '#b9770f', dark: '#e0a23c' },
     'state.danger': { light: '#b3261e', dark: '#f2786f' },
     'state.info': { light: navy, dark: '#9db4d6' },
+    'badge.attention': { light: terracotta, dark: '#e1a892' },
+    'badge.validation': { light: sage, dark: '#a9b89c' },
+    'badge.info': { light: '#f1ece4', dark: '#2b3427' },
+    'badge.urgencyBg': { light: '#f5ddd5', dark: '#5d2f22' },
+    'focus.ring': { light: terracotta, dark: '#ffd7c8' },
+    'control.disabledBg': { light: '#e6e2da', dark: '#2d3440' },
+    'control.disabledText': { light: '#7a7280', dark: '#8d97a6' },
+  };
+}
+
+function deriveClassUsaSemanticTokens(ramps: ClassUsaColorRamps): Record<BrandSemanticRole, SemanticPair> {
+  const navy = ramps.navy[6];
+  const navyPressed = ramps.navy[9];
+  const terracotta = '#ca8570';
+  const sage = '#90a287';
+  const cream = ramps.cream[0];
+  const slate = ramps.slate[6];
+  const white = '#ffffff';
+  const darkPage = '#07182c';
+  const darkSurface = '#13243d';
+
+  return {
+    'brand.primary': { light: navy, dark: cream },
+    'brand.primaryPressed': { light: navyPressed, dark: navyPressed },
+    'brand.accent': { light: terracotta, dark: ramps.terracotta[3] },
+    accent: { light: terracotta, dark: ramps.terracotta[3] },
+    support: { light: sage, dark: ramps.sage[3] },
+    'bg.canvas': { light: cream, dark: darkPage },
+    'bg.card': { light: white, dark: darkSurface },
+    'bg.page': { light: cream, dark: darkPage },
+    'bg.surface': { light: white, dark: darkSurface },
+    'bg.inverse': { light: navy, dark: navy },
+    'border.card': { light: '#eee7dd', dark: '#2d3b50' },
+    'text.body': { light: navy, dark: cream },
+    'text.meta': { light: slate, dark: '#c6ccd5' },
+    'text.primary': { light: navy, dark: cream },
+    'text.secondary': { light: slate, dark: '#c6ccd5' },
+    'text.onInverse': { light: cream, dark: cream },
+    'nav.inactiveOnInverse': { light: 'rgba(250,247,241,0.72)', dark: 'rgba(250,247,241,0.72)' },
+    price: { light: terracotta, dark: ramps.terracotta[3] },
+    star: { light: terracotta, dark: ramps.terracotta[3] },
+    'state.success': { light: sage, dark: ramps.sage[3] },
+    'state.warning': { light: '#b9770f', dark: '#e0a23c' },
+    'state.danger': { light: '#b3261e', dark: '#f2786f' },
+    'state.info': { light: navy, dark: '#a6bbdb' },
+    'badge.attention': { light: terracotta, dark: ramps.terracotta[3] },
+    'badge.validation': { light: sage, dark: ramps.sage[3] },
+    'badge.info': { light: '#f1ece4', dark: '#2b3427' },
+    'badge.urgencyBg': { light: '#f5ddd5', dark: '#5d2f22' },
+    'focus.ring': { light: terracotta, dark: '#ffd7c8' },
+    'control.disabledBg': { light: '#e6e2da', dark: '#2d3440' },
+    'control.disabledText': { light: '#7a7280', dark: '#8d97a6' },
   };
 }
 
@@ -151,11 +288,26 @@ function emitCssVariables(tokens: Record<BrandSemanticRole, SemanticPair>): Reco
     vars[cssVarName(role, 'light')] = tokens[role].light;
     vars[cssVarName(role, 'dark')] = tokens[role].dark;
   });
+  vars['--gds-brand-primary-pressed'] = tokens['brand.primaryPressed'].light;
+  vars['--gds-brand-primary-pressed-dark'] = tokens['brand.primaryPressed'].dark;
+  vars['--gds-brand-accent-action'] = tokens['brand.accent'].light;
+  vars['--gds-brand-accent-action-dark'] = tokens['brand.accent'].dark;
+  vars['--gds-brand-accent-tint'] = tokens['badge.urgencyBg'].light;
+  vars['--gds-brand-accent-tint-dark'] = tokens['badge.urgencyBg'].dark;
+  vars['--gds-bg-info-tag'] = tokens['badge.info'].light;
+  vars['--gds-bg-info-tag-dark'] = tokens['badge.info'].dark;
+  vars['--gds-bg-surface'] = tokens['bg.surface'].light;
+  vars['--gds-bg-surface-dark'] = tokens['bg.surface'].dark;
+  vars['--gds-text-primary'] = tokens['text.primary'].light;
+  vars['--gds-text-primary-dark'] = tokens['text.primary'].dark;
+  vars['--gds-text-secondary'] = tokens['text.secondary'].light;
+  vars['--gds-text-secondary-dark'] = tokens['text.secondary'].dark;
+  vars['--gds-state-success'] = tokens['state.success'].light;
+  vars['--gds-state-success-dark'] = tokens['state.success'].dark;
   return vars;
 }
 
-function buildTokenGraph(colors: BrandColorRamps, tokens: Record<BrandSemanticRole, SemanticPair>): GdsTokenGraph {
-  const themeId = 'brand';
+function buildTokenGraph(colors: BrandColorRamps, tokens: Record<BrandSemanticRole, SemanticPair>, themeId: 'brand' | 'class-usa' = 'brand'): GdsTokenGraph {
   const node = (
     id: string,
     role: GdsTokenNode['role'],
@@ -166,18 +318,18 @@ function buildTokenGraph(colors: BrandColorRamps, tokens: Record<BrandSemanticRo
   const nodes: GdsTokenNode[] = [
     node('primary', 'primary', colors.navy, 'shared'),
     node('accent', 'accent', colors.terracotta, 'shared'),
-    node('canvas-light', 'canvas-light', tokens['bg.page'].light, 'light'),
-    node('canvas-dark', 'canvas-dark', tokens['bg.page'].dark, 'dark'),
+    node('canvas-light', 'canvas-light', tokens['bg.canvas'].light, 'light'),
+    node('canvas-dark', 'canvas-dark', tokens['bg.canvas'].dark, 'dark'),
     node('shell-light', 'shell-light', tokens['bg.inverse'].light, 'light'),
     node('shell-dark', 'shell-dark', tokens['bg.inverse'].dark, 'dark'),
-    node('surface-light', 'surface-light', tokens['bg.surface'].light, 'light'),
-    node('surface-dark', 'surface-dark', tokens['bg.surface'].dark, 'dark'),
-    node('border-light', 'border-light', tokens['text.secondary'].light, 'light'),
-    node('border-dark', 'border-dark', tokens['text.secondary'].dark, 'dark'),
-    node('text-light', 'text-light', tokens['text.primary'].light, 'light'),
-    node('text-dark', 'text-dark', tokens['text.primary'].dark, 'dark'),
-    node('muted-light', 'muted-light', tokens['text.secondary'].light, 'light'),
-    node('muted-dark', 'muted-dark', tokens['text.secondary'].dark, 'dark'),
+    node('surface-light', 'surface-light', tokens['bg.card'].light, 'light'),
+    node('surface-dark', 'surface-dark', tokens['bg.card'].dark, 'dark'),
+    node('border-light', 'border-light', tokens['border.card'].light, 'light'),
+    node('border-dark', 'border-dark', tokens['border.card'].dark, 'dark'),
+    node('text-light', 'text-light', tokens['text.body'].light, 'light'),
+    node('text-dark', 'text-dark', tokens['text.body'].dark, 'dark'),
+    node('muted-light', 'muted-light', tokens['text.meta'].light, 'light'),
+    node('muted-dark', 'muted-dark', tokens['text.meta'].dark, 'dark'),
   ];
 
   return {
@@ -213,6 +365,20 @@ function validateBrandInput(opts: CreateBrandThemeOptions): GdsTokenValidationFi
   return findings;
 }
 
+function validateClassUsaInput(opts: CreateClassUsaBrandThemeOptions): GdsTokenValidationFinding[] {
+  const ramps = mergeClassUsaColorRamps(opts.colorRamps);
+  const findings = (Object.keys(ramps) as ClassUsaColorRampName[]).flatMap((name) => assertColorRamp(name, ramps[name]));
+
+  if (opts.fonts?.display === '') {
+    findings.push({ severity: 'error', rule: 'token.unknown-role', tokenId: 'fonts.display', message: 'fonts.display cannot be empty.' });
+  }
+  if (opts.fonts?.body === '') {
+    findings.push({ severity: 'error', rule: 'token.unknown-role', tokenId: 'fonts.body', message: 'fonts.body cannot be empty.' });
+  }
+
+  return findings;
+}
+
 interface ContrastRequirement {
   foreground: string;
   background: string;
@@ -242,7 +408,16 @@ function assertContrast(tokens: Record<BrandSemanticRole, SemanticPair>): GdsTok
   return findings;
 }
 
-export function createBrandTheme(opts: CreateBrandThemeOptions): BrandThemeResult {
+export function createBrandTheme(id: 'class-usa', options?: CreateClassUsaBrandThemeOptions): BrandThemeResult;
+export function createBrandTheme(options: CreateBrandThemeOptions): BrandThemeResult;
+export function createBrandTheme(idOrOptions: 'class-usa' | CreateBrandThemeOptions, maybeOptions: CreateClassUsaBrandThemeOptions = {}): BrandThemeResult {
+  if (idOrOptions === 'class-usa') {
+    return createClassUsaBrandTheme(maybeOptions);
+  }
+  return createLegacyBrandTheme(idOrOptions);
+}
+
+function createLegacyBrandTheme(opts: CreateBrandThemeOptions): BrandThemeResult {
   const inputFindings = validateBrandInput(opts);
   if (inputFindings.length > 0) {
     throw new GdsBrandThemeError('Invalid brand theme input.', inputFindings);
@@ -281,11 +456,168 @@ export function createBrandTheme(opts: CreateBrandThemeOptions): BrandThemeResul
         '#06182f',
       ] as unknown as MantineColorsTuple,
     },
+    other: {
+      gdsBrandThemeId: 'brand',
+      gdsCssVariables: cssVariables,
+    },
   };
 
   const mantineTheme = createPublicBrandTheme({
     flatSurfaces: opts.flatSurfaces,
     overrides: mergeThemeOverrides(brandOverrides, opts.overrides ?? {}),
+  });
+
+  return { mantineTheme, cssVariables, tokenGraph };
+}
+
+function createClassUsaBrandTheme(options: CreateClassUsaBrandThemeOptions = {}): BrandThemeResult {
+  const inputFindings = validateClassUsaInput(options);
+  if (inputFindings.length > 0) {
+    throw new GdsBrandThemeError('Invalid Class USA brand theme input.', inputFindings);
+  }
+
+  const ramps = mergeClassUsaColorRamps(options.colorRamps);
+  const fonts: BrandFonts = {
+    display: options.fonts?.display ?? classUsaDefaultFonts.display,
+    body: options.fonts?.body ?? classUsaDefaultFonts.body,
+  };
+  const tokens = deriveClassUsaSemanticTokens(ramps);
+  const contrastFindings = assertContrast(tokens);
+  if (brandContrastRatio('#ffffff', tokens['brand.primary'].light) < 4.5) {
+    contrastFindings.push({
+      severity: 'error',
+      rule: 'token.invalid-color',
+      tokenId: 'class-usa.primary-button',
+      message: 'Class USA primary button text contrast must stay at least 4.5:1.',
+    });
+  }
+  if (contrastFindings.length > 0) {
+    throw new GdsBrandThemeError('Class USA brand theme failed WCAG contrast requirements.', contrastFindings);
+  }
+
+  const colors: BrandColorRamps = {
+    navy: tokens['brand.primary'].light,
+    terracotta: tokens.accent.light,
+    sage: tokens.support.light,
+    cream: tokens['bg.canvas'].light,
+    slate: tokens['text.meta'].light,
+  };
+  const tokenGraph = buildTokenGraph(colors, tokens, 'class-usa');
+  const graphReport = validateGdsTokenGraph(tokenGraph);
+  if (!graphReport.ok) {
+    throw new GdsBrandThemeError('Class USA token graph failed validation.', graphReport.findings);
+  }
+
+  const cssVariables = emitCssVariables(tokens);
+  cssVariables['--gds-brand-accent-action'] = ramps.terracotta[6];
+  cssVariables['--gds-brand-accent-action-dark'] = ramps.terracotta[3];
+  const brandOverrides: MantineThemeOverride = {
+    fontFamily: `${fonts.body}, system-ui, sans-serif`,
+    headings: {
+      fontFamily: `${fonts.display}, Georgia, serif`,
+      sizes: {
+        h1: { fontSize: '2.375rem', fontWeight: '800', lineHeight: '1.12' },
+        h2: { fontSize: '1.75rem', fontWeight: '700', lineHeight: '1.2' },
+        h3: { fontSize: '1.25rem', fontWeight: '700', lineHeight: '1.25' },
+      },
+    },
+    primaryColor: 'classUsaNavy',
+    colors: {
+      classUsaNavy: ramps.navy as unknown as MantineColorsTuple,
+      classUsaTerracotta: ramps.terracotta as unknown as MantineColorsTuple,
+      classUsaSage: ramps.sage as unknown as MantineColorsTuple,
+      classUsaCream: ramps.cream as unknown as MantineColorsTuple,
+      classUsaSlate: ramps.slate as unknown as MantineColorsTuple,
+    },
+    defaultRadius: 'lg',
+    black: tokens['brand.primaryPressed'].light,
+    white: tokens['bg.card'].light,
+    components: {
+      Button: {
+        defaultProps: {
+          radius: 'xl',
+          fw: 700,
+        },
+        styles: {
+          root: {
+            minHeight: 38,
+          },
+        },
+      },
+      Card: {
+        defaultProps: {
+          radius: 'lg',
+          withBorder: true,
+          shadow: 'sm',
+        },
+        styles: {
+          root: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+            borderColor: 'var(--gds-border-card)',
+          },
+        },
+      },
+      Paper: {
+        defaultProps: {
+          radius: 'lg',
+          withBorder: true,
+        },
+        styles: {
+          root: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+            borderColor: 'var(--gds-border-card)',
+          },
+        },
+      },
+      Badge: {
+        defaultProps: {
+          radius: 'xl',
+        },
+        styles: {
+          root: {
+            fontWeight: 700,
+            letterSpacing: '0.04em',
+          },
+        },
+      },
+      Modal: {
+        styles: {
+          content: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+          },
+          header: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+          },
+        },
+      },
+      Drawer: {
+        styles: {
+          content: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+          },
+          header: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+          },
+        },
+      },
+    },
+    other: {
+      gdsBrandThemeId: 'class-usa',
+      gdsCssVariables: cssVariables,
+      gdsBrandRamps: ramps,
+      gdsBrandSemanticTokens: tokens,
+    },
+  };
+
+  const mantineTheme = createPublicBrandTheme({
+    flatSurfaces: options.flatSurfaces ?? true,
+    overrides: mergeThemeOverrides(brandOverrides, options.overrides ?? {}),
   });
 
   return { mantineTheme, cssVariables, tokenGraph };

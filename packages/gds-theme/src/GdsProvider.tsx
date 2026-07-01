@@ -45,6 +45,20 @@ function resolveDocumentColorScheme(colorScheme: GdsMantineColorScheme) {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
+function getThemeOwnedCssVariables(theme: MantineThemeOverride): Record<string, string> {
+  const variables = (theme as { other?: { gdsCssVariables?: unknown } }).other?.gdsCssVariables;
+  if (!variables || typeof variables !== 'object' || Array.isArray(variables)) {
+    return {};
+  }
+
+  return Object.entries(variables as Record<string, unknown>).reduce<Record<string, string>>((acc, [property, value]) => {
+    if (property.startsWith('--gds-') && typeof value === 'string') {
+      acc[property] = value;
+    }
+    return acc;
+  }, {});
+}
+
 /**
  * GdsProvider is the single required root provider for any application
  * adopting the General Design System. It injects the strict Mantine theme.
@@ -63,6 +77,7 @@ export function GdsProvider({
 }: GdsProviderProps) {
   const isRtl = isGdsRtlLocale(locale);
   const dir = isRtl ? 'rtl' : 'ltr';
+  const themeCssVariables = useMemo(() => getThemeOwnedCssVariables(theme), [theme]);
   const colorSchemeManager = useMemo<GdsMantineColorSchemeManager>(() => ({
     get: (fallback) => forceColorScheme ?? defaultColorScheme ?? fallback,
     set: (value) => {
@@ -83,6 +98,16 @@ export function GdsProvider({
     const requestedScheme = forceColorScheme ?? defaultColorScheme;
     document.documentElement.setAttribute('data-mantine-color-scheme', resolveDocumentColorScheme(requestedScheme));
   }, [applyDocumentColorScheme, defaultColorScheme, forceColorScheme]);
+
+  useEffect(() => {
+    const root = colorSchemeRootElement?.() ?? document.documentElement;
+    const entries = Object.entries(themeCssVariables);
+    entries.forEach(([property, value]) => root.style.setProperty(property, value));
+
+    return () => {
+      entries.forEach(([property]) => root.style.removeProperty(property));
+    };
+  }, [colorSchemeRootElement, themeCssVariables]);
   
   return (
     <DirectionProvider initialDirection={dir}>
@@ -106,7 +131,7 @@ export function GdsProvider({
                 h="100%"
                 bg="var(--mantine-color-body)"
                 c="var(--mantine-color-text)"
-                style={{ transition: 'background-color 120ms ease, color 120ms ease' }}
+                style={{ ...themeCssVariables, transition: 'background-color 120ms ease, color 120ms ease' }}
               >
                 {children}
               </Box>

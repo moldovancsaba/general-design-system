@@ -89,7 +89,8 @@ import {
   IconUserPlus,
   IconShieldCheck,
   IconFileText,
-  IconShare
+  IconShare,
+  IconStar,
 } from '@tabler/icons-react';
 import { createElement } from 'react';
 
@@ -172,6 +173,7 @@ export const GdsIcons = {
   // Analysis additions
   Trophy: IconTrophy,
   Crown: IconCrown,
+  Star: IconStar,
   Pause: IconPlayerPause,
   Message: IconMessage,
   Mail: IconMail,
@@ -284,7 +286,7 @@ const gdsIconNameAliases = {
 const categoryByIcon = {
   action: ['Add', 'Remove', 'Edit', 'Delete', 'Search', 'Save', 'Play', 'Start', 'Send', 'Reply', 'Forward', 'Attach', 'Upload', 'Download', 'Print', 'Copy', 'Duplicate', 'Check', 'Uncheck', 'Complete', 'Clear', 'Cancel', 'Confirm', 'Close', 'Export', 'Import', 'Preview', 'Clone', 'Restore', 'Toggle', 'Submit', 'Reset', 'Login', 'Register', 'Verify', 'Launch', 'Draft', 'Refer'],
   status: ['Success', 'Warning', 'Danger', 'Info'],
-  resource: ['Users', 'Gallery', 'Profile', 'Course', 'Lesson', 'Certificate', 'Student', 'Class', 'Grade', 'Child', 'Family', 'Habit', 'Goal', 'Streak', 'Reward', 'Trophy', 'Crown', 'Currency', 'Evidence'],
+  resource: ['Users', 'Gallery', 'Profile', 'Course', 'Lesson', 'Certificate', 'Student', 'Class', 'Grade', 'Child', 'Family', 'Habit', 'Goal', 'Streak', 'Reward', 'Trophy', 'Crown', 'Star', 'Currency', 'Evidence'],
   navigation: ['Dashboard', 'Analytics', 'Home', 'Inbox', 'Calendar', 'History', 'Grid', 'List', 'Back', 'ChevronDown', 'ChevronUp', 'Menu'],
   media: ['Capture', 'Record', 'Flip', 'Flash', 'Eye', 'EyeOff'],
   feedback: ['Message', 'Mail', 'Refresh', 'TrendingUp', 'TrendingDown', 'Notifications', 'Help'],

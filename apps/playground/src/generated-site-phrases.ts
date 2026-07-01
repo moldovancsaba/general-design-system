@@ -56,6 +56,17 @@ export const generatedSitePhrases = {
     "it": "1 via principale",
     "he": "רחוב ראשי 1"
   },
+  "p_b14d4155e11e": {
+    "en": "1-10 effort slider, a boundary case where min equals max, and a 1-5 rating scale.",
+    "he": "מחוון מאמץ 1-10, מקרה גבול שבו min שווה למקסימום, וסולם דירוג 1-5.",
+    "hu": "1-10 erőkifejtés csúszka, egy határeset, ahol a min egyenlő a max-mal, és egy 1-5-ig terjedő értékelési skála.",
+    "ru": "Ползунок усилия от 1 до 10, граничный случай, когда минимум равен максимуму, и шкала оценок от 1 до 5.",
+    "ar": "شريط تمرير الجهد من 1 إلى 10، وحالة حدودية حيث يساوي الحد الأدنى الحد الأقصى، ومقياس تصنيف من 1 إلى 5.",
+    "fr": "Curseur d'effort de 1 à 10, un cas limite où min est égal à max et une échelle d'évaluation de 1 à 5.",
+    "es": "Control deslizante de esfuerzo de 1 a 10, un caso límite donde el mínimo es igual al máximo y una escala de calificación del 1 al 5.",
+    "it": "Dispositivo di scorrimento dello sforzo da 1 a 10, un caso limite in cui minimo è uguale a massimo e una scala di valutazione da 1 a 5.",
+    "de": "1–10 Aufwandsschieberegler, ein Grenzfall, bei dem Min. gleich Max ist, und eine Bewertungsskala von 1–5."
+  },
   "p_dda9d69a9fb4": {
     "en": "10 MB max",
     "ar": "10 ميجا بايت كحد أقصى",
@@ -385,6 +396,17 @@ export const generatedSitePhrases = {
     "ar": "أضف النتائج المتوقعة والأثر والإلحاح.",
     "he": "הוסף תוצאות צפויות, השפעה ודחיפות.",
     "hu": "Adja hozzá a várható eredményeket, hatást és sürgősséget."
+  },
+  "p_5fe546d1e576": {
+    "en": "Add required data",
+    "ru": "Добавьте необходимые данные",
+    "ar": "إضافة البيانات المطلوبة",
+    "fr": "Ajouter les données requises",
+    "es": "Agregar datos requeridos",
+    "hu": "Adja hozzá a szükséges adatokat",
+    "de": "Fügen Sie die erforderlichen Daten hinzu",
+    "he": "הוסף נתונים נדרשים",
+    "it": "Aggiungi i dati richiesti"
   },
   "p_ca54d75f00c1": {
     "en": "Add to Map",
@@ -859,6 +881,39 @@ export const generatedSitePhrases = {
     "de": "Artikelschalen",
     "he": "קונכיות מאמר"
   },
+  "p_b21a10c83718": {
+    "en": "Assessment dialog",
+    "it": "Dialogo di valutazione",
+    "ru": "Диалог оценки",
+    "de": "Bewertungsdialog",
+    "es": "Diálogo de evaluación",
+    "ar": "حوار التقييم",
+    "hu": "Értékelő párbeszédpanel",
+    "he": "שיח הערכה",
+    "fr": "Boîte de dialogue d'évaluation"
+  },
+  "p_8a06ab7aeb0a": {
+    "en": "Assessment focus",
+    "it": "Focus sulla valutazione",
+    "ru": "Фокус оценки",
+    "de": "Bewertungsschwerpunkt",
+    "es": "Enfoque de evaluación",
+    "ar": "التركيز على التقييم",
+    "hu": "Az értékelés fókusza",
+    "he": "מיקוד הערכה",
+    "fr": "Objectif de l'évaluation"
+  },
+  "p_b772ae9ddc36": {
+    "en": "Assessment incomplete",
+    "ru": "Оценка неполная",
+    "de": "Bewertung unvollständig",
+    "es": "Evaluación incompleta",
+    "ar": "التقييم غير مكتمل",
+    "hu": "Az értékelés hiányos",
+    "he": "הערכה לא הושלמה",
+    "fr": "Évaluation incomplète",
+    "it": "Valutazione incompleta"
+  },
   "p_9ced794b9f1c": {
     "en": "Assistant chat surface: an auto-scrolling live-region thread, role-styled bubbles with embedded result cards, streaming indicator, and an Enter-to-send input.",
     "fr": "Surface de discussion de l'assistant : un fil de discussion de région en direct à défilement automatique, des bulles de style rôle avec des cartes de résultats intégrées, un indicateur de streaming et une entrée Entrée pour envoyer.",
@@ -891,6 +946,17 @@ export const generatedSitePhrases = {
     "ar": "مصفوفة في/المتصفح",
     "it": "Matrice AT/browser",
     "he": "מטריצת AT/דפדפן"
+  },
+  "p_b120cf83fb59": {
+    "en": "Athlete metrics compared against the squad benchmark.",
+    "es": "Métricas de los atletas comparadas con el punto de referencia del equipo.",
+    "de": "Athletenkennzahlen im Vergleich zum Kader-Benchmark.",
+    "ar": "مقارنة مقاييس الرياضيين بمعيار الفريق.",
+    "fr": "Mesures des athlètes comparées à la référence de l’équipe.",
+    "ru": "Показатели спортсменов сравнивались с контрольными показателями команды.",
+    "he": "מדדי ספורטאים בהשוואה למדד הסגל.",
+    "it": "Metriche degli atleti confrontate con il benchmark della squadra.",
+    "hu": "A sportolók mutatói a csapat benchmarkhoz képest."
   },
   "p_1b6f11f81cca": {
     "en": "Auth and social login",
@@ -1046,6 +1112,28 @@ export const generatedSitePhrases = {
     "he": "לפני שתמשיך",
     "de": "Bevor Sie fortfahren"
   },
+  "p_22db798a734e": {
+    "en": "Benchmark comparison",
+    "es": "Comparación de referencia",
+    "ru": "Сравнительное сравнение",
+    "it": "Confronto di riferimento",
+    "de": "Benchmark-Vergleich",
+    "fr": "Comparaison de référence",
+    "ar": "المقارنة المرجعية",
+    "he": "השוואה בנצ'מרק",
+    "hu": "Benchmark összehasonlítás"
+  },
+  "p_ac618ea724f9": {
+    "en": "Benchmark data is loading.",
+    "ru": "Загружаются контрольные данные.",
+    "fr": "Les données de référence sont en cours de chargement.",
+    "es": "Se están cargando datos de referencia.",
+    "hu": "Az összehasonlító adatok betöltése folyamatban van.",
+    "de": "Benchmark-Daten werden geladen.",
+    "ar": "جارٍ تحميل البيانات المعيارية.",
+    "he": "נתוני ההשוואה נטענים.",
+    "it": "È in corso il caricamento dei dati di benchmark."
+  },
   "p_ef6e8e958dbe": {
     "en": "Best family-friendly cafes",
     "ar": "أفضل المقاهي العائلية",
@@ -1089,6 +1177,17 @@ export const generatedSitePhrases = {
     "hu": "BottomTabBar, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT",
     "de": "BottomTabBar, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT",
     "he": "סרגל טאב תחתון, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT"
+  },
+  "p_b4f6d6b827e2": {
+    "en": "Boundary case where the minimum equals the maximum.",
+    "it": "Caso limite in cui il minimo è uguale al massimo.",
+    "hu": "Határeset, ahol a minimum egyenlő a maximummal.",
+    "ru": "Граничный случай, когда минимум равен максимуму.",
+    "ar": "حالة الحدود حيث الحد الأدنى يساوي الحد الأقصى.",
+    "de": "Grenzfall, bei dem das Minimum dem Maximum entspricht.",
+    "fr": "Cas limite où le minimum est égal au maximum.",
+    "es": "Caso límite donde el mínimo es igual al máximo.",
+    "he": "מקרה גבול שבו המינימום שווה למקסימום."
   },
   "p_06bd8e353e33": {
     "en": "Bounded accessible quantity stepper with clamp/snap, keyboard support, and spinbutton semantics.",
@@ -1519,6 +1618,17 @@ export const generatedSitePhrases = {
     "hu": "Kanonikus léptetőszerű flow shell a színpadi élményekhez.",
     "it": "Flow shell canonico simile a uno stepper per esperienze organizzate."
   },
+  "p_8f8d94d016fb": {
+    "en": "Capability profile",
+    "de": "Fähigkeitsprofil",
+    "es": "Perfil de capacidad",
+    "fr": "Profil de capacité",
+    "ar": "الملف الشخصي للقدرة",
+    "he": "פרופיל יכולת",
+    "ru": "Профиль возможностей",
+    "hu": "Képességprofil",
+    "it": "Profilo di capacità"
+  },
   "p_57c82d59deb9": {
     "en": "Capture flow",
     "ru": "Захват потока",
@@ -1540,6 +1650,17 @@ export const generatedSitePhrases = {
     "ru": "Захват предварительной проверки",
     "hu": "Előzetes ellenőrzés rögzítése",
     "he": "לכידת בדיקה מוקדמת"
+  },
+  "p_f3e5fa9b4274": {
+    "en": "Capture readiness and recovery scores.",
+    "he": "ללכוד ציוני מוכנות והתאוששות.",
+    "ru": "Фиксируйте показатели готовности и восстановления.",
+    "it": "Cattura i punteggi di preparazione e recupero.",
+    "hu": "Készenléti és helyreállítási pontszámok rögzítése.",
+    "es": "Capture puntuaciones de preparación y recuperación.",
+    "de": "Erfassen Sie Bereitschafts- und Erholungswerte.",
+    "ar": "التقاط درجات الاستعداد والانتعاش.",
+    "fr": "Capturez les scores de préparation et de récupération."
   },
   "p_28a552819be4": {
     "en": "Capture review",
@@ -1915,6 +2036,17 @@ export const generatedSitePhrases = {
     "he": "לחץ כדי להיכנס",
     "es": "Haga clic para iniciar sesión"
   },
+  "p_a600b900f83d": {
+    "en": "Close panel",
+    "fr": "Fermer le panneau",
+    "ru": "Закрыть панель",
+    "de": "Panel schließen",
+    "ar": "إغلاق اللوحة",
+    "hu": "Panel bezárása",
+    "es": "Cerrar panel",
+    "he": "סגור לוח",
+    "it": "Chiudi pannello"
+  },
   "p_edfb29e935df": {
     "en": "Cluster A",
     "es": "Grupo A",
@@ -2014,6 +2146,17 @@ export const generatedSitePhrases = {
     "hu": "Kompakt termék",
     "he": "מוצר קומפקטי"
   },
+  "p_b96365cbf3f5": {
+    "en": "Compact readiness trend across recent sessions.",
+    "fr": "Tendance de préparation compacte au cours des sessions récentes.",
+    "ru": "Тенденция компактной готовности за последние сессии.",
+    "es": "Tendencia de preparación compacta en las últimas sesiones.",
+    "hu": "Kompakt készültségi trend a legutóbbi üléseken.",
+    "it": "Tendenza compatta della preparazione nelle sessioni recenti.",
+    "ar": "اتجاه الاستعداد المدمج عبر الجلسات الأخيرة.",
+    "he": "מגמת מוכנות קומפקטית לאורך המפגשים האחרונים.",
+    "de": "Kompakter Bereitschaftstrend in den letzten Sitzungen."
+  },
   "p_7a61177e41f4": {
     "en": "Company or project name",
     "it": "Nome dell'azienda o del progetto",
@@ -2101,6 +2244,28 @@ export const generatedSitePhrases = {
     "ar": "إنشاء مكونات GDS المشحونة - الاستيراد من @doneisbetter/gds",
     "ru": "Compose поставляемые компоненты GDS — импорт из @doneisbetter/gds",
     "he": "חיבור רכיבי GDS שנשלחו - ייבוא ​​מ-@doneisbetter/gds"
+  },
+  "p_e5f9bccfdf50": {
+    "en": "Confirm and save the assessment.",
+    "ru": "Подтвердите и сохраните оценку.",
+    "es": "Confirme y guarde la evaluación.",
+    "hu": "Erősítse meg és mentse el az értékelést.",
+    "it": "Conferma e salva la valutazione.",
+    "ar": "تأكيد وحفظ التقييم.",
+    "de": "Bestätigen und speichern Sie die Bewertung.",
+    "he": "אשר ושמור את ההערכה.",
+    "fr": "Confirmez et enregistrez l'évaluation."
+  },
+  "p_d79e4368df48": {
+    "en": "Confirm athlete identity and cohort.",
+    "hu": "Erősítse meg a sportoló személyazonosságát és kohorszát.",
+    "it": "Confermare l'identità e la coorte dell'atleta.",
+    "ar": "تأكيد هوية الرياضي والفوج.",
+    "ru": "Подтвердите личность и когорту спортсмена.",
+    "he": "אשר את זהות הספורטאי והקבוצה.",
+    "de": "Bestätigen Sie die Identität und Kohorte des Athleten.",
+    "es": "Confirmar la identidad del atleta y su cohorte.",
+    "fr": "Confirmez l’identité et la cohorte de l’athlète."
   },
   "p_ec7cb09c3f69": {
     "en": "Confirm lighting, permissions, and the intended upload destination before opening a hardware-adjacent step.",
@@ -2432,6 +2597,17 @@ export const generatedSitePhrases = {
     "he": "קבוצות לחצני CTA",
     "hu": "CTA gombcsoportok"
   },
+  "p_829c65ff54d3": {
+    "en": "Current readiness index against target.",
+    "de": "Aktueller Bereitschaftsindex gegenüber dem Ziel.",
+    "ru": "Текущий индекс готовности относительно целевого показателя.",
+    "fr": "Indice de préparation actuel par rapport à la cible.",
+    "ar": "مؤشر الجاهزية الحالي مقابل الهدف.",
+    "hu": "Aktuális készültségi index a célhoz képest.",
+    "es": "Índice de preparación actual frente al objetivo.",
+    "it": "Indice di preparazione attuale rispetto al target.",
+    "he": "מדד מוכנות נוכחי מול יעד."
+  },
   "p_760732d82a09": {
     "en": "Current state",
     "es": "Estado actual",
@@ -2519,6 +2695,17 @@ export const generatedSitePhrases = {
     "de": "Standardansicht für Board-Berichte.",
     "hu": "Alapértelmezett tábla jelentési nézet.",
     "he": "תצוגת ברירת מחדל של דיווח לוח."
+  },
+  "p_426e169211d6": {
+    "en": "Default i18n-resolved recovery copy with a required-fields list and call to action.",
+    "ru": "Восстановительная копия по умолчанию с разрешением i18n со списком обязательных полей и призывом к действию.",
+    "it": "Copia di ripristino predefinita risolta da i18n con un elenco di campi obbligatori e invito all'azione.",
+    "es": "Copia de recuperación predeterminada resuelta por i18n con una lista de campos obligatorios y un llamado a la acción.",
+    "de": "Standardmäßige i18n-aufgelöste Wiederherstellungskopie mit einer Liste erforderlicher Felder und einem Call-to-Action.",
+    "hu": "Alapértelmezett i18n-feloldott helyreállítási másolat kötelező mezők listájával és cselekvésre ösztönzéssel.",
+    "ar": "نسخة الاسترداد الافتراضية التي تم حلها بواسطة i18n مع قائمة الحقول المطلوبة وعبارة تحث المستخدم على اتخاذ إجراء.",
+    "fr": "Copie de récupération par défaut résolue par i18n avec une liste de champs obligatoires et un appel à l'action.",
+    "he": "עותק שחזור ברירת מחדל ב-i18n עם רשימת שדות נדרשים וקריאה לפעולה."
   },
   "p_5c8e1ec9244e": {
     "en": "Define retry, timeout, permission-denied, and restart behavior.",
@@ -2674,6 +2861,17 @@ export const generatedSitePhrases = {
     "fr": "Surfaces de détail",
     "es": "Superficies detalladas"
   },
+  "p_44ab76801d8f": {
+    "en": "Details side panel",
+    "ru": "Детали боковой панели",
+    "it": "Dettagli pannello laterale",
+    "he": "פרטים לוח צד",
+    "de": "Details Seitenteil",
+    "hu": "Részletek oldalsó panel",
+    "ar": "تفاصيل اللوحة الجانبية",
+    "fr": "Détails du panneau latéral",
+    "es": "Detalles panel lateral"
+  },
   "p_45af1acb8bea": {
     "en": "Developer relations, platform owner, product owner",
     "es": "Relaciones con desarrolladores, propietario de plataforma, propietario de producto",
@@ -2706,6 +2904,39 @@ export const generatedSitePhrases = {
     "he": "מפתחים זקוקים לפרטי API של החבילה, בעלי מוצרים זקוקים להנחיית אימוץ, ומתחזקים זקוקים לשערי שחרור.",
     "ar": "يحتاج المطورون إلى تفاصيل واجهة برمجة التطبيقات للحزمة، ويحتاج مالكو المنتجات إلى إرشادات الاعتماد، ويحتاج المشرفون إلى بوابات الإصدار.",
     "hu": "A fejlesztőknek szükségük van a csomag API részleteire, a terméktulajdonosoknak az elfogadási útmutatásra, a karbantartóknak pedig kiadási kapukra."
+  },
+  "p_fd044b28f7d6": {
+    "en": "Dialog and side panel aliases",
+    "es": "Alias ​​de diálogo y panel lateral",
+    "ru": "Псевдонимы диалогов и боковых панелей",
+    "de": "Dialog- und Seitenpanel-Aliase",
+    "he": "כינויים של דיאלוג ולוח צד",
+    "ar": "الحوار والأسماء المستعارة للوحة الجانبية",
+    "fr": "Alias ​​des boîtes de dialogue et des panneaux latéraux",
+    "hu": "Párbeszéd- és oldalpanel álnevek",
+    "it": "Alias ​​delle finestre di dialogo e dei pannelli laterali"
+  },
+  "p_a90fb33ed686": {
+    "en": "Dialog body content stays on an opaque governed overlay surface.",
+    "ru": "Содержимое тела диалога остается на непрозрачной регулируемой поверхности наложения.",
+    "fr": "Le contenu du corps de la boîte de dialogue reste sur une surface de superposition gouvernée et opaque.",
+    "de": "Der Inhalt des Dialogkörpers bleibt auf einer undurchsichtigen, kontrollierten Overlay-Oberfläche.",
+    "he": "תוכן גוף הדיאלוג נשאר על משטח שכבת-על נשלטת אטומה.",
+    "ar": "يبقى محتوى نص الحوار على سطح تراكب غير شفاف ومُحكم.",
+    "es": "El contenido del cuerpo del diálogo permanece en una superficie superpuesta gobernada y opaca.",
+    "it": "Il contenuto del corpo della finestra di dialogo rimane su una superficie sovrapposta governata opaca.",
+    "hu": "A párbeszédpanel törzs tartalma egy átlátszatlan, szabályozott fedőfelületen marad."
+  },
+  "p_c705fe7fd60b": {
+    "en": "Disabled assessment focus",
+    "ru": "Инвалидный фокус оценки",
+    "de": "Schwerpunkt der Behindertenbeurteilung",
+    "fr": "Focus sur l'évaluation des personnes handicapées",
+    "es": "Enfoque de evaluación para discapacitados",
+    "he": "מיקוד הערכה לנכים",
+    "ar": "التركيز على التقييم المعوقين",
+    "hu": "Fogyatékkal élő értékelési fókusz",
+    "it": "Focus sulla valutazione della disabilità"
   },
   "p_a9693c0187bb": {
     "en": "Disabled by tenant policy.",
@@ -3213,6 +3444,39 @@ export const generatedSitePhrases = {
     "hu": "Esemény kiadása",
     "he": "אירוע פולט"
   },
+  "p_cf8eef7b685d": {
+    "en": "Empty and loading states",
+    "ru": "Пустое состояние и состояние загрузки",
+    "it": "Stati di vuoto e di caricamento",
+    "ar": "حالات فارغة وتحميل",
+    "fr": "États vide et en cours de chargement",
+    "he": "מצבי ריק וטעינה",
+    "es": "Estados vacío y cargando",
+    "de": "Leer- und Ladezustand",
+    "hu": "Üres és betöltési állapot"
+  },
+  "p_3056226881b9": {
+    "en": "Empty data and loading states surface the accessible fallback instead of a blank chart.",
+    "es": "Los datos vacíos y los estados de carga muestran el respaldo accesible en lugar de un gráfico en blanco.",
+    "ru": "Пустые данные и состояния загрузки отображают доступный резервный вариант вместо пустой диаграммы.",
+    "de": "Leere Daten und Ladezustände zeigen den zugänglichen Fallback anstelle eines leeren Diagramms an.",
+    "he": "נתונים ריקים ומצבי טעינה מעלים את החזרה הנגישה במקום תרשים ריק.",
+    "fr": "Les données vides et les états de chargement font apparaître la solution de secours accessible au lieu d'un graphique vierge.",
+    "it": "I dati vuoti e gli stati di caricamento mostrano il fallback accessibile invece di un grafico vuoto.",
+    "hu": "Az üres adatok és a betöltési állapotok az elérhető tartalékot jelenítik meg üres diagram helyett.",
+    "ar": "تعرض البيانات الفارغة وحالات التحميل الإجراء الاحتياطي الذي يمكن الوصول إليه بدلاً من المخطط الفارغ."
+  },
+  "p_00ab524248a2": {
+    "en": "Empty load trend",
+    "fr": "Tendance du chargement à vide",
+    "he": "מגמת עומס ריק",
+    "es": "Tendencia de carga vacía",
+    "de": "Leerlasttrend",
+    "ar": "اتجاه الحمل الفارغ",
+    "hu": "Üres terhelési trend",
+    "ru": "Тенденция порожней загрузки",
+    "it": "Andamento del carico vuoto"
+  },
   "p_1a9692274dcc": {
     "en": "Empty State",
     "he": "מדינה ריקה",
@@ -3311,6 +3575,17 @@ export const generatedSitePhrases = {
     "hu": "Minden stabil minta közzéteszi a csomaghoz tartozó billentyűzetet, fókuszt, WCAG-t, képernyőolvasót és AT/böngésző bizonyítékokat. Az ismert korlátozások itt maradnak láthatók, ahelyett, hogy a kiadási megjegyzésekben rejtőznének.",
     "de": "Jedes stabile Muster veröffentlicht paketeigene Tastatur-, Fokus-, WCAG-, Screenreader- und AT-/Browser-Informationen. Bekannte Einschränkungen bleiben hier sichtbar und werden nicht in den Versionshinweisen ausgeblendet.",
     "he": "כל תבנית יציבה מפרסמת מקלדת, פוקוס, WCAG, קורא מסך ו-AT/דפדפן בבעלות החבילה. מגבלות ידועות נשארות גלויות כאן במקום להסתתר בהערות שחרור."
+  },
+  "p_86e952919c7b": {
+    "en": "Every wrapper renders its visual plus the mandatory accessible table fallback.",
+    "de": "Jeder Wrapper rendert sein visuelles Element und zusätzlich den obligatorischen barrierefreien Tabellen-Fallback.",
+    "he": "כל עטיפה מציגה את הוויזואלי שלה בתוספת החזרת הטבלה הנגישה החובה.",
+    "ru": "Каждая оболочка отображает свой визуальный элемент плюс обязательную доступную резервную таблицу.",
+    "es": "Cada contenedor representa su objeto visual más el respaldo obligatorio de la tabla accesible.",
+    "fr": "Chaque wrapper restitue son visuel ainsi que la table de secours accessible obligatoire.",
+    "it": "Ogni wrapper esegue il rendering della propria immagine oltre al fallback obbligatorio della tabella accessibile.",
+    "hu": "Minden burkoló megjeleníti a vizuális és a kötelezően hozzáférhető táblázat tartalékát.",
+    "ar": "يعرض كل غلاف صورته المرئية بالإضافة إلى البديل الإلزامي للجدول الذي يمكن الوصول إليه."
   },
   "p_e450e475b9f0": {
     "en": "Evidence coverage",
@@ -3675,6 +3950,17 @@ export const generatedSitePhrases = {
     "de": "Fit Score Chip",
     "hu": "Fit Score Chip"
   },
+  "p_6c73869c6fa5": {
+    "en": "Five-point rating scale.",
+    "ar": "مقياس التقييم من خمس نقاط.",
+    "ru": "Пятибалльная шкала оценок.",
+    "es": "Escala de calificación de cinco puntos.",
+    "he": "סולם דירוג של חמש נקודות.",
+    "de": "Fünfstufige Bewertungsskala.",
+    "it": "Scala di valutazione a cinque punti.",
+    "fr": "Échelle de notation en cinq points.",
+    "hu": "Ötfokú értékelési skála."
+  },
   "p_195978ed96a0": {
     "en": "Flat media-first variant for licensed surfaces.",
     "fr": "Variante Flat Media First pour les surfaces sous licence.",
@@ -3707,6 +3993,17 @@ export const generatedSitePhrases = {
     "hu": "Flow élmény",
     "he": "חווית זרימה",
     "de": "Flow-Erlebnis"
+  },
+  "p_6ce44e7eb527": {
+    "en": "Focus is trapped, Escape closes, and focus returns to the trigger.",
+    "ru": "Фокус блокируется, Escape закрывается, и фокус возвращается к триггеру.",
+    "it": "Il focus è intrappolato, la modalità Escape si chiude e il focus ritorna al grilletto.",
+    "es": "El foco queda atrapado, Escape se cierra y el foco vuelve al gatillo.",
+    "hu": "A fókusz csapdába esik, az Escape bezárul, és a fókusz visszatér a kioldóhoz.",
+    "ar": "يتم احتجاز التركيز، ويتم إغلاق الهروب، ويعود التركيز إلى المشغل.",
+    "he": "הפוקוס נלכד, האסקייפ נסגר, והפוקוס חוזר להדק.",
+    "de": "Der Fokus wird gefangen, Escape wird geschlossen und der Fokus kehrt zum Auslöser zurück.",
+    "fr": "La mise au point est piégée, l'évasion se ferme et la mise au point revient sur la gâchette."
   },
   "p_d2de2918c23b": {
     "en": "Food & Menu",
@@ -5182,6 +5479,17 @@ export const generatedSitePhrases = {
     "fr": "Preuve d'exécution en direct",
     "hu": "Élő futásidejű igazolás"
   },
+  "p_1a6333d8ddfc": {
+    "en": "Load trend",
+    "he": "מגמת עומס",
+    "ar": "اتجاه التحميل",
+    "es": "Tendencia de carga",
+    "fr": "Tendance de charge",
+    "de": "Lasttrend",
+    "ru": "Тенденция нагрузки",
+    "hu": "Terhelési trend",
+    "it": "Tendenza del carico"
+  },
   "p_b34fa90ba688": {
     "en": "Loaders & Skeletons",
     "ar": "اللوادر والهياكل العظمية",
@@ -5192,6 +5500,17 @@ export const generatedSitePhrases = {
     "it": "Caricatori e scheletri",
     "hu": "Rakodók és csontvázak",
     "he": "מעמיסים ושלדים"
+  },
+  "p_441b137e0c4d": {
+    "en": "Loading benchmark",
+    "es": "Cargando punto de referencia",
+    "ru": "Загрузка теста",
+    "he": "בנצ'מרק טוען",
+    "hu": "Referenciaérték betöltése",
+    "ar": "جارٍ تحميل المعيار",
+    "it": "Caricamento benchmark",
+    "de": "Benchmark wird geladen",
+    "fr": "Chargement du benchmark"
   },
   "p_13115b7ab8da": {
     "en": "Loading, empty, error, permission, disabled, and success states now include shared presentation modes for centered/fill bounded surfaces.",
@@ -5236,6 +5555,28 @@ export const generatedSitePhrases = {
     "hu": "Hosszú formátumú útmutató Claude Code, Cursor, Copilot – telepítés, szolgáltató, szerződések, alkatrészcsaládok számára.",
     "ar": "دليل طويل لـ Claude Code، وCursor، وCopilot — التثبيت، والموفر، والعقود، وعائلات المكونات.",
     "fr": "Guide détaillé pour Claude Code, Cursor, Copilot — installation, fournisseur, contrats, familles de composants."
+  },
+  "p_ca6f56c87e18": {
+    "en": "Longitudinal progression",
+    "he": "התקדמות אורכית",
+    "hu": "Longitudinális progresszió",
+    "ru": "Продольная прогрессия",
+    "ar": "التقدم الطولي",
+    "it": "Progressione longitudinale",
+    "de": "Längsverlauf",
+    "es": "Progresión longitudinal",
+    "fr": "Progression longitudinale"
+  },
+  "p_9b1d7ae6a8a3": {
+    "en": "Longitudinal progression across the mesocycle.",
+    "de": "Längsverlauf über den Mesozyklus.",
+    "es": "Progresión longitudinal a lo largo del mesociclo.",
+    "ar": "التقدم الطولي عبر الدورة المتوسطة.",
+    "hu": "Longitudinális progresszió a mezocikluson keresztül.",
+    "it": "Progressione longitudinale attraverso il mesociclo.",
+    "ru": "Продольная прогрессия в течение мезоцикла.",
+    "fr": "Progression longitudinale à travers le mésocycle.",
+    "he": "התקדמות אורכית על פני mesocycle."
   },
   "p_cede4f4376ee": {
     "en": "Lookup helpers",
@@ -5379,6 +5720,28 @@ export const generatedSitePhrases = {
     "es": "Capacidades de madurez",
     "de": "Reifefähigkeiten",
     "he": "יכולות בגרות"
+  },
+  "p_b97578347861": {
+    "en": "Maturity coverage across capability dimensions.",
+    "es": "Cobertura de madurez en todas las dimensiones de capacidad.",
+    "it": "Copertura della maturità attraverso le dimensioni della capacità.",
+    "fr": "Couverture de la maturité dans toutes les dimensions de capacité.",
+    "ru": "Охват зрелости по всем измерениям возможностей.",
+    "he": "כיסוי בגרות על פני ממדי יכולת.",
+    "de": "Reifegradabdeckung über alle Fähigkeitsdimensionen hinweg.",
+    "ar": "تغطية النضج عبر أبعاد القدرة.",
+    "hu": "Lejárati lefedettség a képességdimenziókon keresztül."
+  },
+  "p_9a0cd711777d": {
+    "en": "Maturity profile",
+    "it": "Profilo di maturità",
+    "fr": "Profil de maturité",
+    "ar": "ملف النضج",
+    "he": "פרופיל בגרות",
+    "de": "Reifeprofil",
+    "ru": "Профиль зрелости",
+    "es": "Perfil de madurez",
+    "hu": "Lejárati profil"
   },
   "p_06109605d5ab": {
     "en": "Meaning Badge",
@@ -5589,6 +5952,28 @@ export const generatedSitePhrases = {
     "hu": "Hiányzó alkatrész",
     "he": "חסר רכיב"
   },
+  "p_16070a8d4235": {
+    "en": "Missing data prompt",
+    "de": "Eingabeaufforderung für fehlende Daten",
+    "ru": "Подсказка об отсутствии данных",
+    "es": "Mensaje de datos faltantes",
+    "ar": "مطالبة البيانات المفقودة",
+    "hu": "Hiányzó adatsor",
+    "he": "הודעת נתונים חסרים",
+    "fr": "Invite de données manquantes",
+    "it": "Richiesta dati mancanti"
+  },
+  "p_c1fa73f848cd": {
+    "en": "Missing data status region",
+    "ru": "Отсутствует регион статуса данных",
+    "es": "Región de estado de datos faltantes",
+    "de": "Fehlender Datenstatusbereich",
+    "fr": "Région d'état des données manquantes",
+    "he": "אזור סטטוס נתונים חסר",
+    "it": "Regione con stato dei dati mancante",
+    "hu": "Hiányzó adatállapot-régió",
+    "ar": "منطقة حالة البيانات مفقودة"
+  },
   "p_0018601971a3": {
     "en": "Missing pattern",
     "fr": "Modèle manquant",
@@ -5731,6 +6116,17 @@ export const generatedSitePhrases = {
     "ru": "Переместите второстепенные действия в компактный мобильный раздел.",
     "hu": "Helyezze át a másodlagos műveleteket egy kompakt mobil részbe.",
     "de": "Verschieben Sie sekundäre Aktionen in einen kompakten mobilen Bereich."
+  },
+  "p_f63ca391125d": {
+    "en": "Multi-dimension capability profile.",
+    "he": "פרופיל יכולת רב מימדית.",
+    "es": "Perfil de capacidad multidimensional.",
+    "it": "Profilo di capacità multidimensionale.",
+    "ru": "Многомерный профиль возможностей.",
+    "de": "Mehrdimensionales Fähigkeitsprofil.",
+    "hu": "Többdimenziós képességprofil.",
+    "fr": "Profil de capacité multidimensionnel.",
+    "ar": "ملف تعريف القدرة متعدد الأبعاد."
   },
   "p_33dfdf74f423": {
     "en": "Multi-dimension profile.",
@@ -5907,6 +6303,17 @@ export const generatedSitePhrases = {
     "fr": "Aucune source cartographique configurée pour cette démo.",
     "hu": "Nincs beállítva térképforrás ehhez a demóhoz.",
     "he": "לא הוגדר מקור מפה עבור הדגמה זו."
+  },
+  "p_b52e1fdc97c1": {
+    "en": "No sessions recorded for this period yet.",
+    "es": "Aún no se han registrado sesiones para este período.",
+    "it": "Nessuna sessione registrata per questo periodo ancora.",
+    "ru": "За этот период еще не зарегистрировано ни одной сессии.",
+    "de": "Für diesen Zeitraum wurden noch keine Sitzungen aufgezeichnet.",
+    "hu": "Ebben az időszakban még nem rögzítettek munkameneteket.",
+    "fr": "Aucune séance enregistrée pour cette période pour le moment.",
+    "ar": "لم يتم تسجيل أي جلسات لهذه الفترة حتى الآن.",
+    "he": "עדיין לא נרשמו הפעלות לתקופה זו."
   },
   "p_6cb53dac3893": {
     "en": "Non-negotiable rules for agents",
@@ -6227,6 +6634,17 @@ export const generatedSitePhrases = {
     "it": "Apri la tavolozza dei comandi",
     "hu": "Nyissa meg a parancspalettát"
   },
+  "p_da906414ef1b": {
+    "en": "Open dialog",
+    "ru": "Открыть диалог",
+    "es": "Abrir diálogo",
+    "fr": "Ouvrir la boîte de dialogue",
+    "it": "Apri la finestra di dialogo",
+    "ar": "فتح الحوار",
+    "he": "פתח דו-שיח",
+    "hu": "Nyissa meg a párbeszédpanelt",
+    "de": "Dialog öffnen"
+  },
   "p_05206760851f": {
     "en": "Open governance",
     "de": "Offene Governance",
@@ -6270,6 +6688,17 @@ export const generatedSitePhrases = {
     "ru": "Открыть предварительно заполненное электронное письмо",
     "hu": "Nyissa meg az előre kitöltött e-mailt",
     "he": "פתח אימייל שמולא מראש"
+  },
+  "p_22ce859a543e": {
+    "en": "Open side panel",
+    "es": "Panel lateral abierto",
+    "fr": "Panneau latéral ouvert",
+    "ru": "Открытая боковая панель",
+    "he": "פאנל צד פתוח",
+    "ar": "لوحة جانبية مفتوحة",
+    "hu": "Nyissa ki az oldalsó panelt",
+    "de": "Seitenteil öffnen",
+    "it": "Pannello laterale aperto"
   },
   "p_b8411b6a8fa0": {
     "en": "Open the canonical install path and versioned package guidance.",
@@ -6402,6 +6831,17 @@ export const generatedSitePhrases = {
     "de": "Überlauf-Sekundärkontrollen",
     "hu": "Túlcsordulás másodlagos vezérlők",
     "he": "הצפת בקרות משניות"
+  },
+  "p_cd0a6a1d83fb": {
+    "en": "Overflow-safe assessment tabs, including a many-item scroll case.",
+    "ar": "علامات تبويب التقييم الآمنة للتجاوز، بما في ذلك حالة التمرير متعددة العناصر.",
+    "es": "Pestañas de evaluación a prueba de desbordamientos, incluido un estuche de desplazamiento con muchos elementos.",
+    "de": "Überlaufsichere Bewertungsregisterkarten, einschließlich einer Scroll-Hülle für viele Elemente.",
+    "ru": "Вкладки оценок с защитой от переполнения, включая возможность прокрутки множества элементов.",
+    "hu": "Túlcsordulásbiztos értékelő lapok, beleértve a sok elemet tartalmazó görgetős esetet.",
+    "fr": "Onglets d'évaluation anti-débordement, y compris un étui à défilement contenant de nombreux éléments.",
+    "it": "Schede di valutazione a prova di overflow, incluso un caso di scorrimento con molti elementi.",
+    "he": "כרטיסיות הערכה בטוחות בגלישה, כולל מארז גלילה מרובה פריטים."
   },
   "p_98f34c24a437": {
     "en": "Overlay stack governance",
@@ -6700,6 +7140,17 @@ export const generatedSitePhrases = {
     "it": "Primitiva in attesa",
     "he": "בהמתנה פרימיטיבי"
   },
+  "p_3ca73909ad1a": {
+    "en": "Perceived effort",
+    "ru": "Воспринимаемое усилие",
+    "he": "מאמץ נתפס",
+    "de": "Wahrgenommene Anstrengung",
+    "fr": "Effort perçu",
+    "it": "Sforzo percepito",
+    "es": "Esfuerzo percibido",
+    "ar": "الجهد المبذول",
+    "hu": "Érzékelt erőfeszítés"
+  },
   "p_18c853a3d177": {
     "en": "Pickup is available today after 17:15.",
     "es": "La recogida está disponible hoy después de las 17:15.",
@@ -6908,6 +7359,17 @@ export const generatedSitePhrases = {
     "ru": "Экспорт через точку продаж",
     "de": "Point-of-Sale-Export",
     "he": "ייצוא נקודת מכירה"
+  },
+  "p_46d93baf08c0": {
+    "en": "Populated chart wrappers",
+    "he": "עטיפות תרשים מאוכלסות",
+    "de": "Befüllte Diagramm-Wrapper",
+    "fr": "Wrappers de graphiques remplis",
+    "it": "Wrapper del grafico popolati",
+    "es": "Envoltorios de gráficos poblados",
+    "ar": "مغلفات المخططات المأهولة",
+    "ru": "Заполненные оболочки диаграмм",
+    "hu": "Kitöltött diagramburkolók"
   },
   "p_9b2cae2342be": {
     "en": "Predictable rhythm",
@@ -7173,6 +7635,17 @@ export const generatedSitePhrases = {
     "hu": "Termék áttekintése",
     "ru": "Обзор продукта"
   },
+  "p_b0987a76907a": {
+    "en": "Product-vocabulary overlay wrappers over the governed modal and drawer primitives.",
+    "it": "Involucri sovrapposti del vocabolario del prodotto sulle primitive modali e drawer governate.",
+    "de": "Produktvokabular-Overlay-Wrapper über den geregelten Modal- und Schubladenprimitiven.",
+    "fr": "Le vocabulaire du produit est superposé sur les primitives modales et de tiroir gouvernées.",
+    "ru": "Оболочки словаря продукта накладываются на управляемые модальные примитивы и примитивы ящика.",
+    "he": "אוצר מילים של מוצר עוטף את הפרימיטיבים המנוהלים והמגירות.",
+    "es": "Envolturas de superposición de vocabulario de producto sobre las primitivas modales y de cajón gobernadas.",
+    "hu": "Termék-szókincs burkolók a szabályozott modális és fiókprimitívekre.",
+    "ar": "أغلفة تراكب مفردات المنتج فوق العناصر الأولية المشروطة والأدراج."
+  },
   "p_87261406d22e": {
     "en": "Production ready",
     "fr": "Prêt à produire",
@@ -7249,6 +7722,17 @@ export const generatedSitePhrases = {
     "de": "Bieten Sie bewegungsreduziertes Verhalten und Tastaturalternativen für die Wiedergabesteuerung.",
     "ar": "توفير سلوك الحركة المنخفضة وبدائل لوحة المفاتيح لعناصر التحكم في التشغيل.",
     "hu": "Csökkentett mozgású viselkedést és billentyűzet-alternatívákat biztosít a lejátszásvezérlőkhöz."
+  },
+  "p_dec44851cd49": {
+    "en": "Provide the outstanding inputs before the readiness view can be trusted.",
+    "fr": "Fournissez les entrées en suspens avant que la vue de préparation puisse être fiable.",
+    "ru": "Предоставьте выдающиеся исходные данные, прежде чем можно будет доверять представлению о готовности.",
+    "he": "ספק את התשומות המצוינות לפני שניתן יהיה לסמוך על תצוגת המוכנות.",
+    "de": "Stellen Sie die ausstehenden Eingaben bereit, bevor Sie der Bereitschaftsansicht vertrauen können.",
+    "es": "Proporcione las entradas pendientes antes de que se pueda confiar en la vista de preparación.",
+    "hu": "Adja meg a kiemelkedő bemeneti adatokat, mielőtt a készenléti nézet megbízhatóvá válhat.",
+    "it": "Fornire gli input in sospeso prima che la visualizzazione della disponibilità possa essere considerata attendibile.",
+    "ar": "قم بتوفير المدخلات المتميزة قبل الوثوق في عرض الاستعداد."
   },
   "p_0d1c28de9596": {
     "en": "Provider color authority remains governed.",
@@ -7690,6 +8174,17 @@ export const generatedSitePhrases = {
     "hu": "Radar diagram",
     "fr": "Carte radar"
   },
+  "p_d92da336ee36": {
+    "en": "Rate the session load from 1 to 10.",
+    "de": "Bewerten Sie die Sitzungsbelastung auf einer Skala von 1 bis 10.",
+    "ru": "Оцените нагрузку сеанса от 1 до 10.",
+    "ar": "قم بتقييم حمل الجلسة من 1 إلى 10.",
+    "es": "Califica la carga de la sesión del 1 al 10.",
+    "it": "Valuta il carico della sessione da 1 a 10.",
+    "he": "דרג את עומס הפגישה מ-1 עד 10.",
+    "hu": "Értékelje a munkamenet terhelését 1-től 10-ig.",
+    "fr": "Évaluez la charge de la session de 1 à 10."
+  },
   "p_53afdd874e83": {
     "en": "React, Mantine, and Tabler are accepted implementation dependencies only behind GDS-owned contracts and release gates.",
     "de": "React, Mantine und Tabler sind akzeptierte Implementierungsabhängigkeiten nur hinter GDS-eigenen Verträgen und Release-Gates.",
@@ -7734,6 +8229,39 @@ export const generatedSitePhrases = {
     "de": "Lesen Sie die strengen Adoptions- und Theme-Eigentümeranforderungen.",
     "it": "Leggi i rigorosi requisiti di adozione e proprietà dei temi."
   },
+  "p_9c665232ab14": {
+    "en": "Readiness gauge",
+    "ru": "Индикатор готовности",
+    "ar": "مقياس الجاهزية",
+    "he": "מד מוכנות",
+    "es": "indicador de preparación",
+    "fr": "Jauge de préparation",
+    "de": "Bereitschaftsanzeige",
+    "it": "Indicatore di prontezza",
+    "hu": "Készenléti mérő"
+  },
+  "p_c4d5cb32077b": {
+    "en": "Readiness score",
+    "fr": "Score de préparation",
+    "ru": "Оценка готовности",
+    "ar": "درجة الاستعداد",
+    "he": "ציון מוכנות",
+    "es": "Puntuación de preparación",
+    "it": "Punteggio di preparazione",
+    "de": "Bereitschaftsbewertung",
+    "hu": "Készenléti pontszám"
+  },
+  "p_8eff6b58f15d": {
+    "en": "Readiness sparkline",
+    "it": "Sparkline di prontezza",
+    "ru": "Спарклайн готовности",
+    "he": "ניצוץ מוכנות",
+    "de": "Bereitschafts-Sparkline",
+    "ar": "خط الاستعداد",
+    "hu": "Készenléti sparkline",
+    "es": "Minigráfico de preparación",
+    "fr": "Sparkline de préparation"
+  },
   "p_e0ef1d3da0b9": {
     "en": "Readonly mode keeps preview and policy context visible while suppressing edit controls.",
     "ar": "يعمل وضع القراءة فقط على إبقاء سياق المعاينة والسياسة مرئيًا أثناء منع عناصر التحكم في التحرير.",
@@ -7755,6 +8283,17 @@ export const generatedSitePhrases = {
     "fr": "Les surfaces de téléchargement en lecture seule préservent le contexte des actifs sans accepter de nouveaux fichiers.",
     "he": "משטחי העלאה לקריאה בלבד משמרים את הקשר הנכס מבלי לקבל קבצים חדשים.",
     "hu": "A csak olvasható feltöltési felületek új fájlok elfogadása nélkül megőrzik az eszközök kontextusát."
+  },
+  "p_045560fa0532": {
+    "en": "Recovery notes",
+    "ru": "Примечания по восстановлению",
+    "de": "Wiederherstellungsnotizen",
+    "ar": "ملاحظات الاسترداد",
+    "he": "הערות שחזור",
+    "it": "Note di recupero",
+    "hu": "Helyreállítási megjegyzések",
+    "es": "Notas de recuperación",
+    "fr": "Notes de récupération"
   },
   "p_c4c8c2d0d1d7": {
     "en": "Recovery surfaces remain clear.",
@@ -8394,6 +8933,28 @@ export const generatedSitePhrases = {
     "de": "Laufzeitbesitzer",
     "he": "בעל זמן ריצה"
   },
+  "p_de719223a306": {
+    "en": "Same prompt announced through a status region for assistive technology.",
+    "de": "Dieselbe Aufforderung wurde über eine Statusregion für unterstützende Technologie angekündigt.",
+    "es": "El mismo aviso anunciado a través de una región de estado para tecnología de asistencia.",
+    "hu": "Ugyanezt a felszólítást jelentették be a kisegítő technológia állapotterületén.",
+    "ru": "То же самое сообщение объявлено в разделе статуса вспомогательных технологий.",
+    "ar": "تم الإعلان عن نفس المطالبة من خلال منطقة الحالة للتكنولوجيا المساعدة.",
+    "he": "אותה הנחיה הוכרזה דרך אזור סטטוס לטכנולוגיה מסייעת.",
+    "fr": "Même invite annoncée via une région de statut pour la technologie d’assistance.",
+    "it": "Stesso messaggio annunciato tramite una regione di stato per la tecnologia assistiva."
+  },
+  "p_04ad38f04023": {
+    "en": "Save-and-next progression across first, middle, and last steps.",
+    "de": "Save-and-next-Fortschritt über den ersten, mittleren und letzten Schritt.",
+    "hu": "Mentés és következő lépés az első, középső és utolsó lépésben.",
+    "ru": "Сохранение и переход к следующему этапу на первом, среднем и последнем шагах.",
+    "ar": "تقدم الحفظ والتالي عبر الخطوات الأولى والمتوسطة والأخيرة.",
+    "he": "התקדמות שמור והבאה לאורך הצעדים הראשונים, האמצעיים והאחרונים.",
+    "fr": "Progression enregistrée et suivante à travers les première, intermédiaire et dernière étapes.",
+    "it": "Salva e procedi con la progressione successiva nel primo, nel mezzo e nell'ultimo passaggio.",
+    "es": "Progresión de guardar y seguir en el primer, medio y último paso."
+  },
   "p_215065a0a646": {
     "en": "Scatter chart",
     "ar": "مخطط مبعثر",
@@ -8625,6 +9186,17 @@ export const generatedSitePhrases = {
     "ru": "Сегмент Б",
     "hu": "B szegmens"
   },
+  "p_7987dc490b0e": {
+    "en": "Segmented control",
+    "ru": "Сегментированное управление",
+    "de": "Segmentierte Steuerung",
+    "fr": "Contrôle segmenté",
+    "he": "בקרה מפולחת",
+    "ar": "السيطرة مجزأة",
+    "it": "Controllo segmentato",
+    "hu": "Szegmentált vezérlés",
+    "es": "Control segmentado"
+  },
   "p_49e4be213b2d": {
     "en": "Select row-1",
     "es": "Seleccionar fila-1",
@@ -8789,6 +9361,17 @@ export const generatedSitePhrases = {
     "ar": "حالة الخدمة",
     "he": "מצב שירות",
     "hu": "Szolgáltatás állapota"
+  },
+  "p_7acb1bb72088": {
+    "en": "Session satisfaction",
+    "ru": "Удовлетворенность сессией",
+    "fr": "Satisfaction de la séance",
+    "he": "שביעות רצון מהמפגש",
+    "it": "Soddisfazione della sessione",
+    "de": "Sitzungszufriedenheit",
+    "hu": "A munkamenet elégedettsége",
+    "ar": "رضا الجلسة",
+    "es": "Satisfacción de la sesión"
   },
   "p_e4dcd3d9bff6": {
     "en": "Settings content",
@@ -9175,6 +9758,28 @@ export const generatedSitePhrases = {
     "ru": "Краткосрочный оперативный взгляд.",
     "de": "Kurzfristige operative Sicht."
   },
+  "p_d1d0a8d36d76": {
+    "en": "Side panel body content for extended context.",
+    "ar": "محتوى جسم اللوحة الجانبية للسياق الموسع.",
+    "fr": "Contenu du corps du panneau latéral pour un contexte étendu.",
+    "es": "Contenido del cuerpo del panel lateral para contexto extendido.",
+    "he": "תוכן גוף של לוח צד להקשר מורחב.",
+    "it": "Contenuto del corpo del pannello laterale per un contesto esteso.",
+    "de": "Seiteninhalt des Textkörpers für erweiterten Kontext.",
+    "ru": "Содержимое тела боковой панели для расширенного контекста.",
+    "hu": "Oldalpanel törzstartalma a kiterjesztett kontextus érdekében."
+  },
+  "p_b9eefff191ac": {
+    "en": "Side panel wrapper with scroll lock and focus return.",
+    "de": "Seitenwandhülle mit Scroll-Sperre und Fokusrückführung.",
+    "es": "Envoltura de panel lateral con bloqueo de desplazamiento y retorno de enfoque.",
+    "ru": "Обертка на боковой панели с фиксатором прокрутки и возвратом фокуса.",
+    "hu": "Oldalsó panel borítás scroll zárral és fókuszvisszaállítással.",
+    "ar": "غلاف اللوحة الجانبية مع قفل التمرير وإرجاع التركيز.",
+    "he": "עטיפת לוח צד עם נעילת גלילה והחזרת פוקוס.",
+    "fr": "Emballage du panneau latéral avec verrouillage du défilement et retour de la mise au point.",
+    "it": "Avvolgitore del pannello laterale con blocco scorrimento e ritorno alla messa a fuoco."
+  },
   "p_51d2620472c5": {
     "en": "Side rail",
     "ar": "السكك الحديدية الجانبية",
@@ -9296,6 +9901,17 @@ export const generatedSitePhrases = {
     "ru": "Контракт на единую поверхность просмотра для поиска, фильтров и сортировки.",
     "he": "חוזה משטח גלישה יחיד לחיפוש, מסננים ומיון."
   },
+  "p_c90ece50efb8": {
+    "en": "Single fixed checkpoint",
+    "de": "Einzelner fester Kontrollpunkt",
+    "ru": "Единый стационарный КПП",
+    "ar": "نقطة تفتيش ثابتة واحدة",
+    "fr": "Point de contrôle fixe unique",
+    "it": "Unico checkpoint fisso",
+    "es": "Punto de control fijo único",
+    "hu": "Egyetlen fix ellenőrzőpont",
+    "he": "מחסום יחיד קבוע"
+  },
   "p_dbc6b00658ad": {
     "en": "Site-only styling systems",
     "it": "Sistemi di styling solo in cantiere",
@@ -9317,6 +9933,17 @@ export const generatedSitePhrases = {
     "ru": "Скелеты принадлежат известным макетам, тогда как загрузчики принадлежат действиям, а для более длительных операций требуется явный текстовый статус.",
     "de": "Skelette gehören zu bekannten Layouts, während Lader zu Aktionen gehören und längere Vorgänge einen expliziten Textstatus benötigen.",
     "hu": "A csontvázak az ismert elrendezésekhez tartoznak, míg a betöltők a műveletekhez tartoznak, és a hosszabb műveletekhez explicit szövegállapot szükséges."
+  },
+  "p_ee4d1a634414": {
+    "en": "Slider and rating",
+    "de": "Slider und Bewertung",
+    "ru": "Слайдер и рейтинг",
+    "he": "סליידר ודירוג",
+    "fr": "Curseur et note",
+    "ar": "المنزلق والتقييم",
+    "it": "Dispositivo di scorrimento e valutazione",
+    "hu": "Csúszka és értékelés",
+    "es": "Control deslizante y calificación"
   },
   "p_57d29834f2c3": {
     "en": "Small-screen priority",
@@ -11034,28 +11661,6 @@ export const generatedSitePhrases = {
     "hu": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",
     "he": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage"
   },
-  "p_7e2ba877e97f": {
-    "en": "var(--mantine-color-blue-6)",
-    "ru": "вар (--mantine-color-blue-6)",
-    "es": "var(--mantine-color-azul-6)",
-    "it": "var(--mantine-colore-blu-6)",
-    "fr": "var(--mantine-color-bleu-6)",
-    "de": "var(--mantine-color-blue-6)",
-    "ar": "فار(-لون مانتين-أزرق-6)",
-    "hu": "var(--mantine-color-blue-6)",
-    "he": "var(--mantine-color-blue-6)"
-  },
-  "p_1944a61bdfe2": {
-    "en": "var(--mantine-color-teal-6)",
-    "es": "var(--mantine-color-verde azulado-6)",
-    "it": "var(--mantine-colore-verde acqua-6)",
-    "fr": "var(--mantine-color-sarcelle-6)",
-    "de": "var(--mantine-color-teal-6)",
-    "ar": "فار (--mantine-color-teal-6)",
-    "ru": "вар(-mantine-color-teal-6)",
-    "hu": "var(--mantine-color-teal-6)",
-    "he": "var(--mantine-color-teal-6)"
-  },
   "p_1396bf9ec22e": {
     "en": "Verify permissions, upload destination, and preview settings before users enter a production step.",
     "es": "Verifique los permisos, el destino de carga y la configuración de vista previa antes de que los usuarios ingresen a un paso de producción.",
@@ -11122,6 +11727,17 @@ export const generatedSitePhrases = {
     "it": "Limitazioni visibili",
     "he": "מגבלות גלויות"
   },
+  "p_53a6c9c10e92": {
+    "en": "Weekly focus (overflow)",
+    "ru": "Еженедельный фокус (переполнение)",
+    "it": "Focus settimanale (overflow)",
+    "de": "Wöchentlicher Fokus (Überlauf)",
+    "es": "Enfoque semanal (desbordamiento)",
+    "ar": "التركيز الأسبوعي (التجاوز)",
+    "hu": "Heti fókusz (túlcsordulás)",
+    "he": "מיקוד שבועי (הצפה)",
+    "fr": "Focus hebdomadaire (débordement)"
+  },
   "p_d9d2770ec44f": {
     "en": "Weekly menu",
     "ru": "Еженедельное меню",
@@ -11132,6 +11748,17 @@ export const generatedSitePhrases = {
     "it": "Menù settimanale",
     "he": "תפריט שבועי",
     "hu": "Heti menü"
+  },
+  "p_00bde92af127": {
+    "en": "Weekly training load trend for the athlete.",
+    "hu": "Heti edzésterhelési trend a sportoló számára.",
+    "ar": "اتجاه الأحمال التدريبية الأسبوعية للرياضي.",
+    "de": "Wöchentlicher Trainingsbelastungstrend für den Sportler.",
+    "ru": "Тенденция еженедельной тренировочной нагрузки спортсмена.",
+    "es": "Tendencia de carga de entrenamiento semanal del deportista.",
+    "fr": "Tendance de la charge d’entraînement hebdomadaire pour l’athlète.",
+    "it": "Andamento del carico di allenamento settimanale per l'atleta.",
+    "he": "מגמת עומס אימונים שבועית לספורטאי."
   },
   "p_42cda79b5669": {
     "en": "Weighted scatter profile.",
@@ -11209,6 +11836,61 @@ export const generatedSitePhrases = {
     "de": "Warum dieses Formular einfach ist",
     "hu": "Miért egyszerű ez a forma",
     "he": "מדוע הטופס הזה פשוט"
+  },
+  "p_6a5e6f54eeff": {
+    "en": "Wizard stepper",
+    "es": "asistente paso a paso",
+    "hu": "Varázsló léptető",
+    "ru": "Мастер степпера",
+    "he": "סטפר קוסם",
+    "fr": "Assistant pas à pas",
+    "de": "Wizard-Stepper",
+    "ar": "معالج السائر",
+    "it": "Passo-passo del mago"
+  },
+  "p_8ce241894063": {
+    "en": "Wk 1",
+    "ru": "неделя 1",
+    "he": "שבוע 1",
+    "fr": "Semaine 1",
+    "hu": "1. hét",
+    "de": "Woche 1",
+    "ar": "الأسبوع 1",
+    "es": "Semana 1",
+    "it": "Settimana 1"
+  },
+  "p_c0125fc5e1eb": {
+    "en": "Wk 2",
+    "fr": "Semaine 2",
+    "ru": "неделя 2",
+    "hu": "2. hét",
+    "de": "Woche 2",
+    "ar": "الأسبوع 2",
+    "es": "Semana 2",
+    "it": "Settimana 2",
+    "he": "שבוע 2"
+  },
+  "p_fdcb9a0a8d57": {
+    "en": "Wk 3",
+    "de": "Woche 3",
+    "ar": "الأسبوع 3",
+    "es": "Semana 3",
+    "hu": "3. hét",
+    "it": "Settimana 3",
+    "ru": "неделя 3",
+    "he": "ו' 3",
+    "fr": "Semaine 3"
+  },
+  "p_4030b6da8075": {
+    "en": "Wk 4",
+    "es": "Semana 4",
+    "hu": "4. hét",
+    "it": "Settimana 4",
+    "ru": "неделя 4",
+    "fr": "Semaine 4",
+    "de": "Woche 4",
+    "he": "שבוע 4",
+    "ar": "الأسبوع 4"
   },
   "p_abab9baf8937": {
     "en": "Workflow Guidance",

@@ -1,5 +1,8 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { Box, Button, Group, Progress, SegmentedControl, Slider, Stack, Text, Title } from '@mantine/core';
+import { useGdsTranslation } from '@doneisbetter/gds-theme';
 import { FormField } from './FormField';
 
 export interface GdsSegmentedControlOption<T extends string = string> {
@@ -94,6 +97,7 @@ export function GdsSlider({
   ariaLabel,
   marks,
 }: GdsSliderProps) {
+  const { t } = useGdsTranslation();
   return (
     <FormField label={label} description={description}>
       <Slider
@@ -104,7 +108,7 @@ export function GdsSlider({
         step={step}
         marks={marks}
         disabled={disabled}
-        aria-label={ariaLabel ?? (typeof label === 'string' ? label : 'Slider')}
+        aria-label={ariaLabel ?? (typeof label === 'string' ? label : t('gds.form.slider.label', 'Slider'))}
         color="var(--gds-brand-primary, var(--gds-vibe-primary, var(--mantine-primary-color-filled)))"
       />
     </FormField>
@@ -115,9 +119,14 @@ export interface GdsRatingScaleProps extends Omit<GdsSliderProps, 'min' | 'max' 
   scale?: 5 | 10;
 }
 
-export function GdsRatingScale({ scale = 5, marks, ...props }: GdsRatingScaleProps) {
+export function GdsRatingScale({ scale = 5, marks, ariaLabel, label, ...props }: GdsRatingScaleProps) {
+  const { t } = useGdsTranslation();
+  const resolvedAriaLabel = ariaLabel
+    ?? (typeof label === 'string' ? label : t('gds.form.rating.aria', 'Rating'));
   return (
     <GdsSlider
+      label={label}
+      ariaLabel={resolvedAriaLabel}
       min={1}
       max={scale}
       step={1}
@@ -157,12 +166,17 @@ export function GdsWizardStepper({
   onStepChange,
   onBack,
   onSaveNext,
-  backLabel = 'Back',
-  saveNextLabel = 'Save & Next',
-  finishLabel = 'Finish',
+  backLabel,
+  saveNextLabel,
+  finishLabel,
   loading = false,
-  ariaLabel = 'Progress',
+  ariaLabel,
 }: GdsWizardStepperProps) {
+  const { t } = useGdsTranslation();
+  const resolvedBackLabel = backLabel ?? t('gds.form.wizard.back', 'Back');
+  const resolvedSaveNextLabel = saveNextLabel ?? t('gds.form.wizard.next', 'Save & Next');
+  const resolvedFinishLabel = finishLabel ?? t('gds.form.wizard.finish', 'Finish');
+  const resolvedProgressLabel = ariaLabel ?? t('gds.form.wizard.progress', 'Progress');
   const safeIndex = Math.min(Math.max(activeStep, 0), Math.max(steps.length - 1, 0));
   const current = steps[safeIndex];
   const progress = steps.length <= 1 ? 100 : ((safeIndex + 1) / steps.length) * 100;
@@ -174,8 +188,8 @@ export function GdsWizardStepper({
   }
 
   return (
-    <Stack gap="md" aria-label={ariaLabel}>
-      <Progress value={progress} radius="xl" size="sm" aria-label={`${safeIndex + 1} of ${steps.length} steps complete`} />
+    <Stack gap="md" aria-label={resolvedProgressLabel}>
+      <Progress value={progress} radius="xl" size="sm" aria-label={`${resolvedProgressLabel}: ${safeIndex + 1}/${steps.length}`} />
       <Group component="ol" gap="xs" wrap="nowrap" style={{ overflowX: 'auto', padding: 0, margin: 0 }}>
         {steps.map((step, index) => {
           const active = index === safeIndex;
@@ -197,14 +211,14 @@ export function GdsWizardStepper({
       <Stack gap={4}>
         <Title order={4}>{current.title}</Title>
         {current.description ? <Text size="sm" c="dimmed">{current.description}</Text> : null}
-        {current.optional ? <Text size="xs" c="dimmed">Optional step</Text> : null}
+        {current.optional ? <Text size="xs" c="dimmed">{t('gds.form.wizard.optional', 'Optional step')}</Text> : null}
       </Stack>
       <Group justify="space-between" gap="sm">
         <Button variant="default" onClick={onBack} disabled={loading || atFirst}>
-          {backLabel}
+          {resolvedBackLabel}
         </Button>
         <Button onClick={() => { void onSaveNext?.(); }} loading={loading}>
-          {atLast ? finishLabel : saveNextLabel}
+          {atLast ? resolvedFinishLabel : resolvedSaveNextLabel}
         </Button>
       </Group>
     </Stack>

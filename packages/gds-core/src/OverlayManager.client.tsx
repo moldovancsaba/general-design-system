@@ -4,7 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import type { ReactNode } from 'react';
 import { Drawer, Modal } from '@mantine/core';
 import type { DrawerProps, ModalProps } from '@mantine/core';
-import { getGdsMotionPreset } from '@doneisbetter/gds-theme';
+import { getGdsMotionPreset, useGdsTranslation } from '@doneisbetter/gds-theme';
 
 export type GdsOverlayType = 'modal' | 'dialog' | 'drawer' | 'sheet' | 'popover' | 'command';
 export type OverlayKind = GdsOverlayType | 'tooltip';
@@ -299,6 +299,7 @@ export function GdsModal({
 }: GdsModalProps) {
   const requestClose = useOverlaySurface({ id, opened, kind: 'modal', title, description, children, invokerId, policy, onClose, onBlockedClose });
   const motion = getGdsMotionPreset('overlay');
+  const { t } = useGdsTranslation();
 
   return (
     <Modal
@@ -308,6 +309,7 @@ export function GdsModal({
       title={title}
       centered={modalProps.centered ?? true}
       trapFocus
+      closeButtonProps={{ 'aria-label': t('gds.overlay.close', 'Close'), ...modalProps.closeButtonProps }}
       closeOnEscape={policy?.closeOnEscape ?? true}
       closeOnClickOutside={policy?.closeOnOutsideClick ?? true}
       transitionProps={{ transition: 'fade', duration: motion.durationMs }}
@@ -331,6 +333,7 @@ export function GdsDrawer({
 }: GdsDrawerProps) {
   const requestClose = useOverlaySurface({ id, opened, kind: 'drawer', title, description, children, invokerId, policy, onClose, onBlockedClose });
   const motion = getGdsMotionPreset('drawer');
+  const { t } = useGdsTranslation();
 
   return (
     <Drawer
@@ -341,6 +344,7 @@ export function GdsDrawer({
       position={drawerProps.position ?? 'right'}
       size={policy?.mobileFullscreen ? '100%' : drawerProps.size}
       trapFocus
+      closeButtonProps={{ 'aria-label': t('gds.overlay.close', 'Close'), ...drawerProps.closeButtonProps }}
       closeOnEscape={policy?.closeOnEscape ?? true}
       closeOnClickOutside={policy?.closeOnOutsideClick ?? true}
       transitionProps={{ transition: 'slide-left', duration: motion.durationMs }}

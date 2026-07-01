@@ -1,6 +1,9 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { useId } from 'react';
 import { Badge, Group, Paper, Stack, Text } from '@mantine/core';
+import { useGdsTranslation } from '@doneisbetter/gds-theme';
 import { ChartTokenPanel, type ChartTokenPanelState } from './ChartTokenPanel';
 import { SimpleDataTable } from './SimpleDataTable';
 
@@ -421,6 +424,7 @@ export function GdsChart({
 }: GdsChartProps) {
   const labelledBy = useId();
   const describedBy = useId();
+  const { t } = useGdsTranslation();
   const validation = validateGdsChartData(type, data, config);
   const resolvedState = state ?? validation.state;
   const tableRows = validation.visibleData.map((item) => ({
@@ -442,10 +446,10 @@ export function GdsChart({
       tableFallback={(
         <SimpleDataTable
           columns={[
-            { key: 'label', header: 'Label' },
-            { key: 'value', header: config.tableValueHeader ?? 'Value' },
-            { key: 'secondaryValue', header: 'Secondary value' },
-            { key: 'group', header: config.groupLabel ?? 'Group' },
+            { key: 'label', header: t('gds.chart.table.label', 'Label') },
+            { key: 'value', header: config.tableValueHeader ?? t('gds.chart.table.value', 'Value') },
+            { key: 'secondaryValue', header: t('gds.chart.table.secondaryValue', 'Secondary value') },
+            { key: 'group', header: config.groupLabel ?? t('gds.chart.table.group', 'Group') },
           ]}
           rows={tableRows}
         />

@@ -22,6 +22,21 @@ import {
   resolveGdsAccessState,
   createGdsVocabularyPack,
   DataToolbar,
+  GdsAreaChart,
+  GdsSparkline,
+  GdsLongitudinalChart,
+  GdsBenchmarkBarChart,
+  GdsRadarChart,
+  GdsMaturityRadarChart,
+  GdsGaugeChart,
+  getGdsSeriesColor,
+  GdsDialog,
+  GdsSidePanel,
+  GdsSegmentedControl,
+  GdsSlider,
+  GdsRatingScale,
+  GdsWizardStepper,
+  MissingDataPrompt,
   ListingProvider,
   useListingState,
   ActiveFilterChips,
@@ -226,6 +241,211 @@ function ChoiceChipFamilyDemo() {
         ))}
       </div>
     </div>
+  );
+}
+
+function FormControlFamilyDemo() {
+  const [assessment, setAssessment] = useState<string>('readiness');
+  const [rating, setRating] = useState<number>(4);
+  const [effort, setEffort] = useState<number>(3);
+  const [boundary, setBoundary] = useState<number>(5);
+  const [wizardStep, setWizardStep] = useState<number>(0);
+
+  const wizardSteps = [
+    { id: 'profile', title: 'Profile', description: 'Confirm athlete identity and cohort.' },
+    { id: 'metrics', title: 'Metrics', description: 'Capture readiness and recovery scores.', optional: true },
+    { id: 'review', title: 'Review', description: 'Confirm and save the assessment.', completed: wizardStep > 2 },
+  ];
+
+  return (
+    <div>
+      <SectionPanel title="Segmented control" description="Overflow-safe assessment tabs, including a many-item scroll case.">
+        <GdsSegmentedControl
+          ariaLabel="Assessment focus"
+          value={assessment}
+          onChange={setAssessment}
+          options={[
+            { value: 'readiness', label: 'Readiness' },
+            { value: 'recovery', label: 'Recovery' },
+            { value: 'load', label: 'Load' },
+            { value: 'archived', label: 'Archived', disabled: true },
+          ]}
+        />
+        <br />
+        <GdsSegmentedControl
+          ariaLabel="Weekly focus (overflow)"
+          value={assessment}
+          onChange={setAssessment}
+          options={[
+            { value: 'readiness', label: 'Readiness' },
+            { value: 'recovery', label: 'Recovery' },
+            { value: 'load', label: 'Load' },
+            { value: 'sleep', label: 'Sleep' },
+            { value: 'nutrition', label: 'Nutrition' },
+            { value: 'mobility', label: 'Mobility' },
+            { value: 'mental', label: 'Mental' },
+          ]}
+        />
+        <br />
+        <GdsSegmentedControl
+          ariaLabel="Disabled assessment focus"
+          value={assessment}
+          onChange={setAssessment}
+          disabled
+          options={[
+            { value: 'readiness', label: 'Readiness' },
+            { value: 'recovery', label: 'Recovery' },
+          ]}
+        />
+      </SectionPanel>
+      <SectionPanel title="Slider and rating" description="1-10 effort slider, a boundary case where min equals max, and a 1-5 rating scale.">
+        <GdsSlider
+          label="Perceived effort"
+          description="Rate the session load from 1 to 10."
+          value={effort}
+          onChange={setEffort}
+          min={1}
+          max={10}
+        />
+        <br />
+        <GdsSlider
+          label="Single fixed checkpoint"
+          description="Boundary case where the minimum equals the maximum."
+          value={boundary}
+          onChange={setBoundary}
+          min={5}
+          max={5}
+          disabled
+        />
+        <br />
+        <GdsRatingScale
+          label="Session satisfaction"
+          description="Five-point rating scale."
+          value={rating}
+          onChange={setRating}
+          scale={5}
+        />
+      </SectionPanel>
+      <SectionPanel title="Wizard stepper" description="Save-and-next progression across first, middle, and last steps.">
+        <GdsWizardStepper
+          steps={wizardSteps}
+          activeStep={wizardStep}
+          onStepChange={setWizardStep}
+          onBack={() => setWizardStep((current) => Math.max(0, current - 1))}
+          onSaveNext={() => setWizardStep((current) => Math.min(wizardSteps.length - 1, current + 1))}
+        />
+      </SectionPanel>
+    </div>
+  );
+}
+
+function ChartWrapperFamilyDemo() {
+  const trend = [
+    { label: 'Wk 1', value: 42 },
+    { label: 'Wk 2', value: 55 },
+    { label: 'Wk 3', value: 61 },
+    { label: 'Wk 4', value: 78 },
+  ];
+  const radar = [
+    { label: 'Sprint', value: 4 },
+    { label: 'Endurance', value: 5 },
+    { label: 'Recovery', value: 3 },
+    { label: 'Mobility', value: 4 },
+  ];
+  const gauge = [{ label: 'Readiness', value: 72 }];
+
+  return (
+    <div>
+      <SectionPanel title="Populated chart wrappers" description="Every wrapper renders its visual plus the mandatory accessible table fallback.">
+        <GdsAreaChart title="Load trend" summary="Weekly training load trend for the athlete." data={trend} />
+        <br />
+        <GdsSparkline title="Readiness sparkline" summary="Compact readiness trend across recent sessions." data={trend} />
+        <br />
+        <GdsLongitudinalChart title="Longitudinal progression" summary="Longitudinal progression across the mesocycle." data={trend} />
+        <br />
+        <GdsBenchmarkBarChart title="Benchmark comparison" summary="Athlete metrics compared against the squad benchmark." data={trend} seriesTone="info" />
+        <br />
+        <GdsRadarChart title="Capability profile" summary="Multi-dimension capability profile." data={radar} />
+        <br />
+        <GdsMaturityRadarChart title="Maturity profile" summary="Maturity coverage across capability dimensions." data={radar} />
+        <br />
+        <GdsGaugeChart title="Readiness gauge" summary="Current readiness index against target." data={gauge} />
+      </SectionPanel>
+      <SectionPanel title="Empty and loading states" description="Empty data and loading states surface the accessible fallback instead of a blank chart.">
+        <GdsAreaChart title="Empty load trend" summary="No sessions recorded for this period yet." data={[]} />
+        <br />
+        <GdsBenchmarkBarChart title="Loading benchmark" summary="Benchmark data is loading." data={trend} state="loading" />
+      </SectionPanel>
+    </div>
+  );
+}
+
+function MissingDataPromptDemo() {
+  return (
+    <div>
+      <StateBlock
+        variant="info"
+        title="Shared feedback surface"
+        description="State content can now use contract-driven centered presentation directly."
+        minHeight={320}
+        presentation="centered"
+        contentAlign="center"
+        contentJustify="center"
+        compact
+      />
+      <br />
+      <SectionPanel title="Missing data prompt" description="Default i18n-resolved recovery copy with a required-fields list and call to action.">
+        <MissingDataPrompt
+          missingFields={['Readiness score', 'Recovery notes']}
+          action={<SemanticButton action="add">Add required data</SemanticButton>}
+        />
+      </SectionPanel>
+      <div role="status">
+        <SectionPanel title="Missing data status region" description="Same prompt announced through a status region for assistive technology.">
+          <MissingDataPrompt
+            title="Assessment incomplete"
+            description="Provide the outstanding inputs before the readiness view can be trusted."
+          />
+        </SectionPanel>
+      </div>
+    </div>
+  );
+}
+
+function OverlayAliasDemo() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(false);
+
+  return (
+    <OverlayManagerProvider>
+      <SectionPanel title="Dialog and side panel aliases" description="Product-vocabulary overlay wrappers over the governed modal and drawer primitives.">
+        <button id="open-alias-dialog" type="button" onClick={() => setDialogOpen(true)}>Open dialog</button>
+        {' '}
+        <button id="open-alias-panel" type="button" onClick={() => setPanelOpen(true)}>Open side panel</button>
+        <GdsDialog
+          id="alias-dialog"
+          opened={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          invokerId="open-alias-dialog"
+          title="Assessment dialog"
+          description="Focus is trapped, Escape closes, and focus returns to the trigger."
+        >
+          <p>Dialog body content stays on an opaque governed overlay surface.</p>
+          <SemanticButton action="confirm" onClick={() => setDialogOpen(false)}>Confirm</SemanticButton>
+        </GdsDialog>
+        <GdsSidePanel
+          id="alias-side-panel"
+          opened={panelOpen}
+          onClose={() => setPanelOpen(false)}
+          invokerId="open-alias-panel"
+          title="Details side panel"
+          description="Side panel wrapper with scroll lock and focus return."
+        >
+          <p>Side panel body content for extended context.</p>
+          <SemanticButton action="close" onClick={() => setPanelOpen(false)}>Close panel</SemanticButton>
+        </GdsSidePanel>
+      </SectionPanel>
+    </OverlayManagerProvider>
   );
 }
 
@@ -647,9 +867,13 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
       );
     case 'form-field':
       return (
-        <FormField label="Canonical field" description="Visible label, helper text, and error placement are owned by GDS." error="Example validation message">
-          <input aria-label="Canonical field" defaultValue="Reference value" />
-        </FormField>
+        <div>
+          <FormField label="Canonical field" description="Visible label, helper text, and error placement are owned by GDS." error="Example validation message">
+            <input aria-label="Canonical field" defaultValue="Reference value" />
+          </FormField>
+          <br />
+          <FormControlFamilyDemo />
+        </div>
       );
     case 'game-board-tile':
       return (
@@ -679,6 +903,13 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
         </ConsumerDashboardGrid>
       );
     case 'forms':
+      return (
+        <div>
+          <FormArchitectureDemo />
+          <br />
+          <FormControlFamilyDemo />
+        </div>
+      );
     case 'inputs':
     case 'selects-combobox':
     case 'checkboxes-radios':
@@ -875,18 +1106,7 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
         </ListingProvider>
       );
     case 'state-blocks':
-      return (
-        <StateBlock
-          variant="info"
-          title="Shared feedback surface"
-          description="State content can now use contract-driven centered presentation directly."
-          minHeight={320}
-          presentation="centered"
-          contentAlign="center"
-          contentJustify="center"
-          compact
-        />
-      );
+      return <MissingDataPromptDemo />;
     case 'surface-presentation':
       return (
         <div>
@@ -1475,6 +1695,7 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
       return <StatsSection title="Threshold-aware statistics" belowThreshold thresholdMessage="Not enough data yet for this report." />;
     case 'reporting-contracts':
       return (
+        <div>
         <ReportingSection
           title="Operational evidence report"
           description="A governed reporting section keeps period controls, metrics, chart summaries, evidence, and fallback tables in one predictable flow."
@@ -1510,8 +1731,8 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
               summary="Online orders account for 62 percent of visible orders; in-store orders account for 38 percent."
               state="permission-limited"
               legend={[
-                { label: 'Online', token: 'var(--mantine-color-blue-6)' },
-                { label: 'In-store', token: 'var(--mantine-color-teal-6)' },
+                { label: 'Online', token: getGdsSeriesColor('primary') },
+                { label: 'In-store', token: getGdsSeriesColor('info') },
               ]}
               tableFallback={(
                 <SimpleDataTable
@@ -1535,6 +1756,9 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
             />
           )}
         />
+        <br />
+        <ChartWrapperFamilyDemo />
+        </div>
       );
     case 'alerts':
       return <TelemetryDemo />;
@@ -1598,9 +1822,21 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
         </div>
       );
     case 'modals':
-      return <OverlayContractDemo />;
+      return (
+        <div>
+          <OverlayContractDemo />
+          <br />
+          <OverlayAliasDemo />
+        </div>
+      );
     case 'drawers':
-      return <CommandPaletteDemo />;
+      return (
+        <div>
+          <CommandPaletteDemo />
+          <br />
+          <OverlayAliasDemo />
+        </div>
+      );
     case 'small-screen-priority':
       return (
         <ConsumerDashboardGrid columns={1}>

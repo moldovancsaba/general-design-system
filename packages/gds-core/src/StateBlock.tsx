@@ -1,5 +1,8 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { Loader, Stack, Text, ThemeIcon, Title } from '@mantine/core';
+import { useGdsTranslation } from '@doneisbetter/gds-theme';
 import { GdsIcons } from './icons';
 import {
   resolveSurfacePresentationStyles,
@@ -94,16 +97,19 @@ export interface MissingDataPromptProps extends Omit<StateBlockProps, 'variant' 
 }
 
 export function MissingDataPrompt({
-  title = 'Missing data',
-  description = 'Add the required data before this view can show a reliable result.',
+  title,
+  description,
   missingFields = [],
   action,
   compact = true,
   ...props
 }: MissingDataPromptProps) {
+  const { t } = useGdsTranslation();
+  const resolvedTitle = title ?? t('gds.state.missingData.title', 'Missing data');
+  const resolvedDescription = description ?? t('gds.state.missingData.description', 'Add the required data before this view can show a reliable result.');
   const details = missingFields.length ? (
     <Stack gap={4}>
-      {description ? <Text c="dimmed">{description}</Text> : null}
+      {resolvedDescription ? <Text c="dimmed">{resolvedDescription}</Text> : null}
       <Stack component="ul" gap={2} m={0} pl="md" ta="left">
         {missingFields.map((field, index) => (
           // eslint-disable-next-line react/no-array-index-key
@@ -113,12 +119,12 @@ export function MissingDataPrompt({
         ))}
       </Stack>
     </Stack>
-  ) : description;
+  ) : resolvedDescription;
 
   return (
     <StateBlock
       variant="not-enough-data"
-      title={title}
+      title={resolvedTitle}
       description={details}
       action={action}
       compact={compact}

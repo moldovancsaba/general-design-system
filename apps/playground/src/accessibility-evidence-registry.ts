@@ -7,7 +7,7 @@ import {
 } from '@doneisbetter/gds-core';
 import { patternRegistry, type PatternFamily } from './pattern-registry.ts';
 
-const evidenceDate = '2026-06-14';
+const evidenceDate = '2026-07-01';
 const stableStatuses = new Set(['live-demo', 'static-reference']);
 
 const familyOwner: Record<PatternFamily, string> = {

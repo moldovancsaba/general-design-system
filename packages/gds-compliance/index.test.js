@@ -80,7 +80,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
         import { IconTrash } from '@tabler/icons-react';
         export function AdminPage() {
           window.confirm('Delete?');
-          return <div style={{ color: 'red' }}><button>Delete</button><table><tbody><tr><td>1</td></tr></tbody></table></div>;
+          return <div style={{ color: 'red', backgroundColor: '#123456', borderRadius: 12 }}><button>Delete</button><table><tbody><tr><td>1</td></tr></tbody></table></div>;
         }
       `,
     });
@@ -94,7 +94,50 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
     expect(rules).toContain('strict.browser-dialog');
     expect(rules).toContain('strict.raw-table');
     expect(rules).toContain('strict.inline-style');
+    expect(rules).toContain('strict.inline-color');
+    expect(rules).toContain('strict.raw-color');
+    expect(rules).toContain('strict.non-token-radius');
     expect(report.findings.find((finding) => finding.rule === 'strict.inline-style')?.message).toContain('GdsSafeBox');
+  });
+
+  it('allows raw brand values only in declared strict theme ownership lanes', () => {
+    const fixture = createFixture({
+      'gds-adoption.json': JSON.stringify({
+        schemaVersion: 1,
+        gdsVersion: '3.8.0',
+        productArchetype: 'public',
+        requiredContracts: ['GdsProvider'],
+        localAdapters: [],
+        approvedExceptions: [],
+        migrationStatus: 'governed',
+        owner: 'platform-ui',
+        lastReviewedAt: '2026-06-30',
+        compliance: {
+          strictMode: true,
+          themeOwnershipPaths: ['src/theme/**'],
+        },
+      }, null, 2),
+      'src/theme/brand.ts': `
+        export const brand = { gold: '#d7a433', radius: 12 };
+      `,
+      'src/cards/LocalCard.tsx': `
+        export function LocalCard() {
+          return <section style={{ backgroundColor: '#d7a433', borderRadius: 12 }}>Card</section>;
+        }
+      `,
+    });
+
+    const report = runComplianceCheck({ manifestPath: join(fixture, 'gds-adoption.json') });
+    const strictFindings = report.findings.filter((finding) => finding.rule.startsWith('strict.'));
+    const themeFindings = strictFindings.filter((finding) => finding.file === 'src/theme/brand.ts');
+    const cardRules = strictFindings.filter((finding) => finding.file === 'src/cards/LocalCard.tsx').map((finding) => finding.rule);
+
+    expect(themeFindings).toEqual([]);
+    expect(cardRules).toEqual(expect.arrayContaining([
+      'strict.raw-color',
+      'strict.inline-color',
+      'strict.non-token-radius',
+    ]));
   });
 
   it('suppresses strict drift only when the exception category and status match the violation family', () => {

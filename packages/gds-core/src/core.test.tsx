@@ -21,7 +21,7 @@ import { ConsumerDashboardGrid } from './ConsumerDashboardGrid';
 import { ConsumerSection } from './ConsumerSection';
 import { CtaButtonGroup } from './CtaButtonGroup';
 import { ConfirmDialog } from './ConfirmDialog';
-import { ChoiceChip } from './ChoiceChip';
+import { ChoiceChip, FilterChipGroup, PillBar, SoftChipGroup } from './ChoiceChip';
 import { DataToolbar } from './DataToolbar';
 import { CommandRegistryProvider, useCommandLauncher } from './CommandPalette.client';
 import { createGdsDraftAdapter, FormErrorSummary, GdsFormProvider, GdsValidationSummary, gdsFormReducer, useGdsForm, useGdsFormOrchestration, ValidatedFieldMessage } from './GdsForm.client';
@@ -40,7 +40,8 @@ import { FoodMenuSection } from './FoodMenuSection';
 import { GameBoardTile } from './GameBoardTile';
 import { ChartTokenPanel } from './ChartTokenPanel';
 import { GdsChart, gdsChartTypeRegistry, gdsChartSetATypeRegistry, gdsChartSetBTypeRegistry, isGdsChartSetAType, isGdsChartSetBType, validateGdsChartData } from './GdsChart';
-import { GdsBarChart, GdsLineChart, GdsStackedBarChart, getGdsSeriesColor } from './SemanticCharts';
+import { GdsAreaChart, GdsBarChart, GdsBenchmarkBarChart, GdsCalendarHeatmapChart, GdsDivergingBarChart, GdsGaugeChart, GdsHistogramChart, GdsLineChart, GdsLongitudinalChart, GdsMaturityRadarChart, GdsRadarChart, GdsSlopeChart, GdsSparkline, GdsStackedBarChart, GdsSymmetryChart, getGdsSeriesColor } from './SemanticCharts';
+import { GdsRatingScale, GdsSegmentedControl, GdsSlider, GdsWizardStepper } from './GdsFormControls';
 import { BodyText, CardTitle, InlineEmphasis, LabelText, MetadataText, PageTitle, SectionTitle } from './Typography';
 import { ClippedFlexChild, FloatingActionPlacement, ListItemSection, NumericCell, OverflowContainer, SemanticInset, VisuallyHidden } from './StyleUtilities';
 import { GdsBox, GdsCluster, GdsContainer, GdsGrid, GdsInline, GdsSidebar, GdsSplit, GdsStack, normalizeGdsResponsiveValue, resolveGdsLayoutStyle } from './LayoutPrimitives';
@@ -74,7 +75,7 @@ import { SidebarNav, SidebarNavItem, SidebarNavSection } from './SidebarNav';
 import { SimpleDataTable } from './SimpleDataTable';
 import { SocialAuthButtons } from './SocialAuthButtons';
 import { ProviderIdentityButton, ProviderIdentityButtonGroup, getProviderIdentityLabel, getProviderIdentityPolicy, getSupportedProviderIdentityIds } from './ProviderIdentityButtons';
-import { StateBlock } from './StateBlock';
+import { MissingDataPrompt, StateBlock } from './StateBlock';
 import { StatsSection } from './StatsSection';
 import { CountBadge, LabelTag, StatusBadge } from './StatusBadge';
 import { ThemeToggle } from './ThemeToggle';
@@ -86,7 +87,7 @@ import { resolveGdsCardContract } from './CardContracts';
 import { ar, de, en, es, fr, getGdsMessages, he, hu, it as itLocale, ru } from './locales';
 import { GdsIcons } from './icons';
 import { GdsIcon, getGdsIconKeys, getGdsIconMetadata, getGdsIconToneColor, gdsIconRegistry } from './icons';
-import { GdsDrawer, GdsModal, OverlayManagerProvider, useOverlayManager } from './OverlayManager.client';
+import { GdsDialog, GdsDrawer, GdsModal, GdsSidePanel, OverlayManagerProvider, useOverlayManager } from './OverlayManager.client';
 import { GdsConfirmProvider, GdsToastProvider, useGdsConfirm, useGdsToasts } from './FeedbackRuntime.client';
 import { MediaPreviewCard } from './MediaPreviewCard';
 import { GdsAssetManager, createGdsAssetAdapter, useGdsAssetUploadQueue, validateGdsAsset } from './GdsAssetManager.client';
@@ -858,6 +859,20 @@ describe('@doneisbetter/gds-core', () => {
     expect(screen.getByRole('button', { name: 'Save' })).toBeInTheDocument();
   });
 
+  it('renders token-backed brand button variants without route-local styles', () => {
+    renderWithGds(
+      <>
+        <SemanticButton action="save" brandVariant="primary" />
+        <SemanticButton action="submit" brandVariant="accent" />
+        <SemanticButton action="cancel" brandVariant="disabled" />
+      </>,
+    );
+
+    expect(screen.getByRole('button', { name: 'Save' })).toHaveAttribute('data-gds-brand-button', 'primary');
+    expect(screen.getByRole('button', { name: 'Submit' })).toHaveAttribute('data-gds-brand-button', 'accent');
+    expect(screen.getByRole('button', { name: 'Cancel' })).toBeDisabled();
+  });
+
   it('renders choice chips as neutral links and toggle buttons', async () => {
     const user = userEvent.setup();
     const onSelect = vi.fn();
@@ -874,6 +889,78 @@ describe('@doneisbetter/gds-core', () => {
 
     await user.click(screen.getByRole('button', { name: 'Toggle me' }));
     expect(onSelect).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders controlled pill bars, soft chips, and filter chips with radio semantics', async () => {
+    const user = userEvent.setup();
+    const onPillChange = vi.fn();
+    const onSoftChange = vi.fn();
+    const onFilterChange = vi.fn();
+    const options = [
+      { value: 'north', label: 'North' },
+      { value: 'south', label: 'South' },
+    ];
+
+    renderWithGds(
+      <>
+        <PillBar ariaLabel="Regions" options={options} value="north" onChange={onPillChange} />
+        <SoftChipGroup ariaLabel="Neighborhoods" options={options} value="south" onChange={onSoftChange} />
+        <FilterChipGroup ariaLabel="Filters" options={options} value={null} onChange={onFilterChange} />
+      </>,
+    );
+
+    expect(screen.getByRole('radiogroup', { name: 'Regions' })).toBeInTheDocument();
+    expect(screen.getAllByRole('radio', { name: 'North' })[0]).toHaveAttribute('aria-checked', 'true');
+
+    await user.click(screen.getAllByRole('radio', { name: 'South' })[0]);
+    await user.click(screen.getAllByRole('radio', { name: 'North' })[1]);
+    await user.click(screen.getAllByRole('radio', { name: 'South' })[2]);
+
+    expect(onPillChange).toHaveBeenCalledWith('south');
+    expect(onSoftChange).toHaveBeenCalledWith('north');
+    expect(onFilterChange).toHaveBeenCalledWith('south');
+  });
+
+  it('renders overflow-safe segmented controls, rating scales, sliders, and wizard steps', async () => {
+    const user = userEvent.setup();
+    const onSegmentChange = vi.fn();
+    const onSliderChange = vi.fn();
+    const onSaveNext = vi.fn();
+
+    renderWithGds(
+      <>
+        <GdsSegmentedControl
+          ariaLabel="Module tabs"
+          value="learn"
+          onChange={onSegmentChange}
+          options={[
+            { value: 'learn', label: 'Learn' },
+            { value: 'plan', label: 'Plan' },
+          ]}
+        />
+        <GdsSlider label="Confidence" value={7} onChange={onSliderChange} />
+        <GdsRatingScale label="Readiness" value={3} onChange={onSliderChange} scale={5} />
+        <GdsWizardStepper
+          activeStep={0}
+          steps={[
+            { id: 'one', title: 'One', completed: true },
+            { id: 'two', title: 'Two' },
+          ]}
+          onSaveNext={onSaveNext}
+        />
+      </>,
+    );
+
+    expect(screen.getByRole('group', { name: 'Module tabs' })).toBeInTheDocument();
+    expect(screen.getByText('Confidence')).toBeInTheDocument();
+    expect(screen.getByText('Readiness')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'One' })).toHaveAttribute('aria-current', 'step');
+
+    await user.click(screen.getByText('Plan'));
+    await user.click(screen.getByRole('button', { name: 'Save & Next' }));
+
+    expect(onSegmentChange).toHaveBeenCalledWith('plan');
+    expect(onSaveNext).toHaveBeenCalledTimes(1);
   });
 
   it('renders destructive confirm dialogs with the expected actions', async () => {
@@ -1702,6 +1789,24 @@ describe('@doneisbetter/gds-core', () => {
     expect(onShare).toHaveBeenCalledTimes(1);
   });
 
+  it('renders saved, price, and rating anatomy on compact listing cards', () => {
+    renderWithGds(
+      <ListingCard
+        title="After-school tennis"
+        compact
+        price="$28/class"
+        rating="4.8"
+        ratingLabel="Class rating"
+        saved
+        saveAction={{ action: 'save', ariaLabel: 'Save class' }}
+      />,
+    );
+
+    expect(screen.getByText('$28/class')).toBeInTheDocument();
+    expect(screen.getByLabelText('Class rating')).toHaveTextContent('4.8');
+    expect(screen.getByRole('button', { name: 'Save class' })).toHaveAttribute('data-gds-active', 'true');
+  });
+
   it('handles interactive listing-card surface modes with keyboard-safe flip behavior', async () => {
     const user = userEvent.setup();
     const onActivate = vi.fn();
@@ -2362,6 +2467,19 @@ describe('@doneisbetter/gds-core', () => {
 
     expect(hasPresentationStyles).toBe(true);
     expect(screen.getByText('Loading operations')).toBeInTheDocument();
+  });
+
+  it('renders missing-data prompts with explicit missing field guidance', () => {
+    renderWithGds(
+      <MissingDataPrompt
+        description="Complete the required fields."
+        missingFields={['Readiness score', 'Recovery notes']}
+      />,
+    );
+
+    expect(screen.getByText('Missing data')).toBeInTheDocument();
+    expect(screen.getByText('Readiness score')).toBeInTheDocument();
+    expect(screen.getByText('Recovery notes')).toBeInTheDocument();
   });
 
   it('renders a fill-mode SectionPanel body with centered presentation', () => {
@@ -3573,6 +3691,22 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     expect(events.mock.calls.map(([event]) => event.type)).toEqual(expect.arrayContaining(['overlay_opened', 'escape_close', 'route_recovered']));
   });
 
+  it('exposes dialog and side-panel aliases over governed overlay surfaces', async () => {
+    renderWithGds(
+      <OverlayManagerProvider>
+        <GdsDialog opened onClose={() => {}} title="Alias dialog">
+          Dialog body
+        </GdsDialog>
+        <GdsSidePanel opened onClose={() => {}} title="Alias side panel">
+          Side panel body
+        </GdsSidePanel>
+      </OverlayManagerProvider>,
+    );
+
+    expect(await screen.findByRole('dialog', { name: 'Alias dialog' })).toBeInTheDocument();
+    expect(await screen.findByRole('dialog', { name: 'Alias side panel' })).toBeInTheDocument();
+  });
+
   it('registers and executes command palette commands', async () => {
     const user = userEvent.setup();
     const run = vi.fn();
@@ -3813,6 +3947,16 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
       issues: ['Dataset has 2 points, above the 1 point rendering budget.'],
       visibleData: [{ label: 'A', value: 1 }],
     });
+
+    const decimated = validateGdsChartData('line', Array.from({ length: 10 }, (_, index) => ({
+      label: `D${index}`,
+      value: index,
+    })), { maxDataPoints: 4, decimateLargeSeries: true });
+
+    expect(decimated.state).toBe('partial');
+    expect(decimated.visibleData).toHaveLength(4);
+    expect(decimated.visibleData[0].label).toBe('D0');
+    expect(decimated.visibleData[decimated.visibleData.length - 1].label).toBe('D9');
   });
 
   it('applies type-specific Set A chart validation rules', () => {
@@ -3885,7 +4029,7 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
 
     expect(renderer).toHaveBeenCalledTimes(1);
     expect(screen.getByText('Adapter rendered line with 2 points')).toBeInTheDocument();
-    expect(screen.getByText('Primary series: blue.6')).toBeInTheDocument();
+    expect(screen.getByText('Primary series: brand.primary')).toBeInTheDocument();
     expect(screen.getByText('Accessible data fallback')).toBeInTheDocument();
   });
 
@@ -3906,7 +4050,45 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     expect(screen.getByRole('img', { name: 'Bar chart' })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Line chart' })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Stacked chart' })).toBeInTheDocument();
-    expect(getGdsSeriesColor('warning')).toBe('var(--mantine-color-yellow-7)');
+    expect(getGdsSeriesColor('warning')).toBe('var(--gds-state-warning, var(--mantine-color-yellow-7))');
+  });
+
+  it('renders the extended chart kit wrappers on the shared accessible shell', () => {
+    const cartesianData = [
+      { label: 'Start', value: 4 },
+      { label: 'End', value: 8 },
+    ];
+    const radarData = [
+      { label: 'Recovery', value: 4 },
+      { label: 'Fuel', value: 5 },
+      { label: 'Mental', value: 3 },
+    ];
+    const heatmapData = [
+      { label: 'Mon', value: 2, group: 'Week 1' },
+      { label: 'Tue', value: 7, group: 'Week 1' },
+    ];
+
+    renderWithGds(
+      <>
+        <GdsAreaChart title="Area kit" summary="Area summary" data={cartesianData} />
+        <GdsSparkline title="Sparkline kit" summary="Spark summary" data={cartesianData} />
+        <GdsLongitudinalChart title="Longitudinal kit" summary="Longitudinal summary" data={cartesianData} />
+        <GdsBenchmarkBarChart title="Benchmark kit" summary="Benchmark summary" data={cartesianData} />
+        <GdsRadarChart title="Radar kit" summary="Radar summary" data={radarData} />
+        <GdsMaturityRadarChart title="Maturity kit" summary="Maturity summary" data={radarData} />
+        <GdsGaugeChart title="Gauge kit" summary="Gauge summary" data={cartesianData} />
+        <GdsCalendarHeatmapChart title="Calendar kit" summary="Calendar summary" data={heatmapData} />
+        <GdsHistogramChart title="Histogram kit" summary="Histogram summary" data={cartesianData} />
+        <GdsDivergingBarChart title="Diverging kit" summary="Diverging summary" data={[{ label: 'Low', value: -2 }, { label: 'High', value: 5 }]} />
+        <GdsSlopeChart title="Slope kit" summary="Slope summary" data={cartesianData} />
+        <GdsSymmetryChart title="Symmetry kit" summary="Symmetry summary" data={cartesianData} />
+      </>,
+    );
+
+    expect(screen.getByRole('img', { name: 'Area kit' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Sparkline kit' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Radar kit' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Calendar kit' })).toBeInTheDocument();
   });
 
   it('renders Set A chart primitive metadata and scatter fallback fields', () => {

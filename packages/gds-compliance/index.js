@@ -4,6 +4,8 @@ import { extname, dirname, join, resolve } from 'node:path';
 const SOURCE_EXTENSIONS = new Set(['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs']);
 const IGNORED_DIRS = new Set(['node_modules', '.git', '.next', 'dist', 'coverage']);
 const RAW_COLOR_PATTERN = /#(?:[0-9a-fA-F]{3,8})\b|rgb[a]?\s*\(/;
+const INLINE_COLOR_STYLE_PATTERN = /style\s*=\s*\{\s*\{[\s\S]{0,700}\b(?:color|background|backgroundColor|borderColor|fill|stroke)\s*:\s*['"`](?!var\(|currentColor\b|inherit\b|transparent\b|unset\b|none\b)[^'"`]+['"`]/;
+const NON_TOKEN_RADIUS_PATTERN = /\b(?:borderRadius|radius)\s*[:=]\s*(?:\{\s*)?(?:['"]?\d+(?:\.\d+)?(?:px|rem)?['"]?|\d+(?:\.\d+)?)/;
 const IMPORT_SOURCE_PATTERN = /(?:import\s+[^'"]*?from\s*|import\s*)['"]([^'"]+)['"]/g;
 const DEFAULT_FORBIDDEN_IMPORTS = ['@/components/ui/', '@radix-ui/', 'tailwindcss', 'lucide-react'];
 const STRICT_RULE_METADATA = {
@@ -36,6 +38,21 @@ const STRICT_RULE_METADATA = {
     family: 'inline-style',
     allowedExceptionCategories: ['runtime-constraint', 'product-authored-experience', 'package-coverage-gap', 'migration-bridge'],
     remediation: 'Use GdsSafeBox, GdsMediaFrame, GdsOverflowFrame, GdsResponsiveVisibility, GDS layout primitives, or declare a narrow approved exception.',
+  },
+  'strict.raw-color': {
+    family: 'raw-color',
+    allowedExceptionCategories: ['product-authored-experience', 'runtime-constraint', 'package-coverage-gap', 'migration-bridge'],
+    remediation: 'Move color authority into GDS theme tokens or a reviewed theme ownership lane; consumer code must not contain app-local hex/rgb literals.',
+  },
+  'strict.inline-color': {
+    family: 'inline-color',
+    allowedExceptionCategories: ['product-authored-experience', 'runtime-constraint', 'package-coverage-gap', 'migration-bridge'],
+    remediation: 'Use semantic GDS tokens, component props, or a governed GDS styling primitive instead of inline color/background/fill/stroke literals.',
+  },
+  'strict.non-token-radius': {
+    family: 'radius-token',
+    allowedExceptionCategories: ['product-authored-experience', 'runtime-constraint', 'package-coverage-gap', 'migration-bridge'],
+    remediation: 'Use GDS radius tokens or package-native component radius props instead of raw numeric radius values in consumer code.',
   },
   'strict.local-gds-adapter': {
     family: 'local-adapter',
@@ -550,10 +567,27 @@ function escapeRegex(value) {
 
 function globToRegExp(pattern) {
   const normalized = normalizePath(pattern).replace(/^\.\//, '');
-  const escaped = escapeRegex(normalized)
-    .replace(/\\\*\\\*/g, '.*')
-    .replace(/\\\*/g, '[^/]*');
-  return new RegExp(`^${escaped}$`);
+  let source = '';
+
+  for (let index = 0; index < normalized.length; index += 1) {
+    const char = normalized[index];
+    const next = normalized[index + 1];
+
+    if (char === '*' && next === '*') {
+      source += '.*';
+      index += 1;
+      continue;
+    }
+
+    if (char === '*') {
+      source += '[^/]*';
+      continue;
+    }
+
+    source += escapeRegex(char);
+  }
+
+  return new RegExp(`^${source}$`);
 }
 
 function matchesScope(relativePath, scopes) {
@@ -894,6 +928,11 @@ function pushStrictFinding({ findings, manifest, normalizedRoot, filePath, rule,
   });
 }
 
+function isStrictThemeOwnedPath(relativePath, manifest) {
+  return /(?:^|\/)(?:theme|tokens)\//.test(relativePath)
+    || matchesScope(relativePath, manifest.compliance?.themeOwnershipPaths ?? []);
+}
+
 function scanStrictConsumerViolations({ manifest, sourceFiles, manifestRoot }) {
   const findings = [];
   const normalizedRoot = normalizePath(manifestRoot).replace(/\/$/, '');
@@ -903,6 +942,7 @@ function scanStrictConsumerViolations({ manifest, sourceFiles, manifestRoot }) {
     const content = readFileSync(filePath, 'utf8');
     const inGdsPackage = /(^|\/)packages\/gds-(?:core|admin|theme)\//.test(relativePath);
     const inDocumentation = /\.(md|mdx)$/.test(relativePath) || /(^|\/)docs\//.test(relativePath);
+    const themeOwnedPath = isStrictThemeOwnedPath(relativePath, manifest);
 
     if (!inGdsPackage && /from\s+['"]@mantine\/core['"]/.test(content)) {
       pushStrictFinding({
@@ -956,6 +996,39 @@ function scanStrictConsumerViolations({ manifest, sourceFiles, manifestRoot }) {
         filePath,
         rule: 'strict.raw-table',
         message: `${STRICT_RULE_METADATA['strict.raw-table'].remediation}`,
+      });
+    }
+
+    if (!inGdsPackage && !inDocumentation && !themeOwnedPath && RAW_COLOR_PATTERN.test(content)) {
+      pushStrictFinding({
+        findings,
+        manifest,
+        normalizedRoot,
+        filePath,
+        rule: 'strict.raw-color',
+        message: `${STRICT_RULE_METADATA['strict.raw-color'].remediation}`,
+      });
+    }
+
+    if (!inGdsPackage && !inDocumentation && !themeOwnedPath && INLINE_COLOR_STYLE_PATTERN.test(content)) {
+      pushStrictFinding({
+        findings,
+        manifest,
+        normalizedRoot,
+        filePath,
+        rule: 'strict.inline-color',
+        message: `${STRICT_RULE_METADATA['strict.inline-color'].remediation}`,
+      });
+    }
+
+    if (!inGdsPackage && !inDocumentation && !themeOwnedPath && NON_TOKEN_RADIUS_PATTERN.test(content)) {
+      pushStrictFinding({
+        findings,
+        manifest,
+        normalizedRoot,
+        filePath,
+        rule: 'strict.non-token-radius',
+        message: `${STRICT_RULE_METADATA['strict.non-token-radius'].remediation}`,
       });
     }
 

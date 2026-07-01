@@ -245,6 +245,8 @@ interface GdsOverlaySurfaceBaseProps {
 
 export type GdsModalProps = GdsOverlaySurfaceBaseProps & Omit<ModalProps, 'opened' | 'onClose' | 'title' | 'children' | 'trapFocus'>;
 export type GdsDrawerProps = GdsOverlaySurfaceBaseProps & Omit<DrawerProps, 'opened' | 'onClose' | 'title' | 'children' | 'trapFocus'>;
+export type GdsDialogProps = GdsModalProps;
+export type GdsSidePanelProps = GdsDrawerProps;
 export type GdsSheetProps = GdsDrawerProps;
 
 function useOverlaySurface({
@@ -350,4 +352,12 @@ export function GdsDrawer({
 
 export function GdsSheet(props: GdsSheetProps) {
   return <GdsDrawer {...props} position={props.position ?? 'bottom'} policy={{ mobileFullscreen: true, ...props.policy }} />;
+}
+
+export function GdsDialog(props: GdsDialogProps) {
+  return <GdsModal {...props} />;
+}
+
+export function GdsSidePanel(props: GdsSidePanelProps) {
+  return <GdsDrawer {...props} position={props.position ?? 'right'} />;
 }

@@ -1,15 +1,15 @@
 {
   "name": "reference-vite",
   "private": true,
-  "version": "3.7.0",
+  "version": "3.8.0",
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
     "dev": "vite"
   },
   "dependencies": {
-    "@doneisbetter/gds-core": "3.7.0",
-    "@doneisbetter/gds-theme": "3.7.0",
+    "@doneisbetter/gds-core": "3.8.0",
+    "@doneisbetter/gds-theme": "3.8.0",
     "@floating-ui/core": "^1.7.5",
     "@mantine/core": "^7.9.0",
     "@mantine/hooks": "^7.9.0",

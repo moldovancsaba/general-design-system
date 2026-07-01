@@ -28,6 +28,20 @@ describe('createBrandTheme', () => {
     expect(result.cssVariables['--gds-bg-page']).toBe('#faf7f1');
   });
 
+  it('creates the first-class Class USA theme from ramps and semantic roles', () => {
+    const result = createBrandTheme('class-usa');
+
+    expect(result.tokenGraph.themes).toEqual(['class-usa']);
+    expect(result.mantineTheme.primaryColor).toBe('classUsaNavy');
+    expect(result.mantineTheme.other?.gdsBrandThemeId).toBe('class-usa');
+    expect(result.cssVariables['--gds-brand-primary']).toBe('#0b223e');
+    expect(result.cssVariables['--gds-brand-primary-pressed']).toBe('#07182c');
+    expect(result.cssVariables['--gds-brand-accent']).toBe('#ca8570');
+    expect(result.cssVariables['--gds-brand-accent-action']).toBe('#a85a44');
+    expect(result.cssVariables['--gds-bg-card']).toBe('#ffffff');
+    expect(result.cssVariables['--gds-border-card']).toBe('#eee7dd');
+  });
+
   it('emits light and dark values for every semantic role', () => {
     const { cssVariables } = createBrandTheme({ brandColors: classScoutColors, fonts });
     const roles = Object.keys(deriveBrandSemanticTokens(classScoutColors));

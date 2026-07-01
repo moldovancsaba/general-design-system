@@ -10,6 +10,7 @@ import type { GdsVocabularyPack, SemanticActionId } from './vocabulary';
 
 export interface SemanticButtonProps extends ButtonProps, Omit<React.ComponentPropsWithoutRef<'button'>, keyof ButtonProps | 'leftSection' | 'children'> {
   action: SemanticActionId;
+  brandVariant?: 'primary' | 'secondary' | 'accent' | 'disabled';
   loading?: boolean;
   feedbackState?: 'success' | 'error' | null;
   feedbackText?: string;
@@ -17,8 +18,32 @@ export interface SemanticButtonProps extends ButtonProps, Omit<React.ComponentPr
   vocabularyPacks?: GdsVocabularyPack[];
 }
 
+const brandButtonStyles: Record<NonNullable<SemanticButtonProps['brandVariant']>, React.CSSProperties> = {
+  primary: {
+    background: 'var(--gds-brand-primary, var(--gds-vibe-primary, var(--mantine-primary-color-filled)))',
+    borderColor: 'var(--gds-brand-primary, var(--gds-vibe-primary, var(--mantine-primary-color-filled)))',
+    color: 'var(--gds-text-on-inverse, var(--mantine-color-white))',
+  },
+  secondary: {
+    background: 'var(--gds-bg-card, var(--gds-vibe-surface, var(--mantine-color-white)))',
+    borderColor: 'var(--gds-border-card, var(--gds-vibe-border, var(--mantine-color-gray-3)))',
+    color: 'var(--gds-brand-primary, var(--gds-vibe-text, var(--mantine-color-dark-7)))',
+  },
+  accent: {
+    background: 'var(--gds-brand-accent-action, var(--gds-brand-accent, var(--gds-vibe-accent, var(--mantine-primary-color-filled))))',
+    borderColor: 'var(--gds-brand-accent-action, var(--gds-brand-accent, var(--gds-vibe-accent, var(--mantine-primary-color-filled))))',
+    color: 'var(--gds-text-on-inverse, var(--mantine-color-white))',
+  },
+  disabled: {
+    background: 'var(--gds-control-disabledBg, var(--mantine-color-gray-2))',
+    borderColor: 'var(--gds-control-disabledBg, var(--mantine-color-gray-2))',
+    color: 'var(--gds-control-disabledText, var(--mantine-color-gray-6))',
+  },
+};
+
 export function SemanticButton({
   action,
+  brandVariant,
   loading,
   feedbackState,
   feedbackText,
@@ -49,11 +74,13 @@ export function SemanticButton({
   let Icon = config.icon;
   let label = getSemanticActionLabel(action, t, vocabularyPacks);
   let color = props.color;
+  const brandStyle = brandVariant ? brandButtonStyles[brandVariant] : undefined;
+  const disabled = props.disabled || brandVariant === 'disabled';
 
   if (!mounted) {
-    const { leftSection, ...buttonProps } = props;
+    const { leftSection, style, ...buttonProps } = props;
     return (
-      <Button loading={loading} color={color} {...buttonProps}>
+      <Button {...buttonProps} loading={loading} color={color} data-gds-brand-button={brandVariant} disabled={disabled} style={{ ...brandStyle, ...style }}>
         {getSemanticActionLabel(action, undefined, vocabularyPacks)}
       </Button>
     );
@@ -72,10 +99,13 @@ export function SemanticButton({
 
   return (
     <Button
+      {...props}
       leftSection={<Icon size="1rem" />}
       loading={loading}
       color={color}
-      {...props}
+      data-gds-brand-button={brandVariant}
+      disabled={disabled}
+      style={{ ...brandStyle, ...props.style }}
     >
       {label}
     </Button>

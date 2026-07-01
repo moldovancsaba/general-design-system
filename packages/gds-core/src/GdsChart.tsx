@@ -61,6 +61,7 @@ export interface GdsChartLegendItem {
 export interface GdsChartBaseConfig {
   minDataPoints?: number;
   maxDataPoints?: number;
+  decimateLargeSeries?: boolean;
   valueFormatter?: (value: number | null) => ReactNode;
   groupLabel?: string;
   tableValueHeader?: string;
@@ -164,8 +165,8 @@ export const gdsChartTypeRegistry: Record<GdsChartType, GdsChartTypeDefinition> 
 };
 
 export const gdsDefaultChartLegend: GdsChartLegendItem[] = [
-  { label: 'Primary series', token: 'blue.6', description: 'Primary measured value' },
-  { label: 'Secondary series', token: 'teal.6', description: 'Grouped or comparative value' },
+  { label: 'Primary series', token: 'brand.primary', description: 'Primary measured value' },
+  { label: 'Secondary series', token: 'support', description: 'Grouped or comparative value' },
 ];
 
 export const gdsChartSetATypeRegistry: Record<GdsChartSetAType, GdsChartTypeDefinition> = {
@@ -196,6 +197,27 @@ export function isGdsChartSetBType(type: GdsChartType): type is GdsChartSetBType
 
 function isFiniteNumber(value: number | null | undefined): value is number {
   return typeof value === 'number' && Number.isFinite(value);
+}
+
+function decimateGdsChartData(data: GdsChartDatum[], maxDataPoints: number) {
+  if (data.length <= maxDataPoints) {
+    return data;
+  }
+
+  if (maxDataPoints <= 1) {
+    return data.slice(0, 1);
+  }
+
+  const lastIndex = data.length - 1;
+  const selectedIndexes = new Set<number>();
+
+  for (let index = 0; index < maxDataPoints; index += 1) {
+    selectedIndexes.add(Math.round((index * lastIndex) / (maxDataPoints - 1)));
+  }
+
+  return Array.from(selectedIndexes)
+    .sort((a, b) => a - b)
+    .map((index) => data[index]);
 }
 
 function getSetARendererLabel(type: GdsChartType) {
@@ -233,6 +255,8 @@ export function validateGdsChartData(
   const minDataPoints = config.minDataPoints ?? definition.minDataPoints;
   const maxDataPoints = config.maxDataPoints ?? definition.maxDataPoints;
   const issues: string[] = [];
+  let visibleData = data;
+  let decimated = false;
 
   if (!data.length) {
     return { state: 'empty', issues: ['Dataset is empty.'], visibleData: [], definition };
@@ -248,15 +272,21 @@ export function validateGdsChartData(
   }
 
   if (data.length > maxDataPoints) {
-    return {
-      state: 'error',
-      issues: [`Dataset has ${data.length} points, above the ${maxDataPoints} point rendering budget.`],
-      visibleData: data.slice(0, maxDataPoints),
-      definition,
-    };
+    if (!config.decimateLargeSeries) {
+      return {
+        state: 'error',
+        issues: [`Dataset has ${data.length} points, above the ${maxDataPoints} point rendering budget.`],
+        visibleData: data.slice(0, maxDataPoints),
+        definition,
+      };
+    }
+
+    visibleData = decimateGdsChartData(data, maxDataPoints);
+    decimated = true;
+    issues.push(`Dataset has ${data.length} points and was decimated to ${visibleData.length} points for rendering.`);
   }
 
-  data.forEach((item, index) => {
+  visibleData.forEach((item, index) => {
     if (!item.label.trim()) {
       issues.push(`Point ${index + 1} is missing a visible label.`);
     }
@@ -270,12 +300,12 @@ export function validateGdsChartData(
     }
   });
 
-  if (definition.requiresGroup && data.some((item) => !item.group)) {
+  if (definition.requiresGroup && visibleData.some((item) => !item.group)) {
     issues.push(`${definition.label} charts require a group value for every data point.`);
   }
 
   if (type === 'pie' || type === 'donut') {
-    const numericValues = data.map((item) => item.value).filter(isFiniteNumber);
+    const numericValues = visibleData.map((item) => item.value).filter(isFiniteNumber);
     const total = numericValues.reduce((sum, value) => sum + value, 0);
 
     if (numericValues.some((value) => value < 0)) {
@@ -288,14 +318,14 @@ export function validateGdsChartData(
   }
 
   if (type === 'radar') {
-    const numericValues = data.map((item) => item.value).filter(isFiniteNumber);
+    const numericValues = visibleData.map((item) => item.value).filter(isFiniteNumber);
     if (numericValues.some((value) => value < 0)) {
       issues.push('Radar charts cannot render negative axis values.');
     }
   }
 
   if (type === 'scatter' && (!('requireSecondaryValue' in config) || config.requireSecondaryValue !== false)) {
-    data.forEach((item, index) => {
+    visibleData.forEach((item, index) => {
       if (!isFiniteNumber(item.secondaryValue)) {
         issues.push(`Scatter point ${index + 1} requires a numeric secondaryValue.`);
       }
@@ -303,7 +333,7 @@ export function validateGdsChartData(
   }
 
   if (type === 'bubble') {
-    data.forEach((item, index) => {
+    visibleData.forEach((item, index) => {
       if (!isFiniteNumber(item.secondaryValue)) {
         issues.push(`Bubble point ${index + 1} requires a numeric secondaryValue for bubble size.`);
       } else if (item.secondaryValue <= 0) {
@@ -313,7 +343,7 @@ export function validateGdsChartData(
   }
 
   if (type === 'heatmap') {
-    data.forEach((item, index) => {
+    visibleData.forEach((item, index) => {
       if (!item.group) {
         issues.push(`Heatmap cell ${index + 1} requires a group value for the matrix row.`);
       }
@@ -321,7 +351,7 @@ export function validateGdsChartData(
   }
 
   if (type === 'funnel') {
-    const numericValues = data.map((item) => item.value).filter(isFiniteNumber);
+    const numericValues = visibleData.map((item) => item.value).filter(isFiniteNumber);
     if (numericValues.some((value) => value < 0)) {
       issues.push('Funnel charts cannot render negative stage values.');
     }
@@ -338,7 +368,7 @@ export function validateGdsChartData(
   }
 
   if (type === 'treemap') {
-    data.forEach((item, index) => {
+    visibleData.forEach((item, index) => {
       if (isFiniteNumber(item.value) && item.value <= 0) {
         issues.push(`Treemap node ${index + 1} requires a positive area value.`);
       }
@@ -346,9 +376,9 @@ export function validateGdsChartData(
   }
 
   return {
-    state: issues.length ? 'error' : 'ready',
+    state: issues.length ? (decimated && issues.length === 1 ? 'partial' : 'error') : 'ready',
     issues,
-    visibleData: data,
+    visibleData,
     definition,
   };
 }

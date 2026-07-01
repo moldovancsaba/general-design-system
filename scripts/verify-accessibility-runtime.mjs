@@ -52,25 +52,31 @@ async function launchBrowser() {
 
   const userDataDir = mkdtempSync(join(tmpdir(), 'gds-a11y-chrome-'));
   const port = 9333 + Math.floor(Math.random() * 500);
+  let stderr = '';
   const browser = spawn(chromePath, [
     '--headless=new',
     '--disable-gpu',
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
     '--no-first-run',
     '--no-default-browser-check',
     '--disable-dev-shm-usage',
     '--window-size=390,844',
     `--remote-debugging-port=${port}`,
+    '--remote-debugging-address=127.0.0.1',
     `--user-data-dir=${userDataDir}`,
     'about:blank',
   ], {
     stdio: ['ignore', 'ignore', 'pipe'],
   });
 
-  browser.stderr.on('data', () => {});
+  browser.stderr.on('data', (chunk) => {
+    stderr += chunk.toString();
+  });
 
   const versionUrl = `http://127.0.0.1:${port}/json/version`;
   const pagesUrl = `http://127.0.0.1:${port}/json/list`;
-  for (let attempt = 0; attempt < 50; attempt += 1) {
+  for (let attempt = 0; attempt < 600; attempt += 1) {
     try {
       await requestJson(versionUrl);
       const pages = await requestJson(pagesUrl);
@@ -94,7 +100,7 @@ async function launchBrowser() {
 
   browser.kill('SIGTERM');
   rmSync(userDataDir, { recursive: true, force: true, maxRetries: 8, retryDelay: 125 });
-  throw new Error('Timed out waiting for Chrome DevTools endpoint.');
+  throw new Error(`Timed out waiting for Chrome DevTools endpoint. ${stderr.trim()}`.trim());
 }
 
 async function startPreviewServer() {

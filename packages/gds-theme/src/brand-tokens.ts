@@ -60,6 +60,17 @@ export interface CreateClassUsaBrandThemeOptions {
   overrides?: MantineThemeOverride;
 }
 
+export type GoldAthleteColorRampName = 'gold' | 'charcoal' | 'crimson' | 'ivory' | 'slate';
+
+export type GoldAthleteColorRamps = Record<GoldAthleteColorRampName, BrandColorRamp>;
+
+export interface CreateGoldAthleteBrandThemeOptions {
+  colorRamps?: Partial<GoldAthleteColorRamps>;
+  fonts?: Partial<BrandFonts>;
+  flatSurfaces?: boolean;
+  overrides?: MantineThemeOverride;
+}
+
 export interface CreateBrandThemeOptions {
   brandColors: BrandColorRamps;
   fonts: BrandFonts;
@@ -133,6 +144,19 @@ const classUsaDefaultFonts: BrandFonts = {
   body: '"Garet","Outfit",ui-sans-serif',
 };
 
+const goldAthleteDefaultColorRamps: GoldAthleteColorRamps = {
+  gold: ['#fbf3df', '#f6e4b8', '#efd189', '#e7bd5c', '#dca733', '#c08a12', '#8a5a00', '#6f4700', '#573700', '#3f2800'],
+  charcoal: ['#eef0f2', '#d4d8dd', '#aab1ba', '#7e8894', '#586472', '#39424e', '#232a33', '#1a1f27', '#12161c', '#0a0d12'],
+  crimson: ['#fdeceb', '#f9cfcc', '#f0a49e', '#e5776e', '#d64f44', '#b3261e', '#8f1c16', '#711511', '#54100c', '#3a0b08'],
+  ivory: ['#fdfbf5', '#fbf7ee', '#f5eeda', '#ede1c2', '#e2d0a4', '#cdb47c', '#a98f57', '#856f42', '#5f4f2f', '#3c311d'],
+  slate: ['#f5f6f8', '#e6e9ee', '#ccd2da', '#a9b3bf', '#7f8b9a', '#5a6675', '#414b57', '#323a44', '#232830', '#15181d'],
+};
+
+const goldAthleteDefaultFonts: BrandFonts = {
+  display: '"Bogart","Archivo","Anton"',
+  body: '"Garet","Inter",ui-sans-serif',
+};
+
 function assertColorRamp(name: string, ramp: readonly string[] | undefined): GdsTokenValidationFinding[] {
   if (!ramp) {
     return [{ severity: 'error', rule: 'token.invalid-color', tokenId: `colorRamps.${name}`, message: `Missing color ramp "${name}".` }];
@@ -152,6 +176,16 @@ function mergeClassUsaColorRamps(overrides: Partial<ClassUsaColorRamps> = {}): C
     sage: overrides.sage ?? classUsaDefaultColorRamps.sage,
     cream: overrides.cream ?? classUsaDefaultColorRamps.cream,
     slate: overrides.slate ?? classUsaDefaultColorRamps.slate,
+  };
+}
+
+function mergeGoldAthleteColorRamps(overrides: Partial<GoldAthleteColorRamps> = {}): GoldAthleteColorRamps {
+  return {
+    gold: overrides.gold ?? goldAthleteDefaultColorRamps.gold,
+    charcoal: overrides.charcoal ?? goldAthleteDefaultColorRamps.charcoal,
+    crimson: overrides.crimson ?? goldAthleteDefaultColorRamps.crimson,
+    ivory: overrides.ivory ?? goldAthleteDefaultColorRamps.ivory,
+    slate: overrides.slate ?? goldAthleteDefaultColorRamps.slate,
   };
 }
 
@@ -277,6 +311,53 @@ function deriveClassUsaSemanticTokens(ramps: ClassUsaColorRamps): Record<BrandSe
   };
 }
 
+function deriveGoldAthleteSemanticTokens(ramps: GoldAthleteColorRamps): Record<BrandSemanticRole, SemanticPair> {
+  const charcoal = ramps.charcoal[8];
+  const charcoalPressed = ramps.charcoal[9];
+  const gold = ramps.gold[5];
+  const goldSoft = ramps.gold[3];
+  const crimson = ramps.crimson[5];
+  const crimsonSoft = ramps.crimson[3];
+  const ivory = ramps.ivory[1];
+  const slate = ramps.slate[6];
+  const white = '#ffffff';
+  const darkPage = ramps.charcoal[9];
+  const darkSurface = '#16191f';
+
+  return {
+    'brand.primary': { light: charcoal, dark: ivory },
+    'brand.primaryPressed': { light: charcoalPressed, dark: charcoalPressed },
+    'brand.accent': { light: gold, dark: goldSoft },
+    accent: { light: gold, dark: goldSoft },
+    support: { light: crimson, dark: crimsonSoft },
+    'bg.canvas': { light: ivory, dark: darkPage },
+    'bg.card': { light: white, dark: darkSurface },
+    'bg.page': { light: ivory, dark: darkPage },
+    'bg.surface': { light: white, dark: darkSurface },
+    'bg.inverse': { light: charcoal, dark: charcoal },
+    'border.card': { light: '#ede2c6', dark: '#2b303a' },
+    'text.body': { light: charcoal, dark: ivory },
+    'text.meta': { light: slate, dark: '#d6c8a6' },
+    'text.primary': { light: charcoal, dark: ivory },
+    'text.secondary': { light: slate, dark: '#d6c8a6' },
+    'text.onInverse': { light: ivory, dark: ivory },
+    'nav.inactiveOnInverse': { light: 'rgba(251,247,238,0.72)', dark: 'rgba(251,247,238,0.72)' },
+    price: { light: ramps.gold[6], dark: goldSoft },
+    star: { light: ramps.gold[6], dark: goldSoft },
+    'state.success': { light: '#3f6f2a', dark: '#8fc271' },
+    'state.warning': { light: '#8a5a00', dark: '#e0a23c' },
+    'state.danger': { light: '#b3261e', dark: '#f2786f' },
+    'state.info': { light: charcoal, dark: '#aab1ba' },
+    'badge.attention': { light: gold, dark: goldSoft },
+    'badge.validation': { light: '#3f6f2a', dark: '#8fc271' },
+    'badge.info': { light: '#f5eeda', dark: '#232830' },
+    'badge.urgencyBg': { light: '#f9cfcc', dark: '#54100c' },
+    'focus.ring': { light: ramps.gold[6], dark: '#efd189' },
+    'control.disabledBg': { light: '#e7e2d5', dark: '#2b303a' },
+    'control.disabledText': { light: '#77746c', dark: '#8a8f99' },
+  };
+}
+
 function cssVarName(role: BrandSemanticRole, mode: 'light' | 'dark'): string {
   const base = `--gds-${role.replace('.', '-')}`;
   return mode === 'light' ? base : `${base}-dark`;
@@ -307,7 +388,7 @@ function emitCssVariables(tokens: Record<BrandSemanticRole, SemanticPair>): Reco
   return vars;
 }
 
-function buildTokenGraph(colors: BrandColorRamps, tokens: Record<BrandSemanticRole, SemanticPair>, themeId: 'brand' | 'class-usa' = 'brand'): GdsTokenGraph {
+function buildTokenGraph(colors: BrandColorRamps, tokens: Record<BrandSemanticRole, SemanticPair>, themeId: 'brand' | 'class-usa' | 'gold-athlete' = 'brand'): GdsTokenGraph {
   const node = (
     id: string,
     role: GdsTokenNode['role'],
@@ -379,6 +460,20 @@ function validateClassUsaInput(opts: CreateClassUsaBrandThemeOptions): GdsTokenV
   return findings;
 }
 
+function validateGoldAthleteInput(opts: CreateGoldAthleteBrandThemeOptions): GdsTokenValidationFinding[] {
+  const ramps = mergeGoldAthleteColorRamps(opts.colorRamps);
+  const findings = (Object.keys(ramps) as GoldAthleteColorRampName[]).flatMap((name) => assertColorRamp(name, ramps[name]));
+
+  if (opts.fonts?.display === '') {
+    findings.push({ severity: 'error', rule: 'token.unknown-role', tokenId: 'fonts.display', message: 'fonts.display cannot be empty.' });
+  }
+  if (opts.fonts?.body === '') {
+    findings.push({ severity: 'error', rule: 'token.unknown-role', tokenId: 'fonts.body', message: 'fonts.body cannot be empty.' });
+  }
+
+  return findings;
+}
+
 interface ContrastRequirement {
   foreground: string;
   background: string;
@@ -409,10 +504,17 @@ function assertContrast(tokens: Record<BrandSemanticRole, SemanticPair>): GdsTok
 }
 
 export function createBrandTheme(id: 'class-usa', options?: CreateClassUsaBrandThemeOptions): BrandThemeResult;
+export function createBrandTheme(id: 'gold-athlete', options?: CreateGoldAthleteBrandThemeOptions): BrandThemeResult;
 export function createBrandTheme(options: CreateBrandThemeOptions): BrandThemeResult;
-export function createBrandTheme(idOrOptions: 'class-usa' | CreateBrandThemeOptions, maybeOptions: CreateClassUsaBrandThemeOptions = {}): BrandThemeResult {
+export function createBrandTheme(
+  idOrOptions: 'class-usa' | 'gold-athlete' | CreateBrandThemeOptions,
+  maybeOptions: CreateClassUsaBrandThemeOptions | CreateGoldAthleteBrandThemeOptions = {},
+): BrandThemeResult {
   if (idOrOptions === 'class-usa') {
     return createClassUsaBrandTheme(maybeOptions);
+  }
+  if (idOrOptions === 'gold-athlete') {
+    return createGoldAthleteBrandTheme(maybeOptions);
   }
   return createLegacyBrandTheme(idOrOptions);
 }
@@ -609,6 +711,159 @@ function createClassUsaBrandTheme(options: CreateClassUsaBrandThemeOptions = {})
     },
     other: {
       gdsBrandThemeId: 'class-usa',
+      gdsCssVariables: cssVariables,
+      gdsBrandRamps: ramps,
+      gdsBrandSemanticTokens: tokens,
+    },
+  };
+
+  const mantineTheme = createPublicBrandTheme({
+    flatSurfaces: options.flatSurfaces ?? true,
+    overrides: mergeThemeOverrides(brandOverrides, options.overrides ?? {}),
+  });
+
+  return { mantineTheme, cssVariables, tokenGraph };
+}
+
+function createGoldAthleteBrandTheme(options: CreateGoldAthleteBrandThemeOptions = {}): BrandThemeResult {
+  const inputFindings = validateGoldAthleteInput(options);
+  if (inputFindings.length > 0) {
+    throw new GdsBrandThemeError('Invalid Gold Athlete brand theme input.', inputFindings);
+  }
+
+  const ramps = mergeGoldAthleteColorRamps(options.colorRamps);
+  const fonts: BrandFonts = {
+    display: options.fonts?.display ?? goldAthleteDefaultFonts.display,
+    body: options.fonts?.body ?? goldAthleteDefaultFonts.body,
+  };
+  const tokens = deriveGoldAthleteSemanticTokens(ramps);
+  const contrastFindings = assertContrast(tokens);
+  if (brandContrastRatio('#ffffff', tokens['brand.primary'].light) < 4.5) {
+    contrastFindings.push({
+      severity: 'error',
+      rule: 'token.invalid-color',
+      tokenId: 'gold-athlete.primary-button',
+      message: 'Gold Athlete primary button text contrast must stay at least 4.5:1.',
+    });
+  }
+  if (contrastFindings.length > 0) {
+    throw new GdsBrandThemeError('Gold Athlete brand theme failed WCAG contrast requirements.', contrastFindings);
+  }
+
+  const colors: BrandColorRamps = {
+    navy: tokens['brand.primary'].light,
+    terracotta: tokens.accent.light,
+    sage: tokens.support.light,
+    cream: tokens['bg.canvas'].light,
+    slate: tokens['text.meta'].light,
+  };
+  const tokenGraph = buildTokenGraph(colors, tokens, 'gold-athlete');
+  const graphReport = validateGdsTokenGraph(tokenGraph);
+  if (!graphReport.ok) {
+    throw new GdsBrandThemeError('Gold Athlete token graph failed validation.', graphReport.findings);
+  }
+
+  const cssVariables = emitCssVariables(tokens);
+  cssVariables['--gds-brand-accent-action'] = ramps.gold[6];
+  cssVariables['--gds-brand-accent-action-dark'] = ramps.gold[3];
+  const brandOverrides: MantineThemeOverride = {
+    fontFamily: `${fonts.body}, system-ui, sans-serif`,
+    headings: {
+      fontFamily: `${fonts.display}, Georgia, serif`,
+      sizes: {
+        h1: { fontSize: '2.375rem', fontWeight: '800', lineHeight: '1.12' },
+        h2: { fontSize: '1.75rem', fontWeight: '700', lineHeight: '1.2' },
+        h3: { fontSize: '1.25rem', fontWeight: '700', lineHeight: '1.25' },
+      },
+    },
+    primaryColor: 'goldAthleteCharcoal',
+    colors: {
+      goldAthleteGold: ramps.gold as unknown as MantineColorsTuple,
+      goldAthleteCharcoal: ramps.charcoal as unknown as MantineColorsTuple,
+      goldAthleteCrimson: ramps.crimson as unknown as MantineColorsTuple,
+      goldAthleteIvory: ramps.ivory as unknown as MantineColorsTuple,
+      goldAthleteSlate: ramps.slate as unknown as MantineColorsTuple,
+    },
+    defaultRadius: 'lg',
+    black: tokens['brand.primaryPressed'].light,
+    white: tokens['bg.card'].light,
+    components: {
+      Button: {
+        defaultProps: {
+          radius: 'xl',
+          fw: 700,
+        },
+        styles: {
+          root: {
+            minHeight: 38,
+          },
+        },
+      },
+      Card: {
+        defaultProps: {
+          radius: 'lg',
+          withBorder: true,
+          shadow: 'sm',
+        },
+        styles: {
+          root: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+            borderColor: 'var(--gds-border-card)',
+          },
+        },
+      },
+      Paper: {
+        defaultProps: {
+          radius: 'lg',
+          withBorder: true,
+        },
+        styles: {
+          root: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+            borderColor: 'var(--gds-border-card)',
+          },
+        },
+      },
+      Badge: {
+        defaultProps: {
+          radius: 'xl',
+        },
+        styles: {
+          root: {
+            fontWeight: 700,
+            letterSpacing: '0.04em',
+          },
+        },
+      },
+      Modal: {
+        styles: {
+          content: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+          },
+          header: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+          },
+        },
+      },
+      Drawer: {
+        styles: {
+          content: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+          },
+          header: {
+            color: 'var(--gds-text-body)',
+            background: 'var(--gds-bg-card)',
+          },
+        },
+      },
+    },
+    other: {
+      gdsBrandThemeId: 'gold-athlete',
       gdsCssVariables: cssVariables,
       gdsBrandRamps: ramps,
       gdsBrandSemanticTokens: tokens,

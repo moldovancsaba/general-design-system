@@ -156,6 +156,7 @@ describe('GdsProvider', () => {
       'cosmic',
       'athlete-gold',
       'class-usa',
+      'gold-athlete',
     ];
 
     expect(presets.length).toBeGreaterThanOrEqual(19);
@@ -200,6 +201,12 @@ describe('GdsProvider', () => {
     expect(classUsaVibe.primary).toBe('#0b223e');
     expect(resolveGdsThemePreset('class-usa').primaryColor).toBe('classUsaNavy');
 
+    const goldAthleteVibe = resolveGdsVibeTheme('gold-athlete');
+    expect(goldAthleteVibe.label).toBe('Gold Athlete');
+    expect(goldAthleteVibe.primary).toBe('#8a5a00');
+    expect(goldAthleteVibe.canvasDark).toBe('#0a0d12');
+    expect(resolveGdsThemePreset('gold-athlete').primaryColor).toBe('goldAthleteCharcoal');
+
     const partnerVibe = resolveGdsVibeTheme('partner-discovery');
     expect(partnerVibe.primary).toBe('#08463b');
     expect(partnerVibe.accent).toBe('#2fc800');
@@ -217,6 +224,23 @@ describe('GdsProvider', () => {
     expect(screen.getByText('Class USA shell')).toBeInTheDocument();
     expect(document.documentElement.style.getPropertyValue('--gds-brand-primary')).toBe('#0b223e');
     expect(document.documentElement.style.getPropertyValue('--gds-brand-accent-action')).toBe('#a85a44');
+
+    unmount();
+    expect(document.documentElement.style.getPropertyValue('--gds-brand-primary')).toBe('');
+  });
+
+  it('applies Gold Athlete theme-owned CSS variables at the provider root for portalled overlays', () => {
+    const goldAthleteTheme = createBrandTheme('gold-athlete').mantineTheme;
+
+    const { unmount } = renderWithGds(
+      <GdsProvider theme={goldAthleteTheme}>
+        <div>Gold Athlete shell</div>
+      </GdsProvider>,
+    );
+
+    expect(screen.getByText('Gold Athlete shell')).toBeInTheDocument();
+    expect(document.documentElement.style.getPropertyValue('--gds-brand-primary')).toBe('#12161c');
+    expect(document.documentElement.style.getPropertyValue('--gds-brand-accent-action')).toBe('#8a5a00');
 
     unmount();
     expect(document.documentElement.style.getPropertyValue('--gds-brand-primary')).toBe('');

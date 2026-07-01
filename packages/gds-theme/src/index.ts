@@ -1,5 +1,5 @@
 export { gdsTheme, gdsDarkPublicTheme, gdsFlatSurfaceTheme, gdsEditorialPublicTheme, createPublicBrandTheme, extendGdsTheme, withGdsMotion } from './theme';
-export { getGdsThemePresets, resolveGdsThemePreset, partnerDiscoveryThemePreset, classUsaThemePreset } from './theme-presets';
+export { getGdsThemePresets, resolveGdsThemePreset, partnerDiscoveryThemePreset, classUsaThemePreset, goldAthleteThemePreset } from './theme-presets';
 export type { GdsThemePreset, GdsThemePresetId } from './theme-presets';
 export { getGdsVibeThemes, resolveGdsVibeTheme, getGdsVibeThemeCssVariables } from './vibe-themes';
 export type { GdsVibeTheme } from './vibe-themes';
@@ -26,4 +26,4 @@ export type { GdsMotionDurationToken, GdsMotionEasingToken, GdsMotionPreset, Gds
 export { useGdsReducedMotion } from './motion.client';
 export type { UseGdsReducedMotionResult } from './motion.client';
 export { createBrandTheme, deriveBrandSemanticTokens, brandContrastRatio, GdsBrandThemeError } from './brand-tokens';
-export type { BrandColorRamp, BrandColorRamps, BrandFonts, ClassUsaColorRampName, ClassUsaColorRamps, CreateBrandThemeOptions, CreateClassUsaBrandThemeOptions, BrandSemanticRole, BrandThemeResult } from './brand-tokens';
+export type { BrandColorRamp, BrandColorRamps, BrandFonts, ClassUsaColorRampName, ClassUsaColorRamps, CreateBrandThemeOptions, CreateClassUsaBrandThemeOptions, GoldAthleteColorRampName, GoldAthleteColorRamps, CreateGoldAthleteBrandThemeOptions, BrandSemanticRole, BrandThemeResult } from './brand-tokens';

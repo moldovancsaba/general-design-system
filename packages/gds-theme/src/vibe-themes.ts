@@ -113,6 +113,28 @@ const vibeThemes: Record<GdsThemePresetId, GdsVibeTheme> = {
     gradient: 'linear-gradient(rgba(255,255,255,0.78), rgba(255,255,255,0.78)), radial-gradient(circle at 20% 10%, rgba(47,200,0,0.14), transparent 28%)',
     hero: 'linear-gradient(135deg, rgba(8, 70, 59, 0.12), rgba(47, 200, 0, 0.16))',
   },
+  'class-usa': {
+    ...neutralVibe,
+    id: 'class-usa',
+    label: 'Class USA',
+    primary: '#0b223e',
+    accent: '#ca8570',
+    glow: 'rgba(202, 133, 112, 0.2)',
+    canvasLight: '#faf7f1',
+    canvasDark: '#07182c',
+    shellLight: 'rgba(255, 255, 255, 0.9)',
+    shellDark: 'rgba(11, 34, 62, 0.9)',
+    surfaceLight: 'rgba(255, 255, 255, 0.96)',
+    surfaceDark: 'rgba(19, 36, 61, 0.9)',
+    borderLight: '#eee7dd',
+    borderDark: '#2d3b50',
+    textLight: '#0b223e',
+    textDark: '#faf7f1',
+    mutedLight: '#434c59',
+    mutedDark: '#c6ccd5',
+    gradient: 'radial-gradient(circle at 16% 8%, rgba(202, 133, 112, 0.18), transparent 28%), radial-gradient(circle at 88% 18%, rgba(144, 162, 135, 0.16), transparent 30%), linear-gradient(135deg, #faf7f1, #f4eee2)',
+    hero: 'linear-gradient(135deg, rgba(11, 34, 62, 0.12), rgba(202, 133, 112, 0.16))',
+  },
   sunset: {
     ...neutralVibe,
     id: 'sunset',
@@ -375,11 +397,80 @@ export function resolveGdsVibeTheme(id: GdsThemePresetId) {
   return vibeThemes[id] ?? neutralVibe;
 }
 
+const classUsaSemanticCssVariables = {
+  '--gds-brand-primary': '#0b223e',
+  '--gds-brand-primary-dark': '#faf7f1',
+  '--gds-brand-primary-pressed': '#07182c',
+  '--gds-brand-primary-pressed-dark': '#07182c',
+  '--gds-brand-accent': '#ca8570',
+  '--gds-brand-accent-dark': '#e1a892',
+  '--gds-brand-accent-action': '#a85a44',
+  '--gds-brand-accent-action-dark': '#e1a892',
+  '--gds-accent': '#ca8570',
+  '--gds-accent-dark': '#e1a892',
+  '--gds-support': '#90a287',
+  '--gds-support-dark': '#a9b89c',
+  '--gds-bg-canvas': '#faf7f1',
+  '--gds-bg-canvas-dark': '#07182c',
+  '--gds-bg-card': '#ffffff',
+  '--gds-bg-card-dark': '#13243d',
+  '--gds-bg-page': '#faf7f1',
+  '--gds-bg-page-dark': '#07182c',
+  '--gds-bg-surface': '#ffffff',
+  '--gds-bg-surface-dark': '#13243d',
+  '--gds-bg-inverse': '#0b223e',
+  '--gds-bg-inverse-dark': '#0b223e',
+  '--gds-border-card': '#eee7dd',
+  '--gds-border-card-dark': '#2d3b50',
+  '--gds-text-body': '#0b223e',
+  '--gds-text-body-dark': '#faf7f1',
+  '--gds-text-meta': '#434c59',
+  '--gds-text-meta-dark': '#c6ccd5',
+  '--gds-text-primary': '#0b223e',
+  '--gds-text-primary-dark': '#faf7f1',
+  '--gds-text-secondary': '#434c59',
+  '--gds-text-secondary-dark': '#c6ccd5',
+  '--gds-text-on-inverse': '#faf7f1',
+  '--gds-text-on-inverse-dark': '#faf7f1',
+  '--gds-nav-inactiveOnInverse': 'rgba(250,247,241,0.72)',
+  '--gds-nav-inactiveOnInverse-dark': 'rgba(250,247,241,0.72)',
+  '--gds-price': '#ca8570',
+  '--gds-price-dark': '#e1a892',
+  '--gds-star': '#ca8570',
+  '--gds-star-dark': '#e1a892',
+  '--gds-state-success': '#90a287',
+  '--gds-state-success-dark': '#a9b89c',
+  '--gds-state-warning': '#b9770f',
+  '--gds-state-warning-dark': '#e0a23c',
+  '--gds-state-danger': '#b3261e',
+  '--gds-state-danger-dark': '#f2786f',
+  '--gds-state-info': '#0b223e',
+  '--gds-state-info-dark': '#a6bbdb',
+  '--gds-badge-attention': '#ca8570',
+  '--gds-badge-attention-dark': '#e1a892',
+  '--gds-badge-validation': '#90a287',
+  '--gds-badge-validation-dark': '#a9b89c',
+  '--gds-badge-info': '#f1ece4',
+  '--gds-badge-info-dark': '#2b3427',
+  '--gds-badge-urgencyBg': '#f5ddd5',
+  '--gds-badge-urgencyBg-dark': '#5d2f22',
+  '--gds-bg-info-tag': '#f1ece4',
+  '--gds-bg-info-tag-dark': '#2b3427',
+  '--gds-brand-accent-tint': '#f5ddd5',
+  '--gds-brand-accent-tint-dark': '#5d2f22',
+  '--gds-focus-ring': '#ca8570',
+  '--gds-focus-ring-dark': '#ffd7c8',
+  '--gds-control-disabledBg': '#e6e2da',
+  '--gds-control-disabledBg-dark': '#2d3440',
+  '--gds-control-disabledText': '#7a7280',
+  '--gds-control-disabledText-dark': '#8d97a6',
+};
+
 export function getGdsVibeThemeCssVariables(id: GdsThemePresetId, colorScheme: 'light' | 'dark') {
   const vibe = resolveGdsVibeTheme(id);
   const dark = colorScheme === 'dark';
 
-  return {
+  const variables = {
     '--gds-vibe-primary': vibe.primary,
     '--gds-vibe-accent': vibe.accent,
     '--gds-vibe-glow': vibe.glow,
@@ -393,4 +484,19 @@ export function getGdsVibeThemeCssVariables(id: GdsThemePresetId, colorScheme: '
     '--gds-vibe-gradient': vibe.gradient,
     '--gds-vibe-hero': vibe.hero,
   };
+
+  if (id !== 'class-usa') {
+    return variables;
+  }
+
+  const semanticVariables: Record<string, string> = { ...classUsaSemanticCssVariables };
+  if (dark) {
+    Object.entries(classUsaSemanticCssVariables).forEach(([property, value]) => {
+      if (property.endsWith('-dark')) {
+        semanticVariables[property.replace(/-dark$/, '')] = value;
+      }
+    });
+  }
+
+  return { ...variables, ...semanticVariables };
 }

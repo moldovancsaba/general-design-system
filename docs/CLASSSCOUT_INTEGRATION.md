@@ -1,11 +1,11 @@
-# ClassScout Integration Guide
+# ClassScout / Class USA Integration Guide
 
-GDS 3.5.0 delivers the 10 gaps (B1–B10) required for ClassScout to ship on pure GDS with no app-level forks. This guide covers install, GdsProvider bootstrap, and usage examples for every new contract.
+GDS 3.8.0 delivers the first-class `Class USA` theme and the missing ClassScout primitives required to ship on pure GDS with no app-level forks, raw design values, or app-local chart/control shims.
 
 ## Install
 
 ```bash
-npm install @doneisbetter/gds@3.5.0 @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react
+npm install @doneisbetter/gds@3.8.0
 ```
 
 ## Bootstrap
@@ -22,47 +22,82 @@ import '@doneisbetter/gds-theme/styles.css';
 ```tsx
 import { GdsProvider } from '@doneisbetter/gds';
 import { createBrandTheme } from '@doneisbetter/gds-theme';
-import { classcoutBrandColors } from './theme';
 
-const classcoutTheme = createBrandTheme({
-  brandColors: classcoutBrandColors,
-});
+const classUsaTheme = createBrandTheme('class-usa').mantineTheme;
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <GdsProvider theme={classcoutTheme} defaultColorScheme="light">
+    <GdsProvider theme={classUsaTheme} defaultColorScheme="light">
       {children}
     </GdsProvider>
   );
 }
 ```
 
-Never nest a second `GdsProvider` or add a parallel Mantine `MantineProvider`.
+Never nest a second `GdsProvider` or add a parallel Mantine `MantineProvider`. `GdsProvider` applies theme-owned `--gds-*` variables to the document root so portalled modals, drawers, menus, selects, tooltips, and notifications inherit the active brand lane.
 
 ---
 
-## B1 — Brand theme (`createBrandTheme`)
+## B1 — Class USA brand theme (`createBrandTheme('class-usa')`)
 
 GH-316 · `@doneisbetter/gds-theme`
 
 ```tsx
 import { createBrandTheme } from '@doneisbetter/gds-theme';
 
-const theme = createBrandTheme({
-  brandColors: {
-    primary: '#1a6b4a',    // must pass WCAG AA against white
-    accent: '#e85c2a',
-    surface: '#f6f3ee',
-  },
+const { mantineTheme, cssVariables, tokenGraph } = createBrandTheme('class-usa', {
   fonts: {
-    heading: 'Playfair Display, serif',
-    body: 'Inter, sans-serif',
+    display: '"Bogart","Fraunces","Playfair Display"',
+    body: '"Garet","Outfit",ui-sans-serif',
   },
 });
-// Pass to GdsProvider: <GdsProvider theme={theme}>
+
+// Pass to GdsProvider: <GdsProvider theme={mantineTheme}>
 ```
 
-The theme emits `--gds-brand-primary`, `--gds-brand-accent`, `--gds-bg-surface`, `--gds-text-primary`, `--gds-price`, `--gds-state-*` as CSS custom properties. Contrast is enforced at build time — supplying a non-AA pair throws.
+The theme emits semantic variables including `--gds-brand-primary`, `--gds-brand-primary-pressed`, `--gds-brand-accent`, `--gds-brand-accent-action`, `--gds-support`, `--gds-bg-canvas`, `--gds-bg-card`, `--gds-border-card`, `--gds-text-body`, `--gds-text-meta`, `--gds-price`, `--gds-star`, `--gds-state-*`, `--gds-badge-*`, and `--gds-focus-ring`. The accent token remains the locked brand accent; filled accent actions use `--gds-brand-accent-action` for AA contrast.
+
+To override the locked ramps, pass 10-step tuples under `colorRamps`. The composer validates ramp length, hex format, token graph shape, and AA text/surface contrast.
+
+## 3.8.0 replacement surfaces
+
+Use these primitives to delete app-local ClassScout forks:
+
+```tsx
+import {
+  FilterChipGroup,
+  GdsAreaChart,
+  GdsBenchmarkBarChart,
+  GdsCalendarHeatmapChart,
+  GdsDialog,
+  GdsDivergingBarChart,
+  GdsGaugeChart,
+  GdsHistogramChart,
+  GdsLongitudinalChart,
+  GdsMaturityRadarChart,
+  GdsRatingScale,
+  GdsRadarChart,
+  GdsSegmentedControl,
+  GdsSidePanel,
+  GdsSlider,
+  GdsSlopeChart,
+  GdsSparkline,
+  GdsSymmetryChart,
+  GdsWizardStepper,
+  MissingDataPrompt,
+  PillBar,
+  SemanticButton,
+  SoftChipGroup,
+} from '@doneisbetter/gds';
+```
+
+- Brand actions: `SemanticButton brandVariant="primary" | "secondary" | "accent" | "disabled"` maps to Class USA semantic tokens and keeps filled action contrast AA-safe.
+- Selection: `PillBar` covers macro region tabs, `SoftChipGroup` covers compact neighborhood taxonomy, and `FilterChipGroup` covers active age/day/activity filters. All are controlled radio groups with horizontal mobile overflow.
+- Forms: `GdsSegmentedControl` uses scroll or wrap overflow for mobile tabs, `GdsSlider` defaults to a 1-10 scale, `GdsRatingScale` supports 1-5 and 1-10 scales, and `GdsWizardStepper` provides the mobile Save & Next progression pattern.
+- Overlays: `GdsDialog` and `GdsSidePanel` are aliases over the governed modal/drawer runtime with focus trap, restore, escape policy, and portal theming.
+- Reporting: the chart wrappers share `GdsChart` shell semantics: summary copy, accessible table fallback, loading/empty/sparse/error states, reduced-motion-safe SVG renderers, semantic series tokens, and opt-in large-series decimation.
+- Listing cards: `ListingCard` supports `compact`, `density`, `saved`, `price`, `rating`, `saveAction`, `shareAction`, `score`, `reason`, and action footer slots. Saved, price, and rating visuals read `--gds-brand-accent-action`, `--gds-price`, and `--gds-star`.
+- Sparse data: `MissingDataPrompt` wraps `StateBlock variant="not-enough-data"` with required-field guidance for analytics and recommendations.
 
 ---
 

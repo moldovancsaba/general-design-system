@@ -1,7 +1,7 @@
 # Release Publish Runbook
 
 Status: Active SSOT
-Version: 3.7.0
+Version: 3.8.0
 Last updated: 2026-06-07
 
 This runbook defines the authenticated package-publish flow for the General Design System.
@@ -11,8 +11,8 @@ Canonical registry target: **npm**
 Current registry reality:
 
 - canonical install source: npm
-- latest published baseline: `3.7.0`
-- current repository line: `3.7.0`
+- latest published baseline: `3.8.0`
+- current repository line: `3.8.0`
 
 GitHub release assets remain an optional fallback distribution path for unpublished release candidates:
 
@@ -103,13 +103,13 @@ npm run verify:published
 
 Do not announce the release or update client install prompts until `npm run verify:published` confirms all seven packages resolve from npm and the clean published-consumer smoke passes.
 
-The `3.7.0` release install matrix must remain version-locked:
+The `3.8.0` release install matrix must remain version-locked:
 
 ```bash
-npm install @doneisbetter/gds@3.7.0
-npm install -D @doneisbetter/gds-eslint-config@3.7.0 @doneisbetter/gds-compliance@3.7.0 @doneisbetter/gds-a11y@3.7.0
+npm install @doneisbetter/gds@3.8.0
+npm install -D @doneisbetter/gds-eslint-config@3.8.0 @doneisbetter/gds-compliance@3.8.0 @doneisbetter/gds-a11y@3.8.0
 
-npm install @doneisbetter/gds-theme@3.7.0 @doneisbetter/gds-core@3.7.0 @doneisbetter/gds-admin@3.7.0
+npm install @doneisbetter/gds-theme@3.8.0 @doneisbetter/gds-core@3.8.0 @doneisbetter/gds-admin@3.8.0
 ```
 
 ## Expected publish order

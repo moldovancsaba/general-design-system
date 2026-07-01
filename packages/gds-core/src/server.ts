@@ -55,6 +55,7 @@ export * from './AccessSummary';
 export * from './GdsAccessGateRuntime';
 export * from './AccessibilityEvidence';
 export * from './FormField';
+export * from './GdsFormControls';
 export * from './PageHeader';
 export * from './FilterDrawer';
 export * from './PlaceholderPanel';

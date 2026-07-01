@@ -1,5 +1,6 @@
 import type { MantineThemeOverride } from '@mantine/core';
 import { createPublicBrandTheme, extendGdsTheme, gdsDarkPublicTheme, gdsEditorialPublicTheme, gdsFlatSurfaceTheme, gdsTheme } from './theme';
+import { createBrandTheme } from './brand-tokens';
 
 export type GdsThemePresetId =
   | 'default'
@@ -22,7 +23,8 @@ export type GdsThemePresetId =
   | 'royal'
   | 'cosmic'
   | 'warm'
-  | 'athlete-gold';
+  | 'athlete-gold'
+  | 'class-usa';
 
 export interface GdsThemePreset {
   id: GdsThemePresetId;
@@ -179,6 +181,8 @@ export const partnerDiscoveryThemePreset = extendGdsTheme({
   },
 });
 
+export const classUsaThemePreset = createBrandTheme('class-usa').mantineTheme;
+
 const customPresetThemes: Record<Exclude<GdsThemePresetId, 'default' | 'dark-public' | 'flat-surface' | 'editorial' | 'brand' | 'partner-discovery'>, MantineThemeOverride> = {
   sunset: createVibrantPresetTheme('orange'),
   oceanic: createVibrantPresetTheme('cyan'),
@@ -195,6 +199,7 @@ const customPresetThemes: Record<Exclude<GdsThemePresetId, 'default' | 'dark-pub
   cosmic: createVibrantPresetTheme('violet'),
   warm: createVibrantPresetTheme('orange'),
   'athlete-gold': createVibrantPresetTheme('yellow'),
+  'class-usa': classUsaThemePreset,
 };
 
 const themePresetCatalog: GdsThemePreset[] = [
@@ -219,6 +224,7 @@ const themePresetCatalog: GdsThemePreset[] = [
   { id: 'cosmic', label: 'Cosmic burst', description: 'Highly saturated blue-violet-cyan-magenta showcase lane for bold public apps and launch surfaces.', runtimeLane: 'resolveGdsThemePreset(cosmic)' },
   { id: 'warm', label: 'Warm sand', description: 'Honey-amber warm lane for lifestyle, commerce, and community products.', runtimeLane: 'resolveGdsThemePreset(warm)' },
   { id: 'athlete-gold', label: 'Athlete Gold', description: 'Premium black-and-gold performance lane with stronger metallic gold accents and dark operator surfaces.', runtimeLane: 'resolveGdsThemePreset(athlete-gold)' },
+  { id: 'class-usa', label: 'Class USA', description: 'Warm ivory, navy, sage, and terracotta family-discovery brand lane for ClassScout-style listings.', runtimeLane: 'resolveGdsThemePreset(class-usa)' },
 ];
 
 export function getGdsThemePresets() {

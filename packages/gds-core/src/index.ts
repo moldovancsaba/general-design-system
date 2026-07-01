@@ -70,6 +70,7 @@ export * from './AccessRecoveryPanel';
 export * from './GdsAccessGate';
 export * from './AccessibilityEvidence';
 export * from './FormField';
+export * from './GdsFormControls';
 export * from './GdsForm.client';
 export * from './GdsSchemaForm.client';
 export * from './PageHeader';

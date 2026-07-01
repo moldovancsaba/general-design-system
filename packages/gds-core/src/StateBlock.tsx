@@ -87,3 +87,42 @@ export function StateBlock({
     </Stack>
   );
 }
+
+export interface MissingDataPromptProps extends Omit<StateBlockProps, 'variant' | 'title'> {
+  title?: string;
+  missingFields?: ReactNode[];
+}
+
+export function MissingDataPrompt({
+  title = 'Missing data',
+  description = 'Add the required data before this view can show a reliable result.',
+  missingFields = [],
+  action,
+  compact = true,
+  ...props
+}: MissingDataPromptProps) {
+  const details = missingFields.length ? (
+    <Stack gap={4}>
+      {description ? <Text c="dimmed">{description}</Text> : null}
+      <Stack component="ul" gap={2} m={0} pl="md" ta="left">
+        {missingFields.map((field, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Text component="li" key={index} c="dimmed">
+            {field}
+          </Text>
+        ))}
+      </Stack>
+    </Stack>
+  ) : description;
+
+  return (
+    <StateBlock
+      variant="not-enough-data"
+      title={title}
+      description={details}
+      action={action}
+      compact={compact}
+      {...props}
+    />
+  );
+}

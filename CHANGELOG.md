@@ -2,6 +2,10 @@
 
 All notable policy changes to the General Design System are recorded here.
 
+## Unreleased — brand-completion-lane (#362–#368)
+
+- **Choice-chip family catalog coverage** (#362): the `choice-chips` catalog demo now mounts the full exported family — `ChoiceChip` (static, link/button, multi-select toggles) plus the stateful `PillBar`, `SoftChipGroup`, and `FilterChipGroup` selection groups (including a disabled option) — so every-theme render, forced-colors, and a11y-evidence gates exercise the whole family, not just the base chip.
+
 ## 3.8.0 - 2026-07-01
 
 - **Opaque overlay surfaces** (#342): GDS now owns the painted background of every overlay/dropdown surface (`Popover`, `Menu`, `Select`/`Combobox`, `MultiSelect`, `Autocomplete`, `HoverCard`). `styles.css` sets an opaque, GDS-owned `--gds-overlay-surface` token (white / `--mantine-color-dark-6` / system `Canvas` under forced-colors) and applies it to all dropdown containers with hard fallbacks, so overlays stay solid even when the vendor base stylesheet is absent or an unlayered consumer reset competes. Resolves the cross-client transparent-dropdown failures.

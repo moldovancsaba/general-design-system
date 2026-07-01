@@ -11,6 +11,10 @@ import {
   ChartTokenPanel,
   CtaButtonGroup,
   ChoiceChip,
+  PillBar,
+  SoftChipGroup,
+  FilterChipGroup,
+  type GdsSelectionOption,
   ConfirmDialog,
   ConsumerDashboardGrid,
   ConsumerSection,
@@ -184,6 +188,43 @@ function ListingFrameworkDemo() {
       <button type="button" onClick={() => dispatch({ type: 'toggle-selection', value: 'row-1' })}>
         {state.selection.includes('row-1') ? 'Unselect row-1' : 'Select row-1'}
       </button>
+    </div>
+  );
+}
+
+function ChoiceChipFamilyDemo() {
+  const options: GdsSelectionOption[] = [
+    { value: 'all', label: 'All' },
+    { value: 'active', label: 'Active' },
+    { value: 'archived', label: 'Archived' },
+    { value: 'legacy', label: 'Legacy', disabled: true },
+  ];
+  const [pill, setPill] = useState<string | null>('all');
+  const [soft, setSoft] = useState<string | null>('active');
+  const [filter, setFilter] = useState<string | null>(null);
+  const [tags, setTags] = useState<string[]>(['Published']);
+  const toggleTag = (tag: string) =>
+    setTags((current) => (current.includes(tag) ? current.filter((t) => t !== tag) : [...current, tag]));
+
+  return (
+    <div>
+      <div>
+        <ChoiceChip label="Draft" active />
+        <ChoiceChip label="Published" onClick={() => {}} />
+        <ChoiceChip label="Archived" />
+      </div>
+      <br />
+      <PillBar options={options} value={pill} onChange={setPill} ariaLabel="Filter by lifecycle (pill)" />
+      <br />
+      <SoftChipGroup options={options} value={soft} onChange={setSoft} ariaLabel="Filter by lifecycle (soft)" />
+      <br />
+      <FilterChipGroup options={options} value={filter} onChange={setFilter} ariaLabel="Filter by lifecycle (filter)" />
+      <br />
+      <div>
+        {['Published', 'Draft', 'Archived'].map((tag) => (
+          <ChoiceChip key={tag} label={tag} active={tags.includes(tag)} onClick={() => toggleTag(tag)} />
+        ))}
+      </div>
     </div>
   );
 }
@@ -747,13 +788,7 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
         />
       );
     case 'choice-chips':
-      return (
-        <div>
-          <ChoiceChip label="Draft" active />
-          <ChoiceChip label="Published" onClick={() => {}} />
-          <ChoiceChip label="Archived" />
-        </div>
-      );
+      return <ChoiceChipFamilyDemo />;
     case 'icon-buttons':
       return <ActionBar primary={{ action: 'save' }} iconOnly={[{ action: 'settings' }, { action: 'search' }, { action: 'help' }]} />;
     case 'product-cards':

@@ -3565,6 +3565,39 @@ export const generatedSitePhrases = {
     "he": "מילא המשכיות מגמה.",
     "de": "Gefüllte Trendkontinuität."
   },
+  "p_6f60690f99d5": {
+    "en": "Filter by lifecycle (filter)",
+    "ru": "Фильтровать по жизненному циклу (фильтр)",
+    "ar": "التصفية حسب دورة الحياة (عامل التصفية)",
+    "es": "Filtrar por ciclo de vida (filtrar)",
+    "hu": "Szűrés életciklus szerint (szűrő)",
+    "fr": "Filtrer par cycle de vie (filtre)",
+    "de": "Nach Lebenszyklus filtern (Filter)",
+    "he": "סינון לפי מחזור חיים (מסנן)",
+    "it": "Filtra per ciclo di vita (filtro)"
+  },
+  "p_76977fa515d4": {
+    "en": "Filter by lifecycle (pill)",
+    "ru": "Фильтровать по жизненному циклу (таблетка)",
+    "es": "Filtrar por ciclo de vida (píldora)",
+    "de": "Filtern nach Lebenszyklus (Pille)",
+    "ar": "التصفية حسب دورة الحياة (حبوب منع الحمل)",
+    "fr": "Filtrer par cycle de vie (pilule)",
+    "it": "Filtra per ciclo di vita (pillola)",
+    "he": "סינון לפי מחזור חיים (גלולה)",
+    "hu": "Szűrés életciklus szerint (tabletta)"
+  },
+  "p_665d80af814c": {
+    "en": "Filter by lifecycle (soft)",
+    "ar": "التصفية حسب دورة الحياة (لينة)",
+    "ru": "Фильтровать по жизненному циклу (мягкий)",
+    "de": "Nach Lebenszyklus filtern (weich)",
+    "fr": "Filtrer par cycle de vie (soft)",
+    "it": "Filtra per ciclo di vita (soft)",
+    "he": "סינון לפי מחזור חיים (רך)",
+    "es": "Filtrar por ciclo de vida (suave)",
+    "hu": "Szűrés életciklus szerint (lágy)"
+  },
   "p_2ae2ded67701": {
     "en": "Filter controls",
     "it": "Controlli del filtro",

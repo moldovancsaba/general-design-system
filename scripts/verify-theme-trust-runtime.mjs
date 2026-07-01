@@ -62,6 +62,7 @@ async function launchBrowser() {
     '--disable-dev-shm-usage',
     '--window-size=1440,1080',
     `--remote-debugging-port=${port}`,
+    '--remote-debugging-address=127.0.0.1',
     `--user-data-dir=${userDataDir}`,
     'about:blank',
   ], {
@@ -74,7 +75,7 @@ async function launchBrowser() {
 
   const versionUrl = `http://127.0.0.1:${port}/json/version`;
   const pagesUrl = `http://127.0.0.1:${port}/json/list`;
-  for (let attempt = 0; attempt < 200; attempt += 1) {
+  for (let attempt = 0; attempt < 600; attempt += 1) {
     try {
       await requestJson(versionUrl);
       const pages = await requestJson(pagesUrl);

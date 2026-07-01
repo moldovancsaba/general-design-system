@@ -1926,6 +1926,17 @@ export const generatedSitePhrases = {
     "he": "צ'יפס מבחר",
     "hu": "Choice Chips"
   },
+  "p_7cde7581fade": {
+    "en": "ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup",
+    "es": "ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup",
+    "ru": "ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup",
+    "fr": "ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup",
+    "de": "ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup",
+    "it": "ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup",
+    "ar": "ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup",
+    "hu": "ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup",
+    "he": "ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup"
+  },
   "p_26eac8f8c95b": {
     "en": "Choose another file",
     "fr": "Choisissez un autre fichier",
@@ -2278,16 +2289,16 @@ export const generatedSitePhrases = {
     "hu": "A hardverrel szomszédos lépés megnyitása előtt erősítse meg a világítást, az engedélyeket és a tervezett feltöltési célt.",
     "de": "Bestätigen Sie Beleuchtung, Berechtigungen und das beabsichtigte Upload-Ziel, bevor Sie einen an die Hardware angrenzenden Schritt öffnen."
   },
-  "p_a488abbf0c8b": {
-    "en": "ConfirmDialog / OverlayManagerProvider",
-    "it": "Conferma finestra di dialogo/OverlayManagerProvider",
-    "ar": "تأكيد الحوار / OverlayManagerProvider",
-    "ru": "Конфирмдиалог/Оверлейманажерпровидер",
-    "es": "Confirmar diálogo / OverlayManagerProvider",
-    "he": "ConfirmDialog / OverlayManagerProvider",
-    "fr": "ConfirmDialog / OverlayManagerProvider",
-    "hu": "ConfirmDialog / OverlayManagerProvider",
-    "de": "ConfirmDialog / OverlayManagerProvider"
+  "p_67970d260aab": {
+    "en": "ConfirmDialog / OverlayManagerProvider / GdsDialog",
+    "fr": "ConfirmDialog / OverlayManagerProvider / GdsDialog",
+    "de": "ConfirmDialog / OverlayManagerProvider / GdsDialog",
+    "ru": "ConfirmDialog/OverlayManagerProvider/GdsDialog",
+    "it": "Conferma finestra / OverlayManagerProvider / GdsDialog",
+    "es": "ConfirmDialog / OverlayManagerProvider / GdsDialog",
+    "ar": "تأكيد الحوار / OverlayManagerProvider / GdsDialog",
+    "hu": "ConfirmDialog / OverlayManagerProvider / GdsDialog",
+    "he": "ConfirmDialog / OverlayManagerProvider / GdsDialog"
   },
   "p_ed9b369be174": {
     "en": "Connected teams",
@@ -3917,16 +3928,16 @@ export const generatedSitePhrases = {
     "it": "Insieme di filtri",
     "hu": "Szűrőkészlet"
   },
-  "p_59b94783052d": {
-    "en": "FilterDrawer / CommandRegistryProvider",
-    "hu": "FilterDrawer / CommandRegistryProvider",
-    "fr": "FilterDrawer / CommandRegistryProvider",
-    "ar": "عامل التصفية / CommandRegistryProvider",
-    "es": "FilterDrawer / CommandRegistryProvider",
-    "it": "FilterDrawer/CommandRegistryProvider",
-    "ru": "Фильтрдравер / CommandRegistryProvider",
-    "de": "FilterDrawer / CommandRegistryProvider",
-    "he": "FilterDrawer / CommandRegistryProvider"
+  "p_e733b9f27b1e": {
+    "en": "FilterDrawer / CommandRegistryProvider / GdsSidePanel",
+    "ru": "FilterDrawer / CommandRegistryProvider / GdsSidePanel",
+    "de": "FilterDrawer / CommandRegistryProvider / GdsSidePanel",
+    "it": "FilterDrawer / CommandRegistryProvider / GdsSidePanel",
+    "es": "FilterDrawer / CommandRegistryProvider / GdsSidePanel",
+    "ar": "FilterDrawer / CommandRegistryProvider / GdsSidePanel",
+    "hu": "FilterDrawer / CommandRegistryProvider / GdsSidePanel",
+    "fr": "FilterDrawer / CommandRegistryProvider / GdsSidePanel",
+    "he": "FilterDrawer / CommandRegistryProvider / GdsSidePanel"
   },
   "p_5459a1c85c14": {
     "en": "Filters stay near the data they affect, active filters remain removable, and preserved filter state is a feature.",
@@ -8658,16 +8669,16 @@ export const generatedSitePhrases = {
     "de": "Berichtsintensive Workflows verwenden geregelte Zeitsteuerungen, Beweisfenster, Diagramm-Token-Wrapper und Fallback-Tabellen.",
     "he": "זרימות עבודה עתירות דיווח משתמשות בבקרות תקופתיות מנוהלות, לוחות ראיות, עטיפות של אסימון תרשים וטבלאות חוזרות."
   },
-  "p_bc8d2f959562": {
-    "en": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart",
-    "it": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart",
-    "es": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart",
-    "ar": "قسم التقارير/PeriodSelector/EvidencePanel/ChartTokenPanel/GdsChart",
-    "ru": "Раздел отчетов / Выбор периода / EvidencePanel / ChartTokenPanel / GdsChart",
-    "hu": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart",
-    "fr": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart",
-    "he": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart",
-    "de": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart"
+  "p_3589585246ca": {
+    "en": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart",
+    "es": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart",
+    "ru": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart",
+    "hu": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarGauge / GdsChart",
+    "de": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart",
+    "fr": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart",
+    "it": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart",
+    "ar": "قسم التقارير / محدد الفترة / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart",
+    "he": "ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart"
   },
   "p_a7e812fca1bb": {
     "en": "Repos that adopt the new manifest fields can now detect unreviewed direct dependency imports automatically.",
@@ -10187,16 +10198,16 @@ export const generatedSitePhrases = {
     "hu": "Az állami tartalom mostantól közvetlenül használhatja a szerződésvezérelt, központosított megjelenítést.",
     "es": "El contenido estatal ahora puede utilizar directamente la presentación centrada en contratos."
   },
-  "p_001352644a73": {
-    "en": "StateBlock / AsyncSurface",
-    "es": "Bloque de estado / Superficie asíncrona",
-    "ru": "СтатеБлок/АсинхроннаяПоверхность",
-    "fr": "StateBlock/AsyncSurface",
-    "he": "StateBlock / AsyncSurface",
-    "hu": "StateBlock / AsyncSurface",
-    "de": "StateBlock / AsyncSurface",
-    "ar": "StateBlock / AsyncSurface",
-    "it": "StateBlock/AsyncSurface"
+  "p_f2fee8a1ed7f": {
+    "en": "StateBlock / AsyncSurface / MissingDataPrompt",
+    "ru": "StateBlock/AsyncSurface/MissingDataPrompt",
+    "es": "Bloque de estado / AsyncSurface / MissingDataPrompt",
+    "de": "StateBlock / AsyncSurface / MissingDataPrompt",
+    "it": "StateBlock / AsyncSurface / MissingDataPrompt",
+    "fr": "StateBlock/AsyncSurface/MissingDataPrompt",
+    "ar": "StateBlock / AsyncSurface / MissingDataPrompt",
+    "hu": "StateBlock / AsyncSurface / MissingDataPrompt",
+    "he": "StateBlock / AsyncSurface / MissingDataPrompt"
   },
   "p_6f21a14df832": {
     "en": "Static reference",
@@ -11650,16 +11661,16 @@ export const generatedSitePhrases = {
     "hu": "Használd az AI-vel",
     "de": "Verwendung mit KI"
   },
-  "p_5965c882211a": {
-    "en": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",
-    "ar": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",
-    "fr": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",
-    "de": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",
-    "ru": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",
-    "it": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",
-    "es": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",
-    "hu": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage",
-    "he": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage"
+  "p_b1d15f3ca5bd": {
+    "en": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper",
+    "fr": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper",
+    "it": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper",
+    "ar": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper",
+    "he": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper",
+    "ru": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper",
+    "es": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper",
+    "de": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper",
+    "hu": "useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper"
   },
   "p_1396bf9ec22e": {
     "en": "Verify permissions, upload destination, and preview settings before users enter a production step.",

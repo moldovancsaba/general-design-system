@@ -2245,16 +2245,16 @@ export const generatedSitePhrases = {
     "de": "Komponentenfamilien",
     "he": "משפחות רכיבים"
   },
-  "p_5d8c9f045be6": {
+  "p_f93a768c0a4b": {
     "en": "Compose shipped GDS components — import from @sovereignsquad/gds",
     "es": "Redactar componentes GDS enviados: importar desde @sovereignsquad/gds",
-    "fr": "Composer les composants GDS expédiés - importer depuis @sovereignsquad/gds",
-    "it": "Componi i componenti GDS spediti: importa da @sovereignsquad/gds",
-    "de": "Ausgelieferte GDS-Komponenten zusammenstellen – Import aus @sovereignsquad/gds",
     "hu": "Szállított GDS-összetevők összeállítása – importálás a @sovereignsquad/gds webhelyről",
     "ar": "إنشاء مكونات GDS المشحونة - الاستيراد من @sovereignsquad/gds",
+    "fr": "Composer les composants GDS expédiés - importer depuis @sovereignsquad/gds",
+    "de": "Ausgelieferte GDS-Komponenten zusammenstellen – Import aus @sovereignsquad/gds",
+    "it": "Componi i componenti GDS spediti: importa da @sovereignsquad/gds",
     "ru": "Compose поставляемые компоненты GDS — импорт из @sovereignsquad/gds",
-    "he": "חיבור רכיבי GDS שנשלחו - ייבוא ​​מ-@sovereignsquad/gds"
+    "he": "חבר רכיבי GDS שנשלחו - ייבוא ​​מ-@sovereignsquad/gds"
   },
   "p_e5f9bccfdf50": {
     "en": "Confirm and save the assessment.",
@@ -6403,15 +6403,15 @@ export const generatedSitePhrases = {
     "hu": "npm sor",
     "he": "קו npm"
   },
-  "p_6c558ee3b33c": {
+  "p_cae2a30facb1": {
     "en": "npm run test:run --workspace=@sovereignsquad/gds-admin",
-    "ar": "اختبار تشغيل npm:run --workspace=@sovereignsquad/gds-admin",
-    "de": "npm run test:run --workspace=@sovereignsquad/gds-admin",
-    "fr": "npm run test:run --workspace=@sovereignsquad/gds-admin",
     "es": "prueba de ejecución de npm: ejecutar --workspace=@sovereignsquad/gds-admin",
+    "fr": "npm run test:run --workspace=@sovereignsquad/gds-admin",
     "ru": "npm run test:run --workspace=@sovereignsquad/gds-admin",
-    "it": "npm esegui test: esegui --workspace=@sovereignsquad/gds-admin",
     "he": "npm run test:run --workspace=@sovereignsquad/gds-admin",
+    "ar": "اختبار تشغيل npm:run --workspace=@sovereignsquad/gds-admin",
+    "it": "npm esegui test: esegui --workspace=@sovereignsquad/gds-admin",
+    "de": "npm run test:run --workspace=@sovereignsquad/gds-admin",
     "hu": "npm futtatási teszt:run --workspace=@sovereignsquad/gds-admin"
   },
   "p_dffed8ca94fb": {
@@ -10638,16 +10638,16 @@ export const generatedSitePhrases = {
     "he": "האתר הרשמי צריך להשתמש בחוזה זה במקום במעטפת מעטפת מקומית.",
     "de": "Die offizielle Website sollte diesen Vertrag anstelle seitenlokaler Shell-Wrapper verwenden."
   },
-  "p_1a5e65230c29": {
+  "p_a51dbe5faf70": {
     "en": "The public @sovereignsquad/gds-core helper exports resolve evidence by id, build deterministic indexes, summarize coverage, and validate freshness.",
     "fr": "Les exportations d'assistance publiques @sovereignsquad/gds-core résolvent les preuves par identifiant, créent des index déterministes, résument la couverture et valident la fraîcheur.",
-    "ar": "يقوم @sovereignsquad/gds-core المساعد العام بتصدير الأدلة عن طريق المعرف، وبناء فهارس حتمية، وتلخيص التغطية، والتحقق من صحة الحداثة.",
-    "de": "Die öffentlichen @sovereignsquad/gds-core-Hilfsexporte lösen Beweise nach ID auf, erstellen deterministische Indizes, fassen die Abdeckung zusammen und validieren die Aktualität.",
-    "he": "העוזר הציבורי @sovereignsquad/gds-core לייצוא פתרון ראיות לפי מזהה, בניית אינדקסים דטרמיניסטיים, מסכם כיסוי ומאמת את הרעננות.",
+    "it": "Le esportazioni pubbliche dell'helper @sovereignsquad/gds-core risolvono le prove in base all'ID, creano indici deterministici, riepilogano la copertura e convalidano l'aggiornamento.",
+    "de": "Die öffentlichen Hilfsexporte von @sovereignsquad/gds-core lösen Beweise nach ID auf, erstellen deterministische Indizes, fassen die Abdeckung zusammen und validieren die Aktualität.",
+    "ru": "Публичный помощник @sovereignsquad/gds-core экспортирует данные, разрешая доказательства по идентификатору, создавая детерминированные индексы, суммируя покрытие и проверяя актуальность.",
+    "he": "ה-@sovereignsquad/gds-core helper היצוא הציבורי לפתור ראיות לפי זיהוי, לבנות אינדקסים דטרמיניסטיים, לסכם את הכיסוי ולאמת רעננות.",
     "es": "Las exportaciones públicas de ayuda @sovereignsquad/gds-core resuelven evidencia por identificación, crean índices deterministas, resumen la cobertura y validan la actualización.",
-    "hu": "A nyilvános @sovereignsquad/gds-core segédexportálás a bizonyítékokat azonosító alapján oldja fel, determinisztikus indexeket épít fel, összefoglalja a lefedettséget és érvényesíti a frissességet.",
-    "ru": "Публичный помощник @sovereignsquad/gds-core экспортирует доказательства по идентификатору, строит детерминированные индексы, суммирует охват и проверяет актуальность.",
-    "it": "Le esportazioni pubbliche dell'helper @sovereignsquad/gds-core risolvono le prove in base all'ID, creano indici deterministici, riepilogano la copertura e convalidano l'aggiornamento."
+    "ar": "يقوم المساعد العام @sovereignsquad/gds-core بتحليل الأدلة حسب المعرف، وبناء فهارس حتمية، وتلخيص التغطية، والتحقق من صحة الحداثة.",
+    "hu": "A nyilvános @sovereignsquad/gds-core segédexportok a bizonyítékokat azonosító alapján oldják meg, determinisztikus indexeket építenek, összefoglalják a lefedettséget és érvényesítik a frissességet."
   },
   "p_f44a0b37c5dd": {
     "en": "The reference-site narrative remains English while semantic vocabulary is already localized.",

@@ -576,7 +576,13 @@ export function RequestFeaturePage() {
   );
 }
 
-export function OverviewPage() {
+export function OverviewPage({
+  initialThemeSelection,
+  onSiteThemeSelectionChange,
+}: {
+  initialThemeSelection?: ThemeExplorerSelection;
+  onSiteThemeSelectionChange?: (selection: ThemeExplorerSelection) => void;
+} = {}) {
   const { locale } = useGdsTranslation();
   const i18n = getSiteCopy(overviewCopy, locale);
   return (
@@ -592,6 +598,16 @@ export function OverviewPage() {
         </>
       )}
     >
+      <ReferenceSection
+        title={i18n.themesTitle}
+        description={i18n.themesDescription}
+      >
+        <ReferenceThemeExplorer
+          initialSelection={initialThemeSelection}
+          onSelectionChange={onSiteThemeSelectionChange}
+        />
+      </ReferenceSection>
+
       <ReferenceSection
         title={i18n.whatTitle}
         description={i18n.whatDescription}

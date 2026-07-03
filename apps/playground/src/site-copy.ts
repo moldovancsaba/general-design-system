@@ -469,6 +469,8 @@ export const overviewCopy = {
       whyDescription: 'GDS works best for teams that want fewer local decisions, stronger accessibility defaults, clearer migration targets, and measurable compliance.',
       startTitle: 'Start here',
       startDescription: 'The fastest route depends on what you need right now.',
+      themesTitle: 'Every theme, live',
+      themesDescription: 'Pick any of the shipped theme lanes and brand presets — the entire site re-themes instantly, in light and dark.',
       whatItems: [
         { id: 'what', title: 'Reusable runtime contracts', description: 'Shells, cards, action systems, auth, embeds, feedback, and detail surfaces ship as canonical primitives.' },
         { id: 'why', title: 'A faster path to consistency', description: 'Teams adopt shipped contracts instead of recreating layout, button, and card patterns from scratch.' },
@@ -500,6 +502,8 @@ export const overviewCopy = {
       whyDescription: 'GDS ist ideal für Teams, die weniger lokale Einzelentscheidungen, stärkere Accessibility-Standards, klarere Migrationsziele und messbare Compliance wollen.',
       startTitle: 'Hier starten',
       startDescription: 'Der schnellste Einstieg hängt davon ab, was du jetzt brauchst.',
+      themesTitle: 'Jedes Theme, live',
+      themesDescription: 'Wähle eine der ausgelieferten Theme-Lanes oder Brand-Presets — die gesamte Seite wird sofort neu thematisiert, in Hell und Dunkel.',
       whatItems: [
         { id: 'what', title: 'Wiederverwendbare Runtime-Contracts', description: 'Shells, Karten, Aktionssysteme, Auth, Embeds, Feedback und Detailflächen werden als kanonische Primitives ausgeliefert.' },
         { id: 'why', title: 'Schneller zu Konsistenz', description: 'Teams übernehmen ausgelieferte Contracts statt Layout-, Button- und Kartenmuster lokal neu zu bauen.' },
@@ -531,6 +535,8 @@ export const overviewCopy = {
     whyDescription: 'GDS funciona mejor para equipos que quieren menos decisiones locales, mejores defaults de accesibilidad, objetivos de migración más claros y cumplimiento medible.',
     startTitle: 'Empieza aquí',
     startDescription: 'El camino más rápido depende de lo que necesitas ahora.',
+    themesTitle: 'Cada tema, en vivo',
+    themesDescription: 'Elige cualquiera de los theme lanes y presets de marca publicados: todo el sitio se re-tematiza al instante, en claro y oscuro.',
     whatItems: [
       { id: 'what', title: 'Contratos de runtime reutilizables', description: 'Shells, tarjetas, sistemas de acción, auth, embeds, feedback y superficies de detalle se envían como primitivas canónicas.' },
       { id: 'why', title: 'Un camino más rápido hacia la consistencia', description: 'Los equipos adoptan contratos publicados en lugar de recrear localmente patrones de layout, botones y tarjetas.' },
@@ -562,6 +568,8 @@ export const overviewCopy = {
       whyDescription: 'GDS convient aux équipes qui veulent moins de décisions locales, de meilleurs standards d’accessibilité, des migrations plus claires et une conformité mesurable.',
       startTitle: 'Commencer ici',
       startDescription: 'Le chemin le plus rapide dépend de votre besoin immédiat.',
+      themesTitle: 'Chaque thème, en direct',
+      themesDescription: 'Choisissez une des lanes de thème ou presets de marque livrés — tout le site change de thème instantanément, en clair et sombre.',
       whatItems: [
         { id: 'what', title: 'Contrats runtime réutilisables', description: 'Shells, cartes, systèmes d’action, auth, embeds, feedback et surfaces détail sont livrés comme primitives canoniques.' },
         { id: 'why', title: 'Un chemin plus rapide vers la cohérence', description: 'Les équipes adoptent les contrats livrés au lieu de recréer localement layouts, boutons et cartes.' },
@@ -593,6 +601,8 @@ export const overviewCopy = {
       whyDescription: 'GDS è ideale per team che vogliono meno decisioni locali, migliore accessibilità e adozione verificabile.',
       startTitle: 'Inizia qui',
       startDescription: 'Il percorso più rapido dipende da cosa ti serve adesso.',
+      themesTitle: 'Ogni tema, dal vivo',
+      themesDescription: 'Scegli una delle theme lane o dei preset di brand rilasciati: l’intero sito si ri-tematizza all’istante, in chiaro e scuro.',
       whatItems: [
         { id: 'what', title: 'Contratti runtime riutilizzabili', description: 'Shell, card, sistemi di azione, auth, embed, feedback e superfici di dettaglio vengono rilasciati come primitive canoniche.' },
         { id: 'why', title: 'Coerenza più veloce', description: 'I team adottano contratti già rilasciati invece di ricreare localmente layout, pulsanti e card.' },
@@ -624,6 +634,8 @@ export const overviewCopy = {
       whyDescription: 'GDS подходит командам, которым нужны меньше локальных решений, сильнее доступность и проверяемое внедрение.',
       startTitle: 'Начните здесь',
       startDescription: 'Самый быстрый путь зависит от вашей текущей задачи.',
+      themesTitle: 'Все темы вживую',
+      themesDescription: 'Выберите любую поставляемую тему или бренд-пресет — весь сайт мгновенно меняет оформление, в светлой и тёмной схеме.',
       whatItems: [
         { id: 'what', title: 'Переиспользуемые runtime-контракты', description: 'Shell, карточки, системы действий, auth, embed, feedback и detail-поверхности поставляются как канонические примитивы.' },
         { id: 'why', title: 'Быстрый путь к согласованности', description: 'Команды внедряют готовые контракты вместо локального пересоздания layout, кнопок и карточек.' },
@@ -655,6 +667,8 @@ export const overviewCopy = {
       whyDescription: 'GDS מתאים לצוותים שרוצים פחות החלטות מקומיות, נגישות טובה יותר ואימוץ מדיד.',
       startTitle: 'מתחילים כאן',
       startDescription: 'המסלול המהיר תלוי במה שצריך עכשיו.',
+      themesTitle: 'כל ערכת נושא, בזמן אמת',
+      themesDescription: 'בחרו כל אחת מערכות הנושא ותבניות המותג שנמסרו — כל האתר מחליף עיצוב מיד, במצב בהיר וכהה.',
       whatItems: [
         { id: 'what', title: 'חוזי runtime לשימוש חוזר', description: 'Shells, כרטיסים, מערכות פעולה, auth, embeds, feedback ומשטחי detail נמסרים כפרימיטיבים קנוניים.' },
         { id: 'why', title: 'דרך מהירה יותר לעקביות', description: 'צוותים מאמצים חוזים קיימים במקום לבנות מקומית layout, כפתורים וכרטיסים.' },
@@ -686,6 +700,8 @@ export const overviewCopy = {
       whyDescription: 'GDS مناسب للفرق التي تريد قرارات محلية أقل، وصولية أقوى، واعتمادًا قابلًا للقياس.',
       startTitle: 'ابدأ من هنا',
       startDescription: 'أسرع مسار يعتمد على ما تحتاجه الآن.',
+      themesTitle: 'كل سمة، مباشرة',
+      themesDescription: 'اختر أيًّا من مسارات السمات وإعدادات العلامة التجارية المنشورة — يعيد الموقع بأكمله تصميمه فورًا، في الوضعين الفاتح والداكن.',
       whatItems: [
         { id: 'what', title: 'عقود تشغيل قابلة لإعادة الاستخدام', description: 'تصل shells والبطاقات وأنظمة الإجراءات وauth وembeds وfeedback وأسطح detail كبدائيات Canonical.' },
         { id: 'why', title: 'طريق أسرع إلى الاتساق', description: 'تعتمد الفرق العقود المنشورة بدلا من إعادة بناء layouts والأزرار والبطاقات محليا.' },
@@ -717,6 +733,8 @@ export const overviewCopy = {
       whyDescription: 'A GDS azoknak a csapatoknak jó, akik kevesebb lokális döntést és erősebb hozzáférhetőséget szeretnének.',
       startTitle: 'Kezdés itt',
       startDescription: 'A leggyorsabb út attól függ, mire van most szükséged.',
+      themesTitle: 'Minden téma, élőben',
+      themesDescription: 'Válaszd ki bármelyik leszállított témasávot vagy márkaelőbeállítást — az egész oldal azonnal újratémázódik, világos és sötét módban.',
       whatItems: [
         { id: 'what', title: 'Újrahasználható runtime contractok', description: 'Shellek, kártyák, action rendszerek, auth, embedek, feedback és detail felületek kanonikus primitive-ként érkeznek.' },
         { id: 'why', title: 'Gyorsabb út a következetességhez', description: 'A csapatok kész contractokat adoptálnak lokális layout, gomb és kártya újraépítés helyett.' },

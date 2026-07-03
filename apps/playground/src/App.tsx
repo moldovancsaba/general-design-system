@@ -279,7 +279,17 @@ function PlaygroundContent() {
           />
         ) : null}
         <Routes>
-          <Route path="/" element={<Suspense fallback={<RouteFallback />}><OverviewPage /></Suspense>} />
+          <Route
+            path="/"
+            element={(
+              <Suspense fallback={<RouteFallback />}>
+                <OverviewPage
+                  initialThemeSelection={siteThemeSelection}
+                  onSiteThemeSelectionChange={handleSiteThemeSelectionChange}
+                />
+              </Suspense>
+            )}
+          />
           <Route path="/patterns" element={<Suspense fallback={<RouteFallback />}><PatternsIndexPage /></Suspense>} />
           <Route path="/patterns/foundations" element={<Suspense fallback={<RouteFallback />}><FoundationsPatternPage /></Suspense>} />
           <Route path="/patterns/public" element={<Suspense fallback={<RouteFallback />}><PublicPatternPage /></Suspense>} />

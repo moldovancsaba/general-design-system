@@ -1,4 +1,4 @@
-import { FormSection, FormField } from '@doneisbetter/gds';
+import { FormSection, FormField } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <FormSection

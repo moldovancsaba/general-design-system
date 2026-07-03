@@ -1,4 +1,4 @@
-import { PeriodSelector } from '@doneisbetter/gds';
+import { PeriodSelector } from '@sovereignsquad/gds';
 
 const options = [
   { value: '24h', label: 'Last 24 hours' },

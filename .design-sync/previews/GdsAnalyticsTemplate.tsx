@@ -1,4 +1,4 @@
-import { GdsAnalyticsTemplate, GdsBarChart } from '@doneisbetter/gds';
+import { GdsAnalyticsTemplate, GdsBarChart } from '@sovereignsquad/gds';
 
 type Row = { channel: string; sessions: string; conversion: string };
 

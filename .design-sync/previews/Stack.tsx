@@ -1,4 +1,4 @@
-import { Stack, GdsSafeBox, MetricCard } from '@doneisbetter/gds';
+import { Stack, GdsSafeBox, MetricCard } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsSafeBox style={{ padding: 24 }}>

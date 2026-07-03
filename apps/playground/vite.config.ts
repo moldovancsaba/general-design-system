@@ -34,9 +34,9 @@ export default defineConfig({
           }
 
           if (
-            id.includes('/@doneisbetter/gds-core/') ||
-            id.includes('/@doneisbetter/gds-admin/') ||
-            id.includes('/@doneisbetter/gds-theme/')
+            id.includes('/@sovereignsquad/gds-core/') ||
+            id.includes('/@sovereignsquad/gds-admin/') ||
+            id.includes('/@sovereignsquad/gds-theme/')
           ) {
             return 'vendor-gds'
           }

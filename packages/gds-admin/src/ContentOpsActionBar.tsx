@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Badge, Group, Paper, Text } from '@mantine/core';
-import type { ActionBarProps } from '@doneisbetter/gds-core';
-import { ActionBar } from '@doneisbetter/gds-core';
+import type { ActionBarProps } from '@sovereignsquad/gds-core';
+import { ActionBar } from '@sovereignsquad/gds-core';
 
 export interface ContentOpsActionBarProps {
   dirty?: boolean;

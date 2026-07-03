@@ -1,4 +1,4 @@
-import { LabelText, BodyText } from '@doneisbetter/gds';
+import { LabelText, BodyText } from '@sovereignsquad/gds';
 
 const Field = ({ label, value }: { label: string; value: string }) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>

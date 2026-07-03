@@ -1,4 +1,4 @@
-import { GdsChartAxis } from '@doneisbetter/gds';
+import { GdsChartAxis } from '@sovereignsquad/gds';
 
 export const YAxis = () => (
   <GdsChartAxis

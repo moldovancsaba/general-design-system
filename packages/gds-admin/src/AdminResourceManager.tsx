@@ -7,7 +7,7 @@ import {
   MediaPreviewCard,
   type ActionBarProps,
   type MediaPreviewMetadata,
-} from '@doneisbetter/gds-core';
+} from '@sovereignsquad/gds-core';
 
 export type AdminResourceState = 'loading' | 'ready' | 'empty' | 'error' | 'filtered' | 'permission-limited';
 

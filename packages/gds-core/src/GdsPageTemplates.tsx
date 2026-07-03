@@ -57,7 +57,7 @@ export interface GdsPageTemplateConfig {
   id: GdsPageTemplateId;
   title: string;
   description: string;
-  packageName: '@doneisbetter/gds-core';
+  packageName: '@sovereignsquad/gds-core';
   requiredData: string[];
   requiredStates: GdsPageTemplateState[];
   taskPatterns: string[];
@@ -160,7 +160,7 @@ const templateConfigs: GdsPageTemplateConfig[] = [
     id: 'admin-dashboard',
     title: 'Admin dashboard template',
     description: 'Operational overview with metrics, sections, loading, empty, error, and retry states.',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     requiredData: ['metrics', 'sections', 'operator permission'],
     requiredStates: allTemplateStates,
     taskPatterns: ['review-submission', 'bulk-approve'],
@@ -174,7 +174,7 @@ const templateConfigs: GdsPageTemplateConfig[] = [
     id: 'settings',
     title: 'Settings template',
     description: 'Grouped settings surface with save, disabled, saving, and permission states.',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     requiredData: ['setting groups', 'save permission', 'dirty state'],
     requiredStates: allTemplateStates,
     taskPatterns: ['confirm-destructive-action'],
@@ -188,7 +188,7 @@ const templateConfigs: GdsPageTemplateConfig[] = [
     id: 'resource-manager',
     title: 'Resource manager template',
     description: 'List/detail resource surface for CRUD, preview, delete, and recovery workflows.',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     requiredData: ['rows', 'columns', 'resource actions', 'permission result'],
     requiredStates: allTemplateStates,
     taskPatterns: ['create-resource', 'copy-public-link', 'publish-toggle', 'confirm-destructive-action'],
@@ -202,7 +202,7 @@ const templateConfigs: GdsPageTemplateConfig[] = [
     id: 'crud-editor',
     title: 'CRUD editor template',
     description: 'Edit surface that composes governed forms, summaries, saving states, and destructive zones.',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     requiredData: ['form contract', 'submit action', 'validation state'],
     requiredStates: allTemplateStates,
     taskPatterns: ['create-resource', 'confirm-destructive-action'],
@@ -216,7 +216,7 @@ const templateConfigs: GdsPageTemplateConfig[] = [
     id: 'analytics',
     title: 'Analytics template',
     description: 'Reporting page with metrics, chart slot, table fallback, empty data, and retry states.',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     requiredData: ['period', 'metrics', 'chart or table data'],
     requiredStates: allTemplateStates,
     taskPatterns: ['review-submission'],
@@ -230,7 +230,7 @@ const templateConfigs: GdsPageTemplateConfig[] = [
     id: 'public-event',
     title: 'Public event template',
     description: 'Public event page with hero media slot, event metadata, registration, and no-media recovery.',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     requiredData: ['event title', 'date/time', 'registration state'],
     requiredStates: allTemplateStates,
     taskPatterns: ['copy-public-link'],
@@ -244,7 +244,7 @@ const templateConfigs: GdsPageTemplateConfig[] = [
     id: 'error-page',
     title: 'Error page template',
     description: 'Semantic error, not-found, and permission-denied page with explicit recovery actions.',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     requiredData: ['error class', 'recovery action availability'],
     requiredStates: ['error', 'permission-denied', 'not-found', 'retrying'],
     taskPatterns: ['confirm-destructive-action'],
@@ -258,7 +258,7 @@ const templateConfigs: GdsPageTemplateConfig[] = [
     id: 'empty-state-page',
     title: 'Empty state page template',
     description: 'First-run or no-results page with actionable copy, status, and optional illustration slot.',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     requiredData: ['empty reason', 'primary recovery action'],
     requiredStates: ['empty', 'permission-denied', 'not-found'],
     taskPatterns: ['create-resource'],

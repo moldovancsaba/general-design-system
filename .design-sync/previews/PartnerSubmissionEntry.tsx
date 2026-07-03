@@ -1,4 +1,4 @@
-import { PartnerSubmissionEntry, PartnerNewsletterForm } from '@doneisbetter/gds';
+import { PartnerSubmissionEntry, PartnerNewsletterForm } from '@sovereignsquad/gds';
 
 const formLabels = {
   title: 'Place details',

@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { Button, Group, Menu, Stack } from '@mantine/core';
 import { IconChevronDown, IconLanguage } from '@tabler/icons-react';
-import { AccentPanel, ThemeToggle } from '@doneisbetter/gds-core';
+import { AccentPanel, ThemeToggle } from '@sovereignsquad/gds-core';
 import { AppShell } from './AppShell';
 
 export interface ReferenceSiteLocaleOption {

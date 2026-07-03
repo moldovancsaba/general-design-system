@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicConsentStep } from '@doneisbetter/gds';
+import { PublicConsentStep } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PublicConsentStep

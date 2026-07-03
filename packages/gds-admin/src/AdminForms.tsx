@@ -17,7 +17,7 @@ import type {
   TextareaProps,
   TextInputProps,
 } from '@mantine/core';
-import { ActionBar, type ActionBarProps, FormField, StateBlock } from '@doneisbetter/gds-core';
+import { ActionBar, type ActionBarProps, FormField, StateBlock } from '@sovereignsquad/gds-core';
 import { FormSection } from './FormSection';
 
 export type AdminFieldState = 'idle' | 'loading' | 'error' | 'success' | 'readonly' | 'disabled';

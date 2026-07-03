@@ -4,7 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import type { ReactNode } from 'react';
 import { Drawer, Modal } from '@mantine/core';
 import type { DrawerProps, ModalProps } from '@mantine/core';
-import { getGdsMotionPreset, useGdsTranslation } from '@doneisbetter/gds-theme';
+import { getGdsMotionPreset, useGdsTranslation } from '@sovereignsquad/gds-theme';
 
 export type GdsOverlayType = 'modal' | 'dialog' | 'drawer' | 'sheet' | 'popover' | 'command';
 export type OverlayKind = GdsOverlayType | 'tooltip';

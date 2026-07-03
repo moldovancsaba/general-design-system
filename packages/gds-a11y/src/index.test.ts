@@ -17,7 +17,7 @@ function createPage(evaluate: GdsPlaywrightLikePage['evaluate']): GdsPlaywrightL
   };
 }
 
-describe('@doneisbetter/gds-a11y', () => {
+describe('@sovereignsquad/gds-a11y', () => {
   it('formats pass and failure reports deterministically', () => {
     const pass = createGdsA11yReport({ route: '/demo' });
     expect(pass.status).toBe('pass');

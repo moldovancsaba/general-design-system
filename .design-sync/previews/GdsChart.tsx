@@ -1,4 +1,4 @@
-import { GdsChart } from '@doneisbetter/gds';
+import { GdsChart } from '@sovereignsquad/gds';
 
 export const Bar = () => (
   <GdsChart

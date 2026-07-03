@@ -1,4 +1,4 @@
-import { ReferenceLinkGrid, ReferenceSection } from '@doneisbetter/gds';
+import { ReferenceLinkGrid, ReferenceSection } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ReferenceSection title="Getting started" description="Canonical entry points for the design system.">

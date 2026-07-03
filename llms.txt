@@ -1,19 +1,19 @@
 # General Design System (GDS)
 
-> GDS is a governed, cross-project React design system published as `@doneisbetter/gds`. It is built on Mantine and ships 250+ components, design tokens, theme presets, and runtime systems (forms, tables, overlays, notifications, access gates, i18n). Every product surface is composed from shipped GDS contracts — never reinvented locally.
+> GDS is a governed, cross-project React design system published as `@sovereignsquad/gds`. It is built on Mantine and ships 250+ components, design tokens, theme presets, and runtime systems (forms, tables, overlays, notifications, access gates, i18n). Every product surface is composed from shipped GDS contracts — never reinvented locally.
 
 This file is the entry point for AI coding agents (Claude, Claude Code, Cursor, Copilot, and any LLM tool). It tells you what GDS is, how to install it, the non-negotiable rules, and where to read more. When building UI for a project that uses GDS, follow these rules and compose the shipped components — do not author parallel primitives or raw CSS.
 
 ## Install
 
 ```bash
-npm install @doneisbetter/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react react react-dom
+npm install @sovereignsquad/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react react react-dom
 ```
 
 Wrap the app once in the single required provider, then compose components:
 
 ```tsx
-import { GdsProvider, AppShell, MetricCard, SemanticButton } from '@doneisbetter/gds';
+import { GdsProvider, AppShell, MetricCard, SemanticButton } from '@sovereignsquad/gds';
 
 export default function App() {
   return (
@@ -39,12 +39,12 @@ export default function App() {
 
 ## Packages
 
-- `@doneisbetter/gds` — umbrella install (theme + core + admin); root, `/client`, `/server` entrypoints.
-- `@doneisbetter/gds-theme` — tokens, theme presets, VibeThemes, font lanes, motion system.
-- `@doneisbetter/gds-core` — layouts, cards, shells, forms, tables, overlays, charts, access, i18n.
-- `@doneisbetter/gds-admin` — operator scaffolds (`AppShell`, `PageHeader`, `ContentOpsEditor`, `ResponsiveDataView`).
-- `@doneisbetter/gds-a11y` — Playwright/axe accessibility test helpers.
-- `@doneisbetter/gds-eslint-config`, `@doneisbetter/gds-compliance` — shared lint + adoption enforcement.
+- `@sovereignsquad/gds` — umbrella install (theme + core + admin); root, `/client`, `/server` entrypoints.
+- `@sovereignsquad/gds-theme` — tokens, theme presets, VibeThemes, font lanes, motion system.
+- `@sovereignsquad/gds-core` — layouts, cards, shells, forms, tables, overlays, charts, access, i18n.
+- `@sovereignsquad/gds-admin` — operator scaffolds (`AppShell`, `PageHeader`, `ContentOpsEditor`, `ResponsiveDataView`).
+- `@sovereignsquad/gds-a11y` — Playwright/axe accessibility test helpers.
+- `@sovereignsquad/gds-eslint-config`, `@sovereignsquad/gds-compliance` — shared lint + adoption enforcement.
 
 ## Component families
 

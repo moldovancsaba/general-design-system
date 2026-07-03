@@ -1,4 +1,4 @@
-import { SemanticInset, SectionPanel, BodyText, SectionTitle } from '@doneisbetter/gds';
+import { SemanticInset, SectionPanel, BodyText, SectionTitle } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SectionPanel title="Governance callout">

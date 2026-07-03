@@ -1,4 +1,4 @@
-import { BannerNotice } from '@doneisbetter/gds';
+import { BannerNotice } from '@sovereignsquad/gds';
 
 export const Warning = () => (
   <BannerNotice

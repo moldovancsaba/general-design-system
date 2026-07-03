@@ -1,4 +1,4 @@
-import { GdsSplit } from '@doneisbetter/gds';
+import { GdsSplit } from '@sovereignsquad/gds';
 
 const Pane = ({ children, tone = 'blue' }: { children: React.ReactNode; tone?: 'blue' | 'grape' }) => (
   <div

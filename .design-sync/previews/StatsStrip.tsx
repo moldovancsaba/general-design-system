@@ -1,4 +1,4 @@
-import { StatsStrip } from '@doneisbetter/gds';
+import { StatsStrip } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <StatsStrip

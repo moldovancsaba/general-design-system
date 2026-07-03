@@ -1,4 +1,4 @@
-import { GdsSchemaForm } from '@doneisbetter/gds';
+import { GdsSchemaForm } from '@sovereignsquad/gds';
 
 export const Profile = () => (
   <GdsSchemaForm

@@ -1,4 +1,4 @@
-import { MetricCard, Button, Badge } from '@doneisbetter/gds';
+import { MetricCard, Button, Badge } from '@sovereignsquad/gds';
 
 // GdsProvider is the root provider and is already auto-applied by the harness,
 // so these cells render styled GDS surfaces directly to show the theme applies.

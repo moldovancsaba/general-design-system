@@ -1,4 +1,4 @@
-import { StatsSection, MetricCard, SimpleGrid } from '@doneisbetter/gds';
+import { StatsSection, MetricCard, SimpleGrid } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <StatsSection title="This month">

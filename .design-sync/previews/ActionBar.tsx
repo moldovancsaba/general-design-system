@@ -1,4 +1,4 @@
-import { ActionBar } from '@doneisbetter/gds';
+import { ActionBar } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ActionBar

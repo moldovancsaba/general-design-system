@@ -1,4 +1,4 @@
-import { GdsSettingsTemplate, Checkbox, AdminTextInput } from '@doneisbetter/gds';
+import { GdsSettingsTemplate, Checkbox, AdminTextInput } from '@sovereignsquad/gds';
 
 export const Ready = () => (
   <GdsSettingsTemplate

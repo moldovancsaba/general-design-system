@@ -1,4 +1,4 @@
-import { PartnerListIndex } from '@doneisbetter/gds';
+import { PartnerListIndex } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PartnerListIndex

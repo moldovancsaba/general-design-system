@@ -1,4 +1,4 @@
-import { BoundedPreviewSurface, BannerNotice } from '@doneisbetter/gds';
+import { BoundedPreviewSurface, BannerNotice } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <BoundedPreviewSurface minHeight={140} maxHeight={260}>

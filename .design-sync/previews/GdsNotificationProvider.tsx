@@ -2,7 +2,7 @@ import {
   GdsNotificationProvider,
   GdsNotificationCenter,
   MetricCard,
-} from '@doneisbetter/gds';
+} from '@sovereignsquad/gds';
 
 export const Children = () => (
   <GdsNotificationProvider>

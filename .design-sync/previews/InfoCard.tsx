@@ -1,4 +1,4 @@
-import { InfoCard } from '@doneisbetter/gds';
+import { InfoCard } from '@sovereignsquad/gds';
 
 export const Revenue = () => (
   <InfoCard

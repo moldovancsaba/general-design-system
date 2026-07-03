@@ -1,4 +1,4 @@
-import { GdsNotificationProvider, GdsNotificationCenter } from '@doneisbetter/gds';
+import { GdsNotificationProvider, GdsNotificationCenter } from '@sovereignsquad/gds';
 
 // GdsNotificationCenter reads from GdsNotificationProvider context (throws
 // without it), so each cell mounts the provider around the center surface.

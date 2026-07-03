@@ -36,7 +36,7 @@ The default `mantineOverlayAdapter` preserves current behavior and is wired by
 `GdsProvider`. Swap the engine with one prop — no consumer or component change:
 
 ```tsx
-import { GdsProvider, type OverlayAdapter } from '@doneisbetter/gds';
+import { GdsProvider, type OverlayAdapter } from '@sovereignsquad/gds';
 
 const customOverlayEngine: OverlayAdapter = {
   id: 'base-ui',
@@ -50,7 +50,7 @@ const customOverlayEngine: OverlayAdapter = {
 Inside a GDS overlay component:
 
 ```tsx
-import { useOverlayAdapter } from '@doneisbetter/gds';
+import { useOverlayAdapter } from '@sovereignsquad/gds';
 
 const adapter = useOverlayAdapter();
 // spread onto the dropdown/surface element:

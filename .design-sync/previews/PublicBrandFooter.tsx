@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicBrandFooter, SemanticButton } from '@doneisbetter/gds';
+import { PublicBrandFooter, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PublicBrandFooter
@@ -7,7 +7,7 @@ export const Default = () => (
     description="Shared primitives keep every public surface on-brand without local component drift."
     actions={<SemanticButton action="download" variant="filled" />}
     secondary={<a href="#docs">Documentation</a>}
-    legal="© 2026 doneisbetter — All rights reserved."
+    legal="© 2026 sovereignsquad — All rights reserved."
   />
 );
 
@@ -16,6 +16,6 @@ export const Compact = () => (
     compact
     brandTitle="GDS"
     description="Canonical public footer, compact layout."
-    legal="© 2026 doneisbetter"
+    legal="© 2026 sovereignsquad"
   />
 );

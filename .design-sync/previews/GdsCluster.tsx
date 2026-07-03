@@ -1,4 +1,4 @@
-import { GdsCluster } from '@doneisbetter/gds';
+import { GdsCluster } from '@sovereignsquad/gds';
 
 const Chip = ({ children }: { children: React.ReactNode }) => (
   <span

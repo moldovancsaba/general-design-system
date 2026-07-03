@@ -1,4 +1,4 @@
-import { GdsPlural } from '@doneisbetter/gds';
+import { GdsPlural } from '@sovereignsquad/gds';
 
 export const Items = () => (
   <p style={{ margin: 0 }}>

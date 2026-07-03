@@ -1,4 +1,4 @@
-import { GdsMediaFrame } from '@doneisbetter/gds';
+import { GdsMediaFrame } from '@sovereignsquad/gds';
 
 const photo =
   "data:image/svg+xml;utf8," +

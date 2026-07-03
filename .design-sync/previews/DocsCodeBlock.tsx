@@ -1,11 +1,11 @@
-import { DocsCodeBlock } from '@doneisbetter/gds';
+import { DocsCodeBlock } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <DocsCodeBlock
     title="Install"
     language="bash"
     withCopy
-    code={`npm install @doneisbetter/gds\nnpm run build`}
+    code={`npm install @sovereignsquad/gds\nnpm run build`}
   />
 );
 
@@ -14,7 +14,7 @@ export const TypeScript = () => (
     title="GdsProvider.tsx"
     language="tsx"
     withCopy
-    code={`import { GdsProvider } from '@doneisbetter/gds';\n\nexport function App() {\n  return (\n    <GdsProvider locale="en">\n      <Routes />\n    </GdsProvider>\n  );\n}`}
+    code={`import { GdsProvider } from '@sovereignsquad/gds';\n\nexport function App() {\n  return (\n    <GdsProvider locale="en">\n      <Routes />\n    </GdsProvider>\n  );\n}`}
   />
 );
 

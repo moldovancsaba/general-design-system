@@ -1,4 +1,4 @@
-import { DataToolbar, SemanticButton } from '@doneisbetter/gds';
+import { DataToolbar, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <DataToolbar

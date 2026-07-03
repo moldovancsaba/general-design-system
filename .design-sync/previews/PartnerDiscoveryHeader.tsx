@@ -1,4 +1,4 @@
-import { PartnerDiscoveryHeader } from '@doneisbetter/gds';
+import { PartnerDiscoveryHeader } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PartnerDiscoveryHeader

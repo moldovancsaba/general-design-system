@@ -1,4 +1,4 @@
-import { GdsIcon } from '@doneisbetter/gds';
+import { GdsIcon } from '@sovereignsquad/gds';
 
 const Row = ({ children }: { children: React.ReactNode }) => (
   <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>{children}</div>

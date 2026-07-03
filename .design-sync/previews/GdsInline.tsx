@@ -1,4 +1,4 @@
-import { GdsInline } from '@doneisbetter/gds';
+import { GdsInline } from '@sovereignsquad/gds';
 
 const Chip = ({ children }: { children: React.ReactNode }) => (
   <span

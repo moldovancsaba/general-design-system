@@ -1,4 +1,4 @@
-import { PartnerMapControls } from '@doneisbetter/gds';
+import { PartnerMapControls } from '@sovereignsquad/gds';
 
 const mapFrame: React.CSSProperties = {
   position: 'relative',

@@ -3,7 +3,7 @@
 import { type ReactNode, useState } from 'react';
 import { Box, Burger, Container, Divider, Group, NativeSelect, Paper, Stack, Text, Transition } from '@mantine/core';
 import type { NativeSelectProps } from '@mantine/core';
-import { useGdsTranslation } from '@doneisbetter/gds-theme';
+import { useGdsTranslation } from '@sovereignsquad/gds-theme';
 import { DiscoveryShell } from './DiscoveryShell';
 
 export interface DocsShellProps {

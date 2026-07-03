@@ -1,4 +1,4 @@
-import { ShareButtonGroup, SectionPanel } from '@doneisbetter/gds';
+import { ShareButtonGroup, SectionPanel } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SectionPanel title="Share this page">

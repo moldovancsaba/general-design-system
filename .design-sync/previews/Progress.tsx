@@ -1,4 +1,4 @@
-import { Progress, GdsSafeBox } from '@doneisbetter/gds';
+import { Progress, GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsSafeBox safeStyle={{ background: 'surface', border: 'default', radius: 'lg', inset: 'md' }}>

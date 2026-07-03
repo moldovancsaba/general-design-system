@@ -1,7 +1,7 @@
 # Design-To-Code Handoff
 
 Status: package-native handoff contract  
-Package: `@doneisbetter/gds-core`  
+Package: `@sovereignsquad/gds-core`  
 Issue: `#253`
 
 The design-to-code handoff contract records which GDS exports are approved for design use, how they map to Figma components and variables, which props designers may annotate, and what accessibility/state behavior must be present in handoff notes.
@@ -17,7 +17,7 @@ import {
   validateGdsDesignHandoffMappings,
   generateGdsDesignHandoffReport,
   GdsDesignHandoffCatalog,
-} from '@doneisbetter/gds-core';
+} from '@sovereignsquad/gds-core';
 ```
 
 ## Statuses

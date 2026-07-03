@@ -1,4 +1,4 @@
-import { ThemeToggle } from '@doneisbetter/gds';
+import { ThemeToggle } from '@sovereignsquad/gds';
 
 export const Default = () => <ThemeToggle />;
 

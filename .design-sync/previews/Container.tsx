@@ -1,4 +1,4 @@
-import { Container, PageHeader, MetricCard, ConsumerDashboardGrid } from '@doneisbetter/gds';
+import { Container, PageHeader, MetricCard, ConsumerDashboardGrid } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <Container>

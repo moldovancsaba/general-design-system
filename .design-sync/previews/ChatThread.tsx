@@ -1,5 +1,5 @@
-import { ChatThread, type ChatMessageModel } from '@doneisbetter/gds-core';
-import { GdsSafeBox } from '@doneisbetter/gds-core';
+import { ChatThread, type ChatMessageModel } from '@sovereignsquad/gds-core';
+import { GdsSafeBox } from '@sovereignsquad/gds-core';
 
 const messages: ChatMessageModel[] = [
   { id: '1', role: 'user',      content: 'What STEM schools are near the Mission?' },

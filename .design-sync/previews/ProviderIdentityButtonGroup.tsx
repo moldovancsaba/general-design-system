@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ProviderIdentityButtonGroup, SectionPanel } from '@doneisbetter/gds';
+import { ProviderIdentityButtonGroup, SectionPanel } from '@sovereignsquad/gds';
 
 export const StackedProviders = () => (
   <SectionPanel title="Sign in" description="Choose a provider to continue.">

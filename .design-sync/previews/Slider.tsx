@@ -1,4 +1,4 @@
-import { Slider, GdsSafeBox } from '@doneisbetter/gds';
+import { Slider, GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsSafeBox style={{ padding: 24 }}>

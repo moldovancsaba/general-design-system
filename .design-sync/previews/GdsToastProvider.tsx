@@ -1,4 +1,4 @@
-import { GdsToastProvider, MetricCard } from '@doneisbetter/gds';
+import { GdsToastProvider, MetricCard } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsToastProvider>

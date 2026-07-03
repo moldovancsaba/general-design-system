@@ -1,4 +1,4 @@
-import { AdminModal } from '@doneisbetter/gds';
+import { AdminModal } from '@sovereignsquad/gds';
 
 export const Ready = () => (
   <AdminModal

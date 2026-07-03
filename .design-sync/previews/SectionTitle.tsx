@@ -1,4 +1,4 @@
-import { SectionTitle, SectionPanel, BodyText } from '@doneisbetter/gds';
+import { SectionTitle, SectionPanel, BodyText } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SectionPanel>

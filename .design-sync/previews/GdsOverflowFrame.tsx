@@ -1,4 +1,4 @@
-import { GdsOverflowFrame } from '@doneisbetter/gds';
+import { GdsOverflowFrame } from '@sovereignsquad/gds';
 
 export const ScrollX = () => (
   <GdsOverflowFrame policy="scroll-x" label="Region columns" style={{ maxWidth: 280 }}>

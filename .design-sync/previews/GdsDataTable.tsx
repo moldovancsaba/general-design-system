@@ -1,4 +1,4 @@
-import { GdsDataTable, createGdsTableAdapter } from '@doneisbetter/gds';
+import { GdsDataTable, createGdsTableAdapter } from '@sovereignsquad/gds';
 
 type Invoice = {
   id: string;

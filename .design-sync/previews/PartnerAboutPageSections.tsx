@@ -1,4 +1,4 @@
-import { PartnerAboutPageSections } from '@doneisbetter/gds';
+import { PartnerAboutPageSections } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PartnerAboutPageSections

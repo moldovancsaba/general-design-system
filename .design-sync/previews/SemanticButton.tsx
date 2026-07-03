@@ -1,4 +1,4 @@
-import { SemanticButton } from '@doneisbetter/gds';
+import { SemanticButton } from '@sovereignsquad/gds';
 
 export const Actions = () => (
   <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>

@@ -1,4 +1,4 @@
-import { WorkspaceHeader, Button } from '@doneisbetter/gds';
+import { WorkspaceHeader, Button } from '@sovereignsquad/gds';
 import { IconPlus, IconSettings } from '@tabler/icons-react';
 
 export const Default = () => (

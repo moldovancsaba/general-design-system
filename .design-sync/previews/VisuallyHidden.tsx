@@ -1,4 +1,4 @@
-import { VisuallyHidden, Button } from '@doneisbetter/gds';
+import { VisuallyHidden, Button } from '@sovereignsquad/gds';
 import { IconTrash, IconSearch } from '@tabler/icons-react';
 
 export const IconButtonLabel = () => (

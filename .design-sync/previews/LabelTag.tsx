@@ -1,4 +1,4 @@
-import { LabelTag } from '@doneisbetter/gds';
+import { LabelTag } from '@sovereignsquad/gds';
 
 export const Tones = () => (
   <div

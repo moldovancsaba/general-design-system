@@ -1,4 +1,4 @@
-import { UploadDropzone } from '@doneisbetter/gds';
+import { UploadDropzone } from '@sovereignsquad/gds';
 
 export const Idle = () => (
   <UploadDropzone

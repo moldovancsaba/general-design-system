@@ -1,4 +1,4 @@
-import { AdminAnalyticsTable } from '@doneisbetter/gds';
+import { AdminAnalyticsTable } from '@sovereignsquad/gds';
 
 const rows = [
   { id: 'docs', surface: 'Docs site', views: 48210, delta: 12.4, errors: 0 },

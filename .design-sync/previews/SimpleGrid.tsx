@@ -1,4 +1,4 @@
-import { SimpleGrid, MetricCard } from '@doneisbetter/gds';
+import { SimpleGrid, MetricCard } from '@sovereignsquad/gds';
 
 export const TwoColumns = () => (
   <SimpleGrid cols={2} spacing="md">

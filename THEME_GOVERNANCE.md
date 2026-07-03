@@ -66,7 +66,7 @@ Recommended model:
 2. use `createPublicBrandTheme(...)` when a branded public product needs governed overrides
 3. apply tenant-level overrides only on documented brand surfaces and only through the approved lane
 
-For public/editorial products that want one sanctioned entrypoint instead of ad hoc merging, use `createPublicBrandTheme({ editorialSerif, flatSurfaces, overrides })` from `@doneisbetter/gds-theme`.
+For public/editorial products that want one sanctioned entrypoint instead of ad hoc merging, use `createPublicBrandTheme({ editorialSerif, flatSurfaces, overrides })` from `@sovereignsquad/gds-theme`.
 
 ## Creator-authored experience theming
 
@@ -170,7 +170,7 @@ Forced-colors contract:
 Amanoba is a dark-default LMS/game product. Recommended recipe:
 
 ```ts
-import { createPublicBrandTheme } from '@doneisbetter/gds-theme/client';
+import { createPublicBrandTheme } from '@sovereignsquad/gds-theme/client';
 
 export const amanobaMantineTheme = createPublicBrandTheme({
   flatSurfaces: true,
@@ -196,7 +196,7 @@ export const amanobaMantineTheme = createPublicBrandTheme({
 
 Rules:
 
-- use `@doneisbetter/gds-theme/client` in client providers; use `@doneisbetter/gds-theme/server` only for SSR-safe theme data
+- use `@sovereignsquad/gds-theme/client` in client providers; use `@sovereignsquad/gds-theme/server` only for SSR-safe theme data
 - do not call `withGdsMotion()` unless product marketing explicitly wants shared hover motion
 - keep provider-branded OAuth colors in documented exception surfaces, not in `primaryColor`
 
@@ -239,7 +239,7 @@ import {
   resolveGdsThemePreset,
   resolveGdsVibeTheme,
   useGdsThemePresetState,
-} from '@doneisbetter/gds-theme/client';
+} from '@sovereignsquad/gds-theme/client';
 
 const theme = resolveGdsThemePreset('coral');
 const vibe = resolveGdsVibeTheme('coral');

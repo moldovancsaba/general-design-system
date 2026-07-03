@@ -1,4 +1,4 @@
-import { Badge } from '@doneisbetter/gds';
+import { Badge } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>

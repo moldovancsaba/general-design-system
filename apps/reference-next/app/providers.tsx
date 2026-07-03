@@ -1,7 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { GdsProvider, createPublicBrandTheme } from '@doneisbetter/gds-theme/client';
+import { GdsProvider, createPublicBrandTheme } from '@sovereignsquad/gds-theme/client';
 
 const referenceNextTheme = createPublicBrandTheme({
   flatSurfaces: true,

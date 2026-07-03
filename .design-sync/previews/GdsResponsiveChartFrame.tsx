@@ -1,4 +1,4 @@
-import { GdsResponsiveChartFrame } from '@doneisbetter/gds';
+import { GdsResponsiveChartFrame } from '@sovereignsquad/gds';
 
 const bars = [
   { label: 'Jan', value: 60 },

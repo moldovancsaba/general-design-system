@@ -1,21 +1,21 @@
 /**
  * Single consumer install surface (issue #346).
  *
- * Goal: a consumer installs `@doneisbetter/gds` (+ their own React) and nothing
+ * Goal: a consumer installs `@sovereignsquad/gds` (+ their own React) and nothing
  * else — the vendor UI engine is GDS's concern, not part of the consumer's
  * hand-managed dependency contract.
  *
  * Approach (production-safe): the engine packages stay **peerDependencies** so
  * there is exactly one resolved instance (peers de-duplicate — this is what
  * prevented the dual-React/dual-Mantine context failures). Modern npm (7+)
- * auto-installs peers, so `npm install @doneisbetter/gds` pulls the engine in
+ * auto-installs peers, so `npm install @sovereignsquad/gds` pulls the engine in
  * automatically; the consumer never lists it explicitly. This gate enforces the
  * invariants that make that safe:
  *
  *   1. Every GDS package that declares an engine peer uses the SAME version
  *      range for it (no skew → npm resolves a single shared instance).
  *   2. React / react-dom stay peers everywhere (consumer-owned platform).
- *   3. The umbrella `@doneisbetter/gds` declares the full engine + icon peers,
+ *   3. The umbrella `@sovereignsquad/gds` declares the full engine + icon peers,
  *      so a single install of it pulls the whole engine.
  *   4. The GDS-owned icon surface (`GdsIcons`) is reachable from a consumer
  *      entrypoint, so consumers never import `@tabler/icons-react` directly.
@@ -77,11 +77,11 @@ for (const dep of PLATFORM_PEERS) {
 }
 
 // 3. The umbrella package must declare the full engine + icon peers so a single
-//    install of @doneisbetter/gds pulls the whole engine.
+//    install of @sovereignsquad/gds pulls the whole engine.
 const umbrella = manifests['gds'].peerDependencies ?? {};
 for (const dep of ENGINE_PEERS) {
   if (!umbrella[dep]) {
-    failures.push(`Umbrella @doneisbetter/gds is missing engine peer "${dep}" — a single install would not pull it.`);
+    failures.push(`Umbrella @sovereignsquad/gds is missing engine peer "${dep}" — a single install would not pull it.`);
   }
 }
 

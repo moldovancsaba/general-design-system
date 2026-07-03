@@ -4,16 +4,16 @@ This repository ships the public API reference from `apps/playground/src/api-ref
 
 ## Runtime Contract
 
-- `@doneisbetter/gds` is the umbrella package for default consumers.
-- `@doneisbetter/gds-theme` owns theme lanes, provider setup, font lanes, and i18n context.
-- `@doneisbetter/gds-core` owns public surfaces, docs surfaces, feedback, forms, tables, playback, media, layout, icon, and state primitives.
-- `@doneisbetter/gds-admin` owns operator CRUD, resource manager, admin table, overlay, and admin shell contracts.
-- `@doneisbetter/gds-a11y` owns optional Playwright/axe accessibility CI helpers for consumer repositories.
-- `@doneisbetter/gds-compliance` owns manifest validation, strict drift scanning, exception lifecycle reporting, and adoption scoring.
+- `@sovereignsquad/gds` is the umbrella package for default consumers.
+- `@sovereignsquad/gds-theme` owns theme lanes, provider setup, font lanes, and i18n context.
+- `@sovereignsquad/gds-core` owns public surfaces, docs surfaces, feedback, forms, tables, playback, media, layout, icon, and state primitives.
+- `@sovereignsquad/gds-admin` owns operator CRUD, resource manager, admin table, overlay, and admin shell contracts.
+- `@sovereignsquad/gds-a11y` owns optional Playwright/axe accessibility CI helpers for consumer repositories.
+- `@sovereignsquad/gds-compliance` owns manifest validation, strict drift scanning, exception lifecycle reporting, and adoption scoring.
 
 ## Compliance and Adoption API
 
-`@doneisbetter/gds-compliance` exports the package-native governance/reporting helpers:
+`@sovereignsquad/gds-compliance` exports the package-native governance/reporting helpers:
 
 - `runComplianceCheck({ manifestPath, currentDate? })`
 - `formatReport(report, format?)`
@@ -32,7 +32,7 @@ CLI entrypoints:
 
 ## Theme Operations API
 
-`@doneisbetter/gds-theme` exports the package-native theme token operations contract:
+`@sovereignsquad/gds-theme` exports the package-native theme token operations contract:
 
 - `createGdsTokenGraph()`
 - `validateGdsTokenGraph(graph?)`
@@ -53,7 +53,7 @@ High-contrast and forced-colors release gates:
 
 ## Accessibility Evidence API
 
-`@doneisbetter/gds-core` exports the package-native accessibility evidence helpers:
+`@sovereignsquad/gds-core` exports the package-native accessibility evidence helpers:
 
 - `createGdsAccessibilityEvidenceIndex(entries)`
 - `getGdsAccessibilityEvidence(entriesOrIndex, id)`
@@ -64,7 +64,7 @@ These helpers back the official evidence registry rendered on the docs site. The
 
 ## Accessibility CI API
 
-`@doneisbetter/gds-a11y` exports the reusable consumer test helpers:
+`@sovereignsquad/gds-a11y` exports the reusable consumer test helpers:
 
 - `createGdsA11yTest(page, config)`
 - `runGdsAxeScan(page, config)`
@@ -79,7 +79,7 @@ The package treats `@playwright/test` and `axe-core` as optional peers. Consumer
 
 ## Maturity Capability API
 
-`@doneisbetter/gds-core` now exports the seven recommended maturity capability contracts:
+`@sovereignsquad/gds-core` now exports the seven recommended maturity capability contracts:
 
 - `getGdsMaturityCapabilities()`
 - `getGdsRecommendedMaturityCapabilities()`
@@ -90,7 +90,7 @@ These helpers expose the issue-backed delivery groups for admin delivery, runtim
 
 ## Operational Telemetry API
 
-`@doneisbetter/gds-core` exports the package-native telemetry contract for production UX diagnostics:
+`@sovereignsquad/gds-core` exports the package-native telemetry contract for production UX diagnostics:
 
 - `GdsTelemetryProvider`
 - `useGdsTelemetry()`

@@ -1,4 +1,4 @@
-import { ScrollArea, SectionPanel, BodyText, SectionTitle } from '@doneisbetter/gds';
+import { ScrollArea, SectionPanel, BodyText, SectionTitle } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SectionPanel title="Release notes" description="Long-form content inside a bounded scroll surface.">

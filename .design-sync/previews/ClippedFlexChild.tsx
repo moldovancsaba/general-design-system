@@ -1,4 +1,4 @@
-import { ClippedFlexChild } from '@doneisbetter/gds';
+import { ClippedFlexChild } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div

@@ -1,11 +1,11 @@
 # GDS Accessibility CI Package
 
-`@doneisbetter/gds-a11y` is the reusable consumer test layer for GDS accessibility gates. It is intentionally lightweight: Playwright and axe are optional peer dependencies, so product repositories opt into browser-test weight only in CI.
+`@sovereignsquad/gds-a11y` is the reusable consumer test layer for GDS accessibility gates. It is intentionally lightweight: Playwright and axe are optional peer dependencies, so product repositories opt into browser-test weight only in CI.
 
 ## Install
 
 ```bash
-npm install -D @doneisbetter/gds-a11y @playwright/test axe-core
+npm install -D @sovereignsquad/gds-a11y @playwright/test axe-core
 ```
 
 ## Public Helpers
@@ -23,7 +23,7 @@ npm install -D @doneisbetter/gds-a11y @playwright/test axe-core
 
 ```ts
 import { test, expect } from '@playwright/test';
-import { createGdsA11yTest, formatGdsA11yReport } from '@doneisbetter/gds-a11y';
+import { createGdsA11yTest, formatGdsA11yReport } from '@sovereignsquad/gds-a11y';
 import axeSource from 'axe-core/axe.min.js?raw';
 
 test('GDS route accessibility', async ({ page }) => {
@@ -85,4 +85,4 @@ Browser startup and route loading are owned by the consumer Playwright test. GDS
 
 ## Rollback
 
-The package is additive. Consumers can pin the previous package version or remove the CI helper call without changing runtime UI. Runtime accessibility requirements still remain governed by `@doneisbetter/gds-core` and `@doneisbetter/gds-theme`.
+The package is additive. Consumers can pin the previous package version or remove the CI helper call without changing runtime UI. Runtime accessibility requirements still remain governed by `@sovereignsquad/gds-core` and `@sovereignsquad/gds-theme`.

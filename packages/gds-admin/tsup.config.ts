@@ -5,5 +5,5 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   dts: true,
   clean: true,
-  external: ['react', 'react-dom', '@mantine/core', '@mantine/hooks', '@doneisbetter/gds-theme', '@doneisbetter/gds-core', '@tabler/icons-react'],
+  external: ['react', 'react-dom', '@mantine/core', '@mantine/hooks', '@sovereignsquad/gds-theme', '@sovereignsquad/gds-core', '@tabler/icons-react'],
 });

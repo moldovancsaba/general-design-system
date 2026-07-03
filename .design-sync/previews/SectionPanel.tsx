@@ -1,4 +1,4 @@
-import { SectionPanel, BodyText, SemanticButton } from '@doneisbetter/gds';
+import { SectionPanel, BodyText, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SectionPanel

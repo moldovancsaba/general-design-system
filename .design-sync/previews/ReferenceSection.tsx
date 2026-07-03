@@ -1,4 +1,4 @@
-import { ReferenceSection, BodyText } from '@doneisbetter/gds';
+import { ReferenceSection, BodyText } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ReferenceSection

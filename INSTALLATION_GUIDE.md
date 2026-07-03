@@ -4,19 +4,19 @@ Status: Active SSOT
 Version: 3.9.0
 Last updated: 2026-06-26
 
-This guide is the canonical consumer setup path for the public umbrella package `@doneisbetter/gds`. Granular package lanes remain available when a consumer explicitly wants them.
+This guide is the canonical consumer setup path for the public umbrella package `@sovereignsquad/gds`. Granular package lanes remain available when a consumer explicitly wants them.
 
 ## Single install surface
 
 The vendor UI engine is GDS's concern, not yours. Install the umbrella package and your own React; the engine is pulled in automatically:
 
 ```bash
-npm install @doneisbetter/gds react react-dom
+npm install @sovereignsquad/gds react react-dom
 ```
 
-`@doneisbetter/gds` declares the engine (`@mantine/*`, `@tabler/icons-react`) as peer dependencies, and npm 7+ installs peers automatically — so you do **not** list them yourself. They stay peers (not bundled) on purpose: that guarantees a single resolved engine instance and avoids dual-instance/version-skew failures. All GDS packages pin the **same** engine range, enforced by `npm run verify:install-surface`.
+`@sovereignsquad/gds` declares the engine (`@mantine/*`, `@tabler/icons-react`) as peer dependencies, and npm 7+ installs peers automatically — so you do **not** list them yourself. They stay peers (not bundled) on purpose: that guarantees a single resolved engine instance and avoids dual-instance/version-skew failures. All GDS packages pin the **same** engine range, enforced by `npm run verify:install-surface`.
 
-Use icons through the GDS-owned `GdsIcons` surface (`import { GdsIcons } from '@doneisbetter/gds'`) — do not import `@tabler/icons-react` directly.
+Use icons through the GDS-owned `GdsIcons` surface (`import { GdsIcons } from '@sovereignsquad/gds'`) — do not import `@tabler/icons-react` directly.
 
 > If your installer uses `--legacy-peer-deps` (which disables peer auto-install), add the engine to your install line explicitly; see the granular lane below.
 
@@ -52,20 +52,20 @@ See [COMPATIBILITY_AND_RELEASES.md](COMPATIBILITY_AND_RELEASES.md) and [VERIFIED
 Preferred `3.9.0` runtime package after the release gate opens:
 
 ```bash
-npm install @doneisbetter/gds@3.9.0
+npm install @sovereignsquad/gds@3.9.0
 ```
 
 Governance packages:
 
 ```bash
-npm install -D @doneisbetter/gds-eslint-config@3.9.0 @doneisbetter/gds-compliance@3.9.0 @doneisbetter/gds-a11y@3.9.0
+npm install -D @sovereignsquad/gds-eslint-config@3.9.0 @sovereignsquad/gds-compliance@3.9.0 @sovereignsquad/gds-a11y@3.9.0
 ```
 
 Granular runtime packages when package separation is intentional:
 
 ```bash
-npm install @doneisbetter/gds-theme@3.9.0 @doneisbetter/gds-core@3.9.0 @doneisbetter/gds-admin@3.9.0
-npm install -D @doneisbetter/gds-eslint-config@3.9.0 @doneisbetter/gds-compliance@3.9.0 @doneisbetter/gds-a11y@3.9.0
+npm install @sovereignsquad/gds-theme@3.9.0 @sovereignsquad/gds-core@3.9.0 @sovereignsquad/gds-admin@3.9.0
+npm install -D @sovereignsquad/gds-eslint-config@3.9.0 @sovereignsquad/gds-compliance@3.9.0 @sovereignsquad/gds-a11y@3.9.0
 ```
 
 Required peers:
@@ -80,11 +80,11 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
 
 Use the server/client split explicitly. The layout owns the color-scheme script and the provider file owns the single client boundary.
 
-> **Mandatory:** import `@doneisbetter/gds-theme/styles.css` exactly once, before your own app styles. Without it, GDS surfaces — including dropdown/menu/overlay backgrounds — render unstyled (transparent dropdowns).
+> **Mandatory:** import `@sovereignsquad/gds-theme/styles.css` exactly once, before your own app styles. Without it, GDS surfaces — including dropdown/menu/overlay backgrounds — render unstyled (transparent dropdowns).
 
 ```tsx
 // app/layout.tsx
-import '@doneisbetter/gds-theme/styles.css';
+import '@sovereignsquad/gds-theme/styles.css';
 import { ColorSchemeScript } from '@mantine/core';
 import Providers from './providers';
 
@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 // app/providers.tsx
 'use client';
 
-import { GdsProvider } from '@doneisbetter/gds/client';
+import { GdsProvider } from '@sovereignsquad/gds/client';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return <GdsProvider>{children}</GdsProvider>;
@@ -120,8 +120,8 @@ Mount one provider at the application root:
 ```tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '@doneisbetter/gds-theme/styles.css'; // mandatory: load once, before app styles
-import { GdsProvider } from '@doneisbetter/gds/client';
+import '@sovereignsquad/gds-theme/styles.css'; // mandatory: load once, before app styles
+import { GdsProvider } from '@sovereignsquad/gds/client';
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -135,18 +135,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 Use the package lanes intentionally:
 
-- `@doneisbetter/gds` for the simplest public install path across provider, public, discovery, detail, and admin primitives
-- `@doneisbetter/gds-core/client` for interactive cookbook surfaces such as `GdsLayoutTemplatePreview`
-- `@doneisbetter/gds-core/server` or `@doneisbetter/gds-core` for starter schema registry helpers such as `getGdsLayoutTemplates()` and `getGdsLayoutTemplate(id)`
-- `@doneisbetter/gds-theme` for consumers that want only the provider/theme lane
-- `@doneisbetter/gds-core` for consumers that want only shared/public/editorial/discovery/detail primitives
-- `@doneisbetter/gds-admin` for consumers that want only authenticated operational shells and admin scaffolds
+- `@sovereignsquad/gds` for the simplest public install path across provider, public, discovery, detail, and admin primitives
+- `@sovereignsquad/gds-core/client` for interactive cookbook surfaces such as `GdsLayoutTemplatePreview`
+- `@sovereignsquad/gds-core/server` or `@sovereignsquad/gds-core` for starter schema registry helpers such as `getGdsLayoutTemplates()` and `getGdsLayoutTemplate(id)`
+- `@sovereignsquad/gds-theme` for consumers that want only the provider/theme lane
+- `@sovereignsquad/gds-core` for consumers that want only shared/public/editorial/discovery/detail primitives
+- `@sovereignsquad/gds-admin` for consumers that want only authenticated operational shells and admin scaffolds
 
 Use the runtime entrypoints intentionally:
 
-- `@doneisbetter/gds/server` for non-interactive structural surfaces
-- `@doneisbetter/gds/client` for interactive components and provider mounting
-- granular `@doneisbetter/gds-*/server` and `@doneisbetter/gds-*/client` lanes remain supported when needed
+- `@sovereignsquad/gds/server` for non-interactive structural surfaces
+- `@sovereignsquad/gds/client` for interactive components and provider mounting
+- granular `@sovereignsquad/gds-*/server` and `@sovereignsquad/gds-*/client` lanes remain supported when needed
 
 Use the theme lanes intentionally:
 

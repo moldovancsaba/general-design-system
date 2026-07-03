@@ -5,23 +5,23 @@ GDS 3.8.0 delivers the first-class `Class USA` theme and the missing ClassScout 
 ## Install
 
 ```bash
-npm install @doneisbetter/gds@3.8.0
+npm install @sovereignsquad/gds@3.8.0
 ```
 
 ## Bootstrap
 
 Wrap the app once. For ClassScout the provider belongs in your root layout/providers file:
 
-> **Mandatory first step — load the GDS stylesheet.** Import `@doneisbetter/gds-theme/styles.css` exactly once at your app entry (Vite `main.tsx`, Next `app/layout.tsx`), before your own app styles. Without it, GDS surfaces — including dropdown/menu/overlay backgrounds — render unstyled (transparent dropdowns).
+> **Mandatory first step — load the GDS stylesheet.** Import `@sovereignsquad/gds-theme/styles.css` exactly once at your app entry (Vite `main.tsx`, Next `app/layout.tsx`), before your own app styles. Without it, GDS surfaces — including dropdown/menu/overlay backgrounds — render unstyled (transparent dropdowns).
 
 ```tsx
 // At your app entry, before app styles:
-import '@doneisbetter/gds-theme/styles.css';
+import '@sovereignsquad/gds-theme/styles.css';
 ```
 
 ```tsx
-import { GdsProvider } from '@doneisbetter/gds';
-import { createBrandTheme } from '@doneisbetter/gds-theme';
+import { GdsProvider } from '@sovereignsquad/gds';
+import { createBrandTheme } from '@sovereignsquad/gds-theme';
 
 const classUsaTheme = createBrandTheme('class-usa').mantineTheme;
 
@@ -40,10 +40,10 @@ Never nest a second `GdsProvider` or add a parallel Mantine `MantineProvider`. `
 
 ## B1 — Class USA brand theme (`createBrandTheme('class-usa')`)
 
-GH-316 · `@doneisbetter/gds-theme`
+GH-316 · `@sovereignsquad/gds-theme`
 
 ```tsx
-import { createBrandTheme } from '@doneisbetter/gds-theme';
+import { createBrandTheme } from '@sovereignsquad/gds-theme';
 
 const { mantineTheme, cssVariables, tokenGraph } = createBrandTheme('class-usa', {
   fonts: {
@@ -88,7 +88,7 @@ import {
   PillBar,
   SemanticButton,
   SoftChipGroup,
-} from '@doneisbetter/gds';
+} from '@sovereignsquad/gds';
 ```
 
 - Brand actions: `SemanticButton brandVariant="primary" | "secondary" | "accent" | "disabled"` maps to Class USA semantic tokens and keeps filled action contrast AA-safe.
@@ -103,12 +103,12 @@ import {
 
 ## B2 — Mobile bottom-tab navigation (`BottomTabBar`)
 
-GH-317 · `@doneisbetter/gds-core`
+GH-317 · `@sovereignsquad/gds-core`
 
 Used automatically when you pass `mobileNavigationMode="bottom-tab"` to `PublicShell` or `DiscoveryShell`. Direct use:
 
 ```tsx
-import { BottomTabBar } from '@doneisbetter/gds-core';
+import { BottomTabBar } from '@sovereignsquad/gds-core';
 import { IconHome, IconSearch, IconPlus, IconMessage } from '@tabler/icons-react';
 
 <BottomTabBar
@@ -130,10 +130,10 @@ Max 5 items. The `emphasizedItemId` renders the raised center-action button. `hi
 
 ## B3 — Conversation surface (`ChatThread` / `ChatMessage` / `ChatInput` / `StreamingIndicator`)
 
-GH-321 · `@doneisbetter/gds-core`
+GH-321 · `@sovereignsquad/gds-core`
 
 ```tsx
-import { ChatThread, type ChatMessageModel } from '@doneisbetter/gds-core';
+import { ChatThread, type ChatMessageModel } from '@sovereignsquad/gds-core';
 import { useState } from 'react';
 
 const [messages, setMessages] = useState<ChatMessageModel[]>([]);
@@ -162,10 +162,10 @@ Embed `ListingCard` or any GDS surface in `message.cards[]` — up to `maxEmbedd
 
 ## B4 — Searchable select / combobox (`SearchableSelect`)
 
-GH-318 · `@doneisbetter/gds-core`
+GH-318 · `@sovereignsquad/gds-core`
 
 ```tsx
-import { SearchableSelect } from '@doneisbetter/gds-core';
+import { SearchableSelect } from '@sovereignsquad/gds-core';
 
 // Synchronous options
 <SearchableSelect
@@ -196,10 +196,10 @@ Stale async responses are discarded automatically. The `group` field clusters op
 
 ## B5 — Fit-score chip (`FitScoreChip`)
 
-GH-319 · `@doneisbetter/gds-core`
+GH-319 · `@sovereignsquad/gds-core`
 
 ```tsx
-import { FitScoreChip } from '@doneisbetter/gds-core';
+import { FitScoreChip } from '@sovereignsquad/gds-core';
 
 // Score-driven (auto-label)
 <FitScoreChip value={87} />                  // "Great fit · 87"
@@ -226,10 +226,10 @@ Color is deterministic from score band — but meaning is always conveyed by tex
 
 ## B6 — AI listing card slots (`ListingCard` reason / score / actions)
 
-GH-320 · `@doneisbetter/gds-core`
+GH-320 · `@sovereignsquad/gds-core`
 
 ```tsx
-import { ListingCard, FitScoreChip, SemanticButton } from '@doneisbetter/gds';
+import { ListingCard, FitScoreChip, SemanticButton } from '@sovereignsquad/gds';
 
 <ListingCard
   title="Westside Academy"
@@ -260,12 +260,12 @@ import { ListingCard, FitScoreChip, SemanticButton } from '@doneisbetter/gds';
 
 ## B7 — Meaning badges (`MeaningBadge`)
 
-GH-322 · `@doneisbetter/gds-core`
+GH-322 · `@sovereignsquad/gds-core`
 
 Distinct from `StatusBadge` (system status). Use for editorial/brand labels:
 
 ```tsx
-import { MeaningBadge } from '@doneisbetter/gds-core';
+import { MeaningBadge } from '@sovereignsquad/gds-core';
 
 <MeaningBadge variant="attention"   label="New this week" />
 <MeaningBadge variant="validation"  label="Verified" />
@@ -279,10 +279,10 @@ Variants map to brand tokens; meaning is always conveyed by label text, not colo
 
 ## B8 — Resilient card media (`MediaWithFallback`)
 
-GH-323 · `@doneisbetter/gds-core`
+GH-323 · `@sovereignsquad/gds-core`
 
 ```tsx
-import { MediaWithFallback } from '@doneisbetter/gds-core';
+import { MediaWithFallback } from '@sovereignsquad/gds-core';
 
 <MediaWithFallback
   src={school.imageUrl}        // optional — renders branded fallback if missing or broken
@@ -299,10 +299,10 @@ Never collapses to null — always reserves the aspect-ratio box. Fires `onError
 
 ## B9 — Number stepper (`NumberStepper`)
 
-GH-324 · `@doneisbetter/gds-core`
+GH-324 · `@sovereignsquad/gds-core`
 
 ```tsx
-import { NumberStepper } from '@doneisbetter/gds-core';
+import { NumberStepper } from '@sovereignsquad/gds-core';
 
 const [qty, setQty] = useState(1);
 
@@ -322,12 +322,12 @@ Keyboard: Arrow keys step, Home/End jump to bounds. Disables the relevant button
 
 ## B10 — AI search card (`AISearchCard`)
 
-GH-325 · `@doneisbetter/gds-core`
+GH-325 · `@sovereignsquad/gds-core`
 
 Governed assistant-entry surface — search input + BETA badge + prompt chips:
 
 ```tsx
-import { AISearchCard } from '@doneisbetter/gds-core';
+import { AISearchCard } from '@sovereignsquad/gds-core';
 
 <AISearchCard
   placeholder="Ask about schools near me…"
@@ -353,15 +353,15 @@ Copy these into the ClassScout repo root so every AI coding session follows GDS 
 ```markdown
 # AGENTS.md — UI is built with the General Design System (GDS)
 
-This project uses @doneisbetter/gds for all UI. When building or changing interfaces:
-- Import from '@doneisbetter/gds' — do not author parallel primitives.
+This project uses @sovereignsquad/gds for all UI. When building or changing interfaces:
+- Import from '@sovereignsquad/gds' — do not author parallel primitives.
 - GdsProvider wraps the app at src/providers.tsx — do not add a second one.
 - Style with component props and GDS tokens only — no custom CSS or raw hex.
 - SemanticButton takes action="save"|"add"|"edit"|"delete"... not free text.
 - New ClassScout-specific components: BottomTabBar, ChatThread, AISearchCard,
   FitScoreChip, ListingCard (with reason/score/actions slots), MeaningBadge,
-  MediaWithFallback, NumberStepper, SearchableSelect — all in @doneisbetter/gds-core.
-- Brand theme: createBrandTheme from @doneisbetter/gds-theme.
+  MediaWithFallback, NumberStepper, SearchableSelect — all in @sovereignsquad/gds-core.
+- Brand theme: createBrandTheme from @sovereignsquad/gds-theme.
 - Full guide: https://sovereignsquad.github.io/general-design-system/ai
 ```
 
@@ -369,7 +369,7 @@ This project uses @doneisbetter/gds for all UI. When building or changing interf
 
 ```markdown
 # CLAUDE.md
-Install: npm install @doneisbetter/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications
+Install: npm install @sovereignsquad/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications
 Wrap once: <GdsProvider theme={classcoutTheme}> in src/providers.tsx
 Key rules:
 - SemanticButton action="save"|"add"|"edit"|"delete" — not children

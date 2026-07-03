@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Anchor, Group, Stack, Text } from '@mantine/core';
-import { useGdsTranslation } from '@doneisbetter/gds-theme';
+import { useGdsTranslation } from '@sovereignsquad/gds-theme';
 import { SectionPanel, type SectionPanelTone } from './SectionPanel';
 
 export interface ReferenceSectionProps {

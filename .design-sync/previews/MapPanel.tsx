@@ -1,4 +1,4 @@
-import { MapPanel } from '@doneisbetter/gds';
+import { MapPanel } from '@sovereignsquad/gds';
 
 export const Empty = () => (
   <MapPanel

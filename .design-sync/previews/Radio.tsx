@@ -1,4 +1,4 @@
-import { Radio, GdsSafeBox } from '@doneisbetter/gds';
+import { Radio, GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Group = () => (
   <GdsSafeBox style={{ padding: 24 }}>

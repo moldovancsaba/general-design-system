@@ -1,7 +1,7 @@
 'use client';
 
 import { ActionIcon, useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
-import { useGdsTranslation } from '@doneisbetter/gds-theme';
+import { useGdsTranslation } from '@sovereignsquad/gds-theme';
 import { GdsIcons } from './icons';
 
 export interface ThemeToggleProps {

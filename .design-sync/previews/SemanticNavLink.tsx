@@ -1,4 +1,4 @@
-import { SemanticNavLink, SidebarNav } from '@doneisbetter/gds';
+import { SemanticNavLink, SidebarNav } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SidebarNav ariaLabel="Reference navigation">

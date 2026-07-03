@@ -27,7 +27,7 @@ afterEach(() => {
   }
 });
 
-describe('@doneisbetter/gds-compliance strict mode', () => {
+describe('@sovereignsquad/gds-compliance strict mode', () => {
   it('flags local shell adapters and Mantine AppShell wrappers in strict mode', () => {
     const fixture = createFixture({
       'gds-adoption.json': JSON.stringify({
@@ -293,7 +293,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
         },
       }, null, 2),
       'app/admin/events/new/page.tsx': `
-        import { AdminCrudForm, AdminFormSection, AdminTextInput } from '@doneisbetter/gds-admin';
+        import { AdminCrudForm, AdminFormSection, AdminTextInput } from '@sovereignsquad/gds-admin';
         export default function NewEventPage() {
           return (
             <AdminCrudForm title="Create record">
@@ -328,7 +328,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
         },
       }, null, 2),
       'app/admin/events/new/page.tsx': `
-        import { AdminCrudForm, AdminTextInput } from '@doneisbetter/gds-admin';
+        import { AdminCrudForm, AdminTextInput } from '@sovereignsquad/gds-admin';
         const Stack = ({ children }) => <div>{children}</div>;
         export default function NewEventPage() {
           return <AdminCrudForm><Stack><AdminTextInput name="name" label="Name" value="" /></Stack></AdminCrudForm>;
@@ -559,7 +559,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
         },
       }, null, 2),
       'src/providers.tsx': `
-        import { GdsProvider, extendGdsTheme } from '@doneisbetter/gds-theme/client';
+        import { GdsProvider, extendGdsTheme } from '@sovereignsquad/gds-theme/client';
 
         const customTheme = extendGdsTheme({ primaryColor: 'blue' });
 
@@ -601,7 +601,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
         },
       }, null, 2),
       'src/providers.tsx': `
-        import { GdsProvider, createPublicBrandTheme } from '@doneisbetter/gds-theme/client';
+        import { GdsProvider, createPublicBrandTheme } from '@sovereignsquad/gds-theme/client';
 
         const theme = createPublicBrandTheme({
           flatSurfaces: true,
@@ -678,7 +678,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
         },
       }, null, 2),
       'src/components/Auth.tsx': `
-        import { SocialAuthButtons } from '@doneisbetter/gds-core';
+        import { SocialAuthButtons } from '@sovereignsquad/gds-core';
 
         export function Auth() {
           return (
@@ -718,7 +718,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
         },
       }, null, 2),
       'src/components/Auth.tsx': `
-        import { ProviderIdentityButtonGroup } from '@doneisbetter/gds-core';
+        import { ProviderIdentityButtonGroup } from '@sovereignsquad/gds-core';
 
         export function Auth() {
           return (
@@ -759,7 +759,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
         },
       }, null, 2),
       'src/components/Auth.tsx': `
-        import { ProviderIdentityButton } from '@doneisbetter/gds-core';
+        import { ProviderIdentityButton } from '@sovereignsquad/gds-core';
 
         export function Auth() {
           return <ProviderIdentityButton provider="google" variant="solid" />;
@@ -791,7 +791,7 @@ describe('@doneisbetter/gds-compliance strict mode', () => {
         },
       }, null, 2),
       'src/components/Auth.tsx': `
-        import { SocialAuthButtons } from '@doneisbetter/gds-core';
+        import { SocialAuthButtons } from '@sovereignsquad/gds-core';
 
         export function Auth() {
           return (

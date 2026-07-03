@@ -1,7 +1,7 @@
 # I18n Runtime
 
 Status: package-native runtime contract  
-Packages: `@doneisbetter/gds-core`, `@doneisbetter/gds-theme`  
+Packages: `@sovereignsquad/gds-core`, `@sovereignsquad/gds-theme`  
 Issue: `#264`
 
 The i18n runtime closes the gap between translated strings and localized product behavior. It provides SSR-safe helpers and small React components for formatting, pluralization, locale-aware sorting, RTL direction, text expansion fixtures, and missing-key telemetry.
@@ -29,10 +29,10 @@ import {
   createGdsMissingKeyTracker,
   createGdsTextExpansionFixture,
   useGdsDirection,
-} from '@doneisbetter/gds-core';
+} from '@sovereignsquad/gds-core';
 ```
 
-`@doneisbetter/gds-theme` remains the locale metadata authority through:
+`@sovereignsquad/gds-theme` remains the locale metadata authority through:
 
 - `gdsLocaleMetadata`
 - `getGdsLocaleMetadata(...)`

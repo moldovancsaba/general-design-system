@@ -1,4 +1,4 @@
-import { ConsumerDashboardGrid, MetricCard, ProgressCard } from '@doneisbetter/gds';
+import { ConsumerDashboardGrid, MetricCard, ProgressCard } from '@sovereignsquad/gds';
 
 export const ThreeColumn = () => (
   <ConsumerDashboardGrid columns={3}>

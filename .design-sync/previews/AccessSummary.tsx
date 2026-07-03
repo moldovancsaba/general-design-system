@@ -1,4 +1,4 @@
-import { AccessSummary } from '@doneisbetter/gds';
+import { AccessSummary } from '@sovereignsquad/gds';
 
 export const Allowed = () => (
   <AccessSummary

@@ -1,4 +1,4 @@
-import { EvidencePanel, SemanticButton } from '@doneisbetter/gds';
+import { EvidencePanel, SemanticButton } from '@sovereignsquad/gds';
 
 export const Current = () => (
   <EvidencePanel

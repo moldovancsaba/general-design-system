@@ -1,4 +1,4 @@
-import { EditorScaffold, FormField, SemanticButton, SectionPanel } from '@doneisbetter/gds';
+import { EditorScaffold, FormField, SemanticButton, SectionPanel } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <EditorScaffold

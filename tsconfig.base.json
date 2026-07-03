@@ -13,10 +13,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@doneisbetter/gds-theme": ["packages/gds-theme/src/index.ts"],
-      "@doneisbetter/gds-core": ["packages/gds-core/src/index.ts"],
-      "@doneisbetter/gds-admin": ["packages/gds-admin/src/index.ts"],
-      "@doneisbetter/gds-a11y": ["packages/gds-a11y/src/index.ts"]
+      "@sovereignsquad/gds-theme": ["packages/gds-theme/src/index.ts"],
+      "@sovereignsquad/gds-core": ["packages/gds-core/src/index.ts"],
+      "@sovereignsquad/gds-admin": ["packages/gds-admin/src/index.ts"],
+      "@sovereignsquad/gds-a11y": ["packages/gds-a11y/src/index.ts"]
     },
     "strict": true,
     "noUnusedLocals": true,

@@ -1,4 +1,4 @@
-import { GdsRelativeTime } from '@doneisbetter/gds';
+import { GdsRelativeTime } from '@sovereignsquad/gds';
 
 export const HoursAgo = () => (
   <p style={{ margin: 0 }}>

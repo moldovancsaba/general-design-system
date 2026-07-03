@@ -1,4 +1,4 @@
-import { EditorialHero } from '@doneisbetter/gds';
+import { EditorialHero } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <EditorialHero

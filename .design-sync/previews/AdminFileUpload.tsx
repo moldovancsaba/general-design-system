@@ -1,4 +1,4 @@
-import { AdminFileUpload } from '@doneisbetter/gds';
+import { AdminFileUpload } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AdminFileUpload

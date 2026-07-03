@@ -8,8 +8,8 @@ This document defines the canonical governance enforcement toolkit for GDS consu
 
 ## Packages
 
-- `@doneisbetter/gds-eslint-config` provides shared lint rules for raw design values and forbidden UI imports.
-- `@doneisbetter/gds-compliance` provides the `gds-compliance` CLI for manifest validation, adapter verification, stale-doc detection, and repo-level drift checks.
+- `@sovereignsquad/gds-eslint-config` provides shared lint rules for raw design values and forbidden UI imports.
+- `@sovereignsquad/gds-compliance` provides the `gds-compliance` CLI for manifest validation, adapter verification, stale-doc detection, and repo-level drift checks.
 
 ## Canonical command contract
 

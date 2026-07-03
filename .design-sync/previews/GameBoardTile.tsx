@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GameBoardTile } from '@doneisbetter/gds';
+import { GameBoardTile } from '@sovereignsquad/gds';
 
 const Tile = ({ children }: { children: React.ReactNode }) => (
   <div style={{ width: 64, height: 64 }}>{children}</div>

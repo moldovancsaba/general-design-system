@@ -1,4 +1,4 @@
-import { AsyncSurface, SemanticButton } from '@doneisbetter/gds';
+import { AsyncSurface, SemanticButton } from '@sovereignsquad/gds';
 
 export const Success = () => (
   <AsyncSurface

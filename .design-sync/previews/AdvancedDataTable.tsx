@@ -1,4 +1,4 @@
-import { AdvancedDataTable } from '@doneisbetter/gds';
+import { AdvancedDataTable } from '@sovereignsquad/gds';
 
 const rows = [
   { id: 'p-104', name: 'Riverside Bakery', region: 'EU-Central', status: 'Published', visits: 1820 },

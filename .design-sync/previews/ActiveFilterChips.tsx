@@ -1,4 +1,4 @@
-import { ActiveFilterChips } from '@doneisbetter/gds';
+import { ActiveFilterChips } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ActiveFilterChips

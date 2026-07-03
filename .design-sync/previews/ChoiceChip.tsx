@@ -1,4 +1,4 @@
-import { ChoiceChip } from '@doneisbetter/gds';
+import { ChoiceChip } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>

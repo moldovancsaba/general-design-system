@@ -1,4 +1,4 @@
-import { PartnerDiscoveryFilters } from '@doneisbetter/gds';
+import { PartnerDiscoveryFilters } from '@sovereignsquad/gds';
 
 const amenities = [
   { id: 'high-chairs', label: 'High chairs' },

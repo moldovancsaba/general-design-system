@@ -1,4 +1,4 @@
-import { AmenityChipGrid } from '@doneisbetter/gds';
+import { AmenityChipGrid } from '@sovereignsquad/gds';
 
 const amenities = [
   { id: 'wifi', label: 'Free Wi-Fi' },

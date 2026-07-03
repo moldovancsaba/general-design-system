@@ -1,7 +1,7 @@
 # Content Design System
 
 Status: package-native content contract  
-Package: `@doneisbetter/gds-core`  
+Package: `@sovereignsquad/gds-core`  
 Issue: `#265`
 
 The content design system governs product language for errors, retries, confirmations, empty states, permission states, CTAs, form hints, and success feedback. It is static, docs-renderable, and safe to consume from runtime packages or adoption tooling.
@@ -19,7 +19,7 @@ import {
   validateGdsContentPatterns,
   createGdsContentExpansionReport,
   GdsContentPatternCatalog,
-} from '@doneisbetter/gds-core';
+} from '@sovereignsquad/gds-core';
 ```
 
 ## Pattern Set

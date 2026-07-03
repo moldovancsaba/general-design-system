@@ -1,13 +1,13 @@
 # Building with the General Design System (GDS)
 
-GDS is a governed React design system (`@doneisbetter/gds`) built on Mantine. Every component here is the real, shipped component. Compose them — do not reimplement them, and do not invent parallel primitives.
+GDS is a governed React design system (`@sovereignsquad/gds`) built on Mantine. Every component here is the real, shipped component. Compose them — do not reimplement them, and do not invent parallel primitives.
 
 ## Required setup — wrap once in `GdsProvider`
 
 `GdsProvider` is the single required root provider. It injects the GDS Mantine theme, tokens, fonts, color-scheme handling, and locale. **Without it, components render unstyled or throw.** Wrap the whole app once at the root:
 
 ```tsx
-import { GdsProvider, AppShell, MetricCard, SemanticButton } from '@doneisbetter/gds';
+import { GdsProvider, AppShell, MetricCard, SemanticButton } from '@sovereignsquad/gds';
 
 export default function App() {
   return (

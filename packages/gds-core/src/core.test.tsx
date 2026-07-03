@@ -173,7 +173,7 @@ function mockMatchMedia(matches: boolean) {
   };
 }
 
-describe('@doneisbetter/gds-core', () => {
+describe('@sovereignsquad/gds-core', () => {
   it('renders semantic button labels from translation messages', () => {
     renderWithGds(<SemanticButton action="save" />, {
       messages: { 'gds.action.save': 'Speichern' },
@@ -189,7 +189,7 @@ describe('@doneisbetter/gds-core', () => {
         title: 'Demo pattern',
         kind: 'pattern' as const,
         route: '/patterns/foundations',
-        packageName: '@doneisbetter/gds-core',
+        packageName: '@sovereignsquad/gds-core',
         owner: 'GDS foundations',
         status: 'verified' as const,
         updatedAt: '2026-06-14',
@@ -429,7 +429,7 @@ describe('@doneisbetter/gds-core', () => {
     ]);
     expect(validateGdsPageTemplates(templates)).toEqual([]);
     for (const template of templates) {
-      expect(template.packageName).toBe('@doneisbetter/gds-core');
+      expect(template.packageName).toBe('@sovereignsquad/gds-core');
       expect(template.telemetryEvents).toEqual(expect.arrayContaining(['page_view', 'state_visible']));
       expect(template.componentContracts.length).toBeGreaterThan(0);
       expect(template.accessibility.length).toBeGreaterThan(0);
@@ -2816,7 +2816,7 @@ describe('@doneisbetter/gds-core', () => {
           footerNext={{ label: 'Next: Providers', href: '/providers' }}
         >
           <DocsCodeBlock
-            code={`npm install @doneisbetter/gds
+            code={`npm install @sovereignsquad/gds
 npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react`}
             language="bash"
             title="Install"
@@ -2831,7 +2831,7 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
     );
 
     expect(screen.getByRole('heading', { name: 'Install packages' })).toBeInTheDocument();
-    expect(screen.getByText(/npm install @doneisbetter\/gds/)).toBeInTheDocument();
+    expect(screen.getByText(/npm install @sovereignsquad\/gds/)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Copy code block' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Start' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Learn more' })).toBeInTheDocument();

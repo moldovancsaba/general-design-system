@@ -1,4 +1,4 @@
-import { ProgressCard } from '@doneisbetter/gds';
+import { ProgressCard } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ProgressCard

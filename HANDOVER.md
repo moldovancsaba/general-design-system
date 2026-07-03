@@ -19,7 +19,7 @@ The latest verified board audit reported `open issues: 25` and `state/status mis
 ## Delivered in this repo
 
 - aligned the GDS release line to `2.3.0`
-- added publish-ready package metadata for `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin`
+- added publish-ready package metadata for `@sovereignsquad/gds-theme`, `@sovereignsquad/gds-core`, and `@sovereignsquad/gds-admin`
 - added `client` and `server` subpath exports for SSR-safe consumption guidance
 - strengthened the shared package surface with:
   - `MetricCard`

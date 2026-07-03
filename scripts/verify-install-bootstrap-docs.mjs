@@ -22,12 +22,12 @@ const files = [
 // The GDS stylesheet import is the single mandatory integration step that paints
 // every GDS surface (including dropdown/overlay backgrounds). Every consumer
 // integration path must document it or the build fails here (issue #344).
-const MANDATORY_STYLESHEET_IMPORT = '@doneisbetter/gds-theme/styles.css';
+const MANDATORY_STYLESHEET_IMPORT = '@sovereignsquad/gds-theme/styles.css';
 
 const requiredByFile = {
   'INSTALLATION_GUIDE.md': [
-    `@doneisbetter/gds@${version}`,
-    `@doneisbetter/gds-theme@${version}`,
+    `@sovereignsquad/gds@${version}`,
+    `@sovereignsquad/gds-theme@${version}`,
     'ColorSchemeScript',
     'GDS_REGISTRY_RETRIES=8 GDS_REGISTRY_DELAY_MS=7000 npm run verify:published:availability',
     'npm run verify:published:consumer',
@@ -35,26 +35,26 @@ const requiredByFile = {
     MANDATORY_STYLESHEET_IMPORT,
   ],
   'COMPATIBILITY_AND_RELEASES.md': [
-    `@doneisbetter/gds@${version}`,
-    `@doneisbetter/gds-theme@${version}`,
+    `@sovereignsquad/gds@${version}`,
+    `@sovereignsquad/gds-theme@${version}`,
     `Do not mix pre-3.0 package lines with \`${version}\` packages`,
     'Bootstrap failure states',
   ],
   'VERIFIED_CONSUMER_INSTALL_PROOF.md': [
-    `@doneisbetter/gds@${version}`,
-    `@doneisbetter/gds-theme@${version}`,
+    `@sovereignsquad/gds@${version}`,
+    `@sovereignsquad/gds-theme@${version}`,
     'npm run verify:published',
     'bounded registry polling',
   ],
   'RELEASE_PUBLISH.md': [
-    `@doneisbetter/gds@${version}`,
+    `@sovereignsquad/gds@${version}`,
     'GDS_REGISTRY_RETRIES=8 GDS_REGISTRY_DELAY_MS=7000 npm run verify:published',
     'retries are bounded',
   ],
   'CLIENT_UPGRADE_PROMPT.md': [
     `GDS upgrade to the ${version} adoption platform release`,
     'npm run verify:published',
-    `@doneisbetter/gds@${version}`,
+    `@sovereignsquad/gds@${version}`,
   ],
   'apps/playground/src/info-pages.tsx': [
     'granularInstallCode',
@@ -79,7 +79,7 @@ const requiredByFile = {
   ],
   'TEMPLATES/vite-main.tsx.template': [
     'GdsProvider',
-    '@doneisbetter/gds/client',
+    '@sovereignsquad/gds/client',
     MANDATORY_STYLESHEET_IMPORT,
   ],
   'docs/CLASSSCOUT_INTEGRATION.md': [

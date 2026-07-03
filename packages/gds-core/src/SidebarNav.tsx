@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import type { ReactNode } from 'react';
 import { Box, NavLink, Stack, Text, createPolymorphicComponent } from '@mantine/core';
 import type { NavLinkProps } from '@mantine/core';
-import { useGdsTranslation } from '@doneisbetter/gds-theme';
+import { useGdsTranslation } from '@sovereignsquad/gds-theme';
 import { getSemanticActionLabel, resolveSemanticActionConfig } from './vocabulary';
 import type { GdsVocabularyPack, SemanticActionId } from './vocabulary';
 

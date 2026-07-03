@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import type { GdsVibeTheme } from '@doneisbetter/gds-theme';
+import type { GdsVibeTheme } from '@sovereignsquad/gds-theme';
 
 export type GdsOwnedContrastRole = 'theme-lab-controls' | 'vibe-gallery-card' | 'vibe-contract' | 'athlete-gold-reference';
 

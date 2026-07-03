@@ -1,4 +1,4 @@
-import { NotificationCenter, GdsNotificationProvider } from '@doneisbetter/gds';
+import { NotificationCenter, GdsNotificationProvider } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsNotificationProvider>

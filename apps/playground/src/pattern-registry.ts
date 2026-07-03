@@ -64,7 +64,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Shell & Navigation Guidance',
     coverageStatus: 'live-demo',
     summary: 'Page headers answer where the user is, what the surface is for, and what comes next.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'PageHeader',
   },
   {
@@ -75,7 +75,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Controls & Inputs',
     coverageStatus: 'live-demo',
     summary: 'Canonical color-scheme toggle for surfaces that need explicit user-controlled light/dark switching.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ThemeToggle',
   },
   {
@@ -86,7 +86,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Controls & Inputs',
     coverageStatus: 'live-demo',
     summary: 'Canonical field wrapper for visible labels, descriptions, errors, and grouped control semantics.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'FormField',
   },
   {
@@ -97,7 +97,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Controls & Inputs',
     coverageStatus: 'live-demo',
     summary: 'Bounded immersive/game tile primitive with reduced-motion-aware reveal and matched states.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'GameBoardTile',
   },
   {
@@ -108,7 +108,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Shell & Navigation Guidance',
     coverageStatus: 'live-demo',
     summary: 'Each user area must converge on one shell contract rather than page-local layout rhythm.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'DiscoveryShell / DocsShell / renderGdsLayout',
   },
   {
@@ -119,7 +119,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Layout Contracts',
     coverageStatus: 'live-demo',
     summary: 'Canonical sidebar-first shell with header, sidebar, main region, mobile collapse, and sticky navigation behavior.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'DiscoveryShell / AppShell',
   },
   {
@@ -130,7 +130,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Layout Contracts',
     coverageStatus: 'live-demo',
     summary: 'Governed sidebar IA with section labels, active states, and mobile-aware row rhythm.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'SidebarNav / SidebarNavSection / SidebarNavItem',
   },
   {
@@ -150,7 +150,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Workflow Guidance',
     coverageStatus: 'live-demo',
     summary: 'Forms should validate without punishing typing and must expose grouped fields and loading submit states.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'useGdsForm / useGdsFormOrchestration / GdsValidationSummary / FormErrorSummary / ValidatedFieldMessage / GdsSegmentedControl / GdsSlider / GdsRatingScale / GdsWizardStepper',
   },
   {
@@ -197,7 +197,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Workflow Guidance',
     coverageStatus: 'live-demo',
     summary: 'Issue-backed product maturity registry for the seven highest-value GDS capability groups, including contracts, accessibility, observability, rollback, testing, and documentation evidence.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'getGdsRecommendedMaturityCapabilities / getGdsMaturitySummary',
   },
   {
@@ -208,7 +208,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Workflow Guidance',
     coverageStatus: 'live-demo',
     summary: 'Repeated CTA rows and action stacks must use governed semantic actions instead of local button-group wrappers.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ActionBar / SemanticButton / createGdsVocabularyPack',
   },
   {
@@ -219,7 +219,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Workflow Guidance',
     coverageStatus: 'live-demo',
     summary: 'Drawer and page detail experiences should converge on one governed detail shell contract.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'DetailProfileShell',
   },
   {
@@ -230,7 +230,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Third-party embeds and maps must render inside the sanctioned GDS containment surface.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'MapPanel',
   },
   {
@@ -250,7 +250,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Controls & Inputs',
     coverageStatus: 'live-demo',
     summary: 'Lightweight filter and scope chips should use governed active state and shared token rhythm.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ChoiceChip / PillBar / SoftChipGroup / FilterChipGroup',
   },
   {
@@ -297,7 +297,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Cards & Metrics',
     coverageStatus: 'live-demo',
     summary: 'Structured product cards keep fixed slots for media, metadata, status, and the primary action.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ProductCard',
   },
   {
@@ -308,7 +308,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Media-first public cards must retain price, availability, helper text, and one clear mobile action.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PublicProductCard',
   },
   {
@@ -319,7 +319,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Compatibility media card for image-first card surfaces that do not need the full public product contract.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'MediaCard',
   },
   {
@@ -330,7 +330,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Cards & Metrics',
     coverageStatus: 'live-demo',
     summary: 'Accent surfaces must stay readable across color schemes without raw background hacks.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'AccentPanel',
   },
   {
@@ -341,7 +341,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Dashboard & Panel Surfaces',
     coverageStatus: 'live-demo',
     summary: 'Metric and progress cards expose value hierarchy, trend semantics, and mobile-safe prioritization.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'MetricCard / ProgressCard',
   },
   {
@@ -352,7 +352,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Search & Data Views',
     coverageStatus: 'live-demo',
     summary: 'Search, filter, sort, reset, and create affordances must stay in a predictable operational order.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ListingProvider / useListingState / DataToolbar / ActiveFilterChips / ResultSummary / SortMenu / BulkActionsBar',
   },
   {
@@ -363,7 +363,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'State & Recovery Components',
     coverageStatus: 'live-demo',
     summary: 'Loading, empty, error, permission, disabled, and success states now include shared presentation modes for centered/fill bounded surfaces.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'StateBlock / AsyncSurface / MissingDataPrompt',
   },
   {
@@ -374,7 +374,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'State & Recovery Components',
     coverageStatus: 'live-demo',
     summary: 'Shared inline, centered, and fill presentation contract used by state and panel surfaces.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'resolveSurfacePresentationStyles',
   },
   {
@@ -385,7 +385,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Layout Contracts',
     coverageStatus: 'live-demo',
     summary: 'Priority-driven CTA orchestration belongs to the semantic ActionBar contract.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ActionBar',
   },
   {
@@ -396,7 +396,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Unified discovery card for events, venues, communities, and similar public objects.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ListingCard',
   },
   {
@@ -407,7 +407,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Auth, Share, & Access',
     coverageStatus: 'live-demo',
     summary: 'Sharing should use governed copy/native/channel actions instead of product-local wrappers.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ShareButtonGroup',
   },
   {
@@ -418,7 +418,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Food/menu cards need governed freshness, pickup, scarcity, and bundle semantics.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PublicFoodCard',
   },
   {
@@ -429,7 +429,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Grouped weekly menus and category-based food composition build on the canonical food-card contract.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'FoodMenuSection',
   },
   {
@@ -440,7 +440,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Embeds and third-party maps must live inside sanctioned panel chrome with governed states.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'MapPanel',
   },
   {
@@ -451,7 +451,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Dashboard & Panel Surfaces',
     coverageStatus: 'live-demo',
     summary: 'Canonical page and drawer detail composition with hero, sections, actions, and related content.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'DetailProfileShell',
   },
   {
@@ -462,7 +462,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Auth, Share, & Access',
     coverageStatus: 'live-demo',
     summary: 'Staged consent, review, share, and recovery experiences should use one public-flow shell contract.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PublicFlowShell',
   },
   {
@@ -473,7 +473,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Auth, Share, & Access',
     coverageStatus: 'live-demo',
     summary: 'Timed-media and kiosk presentation needs governed playback framing and degraded/error states.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PlaybackSurface',
   },
   {
@@ -484,7 +484,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Public marketing, docs, and discovery surfaces need one branded shell contract with mobile nav behavior.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PublicShell',
   },
   {
@@ -495,7 +495,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Primary public navigation uses explicit nav items, active state, and semantic aria-current handling.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PublicNav',
   },
   {
@@ -506,7 +506,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Auth, Share, & Access',
     coverageStatus: 'live-demo',
     summary: 'Auth entry surfaces must own title, helper/error placement, and canonical social-auth positioning.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'AuthShell',
   },
   {
@@ -517,7 +517,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Auth, Share, & Access',
     coverageStatus: 'live-demo',
     summary: 'Provider-button clusters need governed wording, spacing, loading, and provider-brand treatment.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'SocialAuthButtons',
   },
   {
@@ -528,7 +528,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Auth, Share, & Access',
     coverageStatus: 'live-demo',
     summary: 'Canonical provider-brand button and grouped provider-lane components for identity surfaces.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ProviderIdentityButtonGroup',
   },
   {
@@ -539,7 +539,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Docs, legal, and editorial reading surfaces need governed width, meta, and side-rail behavior.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ArticleShell',
   },
   {
@@ -550,7 +550,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Docs surfaces may add breadcrumbs, next-step links, and code-treatment slots without redefining readability.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'DocsPageShell',
   },
   {
@@ -561,7 +561,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Canonical docs/reference shell for full-width public documentation with governed sidebar and header contracts.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'DocsShell',
   },
   {
@@ -572,7 +572,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Canonical section framing for official docs/reference pages with governed title, summary, and action rhythm.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ReferenceSection',
   },
   {
@@ -583,7 +583,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Canonical docs/reference grid for install, governance, and demo navigation without local card wrappers.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ReferenceLinkGrid',
   },
   {
@@ -594,7 +594,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Canonical disclosure for partial locale coverage so public language support claims remain explicit and honest.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ReferenceLocaleNotice',
   },
   {
@@ -605,7 +605,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Official interactive explorer for shipped theme lanes, color-scheme preview, and bounded brand-theme controls.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ReferenceThemeExplorer',
   },
   {
@@ -616,7 +616,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Canonical reference-site shell for public route grouping and website-level docs/demo structure framing.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'ReferenceSiteShell',
   },
   {
@@ -627,7 +627,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editorial & Brand Storytelling',
     coverageStatus: 'live-demo',
     summary: 'Split text/media public hero sections need one deterministic collapse and CTA hierarchy contract.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'EditorialHero',
   },
   {
@@ -638,7 +638,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editorial & Brand Storytelling',
     coverageStatus: 'live-demo',
     summary: 'Trust, service, and value strips must use a shared multi-column public band contract.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'FeatureBand',
   },
   {
@@ -649,7 +649,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Catalog/discovery pages use one governed result header, toolbar, filter, and scope rhythm.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'BrowseSurface',
   },
   {
@@ -660,7 +660,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editorial & Brand Storytelling',
     coverageStatus: 'live-demo',
     summary: 'Guide, promo, collection, and discovery cards must share one canonical media/title/meta/CTA contract.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'EditorialCard',
   },
   {
@@ -671,7 +671,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Dashboard & Panel Surfaces',
     coverageStatus: 'live-demo',
     summary: 'Consumer account and member-dashboard clusters use a shared section shell with governed action placement.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ConsumerSection',
   },
   {
@@ -682,7 +682,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Dashboard & Panel Surfaces',
     coverageStatus: 'live-demo',
     summary: 'Metric, progress, and account-summary cards should sit inside a shared responsive dashboard grid.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ConsumerDashboardGrid',
   },
   {
@@ -693,7 +693,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editing & Content Ops',
     coverageStatus: 'live-demo',
     summary: 'Media editing should unify upload, URL entry, preview, status, reset/remove, and policy messaging.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'MediaField',
   },
   {
@@ -704,7 +704,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editing & Content Ops',
     coverageStatus: 'live-demo',
     summary: 'Admin settings and content editors need one scaffold for grouped editing, preview rails, and save bars.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'ContentOpsEditor / ContentOpsSection / ContentOpsActionBar',
   },
   {
@@ -715,7 +715,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editing & Content Ops',
     coverageStatus: 'live-demo',
     summary: 'Admin compatibility shell built on the canonical DiscoveryShell contract.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'AppShell',
   },
   {
@@ -726,7 +726,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editing & Content Ops',
     coverageStatus: 'live-demo',
     summary: 'Canonical editor scaffold for form, preview, settings, and sticky footer composition.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'EditorScaffold',
   },
   {
@@ -737,7 +737,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editing & Content Ops',
     coverageStatus: 'live-demo',
     summary: 'Admin form grouping primitive with title, description, body, and divider rhythm.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'FormSection',
   },
   {
@@ -748,7 +748,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editing & Content Ops',
     coverageStatus: 'live-demo',
     summary: 'Admin workspace context header with breadcrumbs, description, and action placement.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'WorkspaceHeader',
   },
   {
@@ -759,7 +759,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Dashboard & Panel Surfaces',
     coverageStatus: 'live-demo',
     summary: 'Operational panels and detail sections now expose shared panel-body presentation controls (`inline`, `centered`, `fill`) so local wrappers are unnecessary.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'SectionPanel',
   },
   {
@@ -770,7 +770,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editorial & Brand Storytelling',
     coverageStatus: 'live-demo',
     summary: 'Narrative and media-driven public footers need a shared layout contract instead of repo-local footer systems.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PublicBrandFooter',
   },
   {
@@ -781,7 +781,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editorial & Brand Storytelling',
     coverageStatus: 'live-demo',
     summary: 'Simple public footer primitive for lightweight site meta and legal copy.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PublicSiteFooter',
   },
   {
@@ -792,7 +792,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'State & Recovery Components',
     coverageStatus: 'live-demo',
     summary: 'Mobile and operational filters must use a shared drawer or bottom-sheet contract with clear apply/reset behavior.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'FilterDrawer',
   },
   {
@@ -803,7 +803,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Shells & Docs',
     coverageStatus: 'live-demo',
     summary: 'Install and reference code blocks need a shared wrapper with accessible copy affordances.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'DocsCodeBlock',
   },
   {
@@ -814,7 +814,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Editorial & Brand Storytelling',
     coverageStatus: 'live-demo',
     summary: 'Public CTA groups must preserve one obvious primary action and stack safely on smaller screens.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'CtaButtonGroup',
   },
   {
@@ -825,7 +825,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Auth, Share, & Access',
     coverageStatus: 'live-demo',
     summary: 'Upload and drop surfaces need explicit drag state, error, replace, remove, and a11y labeling behavior.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'UploadDropzone',
   },
   {
@@ -836,7 +836,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Auth, Share, & Access',
     coverageStatus: 'live-demo',
     summary: 'Role, scope, blocked, and ownership cues must remain explicit and not rely on color only.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'AccessSummary',
   },
   {
@@ -847,7 +847,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'State & Recovery Components',
     coverageStatus: 'live-demo',
     summary: 'Protected-content and expired-session failures need one canonical recovery surface with clear next actions.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'AccessRecoveryPanel',
   },
   {
@@ -858,7 +858,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Auth, Share, & Access',
     coverageStatus: 'live-demo',
     summary: 'Paywalls and login gates must expose a public teaser while never rendering protected content until access is unlocked.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'GdsAccessGate / resolveGdsAccessState',
   },
   {
@@ -869,7 +869,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'State & Recovery Components',
     coverageStatus: 'live-demo',
     summary: 'Placeholder and coming-soon surfaces must stay honest, visibly non-live, and free of fabricated data.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PlaceholderPanel',
   },
   {
@@ -880,7 +880,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Search & Data Views',
     coverageStatus: 'live-demo',
     summary: 'Public and product summary tables need governed loading, empty, error, and threshold-safe states.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'SimpleDataTable',
   },
   {
@@ -891,7 +891,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Search & Data Views',
     coverageStatus: 'live-demo',
     summary: 'Admin table primitive for operational registries and structured internal records.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'AdvancedDataTable / DataTable',
   },
   {
@@ -902,7 +902,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Search & Data Views',
     coverageStatus: 'live-demo',
     summary: 'Canonical responsive admin data surface that switches table and card strategies intentionally.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'ResponsiveDataView',
   },
   {
@@ -913,7 +913,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Search & Data Views',
     coverageStatus: 'live-demo',
     summary: 'Admin KPI strip for compact repeated operational metrics.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'StatsStrip',
   },
   {
@@ -924,7 +924,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Search & Data Views',
     coverageStatus: 'live-demo',
     summary: 'Admin information card for highlighted operational values and supporting detail.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'InfoCard',
   },
   {
@@ -935,7 +935,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Layout Contracts',
     coverageStatus: 'live-demo',
     summary: 'Admin navigation link that resolves label and icon through the shared semantic vocabulary.',
-    importPath: '@doneisbetter/gds-admin',
+    importPath: '@sovereignsquad/gds-admin',
     sourceComponent: 'SemanticNavLink',
   },
   {
@@ -946,7 +946,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'State & Recovery Components',
     coverageStatus: 'live-demo',
     summary: 'Compatibility empty-state primitive represented alongside the richer StateBlock contract.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'EmptyState',
   },
   {
@@ -957,7 +957,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Search & Data Views',
     coverageStatus: 'live-demo',
     summary: 'Lightweight reporting sections need explicit loading, threshold, error, and live states.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'StatsSection',
   },
   {
@@ -968,7 +968,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Search & Data Views',
     coverageStatus: 'live-demo',
     summary: 'Reporting-heavy workflows use governed period controls, evidence panels, chart-token wrappers, and fallback tables.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ReportingSection / PeriodSelector / EvidencePanel / ChartTokenPanel / GdsChart / GdsAreaChart / GdsSparkline / GdsLongitudinalChart / GdsBenchmarkBarChart / GdsRadarChart / GdsMaturityRadarChart / GdsGaugeChart',
   },
   {
@@ -979,7 +979,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Messaging Primitives',
     coverageStatus: 'live-demo',
     summary: 'Alerts must explain the current state and the next action instead of acting as decorative chrome.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'InlineAlert / BannerNotice / GdsTelemetryProvider',
   },
   {
@@ -999,7 +999,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Messaging Primitives',
     coverageStatus: 'live-demo',
     summary: 'Notifications use the governed queue for severity, retry, announcement-only updates, persistence, and metadata-only audit events.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'GdsNotificationProvider / GdsNotificationCenter / NotificationCenter / InlineAlert / BannerNotice',
   },
   {
@@ -1010,7 +1010,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Messaging Primitives',
     coverageStatus: 'live-demo',
     summary: 'Badges are compact state cues and must not rely on color only.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'StatusBadge / CountBadge / LabelTag',
   },
   {
@@ -1021,7 +1021,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Messaging Primitives',
     coverageStatus: 'live-demo',
     summary: 'Modals support focused edits and confirmations with trapped focus and no stacking.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ConfirmDialog / OverlayManagerProvider / GdsDialog',
   },
   {
@@ -1032,7 +1032,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Messaging Primitives',
     coverageStatus: 'live-demo',
     summary: 'Drawers support filters and secondary panels with explicit mobile and desktop sizing behavior.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'FilterDrawer / CommandRegistryProvider / GdsSidePanel',
   },
   {
@@ -1079,7 +1079,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Workflow Guidance',
     coverageStatus: 'live-demo',
     summary: 'Products may extend semantic action vocabulary through governed namespaced packs rather than raw labels.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'createGdsVocabularyPack',
   },
   {
@@ -1090,7 +1090,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Product Surfaces',
     coverageStatus: 'live-demo',
     summary: 'Issue-backed partner-compatible discovery system covering theme, shell, filters, map/list, detail, newsletter, content, observability, validation, and non-copy boundaries.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'PartnerDiscoveryShell / PartnerDiscoveryFilters / PartnerMapListShell / PartnerPlaceDetailTemplate / PartnerNewsletterCapture / PartnerListIndex / PartnerFaqList / PartnerSubmissionEntry',
   },
   {
@@ -1101,7 +1101,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Shell & Navigation Guidance',
     coverageStatus: 'live-demo',
     summary: 'Mobile-first persistent bottom tab bar driven by nav items, with safe-area insets, an active token, and an optional raised center action.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'BottomTabBar, BOTTOM_TAB_MAX_ITEMS, BOTTOM_TAB_HEIGHT',
   },
   {
@@ -1112,7 +1112,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Forms & Inputs',
     coverageStatus: 'live-demo',
     summary: 'Searchable single-select / combobox with async options, grouping, clearable value, and full WAI-ARIA keyboard accessibility.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'SearchableSelect',
   },
   {
@@ -1123,7 +1123,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Compact match-quality pill on a sage to terracotta band scale with an accessible tooltip, distinct from status badges.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'FitScoreChip',
   },
   {
@@ -1134,7 +1134,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Product Surfaces',
     coverageStatus: 'live-demo',
     summary: 'Assistant chat surface: an auto-scrolling live-region thread, role-styled bubbles with embedded result cards, streaming indicator, and an Enter-to-send input.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'ChatThread, ChatMessage, ChatInput, StreamingIndicator',
   },
   {
@@ -1145,7 +1145,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Editorial brand-meaning labels (attention, validation, info, urgency) kept separate from system status badges.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'MeaningBadge',
   },
   {
@@ -1156,7 +1156,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Discovery & Listing',
     coverageStatus: 'live-demo',
     summary: 'Image primitive with a branded fallback and reserved aspect-ratio box so a failed image never collapses a card or shifts layout.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'MediaWithFallback',
   },
   {
@@ -1167,7 +1167,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Forms & Inputs',
     coverageStatus: 'live-demo',
     summary: 'Bounded accessible quantity stepper with clamp/snap, keyboard support, and spinbutton semantics.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'NumberStepper',
   },
   {
@@ -1178,7 +1178,7 @@ const rawPatternRegistry: RawPatternRegistryEntry[] = [
     section: 'Public Product Surfaces',
     coverageStatus: 'live-demo',
     summary: 'Governed AI search entry surface composing a search input, BETA meaning badge, and prompt chips that route a query into the assistant.',
-    importPath: '@doneisbetter/gds-core',
+    importPath: '@sovereignsquad/gds-core',
     sourceComponent: 'AISearchCard',
   },
 ];

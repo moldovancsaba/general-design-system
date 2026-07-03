@@ -1,7 +1,7 @@
 import type { Key, ReactNode } from 'react';
 import { Box, Group, Paper, ScrollArea, Table, Text, UnstyledButton } from '@mantine/core';
-import { StateBlock, type StateBlockProps } from '@doneisbetter/gds-core';
-import { GdsIcons } from '@doneisbetter/gds-core';
+import { StateBlock, type StateBlockProps } from '@sovereignsquad/gds-core';
+import { GdsIcons } from '@sovereignsquad/gds-core';
 
 export type AdminSortDirection = 'asc' | 'desc';
 export type AdminColumnAlign = 'start' | 'center' | 'end';

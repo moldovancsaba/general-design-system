@@ -1,4 +1,4 @@
-import { PartnerContactBlock } from '@doneisbetter/gds';
+import { PartnerContactBlock } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PartnerContactBlock

@@ -1,4 +1,4 @@
-import { PartnerDiscoveryShell, PartnerAmenityBadgeGrid, PartnerContactBlock } from '@doneisbetter/gds';
+import { PartnerDiscoveryShell, PartnerAmenityBadgeGrid, PartnerContactBlock } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PartnerDiscoveryShell

@@ -1,4 +1,4 @@
-import { ReferenceLocaleNotice } from '@doneisbetter/gds';
+import { ReferenceLocaleNotice } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ReferenceLocaleNotice

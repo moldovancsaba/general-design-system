@@ -1,4 +1,4 @@
-import { FeatureBand } from '@doneisbetter/gds';
+import { FeatureBand } from '@sovereignsquad/gds';
 
 const features = [
   {

@@ -1,4 +1,4 @@
-import { GdsLocaleText } from '@doneisbetter/gds';
+import { GdsLocaleText } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <p style={{ fontSize: 16 }}>

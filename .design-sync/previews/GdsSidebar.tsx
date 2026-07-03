@@ -1,4 +1,4 @@
-import { GdsSidebar } from '@doneisbetter/gds';
+import { GdsSidebar } from '@sovereignsquad/gds';
 
 const Nav = () => (
   <div

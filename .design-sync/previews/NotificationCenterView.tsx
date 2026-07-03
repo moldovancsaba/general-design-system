@@ -1,4 +1,4 @@
-import { NotificationCenterView } from '@doneisbetter/gds';
+import { NotificationCenterView } from '@sovereignsquad/gds';
 
 export const Populated = () => (
   <NotificationCenterView

@@ -3,9 +3,9 @@
   "gdsVersion": "3.4.9",
   "productArchetype": "public",
   "supportedEntryPoints": [
-    "@doneisbetter/gds-theme/client",
-    "@doneisbetter/gds-core/client",
-    "@doneisbetter/gds-admin"
+    "@sovereignsquad/gds-theme/client",
+    "@sovereignsquad/gds-core/client",
+    "@sovereignsquad/gds-admin"
   ],
   "requiredContracts": [
     "ReferenceSection",

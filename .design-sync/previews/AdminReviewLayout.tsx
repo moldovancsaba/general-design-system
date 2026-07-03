@@ -1,4 +1,4 @@
-import { AdminReviewLayout, SemanticButton } from '@doneisbetter/gds';
+import { AdminReviewLayout, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AdminReviewLayout

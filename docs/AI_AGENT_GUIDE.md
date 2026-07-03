@@ -8,24 +8,24 @@ How any AI coding agent — Claude Code, Claude (claude.ai), Cursor, Copilot, or
 
 ## 1. What GDS is
 
-GDS (`@doneisbetter/gds`) is a governed React design system built on Mantine. It ships 250+ components, design tokens, theme presets, and runtime systems (forms, data tables, overlays, notifications, access gates, i18n). Products compose shipped GDS contracts rather than reinventing UI locally. Mantine and Tabler are implementation dependencies behind GDS-owned APIs.
+GDS (`@sovereignsquad/gds`) is a governed React design system built on Mantine. It ships 250+ components, design tokens, theme presets, and runtime systems (forms, data tables, overlays, notifications, access gates, i18n). Products compose shipped GDS contracts rather than reinventing UI locally. Mantine and Tabler are implementation dependencies behind GDS-owned APIs.
 
 ## 2. Install and bootstrap
 
 ```bash
-npm install @doneisbetter/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react react react-dom
+npm install @sovereignsquad/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react react react-dom
 ```
 
 First, load the GDS stylesheet exactly once at the app entry, before any app styles — this is mandatory; without it GDS surfaces (including dropdown/overlay backgrounds) render unstyled:
 
 ```tsx
-import '@doneisbetter/gds-theme/styles.css';
+import '@sovereignsquad/gds-theme/styles.css';
 ```
 
 Then wrap the app once in `GdsProvider` (the single required root provider — it injects theme, tokens, fonts, color-scheme handling, and locale):
 
 ```tsx
-import { GdsProvider, AppShell, PageHeader, MetricCard, SemanticButton, EmptyState } from '@doneisbetter/gds';
+import { GdsProvider, AppShell, PageHeader, MetricCard, SemanticButton, EmptyState } from '@sovereignsquad/gds';
 
 export default function App() {
   return (
@@ -40,7 +40,7 @@ export default function App() {
 }
 ```
 
-Never nest a second `GdsProvider` or add a parallel Mantine `MantineProvider` — there is exactly one theme authority. For server components, prefer the documented `@doneisbetter/gds/server` subpath; use `/client` or the root for interactive surfaces.
+Never nest a second `GdsProvider` or add a parallel Mantine `MantineProvider` — there is exactly one theme authority. For server components, prefer the documented `@sovereignsquad/gds/server` subpath; use `/client` or the root for interactive surfaces.
 
 ## 3. The styling idiom — props and tokens, never raw CSS
 

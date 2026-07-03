@@ -1,4 +1,4 @@
-import { PasswordInput } from '@doneisbetter/gds';
+import { PasswordInput } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PasswordInput

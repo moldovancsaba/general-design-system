@@ -1,4 +1,4 @@
-import { GdsFormattedDate } from '@doneisbetter/gds';
+import { GdsFormattedDate } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <p style={{ fontSize: 16 }}>

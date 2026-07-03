@@ -4,7 +4,7 @@ import {
   SimpleDataTable,
   SemanticButton,
   SemanticChartFrame,
-} from '@doneisbetter/gds';
+} from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ReportingSection

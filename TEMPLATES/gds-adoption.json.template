@@ -3,14 +3,14 @@
   "gdsVersion": "3.4.14",
   "productArchetype": "hybrid",
   "supportedEntryPoints": [
-    "@doneisbetter/gds-theme/client",
-    "@doneisbetter/gds-theme/server",
-    "@doneisbetter/gds-core/client",
-    "@doneisbetter/gds-core/server",
-    "@doneisbetter/gds-admin/client",
-    "@doneisbetter/gds-admin/server",
-    "@doneisbetter/gds/client",
-    "@doneisbetter/gds/server"
+    "@sovereignsquad/gds-theme/client",
+    "@sovereignsquad/gds-theme/server",
+    "@sovereignsquad/gds-core/client",
+    "@sovereignsquad/gds-core/server",
+    "@sovereignsquad/gds-admin/client",
+    "@sovereignsquad/gds-admin/server",
+    "@sovereignsquad/gds/client",
+    "@sovereignsquad/gds/server"
   ],
   "requiredContracts": [
     "AppShell",

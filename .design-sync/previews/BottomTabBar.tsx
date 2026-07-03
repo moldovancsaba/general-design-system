@@ -1,4 +1,4 @@
-import { BottomTabBar } from '@doneisbetter/gds-core';
+import { BottomTabBar } from '@sovereignsquad/gds-core';
 import { IconHome, IconSearch, IconPlus, IconMessage, IconUser } from '@tabler/icons-react';
 
 export default function Preview() {

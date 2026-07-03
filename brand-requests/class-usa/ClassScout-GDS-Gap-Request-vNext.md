@@ -2,7 +2,7 @@
 
 Status: **v1.0 — 2026-06-20 — authoritative (verified against installed packages)**
 For: the **GDS team**. Goal: everything ClassScout needs to ship on **pure GDS** (no app-level forks).
-Basis: inspected the installed `@doneisbetter/gds-core@2.6.4` and `@doneisbetter/gds-theme@2.6.4` type definitions in the ClassScout repo. This supersedes the inferred verdicts in `ClassScout-GDS-Implementability.md` wherever the installed package proved coverage.
+Basis: inspected the installed `@sovereignsquad/gds-core@2.6.4` and `@sovereignsquad/gds-theme@2.6.4` type definitions in the ClassScout repo. This supersedes the inferred verdicts in `ClassScout-GDS-Implementability.md` wherever the installed package proved coverage.
 
 ---
 

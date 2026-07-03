@@ -1,4 +1,4 @@
-import { FilterDrawer, FormField, ChoiceChip, SemanticButton } from '@doneisbetter/gds';
+import { FilterDrawer, FormField, ChoiceChip, SemanticButton } from '@sovereignsquad/gds';
 
 const Body = () => (
   <div style={{ display: 'grid', gap: 16 }}>

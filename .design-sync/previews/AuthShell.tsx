@@ -1,4 +1,4 @@
-import { AuthShell } from '@doneisbetter/gds';
+import { AuthShell } from '@sovereignsquad/gds';
 
 export const SignIn = () => (
   <AuthShell

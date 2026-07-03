@@ -12,7 +12,7 @@ Purpose: for every component in the redesigned UI set, state whether it's delive
 
 | Item | ClassScout today | GDS SSOT today | Action |
 |---|---|---|---|
-| GDS line | `@doneisbetter/gds-*` **2.6.4**, installed from **GitHub release tarballs** | **3.0.0**, published to **npm** (per KIDEX handover, aligned 2026-06-01) | Plan ClassScout upgrade 2.6.4 → 3.0.0; switch install source to npm |
+| GDS line | `@sovereignsquad/gds-*` **2.6.4**, installed from **GitHub release tarballs** | **3.0.0**, published to **npm** (per KIDEX handover, aligned 2026-06-01) | Plan ClassScout upgrade 2.6.4 → 3.0.0; switch install source to npm |
 | Mantine | **7.17** | **8.3** | Mantine 7→8 migration (breaking) |
 | React / Next | React 18 / Next 15.3 | React 19 / Next 15.5 | Align during upgrade |
 | Primitive policy | mixed (GDS + hand-rolled Mantine) | **Mantine-only product primitive policy** | Remove hand-rolled forks (e.g. compact card) |
@@ -136,7 +136,7 @@ Priority for ClassScout's mobile-first business goals:
 
 ## 10. Recorded limitation — palette not expressible via createPublicBrandTheme (implemented)
 
-`@doneisbetter/gds-theme`'s `createPublicBrandTheme({ flatSurfaces: true })` does not expose a way to
+`@sovereignsquad/gds-theme`'s `createPublicBrandTheme({ flatSurfaces: true })` does not expose a way to
 set the navy/terracotta/sage/cream brand palette (no brand-color input on the composer). Per the
 redesign rules (§1 of the Developer-Agent prompt), the brand palette is therefore applied as
 **app-level Mantine color overrides** via the composer's `overrides` option in

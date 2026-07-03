@@ -7,14 +7,14 @@ Project: `/Users/Shared/Projects/narimato`
 
 ## Objective
 
-Narimato is a reference consumer that installs the public `@doneisbetter/gds-*` package line directly from npm. The public participant site and local operator setup UI follow GDS shells, headers, and state patterns. Work in this phase focuses on compliance, thin adapter discipline, and surfacing real package-consumption friction back into GDS.
+Narimato is a reference consumer that installs the public `@sovereignsquad/gds-*` package line directly from npm. The public participant site and local operator setup UI follow GDS shells, headers, and state patterns. Work in this phase focuses on compliance, thin adapter discipline, and surfacing real package-consumption friction back into GDS.
 
 ## Foundation signal
 
 | Signal | Value |
 |--------|--------|
 | UI framework | Mantine 7 (`@mantine/core`, hooks, notifications, modals) |
-| GDS packages | `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, `@doneisbetter/gds-admin`, `@doneisbetter/gds-eslint-config`, `@doneisbetter/gds-compliance` |
+| GDS packages | `@sovereignsquad/gds-theme`, `@sovereignsquad/gds-core`, `@sovereignsquad/gds-admin`, `@sovereignsquad/gds-eslint-config`, `@sovereignsquad/gds-compliance` |
 | SSOT reference | Local adapter: `docs/GDS_ADOPTION.md` |
 | Archetype | **Direct npm consumer — enforcement** |
 
@@ -37,7 +37,7 @@ Narimato is a reference consumer that installs the public `@doneisbetter/gds-*` 
 | Operator shell | `components/operator/NarimatoOperatorShell.js` | Done |
 | Auth shell | `components/NarimatoAuthShell.js` | Done |
 | Page header | `components/NarimatoPageHeader.js` | Done |
-| State block | `@doneisbetter/gds-core` EmptyState, StatusBadge, ConfirmDialog | Done |
+| State block | `@sovereignsquad/gds-core` EmptyState, StatusBadge, ConfirmDialog | Done |
 | Metric card | `NarimatoMetricCard.js` thin wrapper over shared `MetricCard` | Done |
 | Article shell | Legal pages via `PublicShell` | Approved local simplification |
 | Data toolbar / responsive table | — | N/A |

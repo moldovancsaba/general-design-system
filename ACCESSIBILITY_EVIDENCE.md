@@ -17,7 +17,7 @@ Each stable pattern record must include:
 - known limitations, when present
 - recovery guidance
 
-The package-native helper surface is exported from `@doneisbetter/gds-core`:
+The package-native helper surface is exported from `@sovereignsquad/gds-core`:
 
 - `createGdsAccessibilityEvidenceIndex(...)`
 - `getGdsAccessibilityEvidence(...)`

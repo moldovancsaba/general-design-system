@@ -20,7 +20,7 @@ function entriesFrom(manifest, field, workspace) {
     name,
     range,
     category: field,
-    thirdParty: !name.startsWith('@doneisbetter/'),
+    thirdParty: !name.startsWith('@sovereignsquad/'),
   }));
 }
 

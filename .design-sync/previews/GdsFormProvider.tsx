@@ -1,4 +1,4 @@
-import { GdsFormProvider, FormErrorSummary, ValidatedFieldMessage } from '@doneisbetter/gds';
+import { GdsFormProvider, FormErrorSummary, ValidatedFieldMessage } from '@sovereignsquad/gds';
 
 const snapshot = {
   fields: {

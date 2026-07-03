@@ -1,4 +1,4 @@
-import { AdminDetailDrawer } from '@doneisbetter/gds';
+import { AdminDetailDrawer } from '@sovereignsquad/gds';
 
 export const Opened = () => (
   <AdminDetailDrawer

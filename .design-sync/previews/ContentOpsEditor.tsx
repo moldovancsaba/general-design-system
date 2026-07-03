@@ -4,7 +4,7 @@ import {
   ContentOpsActionBar,
   PageHeader,
   FormField,
-} from '@doneisbetter/gds';
+} from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ContentOpsEditor

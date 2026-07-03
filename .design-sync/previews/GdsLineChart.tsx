@@ -1,4 +1,4 @@
-import { GdsLineChart } from '@doneisbetter/gds';
+import { GdsLineChart } from '@sovereignsquad/gds';
 
 const revenue = [
   { label: 'Jan', value: 42000 },

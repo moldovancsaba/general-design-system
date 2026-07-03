@@ -1,4 +1,4 @@
-import { InlineAlert } from '@doneisbetter/gds';
+import { InlineAlert } from '@sovereignsquad/gds';
 
 export const Success = () => (
   <InlineAlert

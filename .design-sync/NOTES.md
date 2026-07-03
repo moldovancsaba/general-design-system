@@ -3,7 +3,7 @@
 Repo-specific gotchas for `/design-sync`. Package shape, entry `packages/gds/dist/index.mjs`, global `window.GDS`, provider `GdsProvider`.
 
 ## Build / pipeline
-- Entry is the umbrella `@doneisbetter/gds` (re-exports theme + core + admin). 252 components (GdsVocabulary excluded — it's a data object, not a component).
+- Entry is the umbrella `@sovereignsquad/gds` (re-exports theme + core + admin). 252 components (GdsVocabulary excluded — it's a data object, not a component).
 - `cssEntry` must be a flattened stylesheet INSIDE `packages/gds/` (the converter bounds cssEntry to the package dir and refuses sibling/`../` paths). We pre-flatten the theme stylesheet (which `@import`s bare `@mantine/core/styles.css`) with esbuild:
   `.ds-sync/node_modules/.bin/esbuild packages/gds-theme/styles.css --bundle --loader:.css=css --external:'https://*' --outfile=packages/gds/.ds-resolved-styles.css`
   Then `cfg.cssEntry: ".ds-resolved-styles.css"`. **Re-run this esbuild flatten before any rebuild if the theme stylesheet changed**, else Mantine's structural CSS won't ship to designs. (`.ds-resolved-styles.css` is gitignored.)
@@ -17,7 +17,7 @@ Repo-specific gotchas for `/design-sync`. Package shape, entry `packages/gds/dis
 - **Mantine-derived Select/MultiSelect/Autocomplete (incl. `AdminSelect`) take a `data={[{value,label}]}` prop, NOT `<option>` children.** `<option>` children render a completely blank control. Use `placeholder` + `value={null}` for unselected/error states.
 - **Media-first cards** (`AdminResourceCard`, `ProductCard`, listing/food/media cards) look poor without media. Supply `thumbnailSrc`/`mediaSrc` + `mediaAlt`; a static data-URI SVG gradient renders with no network.
 - Thin Mantine passthroughs (`Badge`, `Box`, `Button`, `Center`, `Checkbox`, `Title`, …) have trimmed `.d.ts` showing only `children`/`className`/`style`, but standard Mantine props (`label`, `defaultChecked`, `order`, `variant`, `color`, `size`) work at runtime — use them.
-- Helper/prop type shapes are often elided from the per-component `.d.ts`. Resolve them from the subpackage dist: `@doneisbetter/gds-core/dist/GdsDesignHandoff-*.d.ts` and `@doneisbetter/gds-admin/dist/server.d.ts`.
+- Helper/prop type shapes are often elided from the per-component `.d.ts`. Resolve them from the subpackage dist: `@sovereignsquad/gds-core/dist/GdsDesignHandoff-*.d.ts` and `@sovereignsquad/gds-admin/dist/server.d.ts`.
 - Icons: import from `@tabler/icons-react` or use bundle `GdsIcon`/`GdsIcons`.
 
 ## Overlays / overrides

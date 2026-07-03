@@ -128,7 +128,7 @@ export function createGdsConfig(options = {}) {
       plugins: {
         gds: {
           meta: {
-            name: '@doneisbetter/gds-eslint-config',
+            name: '@sovereignsquad/gds-eslint-config',
           },
           rules,
         },

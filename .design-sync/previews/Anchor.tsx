@@ -1,4 +1,4 @@
-import { Anchor } from '@doneisbetter/gds';
+import { Anchor } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <Anchor href="/docs/getting-started">Read the getting started guide</Anchor>

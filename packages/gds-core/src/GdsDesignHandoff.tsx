@@ -12,7 +12,7 @@ export interface GdsPropAnnotation {
 
 export interface GdsDesignComponentMap {
   id: string;
-  packageName: '@doneisbetter/gds-core' | '@doneisbetter/gds-theme' | '@doneisbetter/gds-admin';
+  packageName: '@sovereignsquad/gds-core' | '@sovereignsquad/gds-theme' | '@sovereignsquad/gds-admin';
   exportName: string;
   figmaComponent: string;
   status: GdsHandoffStatus;
@@ -51,7 +51,7 @@ export interface GdsDesignHandoffReport {
 const componentMappings: GdsDesignComponentMap[] = [
   {
     id: 'semantic-button',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     exportName: 'SemanticButton',
     figmaComponent: 'GDS / Actions / Semantic Button',
     status: 'approved',
@@ -72,7 +72,7 @@ const componentMappings: GdsDesignComponentMap[] = [
   },
   {
     id: 'page-header',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     exportName: 'PageHeader',
     figmaComponent: 'GDS / Layout / Page Header',
     status: 'approved',
@@ -94,7 +94,7 @@ const componentMappings: GdsDesignComponentMap[] = [
   },
   {
     id: 'data-table',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     exportName: 'GdsDataTable',
     figmaComponent: 'GDS / Data / Governed Data Table',
     status: 'approved',
@@ -116,7 +116,7 @@ const componentMappings: GdsDesignComponentMap[] = [
   },
   {
     id: 'resource-manager',
-    packageName: '@doneisbetter/gds-core',
+    packageName: '@sovereignsquad/gds-core',
     exportName: 'GdsResourceManager',
     figmaComponent: 'GDS / Workflows / Resource Manager',
     status: 'experimental',
@@ -137,7 +137,7 @@ const componentMappings: GdsDesignComponentMap[] = [
   },
   {
     id: 'theme-preset',
-    packageName: '@doneisbetter/gds-theme',
+    packageName: '@sovereignsquad/gds-theme',
     exportName: 'gdsTheme',
     figmaComponent: 'GDS / Tokens / Theme Preset',
     status: 'approved',

@@ -1,4 +1,4 @@
-import { FormErrorSummary, GdsFormProvider } from '@doneisbetter/gds';
+import { FormErrorSummary, GdsFormProvider } from '@sovereignsquad/gds';
 
 const snapshot = {
   fields: {

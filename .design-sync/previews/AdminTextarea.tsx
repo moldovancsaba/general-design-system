@@ -1,4 +1,4 @@
-import { AdminTextarea } from '@doneisbetter/gds';
+import { AdminTextarea } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AdminTextarea

@@ -1,4 +1,4 @@
-import { SocialAuthButtons } from '@doneisbetter/gds';
+import { SocialAuthButtons } from '@sovereignsquad/gds';
 
 export const Stack = () => (
   <SocialAuthButtons

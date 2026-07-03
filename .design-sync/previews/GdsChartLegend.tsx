@@ -1,4 +1,4 @@
-import { GdsChartLegend } from '@doneisbetter/gds';
+import { GdsChartLegend } from '@sovereignsquad/gds';
 
 const Swatch = ({ color, label }: { color: string; label: string }) => (
   <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13 }}>

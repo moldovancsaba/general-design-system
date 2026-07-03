@@ -768,7 +768,7 @@ function runStrictCompliance({ manifest, manifestRoot, sourceFiles }) {
 
     if (/(interface|type)\s+\w*(ActionBar|ButtonGroup|ButtonStack|Cta)\w*\s*[\{=]|export function \w*(ActionBar|ButtonGroup|ButtonStack|Cta)\w*/.test(content)
       && /from\s+['"]@mantine\/core['"][\s\S]{0,200}\bButton\b/.test(content)
-      && !/from\s+['"]@doneisbetter\/gds-core['"][\s\S]{0,200}\bActionBar\b/.test(content)) {
+      && !/from\s+['"]@sovereignsquad\/gds-core['"][\s\S]{0,200}\bActionBar\b/.test(content)) {
       findings.push({
         rule: 'strict.action.legacy-wrapper',
         severity: 'error',
@@ -779,7 +779,7 @@ function runStrictCompliance({ manifest, manifestRoot, sourceFiles }) {
 
     if (/export function \w*(Listing|Venue|Event|Community|Product|Card)\w*\s*\(/.test(content)
       && /from\s+['"]@mantine\/core['"][\s\S]{0,240}\bCard\b/.test(content)
-      && !/from\s+['"]@doneisbetter\/gds-core['"][\s\S]{0,260}\b(ListingCard|PublicProductCard|PublicFoodCard|MediaCard)\b/.test(content)) {
+      && !/from\s+['"]@sovereignsquad\/gds-core['"][\s\S]{0,260}\b(ListingCard|PublicProductCard|PublicFoodCard|MediaCard)\b/.test(content)) {
       findings.push({
         rule: 'strict.listing.local-card-wrapper',
         severity: 'error',
@@ -790,7 +790,7 @@ function runStrictCompliance({ manifest, manifestRoot, sourceFiles }) {
 
     if (/export function \w*(Upload|Media|Asset|ImagePicker|Dropzone)\w*\s*\(/.test(content)
       && (/<input[^>]+type=["']file["']/.test(content) || /\bDropzone\b/.test(content))
-      && !/from\s+['"]@doneisbetter\/gds-core['"][\s\S]{0,260}\b(MediaField|UploadDropzone)\b/.test(content)) {
+      && !/from\s+['"]@sovereignsquad\/gds-core['"][\s\S]{0,260}\b(MediaField|UploadDropzone)\b/.test(content)) {
       findings.push({
         rule: 'strict.media.local-upload-wrapper',
         severity: 'error',
@@ -801,7 +801,7 @@ function runStrictCompliance({ manifest, manifestRoot, sourceFiles }) {
 
     if (/export function \w*(Report|Chart|Evidence|Analytics|Metric)\w*\s*\(/.test(content)
       && (/\bChart\b|recharts|chart\.js|<canvas\b|svg\s+role=["']img["']/.test(content))
-      && !/from\s+['"]@doneisbetter\/gds-core['"][\s\S]{0,320}\b(ReportingSection|PeriodSelector|EvidencePanel|ChartTokenPanel|StatsSection|MetricCard)\b/.test(content)) {
+      && !/from\s+['"]@sovereignsquad\/gds-core['"][\s\S]{0,320}\b(ReportingSection|PeriodSelector|EvidencePanel|ChartTokenPanel|StatsSection|MetricCard)\b/.test(content)) {
       findings.push({
         rule: 'strict.reporting.local-chart-wrapper',
         severity: 'error',
@@ -812,7 +812,7 @@ function runStrictCompliance({ manifest, manifestRoot, sourceFiles }) {
 
     if (/export function \w*(Auth|Login|Social|AccessDenied|Protected|Recovery)\w*\s*\(/.test(content)
       && (/\b(google|apple|github|microsoft|facebook)\b/i.test(content) || /Access denied|Sign in required|Session expired/i.test(content))
-      && !/from\s+['"]@doneisbetter\/gds-core['"][\s\S]{0,360}\b(AuthShell|ProviderIdentityButton|ProviderIdentityButtonGroup|SocialAuthButtons|AccessSummary|AccessRecoveryPanel)\b/.test(content)) {
+      && !/from\s+['"]@sovereignsquad\/gds-core['"][\s\S]{0,360}\b(AuthShell|ProviderIdentityButton|ProviderIdentityButtonGroup|SocialAuthButtons|AccessSummary|AccessRecoveryPanel)\b/.test(content)) {
       findings.push({
         rule: 'strict.access.local-auth-wrapper',
         severity: 'error',
@@ -1222,7 +1222,7 @@ function scanThemeGovernance({ manifestRoot, manifest, sourceFiles }) {
       continue;
     }
 
-    if (/import\s*\{[^}]*\bextendGdsTheme\b[^}]*\}\s*from\s*['"]@doneisbetter\/gds(?:-theme)?(?:\/(?:client|server))?['"]/.test(content)) {
+    if (/import\s*\{[^}]*\bextendGdsTheme\b[^}]*\}\s*from\s*['"]@sovereignsquad\/gds(?:-theme)?(?:\/(?:client|server))?['"]/.test(content)) {
       findings.push({
         rule: 'theme.noncanonical-extend-helper',
         severity: 'error',

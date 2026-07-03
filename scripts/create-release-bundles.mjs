@@ -10,13 +10,13 @@ const outputDir =
   process.env.GDS_RELEASE_BUNDLE_DIR ?? resolve(root, 'dist', 'release-bundles', version);
 
 const workspaces = [
-  { name: '@doneisbetter/gds-theme', dev: false },
-  { name: '@doneisbetter/gds-core', dev: false },
-  { name: '@doneisbetter/gds-admin', dev: false },
-  { name: '@doneisbetter/gds-a11y', dev: true },
-  { name: '@doneisbetter/gds', dev: false, registryOnly: true },
-  { name: '@doneisbetter/gds-eslint-config', dev: true },
-  { name: '@doneisbetter/gds-compliance', dev: true },
+  { name: '@sovereignsquad/gds-theme', dev: false },
+  { name: '@sovereignsquad/gds-core', dev: false },
+  { name: '@sovereignsquad/gds-admin', dev: false },
+  { name: '@sovereignsquad/gds-a11y', dev: true },
+  { name: '@sovereignsquad/gds', dev: false, registryOnly: true },
+  { name: '@sovereignsquad/gds-eslint-config', dev: true },
+  { name: '@sovereignsquad/gds-compliance', dev: true },
 ];
 
 rmSync(outputDir, { recursive: true, force: true });

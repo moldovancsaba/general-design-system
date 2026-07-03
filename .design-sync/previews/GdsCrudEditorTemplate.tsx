@@ -1,4 +1,4 @@
-import { GdsCrudEditorTemplate } from '@doneisbetter/gds';
+import { GdsCrudEditorTemplate } from '@sovereignsquad/gds';
 
 const labelStyle = { display: 'block', fontSize: 13, fontWeight: 600, marginBottom: 4 } as const;
 const inputStyle = {

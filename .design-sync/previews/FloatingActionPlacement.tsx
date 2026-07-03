@@ -1,4 +1,4 @@
-import { FloatingActionPlacement, SemanticButton, SectionPanel } from '@doneisbetter/gds';
+import { FloatingActionPlacement, SemanticButton, SectionPanel } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div style={{ position: 'relative', minHeight: 220, border: '1px dashed var(--mantine-color-gray-4)', borderRadius: 8 }}>

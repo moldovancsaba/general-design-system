@@ -1,4 +1,4 @@
-import { BrowseSurface } from '@doneisbetter/gds';
+import { BrowseSurface } from '@sovereignsquad/gds';
 
 const DemoList = ({ items }: { items: string[] }) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

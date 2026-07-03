@@ -1,4 +1,4 @@
-import { FormField } from '@doneisbetter/gds';
+import { FormField } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <FormField label="Email address" description="We use this for account recovery only.">

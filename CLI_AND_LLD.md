@@ -75,7 +75,7 @@ Source:
 Flow:
 
 1. The playground evidence registry derives one structured accessibility record for every stable pattern in the canonical pattern registry.
-2. `@doneisbetter/gds-core` exposes helper APIs to index, resolve, summarize, and validate those records.
+2. `@sovereignsquad/gds-core` exposes helper APIs to index, resolve, summarize, and validate those records.
 3. `/coverage`, `/api`, and `/governance` render the live evidence summary through shipped GDS docs primitives.
 4. `verify:accessibility-evidence` fails when records are missing, stale, missing required WCAG mappings, missing AT/browser rows, or missing limitation recovery metadata.
 

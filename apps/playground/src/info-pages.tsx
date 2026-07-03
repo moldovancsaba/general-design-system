@@ -14,8 +14,8 @@ import {
   SimpleDataTable,
   StateBlock,
   type ThemeExplorerSelection,
-} from '@doneisbetter/gds-core';
-import { useGdsTranslation } from '@doneisbetter/gds-theme';
+} from '@sovereignsquad/gds-core';
+import { useGdsTranslation } from '@sovereignsquad/gds-theme';
 import { apiReferenceEntries, apiReferencePackages, getApiReferenceEntries, getApiReferenceSummary } from './api-reference-registry';
 import { accessibilityEvidenceEntries, accessibilityEvidenceSummary } from './accessibility-evidence-registry';
 import { patternRegistry } from './pattern-registry';
@@ -34,18 +34,18 @@ import {
 } from './site-copy';
 import { productUseCases } from './product-use-cases';
 
-const installCode = `npm install @doneisbetter/gds@${targetGdsVersion}
-npm install -D @doneisbetter/gds-eslint-config@${targetGdsVersion} @doneisbetter/gds-compliance@${targetGdsVersion} @doneisbetter/gds-a11y@${targetGdsVersion}`;
+const installCode = `npm install @sovereignsquad/gds@${targetGdsVersion}
+npm install -D @sovereignsquad/gds-eslint-config@${targetGdsVersion} @sovereignsquad/gds-compliance@${targetGdsVersion} @sovereignsquad/gds-a11y@${targetGdsVersion}`;
 
-const granularInstallCode = `npm install @doneisbetter/gds-theme@${targetGdsVersion} @doneisbetter/gds-core@${targetGdsVersion} @doneisbetter/gds-admin@${targetGdsVersion}
-npm install -D @doneisbetter/gds-eslint-config@${targetGdsVersion} @doneisbetter/gds-compliance@${targetGdsVersion} @doneisbetter/gds-a11y@${targetGdsVersion}`;
+const granularInstallCode = `npm install @sovereignsquad/gds-theme@${targetGdsVersion} @sovereignsquad/gds-core@${targetGdsVersion} @sovereignsquad/gds-admin@${targetGdsVersion}
+npm install -D @sovereignsquad/gds-eslint-config@${targetGdsVersion} @sovereignsquad/gds-compliance@${targetGdsVersion} @sovereignsquad/gds-a11y@${targetGdsVersion}`;
 
 const peerCode = `npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react`;
 const mantineCorePackage = '@mantine/' + 'core';
 
 const nextLayoutCode = `// app/layout.tsx
 // Mandatory: load the GDS stylesheet once, before your app styles.
-import '@doneisbetter/gds-theme/styles.css';
+import '@sovereignsquad/gds-theme/styles.css';
 import { ColorSchemeScript } from '${mantineCorePackage}';
 import Providers from './providers';
 
@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 const providerCode = `// app/providers.tsx
 'use client';
 
-import { GdsProvider } from '@doneisbetter/gds/client';
+import { GdsProvider } from '@sovereignsquad/gds/client';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return <GdsProvider>{children}</GdsProvider>;
@@ -75,8 +75,8 @@ const viteBootstrapCode = `// src/main.tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 // Mandatory: load the GDS stylesheet once, before your app styles.
-import '@doneisbetter/gds-theme/styles.css';
-import { GdsProvider } from '@doneisbetter/gds/client';
+import '@sovereignsquad/gds-theme/styles.css';
+import { GdsProvider } from '@sovereignsquad/gds/client';
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -88,7 +88,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 const themeAccessibilityCode = `import {
   createGdsThemeAccessibilityReport,
   validateGdsThemeAccessibility,
-} from '@doneisbetter/gds-theme/server';
+} from '@sovereignsquad/gds-theme/server';
 
 const validation = validateGdsThemeAccessibility();
 if (!validation.ok) {
@@ -118,13 +118,13 @@ const previewRootId = 'product-theme-preview';
   </GdsProvider>
 </div>;`;
 
-const updateCode = `npm install @doneisbetter/gds@${targetGdsVersion}
+const updateCode = `npm install @sovereignsquad/gds@${targetGdsVersion}
 
 # or granular runtime packages
-npm install @doneisbetter/gds-theme@${targetGdsVersion} @doneisbetter/gds-core@${targetGdsVersion} @doneisbetter/gds-admin@${targetGdsVersion}
+npm install @sovereignsquad/gds-theme@${targetGdsVersion} @sovereignsquad/gds-core@${targetGdsVersion} @sovereignsquad/gds-admin@${targetGdsVersion}
 
 # governance tooling
-npm install -D @doneisbetter/gds-eslint-config@${targetGdsVersion} @doneisbetter/gds-compliance@${targetGdsVersion} @doneisbetter/gds-a11y@${targetGdsVersion}`;
+npm install -D @sovereignsquad/gds-eslint-config@${targetGdsVersion} @sovereignsquad/gds-compliance@${targetGdsVersion} @sovereignsquad/gds-a11y@${targetGdsVersion}`;
 
 const complianceCode = `{
   "schemaVersion": 1,
@@ -191,10 +191,10 @@ Team, we completed the GDS update to the ${targetGdsVersion} adoption platform r
 
 What to do now:
 - Update all production dependencies to:
-  - @doneisbetter/gds@${targetGdsVersion}
-  - @doneisbetter/gds-eslint-config@${targetGdsVersion} (dev)
-  - @doneisbetter/gds-compliance@${targetGdsVersion} (dev)
-  - @doneisbetter/gds-a11y@${targetGdsVersion} (dev, for reusable Playwright/axe CI gates)
+  - @sovereignsquad/gds@${targetGdsVersion}
+  - @sovereignsquad/gds-eslint-config@${targetGdsVersion} (dev)
+  - @sovereignsquad/gds-compliance@${targetGdsVersion} (dev)
+  - @sovereignsquad/gds-a11y@${targetGdsVersion} (dev, for reusable Playwright/axe CI gates)
 - Remove local branding-layer theme extension code based on extendGdsTheme(...).
 - Route theme ownership through one approved lane:
   - gdsTheme
@@ -247,9 +247,9 @@ function SiteFooter() {
 }
 
 export function AiPage() {
-  const installCode = `npm install @doneisbetter/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react react react-dom`;
+  const installCode = `npm install @sovereignsquad/gds @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react react react-dom`;
 
-  const providerCode = `import { GdsProvider, MetricCard, SemanticButton } from '@doneisbetter/gds';
+  const providerCode = `import { GdsProvider, MetricCard, SemanticButton } from '@sovereignsquad/gds';
 
 export default function App() {
   return (
@@ -262,12 +262,12 @@ export default function App() {
 
   const agentsTemplate = `# AGENTS.md — UI is built with the General Design System (GDS)
 
-This project uses @doneisbetter/gds for all UI.
+This project uses @sovereignsquad/gds for all UI.
 When building UI, compose shipped GDS components — do not author parallel primitives.
 Full rules: https://sovereignsquad.github.io/general-design-system/ai`;
 
   const claudeTemplate = `# CLAUDE.md
-GDS is the design system: npm install @doneisbetter/gds
+GDS is the design system: npm install @sovereignsquad/gds
 Wrap once in GdsProvider. Use SemanticButton action="..." not free text.
 Style with props/tokens only — no custom CSS.
 Full guide: https://sovereignsquad.github.io/general-design-system/ai`;
@@ -335,7 +335,7 @@ Full guide: https://sovereignsquad.github.io/general-design-system/ai`;
             { key: 'why', header: 'Why' },
           ]}
           rows={[
-            { rule: 'Compose shipped GDS components — import from @doneisbetter/gds', why: 'Prevents parallel primitives that diverge from the governed contract.' },
+            { rule: 'Compose shipped GDS components — import from @sovereignsquad/gds', why: 'Prevents parallel primitives that diverge from the governed contract.' },
             { rule: 'Style with props and tokens only — no custom CSS or raw hex', why: 'Ensures designs stay in the theme and remain maintainable.' },
             { rule: 'SemanticButton takes action="save"|"add"|"edit"|... not free text', why: 'The action enum drives icon, label, and aria-label automatically.' },
             { rule: 'Select/MultiSelect take data={[{value,label}]} not <option> children', why: 'Mantine-backed API; children are ignored.' },
@@ -758,7 +758,7 @@ export function ApiReferencePage() {
           variant="compact"
           items={[
             { id: 'evidence-registry', title: 'Evidence records', description: `${accessibilityEvidenceSummary.total} stable pattern records are generated from the shipped registry.` },
-            { id: 'evidence-helper', title: 'Lookup helpers', description: 'The public @doneisbetter/gds-core helper exports resolve evidence by id, build deterministic indexes, summarize coverage, and validate freshness.' },
+            { id: 'evidence-helper', title: 'Lookup helpers', description: 'The public @sovereignsquad/gds-core helper exports resolve evidence by id, build deterministic indexes, summarize coverage, and validate freshness.' },
             { id: 'evidence-status', title: 'Visible limitations', description: `${accessibilityEvidenceSummary.knownLimitation} patterns remain flagged as known limitations instead of pretending to be fully verified.` },
             { id: 'evidence-at-status', title: 'AT/browser matrix', description: `${accessibilityEvidenceSummary.atStatuses.verified} verified assistive-technology/browser rows are included in the current release.` },
           ]}

@@ -1,4 +1,4 @@
-import { AdminResourceToolbar, AdminSelect } from '@doneisbetter/gds';
+import { AdminResourceToolbar, AdminSelect } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AdminResourceToolbar

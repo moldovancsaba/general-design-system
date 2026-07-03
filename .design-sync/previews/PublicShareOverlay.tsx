@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { PublicShareOverlay } from '@doneisbetter/gds';
+import { PublicShareOverlay } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PublicShareOverlay
-    url="https://doneisbetter.com/share/abc123"
+    url="https://sovereignsquad.com/share/abc123"
     title="Check out my capture"
     text="Made with the General Design System capture flow."
     label="Share this moment"
@@ -15,7 +15,7 @@ export const Default = () => (
 export const Compact = () => (
   <PublicShareOverlay
     compact
-    url="https://doneisbetter.com/share/abc123"
+    url="https://sovereignsquad.com/share/abc123"
     title="Check out my capture"
     channels={['copy', 'mail', 'x']}
   />

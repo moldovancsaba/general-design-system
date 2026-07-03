@@ -1,4 +1,4 @@
-import { AdminFormSection, AdminCheckbox } from '@doneisbetter/gds';
+import { AdminFormSection, AdminCheckbox } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AdminFormSection

@@ -1,4 +1,4 @@
-import { PartnerMapPin } from '@doneisbetter/gds';
+import { PartnerMapPin } from '@sovereignsquad/gds';
 
 const mapFrame: React.CSSProperties = {
   position: 'relative',

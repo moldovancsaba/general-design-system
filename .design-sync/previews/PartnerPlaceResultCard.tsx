@@ -1,4 +1,4 @@
-import { PartnerPlaceResultCard } from '@doneisbetter/gds';
+import { PartnerPlaceResultCard } from '@sovereignsquad/gds';
 
 const amenityLabels = {
   highchairs: 'High chairs',

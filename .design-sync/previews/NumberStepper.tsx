@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { NumberStepper } from '@doneisbetter/gds-core';
-import { GdsSafeBox, GdsStack } from '@doneisbetter/gds-core';
+import { NumberStepper } from '@sovereignsquad/gds-core';
+import { GdsSafeBox, GdsStack } from '@sovereignsquad/gds-core';
 
 export default function Preview() {
   const [qty, setQty] = useState(2);

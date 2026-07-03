@@ -1,4 +1,4 @@
-import { DocsShell, SidebarNavItem, SemanticButton, SectionPanel } from '@doneisbetter/gds';
+import { DocsShell, SidebarNavItem, SemanticButton, SectionPanel } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <DocsShell

@@ -1,4 +1,4 @@
-import { InlineEmphasis, BodyText } from '@doneisbetter/gds';
+import { InlineEmphasis, BodyText } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div

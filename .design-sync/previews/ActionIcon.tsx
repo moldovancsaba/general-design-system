@@ -1,4 +1,4 @@
-import { ActionIcon } from '@doneisbetter/gds';
+import { ActionIcon } from '@sovereignsquad/gds';
 import { IconEdit, IconTrash, IconSettings, IconDownload } from '@tabler/icons-react';
 
 export const Default = () => (

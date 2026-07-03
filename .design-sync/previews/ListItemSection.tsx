@@ -1,4 +1,4 @@
-import { ListItemSection, GdsSafeBox, MetadataText } from '@doneisbetter/gds';
+import { ListItemSection, GdsSafeBox, MetadataText } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsSafeBox safeStyle={{ background: 'surface', border: 'default', radius: 'lg', inset: 'md' }}>

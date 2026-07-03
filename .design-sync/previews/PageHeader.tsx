@@ -1,4 +1,4 @@
-import { PageHeader, ActionBar } from '@doneisbetter/gds';
+import { PageHeader, ActionBar } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PageHeader

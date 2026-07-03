@@ -1,4 +1,4 @@
-import { Button } from '@doneisbetter/gds';
+import { Button } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>

@@ -1,5 +1,5 @@
-export * from '@doneisbetter/gds-theme';
-export * from '@doneisbetter/gds-core';
+export * from '@sovereignsquad/gds-theme';
+export * from '@sovereignsquad/gds-core';
 export {
   AppShell,
   ContentOpsActionBar,
@@ -33,7 +33,7 @@ export {
   AdminResourceCard,
   AdminResourceToolbar,
   AdminResourceEmptyState,
-} from '@doneisbetter/gds-admin';
+} from '@sovereignsquad/gds-admin';
 export type {
   AppShellProps,
   ContentOpsActionBarProps,
@@ -80,4 +80,4 @@ export type {
   AdminResourceCardProps,
   AdminResourceToolbarProps,
   AdminResourceEmptyStateProps,
-} from '@doneisbetter/gds-admin';
+} from '@sovereignsquad/gds-admin';

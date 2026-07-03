@@ -1,4 +1,4 @@
-import { GdsGrid } from '@doneisbetter/gds';
+import { GdsGrid } from '@sovereignsquad/gds';
 
 const Cell = ({ children }: { children: React.ReactNode }) => (
   <div

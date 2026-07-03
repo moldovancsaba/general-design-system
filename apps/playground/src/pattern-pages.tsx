@@ -120,7 +120,7 @@ import {
   ProviderIdentityButtonGroup,
   StatsSection,
   ThemeToggle,
-} from '@doneisbetter/gds-core';
+} from '@sovereignsquad/gds-core';
 import {
   AppShell,
   ContentOpsActionBar,
@@ -136,7 +136,7 @@ import {
   SemanticNavLink,
   StatsStrip,
   WorkspaceHeader,
-} from '@doneisbetter/gds-admin';
+} from '@sovereignsquad/gds-admin';
 import {
   getFamilyEntries,
   patternRegistry,
@@ -1563,7 +1563,7 @@ function renderEntryDemo(entry: PatternRegistryEntry) {
         </FilterDrawer>
       );
     case 'docs-code-blocks':
-      return <DocsCodeBlock title="Usage" language="tsx" code="import { ListingCard } from '@doneisbetter/gds-core';" />;
+      return <DocsCodeBlock title="Usage" language="tsx" code="import { ListingCard } from '@sovereignsquad/gds-core';" />;
     case 'cta-button-groups':
       return (
         <CtaButtonGroup

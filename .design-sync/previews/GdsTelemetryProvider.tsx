@@ -1,4 +1,4 @@
-import { GdsTelemetryProvider, MetricCard } from '@doneisbetter/gds';
+import { GdsTelemetryProvider, MetricCard } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsTelemetryProvider sampleRate={1}>

@@ -3,8 +3,8 @@
 import type { ReactNode } from 'react';
 import { Drawer, Group, Modal, Stack, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { ActionBar, AsyncSurface, type ActionBarProps } from '@doneisbetter/gds-core';
-import type { OverlayCloseReason } from '@doneisbetter/gds-core';
+import { ActionBar, AsyncSurface, type ActionBarProps } from '@sovereignsquad/gds-core';
+import type { OverlayCloseReason } from '@sovereignsquad/gds-core';
 
 export type AdminOverlayState = 'idle' | 'loading' | 'error' | 'ready' | 'empty' | 'readonly';
 

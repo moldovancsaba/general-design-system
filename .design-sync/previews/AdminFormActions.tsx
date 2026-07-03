@@ -1,4 +1,4 @@
-import { AdminFormActions } from '@doneisbetter/gds';
+import { AdminFormActions } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AdminFormActions

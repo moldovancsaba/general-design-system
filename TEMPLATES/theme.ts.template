@@ -1,5 +1,5 @@
 import type { MantineThemeOverride } from "@mantine/core";
-import { createPublicBrandTheme } from "@doneisbetter/gds-theme/client";
+import { createPublicBrandTheme } from "@sovereignsquad/gds-theme/client";
 
 const appThemeOverrides: MantineThemeOverride = {
   primaryColor: "brand",

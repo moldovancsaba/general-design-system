@@ -7,7 +7,7 @@
 
 # AGENTS.md — UI is built with the General Design System (GDS)
 
-This project consumes **`@doneisbetter/gds`** (the General Design System) for all UI, UX, and design. When you build or change any interface, follow these rules. The full agent guide is in your installed package and at the GDS repo's `docs/AI_AGENT_GUIDE.md`.
+This project consumes **`@sovereignsquad/gds`** (the General Design System) for all UI, UX, and design. When you build or change any interface, follow these rules. The full agent guide is in your installed package and at the GDS repo's `docs/AI_AGENT_GUIDE.md`.
 
 ## Setup
 
@@ -16,7 +16,7 @@ This project consumes **`@doneisbetter/gds`** (the General Design System) for al
 
 ## Rules (do)
 
-- Compose shipped GDS components: import from `'@doneisbetter/gds'`. Check `COMPONENTS_AND_PATTERNS.md` / the API reference before building anything new.
+- Compose shipped GDS components: import from `'@sovereignsquad/gds'`. Check `COMPONENTS_AND_PATTERNS.md` / the API reference before building anything new.
 - Style with component props and theme tokens — `c="dimmed"`, `mt="md"`, `p="lg"`, `variant`, `color`, `size`, `radius` — and GDS layout primitives (`GdsStack`, `GdsInline`, `GdsBox`, `GdsGrid`).
 - Use `SemanticButton action="…"` (semantic `action` enum) for actions; `Select`/`MultiSelect` take `data={[{value,label}]}`.
 - Design loading / empty / error / disabled / success states (`StateBlock`, `EmptyState`, `loading`/`error` props).

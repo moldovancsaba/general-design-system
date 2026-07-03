@@ -1,4 +1,4 @@
-import { DiscoveryShell, PageHeader, SemanticNavLink, ConsumerSection, ConsumerDashboardGrid, MetricCard } from '@doneisbetter/gds';
+import { DiscoveryShell, PageHeader, SemanticNavLink, ConsumerSection, ConsumerDashboardGrid, MetricCard } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <DiscoveryShell

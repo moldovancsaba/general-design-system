@@ -69,12 +69,12 @@ Projects must actively enforce the Mantine-only policy to prevent design-system 
 
 ### Minimum Enforcement Layers
 - **Adoption Manifest**: Every mature adopter should declare a `gds-adoption.json` file validated against `schemas/gds-adoption.schema.json`.
-- **Shared Lint Config**: `@doneisbetter/gds-eslint-config` should be the default enforcement package for raw design value and forbidden import checks.
+- **Shared Lint Config**: `@sovereignsquad/gds-eslint-config` should be the default enforcement package for raw design value and forbidden import checks.
 - **Compliance CLI**: `gds-compliance` should validate manifest structure, adapter paths, exception metadata, and repo-level drift.
 - **Compliance Config**: `gds-adoption.json` may declare `compliance.documentationPaths`, `compliance.staleDocumentationReferences`, `compliance.protectedSurfacePaths`, and `compliance.bannedImports` so shared tooling can catch stale SSOT references, protected-surface drift, and lingering legacy UI dependencies without product-local scripts.
 - **Theme Governance Config**: `gds-adoption.json` may declare `compliance.approvedThemeLanes` and `compliance.themeOwnershipPaths` so shared tooling can flag non-canonical branding-layer theme ownership in consumer repos.
 - **Strict GDS-only Mode**: Repos that have already migrated to canonical shells, actions, listings, and detail surfaces should enable `compliance.strictMode` so local shell adapters, local button wrappers, and other prohibited surface drift fail fast.
-- **Compliance Toolkit Contract**: Use [COMPLIANCE_TOOLKIT.md](COMPLIANCE_TOOLKIT.md) as the normative package + CI contract for `@doneisbetter/gds-eslint-config` and `@doneisbetter/gds-compliance`.
+- **Compliance Toolkit Contract**: Use [COMPLIANCE_TOOLKIT.md](COMPLIANCE_TOOLKIT.md) as the normative package + CI contract for `@sovereignsquad/gds-eslint-config` and `@sovereignsquad/gds-compliance`.
 
 ## Feature Request Intake
 
@@ -105,7 +105,7 @@ Promote a request to a GitHub issue only when it can become a reusable GDS contr
 
 ## 5. Canonical Adoption Path
 
-Use [ADOPTION_AND_MIGRATION_PLAYBOOK.md](ADOPTION_AND_MIGRATION_PLAYBOOK.md) as the normative staged path from local mirrored adapters or partial GDS adoption to direct `@doneisbetter/gds-*` package consumption.
+Use [ADOPTION_AND_MIGRATION_PLAYBOOK.md](ADOPTION_AND_MIGRATION_PLAYBOOK.md) as the normative staged path from local mirrored adapters or partial GDS adoption to direct `@sovereignsquad/gds-*` package consumption.
 
 ### Pull Request Checklist
 Reviewers must ask:

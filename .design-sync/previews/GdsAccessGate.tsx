@@ -1,4 +1,4 @@
-import { GdsAccessGate, EditorialCard } from '@doneisbetter/gds';
+import { GdsAccessGate, EditorialCard } from '@sovereignsquad/gds';
 
 const teaser = (
   <div style={{ display: 'grid', gap: 8 }}>

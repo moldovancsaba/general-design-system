@@ -1,4 +1,4 @@
-import { StateBlock } from '@doneisbetter/gds';
+import { StateBlock } from '@sovereignsquad/gds';
 
 export const Empty = () => (
   <StateBlock

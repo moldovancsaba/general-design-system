@@ -15,13 +15,13 @@ Out of the box, the Claude Design agent designs with generic components. After s
 - styles with the GDS theme — Mantine base CSS plus GDS tokens and fonts;
 - follows the GDS conventions (provider wrapping, prop/token styling, semantic actions) from the synced README header.
 
-Every preview card the designer browses is a real render of the shipped component, and every design exports to code that imports `@doneisbetter/gds`.
+Every preview card the designer browses is a real render of the shipped component, and every design exports to code that imports `@sovereignsquad/gds`.
 
 ## How GDS was synced (reference)
 
 The canonical GDS Claude Design project was produced with the `/design-sync` skill in Claude Code (package shape, no Storybook):
 
-1. **Bundle** — `@doneisbetter/gds` `dist/` is compiled to a single `window.GDS` IIFE; the theme stylesheet (Mantine + GDS tokens, with bare `@mantine/*` imports flattened via esbuild) ships as the styles closure so designs render fully themed.
+1. **Bundle** — `@sovereignsquad/gds` `dist/` is compiled to a single `window.GDS` IIFE; the theme stylesheet (Mantine + GDS tokens, with bare `@mantine/*` imports flattened via esbuild) ships as the styles closure so designs render fully themed.
 2. **Provider** — every preview renders inside `GdsProvider` (the converter's `cfg.provider`), so components get the theme/tokens/locale.
 3. **Previews** — each component has a hand-authored, render-verified preview (`.design-sync/previews/<Name>.tsx`) graded on an absolute rubric; a few body-portal overlays (`GdsModal`, `GdsDrawer`, `GdsSheet`) intentionally ship the typographic floor card because their open state portals outside the capture card (they remain fully usable in real designs).
 4. **Conventions header** — `.design-sync/conventions.md` is prepended to the project README and inlined into the design agent's prompt, teaching it the GDS build idiom.

@@ -1,4 +1,4 @@
-import { TextInput } from '@doneisbetter/gds';
+import { TextInput } from '@sovereignsquad/gds';
 import { IconSearch, IconMail } from '@tabler/icons-react';
 
 export const Default = () => (

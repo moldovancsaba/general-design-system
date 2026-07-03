@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicIdentityStep, ProviderIdentityButtonGroup } from '@doneisbetter/gds';
+import { PublicIdentityStep, ProviderIdentityButtonGroup } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PublicIdentityStep>

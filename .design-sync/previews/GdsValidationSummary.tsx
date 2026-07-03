@@ -1,4 +1,4 @@
-import { GdsValidationSummary, GdsFormProvider } from '@doneisbetter/gds';
+import { GdsValidationSummary, GdsFormProvider } from '@sovereignsquad/gds';
 
 const snapshot = {
   fields: {

@@ -13,8 +13,8 @@ export default defineConfig({
     '@mantine/modals',
     '@mantine/notifications',
     '@tabler/icons-react',
-    '@doneisbetter/gds-theme',
-    '@doneisbetter/gds-core',
-    '@doneisbetter/gds-admin',
+    '@sovereignsquad/gds-theme',
+    '@sovereignsquad/gds-core',
+    '@sovereignsquad/gds-admin',
   ],
 });

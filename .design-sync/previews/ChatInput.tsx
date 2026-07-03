@@ -1,5 +1,5 @@
-import { ChatInput } from '@doneisbetter/gds-core';
-import { GdsSafeBox } from '@doneisbetter/gds-core';
+import { ChatInput } from '@sovereignsquad/gds-core';
+import { GdsSafeBox } from '@sovereignsquad/gds-core';
 
 export default function Preview() {
   return (

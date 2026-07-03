@@ -1,4 +1,4 @@
-import { OverlayManagerProvider, PartnerContactBlock } from '@doneisbetter/gds';
+import { OverlayManagerProvider, PartnerContactBlock } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <OverlayManagerProvider singleOverlayMode>

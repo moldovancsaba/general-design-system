@@ -1,4 +1,4 @@
-import { ConsumerSection, ConsumerDashboardGrid, MetricCard, SemanticButton } from '@doneisbetter/gds';
+import { ConsumerSection, ConsumerDashboardGrid, MetricCard, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ConsumerSection

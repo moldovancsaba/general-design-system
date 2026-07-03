@@ -1,4 +1,4 @@
-import { PartnerAmenityBadgeGrid } from '@doneisbetter/gds';
+import { PartnerAmenityBadgeGrid } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PartnerAmenityBadgeGrid

@@ -1,4 +1,4 @@
-import { CommandRegistryProvider, ConsumerSection, SemanticButton } from '@doneisbetter/gds';
+import { CommandRegistryProvider, ConsumerSection, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <CommandRegistryProvider>

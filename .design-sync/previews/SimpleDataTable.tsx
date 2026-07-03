@@ -1,4 +1,4 @@
-import { SimpleDataTable, StatusBadge } from '@doneisbetter/gds';
+import { SimpleDataTable, StatusBadge } from '@sovereignsquad/gds';
 
 const rows = [
   { id: '1', name: 'Onboarding flow', owner: 'A. Rivera', status: 'Live', updated: 'Jun 18' },

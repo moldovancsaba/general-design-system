@@ -1,4 +1,4 @@
-import { MultiSelect, GdsSafeBox } from '@doneisbetter/gds';
+import { MultiSelect, GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsSafeBox safeStyle={{ background: 'surface', border: 'default', radius: 'lg', inset: 'md' }} style={{ width: 300 }}>

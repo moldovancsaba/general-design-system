@@ -1,4 +1,4 @@
-import { PartnerNewsletterForm } from '@doneisbetter/gds';
+import { PartnerNewsletterForm } from '@sovereignsquad/gds';
 
 const labels = {
   title: 'Subscribe to Family Places Weekly',

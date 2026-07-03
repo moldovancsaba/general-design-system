@@ -31,8 +31,8 @@ import {
   ProviderIdentityButtonGroup,
   StatsSection,
   GdsLayoutTemplatePreview,
-} from '@doneisbetter/gds-core';
-import { DataTable, PageHeader, ResponsiveDataView } from '@doneisbetter/gds-admin';
+} from '@sovereignsquad/gds-core';
+import { DataTable, PageHeader, ResponsiveDataView } from '@sovereignsquad/gds-admin';
 import { patternRegistry } from './pattern-registry';
 
 const catalogEntryCount = patternRegistry.length;

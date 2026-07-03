@@ -1,4 +1,4 @@
-import { AppShell, SemanticNavLink, SemanticButton } from '@doneisbetter/gds';
+import { AppShell, SemanticNavLink, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AppShell

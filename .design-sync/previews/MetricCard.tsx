@@ -1,4 +1,4 @@
-import { MetricCard } from '@doneisbetter/gds';
+import { MetricCard } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <MetricCard

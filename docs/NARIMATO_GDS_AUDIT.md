@@ -11,7 +11,7 @@ Narimato is a permitted reference consumer for validating the real package-consu
 
 ## Validated consumer baseline
 
-- Installs `@doneisbetter/gds-*` from npm directly
+- Installs `@sovereignsquad/gds-*` from npm directly
 - Uses `gds-adoption.json` and shared compliance tooling
 - Passes:
   - `npm run gds:validate`
@@ -24,7 +24,7 @@ Narimato is a permitted reference consumer for validating the real package-consu
 
 1. `ChoiceChip`
    - Narimato had a thin neutral chip wrapper for lightweight selection, filter, and mode-toggle UI.
-   - This is generic across consumers and now belongs in `@doneisbetter/gds-core`.
+   - This is generic across consumers and now belongs in `@sovereignsquad/gds-core`.
 
 2. Server-safe semantic action label helper
    - Narimato used a local `SemanticButton` fallback during static prerender.
@@ -53,4 +53,4 @@ Narimato already has thin wrappers that should remain thin and not become a seco
 
 ## Outcome
 
-Narimato confirms that the current direct `@doneisbetter/gds-*` path is viable. The remaining useful GDS work from this consumer is incremental hardening, not another migration wave.
+Narimato confirms that the current direct `@sovereignsquad/gds-*` path is viable. The remaining useful GDS work from this consumer is incremental hardening, not another migration wave.

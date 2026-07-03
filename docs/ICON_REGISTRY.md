@@ -8,7 +8,7 @@ The icon registry is the approved replacement for consumer direct imports from `
 
 ## Package API
 
-Use these exports from `@doneisbetter/gds-core`, `@doneisbetter/gds-core/server`, `@doneisbetter/gds-core/client`, or the aggregate `@doneisbetter/gds` entrypoints:
+Use these exports from `@sovereignsquad/gds-core`, `@sovereignsquad/gds-core/server`, `@sovereignsquad/gds-core/client`, or the aggregate `@sovereignsquad/gds` entrypoints:
 
 - `GdsIcon`
 - `GdsIcons`

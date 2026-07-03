@@ -36,7 +36,7 @@ import {
   useGdsTranslation,
   type GdsFontLaneId,
   type GdsThemePresetId,
-} from '@doneisbetter/gds-theme';
+} from '@sovereignsquad/gds-theme';
 
 export type ThemePresetId = GdsThemePresetId;
 export type ThemeSchemeId = 'light' | 'dark' | 'auto';

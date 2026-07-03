@@ -1,4 +1,4 @@
-import { SortMenu, GdsSafeBox } from '@doneisbetter/gds';
+import { SortMenu, GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsSafeBox style={{ padding: 24 }}>

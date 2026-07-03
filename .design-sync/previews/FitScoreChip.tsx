@@ -1,7 +1,7 @@
-import { FitScoreChip } from '@doneisbetter/gds-core';
-import { GdsStack, GdsInline } from '@doneisbetter/gds-core';
-import { GdsSafeBox } from '@doneisbetter/gds-core';
-import { Text } from '@doneisbetter/gds-core';
+import { FitScoreChip } from '@sovereignsquad/gds-core';
+import { GdsStack, GdsInline } from '@sovereignsquad/gds-core';
+import { GdsSafeBox } from '@sovereignsquad/gds-core';
+import { Text } from '@sovereignsquad/gds-core';
 
 export default function Preview() {
   return (

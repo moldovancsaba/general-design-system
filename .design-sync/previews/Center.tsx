@@ -1,4 +1,4 @@
-import { Center, Badge } from '@doneisbetter/gds';
+import { Center, Badge } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <Center

@@ -1,5 +1,5 @@
 {
-  "name": "@doneisbetter/gds-theme",
+  "name": "@sovereignsquad/gds-theme",
   "version": "3.9.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

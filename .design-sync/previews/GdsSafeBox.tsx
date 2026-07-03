@@ -1,4 +1,4 @@
-import { GdsSafeBox } from '@doneisbetter/gds';
+import { GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Surface = () => (
   <GdsSafeBox

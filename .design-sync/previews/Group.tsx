@@ -1,4 +1,4 @@
-import { Group, Badge, Button } from '@doneisbetter/gds';
+import { Group, Badge, Button } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div

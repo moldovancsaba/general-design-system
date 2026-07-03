@@ -1,4 +1,4 @@
-import { Textarea } from '@doneisbetter/gds';
+import { Textarea } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <Textarea

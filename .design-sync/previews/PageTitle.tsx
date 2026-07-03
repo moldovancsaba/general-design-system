@@ -1,4 +1,4 @@
-import { PageTitle } from '@doneisbetter/gds';
+import { PageTitle } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div style={{ padding: 24, border: '1px solid #e9ecef', borderRadius: 12, background: '#fff' }}>

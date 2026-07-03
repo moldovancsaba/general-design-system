@@ -1,4 +1,4 @@
-import { PublicSiteFooter } from '@doneisbetter/gds';
+import { PublicSiteFooter } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PublicSiteFooter meta="© 2026 Done Is Better — All rights reserved.">

@@ -1,4 +1,4 @@
-import { AdminPageHeader, SemanticButton } from '@doneisbetter/gds';
+import { AdminPageHeader, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AdminPageHeader

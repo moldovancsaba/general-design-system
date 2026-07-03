@@ -1,4 +1,4 @@
-import { BodyText } from '@doneisbetter/gds';
+import { BodyText } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <BodyText>

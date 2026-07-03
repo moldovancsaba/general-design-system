@@ -1,4 +1,4 @@
-import { GdsFormattedCurrency } from '@doneisbetter/gds';
+import { GdsFormattedCurrency } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <p style={{ fontSize: 16 }}>

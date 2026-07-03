@@ -17,10 +17,10 @@ import {
   SimpleDataTable,
   StatsSection,
   ThemeToggle,
-} from '@doneisbetter/gds-core/client';
+} from '@sovereignsquad/gds-core/client';
 
 export function App() {
-  const installCode = `npm install @doneisbetter/gds-theme @doneisbetter/gds-core @doneisbetter/gds-admin
+  const installCode = `npm install @sovereignsquad/gds-theme @sovereignsquad/gds-core @sovereignsquad/gds-admin
 npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications @tabler/icons-react`;
 
   return (
@@ -49,7 +49,7 @@ npm install @mantine/core @mantine/hooks @mantine/modals @mantine/notifications 
       >
         <EditorialHero
           eyebrow="Shared public storytelling"
-          title="Public/editorial primitives now live in @doneisbetter/gds-core"
+          title="Public/editorial primitives now live in @sovereignsquad/gds-core"
           description="Consumers can adopt the shared package line directly on Mantine 8.3.x or 9.2.x without local CSS authorities or mirror packages."
           actions={[
             { label: 'Install packages', variant: 'primary' },

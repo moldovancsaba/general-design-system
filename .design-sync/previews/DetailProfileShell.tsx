@@ -1,4 +1,4 @@
-import { DetailProfileShell, PageHeader, MetricCard, ConsumerSection, SemanticButton, CtaButtonGroup } from '@doneisbetter/gds';
+import { DetailProfileShell, PageHeader, MetricCard, ConsumerSection, SemanticButton, CtaButtonGroup } from '@sovereignsquad/gds';
 
 export const Page = () => (
   <DetailProfileShell

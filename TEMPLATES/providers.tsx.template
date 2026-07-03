@@ -1,6 +1,6 @@
 "use client";
 
-import { GdsProvider } from "@doneisbetter/gds-theme/client";
+import { GdsProvider } from "@sovereignsquad/gds-theme/client";
 import { appTheme } from "./theme";
 
 export function AppProviders({

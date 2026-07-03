@@ -1,4 +1,4 @@
-import { SemanticChartFrame, SimpleDataTable } from '@doneisbetter/gds';
+import { SemanticChartFrame, SimpleDataTable } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SemanticChartFrame

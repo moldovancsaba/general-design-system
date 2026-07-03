@@ -1,4 +1,4 @@
-import { NumericCell, GdsSafeBox } from '@doneisbetter/gds';
+import { NumericCell, GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsSafeBox safeStyle={{ background: 'surface', border: 'default', radius: 'lg', inset: 'md' }}>

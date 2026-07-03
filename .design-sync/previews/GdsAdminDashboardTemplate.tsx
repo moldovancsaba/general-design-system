@@ -1,4 +1,4 @@
-import { GdsAdminDashboardTemplate } from '@doneisbetter/gds';
+import { GdsAdminDashboardTemplate } from '@sovereignsquad/gds';
 
 export const Ready = () => (
   <GdsAdminDashboardTemplate

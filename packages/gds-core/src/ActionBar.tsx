@@ -1,6 +1,6 @@
 import { ActionIcon, Button, Group, Stack } from '@mantine/core';
 import type { ButtonProps, MantineSpacing } from '@mantine/core';
-import { useGdsTranslation } from '@doneisbetter/gds-theme';
+import { useGdsTranslation } from '@sovereignsquad/gds-theme';
 import { getSemanticActionLabel, resolveSemanticActionConfig } from './vocabulary';
 import type { GdsVocabularyPack, SemanticActionId } from './vocabulary';
 

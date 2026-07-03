@@ -1,5 +1,5 @@
 import { useContext, type ReactNode } from 'react';
-import { GdsI18nContext, getGdsLocaleMetadata, gdsLocaleMetadata, isGdsRtlLocale } from '@doneisbetter/gds-theme';
+import { GdsI18nContext, getGdsLocaleMetadata, gdsLocaleMetadata, isGdsRtlLocale } from '@sovereignsquad/gds-theme';
 import { Text } from '@mantine/core';
 import { getGdsMessages, type GdsLocale } from './locales';
 

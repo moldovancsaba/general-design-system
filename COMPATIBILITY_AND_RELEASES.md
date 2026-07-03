@@ -4,7 +4,7 @@ Status: Active SSOT
 Version: 3.9.0
 Last updated: 2026-06-26
 
-This document defines the supported package/runtime contract for the umbrella package `@doneisbetter/gds` and the granular runtime packages `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin`.
+This document defines the supported package/runtime contract for the umbrella package `@sovereignsquad/gds` and the granular runtime packages `@sovereignsquad/gds-theme`, `@sovereignsquad/gds-core`, and `@sovereignsquad/gds-admin`.
 
 ## Supported matrix
 
@@ -22,7 +22,7 @@ The machine-readable authority for the supported lines lives in [compatibility.m
 
 Canonical install path:
 
-1. consume `@doneisbetter/gds` as the preferred public install path, or consume `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin` directly when package-level separation is intentional
+1. consume `@sovereignsquad/gds` as the preferred public install path, or consume `@sovereignsquad/gds-theme`, `@sovereignsquad/gds-core`, and `@sovereignsquad/gds-admin` directly when package-level separation is intentional
 2. keep Mantine, React, and React DOM aligned to the compatibility matrix
 3. avoid sibling-repo `file:` links for production CI/Vercel flows unless explicitly documented as temporary local development strategy
 
@@ -30,7 +30,7 @@ Canonical install path:
 
 For hosted CI and Vercel builds, the intended end state is:
 
-1. install `@doneisbetter/gds` from a registry for the simplest path, or granular `@doneisbetter/gds-*` packages when a consumer needs tighter dependency boundaries
+1. install `@sovereignsquad/gds` from a registry for the simplest path, or granular `@sovereignsquad/gds-*` packages when a consumer needs tighter dependency boundaries
 2. keep the consumer repo independent of a sibling GDS checkout
 3. pin the consumed GDS version explicitly in the consumer repo
 
@@ -56,15 +56,15 @@ npm run verify:published
 For the current `3.9.0` line, the install contract is:
 
 ```bash
-npm install @doneisbetter/gds@3.9.0
-npm install -D @doneisbetter/gds-eslint-config@3.9.0 @doneisbetter/gds-compliance@3.9.0
+npm install @sovereignsquad/gds@3.9.0
+npm install -D @sovereignsquad/gds-eslint-config@3.9.0 @sovereignsquad/gds-compliance@3.9.0
 ```
 
 Granular consumers should use the same version across every package:
 
 ```bash
-npm install @doneisbetter/gds-theme@3.9.0 @doneisbetter/gds-core@3.9.0 @doneisbetter/gds-admin@3.9.0
-npm install -D @doneisbetter/gds-eslint-config@3.9.0 @doneisbetter/gds-compliance@3.9.0
+npm install @sovereignsquad/gds-theme@3.9.0 @sovereignsquad/gds-core@3.9.0 @sovereignsquad/gds-admin@3.9.0
+npm install -D @sovereignsquad/gds-eslint-config@3.9.0 @sovereignsquad/gds-compliance@3.9.0
 ```
 
 Do not mix pre-3.0 package lines with `3.9.0` packages in the same consumer dependency graph.
@@ -97,13 +97,13 @@ Example for `3.8.0`:
 
 ```bash
 npm install \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/doneisbetter-gds-theme-3.8.0.tgz \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/doneisbetter-gds-core-3.8.0.tgz \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/doneisbetter-gds-admin-3.8.0.tgz
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/sovereignsquad-gds-theme-3.8.0.tgz \
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/sovereignsquad-gds-core-3.8.0.tgz \
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/sovereignsquad-gds-admin-3.8.0.tgz
 
 npm install -D \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/doneisbetter-gds-eslint-config-3.8.0.tgz \
-  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/doneisbetter-gds-compliance-3.8.0.tgz
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/sovereignsquad-gds-eslint-config-3.8.0.tgz \
+  https://github.com/sovereignsquad/general-design-system/releases/download/gds-v3.8.0/sovereignsquad-gds-compliance-3.8.0.tgz
 ```
 
 Auth expectations for the temporary path:
@@ -134,12 +134,12 @@ Every package now exposes:
 
 Recommended usage:
 
-- use `@doneisbetter/gds/server` for the simplest server-safe umbrella path
-- use `@doneisbetter/gds-theme/server` for `gdsTheme`, the shipped public presets, and `createPublicBrandTheme(...)` when a consumer intentionally imports granular lanes
-- use `@doneisbetter/gds-theme/server` `withGdsMotion` only when a product explicitly opts into shared motion defaults
-- use `@doneisbetter/gds-core/server` or `@doneisbetter/gds-admin/server` when a server-rendered layout only needs structural primitives
-- use `@doneisbetter/gds/client` for the simplest client-safe umbrella path
-- use granular `@doneisbetter/gds-*/client` for hook-driven or clearly interactive surfaces when package-level separation matters
+- use `@sovereignsquad/gds/server` for the simplest server-safe umbrella path
+- use `@sovereignsquad/gds-theme/server` for `gdsTheme`, the shipped public presets, and `createPublicBrandTheme(...)` when a consumer intentionally imports granular lanes
+- use `@sovereignsquad/gds-theme/server` `withGdsMotion` only when a product explicitly opts into shared motion defaults
+- use `@sovereignsquad/gds-core/server` or `@sovereignsquad/gds-admin/server` when a server-rendered layout only needs structural primitives
+- use `@sovereignsquad/gds/client` for the simplest client-safe umbrella path
+- use granular `@sovereignsquad/gds-*/client` for hook-driven or clearly interactive surfaces when package-level separation matters
 - release validation now verifies that published `server` entrypoints remain free of client-only module drift and that documented export targets exist in built `dist` output
 
 ## Next.js App Router consumer path
@@ -151,9 +151,9 @@ Recommended production split for App Router consumers:
 Use server-safe entrypoints in layouts, metadata builders, and non-interactive composition:
 
 ```ts
-import { gdsTheme, createPublicBrandTheme } from '@doneisbetter/gds-theme/server';
-import { AccentPanel, DocsPageShell, PageHeader, AuthShell } from '@doneisbetter/gds-core/server';
-import { WorkspaceHeader } from '@doneisbetter/gds-admin/server';
+import { gdsTheme, createPublicBrandTheme } from '@sovereignsquad/gds-theme/server';
+import { AccentPanel, DocsPageShell, PageHeader, AuthShell } from '@sovereignsquad/gds-core/server';
+import { WorkspaceHeader } from '@sovereignsquad/gds-admin/server';
 ```
 
 ### Client files
@@ -163,16 +163,16 @@ Use client entrypoints for providers and interactive components:
 ```tsx
 'use client';
 
-import { GdsProvider } from '@doneisbetter/gds-theme/client';
-import { SemanticButton, ThemeToggle } from '@doneisbetter/gds-core/client';
-import { AppShell, ResponsiveDataView } from '@doneisbetter/gds-admin/client';
+import { GdsProvider } from '@sovereignsquad/gds-theme/client';
+import { SemanticButton, ThemeToggle } from '@sovereignsquad/gds-core/client';
+import { AppShell, ResponsiveDataView } from '@sovereignsquad/gds-admin/client';
 ```
 
 ### Recommended root split
 
 ```tsx
 // app/layout.tsx
-import { gdsTheme } from '@doneisbetter/gds-theme/server';
+import { gdsTheme } from '@sovereignsquad/gds-theme/server';
 import Providers from './providers';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -190,21 +190,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 // app/providers.tsx
 'use client';
 
-import { GdsProvider } from '@doneisbetter/gds-theme/client';
+import { GdsProvider } from '@sovereignsquad/gds-theme/client';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return <GdsProvider>{children}</GdsProvider>;
 }
 ```
 
-This is the intended stable consumer path for products that want direct package adoption without rebuilding GDS internals locally. The umbrella `@doneisbetter/gds` package is the preferred public install target; the granular package examples remain supported when a consumer wants stricter package boundaries.
+This is the intended stable consumer path for products that want direct package adoption without rebuilding GDS internals locally. The umbrella `@sovereignsquad/gds` package is the preferred public install target; the granular package examples remain supported when a consumer wants stricter package boundaries.
 
 ## Canonical bootstrap notes
 
 - `app/layout.tsx` should own `ColorSchemeScript`, root `lang`, and root `dir`.
 - `app/providers.tsx` should be the only client boundary that mounts `GdsProvider`.
-- non-interactive public/editorial primitives like `PublicShell`, `DocsPageShell`, `AccentPanel`, `EditorialHero`, `FeatureBand`, and `PublicBrandFooter` may render from `@doneisbetter/gds-core/server`.
-- interactive controls like `ThemeToggle`, `SemanticButton`, `UploadDropzone`, and `ResponsiveDataView` belong on `@doneisbetter/gds/client` or the granular `@doneisbetter/gds-*/client` lanes.
+- non-interactive public/editorial primitives like `PublicShell`, `DocsPageShell`, `AccentPanel`, `EditorialHero`, `FeatureBand`, and `PublicBrandFooter` may render from `@sovereignsquad/gds-core/server`.
+- interactive controls like `ThemeToggle`, `SemanticButton`, `UploadDropzone`, and `ResponsiveDataView` belong on `@sovereignsquad/gds/client` or the granular `@sovereignsquad/gds-*/client` lanes.
 
 ### Bootstrap failure states
 
@@ -217,7 +217,7 @@ This is the intended stable consumer path for products that want direct package 
 
 When a product currently uses local mirrored `src/gds/gds-*` contracts or a sibling checkout, the supported path is:
 
-1. install the published `@doneisbetter/gds` umbrella package or the granular `@doneisbetter/gds-*` packages
+1. install the published `@sovereignsquad/gds` umbrella package or the granular `@sovereignsquad/gds-*` packages
 2. move root provider/gds-theme imports to package entrypoints
 3. replace mirrored contract imports family-by-family
 4. keep the local manifest and compliance config active until all mirrors are deleted
@@ -265,7 +265,7 @@ These fixtures are verified through `npm run verify:references` and act as the l
 
 ## Compatibility evidence
 
-- `npm run verify:mantine` packs `@doneisbetter/gds`, `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin`, installs them into clean temporary consumers using Mantine `7.17.8` with React `18.3.1`, plus Mantine `8.3.6` and `9.2.1` with React `19.2.0`, then runs `tsc --noEmit`.
+- `npm run verify:mantine` packs `@sovereignsquad/gds`, `@sovereignsquad/gds-theme`, `@sovereignsquad/gds-core`, and `@sovereignsquad/gds-admin`, installs them into clean temporary consumers using Mantine `7.17.8` with React `18.3.1`, plus Mantine `8.3.6` and `9.2.1` with React `19.2.0`, then runs `tsc --noEmit`.
 - `npm run audit:dependencies` verifies production audit cleanliness and generates `dependency-risk-report.json` with direct/peer/dev dependency categories, active dependency exceptions, and release evidence commands.
 - `apps/reference-next` remains the typed App Router reference fixture. `npm run build:app-router --workspace=reference-next` is kept as an explicit non-gating harness while the upstream `/404` / `/_error` prerender failure on Next `15.5.x` is still reproducible even against a trivial reference route tree.
 

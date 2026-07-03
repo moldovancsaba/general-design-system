@@ -11,7 +11,7 @@ export type ApiExportKind = 'component' | 'provider' | 'hook' | 'helper' | 'regi
 export type ApiRuntimeLane = 'client' | 'server' | 'universal' | 'tooling';
 
 export interface ApiReferenceEntry {
-  packageName: ExportCoveragePackage | '@doneisbetter/gds';
+  packageName: ExportCoveragePackage | '@sovereignsquad/gds';
   exportName: string;
   exportKind: ApiExportKind;
   runtimeLane: ApiRuntimeLane;
@@ -49,10 +49,10 @@ export const apiReferenceEntries: ApiReferenceEntry[] = patternExportCoverage.ma
 }));
 
 export const apiReferencePackages = [
-  '@doneisbetter/gds-theme',
-  '@doneisbetter/gds-core',
-  '@doneisbetter/gds-admin',
-  '@doneisbetter/gds',
+  '@sovereignsquad/gds-theme',
+  '@sovereignsquad/gds-core',
+  '@sovereignsquad/gds-admin',
+  '@sovereignsquad/gds',
 ] as const;
 
 export function getApiReferenceEntries(packageName?: string) {
@@ -84,14 +84,14 @@ function inferDependencyBoundary(packageName: ExportCoveragePackage, exportName:
   if (exportName === 'GdsIcon' || exportName === 'GdsIcons' || exportName.includes('Icon')) {
     return 'tabler-backed';
   }
-  if (packageName === '@doneisbetter/gds-theme' || exportName.includes('Theme') || exportName.includes('Provider')) {
+  if (packageName === '@sovereignsquad/gds-theme' || exportName.includes('Theme') || exportName.includes('Provider')) {
     return 'mantine-backed';
   }
   return 'gds-contract';
 }
 
 function inferExportKind(packageName: ExportCoveragePackage, exportName: string): ApiExportKind {
-  if (packageName === '@doneisbetter/gds-theme') {
+  if (packageName === '@sovereignsquad/gds-theme') {
     if (exportName.includes('Provider')) return 'provider';
     if (exportName.startsWith('use')) return 'hook';
     if (exportName.includes('Theme')) return 'theme';
@@ -108,15 +108,15 @@ function inferExportKind(packageName: ExportCoveragePackage, exportName: string)
 }
 
 function inferRuntimeLane(packageName: ExportCoveragePackage, exportName: string): ApiRuntimeLane {
-  if (packageName === '@doneisbetter/gds-theme') return exportName.startsWith('use') || exportName === 'GdsProvider' ? 'client' : 'universal';
-  if (packageName === '@doneisbetter/gds-admin') return 'client';
+  if (packageName === '@sovereignsquad/gds-theme') return exportName.startsWith('use') || exportName === 'GdsProvider' ? 'client' : 'universal';
+  if (packageName === '@sovereignsquad/gds-admin') return 'client';
   if (exportName.startsWith('use') || exportName.includes('Provider') || exportName.includes('Palette') || exportName.includes('Toast')) return 'client';
   if (exportName.endsWith('client')) return 'client';
   return 'universal';
 }
 
 function inferAudience(packageName: ExportCoveragePackage, exportName: string): ApiAudience[] {
-  if (packageName === '@doneisbetter/gds-admin') return ['developer', 'operator'];
+  if (packageName === '@sovereignsquad/gds-admin') return ['developer', 'operator'];
   if (exportName.includes('Theme') || exportName.includes('Compliance') || exportName.includes('Registry')) return ['developer', 'product-owner'];
   return ['developer'];
 }

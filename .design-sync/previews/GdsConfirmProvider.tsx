@@ -1,4 +1,4 @@
-import { GdsConfirmProvider, useGdsConfirm } from '@doneisbetter/gds';
+import { GdsConfirmProvider, useGdsConfirm } from '@sovereignsquad/gds';
 
 const DangerZone = () => {
   const confirm = useGdsConfirm();

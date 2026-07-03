@@ -1,4 +1,4 @@
-import { GdsBox } from '@doneisbetter/gds';
+import { GdsBox } from '@sovereignsquad/gds';
 
 const Block = ({ children }: { children: React.ReactNode }) => (
   <div

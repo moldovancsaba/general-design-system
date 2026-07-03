@@ -1,5 +1,5 @@
-import { AISearchCard } from '@doneisbetter/gds-core';
-import { GdsSafeBox } from '@doneisbetter/gds-core';
+import { AISearchCard } from '@sovereignsquad/gds-core';
+import { GdsSafeBox } from '@sovereignsquad/gds-core';
 
 export default function Preview() {
   return (

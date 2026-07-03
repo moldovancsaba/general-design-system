@@ -5,9 +5,9 @@ export default defineConfig({
   resolve: {
     dedupe: ['react', 'react-dom'],
     alias: {
-      '@doneisbetter/gds-theme': resolve(__dirname, 'packages/gds-theme/src/index.ts'),
-      '@doneisbetter/gds-core': resolve(__dirname, 'packages/gds-core/src/index.ts'),
-      '@doneisbetter/gds-admin': resolve(__dirname, 'packages/gds-admin/src/index.ts'),
+      '@sovereignsquad/gds-theme': resolve(__dirname, 'packages/gds-theme/src/index.ts'),
+      '@sovereignsquad/gds-core': resolve(__dirname, 'packages/gds-core/src/index.ts'),
+      '@sovereignsquad/gds-admin': resolve(__dirname, 'packages/gds-admin/src/index.ts'),
       react: resolve(__dirname, 'node_modules/react'),
       'react-dom': resolve(__dirname, 'node_modules/react-dom'),
     },

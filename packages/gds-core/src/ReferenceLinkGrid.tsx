@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Anchor, Badge, Group, Paper, SimpleGrid, Stack, Text, Title } from '@mantine/core';
-import { useGdsTranslation } from '@doneisbetter/gds-theme';
+import { useGdsTranslation } from '@sovereignsquad/gds-theme';
 
 export interface ReferenceLinkGridItem {
   id: string;

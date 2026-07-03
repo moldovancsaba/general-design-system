@@ -1,4 +1,4 @@
-import { EmptyState, SemanticButton } from '@doneisbetter/gds';
+import { EmptyState, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <EmptyState

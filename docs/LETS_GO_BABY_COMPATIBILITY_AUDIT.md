@@ -203,9 +203,9 @@ Recommended implementation surfaces in GDS:
 
 Delivered package entrypoints:
 
-- Theme: `@doneisbetter/gds-theme` exports `partnerDiscoveryThemePreset`; `resolveGdsThemePreset("partner-discovery")` resolves the same preset.
+- Theme: `@sovereignsquad/gds-theme` exports `partnerDiscoveryThemePreset`; `resolveGdsThemePreset("partner-discovery")` resolves the same preset.
 - Font lane: `resolveGdsFontLane("partner-discovery")` returns Inter body typography with Jost headings.
-- Core: `@doneisbetter/gds-core` and `@doneisbetter/gds-core/server` export the partner discovery components and typed contracts listed above.
+- Core: `@sovereignsquad/gds-core` and `@sovereignsquad/gds-core/server` export the partner discovery components and typed contracts listed above.
 
 ## Non-Copy Boundaries
 

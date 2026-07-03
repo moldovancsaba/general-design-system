@@ -1,4 +1,4 @@
-import { GdsAssetPreviewCard } from '@doneisbetter/gds';
+import { GdsAssetPreviewCard } from '@sovereignsquad/gds';
 
 const gradientSvg = (a: string, b: string, label: string) =>
   'data:image/svg+xml;utf8,' +

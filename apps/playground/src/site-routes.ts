@@ -1,4 +1,4 @@
-import type { SemanticAction } from '@doneisbetter/gds-core';
+import type { SemanticAction } from '@sovereignsquad/gds-core';
 
 export type PublicAudienceIntent =
   | 'overview'

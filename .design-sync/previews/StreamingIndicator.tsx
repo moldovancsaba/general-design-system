@@ -1,5 +1,5 @@
-import { StreamingIndicator } from '@doneisbetter/gds-core';
-import { GdsSafeBox, GdsStack } from '@doneisbetter/gds-core';
+import { StreamingIndicator } from '@sovereignsquad/gds-core';
+import { GdsSafeBox, GdsStack } from '@sovereignsquad/gds-core';
 
 export default function Preview() {
   return (

@@ -1,4 +1,4 @@
-import { SidebarNav, SidebarNavSection, SidebarNavItem } from '@doneisbetter/gds';
+import { SidebarNav, SidebarNavSection, SidebarNavItem } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SidebarNav ariaLabel="Pattern reference sidebar">

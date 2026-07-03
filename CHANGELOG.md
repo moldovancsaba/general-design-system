@@ -5,19 +5,19 @@ All notable policy changes to the General Design System are recorded here.
 ## 3.9.0 - 2026-07-01 — brand-completion-lane (#362–#368)
 
 - **Choice-chip family catalog coverage** (#362): the `choice-chips` catalog demo now mounts the full exported family — `ChoiceChip` (static, link/button, multi-select toggles) plus the stateful `PillBar`, `SoftChipGroup`, and `FilterChipGroup` selection groups (including a disabled option) — so every-theme render, forced-colors, and a11y-evidence gates exercise the whole family, not just the base chip.
-- **MissingDataPrompt catalog coverage + i18n catalog keys** (#363): the `state-blocks` catalog demo renders `MissingDataPrompt` with a required-fields list, a call-to-action slot, and a `role="status"` recovery variant. Localized message keys `gds.state.missingData.title` / `gds.state.missingData.description` are added to all 9 locale packs (public catalog). `MissingDataPrompt` stays server-safe (no `'use client'`, no context hook) with English semantic defaults, so consumers localize by passing `title`/`description` resolved from the catalog — the component remains usable from `@doneisbetter/gds-core/server`.
+- **MissingDataPrompt catalog coverage + i18n catalog keys** (#363): the `state-blocks` catalog demo renders `MissingDataPrompt` with a required-fields list, a call-to-action slot, and a `role="status"` recovery variant. Localized message keys `gds.state.missingData.title` / `gds.state.missingData.description` are added to all 9 locale packs (public catalog). `MissingDataPrompt` stays server-safe (no `'use client'`, no context hook) with English semantic defaults, so consumers localize by passing `title`/`description` resolved from the catalog — the component remains usable from `@sovereignsquad/gds-core/server`.
 - **Form control family catalog coverage + i18n catalog keys** (#364): the `forms` and `form-field` catalog demos now mount `GdsSegmentedControl` (default, disabled, and many-item overflow), `GdsSlider` (1–10 plus a min-equals-max boundary), `GdsRatingScale` (1–5), and `GdsWizardStepper` (first/mid/last steps). Localized wizard/slider/rating message keys (`gds.form.wizard.back|next|finish|progress|optional`, `gds.form.slider.label`, `gds.form.rating.aria`) are added to all 9 packs (public catalog). The controls stay server-safe with English prop defaults; no public API changes.
 - **Overlay Dialog/SidePanel alias coverage + i18n** (#365): the `modals` and `drawers` catalog demos now open `GdsDialog` and `GdsSidePanel` (open/close, focus trap, focus return, opaque surface). The overlay close-button `aria-label` now routes through the new `gds.overlay.close` key (added to all 9 packs) via the client-only `OverlayManager`, instead of Mantine's built-in English default.
 - **Chart-wrapper family catalog coverage + i18n catalog keys** (#366): the `reporting-contracts` catalog demo now renders all seven wrappers (`GdsAreaChart`, `GdsSparkline`, `GdsLongitudinalChart`, `GdsBenchmarkBarChart`, `GdsRadarChart`, `GdsMaturityRadarChart`, `GdsGaugeChart`) in populated, empty, and loading states so the accessible table fallback is exercised per theme. Localized chart table-header keys (`gds.chart.table.label|value|secondaryValue|group`, all 9 packs) are added to the public catalog; `GdsChart` stays server-safe (English header defaults, consumer-overridable via `tableValueHeader`/`groupLabel`). The reporting legend swatches use `getGdsSeriesColor` instead of raw Mantine tokens, and a focused test asserts the benchmark wrapper mirrors its input into the table fallback.
 - **Gold Athlete (Habigoal) brand preset** (#367): new first-class governed brand lane `gold-athlete`, mirroring the `class-usa` apparatus — `brand-tokens.ts` (five 10-step ramps `gold`/`charcoal`/`crimson`/`ivory`/`slate`, `CreateGoldAthleteBrandThemeOptions`, `createBrandTheme('gold-athlete')`), `vibe-themes.ts` (`gold-athlete` VibeTheme + semantic CSS variables, with the single-id brand-semantic guard widened to a preset map so the new lane's variables emit), `goldAthleteThemePreset` in `theme-presets.ts` (catalog + registry), and `index`/`client`/`server` exports (`goldAthleteThemePreset`, `GoldAthleteColorRampName`, `GoldAthleteColorRamps`, `CreateGoldAthleteBrandThemeOptions`). The palette passes WCAG AA in both schemes: charcoal body/heading text on ivory surfaces in light mode, ivory text with metallic-gold accents on near-black surfaces in dark mode, and a separate accessible `--gds-brand-accent-action` (darkened gold `#8a5a00`, 5.9:1 with white) for filled accent controls so the gold accent is never used as on-white body text. Additive — existing presets and the decorative `athlete-gold` vibe are unchanged.
-- **Component→pattern-registry parity gate** (#368): new blocking `verify:component-catalog-parity` gate (wired into `verify:release`) fails CI if any public PascalCase UI component exported from `@doneisbetter/gds-core` or `@doneisbetter/gds-admin` (via each package's `index`/`client`/`server` entrypoints) is neither registered in the pattern registry (`apps/playground/src/pattern-registry.ts`, as a `sourceComponent`) nor listed in the reviewed exemption allowlist `boundary/component-catalog-exemptions.json` with a reason. Hooks (`use*`) and type-only exports are dropped by classification. Registry membership is what drives catalog render (every-theme + forced-colors), i18n routing, and a11y evidence, so this closes the exact gap that let the 17 lane components ship export-covered but unrendered/unevidenced. Sequencing this gate last surfaced that #362–#366 rendered the lane components in the catalog demos (`pattern-pages.tsx`) but never recorded them as `sourceComponent`, so the gate now completes that link: `PillBar`/`SoftChipGroup`/`FilterChipGroup` on the choice-chips row, `MissingDataPrompt` on state-blocks, `GdsSegmentedControl`/`GdsSlider`/`GdsRatingScale`/`GdsWizardStepper` on forms, the seven chart wrappers (`GdsAreaChart`/`GdsSparkline`/`GdsLongitudinalChart`/`GdsBenchmarkBarChart`/`GdsRadarChart`/`GdsMaturityRadarChart`/`GdsGaugeChart`) on reporting-contracts, `GdsDialog` on modals, and `GdsSidePanel` on drawers. The 124 genuinely non-catalog exports (layout/style primitives, typography atoms, providers/context, i18n formatters, page templates/catalog helpers, chart sub-parts and variant wrappers, `Admin*`/`Partner*` sub-parts of registered composites, icon surfaces, and client-runtime composites whose canonical pattern is registered elsewhere) are exempted with grouped reasons; stale exemptions warn non-fatally. Deterministic sub-second static scan, no build/network. See [`docs/COMPONENT_CATALOG_PARITY.md`](docs/COMPONENT_CATALOG_PARITY.md).
+- **Component→pattern-registry parity gate** (#368): new blocking `verify:component-catalog-parity` gate (wired into `verify:release`) fails CI if any public PascalCase UI component exported from `@sovereignsquad/gds-core` or `@sovereignsquad/gds-admin` (via each package's `index`/`client`/`server` entrypoints) is neither registered in the pattern registry (`apps/playground/src/pattern-registry.ts`, as a `sourceComponent`) nor listed in the reviewed exemption allowlist `boundary/component-catalog-exemptions.json` with a reason. Hooks (`use*`) and type-only exports are dropped by classification. Registry membership is what drives catalog render (every-theme + forced-colors), i18n routing, and a11y evidence, so this closes the exact gap that let the 17 lane components ship export-covered but unrendered/unevidenced. Sequencing this gate last surfaced that #362–#366 rendered the lane components in the catalog demos (`pattern-pages.tsx`) but never recorded them as `sourceComponent`, so the gate now completes that link: `PillBar`/`SoftChipGroup`/`FilterChipGroup` on the choice-chips row, `MissingDataPrompt` on state-blocks, `GdsSegmentedControl`/`GdsSlider`/`GdsRatingScale`/`GdsWizardStepper` on forms, the seven chart wrappers (`GdsAreaChart`/`GdsSparkline`/`GdsLongitudinalChart`/`GdsBenchmarkBarChart`/`GdsRadarChart`/`GdsMaturityRadarChart`/`GdsGaugeChart`) on reporting-contracts, `GdsDialog` on modals, and `GdsSidePanel` on drawers. The 124 genuinely non-catalog exports (layout/style primitives, typography atoms, providers/context, i18n formatters, page templates/catalog helpers, chart sub-parts and variant wrappers, `Admin*`/`Partner*` sub-parts of registered composites, icon surfaces, and client-runtime composites whose canonical pattern is registered elsewhere) are exempted with grouped reasons; stale exemptions warn non-fatally. Deterministic sub-second static scan, no build/network. See [`docs/COMPONENT_CATALOG_PARITY.md`](docs/COMPONENT_CATALOG_PARITY.md).
 
 ## 3.8.0 - 2026-07-01
 
 - **Opaque overlay surfaces** (#342): GDS now owns the painted background of every overlay/dropdown surface (`Popover`, `Menu`, `Select`/`Combobox`, `MultiSelect`, `Autocomplete`, `HoverCard`). `styles.css` sets an opaque, GDS-owned `--gds-overlay-surface` token (white / `--mantine-color-dark-6` / system `Canvas` under forced-colors) and applies it to all dropdown containers with hard fallbacks, so overlays stay solid even when the vendor base stylesheet is absent or an unlayered consumer reset competes. Resolves the cross-client transparent-dropdown failures.
-- **Mandatory stylesheet import documented + guarded** (#344): every consumer integration path — `INSTALLATION_GUIDE.md`, `docs/CLASSSCOUT_INTEGRATION.md`, `docs/AI_AGENT_GUIDE.md`, `README.md`, the Vite/Next `TEMPLATES`, and the playground install code — now shows `import '@doneisbetter/gds-theme/styles.css'` as the first bootstrap step. `verify-install-bootstrap-docs.mjs` fails CI if any tracked integration doc or template omits it, preventing the documentation gap that caused unstyled/transparent surfaces in consumer apps.
+- **Mandatory stylesheet import documented + guarded** (#344): every consumer integration path — `INSTALLATION_GUIDE.md`, `docs/CLASSSCOUT_INTEGRATION.md`, `docs/AI_AGENT_GUIDE.md`, `README.md`, the Vite/Next `TEMPLATES`, and the playground install code — now shows `import '@sovereignsquad/gds-theme/styles.css'` as the first bootstrap step. `verify-install-bootstrap-docs.mjs` fails CI if any tracked integration doc or template omits it, preventing the documentation gap that caused unstyled/transparent surfaces in consumer apps.
 - **Public type-boundary gate** (#343): `verify:public-types` (in `verify:release`) scans the built consumer-facing `.d.ts` for `@mantine/*` references and fails on any not recorded in `boundary/public-type-allowlist.json`. This seals GDS's public type surface — a vendor major or accidental pass-through now fails in GDS's CI, not in a consumer's compile step — and freezes the documented intentional exposures (the `GdsPrimitives` passthrough; theme-override types) so the surface can only shrink deliberately, never grow by accident. See [`docs/PUBLIC_TYPE_BOUNDARY.md`](docs/PUBLIC_TYPE_BOUNDARY.md).
-- **Single install surface** (#346): consumers install `@doneisbetter/gds` (+ React) only — the engine (`@mantine/*`, `@tabler/icons-react`) is pulled in automatically as auto-installed peers and never listed by the consumer. The engine stays a peer on purpose (single resolved instance, no dual-instance/skew failures). New `verify:install-surface` gate enforces that all GDS packages pin the **same** engine range, React/react-dom remain consumer-owned peers, the umbrella declares the full engine, and the GDS-owned `GdsIcons` surface is reachable (so consumers never import `@tabler/icons-react` directly). Install docs now lead with the single command.
+- **Single install surface** (#346): consumers install `@sovereignsquad/gds` (+ React) only — the engine (`@mantine/*`, `@tabler/icons-react`) is pulled in automatically as auto-installed peers and never listed by the consumer. The engine stays a peer on purpose (single resolved instance, no dual-instance/skew failures). New `verify:install-surface` gate enforces that all GDS packages pin the **same** engine range, React/react-dom remain consumer-owned peers, the umbrella declares the full engine, and the GDS-owned `GdsIcons` surface is reachable (so consumers never import `@tabler/icons-react` directly). Install docs now lead with the single command.
 - **Boundary contract suite** (#347): one named `verify:boundary` gate (in `verify:release`) composes the boundary gates into a single verdict — public type surface (#343), single install surface (#346), and a new **public CSS-selector gate** (`verify:css-boundary`) that freezes the `.mantine-*` selectors in the published stylesheet to `boundary/public-css-allowlist.json` and fails on new ones. Together with the runtime opaque-overlay checks (#342) and the export contract, this makes the vendor boundary a one-way ratchet: the vendor surface can only shrink deliberately, never grow by accident. See [`docs/BOUNDARY_CONTRACT.md`](docs/BOUNDARY_CONTRACT.md).
 - **Vendor version governance** (#348): `vendor-governance.json` is the single source of truth for the GDS-owned engine version; `verify:vendor-pin` (in `verify:release`) fails if any package's engine/platform peer ranges drift from the manifest. Engine upgrades become deliberate, reversible internal migrations behind the sealed public contract via [`docs/VENDOR_UPGRADE_RUNBOOK.md`](docs/VENDOR_UPGRADE_RUNBOOK.md) — the CI matrix smoke-tests the candidate major, breakage is absorbed in adapters only, and rollback is a single revert.
 - **Styling-contract migration to GDS hooks** (#345): GDS themes its core surface group (`Paper`, `Card`, `Alert`, `Code`) through GDS-owned classes (`.gds-paper`, `.gds-card`, `.gds-alert`, `.gds-code`) attached globally via theme `classNames`, instead of vendor-internal `.mantine-*` selectors. The published stylesheet's vendor-selector surface shrank 38 → 34 (enforced down by `verify:css-boundary`); migration is visually identical (the GDS class lands on the same element) and verified by the theme-trust + forced-colors runtime checks across all presets. Remaining selectors migrate incrementally under the gate. See [`docs/THEME_STYLING_HOOKS.md`](docs/THEME_STYLING_HOOKS.md).
@@ -127,7 +127,7 @@ All notable policy changes to the General Design System are recorded here.
 ## 3.4.2 - 2026-06-06
 
 - Moved reference-site localized route labels, app-shell copy, page copy, and theme-explorer copy out of React runtime components into dedicated i18n resource contracts.
-- Added public locale metadata helpers in `@doneisbetter/gds-theme`: `gdsLocaleMetadata`, `getGdsLocaleMetadata(...)`, `isGdsRtlLocale(...)`, and `getGdsLocaleIdsByScript(...)`.
+- Added public locale metadata helpers in `@sovereignsquad/gds-theme`: `gdsLocaleMetadata`, `getGdsLocaleMetadata(...)`, `isGdsRtlLocale(...)`, and `getGdsLocaleIdsByScript(...)`.
 - Updated `GdsProvider` and font-lane coverage to resolve RTL and script support from locale metadata instead of hardcoded language arrays.
 - Replaced the locale coverage verifier so CI fails on component-local language dictionaries, `locale === ...` branches, localized route labels, and locale arrays outside approved i18n resource files.
 
@@ -140,7 +140,7 @@ All notable policy changes to the General Design System are recorded here.
 ## 3.4.0 - 2026-06-06
 
 - Added issue-backed maturity capability contracts for the seven recommended high-value GDS delivery areas: admin delivery, runtime feedback, foundation surfaces, global readiness, adoption governance, theme operations, and product-system delivery.
-- Added `getGdsMaturityCapabilities()`, `getGdsRecommendedMaturityCapabilities()`, `getGdsMaturityCapability(...)`, and `getGdsMaturitySummary()` to `@doneisbetter/gds-core`.
+- Added `getGdsMaturityCapabilities()`, `getGdsRecommendedMaturityCapabilities()`, `getGdsMaturityCapability(...)`, and `getGdsMaturitySummary()` to `@sovereignsquad/gds-core`.
 - Added the localized `/maturity` GitHub Pages route so developers and product owners can inspect benefits, package lanes, primary contracts, UX states, accessibility, observability, rollback, testing, and operational behavior in every supported site language.
 - Created the 3.4.0 GitHub project-board issue set using the issue #81 production-grade structure.
 - Updated API, user-guide, CLI/LLD, install, compatibility, release, and README guidance to the `3.4.0` npm release line.
@@ -161,7 +161,7 @@ All notable policy changes to the General Design System are recorded here.
 
 ## 3.0.6 - 2026-06-06
 
-- Added package-native admin CRUD primitives in `@doneisbetter/gds-admin`: `AdminTextInput`, `AdminTextarea`, `AdminCheckbox`, `AdminSelect`, `AdminFileUpload`, `AdminFormSection`, `AdminFormStatus`, `AdminFormActions`, and `AdminCrudForm`.
+- Added package-native admin CRUD primitives in `@sovereignsquad/gds-admin`: `AdminTextInput`, `AdminTextarea`, `AdminCheckbox`, `AdminSelect`, `AdminFileUpload`, `AdminFormSection`, `AdminFormStatus`, `AdminFormActions`, and `AdminCrudForm`.
 - Added hardened admin data/resource surfaces: `AdminDataTable`, `AdminAnalyticsTable`, `AdminModal`, `AdminDetailDrawer`, `AdminReviewLayout`, `AdminResourceManager`, `AdminResourceGrid`, `AdminResourceCard`, `AdminResourceToolbar`, and `AdminResourceEmptyState`.
 - Added core interaction/runtime contracts: `GdsConfirmProvider`, `useGdsConfirm`, `GdsToastProvider`, `useGdsToasts`, typed `GdsIcon`, `MediaPreviewCard`, `PublicCaptureFlow`, `PlaybackControls`, and creator theme validation/boundary utilities.
 - Expanded `gds-compliance` strict mode to detect direct Mantine imports, direct Tabler imports, raw form controls/buttons, browser dialogs, raw table markup, inline styles, and undeclared local GDS adapters with exception-aware suppression.
@@ -191,7 +191,7 @@ All notable policy changes to the General Design System are recorded here.
 ## 2.6.7 - 2026-05-31
 
 - Cut and published the `2.6.7` npm release line so the widened docs/reference-shell layout is available through the public package line and not only on repository `main`.
-- Updated `DocsPageShell` in `@doneisbetter/gds-core` to use the full available page width for the official site and other reference/docs surfaces, removing the narrow article cap that was squeezing wide content such as the theme-governance explorer.
+- Updated `DocsPageShell` in `@sovereignsquad/gds-core` to use the full available page width for the official site and other reference/docs surfaces, removing the narrow article cap that was squeezing wide content such as the theme-governance explorer.
 - Aligned the public site copy, install guidance, and versioned docs/routes to the `2.6.7` line.
 
 ## 2.6.5 - 2026-05-29
@@ -206,7 +206,7 @@ All notable policy changes to the General Design System are recorded here.
 - Deprecated consumer-facing `extendGdsTheme(...)` as a canonical adopter path and formalized the approved theme lanes around `gdsTheme`, the shipped public presets, and `createPublicBrandTheme(...)`.
 - Added manifest-scoped theme-governance enforcement fields plus `gds-compliance` detection for direct `extendGdsTheme(...)` usage and parallel local branding-layer theme construction in declared theme-ownership files.
 - Aligned templates, reference consumers, install/governance docs, and theme guidance to the canonical adopter theme path so teams can copy a governed theme setup directly from GDS.
-- Added `ReferenceSection`, `ReferenceLinkGrid`, `ReferenceLocaleNotice`, and `ReferenceThemeExplorer` to `@doneisbetter/gds-core` plus `ReferenceSiteShell` to `@doneisbetter/gds-admin` so the official website can consume GDS-owned docs/reference primitives instead of site-local Mantine composition.
+- Added `ReferenceSection`, `ReferenceLinkGrid`, `ReferenceLocaleNotice`, and `ReferenceThemeExplorer` to `@sovereignsquad/gds-core` plus `ReferenceSiteShell` to `@sovereignsquad/gds-admin` so the official website can consume GDS-owned docs/reference primitives instead of site-local Mantine composition.
 - Converted `apps/playground` onto the new reference-site primitives, replaced the remaining direct page-level Mantine composition in the public site source, and added a strict `gds-adoption.json` baseline for the website.
 - Updated the public route structure, docs copy, and rulebooks so the GitHub Pages site is described as both the official GDS website and a strict live reference consumer rather than a separate playground exception.
 - Added the registry-backed GitHub Pages pattern catalog under `/patterns` with dedicated family routes for foundations, public, operations, data, access, and feedback coverage.
@@ -214,17 +214,17 @@ All notable policy changes to the General Design System are recorded here.
 - Hardened the GitHub Pages playground with route-level lazy loading, deterministic vendor chunking, and contained shell previews so the public site behaves like a documentation site instead of a nested application demo.
 - Added an interactive `/themes` explorer so adopters can switch among shipped theme presets, test light/dark behavior, inspect the bounded creator-authored theming lane, and compare theme lanes directly on the public site.
 - Added a dedicated `/live-demos` hub so the public website separates official docs from runtime showcase sections more clearly.
-- Strengthened `@doneisbetter/gds-compliance` exception enforcement to fail stale exception scopes, uncovered local exception adapters, and incomplete creator-authored experience exception metadata.
+- Strengthened `@sovereignsquad/gds-compliance` exception enforcement to fail stale exception scopes, uncovered local exception adapters, and incomplete creator-authored experience exception metadata.
 - Updated theme governance, exception-surface, compliance, and adoption rulebooks to formalize the creator-authored experience contract and the new repo-to-manifest exception checks.
-- Added `SocialAuthButtons` to `@doneisbetter/gds-core` as the canonical provider-entry cluster for Google, Apple, GitHub, Microsoft, LinkedIn, Discord, X, Facebook, and email-shaped auth lanes.
-- Added `ShareButtonGroup` to `@doneisbetter/gds-core` as the canonical public sharing surface for native share, copy-link, email, message, and social-channel actions.
+- Added `SocialAuthButtons` to `@sovereignsquad/gds-core` as the canonical provider-entry cluster for Google, Apple, GitHub, Microsoft, LinkedIn, Discord, X, Facebook, and email-shaped auth lanes.
+- Added `ShareButtonGroup` to `@sovereignsquad/gds-core` as the canonical public sharing surface for native share, copy-link, email, message, and social-channel actions.
 - Enhanced `AuthShell` to support governed social-auth placement and divider rhythm instead of consumer-local auth-provider layouts.
-- Published the umbrella install path `@doneisbetter/gds` as the preferred public npm entrypoint while keeping the granular runtime packages available for stricter dependency boundaries.
+- Published the umbrella install path `@sovereignsquad/gds` as the preferred public npm entrypoint while keeping the granular runtime packages available for stricter dependency boundaries.
 - Aligned release automation and public documentation so npm publication, GitHub Pages guidance, and release-bundle fallback distribution target the same live release line.
 
 ## 2.6.3 - 2026-05-27
 
-- Added `showGdsNotification(...)` to `@doneisbetter/gds-theme/client` as the canonical semantic notification helper for consumers already governed by the shared provider stack.
+- Added `showGdsNotification(...)` to `@sovereignsquad/gds-theme/client` as the canonical semantic notification helper for consumers already governed by the shared provider stack.
 - Enhanced `AuthShell` with `headerActions` so products can place theme toggles or other small auth-entry controls without rebuilding the shell locally.
 - Enhanced `PageHeader` to accept `subtitle` as an alias for `description`, reducing consumer-only adapter code.
 - Hardened `SemanticButton` to use the label-first prerender path by default, removing the need for client repos to carry their own hydration-safe semantic-button wrappers.
@@ -235,40 +235,40 @@ All notable policy changes to the General Design System are recorded here.
 - Added `npm run verify:mantine` as the canonical compatibility command and broadened the smoke harness to cover both Mantine `8.3.6` and `9.2.1` in isolated clean installs.
 - Added root optional native bindings for supported macOS and Linux x64 environments so fresh local `npm install` runs provision the Vite/tsup native layer more reliably.
 - Updated README, compatibility guidance, migration guidance, release runbook, and consumer-install proof docs to reflect the Mantine 9 support line and the current temporary release-asset install path.
-- Added `ChoiceChip` to `@doneisbetter/gds-core` as the canonical neutral chip for lightweight filter, scope, taxonomy, and mode selection without page-local badge wrappers.
-- Added `getSemanticActionLabel(...)` to `@doneisbetter/gds-core` as a server-safe semantic-label helper for SSR/static fallback rendering without exposing raw vocabulary access as the only consumer path.
+- Added `ChoiceChip` to `@sovereignsquad/gds-core` as the canonical neutral chip for lightweight filter, scope, taxonomy, and mode selection without page-local badge wrappers.
+- Added `getSemanticActionLabel(...)` to `@sovereignsquad/gds-core` as a server-safe semantic-label helper for SSR/static fallback rendering without exposing raw vocabulary access as the only consumer path.
 - Recorded the current Narimato reference-consumer audit and updated the Narimato project note to reflect direct npm package consumption plus its intentionally local exceptions.
 
 ## 2.6.1 - 2026-05-26
 
-- Renamed the public package line from the unpublished placeholder `@gds/*` scope to the real npm organization scope `@doneisbetter/gds-*`.
-- Updated package metadata, workspace wiring, reference consumers, compliance manifests, docs, and release scripts to consume the `@doneisbetter/gds-*` package family consistently.
+- Renamed the public package line from the unpublished placeholder `@gds/*` scope to the real npm organization scope `@sovereignsquad/gds-*`.
+- Updated package metadata, workspace wiring, reference consumers, compliance manifests, docs, and release scripts to consume the `@sovereignsquad/gds-*` package family consistently.
 - Fixed release-environment dependency gaps (`@floating-ui/core`, `@humanfs/core`, and `@babel/core`) so local and CI release verification run cleanly on the current toolchain.
-- Updated the packed Mantine 8 compatibility harness to install the renamed tarballs correctly and verified the `@doneisbetter/gds-*` line against Mantine `8.3.6`, React `19.2.0`, and Next `15.5.18`.
+- Updated the packed Mantine 8 compatibility harness to install the renamed tarballs correctly and verified the `@sovereignsquad/gds-*` line against Mantine `8.3.6`, React `19.2.0`, and Next `15.5.18`.
 - Clarified npm as the canonical future registry source and documented public GitHub release assets as the approved temporary install path while npm publication remains unavailable.
 - Added `npm run pack:release`, release-bundle checksums/manifests, and the `GDS Release Bundles` GitHub Actions workflow.
 - Added `VERIFIED_CONSUMER_INSTALL_PROOF.md` to make the current Next 15 / React 19 / Mantine 8 install evidence explicit for adopter teams.
 
 ## 2.6.0 - 2026-05-26
 
-- Added `SectionPanel` and `ConsumerDashboardGrid` to `@doneisbetter/gds-core` as the canonical operational panel rhythm and consumer dashboard layout scaffolds.
-- Hardened shared operational contracts in `@doneisbetter/gds-admin`: `AppShell` now supports primary/secondary/account navigation regions and header context, `PageHeader` now supports subtitle/status/overflow actions, `ResponsiveDataView` now supports active filter chips plus mobile filter surfaces, and `EditorScaffold` / `ContentOpsEditor` now support context and sticky footer action regions.
-- Enhanced `@doneisbetter/gds-core` `BrowseSurface`, `EditorialCard`, `FilterDrawer`, and `MediaField` to reduce remaining local public/gds-admin overrides.
-- Added `createPublicBrandTheme()` to `@doneisbetter/gds-theme` and formalized the branded public theme merge path.
+- Added `SectionPanel` and `ConsumerDashboardGrid` to `@sovereignsquad/gds-core` as the canonical operational panel rhythm and consumer dashboard layout scaffolds.
+- Hardened shared operational contracts in `@sovereignsquad/gds-admin`: `AppShell` now supports primary/secondary/account navigation regions and header context, `PageHeader` now supports subtitle/status/overflow actions, `ResponsiveDataView` now supports active filter chips plus mobile filter surfaces, and `EditorScaffold` / `ContentOpsEditor` now support context and sticky footer action regions.
+- Enhanced `@sovereignsquad/gds-core` `BrowseSurface`, `EditorialCard`, `FilterDrawer`, and `MediaField` to reduce remaining local public/gds-admin overrides.
+- Added `createPublicBrandTheme()` to `@sovereignsquad/gds-theme` and formalized the branded public theme merge path.
 - Widened shared Mantine peer ranges to include `8.3.x` and added `npm run verify:mantine8` as a packed-consumer compatibility smoke for Mantine 8.3.6 + React 19.2.0 + Next 15.5.18.
 - Documented the canonical searchable-selection decision: use governed Mantine recipe composition rather than a new shared wrapper until a stronger repeated contract emerges.
 
 ## 2.5.1 - 2026-05-25
 
-- Expanded `@doneisbetter/gds-compliance` with configurable banned imports plus default stale-SSOT reference detection so consumer repos can catch lingering legacy UI dependencies and outdated documentation paths through shared tooling.
-- Added [COMPLIANCE_TOOLKIT.md](COMPLIANCE_TOOLKIT.md) as the canonical CI and local enforcement contract for `@doneisbetter/gds-eslint-config` and `@doneisbetter/gds-compliance`.
+- Expanded `@sovereignsquad/gds-compliance` with configurable banned imports plus default stale-SSOT reference detection so consumer repos can catch lingering legacy UI dependencies and outdated documentation paths through shared tooling.
+- Added [COMPLIANCE_TOOLKIT.md](COMPLIANCE_TOOLKIT.md) as the canonical CI and local enforcement contract for `@sovereignsquad/gds-eslint-config` and `@sovereignsquad/gds-compliance`.
 - Updated template and adoption artifacts to use the canonical repository path and the current machine-readable manifest contract.
 
 ## 2.5.0 - 2026-05-25
 
-- Added new cross-project public and consumer contracts in `@doneisbetter/gds-core`: `BrowseSurface`, `EditorialCard`, `ConsumerSection`, and `MediaField`.
-- Added new content-operations contracts in `@doneisbetter/gds-admin`: `ContentOpsEditor`, `ContentOpsSection`, and `ContentOpsActionBar`.
-- Added `gdsEditorialPublicTheme` to `@doneisbetter/gds-theme` as the approved serif-forward, flatter editorial preset.
+- Added new cross-project public and consumer contracts in `@sovereignsquad/gds-core`: `BrowseSurface`, `EditorialCard`, `ConsumerSection`, and `MediaField`.
+- Added new content-operations contracts in `@sovereignsquad/gds-admin`: `ContentOpsEditor`, `ContentOpsSection`, and `ContentOpsActionBar`.
+- Added `gdsEditorialPublicTheme` to `@sovereignsquad/gds-theme` as the approved serif-forward, flatter editorial preset.
 - Added `ADOPTION_AND_MIGRATION_PLAYBOOK.md` plus manifest-driven compliance settings for documentation paths, stale-reference detection, and protected surface declarations.
 - Updated the Next.js and Vite reference consumers plus shared component tests to exercise the new browse, consumer, media, and content-operations contracts.
 
@@ -282,7 +282,7 @@ All notable policy changes to the General Design System are recorded here.
 ## 2.4.3 - 2026-05-25
 
 - Added `AccentPanel` as the canonical light/dark-safe accent surface contract for public and operator-facing emphasis panels.
-- Added `EditorialHero`, `FeatureBand`, and `PublicBrandFooter` to `@doneisbetter/gds-core` for shared public/editorial composition without repo-local layout authority.
+- Added `EditorialHero`, `FeatureBand`, and `PublicBrandFooter` to `@sovereignsquad/gds-core` for shared public/editorial composition without repo-local layout authority.
 - Hardened release verification with export-contract checks that fail on missing published export targets or server entrypoints that drift into client-only modules.
 - Updated the Next.js and Vite reference consumers to exercise the new public/editorial primitives and the server-safe import path.
 - Added an authenticated publish runbook and shared `publish:dry-run` / `publish:npm` scripts for the five public GDS packages.
@@ -290,21 +290,21 @@ All notable policy changes to the General Design System are recorded here.
 
 ## 2.4.2 - 2026-05-25
 
-- Added `@doneisbetter/gds-core` `PublicProductCard` for media-first public menu, catalog, and offer surfaces with price/state/action hierarchy.
+- Added `@sovereignsquad/gds-core` `PublicProductCard` for media-first public menu, catalog, and offer surfaces with price/state/action hierarchy.
 - Added `es` locale support plus canonical `GdsLocale` and `getGdsMessages(locale)` exports for host-i18n bridges.
 - Extended shared lint/gds-compliance tooling to support manifest-driven approved dependency/import exceptions such as `lucide-react`.
 - Updated compatibility, governance, and Pesti Est adoption docs for registry-first CI usage and locale/exception guidance.
 
 ## 2.4.1 - 2026-05-25
 
-- Added `@doneisbetter/gds-core` `AccessRecoveryPanel` as the canonical protected-content, expired-session, and recoverable failure surface.
+- Added `@sovereignsquad/gds-core` `AccessRecoveryPanel` as the canonical protected-content, expired-session, and recoverable failure surface.
 - Updated component contracts to treat access recovery as a first-class shared pattern family.
 - Resolved the learner-shell evaluation by documenting that LMS learner shells remain local adapters until broader portfolio reuse is proven.
 - Updated Amanoba guidance to consume shared access recovery now while keeping learner shell, course cards, and gamification list cards local for now.
 
 ## 2.3.2 - 2026-05-25
 
-- Added `@doneisbetter/gds-core` `GameBoardTile` for memory-match and flip/select game boards (reduced-motion aware).
+- Added `@sovereignsquad/gds-core` `GameBoardTile` for memory-match and flip/select game boards (reduced-motion aware).
 - Added `docs/AMANOBA_BLOCKING_CONTRACTS.md` scaffolds for remaining Amanoba-only surfaces (LearnerAppShell, course cards, recovery panel).
 - Refreshed `GDS_GAP_INVENTORY.md` §2B to reflect 2.3.0–2.3.1 shipped package surfaces.
 - Added Amanoba dark-shell + yellow CTA `extendGdsTheme` recipe appendix to `THEME_GOVERNANCE.md`.
@@ -312,23 +312,23 @@ All notable policy changes to the General Design System are recorded here.
 ## 2.4.0 - 2026-05-25
 
 - Added `compatibility.matrix.json`, `schemas/gds-adoption.schema.json`, and `TEMPLATES/gds-adoption.json.template` as machine-readable compatibility and adoption contracts.
-- Added `@doneisbetter/gds-eslint-config` and `@doneisbetter/gds-compliance` to provide shared lint and compliance enforcement for adopting repositories.
-- Added new public composition primitives in `@doneisbetter/gds-core`: `PublicNav`, `PublicSiteFooter`, `DocsPageShell`, `DocsCodeBlock`, `CtaButtonGroup`, `PlaceholderPanel`, `SimpleDataTable`, and `StatsSection`.
-- Expanded `@doneisbetter/gds-theme` with `gdsDarkPublicTheme`, `gdsFlatSurfaceTheme`, and root-provider theme/default color-scheme overrides.
+- Added `@sovereignsquad/gds-eslint-config` and `@sovereignsquad/gds-compliance` to provide shared lint and compliance enforcement for adopting repositories.
+- Added new public composition primitives in `@sovereignsquad/gds-core`: `PublicNav`, `PublicSiteFooter`, `DocsPageShell`, `DocsCodeBlock`, `CtaButtonGroup`, `PlaceholderPanel`, `SimpleDataTable`, and `StatsSection`.
+- Expanded `@sovereignsquad/gds-theme` with `gdsDarkPublicTheme`, `gdsFlatSurfaceTheme`, and root-provider theme/default color-scheme overrides.
 - Added reference consumer fixtures under `apps/reference-vite` and `apps/reference-next`, plus `npm run verify:references` for fixture and manifest validation.
 - Added `DEPRECATIONS_AND_MIGRATIONS.md` to formalize contract retirement, migration guidance, and release handover expectations.
 
 ## 2.3.1 - 2026-05-25
 
-- Changed `@doneisbetter/gds-core` `PageHeader` eyebrow styling to a neutral default, removing forced uppercase and decorative tracking from the canonical contract.
+- Changed `@sovereignsquad/gds-core` `PageHeader` eyebrow styling to a neutral default, removing forced uppercase and decorative tracking from the canonical contract.
 - Added opt-in `eyebrowVariant="ornamental"` for products that explicitly want decorative eyebrow styling.
-- Removed forced hover motion and transform transitions from the canonical `@doneisbetter/gds-theme` base theme.
+- Removed forced hover motion and transform transitions from the canonical `@sovereignsquad/gds-theme` base theme.
 - Added `withGdsMotion()` as an explicit opt-in theme helper for products that want shared motion styling.
 - Expanded `COMPATIBILITY_AND_RELEASES.md` with an explicit Next.js App Router consumer path for `server` and `client` package entrypoints.
 
 ## 2.3.0 - 2026-05-24
 
-- Added publish-ready package metadata and explicit `client` / `server` subpath exports for `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin`.
+- Added publish-ready package metadata and explicit `client` / `server` subpath exports for `@sovereignsquad/gds-theme`, `@sovereignsquad/gds-core`, and `@sovereignsquad/gds-admin`.
 - Added `COMPATIBILITY_AND_RELEASES.md` to define the active Mantine/React/Next consumption contract, install guidance, and version-alignment rules.
 - Added new shared package primitives and scaffolds for `MetricCard`, `ProgressCard`, `ProductCard`, `StateBlock`, `DataToolbar`, `PublicShell`, `AuthShell`, `ArticleShell`, `UploadDropzone`, `MediaCard`, `AccessSummary`, `ResponsiveDataView`, `WorkspaceHeader`, and `EditorScaffold`.
 - Expanded admin primitives to support mobile footer navigation, richer page-header action slots, and shared empty-state handling in tables.
@@ -338,16 +338,16 @@ All notable policy changes to the General Design System are recorded here.
 
 ## 2.2.2 - 2026-05-24
 
-- Updated `@doneisbetter/gds-theme` `GdsProvider` to include Mantine modals and notifications so the shared provider matches the documented root composition contract.
+- Updated `@sovereignsquad/gds-theme` `GdsProvider` to include Mantine modals and notifications so the shared provider matches the documented root composition contract.
 - Added shared package i18n coverage for theme-toggle labels, empty-data messaging, and semantic error feedback.
-- Added a shared Vitest + jsdom test harness plus behavior coverage for `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, and `@doneisbetter/gds-admin`.
+- Added a shared Vitest + jsdom test harness plus behavior coverage for `@sovereignsquad/gds-theme`, `@sovereignsquad/gds-core`, and `@sovereignsquad/gds-admin`.
 - Added root test commands and pull-request quality gates for build, lint, and tests.
 
 ## 2.2.1 - 2026-05-23
 
 - Added `PROJECTS/NARIMATO.md` for Narimato (Mantine-rooted, enforcement phase).
 - Updated `PROJECTS/PORTFOLIO_ADOPTION_MATRIX.md` Narimato row from discovery to enforcement.
-- Fixed `@doneisbetter/gds-core` `ConfirmDialog` confirm button color: `brand` → `violet` (valid Mantine palette).
+- Fixed `@sovereignsquad/gds-core` `ConfirmDialog` confirm button color: `brand` → `violet` (valid Mantine palette).
 
 ## 2.2.0 - 2026-05-23
 

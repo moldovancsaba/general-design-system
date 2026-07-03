@@ -1,4 +1,4 @@
-import { ResultSummary, SectionPanel } from '@doneisbetter/gds';
+import { ResultSummary, SectionPanel } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SectionPanel>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicProductCard } from '@doneisbetter/gds';
+import { PublicProductCard } from '@sovereignsquad/gds';
 
 const productImage = (
   <img

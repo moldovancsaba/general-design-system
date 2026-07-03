@@ -1,5 +1,5 @@
 {
-  "name": "@doneisbetter/gds-a11y",
+  "name": "@sovereignsquad/gds-a11y",
   "version": "3.9.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

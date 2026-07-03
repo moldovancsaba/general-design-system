@@ -33,13 +33,13 @@ try {
           smoke: 'node runtime-smoke.mjs',
         },
         dependencies: {
-          '@doneisbetter/gds': version,
-          '@doneisbetter/gds-theme': version,
-          '@doneisbetter/gds-core': version,
-          '@doneisbetter/gds-admin': version,
-          '@doneisbetter/gds-a11y': version,
-          '@doneisbetter/gds-eslint-config': version,
-          '@doneisbetter/gds-compliance': version,
+          '@sovereignsquad/gds': version,
+          '@sovereignsquad/gds-theme': version,
+          '@sovereignsquad/gds-core': version,
+          '@sovereignsquad/gds-admin': version,
+          '@sovereignsquad/gds-a11y': version,
+          '@sovereignsquad/gds-eslint-config': version,
+          '@sovereignsquad/gds-compliance': version,
           '@mantine/core': '8.3.6',
           '@mantine/hooks': '8.3.6',
           '@mantine/modals': '8.3.6',
@@ -82,11 +82,11 @@ try {
   writeFileSync(
     join(workspaceRoot, 'index.tsx'),
     `import React from 'react';
-import { GdsProvider, ReferenceThemeExplorer, GdsDataTable, createGdsTableAdapter, GdsSchemaForm, jsonSchemaToGdsFormSchema } from '@doneisbetter/gds/client';
-import { getGdsThemePresets, resolveGdsVibeTheme } from '@doneisbetter/gds-theme';
-import { AccessSummary } from '@doneisbetter/gds-core';
-import { AppShell } from '@doneisbetter/gds-admin';
-import type { GdsTableColumn, GdsSchemaUploadAdapter } from '@doneisbetter/gds-core/client';
+import { GdsProvider, ReferenceThemeExplorer, GdsDataTable, createGdsTableAdapter, GdsSchemaForm, jsonSchemaToGdsFormSchema } from '@sovereignsquad/gds/client';
+import { getGdsThemePresets, resolveGdsVibeTheme } from '@sovereignsquad/gds-theme';
+import { AccessSummary } from '@sovereignsquad/gds-core';
+import { AppShell } from '@sovereignsquad/gds-admin';
+import type { GdsTableColumn, GdsSchemaUploadAdapter } from '@sovereignsquad/gds-core/client';
 
 const rows = [{ id: '1', name: 'Published package' }];
 const columns: GdsTableColumn<(typeof rows)[number]>[] = [{ key: 'name', label: 'Name', interactive: true }];
@@ -132,13 +132,13 @@ console.log(Boolean(app), athleteGold.label, presets.some((preset) => preset.id 
   compliance,
   eslintConfig,
 ] = await Promise.all([
-  import('@doneisbetter/gds'),
-  import('@doneisbetter/gds-theme'),
-  import('@doneisbetter/gds-core'),
-  import('@doneisbetter/gds-admin'),
-  import('@doneisbetter/gds-a11y'),
-  import('@doneisbetter/gds-compliance'),
-  import('@doneisbetter/gds-eslint-config'),
+  import('@sovereignsquad/gds'),
+  import('@sovereignsquad/gds-theme'),
+  import('@sovereignsquad/gds-core'),
+  import('@sovereignsquad/gds-admin'),
+  import('@sovereignsquad/gds-a11y'),
+  import('@sovereignsquad/gds-compliance'),
+  import('@sovereignsquad/gds-eslint-config'),
 ]);
 
 if (!gds.GdsProvider || !theme.resolveGdsVibeTheme || !core.GdsDataTable || !admin.AppShell) {

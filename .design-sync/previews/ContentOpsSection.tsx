@@ -1,4 +1,4 @@
-import { ContentOpsSection, FormField, SemanticButton } from '@doneisbetter/gds';
+import { ContentOpsSection, FormField, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ContentOpsSection

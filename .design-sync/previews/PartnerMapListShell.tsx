@@ -1,4 +1,4 @@
-import { PartnerMapListShell, PartnerMapPin } from '@doneisbetter/gds';
+import { PartnerMapListShell, PartnerMapPin } from '@sovereignsquad/gds';
 
 const places = [
   { id: 'green-cafe', title: 'Green Cafe', category: 'Cafe', neighborhood: 'Downtown', amenities: ['high-chairs', 'changing-table'], price: '$$' as const, href: '#green-cafe' },

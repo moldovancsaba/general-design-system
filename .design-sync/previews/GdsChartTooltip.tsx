@@ -1,4 +1,4 @@
-import { GdsChartTooltip } from '@doneisbetter/gds';
+import { GdsChartTooltip } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsChartTooltip style={{ padding: 12, maxWidth: 220 }}>

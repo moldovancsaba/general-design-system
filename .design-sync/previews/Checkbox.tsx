@@ -1,4 +1,4 @@
-import { Checkbox } from '@doneisbetter/gds';
+import { Checkbox } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>

@@ -1,4 +1,4 @@
-import { AccessRecoveryPanel } from '@doneisbetter/gds';
+import { AccessRecoveryPanel } from '@sovereignsquad/gds';
 
 export const Unauthenticated = () => (
   <AccessRecoveryPanel

@@ -1,4 +1,4 @@
-import { ChartTokenPanel } from '@doneisbetter/gds';
+import { ChartTokenPanel } from '@sovereignsquad/gds';
 
 export const Ready = () => (
   <ChartTokenPanel

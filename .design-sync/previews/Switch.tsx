@@ -1,4 +1,4 @@
-import { Switch } from '@doneisbetter/gds';
+import { Switch } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <Switch label="Enable email notifications" />

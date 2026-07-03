@@ -1,4 +1,4 @@
-import { DataTable, CountBadge } from '@doneisbetter/gds';
+import { DataTable, CountBadge } from '@sovereignsquad/gds';
 
 type Entry = { id: string; name: string; family: string; status: string; usage: number };
 

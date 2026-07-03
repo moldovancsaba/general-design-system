@@ -1,4 +1,4 @@
-import { Accordion } from '@doneisbetter/gds';
+import { Accordion } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <Accordion defaultValue="tokens">
@@ -27,7 +27,7 @@ export const Multiple = () => (
   <Accordion multiple defaultValue={['install', 'usage']}>
     <Accordion.Item value="install">
       <Accordion.Control>Installation</Accordion.Control>
-      <Accordion.Panel>Add @doneisbetter/gds and wrap your app in GdsProvider.</Accordion.Panel>
+      <Accordion.Panel>Add @sovereignsquad/gds and wrap your app in GdsProvider.</Accordion.Panel>
     </Accordion.Item>
     <Accordion.Item value="usage">
       <Accordion.Control>Usage</Accordion.Control>

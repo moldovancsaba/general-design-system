@@ -1,4 +1,4 @@
-import { AdminTextInput } from '@doneisbetter/gds';
+import { AdminTextInput } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AdminTextInput

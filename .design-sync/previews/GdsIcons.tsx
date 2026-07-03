@@ -1,4 +1,4 @@
-import { GdsIcons } from '@doneisbetter/gds';
+import { GdsIcons } from '@sovereignsquad/gds';
 
 const Cell = ({ label, children }: { label: string; children: React.ReactNode }) => (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, width: 72 }}>

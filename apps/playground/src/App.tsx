@@ -4,7 +4,7 @@ import {
   GdsProvider,
   useGdsTranslation,
   useGdsThemePresetState,
-} from '@doneisbetter/gds-theme';
+} from '@sovereignsquad/gds-theme';
 import {
   DocsHeaderActionSelect,
   DocsShell,
@@ -13,7 +13,7 @@ import {
   StateBlock,
   ThemeToggle,
   type ThemeExplorerSelection,
-} from '@doneisbetter/gds-core';
+} from '@sovereignsquad/gds-core';
 import {
   getLegacyRedirects,
   getPrimaryRoutes,

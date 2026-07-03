@@ -1,4 +1,4 @@
-import { CreatorThemeBoundary } from '@doneisbetter/gds';
+import { CreatorThemeBoundary } from '@sovereignsquad/gds';
 
 const themeCss = `
 .creator-card {

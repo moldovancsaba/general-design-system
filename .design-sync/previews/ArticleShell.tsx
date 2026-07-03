@@ -1,4 +1,4 @@
-import { ArticleShell } from '@doneisbetter/gds';
+import { ArticleShell } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ArticleShell

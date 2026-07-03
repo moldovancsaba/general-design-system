@@ -1,4 +1,4 @@
-import { Box } from '@doneisbetter/gds';
+import { Box } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <Box

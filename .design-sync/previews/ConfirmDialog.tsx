@@ -1,4 +1,4 @@
-import { ConfirmDialog } from '@doneisbetter/gds';
+import { ConfirmDialog } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ConfirmDialog

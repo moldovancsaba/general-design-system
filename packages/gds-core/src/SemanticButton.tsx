@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@mantine/core';
 import type { ButtonProps } from '@mantine/core';
-import { useGdsTranslation } from '@doneisbetter/gds-theme';
+import { useGdsTranslation } from '@sovereignsquad/gds-theme';
 import { IconCheck, IconX } from '@tabler/icons-react';
 import { getSemanticActionLabel, resolveSemanticActionConfig } from './vocabulary';
 import type { GdsVocabularyPack, SemanticActionId } from './vocabulary';

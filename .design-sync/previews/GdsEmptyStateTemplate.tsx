@@ -1,4 +1,4 @@
-import { GdsEmptyStateTemplate } from '@doneisbetter/gds';
+import { GdsEmptyStateTemplate } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsEmptyStateTemplate

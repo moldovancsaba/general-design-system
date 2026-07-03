@@ -1,4 +1,4 @@
-import { PartnerDiscoveryFooter } from '@doneisbetter/gds';
+import { PartnerDiscoveryFooter } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PartnerDiscoveryFooter

@@ -1,4 +1,4 @@
-import { GdsResponsiveVisibility } from '@doneisbetter/gds';
+import { GdsResponsiveVisibility } from '@sovereignsquad/gds';
 
 export const Visible = () => (
   <GdsResponsiveVisibility visibility="visible">

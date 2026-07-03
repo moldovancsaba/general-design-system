@@ -1,4 +1,4 @@
-import { CountBadge } from '@doneisbetter/gds';
+import { CountBadge } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>

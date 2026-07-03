@@ -19,7 +19,7 @@ GitHub release assets remain an optional fallback distribution path for unpublis
 - public release assets attached to tag `gds-v<VERSION>`
 - generated from `npm run pack:release`
 
-`@doneisbetter/gds` is the preferred public npm convenience package. The release-bundle fallback remains split-package oriented because the umbrella package depends on the granular runtime packages.
+`@sovereignsquad/gds` is the preferred public npm convenience package. The release-bundle fallback remains split-package oriented because the umbrella package depends on the granular runtime packages.
 
 ## Preconditions
 
@@ -50,12 +50,12 @@ npm adduser
 
 ## Publishable packages
 
-- `@doneisbetter/gds`
-- `@doneisbetter/gds-theme`
-- `@doneisbetter/gds-core`
-- `@doneisbetter/gds-admin`
-- `@doneisbetter/gds-eslint-config`
-- `@doneisbetter/gds-compliance`
+- `@sovereignsquad/gds`
+- `@sovereignsquad/gds-theme`
+- `@sovereignsquad/gds-core`
+- `@sovereignsquad/gds-admin`
+- `@sovereignsquad/gds-eslint-config`
+- `@sovereignsquad/gds-compliance`
 
 ## Dry-run first
 
@@ -106,21 +106,21 @@ Do not announce the release or update client install prompts until `npm run veri
 The `3.9.0` release install matrix must remain version-locked:
 
 ```bash
-npm install @doneisbetter/gds@3.9.0
-npm install -D @doneisbetter/gds-eslint-config@3.9.0 @doneisbetter/gds-compliance@3.9.0 @doneisbetter/gds-a11y@3.9.0
+npm install @sovereignsquad/gds@3.9.0
+npm install -D @sovereignsquad/gds-eslint-config@3.9.0 @sovereignsquad/gds-compliance@3.9.0 @sovereignsquad/gds-a11y@3.9.0
 
-npm install @doneisbetter/gds-theme@3.9.0 @doneisbetter/gds-core@3.9.0 @doneisbetter/gds-admin@3.9.0
+npm install @sovereignsquad/gds-theme@3.9.0 @sovereignsquad/gds-core@3.9.0 @sovereignsquad/gds-admin@3.9.0
 ```
 
 ## Expected publish order
 
-1. `@doneisbetter/gds-theme`
-2. `@doneisbetter/gds-core`
-3. `@doneisbetter/gds-admin`
-4. `@doneisbetter/gds-a11y`
-5. `@doneisbetter/gds`
-6. `@doneisbetter/gds-eslint-config`
-7. `@doneisbetter/gds-compliance`
+1. `@sovereignsquad/gds-theme`
+2. `@sovereignsquad/gds-core`
+3. `@sovereignsquad/gds-admin`
+4. `@sovereignsquad/gds-a11y`
+5. `@sovereignsquad/gds`
+6. `@sovereignsquad/gds-eslint-config`
+7. `@sovereignsquad/gds-compliance`
 
 ## Post-publish verification
 

@@ -1,4 +1,4 @@
-import { GdsBleed } from '@doneisbetter/gds';
+import { GdsBleed } from '@sovereignsquad/gds';
 
 const Surface = ({ children }: { children: React.ReactNode }) => (
   <div

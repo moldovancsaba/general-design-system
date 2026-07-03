@@ -1,4 +1,4 @@
-import { EditorialCard } from '@doneisbetter/gds';
+import { EditorialCard } from '@sovereignsquad/gds';
 
 const media = (from: string, to: string) => (
   <img

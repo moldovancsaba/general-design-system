@@ -1,4 +1,4 @@
-import { AccentPanel } from '@doneisbetter/gds';
+import { AccentPanel } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AccentPanel tone="violet" title="Accent band" badge="Advisory">

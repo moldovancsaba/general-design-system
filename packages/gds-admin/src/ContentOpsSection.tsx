@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { SectionPanel } from '@doneisbetter/gds-core';
+import { SectionPanel } from '@sovereignsquad/gds-core';
 
 export interface ContentOpsSectionProps {
   id: string;

@@ -8,7 +8,7 @@ The safe styling API is the approved replacement for product-local inline styles
 
 ## Package API
 
-Use these exports from `@doneisbetter/gds-core`, `@doneisbetter/gds-core/server`, `@doneisbetter/gds-core/client`, or the aggregate `@doneisbetter/gds` entrypoints:
+Use these exports from `@sovereignsquad/gds-core`, `@sovereignsquad/gds-core/server`, `@sovereignsquad/gds-core/client`, or the aggregate `@sovereignsquad/gds` entrypoints:
 
 - `gdsStyle`
 - `createGdsStyleContract`

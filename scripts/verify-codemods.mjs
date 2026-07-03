@@ -23,8 +23,8 @@ function expect(condition, message) {
 try {
   const actionFile = join(fixture, 'Actions.tsx');
   writeFileSync(actionFile, `
-import { CtaButtonGroup } from '@doneisbetter/gds-core';
-import { SemanticButton } from '@doneisbetter/gds-core';
+import { CtaButtonGroup } from '@sovereignsquad/gds-core';
+import { SemanticButton } from '@sovereignsquad/gds-core';
 
 export function Actions() {
   return <CtaButtonGroup primary={<SemanticButton action="save" />} secondary={<SemanticButton action="cancel" />} tertiary={<SemanticButton action="help" />} />;
@@ -40,7 +40,7 @@ export function Actions() {
 
   const listingFile = join(fixture, 'Listing.tsx');
   writeFileSync(listingFile, `
-import { PublicProductCard } from '@doneisbetter/gds-core';
+import { PublicProductCard } from '@sovereignsquad/gds-core';
 export function Listing() { return <PublicProductCard title="Venue" />; }
 `);
 

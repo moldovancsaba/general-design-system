@@ -2,7 +2,7 @@
 
 Status: Active SSOT
 Last updated: 2026-06-15
-Package lane: `@doneisbetter/gds-core`
+Package lane: `@sovereignsquad/gds-core`
 
 `GdsAccessGate` is the canonical GDS pattern for pages where a public teaser is visible and the rest of the page is available only after sign-in, entitlement, subscription, or role validation. Consumers must use this contract instead of CSS hiding, route-local paywall wrappers, or protected content rendered behind overlays.
 

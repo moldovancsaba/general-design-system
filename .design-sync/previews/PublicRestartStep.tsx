@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicRestartStep, SemanticButton } from '@doneisbetter/gds';
+import { PublicRestartStep, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PublicRestartStep>

@@ -1,4 +1,4 @@
-import { PlaceholderPanel } from '@doneisbetter/gds';
+import { PlaceholderPanel } from '@sovereignsquad/gds';
 
 export const Placeholder = () => (
   <PlaceholderPanel

@@ -2,7 +2,7 @@
  * Component → pattern-registry parity gate (issue #368).
  *
  * FAILS CI if a public PascalCase UI component exported from
- * `@doneisbetter/gds-core` or `@doneisbetter/gds-admin` is neither
+ * `@sovereignsquad/gds-core` or `@sovereignsquad/gds-admin` is neither
  * registered in the pattern registry (as a `sourceComponent`) nor recorded
  * in the committed exemption allowlist (`boundary/component-catalog-exemptions.json`).
  *
@@ -111,12 +111,12 @@ function isComponentName(name) {
 
 // --- Collect public component exports from both packages ---
 const packageEntrypoints = {
-  '@doneisbetter/gds-core': [
+  '@sovereignsquad/gds-core': [
     resolve(root, 'packages/gds-core/src/index.ts'),
     resolve(root, 'packages/gds-core/src/client.ts'),
     resolve(root, 'packages/gds-core/src/server.ts'),
   ],
-  '@doneisbetter/gds-admin': [
+  '@sovereignsquad/gds-admin': [
     resolve(root, 'packages/gds-admin/src/index.ts'),
     resolve(root, 'packages/gds-admin/src/client.ts'),
     resolve(root, 'packages/gds-admin/src/server.ts'),

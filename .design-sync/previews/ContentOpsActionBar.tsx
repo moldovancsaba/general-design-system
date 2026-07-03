@@ -1,4 +1,4 @@
-import { ContentOpsActionBar } from '@doneisbetter/gds';
+import { ContentOpsActionBar } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <ContentOpsActionBar

@@ -1,4 +1,4 @@
-import { ResponsiveDataView, SectionPanel, BodyText, SectionTitle } from '@doneisbetter/gds';
+import { ResponsiveDataView, SectionPanel, BodyText, SectionTitle } from '@sovereignsquad/gds';
 
 const rows = [
   { id: 'r1', name: 'Budapest – District V', orders: '1,240', status: 'Open' },

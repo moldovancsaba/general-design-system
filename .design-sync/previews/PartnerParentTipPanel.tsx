@@ -1,4 +1,4 @@
-import { PartnerParentTipPanel } from '@doneisbetter/gds';
+import { PartnerParentTipPanel } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PartnerParentTipPanel label="Parent tip">

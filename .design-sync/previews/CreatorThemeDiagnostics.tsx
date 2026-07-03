@@ -1,4 +1,4 @@
-import { CreatorThemeDiagnostics } from '@doneisbetter/gds';
+import { CreatorThemeDiagnostics } from '@sovereignsquad/gds';
 
 export const WithIssues = () => (
   <CreatorThemeDiagnostics

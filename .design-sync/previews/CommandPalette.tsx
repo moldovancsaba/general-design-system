@@ -1,4 +1,4 @@
-import { CommandPalette, CommandRegistryProvider } from '@doneisbetter/gds';
+import { CommandPalette, CommandRegistryProvider } from '@sovereignsquad/gds';
 
 export const Opened = () => (
   <CommandRegistryProvider>

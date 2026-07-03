@@ -1,4 +1,4 @@
-import { CtaButtonGroup, SemanticButton } from '@doneisbetter/gds';
+import { CtaButtonGroup, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <CtaButtonGroup

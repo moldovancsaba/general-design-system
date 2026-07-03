@@ -1,5 +1,5 @@
-import { MediaWithFallback } from '@doneisbetter/gds-core';
-import { GdsSafeBox, GdsInline } from '@doneisbetter/gds-core';
+import { MediaWithFallback } from '@sovereignsquad/gds-core';
+import { GdsSafeBox, GdsInline } from '@sovereignsquad/gds-core';
 
 export default function Preview() {
   return (

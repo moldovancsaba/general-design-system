@@ -1,4 +1,4 @@
-import { NumberInput, GdsSafeBox } from '@doneisbetter/gds';
+import { NumberInput, GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsSafeBox safeStyle={{ background: 'surface', border: 'default', radius: 'lg', inset: 'md' }} style={{ width: 260 }}>

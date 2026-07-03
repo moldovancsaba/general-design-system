@@ -1,4 +1,4 @@
-import { PartnerFaqList } from '@doneisbetter/gds';
+import { PartnerFaqList } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PartnerFaqList

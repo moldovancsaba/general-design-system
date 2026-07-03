@@ -21,9 +21,9 @@ Current named runtime export counts:
 
 | Package | Runtime named exports | Pattern export coverage | Documentation gap |
 |---|---:|---:|---|
-| `@doneisbetter/gds-theme` | 23 | covered | many provider/theme/i18n helpers are thinly documented |
-| `@doneisbetter/gds-core` | 165 | mostly covered | many exports are not mentioned in README or component docs |
-| `@doneisbetter/gds-admin` | 33 | covered | many admin primitives are not listed in README/product-facing docs |
+| `@sovereignsquad/gds-theme` | 23 | covered | many provider/theme/i18n helpers are thinly documented |
+| `@sovereignsquad/gds-core` | 165 | mostly covered | many exports are not mentioned in README or component docs |
+| `@sovereignsquad/gds-admin` | 33 | covered | many admin primitives are not listed in README/product-facing docs |
 
 Representative docs gaps:
 
@@ -120,7 +120,7 @@ Required fields:
 
 ```ts
 interface GdsApiReferenceEntry {
-  packageName: '@doneisbetter/gds-theme' | '@doneisbetter/gds-core' | '@doneisbetter/gds-admin' | '@doneisbetter/gds';
+  packageName: '@sovereignsquad/gds-theme' | '@sovereignsquad/gds-core' | '@sovereignsquad/gds-admin' | '@sovereignsquad/gds';
   exportName: string;
   exportKind: 'component' | 'hook' | 'function' | 'registry' | 'provider' | 'type-helper';
   importPath: string;
@@ -311,9 +311,9 @@ Acceptance criteria:
 Deliverables:
 
 - `/api` route and package subroutes.
-- Registry entries for every `@doneisbetter/gds-theme` export.
-- Registry entries for top 50 `@doneisbetter/gds-core` exports.
-- Registry entries for every `@doneisbetter/gds-admin` export.
+- Registry entries for every `@sovereignsquad/gds-theme` export.
+- Registry entries for top 50 `@sovereignsquad/gds-core` exports.
+- Registry entries for every `@sovereignsquad/gds-admin` export.
 
 Acceptance criteria:
 

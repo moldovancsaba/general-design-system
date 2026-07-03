@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { resolveGdsVibeTheme } from '@doneisbetter/gds-theme';
+import { resolveGdsVibeTheme } from '@sovereignsquad/gds-theme';
 import App from './App';
 
 describe('playground app runtime theme flow', () => {

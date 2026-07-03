@@ -1,4 +1,4 @@
-import { GdsErrorPageTemplate } from '@doneisbetter/gds';
+import { GdsErrorPageTemplate } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsErrorPageTemplate

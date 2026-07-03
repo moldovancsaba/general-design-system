@@ -1,4 +1,4 @@
-import { LayeredSurfaceSlot, BodyText, LabelText } from '@doneisbetter/gds';
+import { LayeredSurfaceSlot, BodyText, LabelText } from '@sovereignsquad/gds';
 
 const Content = ({ label, body }: { label: string; body: string }) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, padding: 16 }}>

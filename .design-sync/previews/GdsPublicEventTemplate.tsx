@@ -1,4 +1,4 @@
-import { GdsPublicEventTemplate } from '@doneisbetter/gds';
+import { GdsPublicEventTemplate } from '@sovereignsquad/gds';
 
 const banner =
   "data:image/svg+xml;utf8," +

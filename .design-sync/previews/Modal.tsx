@@ -1,4 +1,4 @@
-import { Modal, SemanticButton } from '@doneisbetter/gds';
+import { Modal, SemanticButton } from '@sovereignsquad/gds';
 
 export const Open = () => (
   <Modal opened onClose={() => {}} title="Delete project" withinPortal={false}>

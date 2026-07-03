@@ -1,5 +1,5 @@
-export * from '@doneisbetter/gds-theme/server';
-export * from '@doneisbetter/gds-core/server';
+export * from '@sovereignsquad/gds-theme/server';
+export * from '@sovereignsquad/gds-core/server';
 export {
   ContentOpsActionBar,
   ContentOpsEditor,
@@ -20,7 +20,7 @@ export {
   AdminResourceCard,
   AdminResourceToolbar,
   AdminResourceEmptyState,
-} from '@doneisbetter/gds-admin/server';
+} from '@sovereignsquad/gds-admin/server';
 export type {
   ContentOpsActionBarProps,
   ContentOpsEditorProps,
@@ -51,4 +51,4 @@ export type {
   AdminResourceCardProps,
   AdminResourceToolbarProps,
   AdminResourceEmptyStateProps,
-} from '@doneisbetter/gds-admin/server';
+} from '@sovereignsquad/gds-admin/server';

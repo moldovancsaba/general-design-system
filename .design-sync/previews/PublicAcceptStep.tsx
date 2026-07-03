@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicAcceptStep, SemanticButton, GdsMediaFrame } from '@doneisbetter/gds';
+import { PublicAcceptStep, SemanticButton, GdsMediaFrame } from '@sovereignsquad/gds';
 
 const preview = (
   <GdsMediaFrame aspectRatio="16/9">

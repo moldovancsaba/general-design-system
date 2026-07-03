@@ -20,10 +20,10 @@ Current major line: `3.0.x`
   - `9.2.1`
 - Router style: App Router reference fixture
 - Package line:
-  - `@doneisbetter/gds`
-  - `@doneisbetter/gds-theme`
-  - `@doneisbetter/gds-core`
-  - `@doneisbetter/gds-admin`
+  - `@sovereignsquad/gds`
+  - `@sovereignsquad/gds-theme`
+  - `@sovereignsquad/gds-core`
+  - `@sovereignsquad/gds-admin`
 - Required subpaths:
   - `server`
   - `client`
@@ -42,7 +42,7 @@ Current major line: `3.0.x`
 
 The smoke fixture imports and type-checks the public umbrella entrypoint:
 
-- `@doneisbetter/gds/client`
+- `@sovereignsquad/gds/client`
 
 This proves that the package contents, peer ranges, and export maps are internally coherent for the declared Mantine 8 and Mantine 9 compatibility lines.
 
@@ -65,13 +65,13 @@ This is intended to make a fresh root `npm install` sufficient for local Vite an
 
 The published smoke creates a temporary consumer outside the monorepo, installs the current `VERSION` from npm, type-checks imports from the umbrella and granular packages, and runs runtime import checks for:
 
-- `@doneisbetter/gds`
-- `@doneisbetter/gds-theme`
-- `@doneisbetter/gds-core`
-- `@doneisbetter/gds-admin`
-- `@doneisbetter/gds-a11y`
-- `@doneisbetter/gds-eslint-config`
-- `@doneisbetter/gds-compliance`
+- `@sovereignsquad/gds`
+- `@sovereignsquad/gds-theme`
+- `@sovereignsquad/gds-core`
+- `@sovereignsquad/gds-admin`
+- `@sovereignsquad/gds-a11y`
+- `@sovereignsquad/gds-eslint-config`
+- `@sovereignsquad/gds-compliance`
 
 The fixture also verifies the `Athlete Gold` VibeTheme, actionable `GdsDataTable` columns, and schema upload adapter types from the published packages.
 
@@ -80,13 +80,13 @@ The fixture also verifies the `Athlete Gold` VibeTheme, actionable `GdsDataTable
 `apps/reference-next` is the in-repo App Router consumer reference. It exists to validate the documented root split:
 
 - server-side theme and structural imports from:
-  - `@doneisbetter/gds-theme/server`
-  - `@doneisbetter/gds-core/server`
-  - `@doneisbetter/gds-admin/server`
+  - `@sovereignsquad/gds-theme/server`
+  - `@sovereignsquad/gds-core/server`
+  - `@sovereignsquad/gds-admin/server`
 - client-side provider and interactive imports from:
-  - `@doneisbetter/gds-theme/client`
-  - `@doneisbetter/gds-core/client`
-  - `@doneisbetter/gds-admin/client`
+  - `@sovereignsquad/gds-theme/client`
+  - `@sovereignsquad/gds-core/client`
+  - `@sovereignsquad/gds-admin/client`
 
 This fixture is covered by `npm run verify:references`.
 
@@ -106,15 +106,15 @@ That means the current verified statement is:
 Canonical `3.9.0` end-state install source after the release gate opens:
 
 ```bash
-npm install @doneisbetter/gds@3.9.0
-npm install -D @doneisbetter/gds-eslint-config@3.9.0 @doneisbetter/gds-compliance@3.9.0 @doneisbetter/gds-a11y@3.9.0
+npm install @sovereignsquad/gds@3.9.0
+npm install -D @sovereignsquad/gds-eslint-config@3.9.0 @sovereignsquad/gds-compliance@3.9.0 @sovereignsquad/gds-a11y@3.9.0
 ```
 
 Granular package path:
 
 ```bash
-npm install @doneisbetter/gds-theme@3.9.0 @doneisbetter/gds-core@3.9.0 @doneisbetter/gds-admin@3.9.0
-npm install -D @doneisbetter/gds-eslint-config@3.9.0 @doneisbetter/gds-compliance@3.9.0 @doneisbetter/gds-a11y@3.9.0
+npm install @sovereignsquad/gds-theme@3.9.0 @sovereignsquad/gds-core@3.9.0 @sovereignsquad/gds-admin@3.9.0
+npm install -D @sovereignsquad/gds-eslint-config@3.9.0 @sovereignsquad/gds-compliance@3.9.0 @sovereignsquad/gds-a11y@3.9.0
 ```
 
 Fallback release-bundle install path if npm is temporarily unavailable:

@@ -1,4 +1,4 @@
-import { DocsHeaderActionSelect } from '@doneisbetter/gds';
+import { DocsHeaderActionSelect } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <DocsHeaderActionSelect

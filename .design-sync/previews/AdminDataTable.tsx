@@ -1,4 +1,4 @@
-import { AdminDataTable } from '@doneisbetter/gds';
+import { AdminDataTable } from '@sovereignsquad/gds';
 
 const rows = [
   { id: 'usr_01', name: 'Ada Lovelace', role: 'Maintainer', commits: 1284 },

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { SearchableSelect } from '@doneisbetter/gds-core';
-import { GdsSafeBox } from '@doneisbetter/gds-core';
+import { SearchableSelect } from '@sovereignsquad/gds-core';
+import { GdsSafeBox } from '@sovereignsquad/gds-core';
 
 export default function Preview() {
   const [value, setValue] = useState<string | null>(null);

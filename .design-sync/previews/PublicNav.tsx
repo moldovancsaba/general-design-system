@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicNav } from '@doneisbetter/gds';
+import { PublicNav } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PublicNav

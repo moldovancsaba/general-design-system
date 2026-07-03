@@ -9,39 +9,39 @@ const REMOVE_BY_FALLBACK = '2026-09-30';
 const transformMetadata = {
   'discovery-shell': {
     description: 'Replace legacy AppShell usage with the GDS DiscoveryShell contract.',
-    package: '@doneisbetter/gds-core',
+    package: '@sovereignsquad/gds-core',
   },
   'listing-card': {
     description: 'Replace PublicProductCard aliases with the governed ListingCard contract.',
-    package: '@doneisbetter/gds-core',
+    package: '@sovereignsquad/gds-core',
   },
   'action-bar': {
     description: 'Replace simple CtaButtonGroup patterns with ActionBar semantic actions.',
-    package: '@doneisbetter/gds-core',
+    package: '@sovereignsquad/gds-core',
   },
   'mantine-imports': {
     description: 'Replace safe Mantine form/control imports with governed GDS admin contracts.',
-    package: '@doneisbetter/gds-admin',
+    package: '@sovereignsquad/gds-admin',
   },
   'tabler-icons': {
     description: 'Replace safe Tabler icon imports with the semantic GdsIcons registry.',
-    package: '@doneisbetter/gds-core',
+    package: '@sovereignsquad/gds-core',
   },
   'raw-controls': {
     description: 'Replace labelled raw HTML form controls with governed GDS admin fields.',
-    package: '@doneisbetter/gds-admin',
+    package: '@sovereignsquad/gds-admin',
   },
   'inline-styles': {
     description: 'Classify inline style authority and emit governed exception stubs for manual token migration.',
-    package: '@doneisbetter/gds-core',
+    package: '@sovereignsquad/gds-core',
   },
   'alerts-confirms': {
     description: 'Replace safe alert surfaces and classify blocking browser dialogs for GDS feedback runtime migration.',
-    package: '@doneisbetter/gds-core',
+    package: '@sovereignsquad/gds-core',
   },
   tables: {
     description: 'Replace simple table imports/usages and classify raw table markup for governed data-table migration.',
-    package: '@doneisbetter/gds-admin',
+    package: '@sovereignsquad/gds-admin',
   },
 };
 
@@ -223,7 +223,7 @@ function result({ changed = false, content, findings = [], state = changed ? 'pa
 }
 
 function transformDiscoveryShell(content) {
-  if (!content.includes("from '@doneisbetter/gds-admin'") || !content.includes('AppShell')) {
+  if (!content.includes("from '@sovereignsquad/gds-admin'") || !content.includes('AppShell')) {
     return null;
   }
 
@@ -239,9 +239,9 @@ function transformDiscoveryShell(content) {
 
   let next = content
     .replace(/\bAppShell\b/g, 'DiscoveryShell')
-    .replace(/from '@doneisbetter\/gds-admin'/g, "from '@doneisbetter/gds-core'");
+    .replace(/from '@sovereignsquad\/gds-admin'/g, "from '@sovereignsquad/gds-core'");
 
-  next = ensureNamedImport(next, '@doneisbetter/gds-core', new Set(['DiscoveryShell']));
+  next = ensureNamedImport(next, '@sovereignsquad/gds-core', new Set(['DiscoveryShell']));
   return result({ changed: next !== content, content: next, state: 'patched' });
 }
 
@@ -251,7 +251,7 @@ function transformListingCard(content) {
   }
 
   let next = content.replace(/\bPublicProductCard\b/g, 'ListingCard');
-  next = ensureNamedImport(next, '@doneisbetter/gds-core', new Set(['ListingCard']));
+  next = ensureNamedImport(next, '@sovereignsquad/gds-core', new Set(['ListingCard']));
   return result({ changed: next !== content, content: next, state: 'patched' });
 }
 
@@ -272,8 +272,8 @@ function transformActionBar(content) {
   }
 
   const next = ensureNamedImport(
-    removeNamedImports(content, '@doneisbetter/gds-core', new Set(['CtaButtonGroup'])),
-    '@doneisbetter/gds-core',
+    removeNamedImports(content, '@sovereignsquad/gds-core', new Set(['CtaButtonGroup'])),
+    '@sovereignsquad/gds-core',
     new Set(['ActionBar']),
   ).replace(tagPattern, (_, primaryAction, _secondaryGroup, secondaryAction, _tertiaryGroup, tertiaryAction) => {
     const fields = [`primary={{ action: '${primaryAction}' }}`];
@@ -320,7 +320,7 @@ function transformMantineImports(content, file) {
     addedImports.add(gdsName);
   }
   next = removeNamedImports(next, '@mantine/core', usedNames);
-  next = ensureNamedImport(next, '@doneisbetter/gds-admin', addedImports);
+  next = ensureNamedImport(next, '@sovereignsquad/gds-admin', addedImports);
   return result({ changed: next !== content, content: next, findings: manual, state: next !== content ? 'patched' : 'manual-follow-up' });
 }
 
@@ -356,7 +356,7 @@ function transformTablerIcons(content, file) {
     next = next.replace(new RegExp(`</${iconName}>`, 'g'), `</GdsIcons.${iconMap[iconName]}>`);
   }
   if (supported.size > 0) {
-    next = ensureNamedImport(next, '@doneisbetter/gds-core', new Set(['GdsIcons']));
+    next = ensureNamedImport(next, '@sovereignsquad/gds-core', new Set(['GdsIcons']));
   }
   return result({ changed: next !== content, content: next, findings: unsupported, state: next !== content ? 'patched' : 'manual-follow-up' });
 }
@@ -405,7 +405,7 @@ function transformRawControls(content, file) {
     imports.add(replacementTag);
   }
   if (imports.size > 0) {
-    next = ensureNamedImport(next, '@doneisbetter/gds-admin', imports);
+    next = ensureNamedImport(next, '@sovereignsquad/gds-admin', imports);
   }
   return result({ changed: next !== content, content: next, findings: manual, state: next !== content ? 'patched' : 'manual-follow-up' });
 }
@@ -434,7 +434,7 @@ function transformAlertsConfirms(content, file) {
   const findings = [];
   if (content.includes('<Alert')) {
     next = next.replace(/<Alert\b/g, '<InlineAlert').replace(/<\/Alert>/g, '</InlineAlert>');
-    next = ensureNamedImport(removeNamedImports(next, '@mantine/core', new Set(['Alert'])), '@doneisbetter/gds-core', new Set(['InlineAlert']));
+    next = ensureNamedImport(removeNamedImports(next, '@mantine/core', new Set(['Alert'])), '@sovereignsquad/gds-core', new Set(['InlineAlert']));
   }
   if (/\b(window\.)?alert\s*\(/.test(content)) {
     findings.push(classifyFinding({
@@ -468,7 +468,7 @@ function transformTables(content, file) {
     const mantineTable = collectImports(sourceFile).some((entry) => entry.module === '@mantine/core' && entry.specifiers.some((specifier) => specifier.imported === 'Table'));
     if (mantineTable) {
       next = removeNamedImports(next, '@mantine/core', new Set(['Table']));
-      next = ensureNamedImport(next, '@doneisbetter/gds-admin', new Set(['AdminDataTable']));
+      next = ensureNamedImport(next, '@sovereignsquad/gds-admin', new Set(['AdminDataTable']));
       findings.push(classifyFinding({
         transform: 'tables',
         file,

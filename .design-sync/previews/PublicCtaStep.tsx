@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicCtaStep, SemanticButton } from '@doneisbetter/gds';
+import { PublicCtaStep, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <PublicCtaStep>

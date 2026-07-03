@@ -1,7 +1,7 @@
 const [{ accessibilityEvidenceEntries, accessibilityEvidenceSummary }, { patternRegistry }, { validateGdsAccessibilityEvidence }] = await Promise.all([
   import('../apps/playground/src/accessibility-evidence-registry.ts'),
   import('../apps/playground/src/pattern-registry.ts'),
-  import('@doneisbetter/gds-core'),
+  import('@sovereignsquad/gds-core'),
 ]);
 
 const stableEntries = patternRegistry.filter((entry) => entry.coverageStatus === 'live-demo' || entry.coverageStatus === 'static-reference');

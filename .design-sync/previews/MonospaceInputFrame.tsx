@@ -1,4 +1,4 @@
-import { MonospaceInputFrame } from '@doneisbetter/gds';
+import { MonospaceInputFrame } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <MonospaceInputFrame style={{ width: 280 }}>

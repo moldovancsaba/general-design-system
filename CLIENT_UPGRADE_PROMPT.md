@@ -9,13 +9,13 @@ Use this for every product team migrating to the current stable `3.9.0` GDS adop
 Team, we completed the GDS upgrade to the 3.9.0 adoption platform release.
 
 - Update dependencies:
-  - `@doneisbetter/gds@3.9.0`
-  - `@doneisbetter/gds-eslint-config@3.9.0` (dev)
-  - `@doneisbetter/gds-compliance@3.9.0` (dev)
+  - `@sovereignsquad/gds@3.9.0`
+  - `@sovereignsquad/gds-eslint-config@3.9.0` (dev)
+  - `@sovereignsquad/gds-compliance@3.9.0` (dev)
 - If you use granular packages, keep every GDS package on the same version:
-  - `@doneisbetter/gds-theme@3.9.0`
-  - `@doneisbetter/gds-core@3.9.0`
-  - `@doneisbetter/gds-admin@3.9.0`
+  - `@sovereignsquad/gds-theme@3.9.0`
+  - `@sovereignsquad/gds-core@3.9.0`
+  - `@sovereignsquad/gds-admin@3.9.0`
 - Install Mantine peers normally; do not force peer resolution.
 - Keep the App Router split:
   - `app/layout.tsx` owns `ColorSchemeScript`

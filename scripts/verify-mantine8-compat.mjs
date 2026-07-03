@@ -12,7 +12,7 @@ const appDir = join(workspaceRoot, 'app');
 mkdirSync(packsDir, { recursive: true });
 mkdirSync(appDir, { recursive: true });
 
-const workspaces = ['@doneisbetter/gds-theme', '@doneisbetter/gds-core', '@doneisbetter/gds-admin', '@doneisbetter/gds'];
+const workspaces = ['@sovereignsquad/gds-theme', '@sovereignsquad/gds-core', '@sovereignsquad/gds-admin', '@sovereignsquad/gds'];
 const matrices = [
   {
     label: 'Mantine 7 / React 18',
@@ -68,7 +68,7 @@ writeFileSync(
 writeFileSync(
   join(appDir, 'index.tsx'),
   `import React from 'react';
-import { AppShell, BrowseSurface, EditorialHero, GdsProvider, MediaField, PageHeader, ResponsiveDataView } from '@doneisbetter/gds/client';
+import { AppShell, BrowseSurface, EditorialHero, GdsProvider, MediaField, PageHeader, ResponsiveDataView } from '@sovereignsquad/gds/client';
 
 const demo = (
   <GdsProvider>
@@ -106,10 +106,10 @@ try {
             build: 'tsc --noEmit',
           },
           dependencies: {
-            '@doneisbetter/gds': `file:../packs/doneisbetter-gds-${version}.tgz`,
-            '@doneisbetter/gds-theme': `file:../packs/doneisbetter-gds-theme-${version}.tgz`,
-            '@doneisbetter/gds-core': `file:../packs/doneisbetter-gds-core-${version}.tgz`,
-            '@doneisbetter/gds-admin': `file:../packs/doneisbetter-gds-admin-${version}.tgz`,
+            '@sovereignsquad/gds': `file:../packs/sovereignsquad-gds-${version}.tgz`,
+            '@sovereignsquad/gds-theme': `file:../packs/sovereignsquad-gds-theme-${version}.tgz`,
+            '@sovereignsquad/gds-core': `file:../packs/sovereignsquad-gds-core-${version}.tgz`,
+            '@sovereignsquad/gds-admin': `file:../packs/sovereignsquad-gds-admin-${version}.tgz`,
             '@mantine/core': matrix.mantineVersion,
             '@mantine/hooks': matrix.mantineVersion,
             '@mantine/modals': matrix.mantineVersion,

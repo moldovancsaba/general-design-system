@@ -1,4 +1,4 @@
-import { GdsStack } from '@doneisbetter/gds';
+import { GdsStack } from '@sovereignsquad/gds';
 
 const Block = ({ children }: { children: React.ReactNode }) => (
   <div

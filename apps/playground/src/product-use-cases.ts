@@ -20,7 +20,7 @@ export const productUseCases: ProductUseCase[] = [
     title: 'Public product or brand site',
     audience: 'Product owner, design lead, frontend lead',
     problem: 'Teams need a high-quality public surface without inventing local shells, cards, hero sections, navigation, or CTA rhythm.',
-    recommendedPackages: ['@doneisbetter/gds', '@doneisbetter/gds-core', '@doneisbetter/gds-theme'],
+    recommendedPackages: ['@sovereignsquad/gds', '@sovereignsquad/gds-core', '@sovereignsquad/gds-theme'],
     primaryContracts: ['PublicShell', 'EditorialHero', 'PublicNav', 'PublicBrandFooter', 'FeatureBand', 'CtaButtonGroup'],
     decisionRule: 'Use GDS public primitives when the surface explains, markets, converts, or routes users before authentication.',
     deliveryNotes: [
@@ -37,7 +37,7 @@ export const productUseCases: ProductUseCase[] = [
     title: 'Admin resource manager',
     audience: 'Product owner, operations lead, admin engineer',
     problem: 'Admin pages repeatedly need CRUD forms, responsive resource grids, data tables, overlays, and destructive actions.',
-    recommendedPackages: ['@doneisbetter/gds-admin', '@doneisbetter/gds-core'],
+    recommendedPackages: ['@sovereignsquad/gds-admin', '@sovereignsquad/gds-core'],
     primaryContracts: ['AdminCrudForm', 'AdminResourceManager', 'AdminDataTable', 'AdminModal', 'AdminDetailDrawer', 'AdminFormActions'],
     decisionRule: 'Use the admin package when operators create, edit, review, moderate, or delete durable resources.',
     deliveryNotes: [
@@ -46,7 +46,7 @@ export const productUseCases: ProductUseCase[] = [
       'Document retry and rollback behavior for destructive operations.',
     ],
     accessibility: 'Admin controls must keep labels, field errors, table headers, focus trap, and return focus intact.',
-    operationalChecks: ['npm run test:run --workspace=@doneisbetter/gds-admin', 'npm run verify:api-docs-coverage'],
+    operationalChecks: ['npm run test:run --workspace=@sovereignsquad/gds-admin', 'npm run verify:api-docs-coverage'],
     risk: 'high',
   },
   {
@@ -54,7 +54,7 @@ export const productUseCases: ProductUseCase[] = [
     title: 'Documentation and API reference site',
     audience: 'Developer relations, platform owner, product owner',
     problem: 'Developers need package API details, product owners need adoption guidance, and maintainers need release gates.',
-    recommendedPackages: ['@doneisbetter/gds', '@doneisbetter/gds-core'],
+    recommendedPackages: ['@sovereignsquad/gds', '@sovereignsquad/gds-core'],
     primaryContracts: ['DocsShell', 'DocsPageShell', 'ReferenceSection', 'ReferenceLinkGrid', 'SimpleDataTable', 'DocsCodeBlock'],
     decisionRule: 'Use docs primitives whenever a route explains installation, API contracts, governance, or adoption decisions.',
     deliveryNotes: [
@@ -71,7 +71,7 @@ export const productUseCases: ProductUseCase[] = [
     title: 'Capture, playback, or staged public flow',
     audience: 'Product owner, event operator, frontend lead',
     problem: 'Public flows need controlled steps, hardware-adjacent preview boundaries, playback controls, restart states, and share overlays.',
-    recommendedPackages: ['@doneisbetter/gds-core', '@doneisbetter/gds-theme'],
+    recommendedPackages: ['@sovereignsquad/gds-core', '@sovereignsquad/gds-theme'],
     primaryContracts: ['PublicFlowShell', 'PublicCaptureFlow', 'PlaybackSurface', 'PlaybackControls', 'ShareButtonGroup'],
     decisionRule: 'Use public-flow and playback contracts for step-based public experiences and keep hardware preview exceptions explicit.',
     deliveryNotes: [

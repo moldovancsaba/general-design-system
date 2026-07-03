@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicCaptureFlow, GdsMediaFrame } from '@doneisbetter/gds';
+import { PublicCaptureFlow, GdsMediaFrame } from '@sovereignsquad/gds';
 
 const hardware = (
   <GdsMediaFrame aspectRatio="16/9">

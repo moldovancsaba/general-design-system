@@ -10,7 +10,7 @@ This playbook defines the canonical path for adopting GDS through direct package
 
 Every governed consumer should converge on this shape:
 
-1. install `@doneisbetter/gds-theme`, `@doneisbetter/gds-core`, `@doneisbetter/gds-admin`, and governance packages from a registry
+1. install `@sovereignsquad/gds-theme`, `@sovereignsquad/gds-core`, `@sovereignsquad/gds-admin`, and governance packages from a registry
 2. mount `GdsProvider` once at the application root
 3. consume shared contracts through documented `server` and `client` entrypoints
 4. keep local adapters narrow, temporary, and machine-declared in `gds-adoption.json`
@@ -35,7 +35,7 @@ Use when the product already mirrors GDS contracts locally because registry or r
 
 Execution:
 1. record all local mirrored contracts in `gds-adoption.json`
-2. replace one mirrored contract family at a time with direct `@doneisbetter/gds-*` consumption
+2. replace one mirrored contract family at a time with direct `@sovereignsquad/gds-*` consumption
 3. delete the local mirror only after build, test, and route verification pass
 4. remove temporary import aliases and sibling-repo assumptions
 5. use the reference codemods for safe mechanical rewrites before touching bespoke cases manually
@@ -58,8 +58,8 @@ Execution:
 Use server-safe entrypoints for layouts, metadata builders, and non-interactive composition.
 
 ```tsx
-import { gdsTheme } from '@doneisbetter/gds-theme/server';
-import { BrowseSurface, DocsPageShell, EditorialCard } from '@doneisbetter/gds-core/server';
+import { gdsTheme } from '@sovereignsquad/gds-theme/server';
+import { BrowseSurface, DocsPageShell, EditorialCard } from '@sovereignsquad/gds-core/server';
 ```
 
 ### Client files
@@ -69,9 +69,9 @@ Use client entrypoints for providers and interactive widgets.
 ```tsx
 'use client';
 
-import { GdsProvider } from '@doneisbetter/gds-theme/client';
-import { ThemeToggle } from '@doneisbetter/gds-core/client';
-import { AppShell } from '@doneisbetter/gds-admin/client';
+import { GdsProvider } from '@sovereignsquad/gds-theme/client';
+import { ThemeToggle } from '@sovereignsquad/gds-core/client';
+import { AppShell } from '@sovereignsquad/gds-admin/client';
 ```
 
 ### Root bootstrap
@@ -91,7 +91,7 @@ Theme ownership rule:
 
 ## 4. Vite / SPA Contract
 
-Single-runtime apps may consume `@doneisbetter/gds-*/client` directly for interactive surfaces. Keep the provider at the top of the tree and avoid local theme forks.
+Single-runtime apps may consume `@sovereignsquad/gds-*/client` directly for interactive surfaces. Keep the provider at the top of the tree and avoid local theme forks.
 
 ## 5. Migration Algorithm
 

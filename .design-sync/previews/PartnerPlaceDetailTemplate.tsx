@@ -1,4 +1,4 @@
-import { PartnerPlaceDetailTemplate } from '@doneisbetter/gds';
+import { PartnerPlaceDetailTemplate } from '@sovereignsquad/gds';
 
 const labels = {
   back: 'Back to results',

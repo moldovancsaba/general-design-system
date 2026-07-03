@@ -1,4 +1,4 @@
-import { GdsLayoutTemplatePreview } from '@doneisbetter/gds';
+import { GdsLayoutTemplatePreview } from '@sovereignsquad/gds';
 
 export const Default = () => <GdsLayoutTemplatePreview />;
 

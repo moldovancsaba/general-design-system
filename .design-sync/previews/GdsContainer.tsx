@@ -1,4 +1,4 @@
-import { GdsContainer } from '@doneisbetter/gds';
+import { GdsContainer } from '@sovereignsquad/gds';
 
 const Panel = ({ children }: { children: React.ReactNode }) => (
   <div

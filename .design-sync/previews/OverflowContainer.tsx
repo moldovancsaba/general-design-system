@@ -1,4 +1,4 @@
-import { OverflowContainer } from '@doneisbetter/gds';
+import { OverflowContainer } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <OverflowContainer label="Release notes" maxHeight={180} style={{ padding: 16, border: '1px solid #e9ecef', borderRadius: 12, background: '#fff' }}>

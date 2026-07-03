@@ -9,9 +9,9 @@ const apiRegistrySource = readFileSync(apiRegistryPath, 'utf8');
 const patternCoverageSource = readFileSync(patternCoveragePath, 'utf8');
 
 const packageSourceDirs = {
-  '@doneisbetter/gds-theme': resolve(root, 'packages/gds-theme/src'),
-  '@doneisbetter/gds-core': resolve(root, 'packages/gds-core/src'),
-  '@doneisbetter/gds-admin': resolve(root, 'packages/gds-admin/src'),
+  '@sovereignsquad/gds-theme': resolve(root, 'packages/gds-theme/src'),
+  '@sovereignsquad/gds-core': resolve(root, 'packages/gds-core/src'),
+  '@sovereignsquad/gds-admin': resolve(root, 'packages/gds-admin/src'),
 };
 
 const ignoredExports = new Set([

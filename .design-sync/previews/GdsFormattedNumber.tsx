@@ -1,4 +1,4 @@
-import { GdsFormattedNumber } from '@doneisbetter/gds';
+import { GdsFormattedNumber } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <p style={{ fontSize: 16 }}>

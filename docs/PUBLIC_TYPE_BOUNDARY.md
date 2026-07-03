@@ -23,8 +23,8 @@ boundary/public-type-allowlist.json
 
 The allowlist is the documented, reviewed set of intentional vendor-type
 exposures. Today that is almost entirely the **`GdsPrimitives` passthrough** in
-`@doneisbetter/gds-core` (it deliberately re-exports raw engine primitives and
-their prop types) plus the Mantine theme-override types in `@doneisbetter/gds-theme`.
+`@sovereignsquad/gds-core` (it deliberately re-exports raw engine primitives and
+their prop types) plus the Mantine theme-override types in `@sovereignsquad/gds-theme`.
 
 Un-exporting those primitives is a **breaking** change for consumers that use
 them with engine props, so it is done **deliberately and incrementally**, not in

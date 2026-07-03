@@ -10,13 +10,13 @@ Contracts below unblock deletion of permanent Amanoba-only forks after `mvp-fact
 
 | Contract | Package | Maturity |
 | --- | --- | --- |
-| AuthShell, PublicShell, ArticleShell | `@doneisbetter/gds-core` | active |
-| MetricCard, ProgressCard, StateBlock | `@doneisbetter/gds-core` | active |
-| ProductCard (base) | `@doneisbetter/gds-core` | active |
-| DataToolbar, ResponsiveDataView | `@doneisbetter/gds-admin` | active |
-| GameBoardTile | `@doneisbetter/gds-core` | active (2.3.2) |
-| AccessRecoveryPanel | `@doneisbetter/gds-core` | active (2.4.1) |
-| extendGdsTheme / client+server entrypoints | `@doneisbetter/gds-theme` | required |
+| AuthShell, PublicShell, ArticleShell | `@sovereignsquad/gds-core` | active |
+| MetricCard, ProgressCard, StateBlock | `@sovereignsquad/gds-core` | active |
+| ProductCard (base) | `@sovereignsquad/gds-core` | active |
+| DataToolbar, ResponsiveDataView | `@sovereignsquad/gds-admin` | active |
+| GameBoardTile | `@sovereignsquad/gds-core` | active (2.3.2) |
+| AccessRecoveryPanel | `@sovereignsquad/gds-core` | active (2.4.1) |
+| extendGdsTheme / client+server entrypoints | `@sovereignsquad/gds-theme` | required |
 
 ## Decision: Learner shell stays local for now
 
@@ -50,7 +50,7 @@ Quest, reward, and leaderboard list cards remain local until broader reuse is pr
 
 ## Canonical replacement for course access recovery
 
-Protected lesson and quiz recovery should now use `@doneisbetter/gds-core` `AccessRecoveryPanel`.
+Protected lesson and quiz recovery should now use `@sovereignsquad/gds-core` `AccessRecoveryPanel`.
 
 ## Amanoba adoption pointer
 

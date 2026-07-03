@@ -1,4 +1,4 @@
-import { StatusBadge, GdsSafeBox } from '@doneisbetter/gds';
+import { StatusBadge, GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Tones = () => (
   <GdsSafeBox style={{ padding: 24 }}>

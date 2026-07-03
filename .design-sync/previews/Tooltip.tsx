@@ -1,4 +1,4 @@
-import { Tooltip, Button } from '@doneisbetter/gds';
+import { Tooltip, Button } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div style={{ padding: 40, display: 'flex', justifyContent: 'center' }}>

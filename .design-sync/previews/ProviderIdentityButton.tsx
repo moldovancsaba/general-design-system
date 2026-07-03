@@ -1,4 +1,4 @@
-import { ProviderIdentityButton } from '@doneisbetter/gds';
+import { ProviderIdentityButton } from '@sovereignsquad/gds';
 
 export const Google = () => (
   <ProviderIdentityButton

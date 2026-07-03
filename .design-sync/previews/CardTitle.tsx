@@ -1,4 +1,4 @@
-import { CardTitle, BodyText } from '@doneisbetter/gds';
+import { CardTitle, BodyText } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <div

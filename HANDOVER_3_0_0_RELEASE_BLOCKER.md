@@ -20,9 +20,9 @@ Date: 2026-05-31
 Real npm publication failed at the first package:
 
 ```text
-npm publish --workspace @doneisbetter/gds-theme --access public
-E404 Not Found - PUT https://registry.npmjs.org/@doneisbetter%2fgds-theme
-The requested resource '@doneisbetter/gds-theme@3.0.0' could not be found or you do not have permission to access it.
+npm publish --workspace @sovereignsquad/gds-theme --access public
+E404 Not Found - PUT https://registry.npmjs.org/@sovereignsquad%2fgds-theme
+The requested resource '@sovereignsquad/gds-theme@3.0.0' could not be found or you do not have permission to access it.
 ```
 
 `npm whoami` also fails with:
@@ -39,16 +39,16 @@ No `NPM_TOKEN`, `NODE_AUTH_TOKEN`, or npm auth env var is present in the current
 
 Packages still pending publish:
 
-- `@doneisbetter/gds-theme@3.0.0`
-- `@doneisbetter/gds-core@3.0.0`
-- `@doneisbetter/gds-admin@3.0.0`
-- `@doneisbetter/gds@3.0.0`
-- `@doneisbetter/gds-eslint-config@3.0.0`
-- `@doneisbetter/gds-compliance@3.0.0`
+- `@sovereignsquad/gds-theme@3.0.0`
+- `@sovereignsquad/gds-core@3.0.0`
+- `@sovereignsquad/gds-admin@3.0.0`
+- `@sovereignsquad/gds@3.0.0`
+- `@sovereignsquad/gds-eslint-config@3.0.0`
+- `@sovereignsquad/gds-compliance@3.0.0`
 
 ## Required recovery
 
-1. Authenticate npm with an account/token that can publish under the `@doneisbetter` scope.
+1. Authenticate npm with an account/token that can publish under the `@sovereignsquad` scope.
 2. Re-run:
 
 ```bash

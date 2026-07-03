@@ -1,4 +1,4 @@
-import { AdminResourceEmptyState, SemanticButton } from '@doneisbetter/gds';
+import { AdminResourceEmptyState, SemanticButton } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <AdminResourceEmptyState

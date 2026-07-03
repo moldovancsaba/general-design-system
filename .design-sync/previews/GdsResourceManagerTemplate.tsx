@@ -1,4 +1,4 @@
-import { GdsResourceManagerTemplate } from '@doneisbetter/gds';
+import { GdsResourceManagerTemplate } from '@sovereignsquad/gds';
 
 const rows = [
   { id: '1', name: 'Coastal Retreat', region: 'West', status: 'Published' },

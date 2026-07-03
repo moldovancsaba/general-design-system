@@ -25,7 +25,7 @@ const requiredExports = [
   'applyGdsA11ySuppressions',
 ];
 
-if (pkg.name !== '@doneisbetter/gds-a11y') {
+if (pkg.name !== '@sovereignsquad/gds-a11y') {
   failures.push('gds-a11y package name is incorrect.');
 }
 

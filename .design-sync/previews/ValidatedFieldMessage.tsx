@@ -1,4 +1,4 @@
-import { ValidatedFieldMessage, GdsFormProvider, TextInput } from '@doneisbetter/gds';
+import { ValidatedFieldMessage, GdsFormProvider, TextInput } from '@sovereignsquad/gds';
 
 const snapshot = {
   fields: {

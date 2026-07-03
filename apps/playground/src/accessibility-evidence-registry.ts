@@ -4,7 +4,7 @@ import {
   getGdsAccessibilityEvidenceSummary,
   type GdsAccessibilityEvidence,
   type GdsAccessibilityEvidenceState,
-} from '@doneisbetter/gds-core';
+} from '@sovereignsquad/gds-core';
 import { patternRegistry, type PatternFamily } from './pattern-registry.ts';
 
 const evidenceDate = '2026-07-01';
@@ -188,7 +188,7 @@ export const accessibilityEvidenceEntries: GdsAccessibilityEvidence[] = patternR
   .map((entry) => {
     const screenReader = familyScreenReader[entry.family];
     const status = statusOverrides[entry.id] ?? 'verified';
-    const packageName = entry.importPath ?? '@doneisbetter/gds-core';
+    const packageName = entry.importPath ?? '@sovereignsquad/gds-core';
 
     return {
       id: entry.id,

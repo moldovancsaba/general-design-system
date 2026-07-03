@@ -1,4 +1,4 @@
-import { ThemeIcon } from '@doneisbetter/gds';
+import { ThemeIcon } from '@sovereignsquad/gds';
 import {
   IconCheck,
   IconBell,

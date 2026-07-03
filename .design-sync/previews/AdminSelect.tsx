@@ -1,4 +1,4 @@
-import { AdminSelect } from '@doneisbetter/gds';
+import { AdminSelect } from '@sovereignsquad/gds';
 
 const regions = [
   { value: 'eu', label: 'EU-Central' },

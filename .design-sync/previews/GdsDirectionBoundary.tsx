@@ -1,4 +1,4 @@
-import { GdsDirectionBoundary } from '@doneisbetter/gds';
+import { GdsDirectionBoundary } from '@sovereignsquad/gds';
 
 const block = {
   border: '1px solid var(--mantine-color-gray-3, #ced4da)',

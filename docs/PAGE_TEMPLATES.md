@@ -1,7 +1,7 @@
 # Production Page Templates
 
 Status: package-native runtime contract  
-Package: `@doneisbetter/gds-core`  
+Package: `@sovereignsquad/gds-core`  
 Issue: `#263`
 
 Production page templates give teams approved full-page starting points instead of route-local layouts. They are additive APIs and do not own persistence, authorization, analytics vendors, or domain business rules.
@@ -22,7 +22,7 @@ import {
   getGdsPageTemplate,
   validateGdsPageTemplates,
   createGdsPageTemplateEvent,
-} from '@doneisbetter/gds-core';
+} from '@sovereignsquad/gds-core';
 ```
 
 ## Architecture

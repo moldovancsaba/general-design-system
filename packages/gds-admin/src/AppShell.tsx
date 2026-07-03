@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { Divider, Group, Stack, Text, Title } from '@mantine/core';
-import { DiscoveryShell, ThemeToggle } from '@doneisbetter/gds-core';
+import { DiscoveryShell, ThemeToggle } from '@sovereignsquad/gds-core';
 
 export interface AppShellProps {
   logoText?: string;

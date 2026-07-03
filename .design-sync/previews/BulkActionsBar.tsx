@@ -1,4 +1,4 @@
-import { BulkActionsBar } from '@doneisbetter/gds';
+import { BulkActionsBar } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <BulkActionsBar

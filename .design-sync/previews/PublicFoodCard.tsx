@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PublicFoodCard } from '@doneisbetter/gds';
+import { PublicFoodCard } from '@sovereignsquad/gds';
 
 const dishImage = (
   <img

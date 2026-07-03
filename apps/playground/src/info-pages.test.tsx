@@ -39,7 +39,7 @@ describe('playground overview page', () => {
 
     expect(screen.getByRole('heading', { name: 'GDS installieren' })).toBeTruthy();
     expect(screen.getByText('Öffentlicher 3.9.0-Installationspfad')).toBeTruthy();
-    expect(screen.getAllByText(/@doneisbetter\/gds@3.9.0/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/@sovereignsquad\/gds@3.9.0/).length).toBeGreaterThan(0);
 
     unmount();
 
@@ -61,7 +61,7 @@ describe('playground overview page', () => {
     expect(screen.getByRole('heading', { name: 'API Reference' })).toBeTruthy();
     expect(screen.getByText('Published package contracts')).toBeTruthy();
     expect(screen.getByText('Accessibility evidence contract')).toBeTruthy();
-    expect(screen.getAllByText('@doneisbetter/gds-core').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('@sovereignsquad/gds-core').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Import path').length).toBeGreaterThan(0);
     unmount();
 

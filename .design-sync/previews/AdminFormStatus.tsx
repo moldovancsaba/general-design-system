@@ -1,4 +1,4 @@
-import { AdminFormStatus } from '@doneisbetter/gds';
+import { AdminFormStatus } from '@sovereignsquad/gds';
 
 export const Success = () => (
   <AdminFormStatus

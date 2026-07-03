@@ -1,4 +1,4 @@
-import { Tabs } from '@doneisbetter/gds';
+import { Tabs } from '@sovereignsquad/gds';
 import { IconChartBar, IconSettings, IconUsers } from '@tabler/icons-react';
 
 export const Default = () => (

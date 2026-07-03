@@ -4,7 +4,7 @@ Status: Active SSOT
 Version: 3.5.0
 Last updated: 2026-06-21
 
-GDS motion is a governed token and preset system. Consumers must use `@doneisbetter/gds-theme` motion exports instead of route-local transition durations, custom easing curves, animation-only loading states, or unbounded overlay motion.
+GDS motion is a governed token and preset system. Consumers must use `@sovereignsquad/gds-theme` motion exports instead of route-local transition durations, custom easing curves, animation-only loading states, or unbounded overlay motion.
 
 ## Architecture
 
@@ -26,7 +26,7 @@ The runtime contract is intentionally small:
 
 ## Runtime API
 
-Import static helpers from `@doneisbetter/gds-theme` or `@doneisbetter/gds-theme/server`:
+Import static helpers from `@sovereignsquad/gds-theme` or `@sovereignsquad/gds-theme/server`:
 
 ```ts
 import {
@@ -35,13 +35,13 @@ import {
   gdsMotionDurations,
   gdsMotionEasings,
   gdsMotionPresets,
-} from '@doneisbetter/gds-theme';
+} from '@sovereignsquad/gds-theme';
 ```
 
 Client surfaces may use:
 
 ```tsx
-import { useGdsReducedMotion } from '@doneisbetter/gds-theme/client';
+import { useGdsReducedMotion } from '@sovereignsquad/gds-theme/client';
 
 const motion = useGdsReducedMotion();
 const overlayMotion = motion.getPreset('overlay');

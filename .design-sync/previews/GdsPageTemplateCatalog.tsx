@@ -1,3 +1,3 @@
-import { GdsPageTemplateCatalog } from '@doneisbetter/gds';
+import { GdsPageTemplateCatalog } from '@sovereignsquad/gds';
 
 export const Default = () => <GdsPageTemplateCatalog />;

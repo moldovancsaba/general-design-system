@@ -1,4 +1,4 @@
-import { Table } from '@doneisbetter/gds';
+import { Table } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <Table>

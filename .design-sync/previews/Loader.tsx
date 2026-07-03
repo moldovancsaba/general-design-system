@@ -1,4 +1,4 @@
-import { Loader, GdsSafeBox } from '@doneisbetter/gds';
+import { Loader, GdsSafeBox } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <GdsSafeBox

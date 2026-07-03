@@ -5,8 +5,8 @@ public UI component shipped by GDS is demonstrated in GDS's own pattern catalog.
 
 ## What it enforces
 
-Every public **PascalCase UI component** exported from `@doneisbetter/gds-core`
-or `@doneisbetter/gds-admin` (via each package's `index` / `client` / `server`
+Every public **PascalCase UI component** exported from `@sovereignsquad/gds-core`
+or `@sovereignsquad/gds-admin` (via each package's `index` / `client` / `server`
 entrypoints) must be **either**:
 
 1. **Registered** in the pattern registry (`apps/playground/src/pattern-registry.ts`)

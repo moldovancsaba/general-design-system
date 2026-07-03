@@ -1,4 +1,4 @@
-import { Select, SectionPanel } from '@doneisbetter/gds';
+import { Select, SectionPanel } from '@sovereignsquad/gds';
 
 export const Default = () => (
   <SectionPanel>

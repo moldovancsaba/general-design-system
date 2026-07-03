@@ -1,5 +1,5 @@
-import { MeaningBadge } from '@doneisbetter/gds-core';
-import { GdsSafeBox, GdsInline, GdsStack } from '@doneisbetter/gds-core';
+import { MeaningBadge } from '@sovereignsquad/gds-core';
+import { GdsSafeBox, GdsInline, GdsStack } from '@sovereignsquad/gds-core';
 
 export default function Preview() {
   return (

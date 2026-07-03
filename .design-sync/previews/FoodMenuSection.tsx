@@ -1,4 +1,4 @@
-import { FoodMenuSection } from '@doneisbetter/gds';
+import { FoodMenuSection } from '@sovereignsquad/gds';
 
 const dish = (from: string, to: string) => (
   <img

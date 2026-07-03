@@ -8,7 +8,7 @@ import {
   hu,
   it,
   ru,
-} from '@doneisbetter/gds-core';
+} from '@sovereignsquad/gds-core';
 
 export const stableGdsVersion = '3.9.0';
 export const targetGdsVersion = '3.9.0';
